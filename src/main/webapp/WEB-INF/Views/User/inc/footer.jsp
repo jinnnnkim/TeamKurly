@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <link href="/Resources/User/Css/footer.css"  rel="stylesheet"  type="text/css">
+    <link href="/recipetoyou/Resources/User/Css/footer.css"  rel="stylesheet"  type="text/css">
 <!-- footer 시작  -->
 		<div class="footer">
 			<div class="innerFooter">
@@ -73,15 +73,15 @@
 					<div class="social">
 						<ul>
 							<li><a href="#"><img
-									src="/Resources/User/Img/ico_instagram.png"></a>
+									src="/recipetoyou/Resources/User/Img/ico_instagram.png"></a>
 							<li><a href="#"><img
-									src="/Resources/User/Img/ico_fb.png"></a>
+									src="/recipetoyou/Resources/User/Img/ico_fb.png"></a>
 							<li><a href="#"><img
-									src="/Resources/User/Img/ico_blog.png"></a>
+									src="/recipetoyou/Resources/User/Img/ico_blog.png"></a>
 							<li><a href="#"><img
-									src="/Resources/User/Img/ico_naverpost.png"></a>
+									src="/recipetoyou/Resources/User/Img/ico_naverpost.png"></a>
 							<li><a href="#"><img
-									src="/Resources/User/Img/ico_youtube.png"></a>
+									src="/recipetoyou/Resources/User/Img/ico_youtube.png"></a>
 						</ul>
 					</div>
 				</div>
@@ -89,13 +89,13 @@
 			<div class="footerBottom">
 				<ul>
 					<li><a href="#"><img
-							src="/Resources/User/Img/logo_isms.png"> <span>[인증범위] 레시피 to
+							src="/recipetoyou/Resources/User/Img/logo_isms.png"> <span>[인증범위] 레시피 to
 							you 쇼핑몰 서비스 개발 · 운영<br /> [유효기간] 2022.01.01 ~ 2022.03.31</span></a>
 					<li><a href="#"><img
-							src="/Resources/User/Img/logo_eprivacyplus.png"><span> 개인정보보호
+							src="/recipetoyou/Resources/User/Img/logo_eprivacyplus.png"><span> 개인정보보호
 							우수 웹사이트 ·<br /> 개인정보처리시스템 인증 (ePRIVACY PLUS)</span></a>
 					<li class="kakaoBotLogo"><a href="#"><img
-							src="/Resources/User/Img/payments.PNG"> <span>고객님의 안전거래를 위해
+							src="/recipetoyou/Resources/User/Img/payments.PNG"> <span>고객님의 안전거래를 위해
 							현금 등으로 결제 시 저희 쇼핑몰에서 가입한<br /> 토스 페이먼츠 구매안전(에스크로) 서비스를 이용하실 수
 							있습니다.</span></a>
 				</ul>

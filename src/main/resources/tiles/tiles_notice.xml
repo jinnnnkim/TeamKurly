@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 2.1//EN"
+       "http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
+       
+<tiles-definitions>
+	<definition name="noticeLayout" template="/WEB-INF/Views/User/inc/noticeLayout.jsp">
+		<put-attribute name="title" value=""/>
+		<put-attribute name="header" value="/WEB-INF/Views/User/inc/header.jsp"/>
+		<put-attribute name="side" value="/WEB-INF/Views/User/inc/noticeSideMenu.jsp"/>			
+		<put-attribute name="body" value=""/>
+		<put-attribute name="footer" value="/WEB-INF/Views/User/inc/footer.jsp"/>		
+	</definition>
+	
+	<definition name="noticeDetailLayout" template="/WEB-INF/Views/User/inc/noticeDetailLayout.jsp">
+		<put-attribute name="title" value=""/>
+		<put-attribute name="header" value="/WEB-INF/Views/User/inc/header.jsp"/>
+		<put-attribute name="body" value=""/>
+		<put-attribute name="footer" value="/WEB-INF/Views/User/inc/footer.jsp"/>		
+	</definition>
+	
+	<definition name="/notice/notice" extends="noticeLayout">
+		<put-attribute name="title" value="공지사항"/>
+		<put-attribute name="body" value="/WEB-INF/Views/User/Notice/notice.jsp"/>	
+	</definition>
+	
+	<definition name="/notice/noticeBulkOrder" extends="noticeLayout">
+		<put-attribute name="title" value="대량주문"/>
+		<put-attribute name="body" value="/WEB-INF/Views/User/Notice/noticeBulkOrder.jsp"/>	
+	</definition>
+	
+	
+	<definition name="/notice/noticeDetail" extends="noticeDetailLayout">
+		<put-attribute name="title" value="공지사항-상세페이지"/>
+		<put-attribute name="body" value="/WEB-INF/Views/User/Notice/noticeDetail.jsp"/>	
+	</definition>
+	
+	
+	<definition name="/notice/noticeEchoWrapFeedback" extends="noticeLayout">
+		<put-attribute name="title" value="에코포장피드백"/>
+		<put-attribute name="body" value="/WEB-INF/Views/User/Notice/noticeEchoWrapFeedback.jsp"/>	
+	</definition>
+	
+	
+	<definition name="/notice/noticeEchoWrapFeedbackDetail" extends="noticeLayout">
+		<put-attribute name="title" value="에코포장 피드백 - 상세페이지"/>
+		<put-attribute name="body" value="/WEB-INF/Views/User/Notice/noticeEchoWrapFeedbackDetail.jsp"/>	
+	</definition>
+	
+	
+	<definition name="/notice/noticeFrequencyQuestion" extends="noticeLayout">
+		<put-attribute name="title" value="자주하는질문"/>
+		<put-attribute name="body" value="/WEB-INF/Views/User/Notice/noticeFrequencyQuestion.jsp"/>	
+	</definition>
+	
+	
+	<definition name="/notice/noticeGoodsOffer" extends="noticeLayout">
+		<put-attribute name="title" value="상품제안"/>
+		<put-attribute name="body" value="/WEB-INF/Views/User/Notice/noticeGoodsOffer.jsp"/>	
+	</definition>
+	
+	
+	<definition name="/notice/noticeGoodsOfferDetail" extends="noticeLayout">
+		<put-attribute name="title" value="상품제안 - 상세페이지"/>
+		<put-attribute name="body" value="/WEB-INF/Views/User/Notice/noticeGoodsOfferDetail.jsp"/>	
+	</definition>
+	
+	<definition name="/notice/noticeOneToOneQuestion" extends="noticeLayout">
+		<put-attribute name="title" value="1:1 문의"/>
+		<put-attribute name="body" value="/WEB-INF/Views/User/Notice/noticeOneToOneQuestion.jsp"/>	
+	</definition>
+	
+	<definition name="/notice/noticeOneToOneQuestionDetail" extends="noticeLayout">
+		<put-attribute name="title" value="1:1 문의 - 상세페이지"/>
+		<put-attribute name="body" value="/WEB-INF/Views/User/Notice/noticeOneToOneQuestionDetail.jsp"/>	
+	</definition>
+	
+	
+</tiles-definitions>       

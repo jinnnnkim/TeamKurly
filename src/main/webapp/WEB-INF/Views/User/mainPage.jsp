@@ -1,118 +1,104 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<c:set var="contextPath"
-	value="${pageContext.request.servletContext.contextPath}" />
-<%
-request.setCharacterEncoding("UTF-8");
-%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
-<title>Recipe to You :: ≥ª¿œ¿« ¿Â∫∏±‚, ∑πΩ√««≈ı¿Ø</title>
-<link href="/Resources/User/Img/KurlyIcon.png" rel="icon"
+<meta charset="UTF-8">
+<title>Recipe to You :: ÎÇ¥ÏùºÏùò Ïû•Î≥¥Í∏∞, Î†àÏãúÌîºÌà¨Ïú†</title>
+<link href="/recipetoyou/Resources/User/Img/KurlyIcon.png" rel="icon"
 	type="image/x-icon" />
-<!-- slick ∏µ≈© ø¨∞· -->
+<!-- slick ÎßÅÌÅ¨ Ïó∞Í≤∞ -->
 <link rel="stylesheet" type="text/css" href="slick/slick.css" />
 <link rel="stylesheet" type="text/css" href="slick/slick-theme.css" />
 
 </head>
 <body>
-	<div class="wrap">
-		<jsp:include page="/View/User/inc/header.jsp" />
-		<!-- header -->
 
-		<div class="banner">
-			<!-- banner -->
-			<div class="banner-img">
-				<div>
-					<a href="#"><img alt="main1"
-						src="/Resources/User/Img/main1.jpg"></a>
-				</div>
-				<div>
-					<a href="#"><img alt="main1"
-						src="/Resources/User/Img/main2.jpg"></a>
-				</div>
-				<div>
-					<a href="#"><img alt="main1"
-						src="/Resources/User/Img/main3.jpg"></a>
-				</div>
+	<div class="banner">
+		<!-- banner -->
+		<div class="banner-img">
+			<div>
+				<a href="#"><img alt="main1"
+					src="/recipetoyou/Resources/User/Img/main1.jpg"></a>
 			</div>
+			<div>
+				<a href="#"><img alt="main1"
+					src="/recipetoyou/Resources/User/Img/main2.jpg"></a>
+			</div>
+			<div>
+				<a href="#"><img alt="main1"
+					src="/recipetoyou/Resources/User/Img/main3.jpg"></a>
+			</div>
+		</div>
 
-			<!-- banner js ∫Œ∫– -->
-			<script type="text/javascript"
-				src="//code.jquery.com/jquery-1.11.0.min.js"></script>
-			<script type="text/javascript"
-				src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
-			<script type="text/javascript" src="slick/slick.min.js"></script>
+		<!-- banner js Î∂ÄÎ∂Ñ -->
+		<script type="text/javascript"
+			src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+		<script type="text/javascript"
+			src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+		<script type="text/javascript"
+			src="/recipetoyou/RecipeToYou/Resources/Common/slick/slick.min.js"></script>
 
-			<script type="text/javascript">
-				$('.banner-img').slick({
-					infinite : true,
-					slidesToShow : 1,
-					autoplay : true,
-					autoplayspeed : 1800
-				});
-			</script>
+		<script type="text/javascript">
+			$('.banner-img').slick({
+				infinite : true,
+				slidesToShow : 1,
+				autoplay : true,
+				autoplayspeed : 1800
+			});
+		</script>
 
-			<div class="main">
-				<!-- main -->
-				<div class="item1">
-					<!-- item1 -->
-					<div class="item_how">
-						<!-- .item-how -->
-						<b>¿Ã ªÛ«∞ æÓ∂ßø‰?</b>
-					</div>	
-					
-					<div class="how_goods" style="background-color: red;">
-						<!-- goods img -->
-						<div>
-							<a href="#"><img alt="goods1"
-								src="/Resources/User/Img/goods1.jpg"></a>
-						</div>
-						<div>
-							<a href="#"><img alt="goods2"
-								src="/Resources/User/Img/goods2.jpg"></a>
-						</div>
-						<div>
-							<a href="#"><img alt="goods3"
-								src="/Resources/User/Img/goods3.jpg"></a>
-						</div>
-						<div>
-							<a href="#"><img alt="goods4"
-								src="/Resources/User/Img/goods4.jpg"></a>
-						</div>
-						<div>
-							<a href="#"><img alt="goods5"
-								src="/Resources/User/Img/goods5.jpg"></a>
-						</div>
-						<div>
-							<a href="#"><img alt="goods6"
-								src="/Resources/User/Img/goods6.jpg"></a>
-						</div>
-						<div>
-							<a href="#"><img alt="goods7"
-								src="/Resources/User/Img/goods7.jpg"></a>
-						</div>
-						<div>
-							<a href="#"><img alt="goods8"
-								src="/Resources/User/Img/goods8.jpg"></a>
-						</div>
-						
-					</div>		<!-- how_goods ¥›»˘ ≈¬±◊ -->
-							
+		<div class="main">
+			<!-- main -->
+			<div class="item1">
+				<!-- item1 -->
+				<div class="item_how">
+					<!-- .item-how -->
+					<b>Ïù¥ ÏÉÅÌíà Ïñ¥ÎïåÏöî?</b>
+				</div>
+
+				<div class="how_goods" style="background-color: red;">
+					<!-- goods img -->
+					<div>
+						<a href="#"><img alt="goods1"
+							src="/recipetoyou/Resources/User/Img/goods1.jpg"></a>
+					</div>
+					<div>
+						<a href="#"><img alt="goods2"
+							src="/recipetoyou/Resources/User/Img/goods2.jpg"></a>
+					</div>
+					<div>
+						<a href="#"><img alt="goods3"
+							src="/recipetoyou/Resources/User/Img/goods3.jpg"></a>
+					</div>
+					<div>
+						<a href="#"><img alt="goods4"
+							src="/recipetoyou/Resources/User/Img/goods4.jpg"></a>
+					</div>
+					<div>
+						<a href="#"><img alt="goods5"
+							src="/recipetoyou/Resources/User/Img/goods5.jpg"></a>
+					</div>
+					<div>
+						<a href="#"><img alt="goods6"
+							src="/recipetoyou/Resources/User/Img/goods6.jpg"></a>
+					</div>
+					<div>
+						<a href="#"><img alt="goods7"
+							src="/recipetoyou/Resources/User/Img/goods7.jpg"></a>
+					</div>
+					<div>
+						<a href="#"><img alt="goods8"
+							src="/recipetoyou/Resources/User/Img/goods8.jpg"></a>
+					</div>
+
+				</div>
+				<!-- how_goods Îã´Ìûå ÌÉúÍ∑∏ -->
+
 				<!-- <i class="fas fa-arrow-circle-right"></i>  -->
 
 				<!-- item-how js -->
-				<script type="text/javascript"
-					src="//code.jquery.com/jquery-1.11.0.min.js"></script>
-				<script type="text/javascript"
-					src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
-				<script type="text/javascript" src="slick/slick.min.js"></script>
-
 				<script type="text/javascript">
 					$('.how_goods').slick({
 
@@ -142,14 +128,14 @@ request.setCharacterEncoding("UTF-8");
 						} ]
 					});
 				</script>
-			</div>		<!-- item1 ¥›»˘ ≈¬±◊ -->
-		
+			</div>
+			<!-- item1 Îã´Ìûå ÌÉúÍ∑∏ -->
+
 
 			<div class="beef">
-				<!-- ∞Ì±‚ ±§∞Ì -->
+				<!-- Í≥†Í∏∞ Í¥ëÍ≥† -->
 				<div class="beef_img">
-					<a href="#"><img alt="beef"
-						src="/Resources/User/Img/beefb.jpg"></a>
+					<a href="#"><img alt="beef" src="/recipetoyou/Resources/User/Img/beefb.jpg"></a>
 				</div>
 			</div>
 
@@ -157,123 +143,117 @@ request.setCharacterEncoding("UTF-8");
 			<!-- item_price -->
 			<div class="item2">
 				<div class="item_price">
-					<b>≥ıƒ°∏È »ƒ»∏«“ ∞°∞› > </b>
+					<b>ÎÜìÏπòÎ©¥ ÌõÑÌöåÌï† Í∞ÄÍ≤© > </b>
 				</div>
 
 				<div class="price_goods" style="background-color: red;">
 					<!-- goods img -->
 					<div>
 						<a href="#"><img alt="goods1"
-							src="/Resources/User/Img/goods1.jpg"></a>
+							src="/recipetoyou/Resources/User/Img/goods1.jpg"></a>
 					</div>
 					<div>
 						<a href="#"><img alt="goods2"
-							src="./Resources/User/Img/goods2.jpg"></a>
+							src="/recipetoyou/Resources/User/Img/goods2.jpg"></a>
 					</div>
 					<div>
 						<a href="#"><img alt="goods3"
-							src="/Resources/User/Img/goods3.jpg"></a>
+							src="/recipetoyou/Resources/User/Img/goods3.jpg"></a>
 					</div>
 					<div>
 						<a href="#"><img alt="goods4"
-							src="/Resources/User/Img/goods4.jpg"></a>
+							src="/recipetoyou/Resources/User/Img/goods4.jpg"></a>
 					</div>
 					<div>
 						<a href="#"><img alt="goods5"
-							src="/Resources/User/Img/goods5.jpg"></a>
+							src="/recipetoyou/Resources/User/Img/goods5.jpg"></a>
 					</div>
 					<div>
 						<a href="#"><img alt="goods6"
-							src="/Resources/User/Img/goods6.jpg"></a>
+							src="/recipetoyou/Resources/User/Img/goods6.jpg"></a>
 					</div>
 					<div>
 						<a href="#"><img alt="goods7"
-							src="/Resources/User/Img/goods7.jpg"></a>
+							src="/recipetoyou/Resources/User/Img/goods7.jpg"></a>
 					</div>
 					<div>
 						<a href="#"><img alt="goods8"
-							src="/Resources/User/Img/goods8.jpg"></a>
+							src="/recipetoyou/Resources/User/Img/goods8.jpg"></a>
 					</div>
-				</div>		<!-- price_goods ¥›»˘ ≈¬±◊ -->
-		
+				</div>
+				<!-- price_goods Îã´Ìûå ÌÉúÍ∑∏ -->
 
 
-			<script type="text/javascript"
-				src="//code.jquery.com/jquery-1.11.0.min.js"></script>
-			<script type="text/javascript"
-				src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
-			<script type="text/javascript" src="slick/slick.min.js"></script>
+				<script type="text/javascript">
+					$('.price_goods').slick({
 
-			<script type="text/javascript">
-				$('.price_goods').slick({
+						infinite : false,
+						speed : 300,
+						slidesToShow : 4,
+						slidesToScroll : 4,
+						goods_img : [ {
+							breakpoint : 1024,
+							settings : {
+								slidesToShow : 3,
+								slidesToScroll : 3,
+								infinite : true
+							}
+						}, {
+							breakpoint : 600,
+							settings : {
+								slidesToShow : 2,
+								slidesToScroll : 2
+							}
+						}, {
+							breakpoint : 480,
+							settings : {
+								slidesToShow : 1,
+								slidesToScroll : 1
+							}
+						} ]
+					});
+				</script>
+			</div>
+			<!-- item2 ÎîõÌûå ÌÉúÍ∑∏  -->
 
-					infinite : false,
-					speed : 300,
-					slidesToShow : 4,
-					slidesToScroll : 4,
-					goods_img : [ {
-						breakpoint : 1024,
-						settings : {
-							slidesToShow : 3,
-							slidesToScroll : 3,
-							infinite : true
-						}
-					}, {
-						breakpoint : 600,
-						settings : {
-							slidesToShow : 2,
-							slidesToScroll : 2
-						}
-					}, {
-						breakpoint : 480,
-						settings : {
-							slidesToShow : 1,
-							slidesToScroll : 1
-						}
-					} ]
-				});
-			</script>
-		</div>				<!-- item2 µÛ»˘ ≈¬±◊  -->
-
-			<!-- ªı∫Æ πËº€ ±§∞Ì -->
+			<!-- ÏÉàÎ≤Ω Î∞∞ÏÜ° Í¥ëÍ≥† -->
 			<div class="dawn_delivery">
 				<div class="dawn_ads">
 					<a><img alt="dawn ads"
-						src="/Resources/User/Img/dawnAds.jpg"></a>
+						src="/recipetoyou/Resources/User/Img/dawnAds.jpg"></a>
 				</div>
 			</div>
 
-		 <div class="review">	
+			<div class="review">
 				<div class="review_list">
-					<span class="customer_review">∞Ì∞¥ »ƒ±‚</span>
-					<span class="review_more">¥ı ∏π¿∫ »ƒ±‚∞° ±√±›«œ¥Ÿ∏È?</span>
-						<div class="review_photo">
-							<img alt="bread" src="/Resources/User/Img/review/1.jpg">
-							<img alt="ƒ´∑π" src="/Resources/User/Img/review/2.jpg">
-							<img alt="ø‰∞≈∆Æ" src="/Resources/User/Img/review/3.jpg">
-							<img alt="∫Œ∏Æ∂«" src="/Resources/User/Img/review/4.jpg">
-							<img alt="∫Œ∏Æ∂«1" src="/Resources/User/Img/review/5.jpg">
-						</div> 
-				</div>		<!-- review_list -->
-				
-				<div class="move">	
-					<div class="move_comu">
-					<span class="review_more2">¥ı ∏π¿∫ »ƒ±‚∞° ±√±›«œ¥Ÿ∏È?</span><br>
-					<a href="#"><span>ƒøπ¬¥œ∆º πŸ∑Œ∞°±‚</span></a>
+					<span class="customer_review">Í≥†Í∞ù ÌõÑÍ∏∞</span> <span
+						class="review_more">Îçî ÎßéÏùÄ ÌõÑÍ∏∞Í∞Ä Í∂ÅÍ∏àÌïòÎã§Î©¥?</span>
+					<div class="review_photo">
+						<img alt="bread"
+							src="/recipetoyou/Resources/User/Img/Review/1.jpg"> <img
+							alt="Ïπ¥Î†à" src="/recipetoyou/Resources/User/Img/Review/2.jpg">
+						<img alt="ÏöîÍ±∞Ìä∏" src="/recipetoyou/Resources/User/Img/Review/3.jpg">
+						<img alt="Î∂ÄÎ¶¨Îòê" src="/recipetoyou/Resources/User/Img/Review/4.jpg">
+						<img alt="Î∂ÄÎ¶¨Îòê1" src="/recipetoyou/Resources/User/Img/Review/5.jpg">
 					</div>
-				</div>		<!-- move-->
-		</div>			<!-- review ¥›»˘ ≈¬±◊ -->
+				</div>
+				<!-- review_list -->
 
-		
+				<div class="move">
+					<div class="move_comu">
+						<span class="review_more2">Îçî ÎßéÏùÄ ÌõÑÍ∏∞Í∞Ä Í∂ÅÍ∏àÌïòÎã§Î©¥?</span><br> <a
+							href="#"><span>Ïª§ÎÆ§ÎãàÌã∞ Î∞îÎ°úÍ∞ÄÍ∏∞</span></a>
+					</div>
+				</div>
+				<!-- move-->
+			</div>
+			<!-- review Îã´Ìûå ÌÉúÍ∑∏ -->
 
 
-
-
-	
-				</div>	<!-- main ¥›»˘ ≈◊±◊ -->
-			</div>		<!-- banner ¥›»˘ ≈◊±◊ -->
-		<jsp:include page="/View/User/inc/footer.jsp" />
-	</div>				<!-- wrap -->
+		</div>
+		<!-- main Îã´Ìûå ÌÖåÍ∑∏ -->
+	</div>
+	<!-- banner Îã´Ìûå ÌÖåÍ∑∏ -->
 </body>
 </html>
 

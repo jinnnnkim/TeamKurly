@@ -1,14 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>마켓컬리 :: 내일의 장보기, 마켓컬리</title>
 
-<link href="/Resources/User/Css/Notice/noticeBulkOrder.css"
+<link href="/recipetoyou/Resources/User/Css/Notice2/noticeBulkOrder.css"
 	rel="stylesheet" type="text/css">
-<link href="/Resources/User/Css/reset.css" rel="stylesheet"
+<link href="/recipetoyou/Resources/User/Css/reset.css" rel="stylesheet"
 	type="text/css">
 <!-- fontawesome 링크 -->
 <link rel="stylesheet"
@@ -20,21 +22,10 @@
 	href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400&display=swap"
 	rel="stylesheet">
 <!-- 파비콘 링크 -->
-<link href="/Resources/User/Img/KurlyIcon.png" rel="icon"
+<link href="/recipetoyou/Resources/User/Img/KurlyIcon.png" rel="icon"
 	type="image/x-icon" />
 <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
 <body>
-	<div class="wrap">
-		<%-- header --%>
-		<jsp:include page="/View/User/inc/header.jsp" />
-		<%-- header end --%>
-
-		<%-- main --%>
-		<div class="main">
-
-			<%--sideMenu --%>
-			<jsp:include page="/View/User/inc/noticeSideMenu.jsp" />
-			<%--sideMenu end--%>
 
 			<div class="content">
 				<div class="title">
@@ -102,21 +93,11 @@
 				</div>
 				
 				<div class="QASendBtn">
-					<a href="/View/User/Notice/noticeBulkOrder.jsp">문의하기</a>
+					<a href="${contextPath}/notice/noticeBulkOrder.do">문의하기</a>
 				</div>
 		
 			</div>
 
 
-		</div>
-		<%-- main end --%>
-
-		<%-- footer --%>
-		<jsp:include page="/View/User/inc/footer.jsp" />
-		<%-- footer end--%>
-		<script>
-			
-		</script>
-	</div>
 </body>
 </html>
