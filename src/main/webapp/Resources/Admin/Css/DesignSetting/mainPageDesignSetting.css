@@ -1,0 +1,101 @@
+@charset "UTF-8";
+
+*{
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+.mainPageDesignSetting{
+	width: 1080px;
+	margin: 0 auto;
+}
+
+.title{
+	text-align: left;
+	color:#595959;
+	margin: 5px;
+	font-weight: bold;
+	font-size: 20px;
+}
+
+.mainOutLogin table{
+	border: 1px solid;
+	width: 1080px; 
+	height: 100px; 
+	text-align: center;
+	background-color: white;
+	margin-bottom: 30px;
+}
+
+.topVisualSetting table{
+	border: 1px solid;
+	width: 1080px; 
+	height: 100px; 
+	text-align: center;
+	background-color: white;
+	margin-bottom: 30px;
+}
+
+.mainPageBg table{
+	border: 1px solid;
+	width: 1080px; 
+	height: 100px; 
+	text-align: center;
+	background-color: white;
+}
+
+.mainOutLogin td{
+	border: 1px solid;
+	padding: 10px;
+	vertical-align: middle;
+}
+
+.topVisualSetting td{
+	border: 1px solid;
+	padding: 10px;
+	vertical-align: middle;
+}
+
+.mainPageBg td{
+	border: 1px solid;
+	padding: 10px;
+	vertical-align: middle;
+}
+
+.imgRegi table{
+	width: 900px;
+}
+
+.siteBgSet3{
+	width: 900px;
+}
+
+.mainPageBg .siteBgSet2 table{
+	width: 1000px;
+}
+
+.mainPageBg .siteBgSet3 td{
+	width: 1080px;
+}
+
+.gray{
+	background-color: #e9e9e9;
+	width: 150px;
+	height: 30px;
+}
+
+.mPDText{
+	font-size: 13px;
+}
+
+.mPDText2{
+	color: blue;
+	font-size: 13px;
+}
+
+
+
+
+
+
+
+

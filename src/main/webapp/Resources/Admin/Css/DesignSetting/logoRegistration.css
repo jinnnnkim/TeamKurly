@@ -1,0 +1,57 @@
+@charset "UTF-8";
+
+*{
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+.logoRegistration{
+	width: 1080px;
+	margin: 0 auto;
+}
+
+.logoSetting{
+	text-align: left;
+}
+
+.title{
+	text-align: left;
+	color:#595959;
+	margin: 5px;
+	font-weight: bold;
+	font-size: 20px;
+}
+
+.logoTable table{
+	border: 1px solid;
+	width: 1080px; 
+	height: 100px; 
+	text-align: center;
+	background-color: white;
+}
+
+.logoTable td{
+	border: 1px solid;
+	padding: 10px;
+	vertical-align: middle;
+}
+
+.logoMenu{
+	font-size: 15px;
+	margin:50px 0 20px 5px;
+}
+
+.gray{
+	background-color: #e9e9e9;
+	width: 150px;
+	height: 30px;
+}
+
+.lgText{
+	color: blue;
+	font-size: 13px;
+	padding: 10px;
+}
+
+.logoTable tr .lgText1{
+	width: 0;
+}

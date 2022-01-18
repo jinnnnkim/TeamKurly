@@ -1,0 +1,72 @@
+@charset "UTF-8";
+
+*{
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+.designIntroSetting{
+	width: 1080px;
+	margin: 0 auto;
+}
+
+.introSetting{
+	border: 1px solid;
+	padding: 10px 0 10px 0;
+	margin: 40px 0 40px 0;
+	background-color: white;
+	height: 30px;
+}
+
+.introSetting p{
+	padding: 0 0 5px 0;
+	vertical-align: middle;
+}
+
+.introTable p{
+	text-align: left;
+	color:#595959;
+	margin: 5px;
+	font-weight: bold;
+	font-size: 20px;
+}
+
+.introTable table{
+	border: 1px solid;
+	width: 1080px; 
+	height: 100px; 
+	text-align: center;
+	background-color: white;
+}
+
+.introTable td{
+	border: 1px solid;
+	padding: 10px;
+	vertical-align: middle;
+}
+
+.gray{
+	background-color: #e9e9e9;
+	width: 150px;
+	height: 30px;
+}
+
+.certiPage a{
+	color: blue;
+	border: 1px solid;
+	padding: 5px 400px 5px 400px;
+	background-color: #e9e9e9;
+}
+
+.certiPage p{
+	font-size: 10px;
+	color: gray;
+	text-align: center;
+	margin-top: 20px;
+}
+
+.linkPage a{
+	color: blue;
+	border: 1px solid;
+	padding: 5px 400px 5px 400px;
+	background-color: #e9e9e9;
+}
