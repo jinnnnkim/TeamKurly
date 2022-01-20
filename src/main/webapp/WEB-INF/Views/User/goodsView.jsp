@@ -1,9 +1,8 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<c:set var="contextPath"
-	value="${pageContext.request.servletContext.contextPath}" />
+<c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <%
 request.setCharacterEncoding("UTF-8");
 %>
@@ -11,14 +10,14 @@ request.setCharacterEncoding("UTF-8");
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
-<title>Recipe to You :: ³»ÀÏÀÇ Àåº¸±â, ·¹½ÃÇÇÅõÀ¯</title>
-<link href="/Resources/User/Img/KurlyIcon.png" rel="icon"
+<meta charset="UTF-8">
+<title>Recipe to You :: ë‚´ì¼ì˜ ìž¥ë³´ê¸°, ë ˆì‹œí”¼íˆ¬ìœ </title>
+<link href="/recipetoyou/Resources/User/Img/KurlyIcon.png" rel="icon"
 	type="image/x-icon" />
 <link rel="stylesheet" type="text/css"
-	href="/Resources/User/Css/reset.css" />
+	href="/recipetoyou/Resources/User/Css/reset.css" />
 <link rel="stylesheet" type="text/css"
-	href="/Resources/User/Css/sparePage.css" />
+	href="/recipetoyou/Resources/User/Css/sparePage.css" />
 <link rel="stylesheet"
 	href="https://use.fontawesome.com/releases/v5.14.0/css/all.css"
 	integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc"
@@ -26,404 +25,395 @@ request.setCharacterEncoding("UTF-8");
 </head>
 </head>
 <body>
-	<!-- »óÇ° »ó¼¼ ÆäÀÌÁö -->
-	<div class="wrap">
+	<div id="main">
+		<div class="section_view">
+			<div class="inner_view">
+				<!-- inner_view - ìƒí’ˆ ì´ë¯¸ì§€ë¥¼ ê°ì‹¼ íƒœê·¸  -->
+				<div class="goods_info_name">
+					<img alt="ë‘ë¶€ë©´ íŒŒìŠ¤íƒ€"
+						src="/recipetoyou/Resources/User/Img/Meal/paster1.jpg">
+				</div>
 
-		<jsp:include page="/View/User/inc/header.jsp" />
-		<!-- header -->
-		
-		<div id="main">
-			<!-- main -->
-				
-			<div class="section_view">
-				<!-- section_view -->
-
-					
-				<div class="inner_view">
-					<!-- inner_view - »óÇ° ÀÌ¹ÌÁö¸¦ °¨½Ñ ÅÂ±×  -->
-					
-					<div class="goods_info_name">
-						<img alt="µÎºÎ¸é ÆÄ½ºÅ¸" src="/Resources/User/Img/Meal/paster1.jpg">
-					</div>
-				
-
-					<div class="goods_name">		
+				<div class="goods_name">
 					<!-- goods_name -->
-						<span class="share"> 
-							<img alt="share" src="/Resources/User/Img/share.png">
-						</span>
-						
-						 <strong class="name">[ÀÕÃ÷º£·¯] ¾î½º¹Ð ·»Æ¿¶ó±¸ µÎºÎ¸é ÆÄ½ºÅ¸</strong><br> 
-						 
-						 <span class="short_desc">½Ä¹°¼º Àç·á·Î ¿Ï¼ºÇÑ ¶ó±¸ ÆÄ½ºÅ¸</span>
-							  <span class="dc">
-								<span class="dc_price">5,900 <span class="won">¿ø</span></span>
-							</span> 			
-							<!-- dc -->
-							<br>
-						
-						 <span class="not_login">·Î±×ÀÎ ÈÄ, Àû¸³ÇýÅÃÀÌ Á¦°øµË´Ï´Ù.</span>
-					
+					<span class="share"> <img alt="share"
+						src="/recipetoyou/Resources/User/Img/share.png">
+					</span> <strong class="name">[ìž‡ì¸ ë² ëŸ¬] ì–´ìŠ¤ë°€ ë Œí‹¸ë¼êµ¬ ë‘ë¶€ë©´ íŒŒìŠ¤íƒ€</strong><br> <span
+						class="short_desc">ì‹ë¬¼ì„± ìž¬ë£Œë¡œ ì™„ì„±í•œ ë¼êµ¬ íŒŒìŠ¤íƒ€</span> <span class="dc">
+						<span class="dc_price">5,900 <span class="won">ì›</span></span>
+					</span>
+					<!-- dc -->
+					<br> <span class="not_login">ë¡œê·¸ì¸ í›„, ì ë¦½í˜œíƒì´ ì œê³µë©ë‹ˆë‹¤.</span>
+
 
 					<div class="goods_info">
-							<!--  inn_goods_info, cartPut, total, pick_cart¸¦ °¨½Ñ ÅÂ±× -->
+						<!--  inn_goods_info, cartPut, total, pick_cartë¥¼ ê°ì‹¼ íƒœê·¸ -->
 
-							<div class="inn_goods_info">
-								<!-- inn_goods_info -->
-								<dl class="list fst">
-									<dt class="tit">ÆÇ¸Å´ÜÀ§</dt>
-									<dd class="desc">1ÆÑ</dd>
-								</dl>
-								<dl class="list">
-									<dt class="tit">Áß·®/¿ë·®</dt>
-									<dd class="desc">240g</dd>
-								</dl>
-								<dl class="list">
-									<dt class="tit">¹è¼Û±¸ºÐ</dt>
-									<dd class="desc">»ûº°¹è¼Û/ÅÃ¹è¹è¼Û</dd>
-								</dl>
-								<dl class="list">
-									<dt class="tit">Æ÷ÀåÅ¸ÀÔ</dt>
-									<dd class="desc">
-										³Ãµ¿/½ºÆ¼·ÎÇ° <strong class="emph">ÅÃ¹è¹è¼ÛÀº ¿¡ÄÚÆ÷ÀåÀÌ ½ºÆ¼·ÒÇ°À¸·Î
-											´ëÃ¼µË´Ï´Ù.</strong>
-									</dd>
-								</dl>
-								<dl class="list">
-									<dt class="tit">¾Ë·¹¸£±âÁ¤º¸</dt>
-									<dd class="desc">
-										- ´ëµÎ,Åä¸¶Åä ÇÔÀ¯<br> - ÀÌ Á¦Ç°Àº ¹Ð, ¼Ò°í±â, ´ß°í±â, µÅÁö°í±â, ¿ìÀ¯, ¸Þ¹Ð, ¶¥Äá,
-										º¹¼þ¾Æ, È£µÎ, Àã, ¿ÀÂ¡¾î, °íµî¾î, °Ô, »õ¿ì, Á¶°³·ù(±¼, ¹ÙÁö¶ô, ¸ð½ÃÁ¶°³, °¡¸®ºñ, È«ÇÕ, Àüº¹ µî),
-										¾Ë·ù(°è¶õ, ¸ÞÃß¸®¾Ë), ¾ÆÈ²»ê·ù¸¦ »ç¿ëÇÑ Á¦Ç°°ú °°Àº Á¦Á¶½Ã¼³¿¡¼­ Á¦Á¶ÇÏ°í ÀÖ½À´Ï´Ù.
-									</dd>
-								</dl>
-							</div>
-							<!-- inn_goods_info  »óÇ° Á¤º¸ -->
-
-
-							<div class="cartPut">
-								<!-- cartPut -->
-								<span class="tit_item">±¸¸Å¼ö·®</span>
-
-								<div class="inner_option">
-									<!-- inner_option -->
-									<button type="button" class="btn down">
-										<i class="fas fa-minus"></i>
-									</button>
-									<input type="number" readonly="readonly" onfocus="this.blur()"
-										class="inp">
-									<button type="button" class="btn up">
-										<i class="fas fa-plus"></i>
-									</button>
-								</div>
-								<!-- inner_option  -,+ ±¸¸Å¼ö·® -->
-							</div>
-							<!-- cartPut ÇÏÆ®  -->
-
-
-							<div class="total">
-								<!-- total  -->
-								<span class="count_price">ÃÑ »óÇ°±Ý¾× :</span> 
-								<span class="sum">
-									<span class="sum_num">5,900</span>
-									 <span class="sum_won">¿ø</span>
-								</span>
-								<p class="txt_point">
-									<span class="point">Àû¸³</span>
-									 <span class="not_login">·Î±×ÀÎ ÈÄ, Àû¸³ÇýÅÃ Á¦°ø</span>
-								</p>
-							</div>
-							<!-- total ÃÑ »óÇ° ±¸¸Å ±Ý¾× -->
-
-
-							<div class="pick_cart">
-								<!-- pick_cart -->
-								<button type="button" class="pick_btn">
-									<i class="fas fa-heart"></i>
-								</button>
-								<div class="button_wrap">
-									<button type="button" class="wrap_btn">Àå¹Ù±¸´Ï ´ã±â</button>
-								</div>
-								<!-- button_wrap -->
-							</div>
-							<!-- pick_cart Àå¹Ù±¸´Ï ´ã±â -->
-
+						<div class="inn_goods_info">
+							<!-- inn_goods_info -->
+							<dl class="list fst">
+								<dt class="tit">íŒë§¤ë‹¨ìœ„</dt>
+								<dd class="desc">1íŒ©</dd>
+							</dl>
+							<dl class="list">
+								<dt class="tit">ì¤‘ëŸ‰/ìš©ëŸ‰</dt>
+								<dd class="desc">240g</dd>
+							</dl>
+							<dl class="list">
+								<dt class="tit">ë°°ì†¡êµ¬ë¶„</dt>
+								<dd class="desc">ìƒ›ë³„ë°°ì†¡/íƒë°°ë°°ì†¡</dd>
+							</dl>
+							<dl class="list">
+								<dt class="tit">í¬ìž¥íƒ€ìž…</dt>
+								<dd class="desc">
+									ëƒ‰ë™/ìŠ¤í‹°ë¡œí’ˆ <strong class="emph">íƒë°°ë°°ì†¡ì€ ì—ì½”í¬ìž¥ì´ ìŠ¤í‹°ë¡¬í’ˆìœ¼ë¡œ ëŒ€ì²´ë©ë‹ˆë‹¤.</strong>
+								</dd>
+							</dl>
+							<dl class="list">
+								<dt class="tit">ì•Œë ˆë¥´ê¸°ì •ë³´</dt>
+								<dd class="desc">
+									- ëŒ€ë‘,í† ë§ˆí†  í•¨ìœ <br> - ì´ ì œí’ˆì€ ë°€, ì†Œê³ ê¸°, ë‹­ê³ ê¸°, ë¼ì§€ê³ ê¸°, ìš°ìœ , ë©”ë°€, ë•…ì½©,
+									ë³µìˆ­ì•„, í˜¸ë‘, ìž£, ì˜¤ì§•ì–´, ê³ ë“±ì–´, ê²Œ, ìƒˆìš°, ì¡°ê°œë¥˜(êµ´, ë°”ì§€ë½, ëª¨ì‹œì¡°ê°œ, ê°€ë¦¬ë¹„, í™í•©, ì „ë³µ ë“±),
+									ì•Œë¥˜(ê³„ëž€, ë©”ì¶”ë¦¬ì•Œ), ì•„í™©ì‚°ë¥˜ë¥¼ ì‚¬ìš©í•œ ì œí’ˆê³¼ ê°™ì€ ì œì¡°ì‹œì„¤ì—ì„œ ì œì¡°í•˜ê³  ìžˆìŠµë‹ˆë‹¤.
+								</dd>
+							</dl>
 						</div>
-						<!-- goods_info -->
+						<!-- inn_goods_info  ìƒí’ˆ ì •ë³´ -->
+
+
+						<div class="cartPut">
+							<!-- cartPut -->
+							<span class="tit_item">êµ¬ë§¤ìˆ˜ëŸ‰</span>
+
+							<div class="inner_option">
+								<!-- inner_option -->
+								<button type="button" class="btn down">
+									<i class="fas fa-minus"></i>
+								</button>
+								<input type="number" readonly="readonly" onfocus="this.blur()"
+									class="inp">
+								<button type="button" class="btn up">
+									<i class="fas fa-plus"></i>
+								</button>
+							</div>
+							<!-- inner_option  -,+ êµ¬ë§¤ìˆ˜ëŸ‰ -->
+						</div>
+						<!-- cartPut í•˜íŠ¸  -->
+
+
+						<div class="total">
+							<!-- total  -->
+							<span class="count_price">ì´ ìƒí’ˆê¸ˆì•¡ :</span> <span class="sum">
+								<span class="sum_num">5,900</span> <span class="sum_won">ì›</span>
+							</span>
+							<p class="txt_point">
+								<span class="point">ì ë¦½</span> <span class="not_login">ë¡œê·¸ì¸
+									í›„, ì ë¦½í˜œíƒ ì œê³µ</span>
+							</p>
+						</div>
+						<!-- total ì´ ìƒí’ˆ êµ¬ë§¤ ê¸ˆì•¡ -->
+
+
+						<div class="pick_cart">
+							<!-- pick_cart -->
+							<button type="button" class="pick_btn">
+								<i class="fas fa-heart"></i>
+							</button>
+							<div class="button_wrap">
+								<button type="button" class="wrap_btn">ìž¥ë°”êµ¬ë‹ˆ ë‹´ê¸°</button>
+							</div>
+							<!-- button_wrap -->
+						</div>
+						<!-- pick_cart ìž¥ë°”êµ¬ë‹ˆ ë‹´ê¸° -->
+
 					</div>
-					<!-- goods_name -->
-				</div>		
-				<!-- inner_view -->
-				
-		<div class="goods_add_product_wrap">
-		<!-- goods_add_product_wrap -->				
-			<div class="goods_add_product">
-				<h3 class="goods-add-product-title"></h3>
-					<div class="goods-add-product-sub">
-						RELATED PRODUCT
-					</div>
+					<!-- goods_info -->
+				</div>
+				<!-- goods_name -->
+			</div>
+			<!-- inner_view -->
+
+			<div class="goods_add_product_wrap">
+				<!-- goods_add_product_wrap -->
+				<div class="goods_add_product">
+					<h3 class="goods-add-product-title"></h3>
+					<div class="goods-add-product-sub">RELATED PRODUCT</div>
 					<!-- goods-add-product-sub -->
-			</div>	
-			<!-- goods_add_product -->
-			
-			
-			<div class="inn_goods_add_product">
-			<!-- °ü·Ã »óÇ° ÃßÃµ -->
-				<button class="btn_move_left"><i class="fas fa-angle-left"></i></button>
+				</div>
+				<!-- goods_add_product -->
+
+
+				<div class="inn_goods_add_product">
+					<!-- ê´€ë ¨ ìƒí’ˆ ì¶”ì²œ -->
+					<button class="btn_move_left">
+						<i class="fas fa-angle-left"></i>
+					</button>
 					<ul class="goods_add_product_list">
 						<li class="goods_add_product_item">
 							<div class="add_product_item_inn_wrap">
-									<a href="#"><img alt="item_img" src="/Resources/User/Img/Meal/paster2.jpg"></a>
-								<div class="add_product_item_inn">	
-									<p class="add_product_item_inn_cost">[ÀÕÃ÷º£·¯] ¾î½º¹Ð ¹ÙÁúÆä½ºÅä µÎºÎ¸é ÆÄ½ºÅ¸</p><br>
-									<p >5,900¿ø</p>
+								<a href="#"><img alt="item_img"
+									src="/recipetoyou/Resources/User/Img/Meal/paster2.jpg"></a>
+								<div class="add_product_item_inn">
+									<p class="add_product_item_inn_cost">[ìž‡ì¸ ë² ëŸ¬] ì–´ìŠ¤ë°€ ë°”ì§ˆíŽ˜ìŠ¤í†  ë‘ë¶€ë©´
+										íŒŒìŠ¤íƒ€</p>
+									<br>
+									<p>5,900ì›</p>
 								</div>
 								<!-- add_product_item_inn -->
-							</div>	
-						<!-- add_product_item_inn_wrap -->
+							</div> <!-- add_product_item_inn_wrap -->
 						</li>
-						
+
 						<li class="goods_add_product_item">
 							<div class="add_product_item_inn_wrap">
-									<a href="#"><img alt="item_img" src="/Resources/User/Img/Meal/meal4.jpg"></a>
-								<div class="add_product_item_inn">	
-									<p class="add_product_item_inn_cost">[¾ÆÀÓÀ£] ±Â¹ë·±½º ¶óÀÌÆ®¹Ð ººÀ½¹ä 2Á¾ (4°³ÀÔ)</p><br>
-									<p >10,400¿ø</p>
+								<a href="#"><img alt="item_img"
+									src="/recipetoyou/Resources/User/Img/Meal/meal4.jpg"></a>
+								<div class="add_product_item_inn">
+									<p class="add_product_item_inn_cost">[ì•„ìž„ì›°] êµ¿ë°¸ëŸ°ìŠ¤ ë¼ì´íŠ¸ë°€ ë³¶ìŒë°¥ 2ì¢…
+										(4ê°œìž…)</p>
+									<br>
+									<p>10,400ì›</p>
 								</div>
 								<!-- add_product_item_inn -->
-							</div>	
-						<!-- add_product_item_inn_wrap -->
+							</div> <!-- add_product_item_inn_wrap -->
 						</li>
-						
+
 						<li class="goods_add_product_item">
 							<div class="add_product_item_inn_wrap">
-									<a href="#"><img alt="item_img" src="/Resources/User/Img/Meal/meal5.jpg"></a>
-								<div class="add_product_item_inn">	
-									<p class="add_product_item_inn_cost">[¾ÆÀÓÀ£] °ï¾àÀâ°î ´ß°¡½¿»ì ÀâÃ¤ ººÀ½¹ä (4°³ÀÔ)</p><br>
-									<p >10,400¿ø</p>
+								<a href="#"><img alt="item_img"
+									src="/recipetoyou/Resources/User/Img/Meal/meal5.jpg"></a>
+								<div class="add_product_item_inn">
+									<p class="add_product_item_inn_cost">[ì•„ìž„ì›°] ê³¤ì•½ìž¡ê³¡ ë‹­ê°€ìŠ´ì‚´ ìž¡ì±„ ë³¶ìŒë°¥
+										(4ê°œìž…)</p>
+									<br>
+									<p>10,400ì›</p>
 								</div>
 								<!-- add_product_item_inn -->
-							</div>	
-						<!-- add_product_item_inn_wrap -->
+							</div> <!-- add_product_item_inn_wrap -->
 						</li>
-						
+
 						<li class="goods_add_product_item">
 							<div class="add_product_item_inn_wrap">
-									<a href="#"><img alt="item_img" src="/Resources/User/Img/Meal/meal6.jpg"></a>
-								<div class="add_product_item_inn">	
-									<p class="add_product_item_inn_cost">[¸¶ÀÌºñ¹Ð] Áø¼±¹Ì ¶±ººÀÌ ¿À¸®Áö³Î¸À</p><br>
-									<p >5,500¿ø</p>
+								<a href="#"><img alt="item_img"
+									src="/recipetoyou/Resources/User/Img/Meal/meal6.jpg"></a>
+								<div class="add_product_item_inn">
+									<p class="add_product_item_inn_cost">[ë§ˆì´ë¹„ë°€] ì§„ì„ ë¯¸ ë–¡ë³¶ì´ ì˜¤ë¦¬ì§€ë„ë§›</p>
+									<br>
+									<p>5,500ì›</p>
 								</div>
 								<!-- add_product_item_inn -->
-							</div>	
-						<!-- add_product_item_inn_wrap -->
+							</div> <!-- add_product_item_inn_wrap -->
 						</li>
-						
+
 						<li class="goods_add_product_item">
 							<div class="add_product_item_inn_wrap">
-									<a href="#"><img alt="item_img" src="/Resources/User/Img/Meal/meal7.jpg"></a>
-								<div class="add_product_item_inn">	
-									<p class="add_product_item_inn_cost">[¸¶ÀÌºñ¹Ð] Áø¼±¹Ì ¶±ººÀÌ Â¥Àå¸À</p><br>
-									<p >5,500¿ø</p>
+								<a href="#"><img alt="item_img"
+									src="/recipetoyou/Resources/User/Img/Meal/meal7.jpg"></a>
+								<div class="add_product_item_inn">
+									<p class="add_product_item_inn_cost">[ë§ˆì´ë¹„ë°€] ì§„ì„ ë¯¸ ë–¡ë³¶ì´ ì§œìž¥ë§›</p>
+									<br>
+									<p>5,500ì›</p>
 								</div>
 								<!-- add_product_item_inn -->
-							</div>	
-						<!-- add_product_item_inn_wrap -->
+							</div> <!-- add_product_item_inn_wrap -->
 						</li>
 					</ul>
-				<button class="btn_move_right"><i class="fas fa-angle-right"></i></button>
-			</div>
-			<!-- inn_goods_add_product °ü·Ã »óÇ° ÃßÃµ wrap-->
-			
-			<div class="goods-view-wrap">
-			<!-- »óÇ° »ó¼¼º¸±â -->
+					<button class="btn_move_right">
+						<i class="fas fa-angle-right"></i>
+					</button>
+				</div>
+				<!-- inn_goods_add_product ê´€ë ¨ ìƒí’ˆ ì¶”ì²œ wrap-->
+
+				<div class="goods-view-wrap">
+					<!-- ìƒí’ˆ ìƒì„¸ë³´ê¸° -->
 					<div class="goods-view-inn">
 						<ul class="goods-view-lists">
-							<li class="gview-list-inn">
-								<a href="#" class="gview_tab_anchor">»óÇ°¼³¸í</a>
-							</li>
-							<li class="gview-list-inn">
-								<a href="#" class="gview_tab_anchor">»ó¼¼Á¤º¸</a>
-							</li>
-							<li class="gview-list-inn">
-								<a href="#" class="gview_tab_anchor">ÈÄ±â</a>
-							</li>
-							<li class="gview-list-inn">
-								<a href="#" class="gview_tab_anchor">¹®ÀÇ</a>
-							</li>
+							<li class="gview-list-inn"><a href="#"
+								class="gview_tab_anchor">ìƒí’ˆì„¤ëª…</a></li>
+							<li class="gview-list-inn"><a href="#"
+								class="gview_tab_anchor">ìƒì„¸ì •ë³´</a></li>
+							<li class="gview-list-inn"><a href="#"
+								class="gview_tab_anchor">í›„ê¸°</a></li>
+							<li class="gview-list-inn"><a href="#"
+								class="gview_tab_anchor">ë¬¸ì˜</a></li>
 						</ul>
-						<!-- goods-view-lists -->	
+						<!-- goods-view-lists -->
 					</div>
 					<!-- goods-view-inn -->
-				
-				<div class="goods-view-inn_content_wrap">
+
+					<div class="goods-view-inn_content_wrap">
 						<div class="goods-view-inn_content">
 							<div class="pic">
-								<img alt="pic" src="/Resources/User/Img/SaleGoods/view-inn_content_1.jpg">
-							</div>	
+								<img alt="pic"
+									src="/recipetoyou/Resources/User/Img/SaleGoods/view-inn_content_1.jpg">
+							</div>
 							<!-- pic -->
 							<div class="context_tit">
 								<h4>
-									<small>½Ä¹°¼º Àç·á·Î ¿Ï¼ºÇÑ ¶ó±¸ ÆÄ½ºÅ¸</small>
-									[ÀÕÃ÷º£·¯] ¾î½º¹Ð<br>
-									·»Æ¿¶ó±¸ µÎºÎ¸é ÆÄ½ºÅ¸
+									<small>ì‹ë¬¼ì„± ìž¬ë£Œë¡œ ì™„ì„±í•œ ë¼êµ¬ íŒŒìŠ¤íƒ€</small> [ìž‡ì¸ ë² ëŸ¬] ì–´ìŠ¤ë°€<br> ë Œí‹¸ë¼êµ¬ ë‘ë¶€ë©´
+									íŒŒìŠ¤íƒ€
 								</h4>
-								<p class="words">
-									´ÙÃ¤·Î¿î µÎºÎ ¿ä¸®¸¦ ½Ãµµ ÁßÀÎ ºÐÀÌ¶ó¸é, 
-									Áö±Ý ¼Ò°³ÇÏ´Â ÀÕÃ÷º£·¯ ¾î½º¹Ð µÎºÎ¸é ÆÄ½ºÅ¸°¡ ¹«Ã´ ¸¶À½¿¡ µå½Ç °Å¿¹¿ä.
-									À¯±â³ó ÄáÀ¸·Î µÎºÎ¸éÀ» Á¦¸éÇÏ°í ¼Ò½º¿Í ÅäÇÎÀº ¸ðµÎ ½Ä¹°¼º Àç·á¸¦ »ç¿ëÇØ Áú ÁÁÀº ´Ü¹éÁú°ú ½ÄÀÌ¼¶À¯¸¦ °£ÆíÇÏ°Ô Ã¬±æ ¼ö ÀÖ°Åµç¿ä. 
-									ÀÌ¹ø¿¡´Â °í¼ÒÇÑ µÎºÎ¸é¿¡ Åä¸¶Åä ¼Ò½º¿Í ·»Æ¿ÄáÀ¸·Î ¸¸µç ¶ó±¸¼Ò½º¸¦ Èì»¶ ÀÔÇô ¿Ï¼ºÇÑ ·»Æ¿¶ó±¸ ÆÄ½ºÅ¸¸¦ ÁØºñÇß¾î¿ä.
-									µÎºÎ¿Í ·»Æ¿ÄáÀÇ ½Ä°¨ÀÌ »ì¾Æ ÀÖ¾î Ç³¼ºÇÏ°í ´ÙÃ¤·Î¿î ¸ÀÀ» ÀÚ¶ûÇÑ´ä´Ï´Ù. 
-									°¡º±°í ¼Ó ÆíÇÑ ½Ä»ç¸¦ Ã£°í °è¼Ì´Ù¸é, ÀÕÃ÷º£·¯¸¦ ¼±ÅÃÇØ º¸¼¼¿ä.
-								</p>
+								<p class="words">ë‹¤ì±„ë¡œìš´ ë‘ë¶€ ìš”ë¦¬ë¥¼ ì‹œë„ ì¤‘ì¸ ë¶„ì´ë¼ë©´, ì§€ê¸ˆ ì†Œê°œí•˜ëŠ” ìž‡ì¸ ë² ëŸ¬ ì–´ìŠ¤ë°€
+									ë‘ë¶€ë©´ íŒŒìŠ¤íƒ€ê°€ ë¬´ì²™ ë§ˆìŒì— ë“œì‹¤ ê±°ì˜ˆìš”. ìœ ê¸°ë† ì½©ìœ¼ë¡œ ë‘ë¶€ë©´ì„ ì œë©´í•˜ê³  ì†ŒìŠ¤ì™€ í† í•‘ì€ ëª¨ë‘ ì‹ë¬¼ì„± ìž¬ë£Œë¥¼
+									ì‚¬ìš©í•´ ì§ˆ ì¢‹ì€ ë‹¨ë°±ì§ˆê³¼ ì‹ì´ì„¬ìœ ë¥¼ ê°„íŽ¸í•˜ê²Œ ì±™ê¸¸ ìˆ˜ ìžˆê±°ë“ ìš”. ì´ë²ˆì—ëŠ” ê³ ì†Œí•œ ë‘ë¶€ë©´ì— í† ë§ˆí†  ì†ŒìŠ¤ì™€ ë Œí‹¸ì½©ìœ¼ë¡œ
+									ë§Œë“  ë¼êµ¬ì†ŒìŠ¤ë¥¼ í ë»‘ ìž…í˜€ ì™„ì„±í•œ ë Œí‹¸ë¼êµ¬ íŒŒìŠ¤íƒ€ë¥¼ ì¤€ë¹„í–ˆì–´ìš”. ë‘ë¶€ì™€ ë Œí‹¸ì½©ì˜ ì‹ê°ì´ ì‚´ì•„ ìžˆì–´ í’ì„±í•˜ê³ 
+									ë‹¤ì±„ë¡œìš´ ë§›ì„ ìžëž‘í•œë‹µë‹ˆë‹¤. ê°€ë³ê³  ì† íŽ¸í•œ ì‹ì‚¬ë¥¼ ì°¾ê³  ê³„ì…¨ë‹¤ë©´, ìž‡ì¸ ë² ëŸ¬ë¥¼ ì„ íƒí•´ ë³´ì„¸ìš”.</p>
 							</div>
 							<!-- context_tit -->
 						</div>
 						<!-- goods-view-inn_content -->
-				</div>
-				<!-- goods-view-inn_content_wrap -->
-				
-				
-				<div class="check_point">
-					<h3>
-						<span>Recipe To You's Check Point</span>
-					</h3>
-					<img alt="check_point_img" src="/Resources/User/Img/SaleGoods/check_point.jpg">
-				</div>
-				<!-- check_point -->
-				
-				<div class="pick">
-					<h3>
-						<span>Recipe To You's Pick</span>
-					</h3>
-					<div class="context_tit">
-						<p  class="words">
-							<strong class="sub_tit">
-								<span class="option_tit">¾î½º¹Ð ·»Æ¿¶ó±¸ µÎºÎ¸é ÆÄ½ºÅ¸</span>
-							</strong>
-							<b>Áß·®</b> : 1ÆÑ(240g)<br>
-							<b>Æ¯Â¡ </b> : µÎºÎ¸é¿¡ »õÄÞÇÑ Åä¸¶Åä¼Ò½º¿Í °í¼ÒÇÑ ·»Æ¿ÄáÀ» »ç¿ëÇØ ¸¸µç ¶ó±¸ ¼Ò½º ÆÄ½ºÅ¸ÀÔ´Ï´Ù.<br>
-						</p>
-						<div class="pic2">
-								<img alt="pic" src="/Resources/User/Img/SaleGoods/pick_1.jpg">
-						</div>	
-						<!-- pic2 -->
 					</div>
-					<!-- context_tit -->
-				</div>
-				<!-- pick -->
-				
-				<div class="goods_tips">
-						<span>Recipe To You's Tip</span>
-					<div class="tip_box">
-						<div class="tip_tit">
-							<p  class="tip_words">
-								<strong class="sub_tit_tip">Á¶¸®¹ý</strong>
-								ºñ´ÒÀ» »ìÂ¦ ¶â¾î ÀüÀÚ·¹ÀÎÁö¿¡ ³Ö°í 700W ±âÁØ ¾à 4ºÐ ~ 4ºÐ 30ÃÊ°£,
-								1000W ±âÁØ ¾à 3ºÐ ~ 3ºÐ 30ÃÊ°£ °¡¿­ÇØ ÁÖ¼¼¿ä.
+					<!-- goods-view-inn_content_wrap -->
+
+
+					<div class="check_point">
+						<h3>
+							<span>Recipe To You's Check Point</span>
+						</h3>
+						<img alt="check_point_img"
+							src="/recipetoyou/Resources/User/Img/SaleGoods/check_point.jpg">
+					</div>
+					<!-- check_point -->
+
+					<div class="pick">
+						<h3>
+							<span>Recipe To You's Pick</span>
+						</h3>
+						<div class="context_tit">
+							<p class="words">
+								<strong class="sub_tit"> <span class="option_tit">ì–´ìŠ¤ë°€
+										ë Œí‹¸ë¼êµ¬ ë‘ë¶€ë©´ íŒŒìŠ¤íƒ€</span>
+								</strong> <b>ì¤‘ëŸ‰</b> : 1íŒ©(240g)<br> <b>íŠ¹ì§• </b> : ë‘ë¶€ë©´ì— ìƒˆì½¤í•œ í† ë§ˆí† ì†ŒìŠ¤ì™€ ê³ ì†Œí•œ
+								ë Œí‹¸ì½©ì„ ì‚¬ìš©í•´ ë§Œë“  ë¼êµ¬ ì†ŒìŠ¤ íŒŒìŠ¤íƒ€ìž…ë‹ˆë‹¤.<br>
 							</p>
-							<p  class="tip_words">
-								<strong class="sub_tit_tip">º¸°ü¹ý</strong>
-								 -18¡É ÀÌÇÏ¿¡¼­ ³Ãµ¿ º¸°üÇÏ¼¼¿ä.
-							</p>
+							<div class="pic2">
+								<img alt="pic"
+									src="/recipetoyou/Resources/User/Img/SaleGoods/pick_1.jpg">
+							</div>
+							<!-- pic2 -->
 						</div>
-						<!-- tip_tit -->
+						<!-- context_tit -->
 					</div>
-					<!-- tip_box -->
-				</div>
-				<!-- tips -->
-				
-				<div id="goods_pic">
-					<img alt="" src="/Resources/User/Img/SaleGoods/pick_2.jpg">
-				</div>
-				<!-- goods_pic -->
-				
-				
-				<table width="100%" border="0" cellpading="0" cellspacing="1" class="extra-info">
-					<tbody>
-						<tr>
-							<th scope="row" class="goods_table_head">Á¦Ç°¸í</th>
-								<td>»óÇ°¼³¸í ¹× »óÇ°ÀÌ¹ÌÁö ÂüÁ¶</td>
-							<th scope="row" class="goods_table_head">½ÄÇ°ÀÇ À¯Çü</th>
-								<td>»óÇ°¼³¸í ¹× »óÇ°ÀÌ¹ÌÁö ÂüÁ¶</td>
-						</tr>
-						<tr>
-							<th scope="row" class="goods_table_head">»ý»êÀÚ¹×¼ÒÀçÁö(¼öÀÔÇ°ÀÇ°æ¿ì»ý»êÀÚ,¼öÀÔÀÚ¹×Á¦Á¶±¹)</th>
-								<td>»óÇ°¼³¸í ¹× »óÇ°ÀÌ¹ÌÁö ÂüÁ¶</td>
-							<th scope="row" class="goods_table_head">Á¦Á¶¿¬¿ùÀÏ,À¯Åë±âÇÑ¶Ç´ÂÇ°ÁúÀ¯Áö±âÇÑ</th>
-								<td>Á¦Ç° º°µµ ¶óº§ Ç¥±â ÂüÁ¶</td>
-						</tr>
-						<tr>
-							<th scope="row" class="goods_table_head">Æ÷Àå´ÜÀ§º° ³»¿ë¹°ÀÇ ¿ë·®(Áß·®), ¼ö·®</th>
-								<td>»óÇ°¼³¸í ¹× »óÇ°ÀÌ¹ÌÁö ÂüÁ¶</td>
-							<th scope="row" class="goods_table_head">¿øÀç·á¸í¹×ÇÔ·®(³ó¼ö»ê¹°ÀÇ¿ø»êÁöÇ¥½Ã¿¡°üÇÑ¹ý·ü¿¡µû¸¥¿ø»êÁöÇ¥½ÃÆ÷ÇÔ)</th>
-								<td>»óÇ°¼³¸í ¹× »óÇ°ÀÌ¹ÌÁö ÂüÁ¶</td>
-						</tr>
-						<tr>
-							<th scope="row" class="goods_table_head">¿µ¾ç¼ººÐ(½ÄÇ°µîÀÇÇ¥½Ã¡¤±¤°í¿¡°üÇÑ¹ý·ü¿¡ µû¸¥ ¿µ¾ç¼ººÐ Ç¥½Ã´ë»ó ½ÄÇ°¿¡ ÇÑÇÔ)</th>
-								<td>»óÇ°¼³¸í ¹× »óÇ°ÀÌ¹ÌÁö ÂüÁ¶</td>
-							<th scope="row" class="goods_table_head">À¯ÀüÀÚº¯Çü½ÄÇ°¿¡ÇØ´çÇÏ´Â°æ¿ìÀÇÇ¥½Ã</th>
-								<td>»óÇ°¼³¸í ¹× »óÇ°ÀÌ¹ÌÁö ÂüÁ¶</td>
-						</tr>
-						<tr>
-							<th scope="row" class="goods_table_head">¼ÒºñÀÚ¾ÈÀüÀ» À§ÇÑ ÁÖÀÇ»çÇ×</th>
-								<td>»óÇ°¼³¸í ¹× »óÇ°ÀÌ¹ÌÁö ÂüÁ¶</td>
-							<th scope="row" class="goods_table_head">¼öÀÔ½ÄÇ°¿¡ ÇØ´çÇÏ´Â °æ¿ì ¡°¼öÀÔ½ÄÇ°¾ÈÀü°ü¸®Æ¯º°¹ý¿¡ µû¸¥ ¼öÀÔ½Å°í¸¦ ÇÊÇÔ¡±ÀÇ ¹®±¸</th>
-								<td>»óÇ°¼³¸í ¹× »óÇ°ÀÌ¹ÌÁö ÂüÁ¶</td>
-						</tr>
-						<tr>
-							<th scope="row" class="goods_table_head">¼ÒºñÀÚ»ó´ã°ü·ÃÀüÈ­¹øÈ£</th>
-								<td>·¹½ÃÇÇÅõÀ¯ °í°´¼¾ÅÍ (1234-5678)</td>
-							<th scope="row" class="goods_table_head"></th>
+					<!-- pick -->
+
+					<div class="goods_tips">
+						<span>Recipe To You's Tip</span>
+						<div class="tip_box">
+							<div class="tip_tit">
+								<p class="tip_words">
+									<strong class="sub_tit_tip">ì¡°ë¦¬ë²•</strong> ë¹„ë‹ì„ ì‚´ì§ ëœ¯ì–´ ì „ìžë ˆì¸ì§€ì— ë„£ê³ 
+									700W ê¸°ì¤€ ì•½ 4ë¶„ ~ 4ë¶„ 30ì´ˆê°„, 1000W ê¸°ì¤€ ì•½ 3ë¶„ ~ 3ë¶„ 30ì´ˆê°„ ê°€ì—´í•´ ì£¼ì„¸ìš”.
+								</p>
+								<p class="tip_words">
+									<strong class="sub_tit_tip">ë³´ê´€ë²•</strong> -18â„ƒ ì´í•˜ì—ì„œ ëƒ‰ë™ ë³´ê´€í•˜ì„¸ìš”.
+								</p>
+							</div>
+							<!-- tip_tit -->
+						</div>
+						<!-- tip_box -->
+					</div>
+					<!-- tips -->
+
+					<div id="goods_pic">
+						<img alt=""
+							src="/recipetoyou/Resources/User/Img/SaleGoods/pick_2.jpg">
+					</div>
+					<!-- goods_pic -->
+
+
+					<table width="100%" border="0" cellpading="0" cellspacing="1"
+						class="extra-info">
+						<tbody>
+							<tr>
+								<th scope="row" class="goods_table_head">ì œí’ˆëª…</th>
+								<td>ìƒí’ˆì„¤ëª… ë° ìƒí’ˆì´ë¯¸ì§€ ì°¸ì¡°</td>
+								<th scope="row" class="goods_table_head">ì‹í’ˆì˜ ìœ í˜•</th>
+								<td>ìƒí’ˆì„¤ëª… ë° ìƒí’ˆì´ë¯¸ì§€ ì°¸ì¡°</td>
+							</tr>
+							<tr>
+								<th scope="row" class="goods_table_head">ìƒì‚°ìžë°ì†Œìž¬ì§€(ìˆ˜ìž…í’ˆì˜ê²½ìš°ìƒì‚°ìž,ìˆ˜ìž…ìžë°ì œì¡°êµ­)</th>
+								<td>ìƒí’ˆì„¤ëª… ë° ìƒí’ˆì´ë¯¸ì§€ ì°¸ì¡°</td>
+								<th scope="row" class="goods_table_head">ì œì¡°ì—°ì›”ì¼,ìœ í†µê¸°í•œë˜ëŠ”í’ˆì§ˆìœ ì§€ê¸°í•œ</th>
+								<td>ì œí’ˆ ë³„ë„ ë¼ë²¨ í‘œê¸° ì°¸ì¡°</td>
+							</tr>
+							<tr>
+								<th scope="row" class="goods_table_head">í¬ìž¥ë‹¨ìœ„ë³„ ë‚´ìš©ë¬¼ì˜ ìš©ëŸ‰(ì¤‘ëŸ‰),
+									ìˆ˜ëŸ‰</th>
+								<td>ìƒí’ˆì„¤ëª… ë° ìƒí’ˆì´ë¯¸ì§€ ì°¸ì¡°</td>
+								<th scope="row" class="goods_table_head">ì›ìž¬ë£Œëª…ë°í•¨ëŸ‰(ë†ìˆ˜ì‚°ë¬¼ì˜ì›ì‚°ì§€í‘œì‹œì—ê´€í•œë²•ë¥ ì—ë”°ë¥¸ì›ì‚°ì§€í‘œì‹œí¬í•¨)</th>
+								<td>ìƒí’ˆì„¤ëª… ë° ìƒí’ˆì´ë¯¸ì§€ ì°¸ì¡°</td>
+							</tr>
+							<tr>
+								<th scope="row" class="goods_table_head">ì˜ì–‘ì„±ë¶„(ì‹í’ˆë“±ì˜í‘œì‹œÂ·ê´‘ê³ ì—ê´€í•œë²•ë¥ ì—
+									ë”°ë¥¸ ì˜ì–‘ì„±ë¶„ í‘œì‹œëŒ€ìƒ ì‹í’ˆì— í•œí•¨)</th>
+								<td>ìƒí’ˆì„¤ëª… ë° ìƒí’ˆì´ë¯¸ì§€ ì°¸ì¡°</td>
+								<th scope="row" class="goods_table_head">ìœ ì „ìžë³€í˜•ì‹í’ˆì—í•´ë‹¹í•˜ëŠ”ê²½ìš°ì˜í‘œì‹œ</th>
+								<td>ìƒí’ˆì„¤ëª… ë° ìƒí’ˆì´ë¯¸ì§€ ì°¸ì¡°</td>
+							</tr>
+							<tr>
+								<th scope="row" class="goods_table_head">ì†Œë¹„ìžì•ˆì „ì„ ìœ„í•œ ì£¼ì˜ì‚¬í•­</th>
+								<td>ìƒí’ˆì„¤ëª… ë° ìƒí’ˆì´ë¯¸ì§€ ì°¸ì¡°</td>
+								<th scope="row" class="goods_table_head">ìˆ˜ìž…ì‹í’ˆì— í•´ë‹¹í•˜ëŠ” ê²½ìš°
+									â€œìˆ˜ìž…ì‹í’ˆì•ˆì „ê´€ë¦¬íŠ¹ë³„ë²•ì— ë”°ë¥¸ ìˆ˜ìž…ì‹ ê³ ë¥¼ í•„í•¨â€ì˜ ë¬¸êµ¬</th>
+								<td>ìƒí’ˆì„¤ëª… ë° ìƒí’ˆì´ë¯¸ì§€ ì°¸ì¡°</td>
+							</tr>
+							<tr>
+								<th scope="row" class="goods_table_head">ì†Œë¹„ìžìƒë‹´ê´€ë ¨ì „í™”ë²ˆí˜¸</th>
+								<td>ë ˆì‹œí”¼íˆ¬ìœ  ê³ ê°ì„¼í„° (1234-5678)</td>
+								<th scope="row" class="goods_table_head"></th>
 								<td></td>
-						</tr>
-					</tbody>
-				</table>
-				
-				
-				<div class="whykurly_wrap">
-					<div class="whykurly">
-						<strong class="whykurly_tit">Why Recipe To You</strong>
+							</tr>
+						</tbody>
+					</table>
+
+
+					<div class="whykurly_wrap">
+						<div class="whykurly">
+							<strong class="whykurly_tit">Why Recipe To You</strong>
 							<div class="whykurly_txt_area">
-								<div class="col"> 
+								<div class="col">
 									<div class="why_icon">
 										<i class="fas fa-clipboard-list"></i>
-									</div>	<!-- why_icon -->
+									</div>
+									<!-- why_icon -->
 									<div class="why_info">
-										<span class="title">±ñ±ñÇÑ »óÇ°À§¿øÈ¸</span>
-										<span class="tit_story">
-											³ª¿Í ³» °¡Á·ÀÌ ¸Ô°í ¾µ »óÇ°À» °í¸£´Â<br> ¸¶À½À¸·Î ¸ÅÁÖ »óÇ°À» Á÷Á¢ ¸Ô¾îº¸°í,<br>
-											°æÇèÇØº¸°í ¼ººÐ, ¸À, ¾ÈÁ¤¼º µî ´Ù°¢µµÀÇ<br> ±âÁØÀ» Åë°úÇÑ »óÇ°¸¸À» ÆÇ¸ÅÇÕ´Ï´Ù.
+										<span class="title">ê¹ê¹í•œ ìƒí’ˆìœ„ì›íšŒ</span> <span class="tit_story">
+											ë‚˜ì™€ ë‚´ ê°€ì¡±ì´ ë¨¹ê³  ì“¸ ìƒí’ˆì„ ê³ ë¥´ëŠ”<br> ë§ˆìŒìœ¼ë¡œ ë§¤ì£¼ ìƒí’ˆì„ ì§ì ‘ ë¨¹ì–´ë³´ê³ ,<br>
+											ê²½í—˜í•´ë³´ê³  ì„±ë¶„, ë§›, ì•ˆì •ì„± ë“± ë‹¤ê°ë„ì˜<br> ê¸°ì¤€ì„ í†µê³¼í•œ ìƒí’ˆë§Œì„ íŒë§¤í•©ë‹ˆë‹¤.
 										</span>
-									</div>		<!-- why_info -->
+									</div>
+									<!-- why_info -->
 								</div>
 								<!-- col -->
-								
-								<div class="col"> 
+
+								<div class="col">
 									<div class="why_icon">
 										<i class="fas fa-shipping-fast"></i>
-									</div>	<!-- why_icon -->
+									</div>
+									<!-- why_icon -->
 									<div class="why_info">
-										<span class="title">½Å¼±ÇÑ Ç®ÄÝµåÃ¼ÀÎ ¹è¼Û</span>
-										<span class="tit_story">
-											¿Â¶óÀÎ ¾÷°è ÃÖÃÊ·Î »êÁö¿¡¼­ ¹® ¾Õ±îÁö<br>»ó¿Â, ³ÃÀå, ³Ãµ¿ »óÇ°À» ºÐ¸® Æ÷Àå ÈÄ<br>
-											ÃÖÀûÀÇ ¿Âµµ¸¦ À¯ÁöÇÏ´Â ³ÃÀå ¹è¼Û ½Ã½ºÅÛ,<br>Ç®ÄÝµåÃ¼ÀÎÀ¸·Î »óÇ°À» ½Å¼±ÇÏ°Ô ÀüÇØµå¸³´Ï´Ù.
+										<span class="title">ì‹ ì„ í•œ í’€ì½œë“œì²´ì¸ ë°°ì†¡</span> <span
+											class="tit_story"> ì˜¨ë¼ì¸ ì—…ê³„ ìµœì´ˆë¡œ ì‚°ì§€ì—ì„œ ë¬¸ ì•žê¹Œì§€<br>ìƒì˜¨,
+											ëƒ‰ìž¥, ëƒ‰ë™ ìƒí’ˆì„ ë¶„ë¦¬ í¬ìž¥ í›„<br> ìµœì ì˜ ì˜¨ë„ë¥¼ ìœ ì§€í•˜ëŠ” ëƒ‰ìž¥ ë°°ì†¡ ì‹œìŠ¤í…œ,<br>í’€ì½œë“œì²´ì¸ìœ¼ë¡œ
+											ìƒí’ˆì„ ì‹ ì„ í•˜ê²Œ ì „í•´ë“œë¦½ë‹ˆë‹¤.
 										</span>
-									</div>		<!-- why_info -->
+									</div>
+									<!-- why_info -->
 								</div>
 								<!-- col -->
-								
-								<div class="col"> 
+
+								<div class="col">
 									<div class="why_icon">
 										<i class="fas fa-globe-americas"></i>
-									</div>	<!-- why_icon -->
+									</div>
+									<!-- why_icon -->
 									<div class="why_info">
-										<span class="title">È¯°æÀ» »ý°¢ÇÏ´Â Áö¼Ó °¡´ÉÇÑ À¯Åë</span>
-										<span class="tit_story">
-											Ä£È¯°æ Æ÷ÀåÀçºÎÅÍ »ý»êÀÚ°¡ »óÇ°¿¡¸¸<br>ÁýÁßÇÒ ¼ö ÀÖ´Â Á÷¸ÅÀÔ À¯Åë±¸Á¶±îÁö,<br>
-											Áö¼Ó °¡´ÉÇÑ À¯ÅëÀ» °í¹ÎÇÏ¸ç<br>¸ðµç È¯°æ(»ý»êÀÚ, Ä¿¹Â´ÏÆ¼, Á÷¿ø)ÀÌ<br>´õ ³ª¾ÆÁú ¼ö ÀÖµµ·Ï ³ë·ÂÇÕ´Ï´Ù.
+										<span class="title">í™˜ê²½ì„ ìƒê°í•˜ëŠ” ì§€ì† ê°€ëŠ¥í•œ ìœ í†µ</span> <span
+											class="tit_story"> ì¹œí™˜ê²½ í¬ìž¥ìž¬ë¶€í„° ìƒì‚°ìžê°€ ìƒí’ˆì—ë§Œ<br>ì§‘ì¤‘í•  ìˆ˜
+											ìžˆëŠ” ì§ë§¤ìž… ìœ í†µêµ¬ì¡°ê¹Œì§€,<br> ì§€ì† ê°€ëŠ¥í•œ ìœ í†µì„ ê³ ë¯¼í•˜ë©°<br>ëª¨ë“  í™˜ê²½(ìƒì‚°ìž,
+											ì»¤ë®¤ë‹ˆí‹°, ì§ì›)ì´<br>ë” ë‚˜ì•„ì§ˆ ìˆ˜ ìžˆë„ë¡ ë…¸ë ¥í•©ë‹ˆë‹¤.
 										</span>
-									</div>		<!-- why_info -->
+									</div>
+									<!-- why_info -->
 								</div>
 								<!-- col -->
 							</div>
@@ -432,131 +422,110 @@ request.setCharacterEncoding("UTF-8");
 						<!-- whykurly -->
 					</div>
 					<!-- whykurly_wrap -->
-					
-							
-							<div class="happy_center_wrap">
-								<div class="happy">
-									<span class="happy_tit">°í°´Çàº¹¼¾ÅÍ</span>
-									<span class="sub_qus">±Ã±ÝÇÏ½Å Á¡ÀÌ³ª ¼­ºñ½º ÀÌ¿ë¿¡ ºÒÆíÇÑ Á¡ÀÌ ÀÖÀ¸½Å°¡¿ä?</span>
-									<span class="sub_ans">¹®Á¦°¡ µÇ´Â ºÎºÐÀ» »çÁøÀ¸·Î Âï¾î ¾Æ·¡ Áß ÆíÇÏ½Å ¹æ¹ýÀ¸·Î Á¢¼öÇØ ÁÖ½Ã¸é ºü¸£°Ô µµ¿Íµå¸®°Ú½À´Ï´Ù.</span>
+
+
+					<div class="happy_center_wrap">
+						<div class="happy">
+							<span class="happy_tit">ê³ ê°í–‰ë³µì„¼í„°</span> <span class="sub_qus">ê¶ê¸ˆí•˜ì‹ 
+								ì ì´ë‚˜ ì„œë¹„ìŠ¤ ì´ìš©ì— ë¶ˆíŽ¸í•œ ì ì´ ìžˆìœ¼ì‹ ê°€ìš”?</span> <span class="sub_ans">ë¬¸ì œê°€ ë˜ëŠ”
+								ë¶€ë¶„ì„ ì‚¬ì§„ìœ¼ë¡œ ì°ì–´ ì•„ëž˜ ì¤‘ íŽ¸í•˜ì‹  ë°©ë²•ìœ¼ë¡œ ì ‘ìˆ˜í•´ ì£¼ì‹œë©´ ë¹ ë¥´ê²Œ ë„ì™€ë“œë¦¬ê² ìŠµë‹ˆë‹¤.</span>
+						</div>
+						<!-- happy -->
+
+						<ul class="happy_list_u">
+							<li>
+								<div class="happy_list_tit">
+									<span class="con"></span> ì „í™” ë¬¸ì˜ 1234-1234
+								</div> <!-- happy_list_tit -->
+								<div class="happy_list_sub">ì˜¤ì „ 7ì‹œ~ì˜¤í›„ 7ì‹œ (ì—°ì¤‘ë¬´íœ´)</div>
+							</li>
+
+							<li>
+								<div class="happy_list_tit">
+									<span class="con"></span> ì¹´ì¹´ì˜¤í†¡ ë¬¸ì˜
+								</div> <!-- happy_list_tit -->
+								<div class="happy_list_sub">ì˜¤ì „ 7ì‹œ~ì˜¤í›„ 7ì‹œ (ì—°ì¤‘ë¬´íœ´)</div>
+								<div class="happy_list_plus">
+									ì¹´ì¹´ì˜¤í†¡ì—ì„œ â€™Recipe To Youâ€™ë¥¼ ê²€ìƒ‰ í›„<br>ëŒ€í™”ì°½ì— ë¬¸ì˜ ë° ë¶ˆíŽ¸ì‚¬í•­ì„<br>ë‚¨ê²¨ì£¼ì„¸ìš”.
 								</div>
-								<!-- happy -->
-								
-								<ul class="happy_list_u">
-									<li>
-										<div class="happy_list_tit">
-											<span class="con"></span>
-												ÀüÈ­ ¹®ÀÇ 1234-1234
-										</div>
-										<!-- happy_list_tit -->
-										<div class="happy_list_sub">¿ÀÀü 7½Ã~¿ÀÈÄ 7½Ã (¿¬Áß¹«ÈÞ)</div>
-									</li>
-									
-									<li>
-										<div class="happy_list_tit">
-											<span class="con"></span>
-												Ä«Ä«¿ÀÅå ¹®ÀÇ
-										</div>
-										<!-- happy_list_tit -->
-										<div class="happy_list_sub">¿ÀÀü 7½Ã~¿ÀÈÄ 7½Ã (¿¬Áß¹«ÈÞ)</div>
-										<div class="happy_list_plus">Ä«Ä«¿ÀÅå¿¡¼­ ¡¯Recipe To You¡¯¸¦ °Ë»ö ÈÄ<br>´ëÈ­Ã¢¿¡ ¹®ÀÇ ¹× ºÒÆí»çÇ×À»<br>³²°ÜÁÖ¼¼¿ä.</div>
-									</li>
-									
-									<li>
-										<div class="happy_list_tit">
-										<span class="con"></span>
-												È¨ÆäÀÌÁö ¹®ÀÇ
-										</div>
-										<!-- happy_list_tit -->
-										<div class="happy_list_sub">24½Ã°£ Á¢¼ö °¡´É<br>·Î±×ÀÎ > ¸¶ÀÌÆäÀÌÁö > 1:1 ¹®ÀÇ</div>
-										<div class="happy_list_plus">°í°´¼¾ÅÍ ¿î¿µ ½Ã°£¿¡ ¼øÂ÷ÀûÀ¸·Î<br>´äº¯ÇØµå¸®°Ú½À´Ï´Ù.</div>
-									</li>
-								</ul>
-								
-								<div class="happy_center">
-									<div class="happy_unfold">
-										<p class="unfold_top">±³È¯ ¹× È¯ºÒ ¾È³»</p>
-										<p class="unfold_sub">±³È¯ ¹× È¯ºÒÀÌ ÇÊ¿äÇÏ½Å °æ¿ì °í°´Çàº¹¼¾ÅÍ·Î ¹®ÀÇÇØÁÖ¼¼¿ä.</p>
-										<a class="asked" href="#">
-											<span class="txt">ÀÚ¼¼È÷º¸±â</span>
-											<i class="fas fa-angle-down"></i>
-										</a>
-									</div>
-									<!-- happy_unfold -->
+							</li>
+
+							<li>
+								<div class="happy_list_tit">
+									<span class="con"></span> í™ˆíŽ˜ì´ì§€ ë¬¸ì˜
+								</div> <!-- happy_list_tit -->
+								<div class="happy_list_sub">
+									24ì‹œê°„ ì ‘ìˆ˜ ê°€ëŠ¥<br>ë¡œê·¸ì¸ > ë§ˆì´íŽ˜ì´ì§€ > 1:1 ë¬¸ì˜
 								</div>
-								<!-- happy_center -->
-								
-								<div class="happy_center">
-									<div class="happy_unfold">
-										<p class="unfold_top">ÁÖ¹® Ãë¼Ò ¾È³»</p>
-											<ul class="sub">
-												<li>
-													<strong class="sub_inn">- [ÀÔ±Ý È®ÀÎ] ´Ü°è</strong>
-													<span class="sub_inn_in">¸¶ÀÌÄÃ¸® > ÁÖ¹® ³»¿ª »ó¼¼ÆäÀÌÁö¿¡¼­ Á÷Á¢ Ãë¼ÒÇÏ½Ç ¼ö ÀÖ½À´Ï´Ù.</span>
-												</li>
-												<li>
-													<strong class="sub_inn">- [ÀÔ±Ý È®ÀÎ] ÀÌÈÄ ´Ü°è</strong>
-													<span class="sub_inn_in">°í°´Çàº¹¼¾ÅÍ·Î ¹®ÀÇÇØÁÖ¼¼¿ä.</span>
-												</li>
-												<li>
-													<strong class="sub_inn">- °áÁ¦ ½ÂÀÎ Ãë¼Ò / È¯ºÒ</strong>
-													<span class="sub_inn_in">°áÁ¦ ¼ö´Ü¿¡ µû¶ó ¿µ¾÷ÀÏ ±âÁØ 3~7ÀÏ ³»¿¡ Ã³¸®ÇØµå¸³´Ï´Ù.</span>
-												</li>
-											</ul>
-										<a class="asked" href="#">
-											<span class="txt">ÀÚ¼¼È÷º¸±â</span>
-											<i class="fas fa-angle-down"></i>
-										</a>
-									</div>
-									<!-- happy_unfold -->
+								<div class="happy_list_plus">
+									ê³ ê°ì„¼í„° ìš´ì˜ ì‹œê°„ì— ìˆœì°¨ì ìœ¼ë¡œ<br>ë‹µë³€í•´ë“œë¦¬ê² ìŠµë‹ˆë‹¤.
 								</div>
-								<!-- happy_center -->
-								
-								<div class="happy_center">
-									<div class="happy_unfold">
-										<p class="unfold_top">¹è¼Û°ü·Ã¾È³»</p>
-										<p class="unfold_sub">¹è¼Û °úÁ¤ Áß ±â»ó ¾ÇÈ­ ¹× µµ·Î±³Åë »óÈ²¿¡ µû¶ó ºÎµæÀÌÇÏ°Ô Áö¿¬ ¹è¼ÛÀÌ ¹ß»ýµÉ ¼ö ÀÖ½À´Ï´Ù.</p>	
-									</div>
-									<!-- happy_unfold -->
-								</div>
-								<!-- happy_center -->
+							</li>
+						</ul>
+
+						<div class="happy_center">
+							<div class="happy_unfold">
+								<p class="unfold_top">êµí™˜ ë° í™˜ë¶ˆ ì•ˆë‚´</p>
+								<p class="unfold_sub">êµí™˜ ë° í™˜ë¶ˆì´ í•„ìš”í•˜ì‹  ê²½ìš° ê³ ê°í–‰ë³µì„¼í„°ë¡œ ë¬¸ì˜í•´ì£¼ì„¸ìš”.</p>
+								<a class="asked" href="#"> <span class="txt">ìžì„¸ížˆë³´ê¸°</span> <i
+									class="fas fa-angle-down"></i>
+								</a>
 							</div>
-							<!-- happy_center_wrap -->
-				
-			</div>		
-			<!-- goods-view-wrap -->
-			
-			<!-- <div class="product_review_wrap" id="goods_review">
+							<!-- happy_unfold -->
+						</div>
+						<!-- happy_center -->
+
+						<div class="happy_center">
+							<div class="happy_unfold">
+								<p class="unfold_top">ì£¼ë¬¸ ì·¨ì†Œ ì•ˆë‚´</p>
+								<ul class="sub">
+									<li><strong class="sub_inn">- [ìž…ê¸ˆ í™•ì¸] ë‹¨ê³„</strong> <span
+										class="sub_inn_in">ë§ˆì´ì»¬ë¦¬ > ì£¼ë¬¸ ë‚´ì—­ ìƒì„¸íŽ˜ì´ì§€ì—ì„œ ì§ì ‘ ì·¨ì†Œí•˜ì‹¤ ìˆ˜ ìžˆìŠµë‹ˆë‹¤.</span>
+									</li>
+									<li><strong class="sub_inn">- [ìž…ê¸ˆ í™•ì¸] ì´í›„ ë‹¨ê³„</strong> <span
+										class="sub_inn_in">ê³ ê°í–‰ë³µì„¼í„°ë¡œ ë¬¸ì˜í•´ì£¼ì„¸ìš”.</span></li>
+									<li><strong class="sub_inn">- ê²°ì œ ìŠ¹ì¸ ì·¨ì†Œ / í™˜ë¶ˆ</strong> <span
+										class="sub_inn_in">ê²°ì œ ìˆ˜ë‹¨ì— ë”°ë¼ ì˜ì—…ì¼ ê¸°ì¤€ 3~7ì¼ ë‚´ì— ì²˜ë¦¬í•´ë“œë¦½ë‹ˆë‹¤.</span></li>
+								</ul>
+								<a class="asked" href="#"> <span class="txt">ìžì„¸ížˆë³´ê¸°</span> <i
+									class="fas fa-angle-down"></i>
+								</a>
+							</div>
+							<!-- happy_unfold -->
+						</div>
+						<!-- happy_center -->
+
+						<div class="happy_center">
+							<div class="happy_unfold">
+								<p class="unfold_top">ë°°ì†¡ê´€ë ¨ì•ˆë‚´</p>
+								<p class="unfold_sub">ë°°ì†¡ ê³¼ì • ì¤‘ ê¸°ìƒ ì•…í™” ë° ë„ë¡œêµí†µ ìƒí™©ì— ë”°ë¼ ë¶€ë“ì´í•˜ê²Œ ì§€ì—°
+									ë°°ì†¡ì´ ë°œìƒë  ìˆ˜ ìžˆìŠµë‹ˆë‹¤.</p>
+							</div>
+							<!-- happy_unfold -->
+						</div>
+						<!-- happy_center -->
+					</div>
+					<!-- happy_center_wrap -->
+
+				</div>
+				<!-- goods-view-wrap -->
+
+				<!-- <div class="product_review_wrap" id="goods_review">
 				<div class="board">
-				
 				 </div>
 				 board 
 				 
-				 
-				 ÈÄ±â Å×ÀÌºí ÁøÇàÁß
+				 í›„ê¸° í…Œì´ë¸” ì§„í–‰ì¤‘
 				 
 				 -->
 			</div>
 			<!-- product_review_wrap -->
-			
-			
-			
-			
-			
-			
-		</div>	
+
+		</div>
 		<!-- goods_add_product_wrap -->
 
 
-
-
-			</div>
-			<!-- section_view -->
-		</div>
-		<!-- main -->
-
-		<jsp:include page="/View/User/inc/footer.jsp" />
-		<!-- footer -->
 	</div>
+	<!-- section_view -->
 	<!-- wrap -->
 </body>

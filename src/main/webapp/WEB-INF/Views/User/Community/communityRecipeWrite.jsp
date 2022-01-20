@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link href="/Resources/User/Css/Community/communityRecipeWrite.css"
+<link href="/recipetoyou/Resources/User/Css/Community/communityRecipeWrite.css"
 	rel="stylesheet" type="text/css">
 <!-- fontawesome 링크 -->
 <link rel="stylesheet"
@@ -15,15 +15,12 @@
 	href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400&display=swap"
 	rel="stylesheet">
 	<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
-<link href="/Resources/User/Img/KurlyIcon.png" rel= "icon" type="image/x-icon"/>
+<link href="/recipetoyou/Resources/User/Img/KurlyIcon.png" rel= "icon" type="image/x-icon"/>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
 <body>
 	<div class="wrap">
-		<%-- header --%>
-		<jsp:include page="/View/User/inc/header.jsp" />
-		<%-- header end --%>
 		<div class="main">
 			<div class="title">
 				<h2>레시피등록</h2>
@@ -49,11 +46,6 @@
 				</div>
 			
 		</div>
-		
-		<%-- footer --%>
-		<jsp:include page="/View/User/inc/footer.jsp" />
-		<%-- footer end--%>
 	</div>
-
 </body>
 </html>

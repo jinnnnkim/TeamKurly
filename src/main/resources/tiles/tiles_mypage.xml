@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 2.1//EN"
+       "http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
+       
+<tiles-definitions>
+	<definition name="mypageLayout" template="/WEB-INF/Views/User/Inc2/mypageLayout.jsp">
+		<put-attribute name="title" value=""/>
+		<put-attribute name="header" value="/WEB-INF/Views/User/Inc2/header.jsp"/>
+		<put-attribute name="info" value="/WEB-INF/Views/User/Inc2/mypageUserInfo.jsp"/>
+		<put-attribute name="side" value="/WEB-INF/Views/User/Inc2/mypageSideMenu.jsp"/>			
+		<put-attribute name="body" value=""/>
+		<put-attribute name="footer" value="/WEB-INF/Views/User/Inc2/footer.jsp"/>		
+	</definition>
+	
+	<definition name="mypage/addressList" extends="mypageLayout">
+		<put-attribute name="title" value="마이페이지"/>
+		<put-attribute name="body" value="/WEB-INF/Views/User/Mypage/addressList2.jsp"/>	
+	</definition>
+	
+	<definition name="mypage/coupon" extends="mypageLayout">
+		<put-attribute name="title" value="마이페이지 - 쿠폰"/>
+		<put-attribute name="body" value="/WEB-INF/Views/User/Mypage/coupon2.jsp"/>	
+	</definition>
+	
+	<definition name="mypage/giftList" extends="mypageLayout">
+		<put-attribute name="title" value="마이페이지 - 선물하기"/>
+		<put-attribute name="body" value="/WEB-INF/Views/User/Mypage/giftList2.jsp"/>	
+	</definition>
+	
+	<definition name="mypage/myInfo" extends="mypageLayout">
+		<put-attribute name="title" value="마이페이지 - 나의정보"/>
+		<put-attribute name="body" value="/WEB-INF/Views/User/Mypage/myInfo2.jsp"/>	
+	</definition>
+	
+	<definition name="mypage/mypageInfo" extends="mypageLayout">
+		<put-attribute name="title" value="마이페이지 - 나의정보"/>
+		<put-attribute name="body" value="/WEB-INF/Views/User/Mypage/mypageInfo2.jsp"/>	
+	</definition>
+	
+	<definition name="mypage/orderList" extends="mypageLayout">
+		<put-attribute name="title" value="마이페이지 - 주문목록"/>
+		<put-attribute name="body" value="/WEB-INF/Views/User/Mypage/orderList2.jsp"/>	
+	</definition>
+	
+	<definition name="mypage/pickList" extends="mypageLayout">
+		<put-attribute name="title" value="마이페이지 - 장바구니"/>
+		<put-attribute name="body" value="/WEB-INF/Views/User/Mypage/pickList2.jsp"/>	
+	</definition>
+	
+	<definition name="mypage/pickListAdd" extends="mypageLayout">
+		<put-attribute name="title" value="마이페이지 - 장바구니추가"/>
+		<put-attribute name="body" value="/WEB-INF/Views/User/Mypage/pickListAdd2.jsp"/>	
+	</definition>
+	
+	<definition name="mypage/point" extends="mypageLayout">
+		<put-attribute name="title" value="마이페이지 - 적립금"/>
+		<put-attribute name="body" value="/WEB-INF/Views/User/Mypage/point2.jsp"/>	
+	</definition>
+	
+	<definition name="mypage/questionAnswer" extends="mypageLayout">
+		<put-attribute name="title" value="마이페이지 - QA"/>
+		<put-attribute name="body" value="/WEB-INF/Views/User/Mypage/questionAnswer2.jsp"/>	
+	</definition>
+	
+	<definition name="mypage/review" extends="mypageLayout">
+		<put-attribute name="title" value="마이페이지 - 후기"/>
+		<put-attribute name="body" value="/WEB-INF/Views/User/Mypage/review2.jsp"/>	
+	</definition>
+
+	
+</tiles-definitions>       

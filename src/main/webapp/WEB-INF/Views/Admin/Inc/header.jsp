@@ -6,10 +6,10 @@
 		<ul>
 			<li><a class="topLogo" href="homePage.jsp"><i
 					class="fas fa-home"></i></a></li>
-			<li><a href="#">이용메뉴얼보기</a></li>
-			<li><a href="#">관리자모드</a></li>
-			<li><a href="#">홈페이지보기</a></li>
-			<li><a href="#">모바일웹보기</a></li>
+			<li><a href="#">관리자메뉴얼</a></li>
+			<li><a href="#">관리자관리</a></li>
+			<li><a href="#">홈페이지</a></li>
+			<li><a href="#">모바일웹</a></li>
 		</ul>
 	</div>
 	<div class="nav">

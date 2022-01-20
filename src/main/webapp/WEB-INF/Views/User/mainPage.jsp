@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Recipe to You :: 내일의 장보기, 레시피투유</title>
-<link href="/recipetoyou/Resources/User/Img/KurlyIcon.png" rel="icon"
+<link href="/recipetoyou/recipetoyou/Resources/User/Img/KurlyIcon.png" rel="icon"
 	type="image/x-icon" />
 <!-- slick 링크 연결 -->
 <link rel="stylesheet" type="text/css" href="slick/slick.css" />
@@ -248,8 +248,6 @@
 				<!-- move-->
 			</div>
 			<!-- review 닫힌 태그 -->
-
-
 		</div>
 		<!-- main 닫힌 테그 -->
 	</div>

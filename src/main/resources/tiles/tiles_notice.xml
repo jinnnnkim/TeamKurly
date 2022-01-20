@@ -4,19 +4,26 @@
        "http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
        
 <tiles-definitions>
-	<definition name="noticeLayout" template="/WEB-INF/Views/User/inc/noticeLayout.jsp">
+	<definition name="noticeLayout" template="/WEB-INF/Views/User/Inc2/noticeLayout.jsp">
 		<put-attribute name="title" value=""/>
-		<put-attribute name="header" value="/WEB-INF/Views/User/inc/header.jsp"/>
-		<put-attribute name="side" value="/WEB-INF/Views/User/inc/noticeSideMenu.jsp"/>			
+		<put-attribute name="header" value="/WEB-INF/Views/User/Inc2/header.jsp"/>
+		<put-attribute name="side" value="/WEB-INF/Views/User/Inc2/noticeSideMenu.jsp"/>			
 		<put-attribute name="body" value=""/>
-		<put-attribute name="footer" value="/WEB-INF/Views/User/inc/footer.jsp"/>		
+		<put-attribute name="footer" value="/WEB-INF/Views/User/Inc2/footer.jsp"/>		
 	</definition>
 	
-	<definition name="noticeDetailLayout" template="/WEB-INF/Views/User/inc/noticeDetailLayout.jsp">
+	<definition name="communityLayout" template="/WEB-INF/Views/User/Inc2/communityLayout.jsp">
 		<put-attribute name="title" value=""/>
-		<put-attribute name="header" value="/WEB-INF/Views/User/inc/header.jsp"/>
+		<put-attribute name="header" value="/WEB-INF/Views/User/Inc2/header.jsp"/>
 		<put-attribute name="body" value=""/>
-		<put-attribute name="footer" value="/WEB-INF/Views/User/inc/footer.jsp"/>		
+		<put-attribute name="footer" value="/WEB-INF/Views/User/Inc2/footer.jsp"/>		
+	</definition>
+	
+	<definition name="noticeDetailLayout" template="/WEB-INF/Views/User/Inc2/noticeDetailLayout.jsp">
+		<put-attribute name="title" value=""/>
+		<put-attribute name="header" value="/WEB-INF/Views/User/Inc2/header.jsp"/>
+		<put-attribute name="body" value=""/>
+		<put-attribute name="footer" value="/WEB-INF/Views/User/Inc2/footer.jsp"/>		
 	</definition>
 	
 	<definition name="/notice/notice" extends="noticeLayout">
@@ -73,6 +80,16 @@
 	<definition name="/notice/noticeOneToOneQuestionDetail" extends="noticeLayout">
 		<put-attribute name="title" value="1:1 문의 - 상세페이지"/>
 		<put-attribute name="body" value="/WEB-INF/Views/User/Notice/noticeOneToOneQuestionDetail.jsp"/>	
+	</definition>
+	
+	<definition name="community/communityRecipeMain" extends="communityLayout">
+		<put-attribute name="title" value="커뮤니티 - 레시피"/>
+		<put-attribute name="body" value="/WEB-INF/Views/User/Community/communityRecipeMain.jsp"/>	
+	</definition>
+	
+	<definition name="community/communityRecipeWrite" extends="communityLayout">
+		<put-attribute name="title" value="레시피 - 상세페이지"/>
+		<put-attribute name="body" value="/WEB-INF/Views/User/Community/communityRecipeWrite.jsp"/>	
 	</definition>
 	
 	

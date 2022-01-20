@@ -34,8 +34,8 @@
 					<div id ="userMenu">		<!-- 로그인, 회원가입, 고객센터 목록 -->
 						<ul class="list_menu">	
 							<li class="menu_list">	<!-- onclick시 카데고리  -->
-							<a href="/View/User/Mypage/myinfo.jsp">마이페이지</a>
-								<a href="/View/User/Notice/notice.jsp"  class ="link-menu3" onclick="">고객센터<i class="fas fa-caret-down"></i></a>
+							<a href="${contextPath}/mypage/myinfo.do">마이페이지</a>
+								<a href="${contextPath}/notice/notice.do"  class ="link-menu3" onclick="">고객센터<i class="fas fa-caret-down"></i></a>
 							</li>
 							<li class="menu_login"><a href="#" class ="link-menu2">로그인 &#124;</a></li>
 							<li class="menu_join"><a href="#"  class ="link-menu1" style=" color: #5f0080;">회원가입 &#124;</a></li>
@@ -53,25 +53,25 @@
 					<div id="catagoryMenu" class="Tcatagory" >	     <!-- 전체 카데고리 -->
 						<ul>
 							<li class="menu1">
-								<a href="/View/User/mainPage.jsp" onclick="">
+								<a href="${contextPath }/user/mainPage.do" onclick="">
 									<span class="ico"><i class="fas fa-bars"></i></span>
 									<span class="txt">전체 카테고리</span>
 								</a>
 							</li>
 							<li class="menu2">
-								<a href="/View/User/Community/communityRecipeMain.jsp" class="link_comu" onclick="">커뮤니티</a>
+								<a href="${contextPath}/community/communityRecipeMain.do" class="link_comu" onclick="">커뮤니티</a>
 							</li>
 							<li class="menu3">
-								<a href="/View/User/newGoodsPage.jsp" class="link_new" onclick="">신상품</a>
+								<a href="${contextPath }/user/newGoodsPage.do" class="link_new" onclick="">신상품</a>
 							</li>
 							<li class="menu4">
-								<a href="/View/User/bestGoodsPage.jsp" class="link_best" onclick="">베스트</a>
+								<a href="${contextPath }/user/bestGoodsPage.do" class="link_best" onclick="">베스트</a>
 							</li>
 							<li class="menu5">
-								<a href="/View/User/saleGoodsPage.jsp" class="link_sale" onclick="">알뜰쇼핑</a>
+								<a href="${contextPath }/user/saleGoodsPage.do" class="link_sale" onclick="">알뜰쇼핑</a>
 							</li>
 							<li class="menu6">
-								<a href="/View/User/benefitPage.jsp" class="link_benefit" onclick="">특가/혜택</a>
+								<a href="${contextPath }/user/benefitPage.do" class="link_benefit" onclick="">특가/혜택</a>
 							</li>
 						</ul>
 						

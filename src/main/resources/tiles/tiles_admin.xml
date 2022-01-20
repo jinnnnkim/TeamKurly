@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 2.1//EN"
+       "http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
+       
+<tiles-definitions>
+	<definition name="adminLayout" template="/WEB-INF/Views/Admin/Inc/mypageLayout.jsp">
+		<put-attribute name="title" value=""/>
+		<put-attribute name="header" value="/WEB-INF/Views/Admin/Inc/header.jsp"/>		
+		<put-attribute name="side" value="/WEB-INF/Views/Admin/Inc/sidebar.jsp"/>	
+		<put-attribute name="body" value=""/>
+	</definition>
+	
+	<definition name="admin/home" extends="adminLayout">
+		<put-attribute name="title" value="레시피- 관리자메인"/>
+		<put-attribute name="body" value="/WEB-INF/Views/Admin/homePage.jsp"/>	
+	</definition>
+	
+</tiles-definitions>       

@@ -6,6 +6,5 @@
 <configuration>
 	<typeAliases>
 		<typeAlias type="kr.co.recipetoyou.main.goods.GoodsVO" alias="GoodsVO"/>
-		<typeAlias type="kr.co.recipetoyou.user.testVO" alias="testVO"/>
 	</typeAliases>
 </configuration>  

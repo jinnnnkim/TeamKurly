@@ -17,14 +17,11 @@ public class GoodsControllerImpl implements GoodsController{
 	private static final Logger logger = LoggerFactory.getLogger("GoodsControllerImpl.class");
 
 	@Override
-	@RequestMapping(value="/main.do", method= {RequestMethod.GET,RequestMethod.POST})
 	public ModelAndView main(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		String viewName = (String) request.getAttribute("viewName");
-		logger.info(viewName);
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName(viewName);
-		
-		return mav;
+		// TODO Auto-generated method stub
+		return null;
 	}
+
+	
 
 }
