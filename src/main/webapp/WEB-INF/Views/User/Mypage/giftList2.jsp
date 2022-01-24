@@ -23,8 +23,6 @@
 <!-- 파비콘 링크 -->
 <link href="/recipetoyou/Resources/User/Img/KurlyIcon.png" rel="icon"
 	type="image/x-icon" />
-</head>
-<body>
 	<div class="content">
 		<div class="gift_main">
 			<div class="head">
@@ -51,9 +49,6 @@
 		<!-- gift_main -->
 	</div>
 	<%--content end --%>
-</body>
-</html>
-
 
 
 

@@ -87,12 +87,12 @@ request.setCharacterEncoding("UTF-8");
 
 							<div class="inner_option">
 								<!-- inner_option -->
-								<button type="button" class="btn down">
+								<button id="prodDown" type="button" class="btn down">
 									<i class="fas fa-minus"></i>
 								</button>
-								<input type="number" readonly="readonly" onfocus="this.blur()"
-									class="inp">
-								<button type="button" class="btn up">
+								<input type="number" readonly="readonly"
+									class="inp" value="1">
+								<button id="prodUp" type="button" class="btn up">
 									<i class="fas fa-plus"></i>
 								</button>
 							</div>
@@ -116,7 +116,7 @@ request.setCharacterEncoding("UTF-8");
 
 						<div class="pick_cart">
 							<!-- pick_cart -->
-							<button type="button" class="pick_btn">
+							<button id="pick" type="button" class="pick_btn off">
 								<i class="fas fa-heart"></i>
 							</button>
 							<div class="button_wrap">
@@ -227,21 +227,21 @@ request.setCharacterEncoding("UTF-8");
 					<!-- 상품 상세보기 -->
 					<div class="goods-view-inn">
 						<ul class="goods-view-lists">
-							<li class="gview-list-inn"><a href="#"
-								class="gview_tab_anchor">상품설명</a></li>
-							<li class="gview-list-inn"><a href="#"
-								class="gview_tab_anchor">상세정보</a></li>
-							<li class="gview-list-inn"><a href="#"
-								class="gview_tab_anchor">후기</a></li>
-							<li class="gview-list-inn"><a href="#"
-								class="gview_tab_anchor">문의</a></li>
+							<li class="gview-list-inn"><a href="#prodDetail"
+								class="gview_tab_anchor scroll_move">상품설명</a></li>
+							<li class="gview-list-inn"><a href="#goods_pic"
+								class="gview_tab_anchor scroll_move">상세정보</a></li>
+							<li class="gview-list-inn"><a href="#reviewTable"
+								class="gview_tab_anchor scroll_move">후기</a></li>
+							<li class="gview-list-inn"><a href="#QandATable"
+								class="gview_tab_anchor scroll_move">문의</a></li>
 						</ul>
 						<!-- goods-view-lists -->
 					</div>
 					<!-- goods-view-inn -->
 
 					<div class="goods-view-inn_content_wrap">
-						<div class="goods-view-inn_content">
+						<div id="prodDetail" class="goods-view-inn_content">
 							<div class="pic">
 								<img alt="pic"
 									src="/recipetoyou/Resources/User/Img/SaleGoods/view-inn_content_1.jpg">
@@ -510,14 +510,159 @@ request.setCharacterEncoding("UTF-8");
 				</div>
 				<!-- goods-view-wrap -->
 
-				<!-- <div class="product_review_wrap" id="goods_review">
-				<div class="board">
-				 </div>
-				 board 
-				 
-				 후기 테이블 진행중
-				 
-				 -->
+				<div id="reviewTable" class="reviewTable">
+					<div>
+						<h5>PRODUCT REVIEW</h5>
+						<h6>상품에 대한 문의를 남기는 공간입니다. 해당 게시판의 성격과 다른 글은 사전동의 없이 담당 게시판으로
+							이동될 수 있습니다.</h6>
+						<h6>배송관련, 주문(취소/교환/환불)관련 문의 및 요청사항은 마이컬리 내 1:1 문의에 남겨주세요.</h6>
+					</div>
+					<table>
+						<tr class="th">
+							<th class="num">번호</th>
+							<th class="title">제목</th>
+							<th class="writer">작성자</th>
+							<th class="writeDate">작성일</th>
+							<th class="hit">조회</th>
+						</tr>
+
+						<tr class="reviewList1">
+							<td>공지</td>
+							<td class="titleCont"><a href="#none">금주의 Best 후기 안내</a></td>
+							<td>Recipe</td>
+							<td>2022-01-04</td>
+							<td>15</td>
+						</tr>
+						<tr class="reviewDetailList1">
+							<td colspan="5">
+								<div>
+									<span> 금주의 best 후기입니다. </span>
+									<div class="echoBtn">
+										<button class="editBtn" type="button">수정</button>
+										<button class="deleteBtn" type="button" onclick="QAdelte()">삭제</button>
+									</div>
+								</div>
+							</td>
+						</tr>
+
+					</table>
+					<div class="writeBtn">
+						<a href="${contextPath}/reviewWrite.do">후기작성</a>
+					</div>
+				</div>
+
+				<div class="page">
+					<ul>
+						<li><a href="#"><i class="fas fa-angle-double-left"></i></a></li>
+						<li><a href="#"><i class="fas fa-angle-left"></i></a></li>
+						<li><a href="#">1</a></li>
+						<li><a href="#">2</a></li>
+						<li><a href="#">3</a></li>
+						<li><a href="#"><i class="fas fa-angle-right"></i></a></li>
+						<li><a href="#"><i class="fas fa-angle-double-right"></i></a></li>
+					</ul>
+				</div>
+				<%--review end --%>
+
+				<%--QnA --%>
+				<div id="QandATable" class="QandATable">
+					<div>
+						<h5>PRODUCT Q&A</h5>
+						<h6>상품에 대한 문의를 남기는 공간입니다. 해당 게시판의 성격과 다른 글은 사전동의 없이 담당 게시판으로
+							이동될 수 있습니다.</h6>
+						<h6>배송관련, 주문(취소/교환/환불)관련 문의 및 요청사항은 마이컬리 내 1:1 문의에 남겨주세요.</h6>
+					</div>
+					<table>
+						<tr class="th">
+							<th class="title">제목</th>
+							<th class="writer">작성자</th>
+							<th class="writeDate">작성일</th>
+							<th class="reply">답변상태</th>
+						</tr>
+
+						<tr class="QandAList1">
+							<td>판매 일시 중단 제품입니다.</td>
+							<td class="titleCont">recipetoyou</td>
+							<td>2022-01-04</td>
+							<td>-</td>
+						</tr>
+						<tr class="QandADetailList1">
+							<td colspan="5">
+								<div>
+									<span> 환경을 생각해주세요. </span>
+									<div class="echoBtn">
+										<button class="editBtn" type="button">수정</button>
+										<button class="deleteBtn" type="button" onclick="QAdelte()">삭제</button>
+									</div>
+								</div>
+							</td>
+						</tr>
+					</table>
+					<div class="writeBtn">
+						<a id="show">문의하기</a>
+					</div>
+					<%--QnA End--%>
+					
+					<%--문의하기 팝업 --%>
+					<div class="background">
+						<div class="window">
+							<div class="popup">
+								<div class="popupHeader">
+									<h1 class="QAWrtieTitle">상품문의하기</h1>
+									<button id="close">X</button>
+								</div>
+								<div class="prod">
+									<div class="img">
+										<img src="/recipetoyou/Resources/User/Img/goods6.jpg" />
+									</div>
+									<div class="prodInfo">
+										<span class="prodTitle">소고기 200g</span><br /> <span
+											class="prodSub">맛있는 소고기 200g</span>
+									</div>
+								</div>
+								<div class="QnAWrap">
+									<form>
+										<table class="QnAWrite">
+											<tr class="QnAWriteTitle">
+												<th>제목</th>
+												<td><input type="text" placeholder="제목을 입력해주세요." /></td>
+											</tr>
+											<tr class="content">
+												<th>내용</th>
+												<td><textarea
+														placeholder="자세한 후기는 다른 고객의 구매에 많은 도움이 되며,&#13;&#10;일반식품의 효능이나 효과 등에 오해의 소지가 있는 내용을 작성 시 검토 후 비공개 조치될 수 있습니다.&#13;&#10;반품/환불 문의는 1:1문의로 가능합니다."></textarea>
+												</td>
+											</tr>
+											<tr class="scret">
+												<th colspan="2"><label><input type="checkbox">&nbsp;비밀글로 문의하기</label></th>
+											</tr>
+										</table>
+										
+										
+										<div class="popWriteBtn">
+											<button class="cancel" type="reset">취소</button>
+											<button class="reg" type="submit">등록</button>
+										</div>
+									</form>
+								</div>
+
+							</div>
+						</div>
+					</div>
+					<%--문의하기 팝업 끝 --%>
+				</div>
+
+				<div class="page">
+					<ul>
+						<li><a href="#"><i class="fas fa-angle-double-left"></i></a></li>
+						<li><a href="#"><i class="fas fa-angle-left"></i></a></li>
+						<li><a href="#">1</a></li>
+						<li><a href="#">2</a></li>
+						<li><a href="#">3</a></li>
+						<li><a href="#"><i class="fas fa-angle-right"></i></a></li>
+						<li><a href="#"><i class="fas fa-angle-double-right"></i></a></li>
+					</ul>
+				</div>
 			</div>
 			<!-- product_review_wrap -->
 
@@ -528,4 +673,77 @@ request.setCharacterEncoding("UTF-8");
 	</div>
 	<!-- section_view -->
 	<!-- wrap -->
+	<script>
+	let detailHeader = document.querySelector(".goods-view-inn");
+	//let detailHeaderHeight = detailHeader.offsetHeight;
+	
+	window.onscroll = function () {
+	  let windowTop = window.scrollY;
+	  if (windowTop >= 1350) {
+		  detailHeader.classList.add("drop");
+	  } 
+	  else {
+		  detailHeader.classList.remove("drop");
+	  }
+	};
+	
+	$(document).ready(function($) {
+        $(".scroll_move").click(function(event){         
+                event.preventDefault();
+                $('html,body').animate({scrollTop:$(this.hash).offset().top}, 500);
+        });
+	});
+	$(document).ready(function() {
+		var aa = $('#pick').attr('class');
+		$('.reviewList1').click(function() {
+			$('.reviewDetailList1').fadeToggle();
+		});
+		$('.QandAList1').click(function() {
+			$('.QandADetailList1').fadeToggle();
+		});
+	     //장바구니 하트 색변화
+	    $('#pick').click(function(){
+	    	console.log(aa);
+	    	if(aa == 'pick_btn off'){
+	    		$('#pick').removeClass('off');
+	    		$('#pick').addClass('on');
+	    		aa = $('#pick').attr('class');
+	    	}else if((aa == 'pick_btn on')){
+	    		$('#pick').removeClass('on');
+	    		$('#pick').addClass('off');
+	    		aa = $('#pick').attr('class');
+	    	}
+	    });
+	     
+	    var amount = $('.inp').val();
+	    amount = parseInt(amount);
+	    $('#prodDown').click(function(){
+	    	if(amount > 1){
+	    		amount = amount -1;
+	    		$('.inp').val(amount);
+	    	}else{
+	    		alert('구매수량은 1개 이상이여야 합니다.');
+	    	}
+	    });
+		$('#prodUp').click(function(){
+			amount = amount +1;
+			$('.inp').val(amount);
+	    });
+	    
+	});
+	
+	//문의하기 팝업
+	 function show() {
+        document.querySelector(".background").className = "background show";
+      }
+
+      function close() {
+        document.querySelector(".background").className = "background";
+      }
+
+      document.querySelector("#show").addEventListener("click", show);
+      document.querySelector("#close").addEventListener("click", close);
+      
+
+	</script>
 </body>

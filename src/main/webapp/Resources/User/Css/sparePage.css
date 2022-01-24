@@ -409,9 +409,6 @@ span .won {
 	font-size: 30px;
 }
 
-.pick_cart .fas:hover{
-	color: #5f0081;
-}
 
 .pick_cart .wrap_btn {
 	margin-left: 10px;
@@ -431,6 +428,7 @@ span .won {
 	position: relative;
 	width: 1010px;
 	height: 100%;
+	margin-bottom: 50px;
 }
 
 .goods-add-product-title {
@@ -829,3 +827,379 @@ span.sub_inn_in {
 	min-height: 850px;
 }
 
+
+.content{
+	width:825px;
+	margin-left:25px;
+}
+
+.content .title{
+	
+}
+
+.content .title span{
+	font-size:13px;
+	font-weight:400;
+	padding-left:10px;
+	display:inline-block;
+	height:25px;
+	vertical-align:middle;
+	color:#999
+}
+
+.Contsearch{
+	text-align :right;
+	font-size:12px;
+	margin-bottom:10px;
+	position:relative;
+	padding-right:27px;
+}
+.Contsearch input{
+	margin-bottom:0;
+}
+
+.Contsearch .searchInput {
+	
+}
+.Contsearch i {
+	width:27px;
+	height:25px;
+	background:purple;
+	color:white;
+	text-align:center;
+	line-height:25px;
+	margin:0;
+	position:absolute;
+	right:2px;
+}
+
+.reviewTable{
+	
+}
+
+.reviewTable table{
+	border-top:3px solid purple;
+
+	font-size:12px;
+	font-weight:400;
+	text-align:center;
+	border-collapse: collapse;
+}
+.reviewTable th,td{
+	padding:20px 0 20px 0;
+}
+
+.reviewTable .num{
+	width:100px;
+}
+
+.reviewTable .title{
+	width:600px;
+}
+
+.reviewTable .writer{
+	width:150px;
+}
+.reviewTable .writeDate{
+	width:250px;
+}
+.reviewTable .hit{
+	width:100px;
+}
+
+.reviewTable .reviewDetailList1{
+	display:none;
+}
+
+.reviewTable tr:nth-child(1){
+	border-bottom:1px solid #999;
+}
+
+.reviewTable tr{
+	border-top:1px solid #f4f4f4;
+	border-bottom:1px solid #f4f4f4;
+}
+
+.reviewTable .titleCont{
+	text-align:left;
+	padding-left:15px;
+}
+
+.QandATable{
+	
+}
+
+.QandATable table{
+	border-top:3px solid purple;
+
+	font-size:12px;
+	font-weight:400;
+	text-align:center;
+	border-collapse: collapse;
+}
+.QandATable th,td{
+	padding:20px 0 20px 0;
+}
+
+
+.QandATable .title{
+	width:625px;
+}
+
+.QandATable .writer{
+	width:175px;
+}
+.QandATable .writeDate{
+	width:250px;
+}
+.QandATable .reply{
+	width:125px;
+}
+
+.QandATable .QandADetailList1{
+	display:none;
+}
+
+.QandATable tr:nth-child(1){
+	border-bottom:1px solid #999;
+}
+
+.QandATable tr{
+	border-top:1px solid #f4f4f4;
+	border-bottom:1px solid #f4f4f4;
+}
+
+.QandATable .titleCont{
+	text-align:left;
+	padding-left:15px;
+}
+
+.page{
+	border-bottom:1px solid purple;
+}
+
+.page ul{
+	display:flex;
+	justify-content: center;
+}
+
+.page ul li{
+	width:30px;
+	height:30px;
+	border:1px solid #ddd;
+	line-height:28px;
+	text-align:center;
+	margin-left:-1px;
+}
+
+.page ul li:hover{
+	background:#fafafa;
+	transition:0.3s;
+}
+
+.page ul li a{
+	font-size:12px;
+}
+
+.goods-view-inn.drop {
+  position: fixed;
+  top:-2px;
+  animation: dropHeader 0.3s;
+}
+
+
+
+@keyframes dropHeader {
+  0% {
+    top: -5rem;
+  }
+  100% {
+    top:-2px;
+  }
+}
+
+.reviewTable button,
+.QandATable button{
+	width:75px;
+	height:30px;
+	border:1px solid #5f0080;
+	background:white;
+}
+
+.writeBtn{
+	text-align:right;
+	padding:60px 0px 80px 0px;
+}
+
+.writeBtn a{
+	width:100px;
+	height:32px;
+	display:inline-block;
+	text-align:center;
+	line-height:32px;
+	color:white;
+	background:#795b8f;
+	border:1px solid #5f0080;
+}
+
+.background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.3);
+  z-index: 1000;
+  z-index: -1;
+  opacity: 0;
+}
+
+.show {
+  opacity: 1;
+  z-index: 1000;
+  transition: all 0.5s;
+}
+
+#close{
+	
+}
+
+.window {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.popup {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #ffffff;
+  box-shadow: 0 2px 7px rgba(0, 0, 0, 0.3);
+  border-radius:15px;
+  width: 700px;
+  height: 680px;
+  padding:10px 40px 20px 40px;
+  /* 초기에 약간 아래에 배치 */
+  transform: translate(-50%, -40%);
+}
+
+.popup #close{
+	border: 0;
+    position: absolute;
+    top: 35px;
+    right: 26px;
+    font-size: 31px;
+}
+
+.popup .QAWrtieTitle{
+	display:inline-block;
+}
+.show .popup {
+  transform: translate(-50%, -50%);
+  transition: all 0.5s;
+}
+
+.QnAWrap{
+	padding:10px;
+}
+.img{
+  display: inline-block;
+}
+.img img{
+  display: inline-block;
+  width:250px;
+  height:130px;
+  vertical-align: middle;
+}
+
+.prodInfo{
+  display: inline-block;
+  line-height:5px;
+}
+
+.prodInfo span{
+	display: inline-block;
+	padding:10px;
+}
+
+.QnAWrap table {
+	border:0;
+}
+
+.QnAWrite tr:nth-child(1){
+	border-bottom:0;
+}
+
+.QnAWrite tr th{
+	width:250px;
+	font-size:20px;
+	
+}
+.QnAWrite tr td{
+	width:600px;
+	
+}
+.QnAWrite tr td input,
+.QnAWrite .content textarea{
+	border:1px solid #f4f4f4;
+}
+
+.QnAWrite tr td input{
+	width:600px;
+	height:30px;
+}
+
+.QnAWrite .title{
+	height:30px;
+	line-height:30px;
+}
+
+.QnAWrite .content{
+	height:250px;
+}
+.QnAWrite .content th{
+	vertical-align: top;
+}
+.QnAWrite .content textarea{
+	display:inline-block;
+	width:600px;
+	height:200px;
+}
+.QnAWrite .scret{
+	border:0;
+}
+.QnAWrite .scret th{
+	font-weight: normal;
+	text-align: left;
+	padding:5px;
+	font-size:16px;
+
+}
+.popWriteBtn{
+	text-align:center;
+}
+.popWriteBtn button{
+	padding:20px;
+	width:130px;
+	height:40px;
+	display:inline-block;
+	line-height:0;
+	border-radius:5px;
+}
+
+.popWriteBtn .cancel{
+	border:1px solid #ddd;
+}
+.popWriteBtn .reg{
+	background:#ddd;
+	border:1px solid #ddd;
+}
+.on{
+	color:red;
+}
+
+.off{
+	color: #5f0081;
+}

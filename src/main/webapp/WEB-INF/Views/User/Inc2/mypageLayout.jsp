@@ -10,11 +10,12 @@ request.setCharacterEncoding("UTF-8");
 <head>
 <meta charset="UTF-8">
 <title><tiles:insertAttribute name="title" /></title>
+
 </head>
 <body>
 	<div class="wrap">
 		<tiles:insertAttribute name="header" />
-		<tiles:insertAttribute name="info" />
+		<tiles:insertAttribute name="mypageInfo" />
 		<div class="main">
 			<tiles:insertAttribute name="side" />
 			<tiles:insertAttribute name="body" />

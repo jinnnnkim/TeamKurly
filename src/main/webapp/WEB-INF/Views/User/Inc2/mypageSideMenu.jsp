@@ -1,15 +1,39 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<div class="sideMenu">
-	<h2>고객센터</h2>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<c:set var="contextPath" value="${pageContext.request.contextPath}" />
+<%
+	request.setCharacterEncoding("UTF-8");
+%>
+<link rel="stylesheet"
+	href="/recipetoyou/Resources/User/Css/Mypage2/mypageSideMenu.css">
+<div class="sidemenu">
+	<h2 class="side_title">마이컬리</h2>
 	<ul>
-		<li><a href="notice.jsp">공지사항<i class="fas fa-chevron-right"></i></a></li>
-		<li><a href="frequencyQuestion.jsp">자주하는 질문<i class="fas fa-chevron-right"></i></a></li>
-		<li><a href="#">1:1문의<i class="fas fa-chevron-right"></i></a></li>
-		<li><a href="#">대량주문 문의<i class="fas fa-chevron-right"></i></a></li>
-		<li><a href="#">상품제안<i class="fas fa-chevron-right"></i></a></li>
-		<li><a href="#">에코포장 피드백<i class="fas fa-chevron-right"></i></a></li>
-		<li class="oneToOneFaq"><a href="#"><span>도움이 필요하신가요?<br />
-				<small>1:1문의하기</small></span><i class="fas fa-chevron-right"></i></a></li>
+		<li class="order"><a href="${contextPath}/mypage/main.do">주문내역
+			<i class="fas fa-chevron-right"></i></a></li>
+		<li class="gift"><a href="${contextPath}/giftList.do">선물내역
+			<i class="fas fa-chevron-right"></i></a></li>
+		<li class="pick"><a href="${contextPath}/picklist_add.do">찜한상품
+			<i class="fas fa-chevron-right"></i></a></li>
+		<li class="address"><a href="${contextPath}/addresslist.do">배송지관리
+			<i class="fas fa-chevron-right"></i></a></li>
+		<li class="review" id="review"><a href="${contextPath}/review.do">상품 후기
+			<i class="fas fa-chevron-right"></i></a></li>
+		<li class="QandA"><a href="${contextPath}/QandA.do">상품 문의
+			<i class="fas fa-chevron-right"></i></a></li>
+		<li class="point"><a href="${contextPath}/point.do">적립금
+			<i class="fas fa-chevron-right"></i></a></li>
+		<li class="coupon"><a href="${contextPath}/coupon.do">쿠폰
+			<i class="fas fa-chevron-right"></i></a></li>
+		<li class="userInfo"><a href="${contextPath}/mypageUserInfo.do">개인 정보 수정
+			<i class="fas fa-chevron-right"></i>
+		</a></li>
 	</ul>
+	<div class="inquiry">
+		<a href="${contextPath}/notice/noticeOneToOneQuestionDetail.do">
+			<span class="help">도움이 필요하신가요?</span><br>
+			<p>1:1 문의하기</p> <i class="fas fa-chevron-right"></i>
+		</a>
+	</div>
 </div>

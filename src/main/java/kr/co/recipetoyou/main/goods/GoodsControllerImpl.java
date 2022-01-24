@@ -17,9 +17,10 @@ public class GoodsControllerImpl implements GoodsController{
 	private static final Logger logger = LoggerFactory.getLogger("GoodsControllerImpl.class");
 
 	@Override
+	@RequestMapping(value="/prodDetail.do",method = RequestMethod.GET)
 	public ModelAndView main(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		ModelAndView mav = new ModelAndView();
+		return mav;
 	}
 
 	

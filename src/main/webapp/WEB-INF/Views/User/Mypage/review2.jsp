@@ -1,14 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>마이페이지_주문내역</title>
-<link rel="stylesheet" href="/recipetoyou/Resources/User/Css/Mypage/mypageInfo.css">
 <link href="/recipetoyou/Resources/User/Css/reset.css" rel="stylesheet"
 	type="text/css">
-<link rel="stylesheet" href="/Resources/User/Css/Mypage/review.css"
+<link rel="stylesheet" href="/recipetoyou/Resources/User/Css/Mypage2/review.css"
 	type="text/css">
 <!-- fontawesome 링크 -->
 <link rel="stylesheet"
@@ -20,11 +21,11 @@
 	href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400&display=swap"
 	rel="stylesheet">
 <!-- 파비콘 링크 -->
-<link href="/recipetoyou/Resources/User/Img/KurlyIcon.png" rel="icon"
+<link href="/recipetoyou/Resources/User/Img/Mypage2/KurlyIcon.png" rel="icon"
 	type="image/x-icon" />
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 </head>
 <body>
-	<div class="main">
 		<div class="content">
 			<div class="review_main">
 				<div class="head">
@@ -37,22 +38,67 @@
 						<p>-주간 베스트 후기로 선정 시 5,000원을 추가 적립</p>
 						<p>*후기 작성은 배송 완료일로부터 30일 이내 가능합니다.</p>
 					</div>
+					<!-- subtitle -->
 				</div>
 				<!-- head -->
 				<table class="review_menu">
 					<tr>
-						<td class="review_before"><a href="">작성가능 후기</a></td>
-						<td class="review_after"><a href="">작성완료 후기</a></td>
+						<td class="review_before">작성가능 후기</td>
+						<td class="review_after">작성완료 후기</td>
 					</tr>
-					<tr>
-						<td class="review_before_no">작성가능 후기 내역이 없습니다.</td>
-						<td class="review_after_no">작성한 후기가 없습니다.</td>
+					<tr class="review_before_no">
+						<td colspan="2">작성가능 후기 내역이 없습니다.</td>
+					</tr>
+					<tr class="review_after_no">
+						<td colspan="2">작성한 후기가 없습니다.</td>
 					</tr>
 				</table>
+				<!-- review_menu -->
 			</div>
 			<!-- review_main -->
 		</div>
-		<%--content end --%>
-	</div>
+		<!-- content -->
+	<script type="text/javascript">
+		$(function(){ 
+			$('.review_before').click(function(){
+				$('.review_before').css("color","#5f0080");
+				$('.review_before').css("border-bottom", "2px solid #5f0080");
+				$('.review_after_no').css("display","none");
+				$('.review_after').css("border-bottom", "1px solid #5f0080");
+				$('.review_after').css("color","#999");
+				$('.review_before_no').css("display","table-row");
+			});
+			$('.review_after').click(function(){
+				$('.review_after').css("color","#5f0080");
+				$('.review_after').css("border-bottom", "2px solid #5f0080");
+				$('.review_before_no').css("display","none");
+				$('.review_before').css("border-bottom", "1px solid #5f0080");
+				$('.review_before').css("color","#999");
+				$('.review_after_no').css("display","table-row");
+			});
+		});
+	</script>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

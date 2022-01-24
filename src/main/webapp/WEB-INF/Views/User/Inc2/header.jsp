@@ -34,7 +34,7 @@
 					<div id ="userMenu">		<!-- 로그인, 회원가입, 고객센터 목록 -->
 						<ul class="list_menu">	
 							<li class="menu_list">	<!-- onclick시 카데고리  -->
-							<a href="${contextPath}/mypage/addressList.do">마이페이지</a>
+							<a href="${contextPath}/mypage/main.do">마이페이지</a>
 								<a href="${contextPath}/notice/notice.do"  class ="link-menu3" onclick="">고객센터<i class="fas fa-caret-down"></i></a>
 							</li>
 							<li class="menu_login"><a href="${contextPath}/login/login.do" class ="link-menu2">로그인 &#124;</a></li>
@@ -77,18 +77,18 @@
 						
 						<div id="allCate">
 							<ul id="cateMain">
-								<li id="sul">설 선물세트</li>
-								<li id="vegetables">채소</li>
-								<li id="fruit">과일ㆍ견과ㆍ쌀</li>
-								<li id="seafood">수산ㆍ해산ㆍ건어물</li>
-								<li id="meat">정육ㆍ계란</li>
-								<li id="meal">국ㆍ반찬ㆍ메인요리</li>
-								<li id="salad">샐러드ㆍ간편식</li>
-								<li id="noodle">면ㆍ양념ㆍ오일</li>
-								<li id="snack">간식ㆍ과자ㆍ떡</li>
-								<li id="bakery">베이커리ㆍ치즈ㆍ델리</li>
-								<li id="health">건강식품</li>
-								<li id="liquor">전통주</li>
+								<li id="sul"><img class="cateImg" src="/recipetoyou/Resources/User/Img/Cate/gift.png"/>설 선물세트</li>
+								<li id="vegetables"><img class="cateImg" src="/recipetoyou/Resources/User/Img/Cate/carrot.png"/>채소</li>
+								<li id="fruit"><img class="cateImg" src="/recipetoyou/Resources/User/Img/Cate/apple.png"/>과일ㆍ견과ㆍ쌀</li>
+								<li id="seafood"><img class="cateImg" src="/recipetoyou/Resources/User/Img/Cate/fish.png"/>수산ㆍ해산ㆍ건어물</li>
+								<li id="meat"><img class="cateImg" src="/recipetoyou/Resources/User/Img/Cate/meat.png"/>정육ㆍ계란</li>
+								<li id="meal"><img class="cateImg" src="/recipetoyou/Resources/User/Img/Cate/soup.png"/>국ㆍ반찬ㆍ메인요리</li>
+								<li id="salad"><img class="cateImg" src="/recipetoyou/Resources/User/Img/Cate/salad.png"/>샐러드ㆍ간편식</li>
+								<li id="noodle"><img class="cateImg" src="/recipetoyou/Resources/User/Img/Cate/noodle.png"/>면ㆍ양념ㆍ오일</li>
+								<li id="snack"><img class="cateImg" src="/recipetoyou/Resources/User/Img/Cate/cookie.png"/>간식ㆍ과자ㆍ떡</li>
+								<li id="bakery"><img class="cateImg" src="/recipetoyou/Resources/User/Img/Cate/bakery.png"/>베이커리ㆍ치즈ㆍ델리</li>
+								<li id="health"><img class="cateImg" src="/recipetoyou/Resources/User/Img/Cate/healthFood.png"/>건강식품</li>
+								<li id="liquor"><img class="cateImg" src="/recipetoyou/Resources/User/Img/Cate/alcohol.png"/>전통주</li>
 							</ul>
 							<ul class="sul">
 								<li>홍삼ㆍ즙ㆍ건강식품</li>	
@@ -209,7 +209,7 @@
 						<a href="#"><i class="far fa-heart"></i></a>
 					</div>
 					<div class="cart_set">	<!-- 장바구니 -->
-						<a href="#"><i class="fas fa-shopping-cart"></i></a>
+						<a href="${contextPath}/cart.do"><i class="fas fa-shopping-cart"></i></a>
 					</div>
 				</div>
 			</div>	<!-- head -->
@@ -220,7 +220,20 @@
 	$(document).ready(function (){
 	    $('#catagoryMenu .menu1').mouseenter(function(){
 	        $('#allCate ul').css('display','block');
-	        
+	        $('.sul').css('display','block');
+	        $('.sul').css('z-index','300');
+        	$('.vegetables').css('display','none');
+        	$('.fruit').css('display','none');
+        	$('.seafood').css('display','none');
+        	$('.meat').css('display','none');
+        	$('.meal').css('display','none');
+        	$('.salad').css('display','none');
+        	$('.noodle').css('display','none');
+        	$('.snack').css('display','none');
+        	$('.bakery').css('display','none');
+        	$('.health').css('display','none');
+        	$('.liquor').css('display','none');
+        	
 	        $('#sul').mouseenter(function(){
 	        	$('.sul').css('display','block');
 	        	$('.vegetables').css('display','none');

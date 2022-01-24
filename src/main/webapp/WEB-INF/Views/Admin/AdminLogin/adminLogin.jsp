@@ -84,7 +84,8 @@
 				<!--수정버튼은 아직 자바스크립트나 제이쿼리를 적용 못했다. -->
 				<table class="button" align="center">
 					<tr>
-						<td><input type="reset" value="리셋" /> <input type="submit"
+						<td><input type="reset" value="리셋" />
+						 <input type="submit"
 							value="수정" /></td>
 					</tr>
 				</table>

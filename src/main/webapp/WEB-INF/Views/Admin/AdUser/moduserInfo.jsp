@@ -1,5 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<c:set var="contextPath" value="${pageContext.servletContext.contextPath }"/>
+<%
+	request.setCharacterEncoding("utf-8");
+%> 
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,10 +16,10 @@
 	<link rel=“stylesheet” href=“https://use.fontawesome.com/releases/v5.14.0/css/all.css”
      integrity=“sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc” crossorigin=“anonymous”>
  	<link href=“https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap” rel=“stylesheet”>
-	<link rel="stylesheet" href="../../../Resources/Admin/Css/AdUser/moduserInfo.css">
-	<link rel="stylesheet" href="../../../Resources/Admin/Css/HomePageHeaderSide/reset.css">
+	<link rel="stylesheet" href="/recipetoyou/Resources/Admin/Css/AdUser/moduserInfo.css">
+	<link rel="stylesheet" href="/recipetoyou/Resources/Admin/Css/HomePageHeaderSide/reset.css">
 	<script type="text/javascript" src="../../../Resources/SmartEditor/js/service/HuskyEZCreator.js" charset="utf-8"></script>
-	<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+	<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script><script type="text/javascript" src="/recipetoyou/Resources/Admin/Js/AdUser/moduserInfo.js" charset="UTF-8"></script>
 </head>
 <body>
 
@@ -24,11 +31,16 @@
 			회원기본정보
 		</div>
 		
-		<form action="#" method="post">
+		<form action="${contextPath}/user/userUpdate.do" method="post">
+		
 			<table border="1">
+			<c:set var="user" />
 				<tr>
 					<td class="grayBg">아이디</td>
-					<td class="whiteBg">kim1z63</td>
+					<td class="whiteBg"><input id="text" type="text" value="${userVO.user_id}" readonly="readonly">
+					<input type="hidden" name="user_id" value="${userVO.user_id }">
+					</td>
+					
 				</tr>
 				
 				<tr>
@@ -36,7 +48,10 @@
 					<i class="fas fa-check" id="checkIcon"></i>
 					이름
 					</td>
-					<td class="whiteBg"><input id="text" type="text" value="이재훈"> <div class="skyblueFont">+최대50자까지 입력 가능</div></td>
+					<td class="whiteBg"><input id="text" type="text" name="user_name" value="${userVO.user_name}"><div class="skyblueFont">+최대50자까지 입력 가능</div>
+					<%-- <input type="hidden" name="user_name" value="${userVO.user_name}"/> --%>
+					</td>
+					
 				</tr>
 				
 				<tr>
@@ -45,11 +60,9 @@
 					생년월일
 					</td>
 					<td class="whiteBg">
-						<select>
-							<option>년도</option>
-							<option>월</option>
-							<option>일</option>
-						</select>
+					${userVO.user_birth}
+					<input type="hidden" name="user_birth" value="${userVO.user_birth}">
+						
 					</td>
 				</tr>
 				
@@ -59,65 +72,53 @@
 					성별
 					</td>
 					<td class="whiteBg">
-						<input type="radio">남<input type="radio">여
+						${userVO.user_gender}
+						<%-- <c:out value="${userVO.user_gender}"/> --%>
+						<!-- <input type="radio">남<input type="radio">여 -->
 					</td>
 				</tr>
 				
 				<tr>
 					<td class="grayBg">비밀번호</td>
 					<td class="whiteBg">
-					<input type="text" >
+					<input type="text" name="user_pw" value="${userVO.user_pw}">
+					<%-- <input type="hidden" name="user_pw" value="${userVO.user_pw }"> --%>
 					<div class="skyblueFont">+4~15자의 영문자,숫자조합</div>
 					<div class="redFont">(비밀번호 변경시에만 입력하십시오)</div>
 					</td>
 				</tr>
-				
-				<tr>
-					<td class="grayBg"><i class="fas fa-check fa-xs" id="checkIcon"></i>닉네임</td>
-					<td class="whiteBg"><input id="text" type="text" value="닉훈"></td>
-				</tr>
+			
 				
 				<tr>
 					<td class="grayBg"><i class="fas fa-check fa-xs" id="checkIcon"></i>회원등급</td>
 					<td class="whiteBg">
-					<select>
-						<option>일반</option>
-						<option>프렌즈</option>
-						<option>화이트</option>
-						<option>라벤더</option>
-						<option>퍼플</option>
-						<option>더퍼플</option>
-					</select>
+					${userVO.user_grade}
 					</td>
 				</tr>
 				
 				<tr>
 					<td class="grayBg">이메일주소</td>
-					<td class="whiteBg"><input id="text" type="text" value="webmaster@00000.000"></td>
+					<td class="whiteBg">
+					<input id="text" type="text" name="user_email" value="${userVO.user_email}">
+					<%-- <input type="hidden" name="user_email" value="${userVO.user_email}"> --%>
+					</td>
 				</tr>
 				
-				<tr>
-					<td class="grayBg">일반전화</td>
-					<td class="whiteBg"><input id="text" type="text" value="000-0000-0000"></td>
-				</tr>
 				
 				<tr>
 					<td class="grayBg"><i class="fas fa-check fa-xs" id="checkIcon"></i>휴대전화</td>
-					<td class="whiteBg"><input id="text" type="text" value="000-0000-0000"></td>
+					<td class="whiteBg">
+					<input id="text" type="text" name="user_phone" value="${userVO.user_phone}"/>
+					<%-- <input type="hidden" name="user_phone" value="${userVO.user_phone}"> --%>
+					</td>
 				</tr>
 				
 				<tr>
 					<td class="grayBg"><i class="fas fa-check fa-xs" id="checkIcon"></i>주소</td>
 					<td class="whiteBg">
-					<input id="text" type="text" value="245-713"> <div class="skyblueFont">+ZIP CODE</div><br>
-					<input id="text" type="text" value="강원 삼척시 사직동 동양시멘트"><br>
-					<input id="text" type="text" value="788"><div class="skyblueFont">+나머지 주소</div>
+					<input id="text" type="text" name="user_addr" value="${userVO.user_addr}">
+					<%-- <input type="hidden" name="user_addr" value="${userVO.user_addr}"><br> --%>
 					</td>
-				</tr>
-				
-				<tr>
-					<td class="grayBg">가입인사</td>
-					<td class="whiteBg"><input id="joinText" type="text"></td>
 				</tr>
 			</table>
 			
@@ -129,24 +130,24 @@
 				<tr>
 					<td class="grayBg">뉴스레터 수신</td>
 					<td class="whiteBg">
-					<input type="radio">수신동의
-					<input type="radio">수신거부
+					${userVO.email_agree}
+					<%-- <c:out value="${userVO.email_agree}"/> --%>
 					</td>
 				</tr>
 				
 				<tr>
 					<td class="grayBg">문자메시지 수신</td>
 					<td class="whiteBg">
-					<input type="radio">수신동의
-					<input type="radio">수신거부
+					${userVO.sms_agree}
+					<%-- <c:out value="${userVO.sms_agree}"/> --%>
 					</td>
 				</tr>
 				
 			</table>
 			
-			<div class="title">
+			<!-- <div class="title">
 				관리자메모
-			</div>
+			</div> -->
 			
 		<textarea id="mailContent" rows="10" cols="100" style="width: 100%">
 		</textarea>
@@ -169,10 +170,12 @@
 
 		</script>	
 		
-			<!-- ★입력 안하고 저장버튼 클릭시 경고창 띄우는 js 구현 필요 -->
-			<button class="saveBtn">저장하기</button>
+			<%-- <button type="button" class="saveBtn" onsubmit="return _onSubmit();"><a href="${contextPath}/user/userUpdate.do?user_id=${userVO.user_id}">수정</a></button> --%>
+			<input type="submit" class="saveBtn" value="수정">
+			</form>
+			
 			<!-- 버튼 클릭시 뒤로가는 js구현되어있음.  -->
-			<button type="button" class="backBtn" onclick="location.href='aduserList.jsp'">뒤로가기</button>
+			<button type="button" class="backBtn" onclick="location.href='${contextPath}/user/listadUsers.do'">뒤로가기</button>
 		</div>
 
 	</div>

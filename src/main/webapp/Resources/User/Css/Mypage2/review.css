@@ -20,13 +20,21 @@
     color: #999;
     line-height: 10px;
     margin-top: 29px;
+    margin-bottom:60px;
 }
 
 .review_menu {
 	width: 815px;
-	height: 156px;
+	height: 100px;
     background-color: #fff;
     padding-top: 54px;
+    border-collapse:collapse;
+}
+
+.review_menu tr td{
+	text-align:center;
+	height:50px;
+	
 }
 
 .review_before {
@@ -42,24 +50,95 @@
 .review_after {
 	width: 410px;
 	border: 1px solid #dddfe1;
-	border-bottom: 2px solid #5f0080;
+	border-bottom: 1px solid #5f0080;
 	font-size: 14px;
     font-weight: 700;
+    color: #666;
+    text-align: center;
+
+}
+
+.review_after_no{
+	display:none;
+}
+
+#thumbnail {
+	width: 60px;
+	height: 78px;
+	margin-right: 20px;
+}
+
+.review_before_main {
+	width: 815px;
+	padding: 24px 20px;
+	border-bottom: 1px solid #dddfe1;
+	font-size: 16px;
+    display: flex;
+}
+
+#thumbnail1 {
+	width: 60px;
+	height: 78px;
+	margin-right: 20px;
+}
+
+#thumbnail2 {
+	width: 60px;
+	height: 78px;
+	padding-left: 20px;
+}
+
+
+.subject {
+	width: 625px;
+}
+
+.btn {
+	margin-top: 27px;
+}
+
+.review_btn {
+    border-radius: 4px;
+    background-color: #fff;
+    border: 1px solid #5f0080;
+    font-size: 13px;
     color: #5f0080;
-    text-align: center;
+    line-height: 2;
+    padding: 15px 20px 15px 20px;
 }
 
-.review_before_no {
-	font-size: 13px;
-    color: #757575;
-    text-align: center;
+.review_prod_name {
+	font-size: 16px;
+    font-weight: 900;
+    padding: 0 0 5px 20px;
+    border-bottom: 1px solid gray;
 }
 
-.review_after_no {
-	font-size: 13px;
-    color: #757575;
-    text-align: center;
+.review_title {
+	font-size: 14px;
+	font-weight: 500;
+    padding: 15px 0px 15px 20px;
 }
+
+.review_content {
+	font-size: 12px;
+	padding-left: 20px;
+	vertical-align: top;
+}
+
+.review_date {
+	font-size: 11px;
+	color: gray;
+	padding-left: 600px;
+	vertical-align: top;
+}
+
+
+
+
+
+
+
 
 
 

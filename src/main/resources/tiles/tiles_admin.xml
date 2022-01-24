@@ -4,16 +4,38 @@
        "http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
        
 <tiles-definitions>
-	<definition name="adminLayout" template="/WEB-INF/Views/Admin/Inc/mypageLayout.jsp">
+	<definition name="adminBaseLayout" template="/WEB-INF/Views/Admin/Inc/layout.jsp">
 		<put-attribute name="title" value=""/>
-		<put-attribute name="header" value="/WEB-INF/Views/Admin/Inc/header.jsp"/>		
-		<put-attribute name="side" value="/WEB-INF/Views/Admin/Inc/sidebar.jsp"/>	
+		<put-attribute name="header" value="/WEB-INF/Views/Admin/Inc/homePage.jsp"/>
 		<put-attribute name="body" value=""/>
 	</definition>
 	
-	<definition name="admin/home" extends="adminLayout">
-		<put-attribute name="title" value="레시피- 관리자메인"/>
-		<put-attribute name="body" value="/WEB-INF/Views/Admin/homePage.jsp"/>	
+	<definition name="loginLayout" template="/WEB-INF/Views/Admin/Inc/loginLayout.jsp">
+		<put-attribute name="title" value=""/>
+		<put-attribute name="body" value="/WEB-INF/Views/Admin/Inc/homePage.jsp"/>
+	</definition>
+	
+	<definition name="admin/main" extends="loginLayout">
+		<put-attribute name="title" value="메인페이지"/>
+		<put-attribute name="body" value="/WEB-INF/Views/Admin/AdminLogin/homePageadminLogin.jsp"/>
+	</definition>	
+	
+	<!-- 관리자 로그인 페이지 -->
+	<definition name="/user/listadUsers" extends="adminBaseLayout">
+		<put-attribute name="title" value="관리자 메인페이지"/>
+		<put-attribute name="body" value="/WEB-INF/Views/Admin/AdUser/listadUsers.jsp"/>
+	</definition>
+	
+	<!-- 회원정보페이지 -->
+	<definition name="/user/aduserInfo" extends="adminBaseLayout">
+		<put-attribute name="title" value="회원정보조회"/>
+		<put-attribute name="body" value="/WEB-INF/Views/Admin/AdUser/aduserInfo.jsp" />
+	</definition>
+	
+	<!-- 회원수정페이지 -->
+	<definition name="/user/moduserInfo" extends="adminBaseLayout">
+		<put-attribute name="title" value="회원정보수정"/>
+		<put-attribute name="body" value="/WEB-INF/Views/Admin/AdUser/moduserInfo.jsp"/>
 	</definition>
 	
 </tiles-definitions>       

@@ -1,14 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>마이페이지_주문내역</title>
-<link rel="stylesheet" href="/recipetoyou/Resources/User/Css/Mypage/mypageInfo.css">
-<link href="/recipetoyou/Resources/User/Css/reset.css" rel="stylesheet"
+<link rel="stylesheet"
+	href="/recipetoyou/Resources/User/Css/Mypage2/mypageInfo.css">
+<link href="/recipetoyou/resources/User/Css/reset.css" rel="stylesheet"
 	type="text/css">
-<link rel="stylesheet" href="/Resources/User/Css/Mypage/q&a.css"
+<link rel="stylesheet" href="/recipetoyou/Resources/User/Css/Mypage2/QandA.css"
 	type="text/css">
 <!-- fontawesome 링크 -->
 <link rel="stylesheet"
@@ -20,10 +23,9 @@
 	href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400&display=swap"
 	rel="stylesheet">
 <!-- 파비콘 링크 -->
-<link href="/recipetoyou/Resources/User/Img/KurlyIcon.png" rel="icon"
+<link href="/recipetoyou/Resources/User/Img/Mypage2/KurlyIcon.png" rel="icon"
 	type="image/x-icon" />
 <body>
-	<div class="main">
 		<div class="content">
 			<div class="review_main">
 				<div class="head">
@@ -36,6 +38,7 @@
 						</li>
 					</ul>
 				</div>
+				<!-- head -->
 				<table class="QandA_main">
 					<tr>
 						<th class="empty"></th>
@@ -44,11 +47,13 @@
 						<th class="reply">답변상태</th>
 					</tr>
 				</table>
+				<!-- QandA_main -->
 				<div class="QandA_content">
 					<ul>
 						<li>작성한 상품 문의가 없습니다.</li>
 					</ul>
 				</div>
+				<!-- QandA_content -->
 				<div class="paging_navi">
 					<button type="button" class="paging_prev">
 						<i class="fas fa-chevron-left"></i>
@@ -57,10 +62,11 @@
 						<i class="fas fa-chevron-right"></i>
 					</button>
 				</div>
+				<!-- paging_navi -->
 			</div>
+			<!-- review_main -->
 		</div>
-		<%--content end --%>
-	</div>
+		<!-- content -->
 </body>
 </html>
 

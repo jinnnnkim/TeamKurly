@@ -4,7 +4,15 @@
   "http://mybatis.org/dtd/mybatis-3-config.dtd">
   
 <configuration>
+	<settings>
+		<!-- <setting name="cacheEnabled" value="false" />
+		<setting name="jdbcTypeForNull" value="NULL"/>  -->
+		<setting name="mapUnderscoreToCamelCase" value="true" />
+	</settings>
 	<typeAliases>
-		<typeAlias type="kr.co.recipetoyou.main.goods.GoodsVO" alias="GoodsVO"/>
+		<typeAlias type="kr.co.recipetoyou.admin.AdminVO" alias="adminVO" />
+		<typeAlias type="kr.co.recipetoyou.user.UserVO" alias="userVO"/>
+		<typeAlias type="kr.co.recipetoyou.main.cartPick.CartPickVO" alias="cartPickVO"/>
+		<typeAlias type="kr.co.recipetoyou.user.mypage.vo.CouponVO" alias="couponVO"/>
 	</typeAliases>
 </configuration>  

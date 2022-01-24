@@ -54,7 +54,7 @@
 				</div>
 				<!-- inner_mypagetop -->
 				<div class="mypage_banner">
-					<a href=""><img src="/recipetoyou/Resources/User/Img/Mypage2/mypage_invite.jpg"></a>
+					<a href=""><img src="/recipetoyou/Resources/User/Img/Mypage/mypage_invite.jpg" alt=""></a>
 				</div>
 			</div>
 			<!-- mypagetop_user -->

@@ -15,7 +15,9 @@ request.setCharacterEncoding("UTF-8");
 	<div class="wrap">
 		<tiles:insertAttribute name="header" />
 		<tiles:insertAttribute name="side" />
-		<tiles:insertAttribute name="body" />
+		<div class="homePageMain">
+			<tiles:insertAttribute name="body" />
+		</div>
 	</div>
 </body>
 </html>

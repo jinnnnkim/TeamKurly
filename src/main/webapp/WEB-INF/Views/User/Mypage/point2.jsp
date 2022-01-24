@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <title>적립금</title>
 <link rel="stylesheet"
-	href="/recipetoyou/Resources/User/Css/Mypage/mypageInfo.css"
+	href="/recipetoyou/Resources/User/Css/Mypage2/mypageInfo.css"
 	type="text/css">
 <link href="/recipetoyou/Resources/User/Css/reset.css" rel="stylesheet"
 	type="text/css">

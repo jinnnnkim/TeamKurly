@@ -1,10 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>배송지 관리</title>
 <link rel="stylesheet" href="/recipetoyou/Resources/User/Css/Mypage2/mypageInfo.css"
 	type="text/css">
 <link href="/recipetoyou/Resources/User/Css/Mypage2/reset.css" rel="stylesheet"
@@ -24,7 +19,6 @@
 <link href="/recipetoyou/Resources/User/Img/Mypage/KurlyIcon.png" rel="icon"
 	type="image/x-icon" />
 </head>
-<body>
 	<div class="content">
 		<div class="address_main">
 			<div class="head">
