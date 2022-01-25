@@ -88,6 +88,9 @@
 				<li><a href="paymentMgm.jsp">결제관리</a></li>
 				<li><a href="${contextPath}/user/listadUsers.do">회원관리</a></li>
 				<li><a href="mobileWebSetting.jsp">모바일웹설정</a></li>
+				<li><a href="${contextPath}/adsend/listadSend.do">발송관리</a></li>
+				<li><a href="${contextPath}/ademail/sendnewsSms.do">메일관리</a></li>
+				<li><a href="${contextPath}/adsms/senduserSms.do">SMS관리</a></li>
 			</ul>
 		</div>
 	</div>
