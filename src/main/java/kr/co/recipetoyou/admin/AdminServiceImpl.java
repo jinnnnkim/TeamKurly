@@ -29,14 +29,7 @@ public class AdminServiceImpl implements AdminService {
 	//관리자 로그인
 	@Override
 	public AdminVO login(AdminVO adminVO) throws DataAccessException {
-		
 		return adminDAO.loginById(adminVO);
 	}
-
-	
-
-	
-
-	
 
 }

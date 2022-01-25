@@ -22,21 +22,15 @@ public class AdminDAOImpl implements AdminDAO{
 	//관리자 목록 조회
 	@Override
 	public List<AdminVO> selectAllAdminList() throws DataAccessException {
-		
 		List<AdminVO> adminList = sqlSession.selectList(NAMESPACE+".selectAllAdminList");
-		
 		return adminList;
 	}
 	
 	//관리자 로그인
 	@Override
 	public AdminVO loginById(AdminVO adminVO) throws DataAccessException {
-		
 		AdminVO vo = sqlSession.selectOne(NAMESPACE+".loginById", adminVO);
-		
 		return vo;
 	}
-	
-	
 
 }
