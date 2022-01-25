@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mapper.product">	<!-- product.xml의 네임스페이스 지정 -->
+
+	<resultMap type="adgoodsVO" id="productResult">
+		<result property="prod_code" column="prod_code"/>
+		<result property="prod_name" column="prod_name"/>
+		<result property="prod_content" column="prod_content"/>
+		<result property="prod_img" column="prod_img"/>
+		<result property="prod_price" column="prod_price"/>
+		<result property="prod_discount" column="prod_discount"/>
+		<result property="prod_sell_unit" column="prod_sell_unit"/>
+		<result property="prod_delivery_type" column="prod_delivery_type"/>
+		<result property="prod_wrap_type" column="prod_wrap_type"/>
+		<result property="prod_info" column="prod_info"/>
+		<result property="prod_allergy" column="prod_allergy"/>
+		<result property="prod_vaild_date" column="prod_vaild_date"/>
+		<result property="prod_from" column="prod_from"/>
+		<result property="prod_caution" column="prod_caution"/>
+		<result property="prod_quantity" column="prod_quantity"/>
+		<result property="prod_reg_date" column="prod_reg_date"/>
+	</resultMap>
+	
+	<resultMap type="adgoodsCateVO" id="prodCateResult">
+		<result property="prodCateCode" column="prodCateCode"/>
+		<result property="cateCode" column="cateCode"/>
+		<result property="prod_code" column="prod_code"/>
+		<result property="cateName" column="cateName"/>
+		<result property="cateParent" column="cateParent"/>
+		<result property="cateGrade" column="cateGrade"/>
+	</resultMap>
+	
+	<!-- 검색 조건문 -->
+	<!-- <sql id="criteria">
+		<foreach collection="typeArr" item="type">
+			<choose>
+				<when test="type == 'T'.toString()">
+					prod_name like '%'||#{keyword}||'%'
+				</when>
+			</choose>
+		</foreach>
+	</sql> -->
+	
+	<!-- 페이지 정보를 10개씩 가져오기 -->
+	<select id="listPage" resultMap="productResult">
+		<![CDATA[
+			select * 
+			from tb_prod
+			where rownum #{page} <= 10
+		]]>
+	</select>
+	
+	<!-- 페이지정보를 지정한 크기만큼 가져오기 -->
+	<select id="listPaging" resultMap="productResult">
+		<![CDATA[
+			select * from (
+				select rownum AS rn,
+				tb_prod.* from tb_prod
+				)
+			where rn between #{rowStart} and #{rowEnd}
+		]]>
+			<if test="keyword !=null">
+				prod_name like '%'||#{keyword}||'%'
+			</if>
+	</select>
+	
+	<!-- 총 상품 수 -->
+	<select id="prodCount" resultType="int">
+			select count(*) from TB_PROD
+				<if test="keyword != null">
+					prod_name like '%'||#{keyword}||'%'
+				</if>
+	</select>
+	
+	<!-- 상품 상세 정보 조회 -->
+	<select id="readProduct" resultMap="productResult" parameterType="int">
+		<![CDATA[
+			select *
+			from tb_prod
+			where prod_code = #{code}
+		]]>
+	</select>
+	
+	<!-- 카테고리 호출 -->
+	<select id="cateList" resultType="kr.co.recipetoyou.adgoods.category.AdGoodsCateVO">
+		select *
+		from tb_prod_cate order by cateCode
+	</select>
+	
+	<!-- 상품 검색 -->
+	<sql id="search">
+			select from TB_PROD
+			where prod_name like '%' || #{keyword} || '%'
+	</sql>
+	
+	<!-- 검색어에 맞는 상품 수 구하기 -->
+	<select id="countSearch" resultType="int">
+		select count(prod_code)
+		from tb_prod
+			<include refid="search"></include>
+		<![CDATA[
+			and prod_code > 0
+		]]>	
+	</select>
+</mapper>

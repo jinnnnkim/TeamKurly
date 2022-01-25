@@ -16,5 +16,9 @@
 		<typeAlias type="kr.co.recipetoyou.user.mypage.vo.CouponVO" alias="couponVO"/>
 		<typeAlias type="kr.co.recipetoyou.main.cartPick.CartAddVO" alias="cartAddVO"/>
 		<typeAlias type="kr.co.recipetoyou.main.cartPick.FavVO" alias="favVO"/>
+		<typeAlias type="kr.co.recipetoyou.aduser.AdUserVO" alias="aduserVO"/>
+		<typeAlias type="kr.co.recipetoyou.aduser.aduserWithdraw.AdUserDrawVO" alias="userWithdrawVO"/>
+		<typeAlias type="kr.co.recipetoyou.adgoods.AdGoodsVO" alias="adgoodsVO"/>
+		<typeAlias type="kr.co.recipetoyou.adgoods.category.AdGoodsCateVO" alias="adgoodsCateVO"/>
 	</typeAliases>
 </configuration>  
