@@ -19,16 +19,22 @@ public class MypageServiceImpl implements MypageService{
 	private MypageDAO mypageDAO;
 	
 
-	//쿠폰
 	@Override
 	public List<CouponVO> listCoupons() throws DataAccessException {
 	
 		List<CouponVO> couponList = mypageDAO.selectAllCouponList();
 		return couponList;
 	}
-	//포인트
+
+
 	@Override
-	public List<PointVO> pointlist() {
+	public int addCoupon(CouponVO couponVO) throws DataAccessException {
+		return mypageDAO.insertCoupon(couponVO);
+	}
+
+
+	@Override
+	public List<PointVO> listPoints() throws DataAccessException {
 		List<PointVO> pointList = mypageDAO.selectAllPointList();
 		return pointList;
 	}

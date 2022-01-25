@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html>
 <head>
@@ -30,21 +32,25 @@
 	<div class="content">
 		<div class="head">
 			<h2 class="title">
-				적립금 <span class="subtitle">보유하고 계신 적립금의 내역을 한 눈에 확인 하실수 있습니다.</span>
-			</h2>
-		</div>
-		<!-- head -->
-		<div class="point_main">
+					<h2 class="title">
+					적립금 
+					<span class="subtitle">보유하고 계신 적립금의 내역을 한 눈에 확인 하실 수 있습니다.</span>
+				</h2>
+			</div>
+			<!-- head -->
 			<div class="point_box">
 				<div class="point_view">
 					<div class="title_now">현재 적립금</div>
 					<div class="point_now">0원</div>
 				</div>
+				<!-- point_view -->
 				<div class="point_disappear">
 					<div class="title_disappear">소멸예정 적립금</div>
 					<div class="won">0 원</div>
 				</div>
+				<!-- point_disappear -->
 			</div>
+			<!-- point_box -->
 			<table class="point_cate">
 				<tr>
 					<th class="cate_date">날짜</th>
@@ -53,22 +59,25 @@
 					<th class="cate_price">금액</th>
 				</tr>
 			</table>
-			<table class="cate_main">
+			<!-- point_cate -->
+			 <c:forEach var="pointList" items="${pointList}">
+			<table class="point_main">
 				<tr>
-					<td class="main_date">21.10.21</td>
-					<td class="main_content">[적립금소멸]적립금 유효기간 만료</td>
-					<td class="main_vaild">00.00.00</td>
-					<td class="main_price">-6,000원</td>
+					<td class="main_date">${pointList.accum_date}</td>
+					<td class="main_content">${pointList.point_content}</td>
+					<td class="main_vaild">${pointList.use_date}</td>
+					<td class="main_price">${pointList.point}원</td>
 				</tr>
-			</table>
 
+			</table>
+			<!-- point_main -->
+			</c:forEach>
 		</div>
-		<!-- order_main -->
+		<!-- content -->
 	</div>
-	<%--content end --%>
+	<!-- main -->
 </body>
 </html>
-
 
 
 

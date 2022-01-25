@@ -9,8 +9,13 @@ import kr.co.recipetoyou.user.mypage.vo.PointVO;
 
 public interface MypageDAO {
 	
-	public List<CouponVO> selectAllCouponList() throws DataAccessException;
-
-	public List<PointVO> selectAllPointList() throws DataAccessException;
+		//쿠폰 조회
+		public List<CouponVO> selectAllCouponList() throws DataAccessException;
+		//쿠폰 등록
+		public int insertCoupon(CouponVO couponVO) throws DataAccessException;
+		
+		
+		//포인트 조회하기
+		public List<PointVO> selectAllPointList() throws DataAccessException;
  
 }

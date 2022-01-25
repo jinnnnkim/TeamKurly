@@ -1,4 +1,4 @@
-package kr.co.recipetoyou.main.cartPick;
+package kr.co.recipetoyou.main.cartPick.vo;
 
 import org.springframework.stereotype.Component;
 
