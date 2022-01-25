@@ -3,6 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
+<c:set var="articlesList" value="${articlesMap.articlesList }"/><%--page넘버와 섹션이 적용된 페이지 글 --%>
 <%
 request.setCharacterEncoding("UTF-8");
 %>
@@ -12,6 +13,71 @@ request.setCharacterEncoding("UTF-8");
 <head>
 <meta charset="UTF-8">
 <title>Recipe to You :: 내일의 장보기, 레시피투유</title>
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+	<script type="text/javascript">
+		function fn_pick() {
+			$.ajax({
+				type: "post",
+				async: true,
+				url: "http://localhost:8080/Chap19_Ajax/ajaxLab02",		
+				dataType: "xml",									/* 데이터를 XML 형태로 받음 */
+				success : function(info, textStatue) {
+					$(info).find("book").each(function () {
+						var title=$(this).find("title").text();
+						var writer=$(this).find("writer").text();		/* 전송된 XML 데이터에서 */
+						var image=$(this).find("image").text();		    /*엘리먼트 이름으로 데이터를 가져옴 */
+					
+						$("#bookInfo").append(
+								"<p>"+title+"</p>"  + 	
+								"<p>"+writer+"</p>"  + 	
+								"<img src="+image+" />" 
+						);
+					});
+					
+				},
+				error: function(info, textStatue) {
+					alert("에러가 발생했습니다.");
+				},
+				complete: function(info, textStatue) {
+					alert("작업을 완료했습니다.");
+				}
+			});
+		}
+		
+		function fn_cart() {
+			$.ajax({
+				type: "post",
+				async: true,
+				url: "http://localhost:8080/recipetoyou/cart.do",		
+				dataType: "xml",									/* 데이터를 XML 형태로 받음 */
+				success : function(info, textStatue) {
+					$(info).find("book").each(function () {
+						var title=$(this).find("title").text();
+						var writer=$(this).find("writer").text();		/* 전송된 XML 데이터에서 */
+						var image=$(this).find("image").text();		    /*엘리먼트 이름으로 데이터를 가져옴 */
+					
+						$("#bookInfo").append(
+								"<p>"+title+"</p>"  + 	
+								"<p>"+writer+"</p>"  + 	
+								"<img src="+image+" />" 
+						);
+					});
+					
+				},
+				error: function(info, textStatue) {
+					alert("에러가 발생했습니다.");
+				},
+				complete: function(info, textStatue) {
+					alert("작업을 완료했습니다.");
+				}
+			});
+		}
+	
+	
+	</script>
+
+
+
 <link href="/recipetoyou/Resources/User/Img/KurlyIcon.png" rel="icon"
 	type="image/x-icon" />
 <link rel="stylesheet" type="text/css"
@@ -23,7 +89,7 @@ request.setCharacterEncoding("UTF-8");
 	integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc"
 	crossorigin="anonymous">
 </head>
-</head>
+
 <body>
 	<div id="main">
 		<div class="section_view">
@@ -116,11 +182,11 @@ request.setCharacterEncoding("UTF-8");
 
 						<div class="pick_cart">
 							<!-- pick_cart -->
-							<button id="pick" type="button" class="pick_btn off">
+							<button id="pick" type="button" class="pick_btn off" onclick="fn_pick()"><!-- 찜 버튼  -->
 								<i class="fas fa-heart"></i>
 							</button>
 							<div class="button_wrap">
-								<button type="button" class="wrap_btn">장바구니 담기</button>
+								<button type="button" class="wrap_btn"  onclick="fn_cart()">장바구니 담기</button> <!-- 장바구니 버튼  -->
 							</div>
 							<!-- button_wrap -->
 						</div>

@@ -13,5 +13,10 @@ public interface CartPickService {
 	  public List<CartPickVO> listPicks () throws DataAccessException;
 	  public int removePick(String PROD_NAME) throws DataAccessException;
 	  
+	  //장바구니 담기
+	  public int addCartPick(CartAddVO cartAddVO) throws DataAccessException;
+	  
+	  //찜(좋아요) 담기
+	  public int addFavPick(FavVO favVO) throws DataAccessException;
 }
 	 

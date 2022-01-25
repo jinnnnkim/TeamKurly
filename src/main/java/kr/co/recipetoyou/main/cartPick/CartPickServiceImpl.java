@@ -29,6 +29,18 @@ public class CartPickServiceImpl implements CartPickService{
 		return cartPickDAO.deletePick(PROD_NAME);
 		
 	}
+
+	//장바구니 담기
+	@Override
+	public int addCartPick(CartAddVO cartAddVO) throws DataAccessException {
+		return cartPickDAO.insertCartAdd(cartAddVO);
+	}
+
+	//찜(좋아요) 담기
+	@Override
+	public int addFavPick(FavVO favVO) throws DataAccessException {
+		return cartPickDAO.insertFavAdd(favVO);
+	}
 	
 	
 

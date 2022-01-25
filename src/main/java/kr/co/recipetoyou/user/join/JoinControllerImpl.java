@@ -74,13 +74,7 @@ public class JoinControllerImpl implements JoinController {
 		 
 	}
 
-	@Override
-	public ModelAndView login(UserVO userVO, HttpServletRequest request, HttpServletResponse response)
-			throws Exception {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
+	
 	
 
 }

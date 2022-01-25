@@ -31,6 +31,23 @@ public class CartPickDAOImpl implements CartPickDAO {
 		return result;
 	}
 
+	//장바구니 담기
+	@Override
+	public int insertCartAdd(CartAddVO cartAddVO) throws DataAccessException {
+		int result = sqlSession.insert("mapper.user.insertCartAdd", cartAddVO);
+		return result;
+	}
+
+	//찜 담기
+	@Override
+	public int insertFavAdd(FavVO favVO) throws DataAccessException {
+		int result = sqlSession.insert("mapper.user.insertFavAdd", favVO);
+		return result;
+	}
+
+	
+	
+
 	
 	
 }
