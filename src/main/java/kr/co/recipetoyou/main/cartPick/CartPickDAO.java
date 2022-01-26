@@ -8,6 +8,7 @@ import org.springframework.dao.DataAccessException;
 import kr.co.recipetoyou.main.cartPick.vo.CartAddVO;
 import kr.co.recipetoyou.main.cartPick.vo.FavVO;
 import kr.co.recipetoyou.main.cartPick.vo.PickVO;
+import kr.co.recipetoyou.main.cartPick.vo.ProdVO;
 import kr.co.recipetoyou.user.UserVO;
 
 public interface CartPickDAO{
@@ -19,6 +20,8 @@ public interface CartPickDAO{
 	public int insertCart(PickVO pickVO) throws DataAccessException;
 	
 	
+	//장바구니 조회
+	public List<ProdVO> selectAllCartList() throws DataAccessException;
 	
 	
 	//장바구니 담기

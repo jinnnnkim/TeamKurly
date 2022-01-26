@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import kr.co.recipetoyou.main.cartPick.vo.CartAddVO;
 import kr.co.recipetoyou.main.cartPick.vo.FavVO;
 import kr.co.recipetoyou.main.cartPick.vo.PickVO;
+import kr.co.recipetoyou.main.cartPick.vo.ProdVO;
 
 
 @Repository("cartPickDAO")
@@ -42,6 +43,14 @@ public class CartPickDAOImpl implements CartPickDAO {
 			return result;
 		}
 
+	//마이페이지 장바구니 조회
+	@Override
+		public List<ProdVO> selectAllCartList() throws DataAccessException {
+			List<ProdVO> cartList = sqlSession.selectList("mapper.member.selectAllCartList");
+			return cartList;
+		}	
+		
+		
 		
 		
 		
