@@ -19,64 +19,82 @@ request.setCharacterEncoding("UTF-8");
 			$.ajax({
 				type: "post",
 				async: true,
-				url: "http://localhost:8080/Chap19_Ajax/ajaxLab02",		
-				dataType: "xml",									/* 데이터를 XML 형태로 받음 */
-				success : function(info, textStatue) {
-					$(info).find("book").each(function () {
-						var title=$(this).find("title").text();
-						var writer=$(this).find("writer").text();		/* 전송된 XML 데이터에서 */
-						var image=$(this).find("image").text();		    /*엘리먼트 이름으로 데이터를 가져옴 */
-					
-						$("#bookInfo").append(
-								"<p>"+title+"</p>"  + 	
-								"<p>"+writer+"</p>"  + 	
-								"<img src="+image+" />" 
-						);
-					});
-					
+				url: "",
+				dataType: "text",
+				data: {imageFileNO: _imageFileNO, articleNO: _articleNO, imageFileName: _imageFileName},
+				success: function(result, textStatus) {
+					if (result == 'success') {
+						alert("이미지를 삭제했습니다.");
+						location.href="http://localhost:8080/ezenac10/board/viewArticle.do?removeCompleted=true&articleNO=" + _articleNO;
+						
+						$('#tr_' + rowNum).remove();		
+						$('#tr_sub' + rowNum).remove();		
+					}
+					else {
+						alert("다시 시도해 주세요.");
+					}
 				},
-				error: function(info, textStatue) {
+				error : function(data, textStatus) {
 					alert("에러가 발생했습니다.");
 				},
-				complete: function(info, textStatue) {
-					alert("작업을 완료했습니다.");
+				complete : function(data, textStatus) {
+					alert("찜목록에 담았습니다.");	
 				}
 			});
 		}
+			 
+		//onclick="fn_removeModImage(${item.imageFileNO}, ${item.articleNO}, '${item.imageFileName}', ${status.count})"
+		function fn_cart(_imageFileNO, _articleNO, _imageFileName, rowNum) {
 		
-		function fn_cart() {
+			$.ajax({
+				type: "post",			
+				dateType: "text",		
+				async: true,			
+				url: "http://localhost:8080/recipetoyou/cart.do",		
+				//data: {imageFileNO: _imageFileNO, articleNO: _articleNO, imageFileName: _imageFileName},	
+				success: function(data, textStatus) {		
+					$('#message').append(data);	
+				},
+				error: function(data, textStatus) {			
+					alert("에러가 발생했습니다.");
+				},
+				complete: function(data, textStatus) {		
+					alert("장바구니에 담았습니다.");	
+				}
+			});
+		} 
+		
+		
+		/* 
+		function fn_removeModImage(_imageFileNO, _articleNO, _imageFileName, rowNum) {
+			//alert(rowNum);
 			$.ajax({
 				type: "post",
-				async: true,
-				url: "http://localhost:8080/recipetoyou/cart.do",		
-				dataType: "xml",									/* 데이터를 XML 형태로 받음 */
-				success : function(info, textStatue) {
-					$(info).find("book").each(function () {
-						var title=$(this).find("title").text();
-						var writer=$(this).find("writer").text();		/* 전송된 XML 데이터에서 */
-						var image=$(this).find("image").text();		    /*엘리먼트 이름으로 데이터를 가져옴 */
-					
-						$("#bookInfo").append(
-								"<p>"+title+"</p>"  + 	
-								"<p>"+writer+"</p>"  + 	
-								"<img src="+image+" />" 
-						);
-					});
-					
+				async: false,
+				url: "http://localhost:8080/ezenac10/board/removeModImage.do",
+				dataType: "text",
+				data: {imageFileNO: _imageFileNO, articleNO: _articleNO, imageFileName: _imageFileName},
+				success: function(result, textStatus) {
+					if (result == 'success') {
+						alert("이미지를 삭제했습니다.");
+						location.href="http://localhost:8080/ezenac10/board/viewArticle.do?removeCompleted=true&articleNO=" + _articleNO;
+						
+						$('#tr_' + rowNum).remove();		//해당된 <tr></tr>부분 삭제됨
+						$('#tr_sub' + rowNum).remove();		//밑의 버튼들 삭제됨
+					}
+					else {
+						alert("다시 시도해 주세요.");
+					}
 				},
-				error: function(info, textStatue) {
+				error : function(data, textStatus) {
 					alert("에러가 발생했습니다.");
 				},
-				complete: function(info, textStatue) {
-					alert("작업을 완료했습니다.");
+				complete : function(data, textStatus) {
+					//
 				}
 			});
-		}
-	
-	
+		} */
 	</script>
-
-
 
 <link href="/recipetoyou/Resources/User/Img/KurlyIcon.png" rel="icon"
 	type="image/x-icon" />

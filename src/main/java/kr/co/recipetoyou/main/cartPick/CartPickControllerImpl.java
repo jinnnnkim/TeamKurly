@@ -72,7 +72,6 @@ public class CartPickControllerImpl implements CartPickController {
 	}
 
 	//장바구니 담기
-
 	@Override
 	@RequestMapping(value = "/cartPick/addCartPick.do", method ={RequestMethod.GET, RequestMethod.POST}) 
 	public ModelAndView addCartPick(CartAddVO cartAddVO, HttpServletRequest request, HttpServletResponse response) throws Exception {
