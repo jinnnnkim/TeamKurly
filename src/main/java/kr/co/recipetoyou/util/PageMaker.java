@@ -8,7 +8,7 @@ import java.util.Arrays;
 import org.springframework.web.util.UriComponents;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import kr.co.recipetoyou.adgoods.category.AdGoodsCateVO;
+import kr.co.recipetoyou.admin.adgoods.category.AdGoodsCateVO;
 
 public class PageMaker {
 	private int totalCount;
