@@ -8,11 +8,11 @@
 <meta charset="UTF-8">
 <title>찜한 목록</title>
 <link rel="stylesheet"
-	href="/recipetoyou/Resources/User/Css/Mypage/mypageInfo.css"
+	href="/recipetoyou/Resources/User/Css/Mypage2/mypageInfo.css"
 	type="text/css">
-<link href="/recipetoyou/Resources/User/Css/reset.css" rel="stylesheet"
+<link href="/recipetoyou/Resources/User/Css/Mypage2/reset.css" rel="stylesheet"
 	type="text/css">
-<link href="/recipetoyou/Resources/User/Css/Mypage/picklist_add.css"
+<link href="/recipetoyou/Resources/User/Css/Mypage2/picklist_add.css"
 	rel="stylesheet" type="text/css">
 <!-- fontawesome 링크 -->
 <link rel="stylesheet"
@@ -44,7 +44,7 @@
 								src="/recipetoyou/resources/User/Image/thumbnail.jpg">
 						</div>
 						<div class="subject">
-							<a href="#">${pickList.prod_img}</a>
+							<a href="">${pickList.prod_name}</a>
 							<div class="price">
 								<span class="discountRate">${pickList.prod_discount}%</span> <span class="discountPrice">3,627원</span>
 								<span class="costPrice">${pickList.prod_price}원</span>

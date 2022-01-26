@@ -13,10 +13,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import kr.co.recipetoyou.user.mypage.vo.AddressVO;
 import kr.co.recipetoyou.user.mypage.vo.CouponVO;
 import kr.co.recipetoyou.user.mypage.vo.PointVO;
-
-
 
 @Controller("mypageController")
 public class MypageControllerImpl implements MypageController{
@@ -32,8 +31,11 @@ public class MypageControllerImpl implements MypageController{
 	@Autowired
 	private PointVO pointVO;
 	
-	@RequestMapping(value = "/main.do", method = RequestMethod.GET)
-	public ModelAndView main(HttpServletRequest request, HttpServletResponse response) throws Exception {
+	@Autowired
+	private AddressVO addressVO;
+	
+	@RequestMapping(value = "/orderList.do", method = RequestMethod.GET)
+	public ModelAndView orderList(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
 		ModelAndView mav = new ModelAndView();
 		
@@ -51,10 +53,18 @@ public class MypageControllerImpl implements MypageController{
 
 	
 	@RequestMapping(value = "/addresslist.do", method = RequestMethod.GET)
-	public ModelAndView addresslist(HttpServletRequest request, HttpServletResponse response) throws Exception {
+	public ModelAndView listAddress(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
+		String viewName = (String) request.getAttribute("viewName");
+		
+		logger.info("info : "+ viewName);
+		logger.debug("debug : "+ viewName);
+	
+		
+		List<AddressVO> addresslist = mypageService.listAddress();
 		ModelAndView mav = new ModelAndView();
-		
+		mav.addObject("addresslist", addresslist);
+	
 		return mav;
 	}
 	
@@ -75,12 +85,12 @@ public class MypageControllerImpl implements MypageController{
 	}
 	
 	@RequestMapping(value = "/point.do", method = RequestMethod.GET)
-	public ModelAndView listpoints (HttpServletRequest request, HttpServletResponse response) throws Exception {
+	public ModelAndView listPoints(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
 		String viewName = (String) request.getAttribute("viewName");
 		
-		logger.info("info : "+viewName);
-		logger.debug("debug : "+viewName);
+		logger.info("info : "+ viewName);
+		logger.debug("debug : "+ viewName);
 	
 		
 		List<PointVO> pointList = mypageService.listPoints();
@@ -117,8 +127,8 @@ public class MypageControllerImpl implements MypageController{
 		
 		String viewName = (String) request.getAttribute("viewName");
 		
-		logger.info("info : "+viewName);
-		logger.debug("debug : "+viewName);
+		logger.info("info : "+ viewName);
+		logger.debug("debug : "+ viewName);
 	
 		
 		List<CouponVO> couponList = mypageService.listCoupons();

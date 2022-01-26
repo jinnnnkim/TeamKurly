@@ -30,5 +30,6 @@
 		<typeAlias type="kr.co.recipetoyou.util.PagingVO" alias="pagingVO"/>
 		<typeAlias type="kr.co.recipetoyou.adsend.adsms.AdSmsVO" alias="adSmsVO"/>
 		<typeAlias type="kr.co.recipetoyou.aduser.aduserWithdraw.AdUserDrawVO" alias="adUserDrawVO"/>
+		<typeAlias type="kr.co.recipetoyou.user.mypage.vo.AddressVO" alias="addressVO"/>
 	</typeAliases>
 </configuration> 
