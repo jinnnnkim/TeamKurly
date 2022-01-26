@@ -2,6 +2,9 @@ package kr.co.recipetoyou.adgoods;
 
 import java.sql.Date;
 
+import org.springframework.stereotype.Repository;
+
+@Repository("adGoodsVO")
 public class AdGoodsVO {
 	
 	private int prod_code;
