@@ -59,7 +59,7 @@
 					<td class="phone">${addressList.user_phone}</td>
 					<td class="delivery_type"><p>${addressList.delivery_type}</p></td>
 					<td class="modify"><a href="" class="modify_pop" onclick="window.open('');">
-						<img src="/recipetoyou/Resources/User/Img/Mypage2/ico_modify_x2.png"></a>
+						<img src="/recipetoyou/Resources/User/Img/Mypage2/ico_modify_x2.png"></a> 
 					</td>
 				</tr>
 			</table>

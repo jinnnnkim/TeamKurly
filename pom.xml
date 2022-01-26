@@ -173,7 +173,7 @@
 			<artifactId>ojdbc10</artifactId>
 			<version>18.3.0.0</version>
 			<scope>system</scope>
-			<systemPath>${basedir}/src/main/webapp/WEB-INF/lib/ojdbc8.jar</systemPath>
+			<systemPath>${basedir}/src/main/webapp/WEB-INF/lib/ojdbc10.jar</systemPath>
 		</dependency>
 		
 		<!-- 오라클 클라우드 DB 접속 -->
