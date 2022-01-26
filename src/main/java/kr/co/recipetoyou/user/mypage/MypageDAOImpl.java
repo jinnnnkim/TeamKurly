@@ -15,20 +15,26 @@ public class MypageDAOImpl implements MypageDAO{
 		@Autowired
 		private SqlSession sqlSession;
 
-		//쿠폰
+
+		//조회
 		@Override
 		public List<CouponVO> selectAllCouponList() throws DataAccessException {
 			
-			List<CouponVO> couponList = sqlSession.selectList("mapper.user.selectAllCouponList");
+			List<CouponVO> couponList = sqlSession.selectList("mapper.member.selectAllCouponList");
 			return couponList;
 		}
+
+		//등록
+		@Override
+		public int insertCoupon(CouponVO couponVO) throws DataAccessException {
+			int result = sqlSession.insert("mapper.member.insertCoupon", couponVO);
+			return result;
+		}
 		
-		//포인트
+		//포인트 조회
 		@Override
 		public List<PointVO> selectAllPointList() throws DataAccessException {
-			
-			List<PointVO> pointList = sqlSession.selectList("mapper.user.selectAllPointList");
-			
+			List<PointVO> pointList = sqlSession.selectList("mapper.member.selectAllPointList");
 			return pointList;
 		}
 }

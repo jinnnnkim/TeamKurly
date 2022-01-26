@@ -23,7 +23,7 @@
 	<div class="wrap">
 		<div class="homePageMain">
 			<div class="loginForm">
-				<form name="frmLogin" method="post" action="${contextPath}/admin/login.do">
+				<form name="frmLogin" method="post" action="${contextPath}/admin/adMain.do">
 					<table class="loginTable">
 						<tr class="title">
 							<td colspan="2">

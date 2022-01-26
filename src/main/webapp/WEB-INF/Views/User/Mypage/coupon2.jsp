@@ -33,9 +33,12 @@
 				<h2 class="title">쿠폰</h2>
 			</div>
 			<!-- head -->
-			<div class="couponInfo">
-				<input type="text" class="couponNum" placeholder="쿠폰을 입력해주세요">
-				<button type="submit" class="addCoupon" onclick="location.href=''">쿠폰 등록</button>
+			<input type="text" class="couponNum" placeholder="쿠폰을 입력해주세요">
+			<form name="couponForm" method="post" action="${contextPath}/addCoupon.do">
+					<button type="submit" class="addCoupon" onclick="location.href=''">
+						쿠폰 등록
+					</button>
+				</form>
 				<p class="noticeInfo">쿠폰에 하이픈("-")이 포함되어 있을 경우 하이픈("-")을 반드시 입력해주세요.</p>
 			</div>
 			<!-- coupon_info -->
@@ -54,40 +57,25 @@
 				</tr>
 			</table>
 			<!-- couponCate -->
-			<table class="couponList">
-				<tr>
-					<th class="couponName">
-						<div class="coupon">설 10만원쿠폰(1백만원주문시,~1/31오후11시)</div>
-						<p>1,000,000원 이상 주문 시</p>
-						<p>특정상품 한정</p>
-						<div class="terms">
-							<a href="" onclick="window.open('');">사용조건 보기</a>
-						</div>
-					</th>
-					<th class="couponFunction">할인</th>
-					<th class="couponBenefit">100,000원</th>
-					<th class="couponVaild">22.01.31 23시까지</th>
-					<th class="couponCheck">미사용</th>
-				</tr>
-			</table>
-			<!-- couponList -->
-			
-			<table>
-				<c:forEach var="couponList" items="${couponList}">
+		
+			<c:forEach var="couponList" items="${couponList}">
+				<table class="couponList">
 					<tr>
-						<td>${couponList.cp_use_cods }</td>
-						<td>${couponList.cp_code }</td>
-						<td>${couponList.cp_payment_details }</td>
-						
+						<th class="couponName">
+							<div class="coupon">${couponList.cp_name}</div>
+							<p>${couponList.cp_content}</p>
+							<div class="terms">
+								<a href="" onclick="window.open('');">사용조건 보기</a>
+							</div>
+						</th>
+						<th class="couponFunction">${couponList.cp_function}</th>
+						<th class="couponBenefit">${couponList.cp_price}</th>
+						<th class="couponVaild">${couponList.cp_end_date}</th>
+						<th class="couponCheck">${couponList.cp_payment_details}</th>
 					</tr>
-				
-				
-				</c:forEach>
-			
-			</table>
-			
-			
-			
+				</table>
+				<!-- couponList -->
+			</c:forEach>
 			
 		</div>
 		<!-- content -->

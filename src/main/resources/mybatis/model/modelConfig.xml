@@ -12,7 +12,21 @@
 	<typeAliases>
 		<typeAlias type="kr.co.recipetoyou.admin.AdminVO" alias="adminVO" />
 		<typeAlias type="kr.co.recipetoyou.user.UserVO" alias="userVO"/>
-		<typeAlias type="kr.co.recipetoyou.main.cartPick.CartPickVO" alias="cartPickVO"/>
+		<typeAlias type="kr.co.recipetoyou.main.cartPick.vo.PickVO" alias="pickVO"/>
 		<typeAlias type="kr.co.recipetoyou.user.mypage.vo.CouponVO" alias="couponVO"/>
+		<typeAlias type="kr.co.recipetoyou.user.mypage.vo.CouponUseVO" alias="couponuseVO"/>
+		<typeAlias type="kr.co.recipetoyou.user.mypage.vo.PointVO" alias="pointVO"/>
+		<typeAlias type="kr.co.recipetoyou.user.mypage.vo.PointUseVO" alias="pointuseVO"/>
+		<typeAlias type="kr.co.recipetoyou.main.cartPick.CartAddVO" alias="cartAddVO"/>
+		<typeAlias type="kr.co.recipetoyou.main.cartPick.FavVO" alias="favVO"/>
+		<typeAlias type="kr.co.recipetoyou.aduser.AdUserVO" alias="aduserVO"/>
+		<typeAlias type="kr.co.recipetoyou.aduser.aduserWithdraw.AdUserDrawVO" alias="userWithdrawVO"/>
+		<typeAlias type="kr.co.recipetoyou.adgoods.AdGoodsVO" alias="adgoodsVO"/>
+		<typeAlias type="kr.co.recipetoyou.adgoods.category.AdGoodsCateVO" alias="adgoodsCateVO"/>
+		<typeAlias type="kr.co.recipetoyou.adsend.SendVO" alias="sendVO"/>
+		<typeAlias type="kr.co.recipetoyou.adsend.ademail.EmailVO" alias="emailVO"/>
+		<typeAlias type="kr.co.recipetoyou.adsend.adsms.SmsVO" alias="smsVO"/>
+		<typeAlias type="kr.co.recipetoyou.main.goods.PaymentVO" alias="paymentVO"/>
+		<typeAlias type="kr.co.recipetoyou.main.order.OrderVO" alias="orderVO"/>
 	</typeAliases>
 </configuration>  

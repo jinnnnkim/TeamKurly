@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html>
 <head>
@@ -34,43 +36,48 @@
 				</h2>
 			</div>
 			<!-- head -->
-			<!-- <table class="pick_add_list">
-					<tr> -->
-			<div class="pick_add_list">
-				<div class="img_subject">
-					<div>
-						<img id="thumbnail" src="/recipetoyou/Resources/User/Img/Mypage/thumbnail.jpg">
+			<div class="pickpick">
+		<c:forEach var="pickList" items="${pickList}">
+					<div class="pick_add_list">
+						<div>
+							<img id="thumbnail"
+								src="/recipetoyou/resources/User/Image/thumbnail.jpg">
+						</div>
+						<div class="subject">
+							<a href="#">${pickList.prod_img}</a>
+							<div class="price">
+								<span class="discountRate">${pickList.prod_discount}%</span> <span class="discountPrice">3,627원</span>
+								<span class="costPrice">${pickList.prod_price}원</span>
+							</div>
+							<!-- price -->
+						</div>
+						<!-- subject -->
+						<div class="button_two">	<!-- 쿼리스트링으로 넘어가는 값은 파라미터=값(파라미터 이름으로 적용) -->
+							<a href="${contextPath}/removePick.do?prod_name=${pickList.prod_name}">
+								<button class="btn_delete">삭제</button>
+							</a>
+							<br/>
+							<button class="btn_add" onclick="">
+								<i class="fas fa-shopping-cart"></i>담기
+							</button>
+						</div>
+						<!-- button_two -->
 					</div>
-					<div class="subject">
-						<a href="">[YOZM] 플레인 그릭요거트 2종</a>
-					</div>
+					<!-- pick_add_list -->
+			</c:forEach>
+			
+			
+			
 				</div>
-				<div class="price">
-					<div class="discountRate">7%</div>
-					<div class="discountPrice">3,627원</div>
-					<div class="costPrice">3,900원</div>
-				</div>
-
-				<div class="button_two">
-					<button class="btn_delete" onclick="">삭제</button>
-					<button class="btn_add" onclick="">
-						<i class="fas fa-shopping-cart"></i>담기
-					</button>
-				</div>
-
+				<!-- pickpick -->
 			</div>
-			<!-- </tr>
-				</table> -->
-			<!-- pick_add_list -->
-
+			<!-- pickadd_main -->
 		</div>
-		<!-- pickadd_main -->
+		<!-- content -->
 	</div>
-	<%--content end --%>
+	<!-- main -->
 </body>
 </html>
-
-
 
 
 

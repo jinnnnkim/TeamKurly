@@ -16,9 +16,5 @@ public interface JoinController {
 	public ModelAndView regist(@ModelAttribute("userVO") UserVO userVO,
 			HttpServletRequest request, HttpServletResponse response) throws Exception;
 	
-	
-	
-	public ModelAndView registProcess(@ModelAttribute("userVO") UserVO userVO,
-			HttpServletRequest request, HttpServletResponse response) throws Exception;
 
 }

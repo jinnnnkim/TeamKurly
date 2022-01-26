@@ -17,22 +17,25 @@ public class LoginServiceImpl implements LoginService {
 	@Autowired
 	private LoginDAO loginDAO;
 
-	@Override
-	public List<UserVO> listUsers() throws DataAccessException {
-		List<UserVO> usersList = loginDAO.selectAllUserList();
-		return usersList;
-	}
-
+	/*
+	 * @Override public List<UserVO> listUsers() throws DataAccessException {
+	 * List<UserVO> usersList = loginDAO.selectAllUserList(); return usersList; }
+	 * 
+	 */
+	
+	
 	@Override
 	public int addUser(UserVO userVO) throws DataAccessException {
 		return loginDAO.insertUser(userVO);
 	}
 
-	@Override
-	public int removeUser(String id) throws DataAccessException {
-		return loginDAO.deleteUser(id);
-	}
+	
+	/*
+	 * @Override public int removeUser(String id) throws DataAccessException {
+	 * return loginDAO.deleteUser(id); }
+	 */
 
+	
 	@Override
 	public UserVO login(UserVO userVO) throws DataAccessException {
 		return loginDAO.loginById(userVO);

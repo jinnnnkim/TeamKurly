@@ -38,7 +38,7 @@ public class AdminControllerImpl implements AdminController{
 	private AdminVO adminVO;
 	
 	@Override
-	@RequestMapping(value = "/adMain.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/adLogin.do", method = RequestMethod.GET)
 	public ModelAndView main(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String viewName = (String)request.getAttribute("viewName");
 		ModelAndView mav = new ModelAndView();
@@ -60,7 +60,7 @@ public class AdminControllerImpl implements AdminController{
 	
 	//관리자 로그인
 	@Override
-	@RequestMapping(value = "/admin/login.do", method = RequestMethod.POST)
+	@RequestMapping(value = "/admin/adMain.do", method = RequestMethod.POST)
 	public ModelAndView login(@ModelAttribute("admin") AdminVO admin, RedirectAttributes rAttr, HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
 		
@@ -71,7 +71,8 @@ public class AdminControllerImpl implements AdminController{
 			HttpSession session = request.getSession();
 			session.setAttribute("admin", adminVO);		//세션에 회원 정보를 저장함.
 			session.setAttribute("isLogOn", true);		//세션에 로그인 상태를 true로 설정함.
-			mav.setViewName("redirect:/adMain.do");
+			session.setAttribute("adminId", adminVO.getAdminId());
+			mav.setViewName("admin/adMain");
 			//로그인 세션 유지를 위해 수정하였음 
 		}
 		else {
@@ -89,7 +90,7 @@ public class AdminControllerImpl implements AdminController{
 		session.removeAttribute("admin");
 		session.removeAttribute("isLogOn");
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName("redirect:/admin/adloginForm.do");
+		mav.setViewName("admin/adLogin.do");
 		return mav;
 	}
 
