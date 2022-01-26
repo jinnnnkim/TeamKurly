@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import kr.co.recipetoyou.user.mypage.vo.CouponVO;
+import kr.co.recipetoyou.user.mypage.vo.PointVO;
 
 
 
@@ -28,7 +29,10 @@ public class MypageControllerImpl implements MypageController{
 	@Autowired
 	private CouponVO couponVO;
 	
-	@RequestMapping(value = "/mypage/main.do", method = RequestMethod.GET)
+	@Autowired
+	private PointVO pointVO;
+	
+	@RequestMapping(value = "/main.do", method = RequestMethod.GET)
 	public ModelAndView main(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
 		ModelAndView mav = new ModelAndView();
@@ -71,13 +75,20 @@ public class MypageControllerImpl implements MypageController{
 	}
 	
 	@RequestMapping(value = "/point.do", method = RequestMethod.GET)
-	public ModelAndView point(HttpServletRequest request, HttpServletResponse response) throws Exception {
+	public ModelAndView listpoints (HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
+		String viewName = (String) request.getAttribute("viewName");
+		
+		logger.info("info : "+viewName);
+		logger.debug("debug : "+viewName);
+	
+		
+		List<PointVO> pointList = mypageService.listPoints();
 		ModelAndView mav = new ModelAndView();
-		
+		mav.addObject("pointList", pointList);
+	
 		return mav;
 	}
-	
 	
 	
 	@RequestMapping(value = "/mypageUserInfo.do", method = RequestMethod.GET)
@@ -98,6 +109,7 @@ public class MypageControllerImpl implements MypageController{
 	
 
 
+
 	//쿠폰 조회하기
 	@Override
 	@RequestMapping(value = "/coupon.do", method = RequestMethod.GET)
@@ -115,6 +127,19 @@ public class MypageControllerImpl implements MypageController{
 	
 		return mav;
 	}
+		
+	//쿠폰 등록하기
+	@Override
+	@RequestMapping(value = "/addCoupon.do", method = {RequestMethod.POST, RequestMethod.GET})
+	public ModelAndView addCoupons(CouponVO couponVO, HttpServletRequest request, HttpServletResponse response) 
+			throws Exception {
+		
+		request.setCharacterEncoding("utf-8");
+		int result = mypageService.addCoupon(couponVO);
+		ModelAndView mav = new ModelAndView("redirect:/coupon.do");
+		return mav;
+	}
+
 
 }
 
