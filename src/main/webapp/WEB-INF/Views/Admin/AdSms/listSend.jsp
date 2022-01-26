@@ -83,7 +83,7 @@
 			총 ${cnt}명의 회원이 검색되었습니다.		
 		</div>
 		
- 		<div class="userList_wrap">
+<%--  		<div class="userList_wrap">
 		<table align="center" id="tableGroup">
 			<thead>
 				
@@ -115,9 +115,9 @@
 				</c:forEach> 
 			</tbody>	
 		</table>
-		</div> 
+		</div>  --%>
 		
-<%-- 		<div class="userList_wrap">
+		<div class="userList_wrap">
 		 <table align="center" id="tableGroup">
 			<thead>
 				
@@ -142,9 +142,9 @@
 					<tr align="center">
 						<td><input type="checkbox" name="chk"></td>
 						<td><a href="${contextPath}/send/adSendUserInfo.do?id=${send.user_id}">${send.user_id}</a></td>
-						<td><a href="${contextPath}/send/adSendOrderInfo.do?ord=${send.ord_date}">${send.ord_date}</a></td>
-						<td><a href="${contextPath}/send/adSendPaymentInfo.do?pay=${send.pay_price}">${send.pay_price}</a></td>
-						<td><a href="${contextPath}/send/adSendPaymentInfo.do?pay=${send.pay_date}">${send.pay_date}</a></td>
+						<td><a href="${contextPath}/send/adSendOrderInfo.do?ord=${send.orderVO.ord_date}">${send.orderVO.ord_date}</a></td>
+						<td><a href="${contextPath}/send/adSendPaymentInfo.do?pay=${send.paymentVO.pay_price}">${send.paymentVO.pay_price}</a></td>
+						<td><a href="${contextPath}/send/adSendPaymentInfo.do?pay=${send.paymentVO.pay_date}">${send.paymentVO.pay_date}</a></td>
 						<td>${send.send_content}</td>
 						<td>${send.send_date}</td>
 					</tr>
@@ -157,7 +157,7 @@
 		<input type="button" value="전체선택" id="check_all">
 		<!-- 버튼클릭시 전체선택 해제되는 js구현되어있음 -->
 		<input type="button" value="전체해제" id="uncheck_all">
-		</div> --%>
+		</div> 
 		
 		<div class="box-footer">
 			<div class="text-center">
