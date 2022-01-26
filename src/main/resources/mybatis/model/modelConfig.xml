@@ -23,10 +23,10 @@
 		<typeAlias type="kr.co.recipetoyou.aduser.aduserWithdraw.AdUserDrawVO" alias="userWithdrawVO"/>
 		<typeAlias type="kr.co.recipetoyou.adgoods.AdGoodsVO" alias="adgoodsVO"/>
 		<typeAlias type="kr.co.recipetoyou.adgoods.category.AdGoodsCateVO" alias="adgoodsCateVO"/>
-		<typeAlias type="kr.co.recipetoyou.adsend.AdSendVO" alias="sendVO"/>
-		<typeAlias type="kr.co.recipetoyou.adsend.ademail.AdEmailVO" alias="emailVO"/>
-		<typeAlias type="kr.co.recipetoyou.adsend.adsms.AdSmsVO" alias="smsVO"/>
-		<typeAlias type="kr.co.recipetoyou.adsend.PaymentVO" alias="paymentVO"/>
-		<typeAlias type="kr.co.recipetoyou.adsend.OrderVO" alias="orderVO"/>
+		<typeAlias type="kr.co.recipetoyou.adsend.SendVO" alias="sendVO"/>
+		<typeAlias type="kr.co.recipetoyou.adsend.ademail.EmailVO" alias="emailVO"/>
+		<typeAlias type="kr.co.recipetoyou.adsend.adsms.SmsVO" alias="smsVO"/>
+		<typeAlias type="kr.co.recipetoyou.main.goods.PaymentVO" alias="paymentVO"/>
+		<typeAlias type="kr.co.recipetoyou.main.order.OrderVO" alias="orderVO"/>
 	</typeAliases>
 </configuration>  

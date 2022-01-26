@@ -6,9 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 
-import kr.co.recipetoyou.adsend.PaymentVO;
-import kr.co.recipetoyou.adsend.OrderVO;
-import kr.co.recipetoyou.aduser.AdUserVO;
+import kr.co.recipetoyou.main.goods.PaymentVO;
+import kr.co.recipetoyou.main.goods.ProdVO;
+import kr.co.recipetoyou.main.order.OrderVO;
+import kr.co.recipetoyou.user.UserVO;
 import kr.co.recipetoyou.util.PagingVO;
 
 @Service("sendService")
@@ -32,7 +33,7 @@ public class AdSendServiceImpl implements AdSendService {
 		
 	//회원 상세 정보 조회
 	@Override
-	public AdUserVO getSendUserInfo(String id) throws DataAccessException {		
+	public UserVO getSendUserInfo(String id) throws DataAccessException {		
 		return sendDAO.readUserSend(id);
 	}	
 	
