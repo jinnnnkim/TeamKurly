@@ -111,7 +111,7 @@ public class CartPickControllerImpl implements CartPickController {
 	@RequestMapping(value = "/cartPick/addCartPick.do", method ={RequestMethod.GET, RequestMethod.POST}) 
 	public ModelAndView addCartPick(CartAddVO cartAddVO, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		request.setCharacterEncoding("utf-8"); 
-		int result =cartPickService.addCartPick(cartAddVO); //정상적 inset하면 정수 1을 리턴 
+		int result =cartPickService.addCartPick(cartAddVO); 
 		ModelAndView mav = new ModelAndView("redirect:/cart.do");
 		return mav; 
 	}
@@ -122,7 +122,7 @@ public class CartPickControllerImpl implements CartPickController {
 	@RequestMapping(value = "/cartPick/", method = {RequestMethod.GET, RequestMethod.POST})
 	public ModelAndView addFavPick(FavVO favVO, HttpServletRequest request, HttpServletResponse response) throws Exception { 
 		request.setCharacterEncoding("utf-8"); 
-		int result = cartPickService.addFavPick(favVO); //정상적 inset하면 정수 1을 리턴 
+		int result = cartPickService.addFavPick(favVO); 
 		ModelAndView mav =new ModelAndView("redirect:/.do");//수정 (찜 페이지로 이동) 
 		return mav; 
 	}

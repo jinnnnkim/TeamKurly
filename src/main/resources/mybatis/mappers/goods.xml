@@ -4,8 +4,32 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
 <mapper namespace="mapper.goods">					
+	<resultMap type="goodsVO" id="goodsResult">		<!-- SQL문 실행한 후 반환되는 레코드들을 typeAlias 태그에서 지정한 userVO 빈에 저장함 -->
+		<result property="prod_code" column="prod_code" />
+		<result property="prodcatecode" column="prodcatecode"/>
+		<result property="PROD_NAME" column="PROD_NAME"/>
+		<result property="PROD_CONTENT" column="PROD_CONTENT"/>
+		<result property="PROD_IMG" column="PROD_IMG"/>
+		<result property="PROD_PRICE" column="PROD_PRICE"/>
+		<result property="PROD_DISCOUNT" column="PROD_DISCOUNT"/>
+		<result property="PROD_SELL_UNIT" column="PROD_SELL_UNIT"/>
+		<result property="PROD_DELIVERY_TYPE" column="PROD_DELIVERY_TYPE"/>
+		<result property="PROD_WRAP_TYPE" column="PROD_WRAP_TYPE"/>
+		<result property="PROD_INFO" column="PROD_INFO"/>
+		<result property="PROD_ALLERGY" column="PROD_ALLERGY"/>
+		<result property="PROD_VAILD_DATE" column="PROD_VAILD_DATE"/>
+		<result property="PROD_FROM" column="PROD_FROM"/>
+		<result property="PROD_CAUTION" column="PROD_CAUTION"/>
+		<result property="PROD_QUANTITY" column="PROD_QUANTITY"/>
+		<result property="PROD_REG_DATE" column="PROD_REG_DATE"/>
+	</resultMap>
 
-
+	<select id="selectProdCode" resultType="goodsResult" parameterType="java.lang.String">
+		<![CDATA[
+			select * from TB_PROD
+			where PROD_CODE=#{PROD_CODE} 	
+		]]>
+	</select>
 
 </mapper>  
 

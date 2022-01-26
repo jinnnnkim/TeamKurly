@@ -44,16 +44,16 @@ request.setCharacterEncoding("UTF-8");
 		}
 			 
 		//onclick="fn_removeModImage(${item.imageFileNO}, ${item.articleNO}, '${item.imageFileName}', ${status.count})"
-		function fn_cart(_imageFileNO, _articleNO, _imageFileName, rowNum) {
+		function fn_cart(_cart_code, _prod_code, _prod_quantity, _user_id) {
 		
 			$.ajax({
 				type: "post",			
 				dateType: "text",		
 				async: true,			
 				url: "http://localhost:8080/recipetoyou/cart.do",		
-				//data: {imageFileNO: _imageFileNO, articleNO: _articleNO, imageFileName: _imageFileName},	
+				data: {cart_code: _cart_code, prod_code: _prod_code, prod_quantity: _prod_quantity, user_id: _user_id},	
 				success: function(data, textStatus) {		
-					$('#message').append(data);	
+					//$('#message').append(data);	
 				},
 				error: function(data, textStatus) {			
 					alert("에러가 발생했습니다.");
@@ -205,6 +205,7 @@ request.setCharacterEncoding("UTF-8");
 							</button>
 							<div class="button_wrap">
 								<button type="button" class="wrap_btn"  onclick="fn_cart()">장바구니 담기</button> <!-- 장바구니 버튼  -->
+								<span>${goodsVO.PROD_CODE}</span>
 							</div>
 							<!-- button_wrap -->
 						</div>

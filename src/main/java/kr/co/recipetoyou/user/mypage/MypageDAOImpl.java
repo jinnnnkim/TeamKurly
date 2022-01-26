@@ -7,14 +7,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Repository;
 
+import kr.co.recipetoyou.user.mypage.vo.AddressVO;
 import kr.co.recipetoyou.user.mypage.vo.CouponVO;
 import kr.co.recipetoyou.user.mypage.vo.PointVO;
 
 @Repository("mypageDAO")
 public class MypageDAOImpl implements MypageDAO{
+	
 		@Autowired
 		private SqlSession sqlSession;
-
 
 		//조회
 		@Override
@@ -36,5 +37,12 @@ public class MypageDAOImpl implements MypageDAO{
 		public List<PointVO> selectAllPointList() throws DataAccessException {
 			List<PointVO> pointList = sqlSession.selectList("mapper.member.selectAllPointList");
 			return pointList;
+		}
+
+		//배송지관리 조회
+		@Override
+		public List<AddressVO> selectAllAddressList() throws DataAccessException {
+			List<AddressVO> addresslist = sqlSession.selectList("mapper.member.selectAllAddressList");
+			return addresslist;
 		}
 }

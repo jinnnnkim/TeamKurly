@@ -22,7 +22,7 @@
 		<put-attribute name="mypageInfo" value="" />		
 	</definition>
 	
-	<definition name="mypage/main" extends="mypagelayout">
+	<definition name="orderList" extends="mypagelayout">
 		<put-attribute name="title" value="주문내역"/>		
 		<put-attribute name="body" value="/WEB-INF/Views/User/Mypage/orderList2.jsp"/>
 	</definition>

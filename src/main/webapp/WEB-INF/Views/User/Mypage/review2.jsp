@@ -7,7 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>마이페이지_주문내역</title>
-<link href="/recipetoyou/Resources/User/Css/reset.css" rel="stylesheet"
+<link href="/recipetoyou/Resources/User/Css/Mypage2/reset.css" rel="stylesheet"
 	type="text/css">
 <link rel="stylesheet" href="/recipetoyou/Resources/User/Css/Mypage2/review.css"
 	type="text/css">
