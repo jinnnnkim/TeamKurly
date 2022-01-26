@@ -11,7 +11,7 @@ import kr.co.recipetoyou.adgoods.category.AdGoodsCateVO;
 import kr.co.recipetoyou.util.PageMaker;
 import kr.co.recipetoyou.util.PagingVO;
 
-@Repository("productDAO")
+@Repository("adgoodsDAO")
 public class AdGoodsDAOImpl implements AdGoodsDAO{
 	
 	@Autowired
@@ -41,14 +41,14 @@ public class AdGoodsDAOImpl implements AdGoodsDAO{
 	//상품 수 조회
 	//DB 테이블에 있는 모든 상품수 계산 후 리턴
 	@Override
-	public int prodCount(PagingVO vo) throws DataAccessException {
+	public int goodsCount(PagingVO vo) throws DataAccessException {
 		
 		return sqlSession.selectOne(NAMESPACE+".prodCount");
 	}
 
 	//상품 상세 정보 조회
 	@Override
-	public AdGoodsVO readProduct(int prodCode) throws DataAccessException {
+	public AdGoodsVO readGoods(int prodCode) throws DataAccessException {
 		
 		return sqlSession.selectOne(NAMESPACE+".readProduct", prodCode);
 	}
@@ -73,6 +73,13 @@ public class AdGoodsDAOImpl implements AdGoodsDAO{
 		return sqlSession.selectOne(NAMESPACE+".countSearch", option);
 	}
 	
+	//상품 등록
+	@Override
+	public void register(AdGoodsVO agvo) throws Exception {
+		
+		sqlSession.insert(NAMESPACE+".register", agvo);
+		
+	}
 	
 	
 

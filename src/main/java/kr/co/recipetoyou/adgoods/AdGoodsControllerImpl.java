@@ -33,30 +33,30 @@ public class AdGoodsControllerImpl implements AdGoodsController {
 	private static final Logger logger = LoggerFactory.getLogger("ProductControllerImpl.class");
 	
 	@Autowired
-	AdGoodsService productService;
+	AdGoodsService adGoodsService;
 	
 	//글목록보기(PageMaker 객체 사용)
 	//전체 상품 목록 조회
 	@Override
-	@RequestMapping(value = "/product/listProduct.do", method = {RequestMethod.GET, RequestMethod.POST})
+	@RequestMapping(value = "/adgoods/listProduct.do", method = {RequestMethod.GET, RequestMethod.POST})
 	public ModelAndView listPageGet(PagingVO vo, HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
 		
 		String viewName = (String)request.getAttribute("viewName");
 		PageMaker pm = new PageMaker();
 		pm.setVo(vo);
-		pm.setTotalCount(productService.prodCount(vo));
+		pm.setTotalCount(adGoodsService.prodCount(vo));
 		
 		logger.info("C: vo는"+vo);
 		logger.info("info 레벨 : viewName = "+viewName); 
 		
-		int cnt = productService.prodCount(vo);
-		List<AdGoodsVO> prodList = productService.listProduct(vo);
+		int cnt = adGoodsService.prodCount(vo);
+		List<AdGoodsVO> prodList = adGoodsService.listProduct(vo);
 		ModelAndView mav = new ModelAndView(viewName);
 		
 		ObjectMapper objm = new ObjectMapper();
 		
-		List list = productService.cateList();
+		List list = adGoodsService.cateList();
 		
 		String cateList = objm.writeValueAsString(list);
 		
@@ -77,18 +77,18 @@ public class AdGoodsControllerImpl implements AdGoodsController {
 	
 	//페이징처리한 상품목록
 	@Override
-	@RequestMapping(value = "/product/listProd.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/adgoods/listProd.do", method = RequestMethod.GET)
 	public void listProduct(PagingVO vo, Model model) throws Exception {
 		
 		logger.info("C: listVO 겟 호출"+vo);
 		
-		model.addAttribute("ListProd", productService.listProduct(vo));
+		model.addAttribute("ListProd", adGoodsService.listProduct(vo));
 		
 	}
 	
 	//상품 카테고리 검색
 	@Override
-	@RequestMapping(value = "/product/listCategory.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/adgoods/listCategory.do", method = RequestMethod.GET)
 	public void listCategory(Model model) throws Exception {
 		
 		
@@ -97,7 +97,7 @@ public class AdGoodsControllerImpl implements AdGoodsController {
 	
 	//상품 상세 정보 조회
 	@Override
-	@RequestMapping(value = "/product/productInfo.do", method = RequestMethod.GET)
+	@RequestMapping(value = {"/adgoods/goodsInfo.do", "adgoods/goodsUpdate.do"}, method = RequestMethod.GET)
 	public void getProductInfo(@RequestParam(value = "code") int code, Model model) throws Exception{
 		
 		logger.info("클릭한 상품 : "+code);
@@ -105,9 +105,51 @@ public class AdGoodsControllerImpl implements AdGoodsController {
 		//목록 페이지 조건 정보
 		//model.addAttribute("option", option);
 		
+		ObjectMapper objm = new ObjectMapper();
+		
+		List list = adGoodsService.cateList();
+		
+		String cateList = objm.writeValueAsString(list);
+		
+		//카테고리 리스트 데이터
+		model.addAttribute("cateList", cateList);
+
+		
 		//상품 정보
-		model.addAttribute("prodVO", productService.getProductInfo(code));
+		model.addAttribute("prodVO", adGoodsService.getGoodsInfo(code));
 	
+	}
+	
+	//상품 등록 페이지로 이동
+	@Override
+	@RequestMapping(value = "/adgoods/moveRegister.do", method = RequestMethod.GET)
+	public ModelAndView moveRegister(Model model, HttpServletRequest request, HttpServletResponse response) throws Exception {
+		
+		
+		ObjectMapper objm = new ObjectMapper();
+		
+		List list = adGoodsService.cateList();
+		
+		String cateList = objm.writeValueAsString(list);
+		
+		model.addAttribute("cateList", cateList);
+		
+		String viewName = (String)request.getAttribute("viewName");
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName(viewName);
+		return mav;
+		
+	}
+
+	//상품 등록
+	@Override
+	@RequestMapping(value = "/adgoods/register", method = RequestMethod.POST)
+	public ModelAndView uploadGoodsRegister(AdGoodsVO agvo, HttpServletRequest request, HttpServletResponse response) throws Exception {
+		
+		adGoodsService.register(agvo);
+		ModelAndView mav = new ModelAndView("/adgoods/listProduct.do");
+		
+		return mav;
 	}
 
 	

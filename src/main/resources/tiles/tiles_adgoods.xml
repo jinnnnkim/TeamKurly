@@ -5,21 +5,26 @@
        
 <tiles-definitions>
 
-<!-- 	<definition name= "baseLayout" template="/WEB-INF/views/common/layout.jsp">
+	<definition name="adminBaseLayout" template="/WEB-INF/Views/Admin/Inc/layout.jsp">
 		<put-attribute name="title" value=""/>
-		<put-attribute name="header" value="/WEB-INF/views/common/homePage.jsp"/>
+		<put-attribute name="header" value="/WEB-INF/Views/Admin/Inc/homePage.jsp"/>
 		<put-attribute name="body" value=""/>
-	</definition> -->
-	
-						<!-- 전체 상품 조회 -->
-	<definition name="product/listProduct" extends="baseLayout">
-		<put-attribute name="title" value="상품목록"/>
-		<put-attribute name="body" value="/WEB-INF/views/Admin/ShoppingMallManagement/listProduct.jsp"/>
 	</definition>
 	
-	<definition name="product/productInfo" extends="baseLayout">
+						<!-- 전체 상품 조회 -->
+	<definition name="/adgoods/listProduct" extends="adminBaseLayout">
+		<put-attribute name="title" value="상품목록"/>
+		<put-attribute name="body" value="/WEB-INF/Views/Admin/ShoppingMallManagement/listProduct.jsp"/>
+	</definition>
+	
+	<definition name="adgoods/goodsInfo" extends="adminBaseLayout">
+		<put-attribute name="title" value="상품등록"/>
+		<put-attribute name="body" value="/WEB-INF/Views/Admin/ShoppingMallManagement/goodsInfo.jsp"></put-attribute>
+	</definition>
+	
+	<definition name="/adgoods/goodsRegister" extends="adminBaseLayout">
 		<put-attribute name="title" value="상품정보조회"/>
-		<put-attribute name="body" value="/WEB-INF/views/Admin/ShoppingMallManagement/productInfo.jsp"></put-attribute>
+		<put-attribute name="body" value="/WEB-INF/Views/Admin/ShoppingMallManagement/goodsRegister.jsp"></put-attribute>
 	</definition>
 
 </tiles-definitions>     

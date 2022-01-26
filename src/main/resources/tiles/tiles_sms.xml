@@ -14,22 +14,22 @@
 				<!-- 전체회원조회 -->
 	<definition name="user/listadUsers" extends="baseLayout">
 		<put-attribute name="title" value="회원목록"/>
-		<put-attribute name="body" value="/WEB-INF/views/Admin/AdUser/listadUsers.jsp"></put-attribute>
+		<put-attribute name="body" value="/WEB-INF/Views/Admin/AdUser/listadUsers.jsp"></put-attribute>
 	</definition>
 				<!-- 회원정보페이지 -->
 	<definition name="user/aduserInfo" extends="baseLayout">
 		<put-attribute name="title" value="회원정보조회"/>
-		<put-attribute name="body" value="/WEB-INF/views/Admin/AdUser/aduserInfo.jsp"></put-attribute>
+		<put-attribute name="body" value="/WEB-INF/Views/Admin/AdUser/aduserInfo.jsp"></put-attribute>
 	</definition>
 				<!-- 회원수정페이지 -->
 	<definition name="user/moduserInfo" extends="baseLayout">
 		<put-attribute name="title" value="회원정보수정"/>
-		<put-attribute name="body" value="/WEB-INF/views/Admin/AdUser/moduserInfo.jsp"></put-attribute>
+		<put-attribute name="body" value="/WEB-INF/Views/Admin/AdUser/moduserInfo.jsp"></put-attribute>
 	</definition>
 	
 				<!-- 탈퇴회원정보페이지 -->
 	<definition name="userWithdraw/listadUsersWithdraw" extends="baseLayout">
 		<put-attribute name="title" value="탈퇴회원정보"/>
-		<put-attribute name="body" value="/WEB-INF/views/Admin/AdUser/listadUsersWithdraw.jsp"></put-attribute>
+		<put-attribute name="body" value="/WEB-INF/Views/Admin/AdUser/listadUsersWithdraw.jsp"></put-attribute>
 	</definition>	
 </tiles-definitions>       

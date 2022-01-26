@@ -16,7 +16,7 @@ public class AdUserDAOImpl implements AdUserDAO {
 	@Autowired
 	private SqlSession sqlSession;	//DB 연결 (XML에서 만들어진 객체를 가져다 사용하겠다. = 의존 주입)
 	
-	private static final String NAMESPACE = "mapper.user"; 	//mapper 구분하는 값 namespace
+	private static final String NAMESPACE = "mapper.aduser"; 	//mapper 구분하는 값 namespace
 	
 	//페이징
 	@Override

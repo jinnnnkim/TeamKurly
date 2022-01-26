@@ -22,14 +22,14 @@ import kr.co.recipetoyou.util.PagingVO;
 @Controller("aduserController")
 public class AdUserControllerImpl implements AdUserController {
 	
-	private static final Logger logger = LoggerFactory.getLogger("UserControllerImpl.class");
+	private static final Logger logger = LoggerFactory.getLogger("AdUserControllerImpl.class");
 
 	@Autowired
 	private AdUserService aduserService;
 	
 	//페이징처리한 글목록
 	@Override
-	@RequestMapping(value = "/user/listUsers.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/aduser/listUsers.do", method = RequestMethod.GET)
 	public void listUsersGET(PagingVO vo, Model model) throws Exception{
 		logger.info("C: listVO 겟 호출" + vo);
 		model.addAttribute("ListUsers", aduserService.listUsers(vo));
@@ -38,7 +38,7 @@ public class AdUserControllerImpl implements AdUserController {
 	//글목록보기(PageMaker객체 사용)
 	//전체 회원 조회
 	@Override
-	@RequestMapping(value = "/user/listadUsers.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/aduser/listadUsers.do", method = RequestMethod.GET)
 	public ModelAndView listPageGet(PagingVO vo, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String viewName = (String)request.getAttribute("viewName");
 	    PageMaker pm = new PageMaker();
@@ -56,7 +56,7 @@ public class AdUserControllerImpl implements AdUserController {
 	}
 	
 	//페이징 이동 시에 필요함 
-	@RequestMapping(value = "/user/*Form.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/aduser/*Form.do", method = RequestMethod.GET)
 	 public ModelAndView form(@RequestParam(value = "result", required = false) String result, HttpServletRequest request, HttpServletResponse response) throws Exception{
 	 	//String viewName = getViewName(request);
 		String viewName = (String)request.getAttribute("viewName");		
@@ -67,7 +67,7 @@ public class AdUserControllerImpl implements AdUserController {
 	
 	//회원 상세 정보 조회
 	@Override
-	@RequestMapping(value = "/user/aduserInfo.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/aduser/aduserInfo.do", method = RequestMethod.GET)
 	public ModelAndView getUserInfo(@RequestParam(value="id") String id, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		logger.info("클릭한 아이디:"+id);
 		String viewName = (String)request.getAttribute("viewName");
@@ -79,7 +79,7 @@ public class AdUserControllerImpl implements AdUserController {
 
 	//회원 정보 수정 페이지로 이동
 	@Override
-	@RequestMapping(value = "/user/moduserInfo.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/aduser/moduserInfo.do", method = RequestMethod.GET)
 	public ModelAndView updateUserInfo(@RequestParam(value="id") String id, HttpServletRequest request, HttpServletResponse response) throws Exception {	
 		logger.info("클릭한 id : "+id);
 		String viewName = (String)request.getAttribute("viewName");
@@ -91,7 +91,7 @@ public class AdUserControllerImpl implements AdUserController {
 		
 	//회원 정보 수정 완료
 	@Override
-	@RequestMapping(value = "/user/userUpdate.do", method = {RequestMethod.GET, RequestMethod.POST})
+	@RequestMapping(value = "/aduser/userUpdate.do", method = {RequestMethod.GET, RequestMethod.POST})
 	public ModelAndView updateAction(@ModelAttribute AdUserVO vo, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		System.out.println("controller 사용자 생년월일:"+vo.getUser_birth());
 		request.setCharacterEncoding("utf-8");
@@ -103,7 +103,7 @@ public class AdUserControllerImpl implements AdUserController {
 
 	//회원 정보 삭제
 	@Override
-	@RequestMapping(value = "/user/removeUser.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/aduser/removeUser.do", method = RequestMethod.GET)
 	public ModelAndView removeUser(@RequestParam("id") String id, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		request.setCharacterEncoding("utf-8");
 		aduserService.removeUsers(id);

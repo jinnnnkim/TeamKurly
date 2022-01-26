@@ -3,7 +3,7 @@
 
 <mapper namespace="mapper.product">	<!-- product.xml의 네임스페이스 지정 -->
 
-	<resultMap type="adgoodsVO" id="productResult">
+	<resultMap type="adgoodsVO" id="adgoodsResult">
 		<result property="prod_code" column="prod_code"/>
 		<result property="prod_name" column="prod_name"/>
 		<result property="prod_content" column="prod_content"/>
@@ -32,18 +32,14 @@
 	</resultMap>
 	
 	<!-- 검색 조건문 -->
-	<!-- <sql id="criteria">
-		<foreach collection="typeArr" item="type">
-			<choose>
-				<when test="type == 'T'.toString()">
-					prod_name like '%'||#{keyword}||'%'
-				</when>
-			</choose>
-		</foreach>
+<!-- 	<sql id="criteria">
+		<if test="keyword !=null">
+			prod_name like '%'||#{keyword}||'%'
+		</if>
 	</sql> -->
 	
 	<!-- 페이지 정보를 10개씩 가져오기 -->
-	<select id="listPage" resultMap="productResult">
+	<select id="listPage" resultMap="adgoodsResult">
 		<![CDATA[
 			select * 
 			from tb_prod
@@ -52,35 +48,43 @@
 	</select>
 	
 	<!-- 페이지정보를 지정한 크기만큼 가져오기 -->
-	<select id="listPaging" resultMap="productResult">
+	<select id="listPaging" resultMap="adgoodsResult">
 		<![CDATA[
-			select * from (
-				select rownum AS rn,
+			select *
+			from ( select rownum AS rn,
 				tb_prod.* from tb_prod
-				)
-			where rn between #{rowStart} and #{rowEnd}
+				where
+				rownum <= #{page} * #{pageSize} 
 		]]>
-			<if test="keyword !=null">
-				prod_name like '%'||#{keyword}||'%'
-			</if>
+			<if test="keyword != null">and prod_name like '%'||#{keyword}||'%'</if>
+			
+		<![CDATA[	
+			)			
+			where rn > (#{page}-1) * #{pageSize} AND rn <= #{page} * #{pageSize}
+		]]>	
 	</select>
 	
 	<!-- 총 상품 수 -->
 	<select id="prodCount" resultType="int">
 			select count(*) from TB_PROD
-				<if test="keyword != null">
-					prod_name like '%'||#{keyword}||'%'
-				</if>
+				<if test="keyword != null">prod_name like '%'||#{keyword}||'%'</if>
 	</select>
 	
 	<!-- 상품 상세 정보 조회 -->
-	<select id="readProduct" resultMap="productResult" parameterType="int">
+	<select id="readProduct" resultMap="adgoodsResult" parameterType="int">
 		<![CDATA[
 			select *
 			from tb_prod
 			where prod_code = #{code}
 		]]>
 	</select>
+	
+	<insert id="register">
+		insert into TB_PROD (prod_code, prod_name, prod_content, prod_img, prod_price, prod_discount, prod_sell_unit, prod_delivery_type,
+							prod_wrap_type, prod_info, prod_allergy, prod_vaild_date, prod_from, prod_caution, prod_quantity, prod_reg_date)
+					values (#{prod_code}, #{prod_name}, #{prod_content}, #{prod_img}, #{prod_price}, 'null', #{prod_sell_unit}, #{prod_delivery_type},
+							#{prod_wrap_type}, #{prod_info}, #{prod_allergy}, #{prod_vaild_date}, #{prod_from}, #{prod_caution}, #{prod_quantity}, sysdate)		
+	</insert>
 	
 	<!-- 카테고리 호출 -->
 	<select id="cateList" resultType="kr.co.recipetoyou.adgoods.category.AdGoodsCateVO">
@@ -89,18 +93,18 @@
 	</select>
 	
 	<!-- 상품 검색 -->
-	<sql id="search">
+	<!-- <sql id="search">
 			select from TB_PROD
 			where prod_name like '%' || #{keyword} || '%'
-	</sql>
+	</sql> -->
 	
 	<!-- 검색어에 맞는 상품 수 구하기 -->
-	<select id="countSearch" resultType="int">
+	<!-- <select id="countSearch" resultType="int">
 		select count(prod_code)
 		from tb_prod
 			<include refid="search"></include>
 		<![CDATA[
 			and prod_code > 0
 		]]>	
-	</select>
+	</select> -->
 </mapper>

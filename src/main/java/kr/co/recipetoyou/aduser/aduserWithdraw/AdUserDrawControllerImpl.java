@@ -34,7 +34,7 @@ public class AdUserDrawControllerImpl implements AdUserDrawController{
 	//탈퇴 회원 목록
 	//페이징처리한 글목록
 	@Override
-	@RequestMapping(value = "/userWithdraw/listUsersWithdraw.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/aduserWithdraw/listUsersWithdraw.do", method = RequestMethod.GET)
 	public void withdrawUsersGET(PagingVO vo, Model model) throws Exception{
 		logger.info("withdrawUsersGET");
 		model.addAttribute("WithdrawUsers", adUserDrawService.listUsersWithdraw(vo));
@@ -43,7 +43,7 @@ public class AdUserDrawControllerImpl implements AdUserDrawController{
 	//글목록보기(PageMaker객체 사용)
 	//탈퇴 회원 조회
 	@Override
-	@RequestMapping(value = "/userWithdraw/listadUsersWithdraw.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/aduserWithdraw/listadUsersWithdraw.do", method = RequestMethod.GET)
 	public ModelAndView withdrawPageGet(PagingVO vo, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String viewName = (String)request.getAttribute("viewName");
 		PageMaker pm = new PageMaker();
@@ -61,7 +61,7 @@ public class AdUserDrawControllerImpl implements AdUserDrawController{
 	}
 	
 	//페이징 이동 시에 필요함 
-	@RequestMapping(value = "/userWithdraw/*Form.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/aduserWithdraw/*Form.do", method = RequestMethod.GET)
 	 public ModelAndView form(@RequestParam(value = "result", required = false) String result, HttpServletRequest request, HttpServletResponse response) throws Exception{
 	 	//String viewName = getViewName(request);
 		String viewName = (String)request.getAttribute("viewName");		
@@ -72,7 +72,7 @@ public class AdUserDrawControllerImpl implements AdUserDrawController{
 	
 	//탈퇴 회원 정보 조회
 	@Override
-	@RequestMapping(value = "/userWithdraw/aduserWithdraw.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/aduserWithdraw/aduserWithdraw.do", method = RequestMethod.GET)
 	public ModelAndView adUserWithdraw(@RequestParam(value="id") String id, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		logger.info("withdrawPageGet 클릭한 아이디:"+id);
 		String viewName = (String)request.getAttribute("viewName");
@@ -84,11 +84,11 @@ public class AdUserDrawControllerImpl implements AdUserDrawController{
 	
 	//탈퇴 회원 정보 삭제
 	@Override
-	@RequestMapping(value = "/userWithdraw/readUserWithdraw.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/aduserWithdraw/readUserWithdraw.do", method = RequestMethod.GET)
 	public ModelAndView removeUserWithdraw(@RequestParam("id") String id, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		request.setCharacterEncoding("utf-8");
 		adUserDrawService.removeUsersWithdraw(id);
-		ModelAndView mav = new ModelAndView("redirect:/userWithdraw/listadUsersWithdraw.do");
+		ModelAndView mav = new ModelAndView("redirect:/aduserWithdraw/listadUsersWithdraw.do");
 		return mav;
 	}
 

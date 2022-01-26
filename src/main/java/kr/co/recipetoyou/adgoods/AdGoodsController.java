@@ -24,6 +24,12 @@ public interface AdGoodsController {
 	//상품 상세 정보 조회
 	public void getProductInfo(@RequestParam(value = "code") int code, Model model) throws Exception;
 	
+	//상품 등록 페이지로 이동
+	public ModelAndView moveRegister(Model model, HttpServletRequest request, HttpServletResponse response) throws Exception;
+	
 	//상품 카테고리 검색
 	public void listCategory(Model model) throws Exception;
+	
+	//상품 등록
+	public ModelAndView uploadGoodsRegister(AdGoodsVO agvo, HttpServletRequest request, HttpServletResponse response) throws Exception;
 }

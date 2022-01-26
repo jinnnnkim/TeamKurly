@@ -3,9 +3,9 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="mapper.user">	<!-- user.xml의 네임스페이스 지정 -->
+<mapper namespace="mapper.aduser">	<!-- user.xml의 네임스페이스 지정 -->
 
-	<resultMap type="aduserVO" id="userResult">		<!-- SQL문 실행한 후 반환되는 레코드들을 typeAlias 태그에서 지정한 userVO 빈에 저장함 -->
+	<resultMap type="aduserVO" id="aduserResult">		<!-- SQL문 실행한 후 반환되는 레코드들을 typeAlias 태그에서 지정한 userVO 빈에 저장함 -->
 		<result property="user_id" column="user_id" />
 		<result property="user_pw" column="user_pw"/>
 		<result property="user_name" column="user_name"/>
@@ -27,7 +27,7 @@
 	</resultMap>
 	
 	<!-- 페이지정보를 10개씩 가져오기 -->
-	<select id="listPage" resultMap="userResult">
+	<select id="listPage" resultMap="aduserResult">
 		<![CDATA[
 			select * 
 			from tb_users
@@ -36,7 +36,7 @@
 	</select> 
 
 	<!-- 페이지정보를 지정한 크기만큼 가져오기 -->
-	<select id="listPaging" resultMap="userResult">
+	<select id="listPaging" resultMap="aduserResult">
 		<![CDATA[
 			select * from (select rownum AS rn, tb_users.* from tb_users)  where rn between #{rowStart} and #{rowEnd}
 		]]>
@@ -58,7 +58,7 @@
 	</delete>
 	
 	<!-- 회원 상세 정보 조회 -->
-	<select id="readUser" resultMap="userResult" parameterType="String">
+	<select id="readUser" resultMap="aduserResult" parameterType="String">
 		<![CDATA[
 			select *
 			from tb_users
@@ -72,7 +72,7 @@
 		input 안에 name 속성을 넣어줘야 데이터가 전달됨.
 		여기서 name은 쿼리문의 #{}값과 반드시 동일해야함.
 	-->
-	<update id="updateUser" parameterType="userVO">
+	<update id="updateUser" parameterType="aduserVO">
 		<![CDATA[
 			update tb_users set
 			user_name = #{user_name},			

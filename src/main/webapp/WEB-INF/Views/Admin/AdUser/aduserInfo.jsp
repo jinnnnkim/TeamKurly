@@ -119,8 +119,8 @@
 		</div>
 		<!-- ★버튼 2개 가운데 정렬 필요-->
 		<!-- 버튼 클릭시 alert창 띄우기 js구현되어있음 -->
-		<button type="button" class="modBtn" onclick="location.href='${contextPath}/user/moduserInfo.do?id=${userVO.user_id}'">수정하기</button>
-		<button type="button" class="backBtn" onclick="location.href='${contextPath}/user/listadUsers.do'">뒤로가기</button>
+		<button type="button" class="modBtn" onclick="location.href='${contextPath}/aduser/moduserInfo.do?id=${userVO.user_id}'">수정하기</button>
+		<button type="button" class="backBtn" onclick="location.href='${contextPath}/aduser/listadUsers.do'">뒤로가기</button>
 	</form>
 	</div>
 </body>
