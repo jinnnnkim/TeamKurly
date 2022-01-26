@@ -1,4 +1,4 @@
-package kr.co.recipetoyou.main.cartPick;
+package kr.co.recipetoyou.main.cartPick.vo;
 /*
  	--좋아요 테이블
 	create table tb_fav(
