@@ -32,16 +32,13 @@
 		<result property="point" column="point"/>
 	</resultMap>
 	
-	
-	
-	
-
-	
-	
-	
-	
-	
-	
+	<!-- 배송지관리 조회 -->
+	<resultMap type="addressVO" id="addressResult">
+		<result property="user_name" column="user_name"/>
+		<result property="user_phone" column="user_phone"/>
+		<result property="user_addr" column="user_addr"/>
+		<result property="delivery_type" column="delivery_type"/>
+	</resultMap>
 	
 	
 	<!-- id : DAO에서 id를 이용해 해당 SQL문을 호출함 -->
@@ -85,11 +82,6 @@
 		]]>
 		</select>
 		
-		
-		
-		
-		
-		
 		<!-- 포인트 조회하기 -->
 	<select id="selectAllPointList" resultMap="pointResult">
 		<![CDATA[
@@ -99,7 +91,14 @@
 		]]>
 	</select>
 		
-		
+	<!-- 배송지관리 조회 -->
+	<select id="selectAllAddressList" resultMap="addressResult">
+		<![CDATA[
+			SELECT TU.USER_NAME, TU.USER_PHONE, TU.USER_ADDR, TUA.DELIVERY_TYPE
+			FROM TB_USER_ADDR tua JOIN TB_USERS tu 
+			ON TUA.USER_ID = TU.USER_ID
+		]]>
+	</select>	
 	
 	
 </mapper>  

@@ -9,7 +9,7 @@
 <title>퍼플 박스</title>
 <link rel="stylesheet"
 	href="/recipetoyou/Resources/User/Css/Mypage2/mypageInfo.css">
-<link href="/recipetoyou/resources/User/Css/reset.css" rel="stylesheet"
+<link href="/recipetoyou/resources/User/Css/Mypage2/reset.css" rel="stylesheet"
 	type="text/css">
 <link rel="stylesheet" href="/recipetoyou/Resources/User/Css/Mypage2/purple.css"
 	type="text/css">

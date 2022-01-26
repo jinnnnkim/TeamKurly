@@ -7,7 +7,6 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import kr.co.recipetoyou.util.PagingVO;
-import oracle.net.aso.u;
 
 public interface UserService {
 	
