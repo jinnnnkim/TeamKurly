@@ -32,7 +32,7 @@ public class MypageControllerImpl implements MypageController{
 	@Autowired
 	private PointVO pointVO;
 	
-	@RequestMapping(value = "/main.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/mypage/main.do", method = RequestMethod.GET)
 	public ModelAndView main(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
 		ModelAndView mav = new ModelAndView();
