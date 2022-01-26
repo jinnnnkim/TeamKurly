@@ -168,6 +168,7 @@
 			<systemPath> : 로컬에 설치한 위치를 지정함
 			${basedir} : 프로젝트 루트 디렉토리임
 		-->
+		
 		<dependency>
 			<groupId>com.oracle.database.jdbc</groupId>
 			<artifactId>ojdbc10</artifactId>

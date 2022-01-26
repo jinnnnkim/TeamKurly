@@ -37,6 +37,8 @@ public class MypageControllerImpl implements MypageController{
 	@RequestMapping(value = "/mypage/main.do", method = RequestMethod.GET)
 	public ModelAndView main(HttpServletRequest request, HttpServletResponse response) throws Exception {
 	
+		ModelAndView mav = new ModelAndView();
+		return mav;
 	}
 	
 	@RequestMapping(value = "/orderList.do", method = RequestMethod.GET)
