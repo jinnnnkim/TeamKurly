@@ -5,7 +5,7 @@
 
 <mapper namespace="mapper.userWithdraw">	<!-- user.xml의 네임스페이스 지정 -->
 
-	<resultMap type="userWithdrawVO" id="userWithdrawResult">		<!-- SQL문 실행한 후 반환되는 레코드들을 typeAlias 태그에서 지정한 userVO 빈에 저장함 -->
+	<resultMap type="aduserDrawVO" id="userWithdrawResult">		<!-- SQL문 실행한 후 반환되는 레코드들을 typeAlias 태그에서 지정한 userVO 빈에 저장함 -->
 		<result property="user_withdraw" column="user_id" />
 		<result property="user_id" column="user_id" />
 		<result property="user_pw" column="user_pw"/>

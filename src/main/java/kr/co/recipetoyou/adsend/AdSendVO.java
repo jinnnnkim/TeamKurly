@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 import kr.co.recipetoyou.main.goods.PaymentVO;
 import kr.co.recipetoyou.main.order.OrderVO;
 
-@Component("sendVO")
+@Component("adsendVO")
 public class AdSendVO {
 
 	private int send_code;

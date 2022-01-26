@@ -2,7 +2,7 @@ package kr.co.recipetoyou.main.cartPick.vo;
 
 import org.springframework.stereotype.Component;
 
-@Component("PickVO")
+@Component("pickVO")
 public class PickVO {
 
 	private String prod_name;

@@ -1,5 +1,7 @@
 package kr.co.recipetoyou.adgoods.category;
 
+import org.springframework.stereotype.Component;
+
 /*
  *   prodCateCode      varchar2(10)	NOT NULL
     ,cateCode		  NUMBER     NOT NULL
@@ -8,6 +10,8 @@ package kr.co.recipetoyou.adgoods.category;
     ,cateParent		  varchar2(50)	
     ,cateGrade		  NUMBER     NOT NULL
  */
+
+@Component("adGoodsCateVO")
 public class AdGoodsCateVO {
 	
 	private int prodCateCode;

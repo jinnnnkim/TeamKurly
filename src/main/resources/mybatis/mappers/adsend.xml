@@ -6,7 +6,7 @@
 <mapper namespace="mapper.adsend">	<!-- user.xml의 네임스페이스 지정 -->
 
 	<!-- 발송 -->
-	<resultMap type="sendVO" id="sendResult">		
+	<resultMap type="adsendVO" id="sendResult">		
 		<result property="send_code" column="send_code" />
 		<result property="ord_code" column="ord_code"/>
 		<result property="pay_code" column="pay_code"/>
