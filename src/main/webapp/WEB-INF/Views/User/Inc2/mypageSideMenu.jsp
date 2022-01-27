@@ -10,7 +10,7 @@
 <div class="sidemenu">
 	<h2 class="side_title">마이컬리</h2>
 	<ul>
-		<li class="order"><a href="${contextPath}/mypage/main.do">주문내역
+		<li class="order"><a href="${contextPath}/orderList.do">주문내역
 			<i class="fas fa-chevron-right"></i></a></li>
 		<li class="gift"><a href="${contextPath}/giftList.do">선물내역
 			<i class="fas fa-chevron-right"></i></a></li>

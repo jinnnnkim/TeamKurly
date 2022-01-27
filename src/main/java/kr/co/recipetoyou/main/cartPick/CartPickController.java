@@ -21,6 +21,14 @@ public interface CartPickController {
 	//찜하기 장바구니 페이지에 추가 담기
 	public ModelAndView addCart(@ModelAttribute("info") PickVO pickVO, HttpServletRequest request, HttpServletResponse response) throws Exception;
 
+	
+	
+	
+	//장바구니 목록 조회
+	public ModelAndView listCarts (HttpServletRequest request, HttpServletResponse response) throws Exception;
+	
+	
+	
 	//장바구니 담기 
 	//public ModelAndView addCartPick(@ModelAttribute("info") ,
 	//	 HttpServletRequest request, HttpServletResponse response) throws Exception;
