@@ -4,8 +4,8 @@ import java.sql.Date;
 
 import org.springframework.stereotype.Component;
 
-import kr.co.recipetoyou.main.goods.PaymentVO;
-import kr.co.recipetoyou.main.order.OrderVO;
+import kr.co.recipetoyou.admin.adsend.AdPaymentVO;
+import kr.co.recipetoyou.admin.adsend.AdOrderVO;
 
 @Component("adsendVO")
 public class AdSendVO {
@@ -16,39 +16,12 @@ public class AdSendVO {
 	private String user_id;
 	private String send_content;
 	private Date send_date;
-	private int delivery_idx;
+	private int delivery_idx;	
+	private AdPaymentVO adpaymentVO;
+	private AdOrderVO adorderVO;
 	
-	private PaymentVO paymentVO;
-	private OrderVO orderVO;
-	
-	private void PaymentVO() {
-		// TODO Auto-generated method stub
-
-	}
-	private void OrderVO() {
-		// TODO Auto-generated method stub
-
-	}
-	
-	
-	public PaymentVO getPaymentVO() {
-		return paymentVO;
-	}
-
-	public void setPaymentVO(PaymentVO paymentVO) {
-		this.paymentVO = paymentVO;
-	}
-
-	public OrderVO getOrderVO() {
-		return orderVO;
-	}
-
-	public void setOrderVO(OrderVO orderVO) {
-		this.orderVO = orderVO;
-	}
-
 	public AdSendVO(int send_code, int ord_code, int pay_code, String user_id, String send_content, Date send_date,
-			int delivery_idx, PaymentVO paymentVO, OrderVO orderVO) {
+			int delivery_idx, AdPaymentVO adpaymentVO, AdOrderVO adorderVO) {
 		super();
 		this.send_code = send_code;
 		this.ord_code = ord_code;
@@ -57,9 +30,25 @@ public class AdSendVO {
 		this.send_content = send_content;
 		this.send_date = send_date;
 		this.delivery_idx = delivery_idx;
-		this.paymentVO = paymentVO;
-		this.orderVO = orderVO;
+		this.adpaymentVO = adpaymentVO;
+		this.adorderVO = adorderVO;
 	}
+	public AdPaymentVO getPaymentVO() {
+		return adpaymentVO;
+	}
+	public void setPaymentVO(AdPaymentVO adpaymentVO) {
+		this.adpaymentVO = adpaymentVO;
+	}
+
+	public AdOrderVO getOrderVO() {
+		return adorderVO;
+	}
+
+	public void setOrderVO(AdOrderVO adorderVO) {
+		this.adorderVO = adorderVO;
+	}
+
+
 
 	public AdSendVO() {
 		System.out.println("Send 호출");
