@@ -5,7 +5,6 @@ import java.util.List;
 import org.springframework.dao.DataAccessException;
 
 import kr.co.recipetoyou.main.goods.PaymentVO;
-import kr.co.recipetoyou.main.goods.ProdVO;
 import kr.co.recipetoyou.main.order.OrderVO;
 import kr.co.recipetoyou.user.UserVO;
 import kr.co.recipetoyou.util.PagingVO;
