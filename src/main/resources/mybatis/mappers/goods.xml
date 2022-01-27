@@ -27,7 +27,7 @@
 	<select id="selectProdCode" resultType="goodsResult" parameterType="java.lang.String">
 		<![CDATA[
 			select * from TB_PROD
-			where PROD_CODE=#{PROD_CODE} 	
+			where PROD_CODE=#{prod_code} 	
 		]]>
 	</select>
 

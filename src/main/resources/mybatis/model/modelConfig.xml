@@ -15,7 +15,7 @@
 		<typeAlias type="kr.co.recipetoyou.admin.AdminVO" alias="adminVO" />
 		<typeAlias type="kr.co.recipetoyou.admin.aduser.AdUserVO" alias="adUserVO"/>
 		<typeAlias type="kr.co.recipetoyou.admin.adgoods.AdGoodsVO" alias="adGoodsVO"/>
-		<typeAlias type="kr.co.recipetoyou.admin.adgoods.category.AdGoodsCateVO" alias="adGoodsCateVO"/>
+		<!-- <typeAlias type="kr.co.recipetoyou.admin.adgoods.category.AdGoodsCateVO" alias="adGoodsCateVO"/> -->
 		<typeAlias type="kr.co.recipetoyou.admin.adsend.AdSendVO" alias="adSendVO"/>
 		<typeAlias type="kr.co.recipetoyou.admin.adsend.ademail.AdEmailVO" alias="adEmailVO"/>
 		<typeAlias type="kr.co.recipetoyou.admin.adsend.adsms.AdSmsVO" alias="adSmsVO"/>
@@ -26,15 +26,10 @@
 
 		<typeAlias type="kr.co.recipetoyou.main.cartPick.vo.CartAddVO" alias="cartAddVO"/>
 		<typeAlias type="kr.co.recipetoyou.main.cartPick.vo.FavVO" alias="favVO"/>
-		<typeAlias type="kr.co.recipetoyou.adgoods.AdGoodsVO" alias="adGoodsVO"/>
-		<typeAlias type="kr.co.recipetoyou.adsend.AdSendVO" alias="adSendVO"/>
-		<typeAlias type="kr.co.recipetoyou.aduser.AdUserVO" alias="adUserVO"/>
 		<typeAlias type="kr.co.recipetoyou.main.cartPick.vo.PickVO" alias="pickVO"/>
 		<typeAlias type="kr.co.recipetoyou.main.cartPick.vo.ProdVO" alias="prodVO"/>
-		<typeAlias type="kr.co.recipetoyou.adgoods.category.AdGoodsCateVO" alias="adGoodsCateVO"/>
 		<typeAlias type="kr.co.recipetoyou.main.goods.GoodsVO" alias="goodsVO"/>
 		<typeAlias type="kr.co.recipetoyou.main.order.OrderVO" alias="orderVO"/>
-		<typeAlias type="kr.co.recipetoyou.adsend.ademail.AdEmailVO" alias="adEmailVO"/>
 		<typeAlias type="kr.co.recipetoyou.main.goods.PaymentVO" alias="paymentVO"/>
 
 		<typeAlias type="kr.co.recipetoyou.user.mypage.vo.CouponUseVO" alias="couponUseVO"/>
@@ -49,9 +44,6 @@
 		<typeAlias type="kr.co.recipetoyou.main.order.OrderVO" alias="orderVO"/>
 	
 		<typeAlias type="kr.co.recipetoyou.util.PagingVO" alias="pagingVO"/>
-
-		<typeAlias type="kr.co.recipetoyou.adsend.adsms.AdSmsVO" alias="adSmsVO"/>
-		<typeAlias type="kr.co.recipetoyou.aduser.aduserWithdraw.AdUserDrawVO" alias="adUserDrawVO"/>
 
 		<typeAlias type="kr.co.recipetoyou.user.mypage.vo.AddressVO" alias="addressVO"/>
 
