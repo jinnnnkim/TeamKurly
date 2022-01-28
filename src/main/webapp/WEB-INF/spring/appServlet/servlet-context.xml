@@ -39,13 +39,24 @@
 		</interceptor>
 	</interceptors>	
 	
+	<context:component-scan base-package="kr.co.recipetoyou" />
+	
+	<!-- 상품 이미지 업로드 패스 설정 -->
+	<!-- <beans:bean class="java.lang.String" id="uploadPath">
+		<beans:constructor-arg value="C:\git-recipetoyou\RecipeToYou\src\main\webapp\Resources\Admin\Img\AdgoodsImg"/>
+	</beans:bean> -->
+	
+	<!-- 일반 파일 업로드 경로 -->
+	<!-- <resources mapping="/AdgoodsImg/**" location="/recipetoyou/Resources/Admin/Img/AdgoodsImg/" /> -->
+	<!-- 대체 이미지 경로 -->
+	<!-- <resources mapping="/SubgoodsImg/**" location="/recipetoyou/Resources/Admin/Img/SubgoodsImg/" /> -->
+	
+	<!-- multipartResolver 빈 설정 -->
 	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
-		<beans:property name="maxUploadSize" value="52428800"/>		
-		<beans:property name="maxInMemorySize" value="1000000"/>	
+		<beans:property name="maxUploadSize" value="52428800"/>		<!-- 최대 업로드가 가능한 파일 크기 설정 -->
+		<beans:property name="maxInMemorySize" value="1000000"/>	<!-- 디스크에 임시 파일을 생성하기 전 메모리에 보관할 수 있는 최대 -->
 		<beans:property name="defaultEncoding" value="utf-8" />
 	</beans:bean>
-	
-	<context:component-scan base-package="kr.co.recipetoyou" />
 	
 	<!-- <mvc:interceptors>
 		<mvc:interceptor>
@@ -53,7 +64,5 @@
 			<beans:bean class="kr.co.recipetoyou.admin.AdminInterceptor"/>
 		</mvc:interceptor>
 	</mvc:interceptors> -->
-	
-	<default-servlet-handler/>
 	
 </beans:beans>

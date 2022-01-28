@@ -12,7 +12,7 @@
 	</definition>		
 			
 	<!-- 발송내역목록  -->
-	<definition name="adsend/listadSend" extends="adminBaseLayout">
+	<definition name="/adsend/listadSend" extends="adminBaseLayout">
 		<put-attribute name="title" value="발송내역목록"/>
 		<put-attribute name="body" value="/WEB-INF/Views/Admin/AdSms/listSend.jsp"></put-attribute>
 	</definition>				

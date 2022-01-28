@@ -124,7 +124,7 @@ request.setCharacterEncoding("UTF-8");
 						src="/recipetoyou/Resources/User/Img/share.png">
 					</span> <strong class="name">[잇츠베러] 어스밀 렌틸라구 두부면 파스타</strong><br> <span
 						class="short_desc">식물성 재료로 완성한 라구 파스타</span> <span class="dc">
-						<span class="dc_price">5,900 <span class="won">원</span></span>
+						<span class="dc_price">${goodsVO.prod_code} ${goodsVO.prod_code}5,900 <span class="won">원</span></span>
 					</span>
 					<!-- dc -->
 					<br> <span class="not_login">로그인 후, 적립혜택이 제공됩니다.</span>

@@ -5,7 +5,7 @@
 
 <mapper namespace="mapper.aduser">	<!-- user.xml의 네임스페이스 지정 -->
 
-	<resultMap type="aduserVO" id="aduserResult">		<!-- SQL문 실행한 후 반환되는 레코드들을 typeAlias 태그에서 지정한 userVO 빈에 저장함 -->
+	<resultMap type="adUserVO" id="aduserResult">		<!-- SQL문 실행한 후 반환되는 레코드들을 typeAlias 태그에서 지정한 userVO 빈에 저장함 -->
 		<result property="user_id" column="user_id" />
 		<result property="user_pw" column="user_pw"/>
 		<result property="user_name" column="user_name"/>
@@ -72,7 +72,7 @@
 		input 안에 name 속성을 넣어줘야 데이터가 전달됨.
 		여기서 name은 쿼리문의 #{}값과 반드시 동일해야함.
 	-->
-	<update id="updateUser" parameterType="aduserVO">
+	<update id="updateUser" parameterType="adUserVO">
 		<![CDATA[
 			update tb_users set
 			user_name = #{user_name},			

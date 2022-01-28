@@ -25,11 +25,11 @@
 		<put-attribute name="body" value="/WEB-INF/Views/Admin/AdminLogin/adminMain.jsp"/>
 	</definition>
 	
-	<!-- 관리자 로그인 페이지 -->
+	<!-- 관리자 로그인 페이지  -->
 	<definition name="admin/adloginForm" extends="baseLayout">
 		<put-attribute name="title" value="로그인"/>
 		<put-attribute name="body" value="/WEB-INF/Views/Admin/AdminLogin/adloginForm.jsp"></put-attribute>
-	</definition>	
+	</definition>	 
 	
 	
 	
