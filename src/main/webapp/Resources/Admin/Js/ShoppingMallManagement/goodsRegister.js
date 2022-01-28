@@ -2,6 +2,7 @@
  * 
  */
 
+
 $(document).ready( function() {
 			//재고정보 테이블의 재고관리에서 '재고를 관리합니다' 선택시 1)재고옵션선택사항이 나타나고
 			//2)재고수량이 사라지는 기능
@@ -105,4 +106,146 @@ $(document).ready( function() {
 				});
 			});
 		});	
+
 	
+/* 상품등록버튼 */
+	$("#saveBtn").on("click", function(){
+	
+	
+	/* 유효성검사 */
+
+	/* 체크 변수 */	
+	let cateCodeChk = false;
+	let nameChk = false;
+	let contentChk = false;
+	let priceChk = false;
+	let imgChk = false;
+	let deliveryChk = false;
+	let infoChk = false;
+	let wrapChk = false;
+	let vaildDateChk = false;
+	let sellUnitChk = false;
+	let quantityChk = false;
+
+
+	/* 체크 대상 변수 */
+
+	let cateCode = $("input[name='cateCode']").val();
+	let name = $("input[name='prod_name']").val();
+	let content = $("input[name='prod_content']").val();
+	let price = $("input[name='prod_price']").val();
+	let img = $("input[name='prod_img']").val();
+	let delivery = $("input[name='prod_delivery_type']").val();
+	let info = $("input[name='prod_info']").val();
+	let wrap = $("input[name='prod_wrap_type']").val();
+	let vaildDate = $("input[name='prod_vaild_date']").val();
+	let sellUnit = $("input[name='prod_sell_unit']").val();
+	let quantity = $("input[name='prod_quantity']").val();
+	
+
+
+	/* 각 항목 확인 */
+	/* 공란일 경우 <span>태그를 보이도록 하고 '체크 변수'에 false값을 대입한다. */
+	/* 공란이 아닐 경우 <span> 태그를 숨기고 '체크 변수'에 true값을 대입한다. */
+
+
+	if(cateCode){
+		$(".cateCode_msg").css('display','none');
+		cateCodeChk = true;
+	} else{
+		$(".cateCode_msg").css('display','block');
+		cateCodeChk = false;
+	}	
+	if(name){
+		$(".prod_name_msg").css('display','none');
+		nameChk = true;
+	} else{
+		$(".prod_name_msg").css('display','block');
+		nameChk = false;
+	}
+	if(content){
+		$(".prod_content_msg").css('display','none');
+		contentChk = true;
+	} else{
+		$(".prod_content_msg").css('display','block');
+		contentChk = false;
+	}
+	if(price){
+		$(".prod_price_msg").css('display','none');
+		priceChk = true;
+	} else{
+		$(".prod_price_msg").css('display','block');
+		priceChk = false;
+	}
+	if(img){
+		$(".prod_img_msg").css('display','none');
+		imgChk = true;
+	} else{
+		$(".prod_img_msg").css('display','block');
+		imgChk = false;
+	}
+
+	if(delivery){
+		$(".prod_delivery_msg").css('display','none');
+		deliveryChk = true;
+	} else{
+		$(".prod_delivery_msg").css('display','block');
+		deliveryChk = false;
+	}
+
+	if(info){
+		$(".prod_info_msg").css('display','none');
+		infoChk = true;
+	} else{
+		$(".prod_info_msg").css('display','block');
+		infoChk = false;
+	}
+
+	if(wrap){
+		$(".prod_wrap_msg").css('display','none');
+		nameChk = true;
+	} else{
+		$(".prod_wrap_msg").css('display','block');
+		nameChk = false;
+	}
+
+	if(vaildDate){
+		$(".prod_vaild_date_msg").css('display','none');
+		vaildDateChk = true;
+	} else{
+		$(".prod_vaild_date_msg").css('display','block');
+		vaildDateChk = false;
+	}
+
+	if(sellUnit){
+		$(".prod_sell_unit_msg").css('display','none');
+		sellUnitChk = true;
+	} else{
+		$(".prod_sell_unit_msg").css('display','block');
+		sellUnitChk = false;
+	}		
+
+	if(quantity){
+		$(".prod_quantity_msg").css('display','none');
+		quantityChk = true;
+	} else{
+		$(".prod_quantity_msg").css('display','block');
+		quantityChk = false;
+	}
+	
+	/* '체크 변수'들이 모두 true일 때 <form>태그 전송 */ 
+	if(cateCodeChk && nameChk && contentChk && priceChk &&  imgChk &&
+	deliveryChk && infoChk && wrapChk && vaildDateChk && sellUnitChk && quantityChk){
+		
+		registerForm.submit();
+		
+	} else{
+		return false;
+	}	
+	
+});
+
+
+
+
+

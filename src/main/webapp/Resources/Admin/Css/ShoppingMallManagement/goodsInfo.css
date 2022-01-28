@@ -413,3 +413,11 @@ body, td, select, div, textarea, center {
 .shop_img {		/* 두번째 테이블의 이미지를 감싸는 td 속성 */
 	line-height: 20px;
 }
+
+/* 상품 이미지 크기 조절 */
+div.file_div div.goodsImg{
+	loat:left; width:350px;
+}
+div.goods div.goodsImg img {
+	width:350px; height:auto;
+}

@@ -6,7 +6,7 @@
 <mapper namespace="mapper.adsend">	<!-- user.xml의 네임스페이스 지정 -->
 
 	<!-- 발송 -->
-	<resultMap type="adsendVO" id="sendResult">		
+	<resultMap type="adSendVO" id="sendResult">		
 		<result property="send_code" column="send_code" />
 		<result property="ord_code" column="ord_code"/>
 		<result property="pay_code" column="pay_code"/>
@@ -20,7 +20,7 @@
 	</resultMap>
 	
 	<!-- 회원 -->
-	<resultMap type="userVO" id="userResult">		
+	<resultMap type="adUserVO" id="userResult">		
 		<result property="user_id" column="user_id" />
 		<result property="user_pw" column="user_pw"/>
 		<result property="user_name" column="user_name"/>
@@ -42,7 +42,7 @@
 	</resultMap> 
 
 	<!-- 결제 -->
-	<resultMap type="paymentVO" id="paymentResult">		
+	<resultMap type="adPaymentVO" id="paymentResult">		
 		<result property="pay_code" column="pay_code"/>
 		<result property="pay_method" column="pay_method"/>
 		<result property="pay_date" column="pay_date"/>
@@ -53,7 +53,7 @@
 
 	
 	<!-- 주문 -->
-	<resultMap type="orderVO" id="orderResult">		
+	<resultMap type="adOrderVO" id="orderResult">		
 		<result property="ord_code" column="ord_code" />
 		<result property="user_id" column="user_id"/>
 		<result property="ord_date" column="ord_date"/>
