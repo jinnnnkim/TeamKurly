@@ -41,6 +41,8 @@
 		<typeAlias type="kr.co.recipetoyou.main.cartPick.vo.FavVO" alias="favVO"/>
 		<typeAlias type="kr.co.recipetoyou.main.cartPick.vo.PickVO" alias="pickVO"/>
 		<typeAlias type="kr.co.recipetoyou.main.cartPick.vo.ProdVO" alias="prodVO"/>
+		<typeAlias type="kr.co.recipetoyou.main.cartPick.vo.UserAddrVO" alias="useraddrVO"/>
+		
 		
 		<typeAlias type="kr.co.recipetoyou.main.goods.GoodsVO" alias="goodsVO"/>
 		<typeAlias type="kr.co.recipetoyou.main.goods.PaymentVO" alias="paymentVO"/>
