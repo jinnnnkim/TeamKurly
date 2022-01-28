@@ -3,7 +3,7 @@
 
 <mapper namespace="mapper.adgoods">	<!-- product.xml의 네임스페이스 지정 -->
 
-	<resultMap type="adgoodsVO" id="adgoodsResult">
+	<resultMap type="adGoodsVO" id="adgoodsResult">
 		<result property="prod_code" column="prod_code"/>
 		<result property="cateCode" column="cateCode"/>
 		<result property="prod_name" column="prod_name"/>

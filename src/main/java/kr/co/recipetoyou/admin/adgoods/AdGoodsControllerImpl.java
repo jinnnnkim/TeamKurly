@@ -35,7 +35,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import kr.co.recipetoyou.admin.adgoods.category.AdGoodsCateVO;
 import kr.co.recipetoyou.util.PageMaker;
 import kr.co.recipetoyou.util.PagingVO;
-import kr.co.recipetoyou.util.UploadFileUtils;
+
 
 @Controller("productController")
 @EnableAspectJAutoProxy

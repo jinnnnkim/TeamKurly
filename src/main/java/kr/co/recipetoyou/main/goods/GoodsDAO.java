@@ -2,6 +2,6 @@ package kr.co.recipetoyou.main.goods;
 
 public interface GoodsDAO {
 
-	public GoodsVO selectProdCode(String prod_code);
+	public GoodsVO selectProdCode(int prod_code);
 
 }

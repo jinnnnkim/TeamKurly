@@ -41,7 +41,7 @@
 					<div class="pick_add_list">
 						<div>
 							<img id="thumbnail"
-								src="/recipetoyou/resources/User/Image/thumbnail.jpg">
+								src="/recipetoyou/Resources/User/Image/thumbnail.jpg">
 						</div>
 						<div class="subject">
 							<a href="">${pickList.prod_name}</a>

@@ -8,7 +8,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 public interface GoodsController {
 	
-	public ModelAndView main(@RequestParam("prod_code") String prod_code,
+	public ModelAndView main(@RequestParam("prod_code") int prod_code,
 			HttpServletRequest request, HttpServletResponse response) throws Exception;
 
 }
