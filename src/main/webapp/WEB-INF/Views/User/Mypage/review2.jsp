@@ -50,7 +50,27 @@
 						<td colspan="2">작성가능 후기 내역이 없습니다.</td>
 					</tr>
 					<tr class="review_after_no">
+					<%--후기가 없을시 
 						<td colspan="2">작성한 후기가 없습니다.</td>
+						--%>
+					<%--후기 존재 시 --%>
+					<td colspan="2">
+						<div class="review_prodName">
+							<span>[YOZM] 녹차 그릭 요거트100g</span>
+						</div>
+						<div>
+							<span class="review_title">굿</span>
+							<span class="revice_date">22.01.04</span>
+						</div>
+						<div class="prod">
+							<div class="img">
+								<img src="/recipetoyou/Resources/User/Img/goods6.jpg" />
+							</div>
+							<div class="prodInfo">
+								<span class="prodSub">녹차 좋아해서 구매했는데 괜찮네요!</span>
+							</div>
+						</div>
+					</td>
 					</tr>
 				</table>
 				<!-- review_menu -->

@@ -36,6 +36,11 @@
 	height:50px;
 	
 }
+.review_before:hover,
+.review_after:hover{
+	cursor:pointer;
+	background:#eee;
+}
 
 .review_before {
 	width: 410px;

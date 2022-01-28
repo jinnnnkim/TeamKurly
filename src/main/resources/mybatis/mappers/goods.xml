@@ -27,7 +27,7 @@
 		<result property="prod_reg_date" column="prod_reg_date"/>
 	</resultMap>
 
-	<select id="selectProdCode" resultType="goodsResult" parameterType="java.lang.String">
+	<select id="selectProdCode" resultMap="goodsResult" parameterType="java.lang.String">
 		<![CDATA[
 			select * from TB_PROD
 			where PROD_CODE=#{prod_code} 	

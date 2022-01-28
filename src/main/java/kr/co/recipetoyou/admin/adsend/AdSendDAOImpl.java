@@ -52,7 +52,7 @@ public class AdSendDAOImpl implements AdSendDAO {
 	//주문 내역 목록 조회
 	@Override
 	public AdOrderVO readOrderSend(int ord) throws DataAccessException {
-		return sqlSession.selectOne("mapper.adsend.readOrderSend", ord);
+		return null;//sqlSession.selectOne("mapper.adsend.readOrderSend", ord);
 	}
 	
 	//결제 내역 목록 조회
