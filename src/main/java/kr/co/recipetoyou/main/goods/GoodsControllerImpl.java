@@ -28,7 +28,7 @@ public class GoodsControllerImpl implements GoodsController{
 		ModelAndView mav = new ModelAndView();
 		
 		GoodsVO goodsVO = goodsService.listProduct(prod_code);
-		//mav.addObject("goodsVO", goodsVO);
+		mav.addObject("goodsVO", goodsVO);
 		return mav;
 	}
 	
