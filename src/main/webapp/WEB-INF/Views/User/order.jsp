@@ -178,8 +178,8 @@
 					<div class="agree">
 						<label><input type="checkbox" />
 						<h3 class="disNone">결제 진행 필수 동의</h3></label><br /> &nbsp;&nbsp;<span
-							class="txt">개인정보 수집·이용 및 처리동의<span class="grey">(필수)</span></span><a
-							href="#none">보기 > </a><br /> &nbsp;&nbsp;<span class="txt">전자지급
+							class="ordTxt">개인정보 수집·이용 및 처리동의<span class="grey">(필수)</span></span><a
+							href="#none">보기 > </a><br /> &nbsp;&nbsp;<span class="ordTxt">전자지급
 							결제대행 서비스 이용약관 동의<span class="grey">(필수)</span>
 						</span><a href="#none">보기 > </a><br />
 					</div>

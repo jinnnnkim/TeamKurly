@@ -24,7 +24,10 @@
 		<result property="prodThumbImg" column="prodThumbImg"/>
 	</resultMap>
 	
+
 	<resultMap type="adgoodsCateVO" id="prodCateResult">
+
+	<resultMap type="adGoodsCateVO" id="prodCateResult">
 		<result property="cateCode" column="cateCode"/>
 		<result property="cateName" column="cateName"/>
 		<result property="cateParent" column="cateParent"/>
@@ -93,10 +96,16 @@
 	</insert>
 	
 	<!-- 카테고리 호출 -->
+<<<<<<< HEAD
 	<select id="cateList" resultType="kr.co.recipetoyou.adgoods.category.AdGoodsCateVO">
 		select level, cateCode, cateName, cateParent
 		from tb_prod_cate 
 		start with cateParent is null connect by prior cateCode = cateParent
+=======
+	<select id="cateList" resultType="adgoodsVO">
+		select *
+		from tb_prod_cate order by cateCode
+>>>>>>> df3433278e8aa49e8ad16af73aa1477f324850b7
 	</select>
 	
 	<!-- 상품 검색 -->

@@ -148,7 +148,7 @@
 
 .content {
 	width: 837px;
-	height: 700px;
+	min-height: 700px;
 	padding-left: 20px;
 	padding-top: 20px;
 }

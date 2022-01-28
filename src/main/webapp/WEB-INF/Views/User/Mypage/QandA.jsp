@@ -9,7 +9,7 @@
 <title>마이페이지_주문내역</title>
 <link rel="stylesheet"
 	href="/recipetoyou/Resources/User/Css/Mypage2/mypageInfo.css">
-<link href="/recipetoyou/resources/User/Css/reset.css" rel="stylesheet"
+<link href="/recipetoyou/resources/User/Css/Mypage2/reset.css" rel="stylesheet"
 	type="text/css">
 <link rel="stylesheet" href="/recipetoyou/Resources/User/Css/Mypage2/QandA.css"
 	type="text/css">

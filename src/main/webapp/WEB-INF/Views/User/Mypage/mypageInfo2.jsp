@@ -9,7 +9,7 @@
 <title>개인 정보 수정</title>
 <link rel="stylesheet"
 	href="/recipetoyou/Resources/User/Css/Mypage2/mypageUserInfo.css">
-<link href="/recipetoyou/resources/User/Css/reset.css" rel="stylesheet"
+<link href="/recipetoyou/resources/User/Css/Mypage2/reset.css" rel="stylesheet"
 	type="text/css">
 <link rel="stylesheet" href="/recipetoyou/Resources/User/Css/Mypage2/myInfo.css"
 	type="text/css">

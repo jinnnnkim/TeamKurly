@@ -83,7 +83,7 @@
 			총 ${cnt}명의 회원이 검색되었습니다.		
 		</div>
 		
- 		<div class="userList_wrap">
+ 	<%-- 	<div class="userList_wrap">
 		<table align="center" id="tableGroup">
 			<thead>
 				
@@ -115,9 +115,9 @@
 				</c:forEach> 
 			</tbody>	
 		</table>
-		</div> 
+		</div>  --%>
 		
-<%-- 		<div class="userList_wrap">
+		<div class="userList_wrap">
 		 <table align="center" id="tableGroup">
 			<thead>
 				
@@ -157,8 +157,8 @@
 		<input type="button" value="전체선택" id="check_all">
 		<!-- 버튼클릭시 전체선택 해제되는 js구현되어있음 -->
 		<input type="button" value="전체해제" id="uncheck_all">
-		</div> --%>
-		
+		</div> 
+	
 		<div class="box-footer">
 			<div class="text-center">
 				<ul class="pagination">

@@ -51,9 +51,10 @@
 			<!-- list_goods -->
 			<div class="inner_listgoods">
 				<ul class="glists">
-					<li><a href="${contextPath}/prodDetail.do"><img alt="두부면 파스타"
-							src="/recipetoyou/Resources/User/Img/Meal/paster1.jpg"></a>
+					<li><a href="${contextPath}/prodDetail.do?PROD_CODE=1">
+					<img alt="두부면 파스타" src="/recipetoyou/Resources/User/Img/Meal/paster1.jpg"></a>
 						<div class="group_btn">
+						<%-- ${} --%>
 							<!-- 장바구니 아이콘 -->
 							<i class="fas fa-cart-arrow-down"></i>
 						</div>

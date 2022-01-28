@@ -6,7 +6,7 @@
 <mapper namespace="mapper.adsend">	<!-- user.xml의 네임스페이스 지정 -->
 
 	<!-- 발송 -->
-	<resultMap type="sendVO" id="sendResult">		
+	<resultMap type="adsendVO" id="sendResult">		
 		<result property="send_code" column="send_code" />
 		<result property="ord_code" column="ord_code"/>
 		<result property="pay_code" column="pay_code"/>
@@ -14,8 +14,9 @@
 		<result property="send_content" column="send_content"/>
 		<result property="send_date" column="send_date"/>
 		<result property="delivery_idx" column="delivery_idx"/>
-		<collection property="orderVO" resultMap="orderResult"/>
-		<collection property="paymentVO" resultMap="paymentResult"/>
+		<result property="pay_date" column="pay_date"/>
+		<result property="pay_price" column="pay_price"/>
+		<result property="ord_date" column="ord_date"/>
 	</resultMap>
 	
 	<!-- 회원 -->
@@ -38,7 +39,7 @@
 		<result property="user_point" column="user_point"/>
 		<result property="cp_code" column="cp_code"/>
 		<result property="toYou_pass" column="toYou_pass"/>
-	</resultMap>
+	</resultMap> 
 
 	<!-- 결제 -->
 	<resultMap type="paymentVO" id="paymentResult">		
@@ -57,6 +58,7 @@
 		<result property="user_id" column="user_id"/>
 		<result property="ord_date" column="ord_date"/>
 	</resultMap>
+	
 	
 	
 	<!-- 페이지정보를 10개씩 가져오기 -->

@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import kr.co.recipetoyou.main.cartPick.vo.CartAddVO;
 import kr.co.recipetoyou.main.cartPick.vo.FavVO;
 import kr.co.recipetoyou.main.cartPick.vo.PickVO;
+import kr.co.recipetoyou.main.cartPick.vo.ProdVO;
 
 
 @Repository("cartPickDAO")
@@ -36,15 +37,18 @@ public class CartPickDAOImpl implements CartPickDAO {
 	}
 
 	//마이페이지에서 찜하기 담기 클릭 시 장바구니 담기
-		@Override
-		public int insertCart(PickVO pickVO) throws DataAccessException {
-			int result = sqlSession.insert("mapper.member.insertCart", pickVO);
-			return result;
-		}
+	@Override
+	public int insertCart(PickVO pickVO) throws DataAccessException {
+		int result = sqlSession.insert("mapper.member.insertCart", pickVO);
+		return result;
+	}
 
-		
-		
-		
+	//마이페이지 장바구니 조회
+	@Override
+		public List<ProdVO> selectAllCartList() throws DataAccessException {
+			List<ProdVO> cartList = sqlSession.selectList("mapper.member.selectAllCartList");
+			return cartList;
+		}	
 		
 		
 		
@@ -55,10 +59,11 @@ public class CartPickDAOImpl implements CartPickDAO {
 		return result;
 	}
 
+	//장바구니 담기
 	@Override
 	public int insertCartAdd(CartAddVO cartAddVO) throws DataAccessException {
-		// TODO Auto-generated method stub
-		return 0;
+		int result = sqlSession.insert("mapper.user.insertCartAdd", cartAddVO);
+		return result;
 	}
 
 	

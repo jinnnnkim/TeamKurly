@@ -24,6 +24,8 @@ import java.sql.Date;
 
 import org.springframework.stereotype.Component;
 
+import kr.co.recipetoyou.main.goods.GoodsVO;
+
 @Component("userVO")
 public class UserVO {
 	

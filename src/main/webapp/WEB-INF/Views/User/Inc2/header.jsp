@@ -34,7 +34,7 @@
 					<div id ="userMenu">		<!-- 로그인, 회원가입, 고객센터 목록 -->
 						<ul class="list_menu">	
 							<li class="menu_list">	<!-- onclick시 카데고리  -->
-							<a href="${contextPath}/mypage/main.do">마이페이지</a>
+							<a href="${contextPath}/orderList.do">마이페이지</a>
 								<a href="${contextPath}/notice/notice.do"  class ="link-menu3" onclick="">고객센터<i class="fas fa-caret-down"></i></a>
 							</li>
 							<li class="menu_login"><a href="${contextPath}/login/login.do" class ="link-menu2">로그인 &#124;</a></li>
