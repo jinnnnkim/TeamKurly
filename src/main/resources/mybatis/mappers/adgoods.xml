@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="mapper.product">	<!-- product.xml의 네임스페이스 지정 -->
+<mapper namespace="mapper.adgoods">	<!-- product.xml의 네임스페이스 지정 -->
 
-	<resultMap type="adgoodsVO" id="adgoodsResult">
+	<resultMap type="adGoodsVO" id="adgoodsResult">
 		<result property="prod_code" column="prod_code"/>
+		<result property="cateCode" column="cateCode"/>
 		<result property="prod_name" column="prod_name"/>
 		<result property="prod_content" column="prod_content"/>
 		<result property="prod_img" column="prod_img"/>
@@ -20,15 +21,14 @@
 		<result property="prod_caution" column="prod_caution"/>
 		<result property="prod_quantity" column="prod_quantity"/>
 		<result property="prod_reg_date" column="prod_reg_date"/>
+		<result property="prodThumbImg" column="prodThumbImg"/>
 	</resultMap>
 	
+
 	<resultMap type="adGoodsCateVO" id="prodCateResult">
-		<result property="prodCateCode" column="prodCateCode"/>
 		<result property="cateCode" column="cateCode"/>
-		<result property="prod_code" column="prod_code"/>
 		<result property="cateName" column="cateName"/>
 		<result property="cateParent" column="cateParent"/>
-		<result property="cateGrade" column="cateGrade"/>
 	</resultMap>
 	
 	<!-- 검색 조건문 -->
@@ -70,28 +70,36 @@
 				<if test="keyword != null">prod_name like '%'||#{keyword}||'%'</if>
 	</select>
 	
-	<!-- 상품 상세 정보 조회 -->
-	<select id="readProduct" resultMap="adgoodsResult" parameterType="int">
+	<!-- 상품 상세 정보 조회, 카테고리 테이블과 조인-->
+	 <select id="readProduct" resultMap="adgoodsResult" parameterType="int">
 		<![CDATA[
-			select *
-			from tb_prod
-			where prod_code = #{code}
+			SELECT tp.PROD_CODE ,tp.PROD_NAME ,tp.PROD_CONTENT ,tp.PROD_IMG , tp.PROD_PRICE , tp.PROD_DISCOUNT , tp.PROD_SELL_UNIT ,
+			tp.PROD_SELL_UNIT ,tp.PROD_DELIVERY_TYPE ,tp.PROD_WRAP_TYPE ,tp.PROD_INFO , tp.PROD_ALLERGY ,tp.PROD_VAILD_DATE ,
+			tp.PROD_FROM ,tp.PROD_CAUTION ,tp.PROD_QUANTITY ,tp.PRODTHUMBIMG , tp.CATECODE ,
+			tpc.CATECODE ,tpc.CATENAME ,tpc.CATEPARENT 
+				FROM TB_PROD tp INNER JOIN TB_PROD_CATE tpc 
+				ON tp.CATECODE = tpc.CATECODE 
+				WHERE tp.PROD_CODE = #{prod_code}
 		]]>
 	</select>
 	
+	<!-- 상품 등록, tb_prod & tp_prod_cate 다중 테이블 insert를 위해 insert all 사용 -->
 	<insert id="register">
-		insert into TB_PROD (prod_code, prod_name, prod_content, prod_img, prod_price, prod_discount, prod_sell_unit, prod_delivery_type,
-							prod_wrap_type, prod_info, prod_allergy, prod_vaild_date, prod_from, prod_caution, prod_quantity, prod_reg_date)
-					values (#{prod_code}, #{prod_name}, #{prod_content}, #{prod_img}, #{prod_price}, 'null', #{prod_sell_unit}, #{prod_delivery_type},
-							#{prod_wrap_type}, #{prod_info}, #{prod_allergy}, #{prod_vaild_date}, #{prod_from}, #{prod_caution}, #{prod_quantity}, sysdate)		
+			insert into tb_prod(prod_code, cateCode, prod_name,prod_content,prod_img, prod_price, prod_discount, prod_sell_unit, prod_delivery_type,
+								prod_wrap_type, prod_info, prod_allergy, prod_vaild_date, prod_from, prod_caution,prod_quantity,prodThumbImg)
+			values (prodcode_seq.nextval, #{cateCode}, #{prod_name}, #{prod_content}, #{prod_img}, #{prod_price}, #{prod_discount}, #{prod_sell_unit}, #{prod_delivery_type},
+							#{prod_wrap_type}, #{prod_info}, #{prod_allergy}, #{prod_vaild_date}, #{prod_from}, #{prod_caution}, #{prod_quantity}, #{prodThumbImg})
+			
+			
 	</insert>
 	
 	<!-- 카테고리 호출 -->
-	<select id="cateList" resultType="adgoodsVO">
-		select *
-		from tb_prod_cate order by cateCode
+
+	<select id="cateList" resultType="kr.co.recipetoyou.admin.adgoods.category.AdGoodsCateVO">
+		select level, cateCode, cateName, cateParent
+		from tb_prod_cate 
+		start with cateParent is null connect by prior cateCode = cateParent
 	</select>
-	
 	<!-- 상품 검색 -->
 	<!-- <sql id="search">
 			select from TB_PROD

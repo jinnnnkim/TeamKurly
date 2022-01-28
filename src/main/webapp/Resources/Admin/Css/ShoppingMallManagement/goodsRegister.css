@@ -141,8 +141,6 @@ body, td, select, div, textarea, center {
 /* 첫번째 테이블의 이미지 찾기 버튼을 감싸는 div태그 속성 */
 .file_div {
 	position: relative;
-	height: 30px;
-	width: 100px;
 	overflow: hidden;
 	float: left;
 }
@@ -413,3 +411,22 @@ body, td, select, div, textarea, center {
 .shop_img {		/* 두번째 테이블의 이미지를 감싸는 td 속성 */
 	line-height: 20px;
 }
+
+.ck_msg{						/* 입력란 공란 경고 태그 */
+	display: none;
+    padding-top: 10px;
+    text-align: center;
+    color: #e05757;
+    font-weight: 300;    
+}
+
+.input-file-btn{
+	padding: 6px 25px;
+	background-color: #317CC1;
+	border-radius: 4px;
+	color: white;
+	cursor: pointer;
+}
+/*#prod_img{
+	display: none;
+}*/

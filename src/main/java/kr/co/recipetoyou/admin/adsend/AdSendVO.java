@@ -19,6 +19,42 @@ public class AdSendVO {
 	private int delivery_idx;	
 	private AdPaymentVO adpaymentVO;
 	private AdOrderVO adorderVO;
+	private Date ord_date;
+	private Date pay_date;
+	private int pay_price;
+	
+	public AdPaymentVO getAdpaymentVO() {
+		return adpaymentVO;
+	}
+	public void setAdpaymentVO(AdPaymentVO adpaymentVO) {
+		this.adpaymentVO = adpaymentVO;
+	}
+	public AdOrderVO getAdorderVO() {
+		return adorderVO;
+	}
+	public void setAdorderVO(AdOrderVO adorderVO) {
+		this.adorderVO = adorderVO;
+	}
+	public Date getOrd_date() {
+		return ord_date;
+	}
+	public void setOrd_date(Date ord_date) {
+		this.ord_date = ord_date;
+	}
+	public Date getPay_date() {
+		return pay_date;
+	}
+	public void setPay_date(Date pay_date) {
+		this.pay_date = pay_date;
+	}
+	public int getPay_price() {
+		return pay_price;
+	}
+	public void setPay_price(int pay_price) {
+		this.pay_price = pay_price;
+	}
+	
+	
 	
 	public AdSendVO(int send_code, int ord_code, int pay_code, String user_id, String send_content, Date send_date,
 			int delivery_idx, AdPaymentVO adpaymentVO, AdOrderVO adorderVO) {

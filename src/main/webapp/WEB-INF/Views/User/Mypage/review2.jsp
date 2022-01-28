@@ -58,16 +58,18 @@
 						<div class="review_prodName">
 							<span>[YOZM] 녹차 그릭 요거트100g</span>
 						</div>
-						<div>
-							<span class="review_title">굿</span>
-							<span class="revice_date">22.01.04</span>
-						</div>
-						<div class="prod">
-							<div class="img">
-								<img src="/recipetoyou/Resources/User/Img/goods6.jpg" />
+						<div class="review_box">
+							<div class="review_txtBox">
+								<span class="review_title">굿</span>
+								<span class="review_date"><span>22.01.04</span> 작성</span>
 							</div>
-							<div class="prodInfo">
-								<span class="prodSub">녹차 좋아해서 구매했는데 괜찮네요!</span>
+							<div class="prod">
+								<div class="img">
+									<img src="/recipetoyou/Resources/User/Img/goods6.jpg" />
+								</div>
+								<div class="prodInfo">
+									<span class="prodSub">녹차 좋아해서 구매했는데 괜찮네요!</span>
+								</div>
 							</div>
 						</div>
 					</td>
