@@ -255,7 +255,7 @@
 	/* 카테고리 */
 	let cateList = JSON.parse('${cateList}');
 			
-			 let searchForm = $("#searchForm");
+	let searchForm = $("#searchForm");
 
 			let cate1Array = new Array();
 			let cate2Array = new Array();

@@ -14,12 +14,11 @@ import org.springframework.stereotype.Component;
 @Component("adGoodsCateVO")
 public class AdGoodsCateVO {
 	
-	private int prodCateCode;
 	private String cateCode;
-	private int prod_code;
 	private String cateName;
 	private String cateParent;
-	private int cateGrade;
+	private int level;
+
 	
 	
 	//추가
@@ -27,18 +26,18 @@ public class AdGoodsCateVO {
 	//private String keyword="";
 	
 	
+	public int getLevel() {
+		return level;
+	}
+
+
+	public void setLevel(int level) {
+		this.level = level;
+	}
+
+
 	public AdGoodsCateVO() {
 		// TODO Auto-generated constructor stub
-	}
-
-
-	public int getProdCateCode() {
-		return prodCateCode;
-	}
-
-
-	public void setProdCateCode(int prodCateCode) {
-		this.prodCateCode = prodCateCode;
 	}
 
 
@@ -49,16 +48,6 @@ public class AdGoodsCateVO {
 
 	public void setCateCode(String cateCode) {
 		this.cateCode = cateCode;
-	}
-
-
-	public int getProd_code() {
-		return prod_code;
-	}
-
-
-	public void setProd_code(int prod_code) {
-		this.prod_code = prod_code;
 	}
 
 
@@ -81,16 +70,6 @@ public class AdGoodsCateVO {
 		this.cateParent = cateParent;
 	}
 
-
-	public int getCateGrade() {
-		return cateGrade;
-	}
-
-
-	public void setCateGrade(int cateGrade) {
-		this.cateGrade = cateGrade;
-	}
-	
 	
 	//검색 타입 데이터 배열 변환
 	/*

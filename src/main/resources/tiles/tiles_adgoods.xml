@@ -22,7 +22,7 @@
 		<put-attribute name="body" value="/WEB-INF/Views/Admin/ShoppingMallManagement/goodsInfo.jsp"></put-attribute>
 	</definition>
 	
-	<definition name="/adgoods/goodsRegister" extends="adminBaseLayout">
+	<definition name="/adgoods/moveRegister" extends="adminBaseLayout">
 		<put-attribute name="title" value="상품정보조회"/>
 		<put-attribute name="body" value="/WEB-INF/Views/Admin/ShoppingMallManagement/goodsRegister.jsp"></put-attribute>
 	</definition>
