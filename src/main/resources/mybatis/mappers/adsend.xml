@@ -42,22 +42,22 @@
 	</resultMap> 
 
 	<!-- 결제 -->
-<!-- 	<resultMap type="paymentVO" id="paymentResult">		
+	<resultMap type="paymentVO" id="paymentResult">		
 		<result property="pay_code" column="pay_code"/>
 		<result property="pay_method" column="pay_method"/>
 		<result property="pay_date" column="pay_date"/>
 		<result property="pay_price" column="pay_price"/>
 		<result property="cp_code" column="cp_code"/>
 		<result property="ord_code" column="ord_code" />
-	</resultMap> -->
+	</resultMap>
 
 	
 	<!-- 주문 -->
-	<!-- <resultMap type="orderVO" id="orderResult">		
+	<resultMap type="orderVO" id="orderResult">		
 		<result property="ord_code" column="ord_code" />
 		<result property="user_id" column="user_id"/>
 		<result property="ord_date" column="ord_date"/>
-	</resultMap> -->
+	</resultMap>
 	
 	
 	
