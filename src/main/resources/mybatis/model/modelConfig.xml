@@ -33,13 +33,9 @@
 		<typeAlias type="kr.co.recipetoyou.main.order.OrderVO" alias="orderVO"/>
 	
 		<typeAlias type="kr.co.recipetoyou.util.PagingVO" alias="pagingVO"/>
-<<<<<<< HEAD
 		<typeAlias type="kr.co.recipetoyou.adsend.adsms.AdSmsVO" alias="adSmsVO"/>
 		<typeAlias type="kr.co.recipetoyou.aduser.aduserWithdraw.AdUserDrawVO" alias="adUserDrawVO"/>
 		<typeAlias type="kr.co.recipetoyou.user.mypage.vo.AddressVO" alias="addressVO"/>
-=======
 		
-		
->>>>>>> 884555c7b4ad799588ba5cbda39148797fe8af1e
 	</typeAliases>
 </configuration> 
