@@ -15,6 +15,7 @@
  	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap">
  	<link href="/recipetoyou/Resources/Admin/Css/HomePageHeaderSide/homePage.css" rel="stylesheet">
 	<link href="/recipetoyou/Resources/Admin/Css/HomePageHeaderSide/reset.css" rel="stylesheet">
+	<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
 	<script type="text/javascript" src="/recipetoyou/Resources/Admin/Js/HomePageHeaderSide/homePage.js"></script>
 	<!-- 팝업 관련 자바스크립트 => 팝업창 띄울때 사용하면 됨 
 		url, name, option은 각자 구현 기능에 맞게 설정하면 됨 

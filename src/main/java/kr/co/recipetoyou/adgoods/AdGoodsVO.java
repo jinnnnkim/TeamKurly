@@ -2,9 +2,15 @@ package kr.co.recipetoyou.adgoods;
 
 import java.sql.Date;
 
+import org.springframework.stereotype.Repository;
+
+import kr.co.recipetoyou.adgoods.category.AdGoodsCateVO;
+
+@Repository("adgoodsVO")
 public class AdGoodsVO {
 	
 	private int prod_code;
+	private int cateCode;		//상품 등록 시 카테고리 조인하기 위해 추가
 	private String prod_name;
 	private String prod_content;
 	private String prod_img;
@@ -20,12 +26,46 @@ public class AdGoodsVO {
 	private String prod_caution;
 	private int prod_quantity;
 	private Date prod_reg_date;
+	private AdGoodsCateVO adGoodsCateVO;	 	//상품 조회 시 카테고리 함께 조회하기 위해 추가
 	
+	private String prodThumbImg;				//썸네일 저장할 컬럼 생성
+	
+	
+	public String getProdThumbImg() {
+		return prodThumbImg;
+	}
+
+	public void setProdThumbImg(String prodThumbImg) {
+		this.prodThumbImg = prodThumbImg;
+	}
+
+
+
+	public AdGoodsCateVO getAdGoodsCateVO() {
+		return adGoodsCateVO;
+	}
+
+
+
+	public void setAdGoodsCateVO(AdGoodsCateVO adGoodsCateVO) {
+		this.adGoodsCateVO = adGoodsCateVO;
+	}
+
+
+
 	public AdGoodsVO() {
 		// TODO Auto-generated constructor stub
 	}
 	
-	
+	public int getCateCode() {
+		return cateCode;
+	}
+
+
+
+	public void setCateCode(int cateCode) {
+		this.cateCode = cateCode;
+	}
 	
 	public AdGoodsVO(int prod_code, String prod_name, String prod_content, String prod_img, int prod_price,
 			int prod_discount, int prod_sell_unit, int prod_delivery_type, int prod_wrap_type, String prod_info,
@@ -42,11 +82,9 @@ public class AdGoodsVO {
 		this.prod_wrap_type = prod_wrap_type;
 		this.prod_info = prod_info;
 		this.prod_allergy = prod_allergy;
-		this.prod_vaild_date = prod_vaild_date;
 		this.prod_from = prod_from;
 		this.prod_caution = prod_caution;
 		this.prod_quantity = prod_quantity;
-		this.prod_reg_date = prod_reg_date;
 	}
 
 	public int getProd_code() {

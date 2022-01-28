@@ -28,9 +28,9 @@ public interface AdGoodsDAO {
 	//상품명 검색
 	public List<AdGoodsVO> listSearch(AdGoodsCateVO option) throws Exception;
 	
-	//상품 등록 페이지로 이동
+	//상품 등록
 	public void register(AdGoodsVO agvo) throws Exception;
-		
+
 	//검색 결과 갯수
 	public int countSearch(AdGoodsCateVO option) throws Exception;
 

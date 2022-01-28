@@ -17,7 +17,7 @@ public class AdGoodsDAOImpl implements AdGoodsDAO{
 	@Autowired
 	private SqlSession sqlSession;	//DB 연결 (XML에서 만들어진 객체를 가져다 사용하겠다. = 의존 주입)
 	
-	private static final String NAMESPACE = "mapper.product"; 	//mapper 구분하는 값 namespace
+	private static final String NAMESPACE = "mapper.adgoods"; 	//mapper 구분하는 값 namespace
 	
 	//페이징
 	@Override

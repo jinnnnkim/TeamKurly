@@ -1,10 +1,14 @@
 package kr.co.recipetoyou.adgoods;
 
+import java.io.File;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Enumeration;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
-
-
-
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -12,19 +16,25 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
+
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import kr.co.recipetoyou.adgoods.category.AdGoodsCateVO;
+
 import kr.co.recipetoyou.util.PageMaker;
 import kr.co.recipetoyou.util.PagingVO;
+import kr.co.recipetoyou.util.UploadFileUtils;
 
 @Controller("productController")
 @EnableAspectJAutoProxy
@@ -32,8 +42,10 @@ public class AdGoodsControllerImpl implements AdGoodsController {
 	
 	private static final Logger logger = LoggerFactory.getLogger("ProductControllerImpl.class");
 	
+	
 	@Autowired
 	AdGoodsService adGoodsService;
+
 	
 	//글목록보기(PageMaker 객체 사용)
 	//전체 상품 목록 조회
@@ -113,8 +125,10 @@ public class AdGoodsControllerImpl implements AdGoodsController {
 		
 		//카테고리 리스트 데이터
 		model.addAttribute("cateList", cateList);
-
 		
+		logger.info("변경 전========"+list);
+		logger.info("변경 후========"+cateList);
+
 		//상품 정보
 		model.addAttribute("prodVO", adGoodsService.getGoodsInfo(code));
 	
@@ -134,6 +148,9 @@ public class AdGoodsControllerImpl implements AdGoodsController {
 		
 		model.addAttribute("cateList", cateList);
 		
+		logger.info("변경 전========"+list);
+		logger.info("변경 후========"+cateList);
+		
 		String viewName = (String)request.getAttribute("viewName");
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName(viewName);
@@ -144,10 +161,42 @@ public class AdGoodsControllerImpl implements AdGoodsController {
 	//상품 등록
 	@Override
 	@RequestMapping(value = "/adgoods/register", method = RequestMethod.POST)
-	public ModelAndView uploadGoodsRegister(AdGoodsVO agvo, HttpServletRequest request, HttpServletResponse response) throws Exception {
+	@ResponseBody
+	public ModelAndView uploadGoodsRegister(@RequestParam @DateTimeFormat(pattern="yyyy-MM-dd")java.sql.Date prod_vaild_date, @RequestParam("file") MultipartFile file,AdGoodsVO aGoodsVO, RedirectAttributes rttr) throws Exception {
 		
-		adGoodsService.register(agvo);
-		ModelAndView mav = new ModelAndView("/adgoods/listProduct.do");
+		/*
+		 * String imgUploadPath = uploadPath + File.separator + "AdgoodsImg"; String
+		 * ymdPath = UploadFileUtils.calcPath(imgUploadPath); String fileName = null;
+		 */
+		
+
+		//파일 인풋박스에 첨부된 파일이 없다면(=첨부된 파일이 없다면)
+		/*
+		 * if(file.getOriginalFilename() != null && file.getOriginalFilename() != "") {
+		 * 
+		 * fileName =
+		 * UploadFileUtils.fileUpload(imgUploadPath,file.getOriginalFilename(),
+		 * file.getBytes(), ymdPath);
+		 * 
+		 * //원본 파일 경로+파일명 저장
+		 * aGoodsVO.setProd_img(File.separator+"AdgoodsImg"+ymdPath+File.separator+
+		 * fileName);
+		 * 
+		 * //썸네일 파일 경로+썸네일파일 저장
+		 * aGoodsVO.setProdThumbImg(File.separator+"AdgoodsImg"+ymdPath+File.separator+
+		 * "s"+File.separator+"s_"+fileName);
+		 * 
+		 * //첨부된 파일이 없다면 }else{ fileName = uploadPath + File.separator + "SubgoodsImg" +
+		 * File.separator + "ready.jpg"; aGoodsVO.setProd_img(fileName);
+		 * aGoodsVO.setProdThumbImg(fileName); }
+		 */
+		
+		adGoodsService.register(aGoodsVO);
+		
+		rttr.addFlashAttribute("goodsResult", aGoodsVO.getProd_name());
+		
+		//상품 등록 후 상품 목록 페이지로 리다이렉트
+		ModelAndView mav = new ModelAndView("redirect:/adgoods/listProduct.do");
 		
 		return mav;
 	}
