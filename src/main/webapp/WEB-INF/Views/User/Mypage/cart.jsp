@@ -41,19 +41,23 @@
 					</div>
 					<!-- cart_select -->
 
+				
 					<div class="cartlist">
 						<label class="inn_check"> <input type="checkbox" checked>
 						</label>
 
+				<c:forEach var="cartkList" items="${cartkList}">
 						<div class="item">
-							<a href="#"> <img alt="thumbnail"
+							<a href="#"> 
+							<img alt="thumbnail"
 								src="/recipetoyou/Resources/User/Img/Mypage2/thumbnail.jpg"
 								class="thumbnail">
+								${cartkList.prod_img}
 							</a>
 
 							<div class="subject">
-								<a href="" class="subject_tit">[YOZM] 플레인 그릭요거트 2종</a> <span
-									class="subject_in">친환경 맛있는 요거트</span>
+								<a href="" class="subject_tit">${cartkList.prod_name}</a> 
+								<span class="subject_in">${cartkList.prod_content}</span>
 							</div>
 
 
@@ -70,7 +74,7 @@
 							<!-- inner_option  -,+ 구매수량 -->
 
 							<div class="item_prices">
-								<span class="price"><span id="itemPrice"class="num">9,800</span>원</span>
+								<span class="price"><span id="itemPrice"class="num">${cartkList.prod_price}</span>원</span>
 							</div>
 
 							<div class="cancle">
@@ -78,11 +82,12 @@
 							</div>
 
 						</div>
-						<!-- item -->
-
+						<!-- item -->		
+					</c:forEach>
 					</div>
 					<!-- cartlist  -->
 				</div>
+				
 				<div class="bills">
 					<div class="billsInfo">
 						<div class="deliverTitle">배송지</div>
@@ -99,7 +104,7 @@
 								</div>
 								<div class="prodDiscount">
 									<span class="txt">상품할인금액</span>
-									<span class="price"><span id="discountPrice" class="num">0</span>원</span>
+									<span class="price"><span id="discountPrice" class="num">${cartkList.prod_discount}</span>원</span>
 								</div>
 								<div class="deliveryPrice">
 									<span class="txt">배송비</span>
@@ -114,9 +119,13 @@
 							</div>
 						</div>
 					</div>
+					
 					<div class="orderBtn">
 						<button class="btn" onclick="location.href=${contextPath}/">주문하기</button>
 					</div>
+					
+				
+						
 					<div class="info">
 						<span>쿠폰/적립금은 주문서에서 사용 가능합니다</span><br /> <span>‘입금확인’ 상태일
 							때는 주문 내역 상세에서 직접 주문취소가 가능합니다.</span><br /> <span>‘입금확인’ 이후 상태에는

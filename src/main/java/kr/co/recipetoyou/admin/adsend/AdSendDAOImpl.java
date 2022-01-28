@@ -7,9 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Repository;
 
-import kr.co.recipetoyou.main.goods.PaymentVO;
-import kr.co.recipetoyou.main.order.OrderVO;
-import kr.co.recipetoyou.user.UserVO;
+import kr.co.recipetoyou.admin.adsend.AdPaymentVO;
+import kr.co.recipetoyou.admin.adsend.AdOrderVO;
+import kr.co.recipetoyou.admin.aduser.AdUserVO;
 import kr.co.recipetoyou.util.PagingVO;
 
 @Repository("sendDAO")		
@@ -45,19 +45,19 @@ public class AdSendDAOImpl implements AdSendDAO {
 	
 	//회원 상세 정보 조회
 	@Override
-	public UserVO readUserSend(String id) throws DataAccessException {
+	public AdUserVO readUserSend(String id) throws DataAccessException {
 		return sqlSession.selectOne("mapper.adsend.readUserSend", id);
 	}	
 	
 	//주문 내역 목록 조회
 	@Override
-	public OrderVO readOrderSend(int ord) throws DataAccessException {
+	public AdOrderVO readOrderSend(int ord) throws DataAccessException {
 		return sqlSession.selectOne("mapper.adsend.readOrderSend", ord);
 	}
 	
 	//결제 내역 목록 조회
 	@Override
-	public PaymentVO readPaymentSend(int pay) throws DataAccessException {
+	public AdPaymentVO readPaymentSend(int pay) throws DataAccessException {
 		return sqlSession.selectOne("mapper.adsend.readPaymentSend", pay);
 	}
 

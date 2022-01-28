@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import kr.co.recipetoyou.main.cartPick.vo.CartAddVO;
 import kr.co.recipetoyou.main.cartPick.vo.FavVO;
 import kr.co.recipetoyou.main.cartPick.vo.PickVO;
+import kr.co.recipetoyou.main.cartPick.vo.ProdVO;
 
 @Service("cartPickService")
 @Transactional(propagation = Propagation.REQUIRED)
@@ -39,6 +40,14 @@ public class CartPickServiceImpl implements CartPickService{
 		return cartPickDAO.insertCart(pickVO);
 	}
 
+	
+	//마이페이지 장바구니 목록 조회
+	@Override
+	public List<ProdVO> listCarts() throws DataAccessException {
+		List<ProdVO> cartList = cartPickDAO.selectAllCartList();
+		return cartList;
+	}
+	
 	
 	
 	
