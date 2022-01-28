@@ -41,7 +41,7 @@
 			
 				<div class="main-content">
 					<div class="sub-title">| 상품 기본정보</div>											<!-- 파일 업로드 기능 -->
-					<form action="${contextPath }/adgoods/register.do" method="post" id="registerForm" enctype="multipart/form-data">
+					<form action="${contextPath}/adgoods/register.do" method="post" id="registerForm">
 					<table class="table table1 line_top table_line">
 						<colgroup>
 							<col width="120px">
@@ -53,18 +53,18 @@
 								<td>
 									<label>1차 분류</label>
 										<select class="category1">
-											<option selected="selected" value="none">선택</option>
+											<option value="">선택</option>
 										</select>
 										
 									<label>2차 분류</label>
 										<select class="category2" name="cateCode">
-											<option selected="selected" value="none">선택</option>
+											<option value="">선택</option>
 										</select>
 										
 										<span class="ck_msg cateCode_msg">카테고리를 선택해주세요.</span>
 									<div class="helper blue mt5">
 										<img src="/recipetoyou/Resources/Admin/Img/ShoppingMallManagement/Question-blue.png" width="12px" height="12px">
-										카테고리 설정은	 <%-- <a>태그의 상품분류설정은 생략하기로 했음 --%>
+										카테고리 설정은	 
 										<a href="#" class="helper">[상품분류설정]</a>
 										에서 설정가능합니다.
 									</div>
@@ -116,7 +116,7 @@
 											<label for="prod_img" class="input-file-btn">이미지 찾기</label>
 											<!-- <button type="button" class="file_button btn">이미지 찾기</button> -->
 											<!-- <input type="file"  id="prod_img" name="file"> -->
-											<input type="text" id="prod_img">
+											<input type="text" id="prod_img" name="prod_img">
 											<!-- <div class="preview"><img id="goodsImg" alt="" src="" width="300px" height="300px"></div>	 -->
 									</div>	
 											<!-- <script>
@@ -244,19 +244,17 @@
 					
 						<div class="btn-box" style="margin-top: 10px">
 						
-						<button class="btn btn-lg btn-blue" type="submit" id="saveBtn">저장</button>
+						<input type="submit" class="btn btn-lg btn-blue" id="saveBtn" value="저장">
 						
-						<button class="btn btn-lg" onclick="document.location.href='productList.jsp'">목록</button>
-						<%-- 삭제버튼 클릭시 상품후기 목록에서 해당상품이 삭제되는 기능 넣기 -> 상품후기목록 페이지로 이동 기능 넣기 --%>
-						<button id="GoodRegister_remove" class="btn btn-lg btn-red" onclick="">삭제</button>
+						<button class="btn btn-lg" id="listBtn">목록</button>
+						
+						<button class="btn btn-lg btn-red" id="removeBtn">삭제</button>
 					</div>
 					</form>
 					
 					</div>
 	
 	<script type="text/javascript">
-	
-	let registerForm = $("#registerForm");
 	
 	/* 카테고리 */
 	let cateList = JSON.parse('${cateList}');
@@ -322,8 +320,150 @@
 			}
 		});
 	});
+	
+	/* 유효성검사 */
+	$(document).ready(function(){
 		
+		/* 저장버튼 클릭시 */
+		$("#saveBtn").click(function(){
 
+			/* 체크 변수 */	
+			let cateCodeChk = false;
+			let nameChk = false;
+			let contentChk = false;
+			let priceChk = false;
+			let imgChk = false;
+			let deliveryChk = false;
+			let infoChk = false;
+			let wrapChk = false;
+			let vaildDateChk = false;
+			let sellUnitChk = false;
+			let quantityChk = false;
+
+
+			/* 체크 대상 변수 */
+
+			let cateCode = $("select[name='cateCode']").val();
+			let name = $("input[name='prod_name']").val();
+			let content = $("input[name='prod_content']").val();
+			let price = $("input[name='prod_price']").val();
+			let img = $("input[name='prod_img']").val();
+			let delivery = $("input[name='prod_delivery_type']").val();
+			let info = $("input[name='prod_info']").val();
+			let wrap = $("input[name='prod_wrap_type']").val();
+			let vaildDate = $("input[name='prod_vaild_date']").val();
+			let sellUnit = $("input[name='prod_sell_unit']").val();
+			let quantity = $("input[name='prod_quantity']").val();
+			
+
+
+			/* 각 항목 확인 */
+			/* 공란일 경우 <span>태그를 보이도록 하고 '체크 변수'에 false값을 대입한다. */
+			/* 공란이 아닐 경우 <span> 태그를 숨기고 '체크 변수'에 true값을 대입한다. */
+
+
+			if(cateCode){
+				$(".cateCode_msg").css('display','none');
+				cateCodeChk = true;
+			} else{
+				$(".cateCode_msg").css('display','block');
+				cateCodeChk = false;
+			}	
+			if(name){
+				$(".prod_name_msg").css('display','none');
+				nameChk = true;
+			} else{
+				$(".prod_name_msg").css('display','block');
+				nameChk = false;
+			}
+			if(content){
+				$(".prod_content_msg").css('display','none');
+				contentChk = true;
+			} else{
+				$(".prod_content_msg").css('display','block');
+				contentChk = false;
+			}
+			if(price){
+				$(".prod_price_msg").css('display','none');
+				priceChk = true;
+			} else{
+				$(".prod_price_msg").css('display','block');
+				priceChk = false;
+			}
+			if(img){
+				$(".prod_img_msg").css('display','none');
+				imgChk = true;
+			} else{
+				$(".prod_img_msg").css('display','block');
+				imgChk = false;
+			}
+
+			if(delivery){
+				$(".prod_delivery_msg").css('display','none');
+				deliveryChk = true;
+			} else{
+				$(".prod_delivery_msg").css('display','block');
+				deliveryChk = false;
+			}
+
+			if(info){
+				$(".prod_info_msg").css('display','none');
+				infoChk = true;
+			} else{
+				$(".prod_info_msg").css('display','block');
+				infoChk = false;
+			}
+
+			if(wrap){
+				$(".prod_wrap_msg").css('display','none');
+				nameChk = true;
+			} else{
+				$(".prod_wrap_msg").css('display','block');
+				nameChk = false;
+			}
+
+			if(vaildDate){
+				$(".prod_vaild_date_msg").css('display','none');
+				vaildDateChk = true;
+			} else{
+				$(".prod_vaild_date_msg").css('display','block');
+				vaildDateChk = false;
+			}
+
+			if(sellUnit){
+				$(".prod_sell_unit_msg").css('display','none');
+				sellUnitChk = true;
+			} else{
+				$(".prod_sell_unit_msg").css('display','block');
+				sellUnitChk = false;
+			}		
+
+			if(quantity){
+				$(".prod_quantity_msg").css('display','none');
+				quantityChk = true;
+			} else{
+				$(".prod_quantity_msg").css('display','block');
+				quantityChk = false;
+			}
+			
+			/* '체크 변수'들이 모두 true일 때 <form>태그 전송 */ 
+			if(cateCodeChk && nameChk && contentChk && priceChk &&  imgChk &&
+			deliveryChk && infoChk && wrapChk && vaildDateChk && sellUnitChk && quantityChk){
+	
+				document.registerForm.submit();
+				
+			} else{
+				return false;
+			}	
+			
+		});
+		
+		/* 상품목록 버튼 클릭시 */
+		$("#listBtn").click(function(){
+			location.href='${contextPath}/adgoods/listProduct.do';
+		})
+		
+	});
 	</script> 
 	
 </body>

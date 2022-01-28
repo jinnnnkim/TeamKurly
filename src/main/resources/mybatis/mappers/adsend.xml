@@ -96,7 +96,7 @@
 	</select>
 	
 	<!-- 주문 내역 목록 조회 -->
-	<select id="readOrderSend" resultMap="orderResult" parameterType="int">
+	<select id="readOrderSend" resultMap="sendResult">
 		<![CDATA[
 			select a.*
 			 from tb_order a 
@@ -107,7 +107,7 @@
 	</select>	
 
 	<!-- 결제 내역 목록 조회 -->
-	<select id="readPaymentSend" resultMap="paymentResult" parameterType="int">
+	<select id="readPaymentSend" resultMap="sendResult" >
 		<![CDATA[
 			select a.*
 			 from tb_payment a 

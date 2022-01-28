@@ -162,8 +162,7 @@ public class AdGoodsControllerImpl implements AdGoodsController {
 	//상품 등록
 	@Override
 	@RequestMapping(value = "/adgoods/register", method = RequestMethod.POST)
-	@ResponseBody
-	public ModelAndView uploadGoodsRegister(@RequestParam @DateTimeFormat(pattern="yyyy-MM-dd")java.sql.Date prod_vaild_date, @RequestParam("file") MultipartFile file,AdGoodsVO aGoodsVO, RedirectAttributes rttr) throws Exception {
+	public ModelAndView uploadGoodsRegister(@RequestParam @DateTimeFormat(pattern="yyyy-MM-dd")java.sql.Date prod_vaild_date, @RequestParam("file") MultipartFile file,AdGoodsVO agvo, RedirectAttributes rttr) throws Exception {
 		
 		/*
 		 * String imgUploadPath = uploadPath + File.separator + "AdgoodsImg"; String
@@ -191,10 +190,11 @@ public class AdGoodsControllerImpl implements AdGoodsController {
 		 * File.separator + "ready.jpg"; aGoodsVO.setProd_img(fileName);
 		 * aGoodsVO.setProdThumbImg(fileName); }
 		 */
+		logger.info("goodsRegisterPost......"+agvo);
 		
-		adGoodsService.register(aGoodsVO);
+		adGoodsService.register(agvo);
 		
-		rttr.addFlashAttribute("goodsResult", aGoodsVO.getProd_name());
+		rttr.addFlashAttribute("goodsResult", agvo.getProd_name());
 		
 		//상품 등록 후 상품 목록 페이지로 리다이렉트
 		ModelAndView mav = new ModelAndView("redirect:/adgoods/listProduct.do");

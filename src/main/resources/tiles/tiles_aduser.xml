@@ -28,7 +28,7 @@
 	</definition>
 	
 				<!-- 탈퇴회원정보페이지 -->
-	<definition name="aduserWithdraw/listadUsersWithdraw" extends="adminBaseLayout">
+	<definition name="/aduserWithdraw/listadUsersWithdraw" extends="adminBaseLayout">
 		<put-attribute name="title" value="탈퇴회원정보"/>
 		<put-attribute name="body" value="/WEB-INF/Views/Admin/AdUser/listadUsersWithdraw.jsp"></put-attribute>
 	</definition>	

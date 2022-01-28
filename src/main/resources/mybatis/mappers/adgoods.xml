@@ -85,9 +85,9 @@
 	
 	<!-- 상품 등록, tb_prod & tp_prod_cate 다중 테이블 insert를 위해 insert all 사용 -->
 	<insert id="register">
-			insert into tb_prod(cateCode, prod_name,prod_content,prod_img, prod_price, prod_discount, prod_sell_unit, prod_delivery_type,
+			insert into tb_prod(prod_code, cateCode, prod_name,prod_content,prod_img, prod_price, prod_discount, prod_sell_unit, prod_delivery_type,
 								prod_wrap_type, prod_info, prod_allergy, prod_vaild_date, prod_from, prod_caution,prod_quantity,prodThumbImg)
-			values (#{cateCode}, #{prod_name}, #{prod_content}, #{prod_img}, #{prod_price}, #{prod_discount}, #{prod_sell_unit}, #{prod_delivery_type},
+			values (prodcode_seq.nextval, #{cateCode}, #{prod_name}, #{prod_content}, #{prod_img}, #{prod_price}, #{prod_discount}, #{prod_sell_unit}, #{prod_delivery_type},
 							#{prod_wrap_type}, #{prod_info}, #{prod_allergy}, #{prod_vaild_date}, #{prod_from}, #{prod_caution}, #{prod_quantity}, #{prodThumbImg})
 			
 			
