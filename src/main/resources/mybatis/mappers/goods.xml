@@ -14,7 +14,10 @@
 		<result property="prod_discount" column="prod_discount"/>
 		<result property="prod_sell_unit" column="prod_sell_unit"/>
 		<result property="prod_delivery_type" column="prod_delivery_type"/>
+
+		<result property="prod_wrap_type" column="prod_wrap_type"/>
 		<result property="prod_wrap_type" column="PROD_WRAP_TYPE"/>
+
 		<result property="prod_info" column="prod_info"/>
 		<result property="prod_allergy" column="prod_allergy"/>
 		<result property="prod_vaild_date" column="prod_vaild_date"/>
