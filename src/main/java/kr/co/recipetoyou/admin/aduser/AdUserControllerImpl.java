@@ -97,7 +97,7 @@ public class AdUserControllerImpl implements AdUserController {
 		request.setCharacterEncoding("utf-8");
 		aduserService.updateUserInfo(vo);
 		System.out.println("update 통과 확인");
-		ModelAndView mav = new ModelAndView("redirect:/user/listadUsers.do");
+		ModelAndView mav = new ModelAndView("redirect:aduser/listadUsers.do");
 		return mav;	
 	}
 
@@ -107,7 +107,7 @@ public class AdUserControllerImpl implements AdUserController {
 	public ModelAndView removeUser(@RequestParam("id") String id, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		request.setCharacterEncoding("utf-8");
 		aduserService.removeUsers(id);
-		ModelAndView mav = new ModelAndView("redirect:/user/listadUsers.do");
+		ModelAndView mav = new ModelAndView("redirect:aduser/listadUsers.do");
 		return mav;
 	}
 

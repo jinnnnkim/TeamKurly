@@ -88,7 +88,7 @@ public class AdUserDrawControllerImpl implements AdUserDrawController{
 	public ModelAndView removeUserWithdraw(@RequestParam("id") String id, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		request.setCharacterEncoding("utf-8");
 		adUserDrawService.removeUsersWithdraw(id);
-		ModelAndView mav = new ModelAndView("redirect:/aduserWithdraw/listadUsersWithdraw.do");
+		ModelAndView mav = new ModelAndView("redirect:aduserWithdraw/listadUsersWithdraw.do");
 		return mav;
 	}
 
