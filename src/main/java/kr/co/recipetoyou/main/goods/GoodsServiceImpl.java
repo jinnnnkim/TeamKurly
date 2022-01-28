@@ -14,7 +14,7 @@ public class GoodsServiceImpl implements GoodsService {
 	
 
 	@Override
-	public GoodsVO listProduct(String prod_code) {
+	public GoodsVO listProduct(int prod_code) {
 		GoodsVO goodsVO = goodsDAO.selectProdCode(prod_code);
 		return goodsVO;
 	}

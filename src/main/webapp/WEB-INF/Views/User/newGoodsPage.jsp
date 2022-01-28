@@ -51,7 +51,7 @@
 			<!-- list_goods -->
 			<div class="inner_listgoods">
 				<ul class="glists">
-					<li><a href="${contextPath}/prodDetail.do?PROD_CODE=1">
+					<li><a href="${contextPath}/prodDetail.do?prod_code=2">
 					<img alt="두부면 파스타" src="/recipetoyou/Resources/User/Img/Meal/paster1.jpg"></a>
 						<div class="group_btn">
 						<%-- ${} --%>

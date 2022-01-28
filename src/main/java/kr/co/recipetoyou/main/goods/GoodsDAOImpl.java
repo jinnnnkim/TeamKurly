@@ -10,7 +10,7 @@ public class GoodsDAOImpl implements GoodsDAO {
 	private SqlSession sqlSession;
 	
 	@Override
-	public GoodsVO selectProdCode(String prod_code) {
+	public GoodsVO selectProdCode(int prod_code) {
 		GoodsVO goodsVO = sqlSession.selectOne("mapper.goods.selectProdCode", prod_code);
 		return goodsVO;
 	}

@@ -23,10 +23,13 @@ public class GoodsControllerImpl implements GoodsController{
 	
 	@Override                      
 	@RequestMapping(value="/prodDetail.do",method = RequestMethod.GET)
-	public ModelAndView main(@RequestParam(value = "prod_code", required = false) String prod_code,
+	public ModelAndView main(@RequestParam(value = "prod_code", required = false) int prod_code,
 			HttpServletRequest request, HttpServletResponse response) throws Exception {
+		System.out.println("controller 호출");
+		request.setCharacterEncoding("utf-8");
 		ModelAndView mav = new ModelAndView();
 		
+		//33, 34번 때문에 화면이 안보임. 33,34 주석처리하면 보임.
 		GoodsVO goodsVO = goodsService.listProduct(prod_code);
 		mav.addObject("goodsVO", goodsVO);
 		return mav;
