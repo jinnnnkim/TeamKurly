@@ -37,5 +37,5 @@ public interface AdGoodsController {
 	public void listCategory(Model model) throws Exception;
 	
 	//상품 등록
-	public ModelAndView uploadGoodsRegister(@RequestParam @DateTimeFormat(pattern="yyyy-MM-dd")Date prod_vaild_date, @RequestParam("file") MultipartFile file,AdGoodsVO aGoodsVO, RedirectAttributes rttr) throws Exception;
+	public ModelAndView uploadGoodsRegister(@RequestParam @DateTimeFormat(pattern="yyyy-MM-dd")Date prod_vaild_date, @RequestParam("file") MultipartFile file,AdGoodsVO agvo, RedirectAttributes rttr) throws Exception;
 }
