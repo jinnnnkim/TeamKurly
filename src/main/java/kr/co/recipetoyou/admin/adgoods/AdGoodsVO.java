@@ -5,7 +5,7 @@ import java.sql.Date;
 import org.springframework.stereotype.Repository;
 
 
-import kr.co.recipetoyou.adgoods.category.AdGoodsCateVO;
+import kr.co.recipetoyou.admin.adgoods.category.AdGoodsCateVO;
 
 @Repository("adgoodsVO")
 
