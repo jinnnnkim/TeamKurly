@@ -65,7 +65,7 @@
 							</a>
 						</div></li>
 
-					<li><a href="#"><img alt="바질 파스타"
+					<li><a href="${contextPath}/prodDetail.do"><img alt="바질 파스타"
 							src="/recipetoyou/Resources/User/Img/Meal/paster2.jpg"></a>
 						<div class="group_btn">
 							<!-- 장바구니 아이콘 -->

@@ -23,7 +23,7 @@
 
 <body>
 <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
-		<div class="container">
+		<div id="header" class="container">
 				<div class="topBar" id="topMessage">	<!-- banner 가입시 100원~ -->
 					<a href="#" id="eventPage">	<%-- 고유 페이지임으로 id 선언 --%>
 						지금 가입하고 인기상품 <b>100원</b>에 받아가세요!
@@ -214,6 +214,71 @@
 				</div>
 			</div>	<!-- head -->
 		</div>	<!-- container -->
+	<!-- <div class="remote">
+		<div class="remote_deliver">
+			<a href="#none">
+				<img src="/recipetoyou/Resources/User/Img/remote.png"/>
+			</a>
+		</div>
+		<div class="remote_list">
+			<ul>
+				<li><a href="#none">등급별 혜택</a></li>
+				<li><a href="#none">레시피</a></li>
+				<li><a href="#none">베스트후기</a></li>
+			</ul>
+		</div>
+	</div> -->
+	<div class="quickmenu"> 
+		<div class="quickmenu_img">
+				<a href="#none">
+					<img src="/recipetoyou/Resources/User/Img/remote.png"/>
+				</a>
+		</div>
+		<ul class="quickmenuList"> 
+			<li><a href="#">등급별혜택</a></li> 
+			<li><a href="#">1:1문의</a></li>
+			<li><a href="#">후기</a></li> 
+			<li><a href="#">최근본상품<br/>
+			<img src="/recipetoyou/Resources/User/Img/goods5.jpg"/></a></li>
+		</ul> 
+	</div>
+
+	<script>
+	
+	$(document).ready(function(){ 
+		
+		var headerOffset = document.querySelector("#header").clientHeight;
+		var maxPosition = document.querySelector(".wrap").clientHeight;
+		//maxPosition = maxPosition - 415;
+		if(document.querySelector(".banner-img")){
+			var bannerOffset = document.querySelector(".banner-img").clientHeight;
+		}
+		var minPosition = headerOffset+bannerOffset;
+		var currentPosition = parseInt($(".quickmenu").css("top")); 
+		var position = $(window).scrollTop();
+		
+		if(minPosition >= position){
+			$(".quickmenu").css("top","715px");
+		}
+		$(window).scroll(function() { 
+			var position = $(window).scrollTop();
+			var max = position+1200;
+			console.log(position);
+			if(position<=400){
+				$(".quickmenu").css("top","715px");
+			}else if(max>= maxPosition){
+				$(".quickmenu").css("top",currentPosition+"px");
+			}else{
+				console.log(position+currentPosition);
+			
+				$(".quickmenu").stop().animate({
+					"top":position+300+"px"},1000);
+			}
+			console.log("max: "+maxPosition);
+		});
+	});
+
+	</script>
 
 
 <script>

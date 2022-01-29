@@ -103,40 +103,59 @@
 
 .recipeList{
 	padding:0 10px 10px 10px;
+	margin-bottom:25px;
 }
 
 .recipeList ul{
 	padding:0;
 	margin-top:5px;
+	
 }
 
 .recipeList ul li{
 	width:189px;
 	padding:10px;
 	display:inline-block;
+	margin:10px;
 }
 
 .recipeList ul li:hover {
 	cursor: pointer;
 }
 
-.recipeList ul li span{
-	font-size:13px;
-}
+
 .recipeList ul li img{
 	width:189px;
 	height:150px;
 }
+span.recipeStar{
+	display:inline-block;
+	width:75px;
+	font-size:11px;
+}
 .recipeStar i{
 	color:yellow;
 	margin:0;
-	font-size:12px;
+	font-size:11px;
 	line-height:24px;
+}
+span.recipeReview{
+	display:inline-block;
+	width:25px;
+	font-size:11px;
+}
+span.recipeHit{
+	display:inline-block;
+	width:60px;
+	font-size:11px;
+}
+span.recipeHitNumber{
+	font-size:11px;
 }
 
 
-
 .main .page{
+	margin-bottom:30px;
 }
 
 .main .page ul{
@@ -160,4 +179,8 @@
 
 .main .page ul li a{
 	font-size:12px;
+}
+.recipeList ul li span.recipeTitle,
+.recipeList ul li span.writeId{
+	font-size:13px;
 }
