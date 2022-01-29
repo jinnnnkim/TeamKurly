@@ -108,12 +108,19 @@ $(document).ready( function() {
 		});	
 
 	
-/* 상품등록버튼 */
-	$("#saveBtn").on("click", function(){
+/* 유효성검사 */
+	/*
+ $(document).ready(function() : 함수 또는 코드가 호출 또는 실행되는 시점을 스케줄링할 수 있게 해준다.
+		 =>그 시점은 바로 문서 객체 모델이라고 하는 DOM (Document Object Model)이 모두 로딩되었을 때.
+	=>$(document).ready(function() 안에 위치한 코드를 DOM이 모두 준비된 이후에 실행되게끔 해준다.	 
+*/
+//$(document).ready(function(){
+	
+	/* 상품등록버튼 */
+/* 저장버튼 클릭시 */
+$(document).on("click", "#saveBtn", function(){
 	
 	
-	/* 유효성검사 */
-
 	/* 체크 변수 */	
 	let cateCodeChk = false;
 	let nameChk = false;
@@ -130,7 +137,7 @@ $(document).ready( function() {
 
 	/* 체크 대상 변수 */
 
-	let cateCode = $("input[name='cateCode']").val();
+	let cateCode = $("select[name='cateCode']").val();
 	let name = $("input[name='prod_name']").val();
 	let content = $("input[name='prod_content']").val();
 	let price = $("input[name='prod_price']").val();
@@ -234,15 +241,20 @@ $(document).ready( function() {
 	}
 	
 	/* '체크 변수'들이 모두 true일 때 <form>태그 전송 */ 
-	if(cateCodeChk && nameChk && contentChk && priceChk &&  imgChk &&
-	deliveryChk && infoChk && wrapChk && vaildDateChk && sellUnitChk && quantityChk){
+	/*if(cateCodeChk && nameChk && contentChk && priceChk &&  imgChk &&
+	deliveryChk && infoChk && wrapChk && vaildDateChk && sellUnitChk && quantityChk){*/
+
+		$("#registerForm").submit();
 		
-		registerForm.submit();
-		
-	} else{
+	/*} else{
 		return false;
-	}	
-	
+	}*/	
+
+});
+
+/* 상품목록 버튼 클릭시 */
+$("#listBtn").click(function(){
+	location.href='${contextPath}/adgoods/listProduct.do';
 });
 
 

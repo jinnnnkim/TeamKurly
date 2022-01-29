@@ -16,9 +16,9 @@
      integrity=“sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc” crossorigin=“anonymous”>
  	<link href=“https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap” rel=“stylesheet”>
 	<link rel="stylesheet" href="/recipetoyou/Resources/Admin/Css/HomePageHeaderSide/reset.css"> 
-	<link rel="stylesheet" href="/recipetoyou/Resources/Admin/Css/ShoppingMallManagement/goodsInfo.css">
+	<link rel="stylesheet" href="/recipetoyou/Resources/Admin/Css/ShoppingMallManagement/adgoodsInfo.css">
 	<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
-	<script type="text/javascript" src="/recipetoyou/Resources/Admin/Js/ShoppingMallManagement/goodsInfo.js" charset="UTF-8"></script>
+	<script type="text/javascript" src="/recipetoyou/Resources/Admin/Js/ShoppingMallManagement/adgoodsInfo.js" charset="UTF-8"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 	
 	<!-- cdn 활용하여 ckeditor 생성 -->
@@ -111,7 +111,7 @@
 									<div class="file_div">
 										<label for="goodsImg">이미지</label>
 										<div class="goodsImg">
-											<img alt="" src="${prodVO.prod_img }">
+											<img alt="" src="">
 										</div>
 										<button type="button" class="file_button btn">이미지 찾기</button>
 										<input type="file" id="fileItem" name="prod_img" onchange="readURL(this,0)">
@@ -187,7 +187,7 @@
 							<tr>
 								<th>수량</th>
 								<td>
-								<input type="text" value="${prodVO.prod_quantity}" name="prod_quantity">
+								<input type="text" value="${prodVO.stock_quantity}" name="stock_quantity">
 								
 								</td>
 								

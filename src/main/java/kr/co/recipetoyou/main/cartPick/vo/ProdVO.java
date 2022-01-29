@@ -1,6 +1,6 @@
 package kr.co.recipetoyou.main.cartPick.vo;
 
-import java.sql.Date;
+import java.sql.Date; 
 
 import org.springframework.stereotype.Component;
 
@@ -24,19 +24,38 @@ public class ProdVO {
 	private String prod_from;
 	private String prod_caution;
 	private int prod_quantity;
+	private String prod_point;
 	private Date prod_reg_date;
 	private Date prod_vaild_date;
 	
-	//찜하기 테이블
-	private PickVO pickVO;
+	//사용자 주소 테이블
+	private UserAddrVO useraddrVO;
 	private String user_id;
+	private String addr;
+	private String delivery_type;
 	
 	
+
+	public void setUseraddrVO(UserAddrVO useraddrVO) {
+		this.useraddrVO = useraddrVO;
+	}
 	public String getUser_id() {
 		return user_id;
 	}
 	public void setUser_id(String user_id) {
 		this.user_id = user_id;
+	}
+	public String getAddr() {
+		return addr;
+	}
+	public void setAddr(String addr) {
+		this.addr = addr;
+	}
+	public String getDelivery_type() {
+		return delivery_type;
+	}
+	public void setDelivery_type(String delivery_type) {
+		this.delivery_type = delivery_type;
 	}
 	
 	
@@ -130,6 +149,12 @@ public class ProdVO {
 	public void setProd_quantity(int prod_quantity) {
 		this.prod_quantity = prod_quantity;
 	}
+	public String getProd_point() {
+		return prod_point;
+	}
+	public void setProd_point(String prod_point) {
+		this.prod_point = prod_point;
+	}
 	public Date getProd_reg_date() {
 		return prod_reg_date;
 	}
@@ -143,7 +168,7 @@ public class ProdVO {
 		this.prod_vaild_date = prod_vaild_date;
 	}
 	
-
+	
 }
 
 

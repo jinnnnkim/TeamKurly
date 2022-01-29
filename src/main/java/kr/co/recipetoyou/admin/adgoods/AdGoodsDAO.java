@@ -33,5 +33,8 @@ public interface AdGoodsDAO {
 
 	//검색 결과 갯수
 	public int countSearch(AdGoodsCateVO option) throws Exception;
+	
+	//이미지 등록
+	public void imageUpload(AdgoodsImgVO imagevo) throws Exception;
 
 }

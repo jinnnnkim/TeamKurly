@@ -2,10 +2,10 @@
  * 
  */
  
- 
- $(document).ready(function(){
+ //상품 등록 성공 이벤트
+ /*$(document).ready(function(){
  	
- 	//상품 등록 성공 이벤트
+ 	
  	let goodsResult = '<c:out value="${goodsResult}">';
  	checkResult(goodsResult);
  	function checkResult(result){
@@ -17,7 +17,7 @@
  	
  	alert("상품'"+goodsResult+"'을 등록하였습니다.");
  	}		
-});
+});*/
 
  //체크박스 전체선택 기능
  $(function(){

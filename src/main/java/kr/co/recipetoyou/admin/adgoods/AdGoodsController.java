@@ -1,11 +1,13 @@
 package kr.co.recipetoyou.admin.adgoods;
 
 import java.sql.Date;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -37,5 +39,12 @@ public interface AdGoodsController {
 	public void listCategory(Model model) throws Exception;
 	
 	//상품 등록
-	public ModelAndView uploadGoodsRegister(@RequestParam @DateTimeFormat(pattern="yyyy-MM-dd")Date prod_vaild_date, @RequestParam("file") MultipartFile file,AdGoodsVO aGoodsVO, RedirectAttributes rttr) throws Exception;
+	public ModelAndView uploadGoodsRegister(AdGoodsVO agvo, RedirectAttributes rttr) throws Exception;
+	
+	//이미지 업로드
+	public ResponseEntity<List<AdgoodsImgVO>> uploadAction(MultipartFile[] file) throws Exception; 
+	
+	//이미지 삭제
+	public ResponseEntity<String> deleteAction(String fileName) throws Exception;
+	
 }

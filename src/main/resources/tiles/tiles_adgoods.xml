@@ -14,17 +14,17 @@
 						<!-- 전체 상품 조회 -->
 	<definition name="/adgoods/listProduct" extends="adminBaseLayout">
 		<put-attribute name="title" value="상품목록"/>
-		<put-attribute name="body" value="/WEB-INF/Views/Admin/ShoppingMallManagement/listProduct.jsp"/>
+		<put-attribute name="body" value="/WEB-INF/Views/Admin/ShoppingMallManagement/adgoodsList.jsp"/>
 	</definition>
 	
 	<definition name="adgoods/goodsInfo" extends="adminBaseLayout">
 		<put-attribute name="title" value="상품등록"/>
-		<put-attribute name="body" value="/WEB-INF/Views/Admin/ShoppingMallManagement/goodsInfo.jsp"></put-attribute>
+		<put-attribute name="body" value="/WEB-INF/Views/Admin/ShoppingMallManagement/adgoodsInfo.jsp"></put-attribute>
 	</definition>
 	
 	<definition name="/adgoods/moveRegister" extends="adminBaseLayout">
 		<put-attribute name="title" value="상품정보조회"/>
-		<put-attribute name="body" value="/WEB-INF/Views/Admin/ShoppingMallManagement/goodsRegister.jsp"></put-attribute>
+		<put-attribute name="body" value="/WEB-INF/Views/Admin/ShoppingMallManagement/adgoodsRegister.jsp"></put-attribute>
 	</definition>
 
 </tiles-definitions>     

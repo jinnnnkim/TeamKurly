@@ -16,13 +16,17 @@
      integrity=“sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc” crossorigin=“anonymous”>
  	<link href=“https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap” rel=“stylesheet”>
 	<link rel="stylesheet" href="/recipetoyou/Resources/Admin/Css/HomePageHeaderSide/reset.css"> 
-	<link rel="stylesheet" href="/recipetoyou/Resources/Admin/Css/ShoppingMallManagement/goodsRegister.css">
-
+	<link rel="stylesheet" href="/recipetoyou/Resources/Admin/Css/ShoppingMallManagement/adgoodsRegister.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
  	<script src="https://cdn.ckeditor.com/ckeditor5/26.0.0/classic/ckeditor.js"></script>
- 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+ 	<!-- datepicker 적용 -->
+ 	
+	<script type="text/javascript" src="/recipetoyou/Resources/Admin/Js/ShoppingMallManagement/adgoodsRegister.js" charset="UTF-8"></script>
+	<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>	
+	
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" />
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 	<script src="//code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>
-	<script type="text/javascript" src="/recipetoyou/Resources/Admin/Js/ShoppingMallManagement/goodsRegister.js" charset="UTF-8"></script>
-	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 	
 </head>
 <body>
@@ -41,7 +45,7 @@
 			
 				<div class="main-content">
 					<div class="sub-title">| 상품 기본정보</div>											<!-- 파일 업로드 기능 -->
-					<form action="${contextPath }/adgoods/register.do" method="post" id="registerForm" enctype="multipart/form-data">
+					<form action="${contextPath}/adgoods/register.do" method="post" id="registerForm" enctype="multipart/form-data">
 					<table class="table table1 line_top table_line">
 						<colgroup>
 							<col width="120px">
@@ -53,18 +57,18 @@
 								<td>
 									<label>1차 분류</label>
 										<select class="category1">
-											<option selected="selected" value="none">선택</option>
+											<option value="">선택</option>
 										</select>
 										
 									<label>2차 분류</label>
 										<select class="category2" name="cateCode">
-											<option selected="selected" value="none">선택</option>
+											<option value="">선택</option>
 										</select>
 										
 										<span class="ck_msg cateCode_msg">카테고리를 선택해주세요.</span>
 									<div class="helper blue mt5">
 										<img src="/recipetoyou/Resources/Admin/Img/ShoppingMallManagement/Question-blue.png" width="12px" height="12px">
-										카테고리 설정은	 <%-- <a>태그의 상품분류설정은 생략하기로 했음 --%>
+										카테고리 설정은	 
 										<a href="#" class="helper">[상품분류설정]</a>
 										에서 설정가능합니다.
 									</div>
@@ -115,54 +119,18 @@
 									<div class="file_div">
 											<label for="prod_img" class="input-file-btn">이미지 찾기</label>
 											<!-- <button type="button" class="file_button btn">이미지 찾기</button> -->
-											<!-- <input type="file"  id="prod_img" name="file"> -->
-											<input type="text" id="prod_img">
-											<!-- <div class="preview"><img id="goodsImg" alt="" src="" width="300px" height="300px"></div>	 -->
+											<input type="file"  id="fileItem" name="file">
+											<div class="uploadArea">
+											<div class="preview"><img id="goodsImg" alt="" src="" width="300px" height="300px"></div>	
+											<!-- <div id="">
+												<div class="imgDeleteBtn">x</div>
+												<img alt="" src="">
+											</div> -->
+											</div>
 									</div>	
-											<!-- <script>
-											document.getElementById("prod_img").onchange = function(){
-												
-												var reader = new FileReader();
-												
-												if(this.files && this.files[0]){
-													
-													reader.onload = function(data){
-														document.getElementById("goodsImg").src = data.target.result;
-												};
-												reader.readAsDataURL(this.files[0]);
-												
-												};
-												
-											};
 											
 											
-										$("input[type='file']").on("change", function(e){
-												
-												let formData = new FormData();
-												let fileInput = $('input[name="prod_img"]');
-												let fileList = fileInput[0].files;
-												let fileObj = fileList[0];
-												
-												if(!fileCheck(fileObj.name, fileObj.size)){
-													return false;
-												}
-												for(let i=0; i<fileList.length; i++){
-													formData.append("prod_img", fileList[i]);
-													
-													$.ajax({
-														
-														url : '/adgoods/register.do',	//서버로 요청을 보낼 url
-														processData : false,			//서버로 전송할 데이터를 queryString 형태로 변환할지 여부
-														contentType : false,			//서버로 전송되는 데이터의 content-type
-														data : formData,				//서버로 전송할 데이터
-														type : 'POST',					//서버 요청 타입(GET, POST)
-														dataType : 'json'				//서버로부터 반환받을 데이터 타입
-													});
-												}
-												
-											}); 
-											</script> -->
-									
+									<%=request.getRealPath("/") %>	<!-- 파일 실제 경로 표시 -->
 								</td>
 							</tr>
 							<tr>
@@ -215,10 +183,17 @@
 							</tr>
 							<tr>
 								<th>유통기한</th>
-								<td>
-								<input type="date" id="prod_vaild_date" name="prod_vaild_date">
+								<td>							<!-- autocomplete : input 태그 클릭했을 때 이전 데이터 뜨는 것을 막기 위해 -->
+								<input id="prod_vaild_date" name="prod_vaild_date" autocomplete="off" readonly="readonly">
 								<span class="ck_msg prod_vaild_date_msg">유통기한을 입력해주세요.</span>
 								</td>
+								
+								<!-- 
+									DB에 유통기한 컬럼의 데이터 타입이 DATE이기 때문에
+									반드시 "yyyy-MM-dd" 형식으로 입력되어야 한다.
+									=>jquery에서 제공하는 datepicker를 활용해 'yyyy-MM-dd' 형식으로 <input>태그에
+									값이 입력되도록 함.
+								 -->
 								
 							</tr>
 							<tr>
@@ -244,19 +219,18 @@
 					
 						<div class="btn-box" style="margin-top: 10px">
 						
-						<button class="btn btn-lg btn-blue" type="submit" id="saveBtn">저장</button>
+						<input type="button" class="btn btn-lg btn-blue" id="saveBtn" value="저장">
 						
-						<button class="btn btn-lg" onclick="document.location.href='productList.jsp'">목록</button>
-						<%-- 삭제버튼 클릭시 상품후기 목록에서 해당상품이 삭제되는 기능 넣기 -> 상품후기목록 페이지로 이동 기능 넣기 --%>
-						<button id="GoodRegister_remove" class="btn btn-lg btn-red" onclick="">삭제</button>
+						<button class="btn btn-lg" id="listBtn">목록</button>
+						
+						<button class="btn btn-lg btn-red" id="removeBtn">삭제</button>
 					</div>
 					</form>
 					
 					</div>
+				</div>	
 	
 	<script type="text/javascript">
-	
-	let registerForm = $("#registerForm");
 	
 	/* 카테고리 */
 	let cateList = JSON.parse('${cateList}');
@@ -322,9 +296,157 @@
 			}
 		});
 	});
-		
+	
+	//
+	
+/*유통기한 입력 위한 캘린더 위젯 적용*/
 
-	</script> 
+/* 설정 */
+const config = {
+		dateFormat: 'yy-mm-dd',
+		showOn : "button",
+		buttonText : "날짜 선택",
+		prevText: '이전 달',
+	    nextText: '다음 달',
+	    monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
+	    monthNamesShort: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
+	    dayNames: ['일','월','화','수','목','금','토'],
+	    dayNamesShort: ['일','월','화','수','목','금','토'],
+	    dayNamesMin: ['일','월','화','수','목','금','토'],
+	    yearSuffix: '년',
+	    changeMonth: true,
+        changeYear: true
+}
+
+/* 캘린더 */
+$(function(){
+	$("input[name='prod_vaild_date']").datepicker(config);
+});
+
+
+	
+document.getElementById("fileItem").onchange = function(){
+	
+	var reader = new FileReader();
+	
+	if(this.files && this.files[0]){
+		
+		reader.onload = function(data){
+			document.getElementById("goodsImg").src = data.target.result;
+	};
+	reader.readAsDataURL(this.files[0]);
+	
+	};
+	
+};
+
+
+$("input[type='file']").on("change", function(e){
+	
+	/* 이미지 존재시 삭제 */
+	if($(".imgDeleteBtn").length>0){
+		deleteFile();
+	}
+	
+	/*
+		사용자가 선택한 파일을 서버에 전송하기 위해서는 선택된 파일에 접근하는 방법을 알아야 한다.
+		
+		1.<input> 태그를 통해 선택된 파일은 File 객체의 형태로 표현됨.
+		2.File 객체는 FileList(배열 형태의 객체) 객체의 요소로 저장이 됨.
+		3.FileList의 요소에는 File 객체가 저장됨 -> File 객체는 type이 'file'인 <input> 태그의 "files"의 속성.
+		4.사용자가 <input>태그를 통해 파일1개를 선택하게 되면 FileList 첫 번째 요소(FileList[0])인 File 객체에 파일 데이터가 저장됨.
+		5.여러 개의 파일을 선택한다면 선택한 갯수(n)만큼 FileList 첫 번째요소(FileList[0])부터 순서대로 각 요소(FileLsit[n]) File 객체에 저장됨.
+		
+		=>사용자가 선택한 파일을 선택한 파일인 File 객체에 접근하기 위해서는 결국
+		FileList 객체(<input>태그의 files 속성)에 접근해야 함.
+	*/
+	
+	let formData = new FormData();
+	let fileInput = $('input[name="file"]');
+	let fileList = fileInput[0].files;
+	let fileObj = fileList[0];
+	
+	if(!fileCheck(fileObj.name, fileObj.size)){
+		return false;
+	}
+	
+	//multiple 속성을 부여하여 사용자가 여러 개의 파일을 선택할 수 있도록함.
+	for(let i=0; i<fileList.length; i++){
+		formData.append("file", fileList[i]);
+		
+		$.ajax({
+			
+			url : '/adgoods/uploadAction.do',	//서버로 요청을 보낼 url
+			processData : false,			//서버로 전송할 데이터를 queryString 형태로 변환할지 여부
+			contentType : false,			//서버로 전송되는 데이터의 content-type
+			data : formData,				//서버로 전송할 데이터
+			type : 'POST',					//서버 요청 타입(GET, POST)
+			dataType : 'json',				//서버로부터 반환받을 데이터 타입
+			success : function(result){
+				colsole.log(result);
+				showUploadImage(result);
+			},
+			error : function(result){
+				alert("이미지 파일이 아닙니다.");
+			}
+		});
+	}
+	
+}); 
+
+/* 파일 형식 체크 */
+ 
+let regex = new RegExp("(.*?)\.(jpg|png)$");
+let maxSize = 1048576; //1MB
+
+function fileChk(fileName, fileSize){
+	
+	if(fileSize >= maxSize ){
+		alert("파일 사이즈 초과");
+		return false;
+	}
+	
+	if(!regex.test(fileName)){
+		alert("올바른 파일 형식이 아닙니다.");
+		return false;
+	}
+	
+	return true;
+}
+
+/* 이미지 삭제 버튼 동작 */
+$("#uploadArea").on("click", ".imgDeleteBtn", function(e){
+	deleteFile();
+})
+
+/* 파일 삭제 메서드 */
+function deleteFile(){
+	
+	let targetFile = $(".imgDeleteBtn").data("file");
+	
+	let targetDiv = $("#result_card");
+	
+	$.ajax({
+		
+		url : '/adgoods/deleteFile',
+		data : {fileNam : targetFile},
+		dataType : 'text',
+		type : 'POST',
+		success : function(result){
+			console.log(result);
+			
+			targetDiv.remove();
+			$("input[type='file']").val("");
+		},
+		
+		error : function(result){
+			
+			console.log(result);
+			alert("파일을 삭제하지 못하였습니다.")
+		}
+	});
+}
+</script> 
 	
 </body>
 </html>
