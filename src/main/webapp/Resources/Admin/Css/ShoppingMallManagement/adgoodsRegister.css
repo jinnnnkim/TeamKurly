@@ -427,6 +427,6 @@ body, td, select, div, textarea, center {
 	color: white;
 	cursor: pointer;
 }
-/*#prod_img{
+*#prod_img{
 	display: none;
-}*/
+}

@@ -81,6 +81,15 @@ public class AdGoodsDAOImpl implements AdGoodsDAO{
 		
 	}
 	
+	//이미지 등록
+	@Override
+	public void imageUpload(AdgoodsImgVO imagevo) throws Exception {
+		
+		
+		sqlSession.insert(NAMESPACE+"imageUpload", imagevo);
+		
+	}
+	
 	
 
 }

@@ -73,9 +73,9 @@
 	<!-- 상품 상세 정보 조회, 카테고리 테이블과 조인-->
 	 <select id="readProduct" resultMap="adgoodsResult" parameterType="int">
 		<![CDATA[
-			SELECT tp.PROD_CODE ,tp.PROD_NAME ,tp.PROD_CONTENT ,tp.PROD_IMG , tp.PROD_PRICE , tp.PROD_DISCOUNT , tp.PROD_SELL_UNIT ,
+			SELECT tp.PROD_CODE ,tp.PROD_NAME ,tp.PROD_CONTENT ,tp.PROD_PRICE , tp.PROD_DISCOUNT , tp.PROD_SELL_UNIT ,
 			tp.PROD_SELL_UNIT ,tp.PROD_DELIVERY_TYPE ,tp.PROD_WRAP_TYPE ,tp.PROD_INFO , tp.PROD_ALLERGY ,tp.PROD_VAILD_DATE ,
-			tp.PROD_FROM ,tp.PROD_CAUTION ,tp.PROD_QUANTITY ,tp.PRODTHUMBIMG , tp.CATECODE ,
+			tp.PROD_FROM ,tp.PROD_CAUTION ,tp.CATECODE ,tp.stock_quantity,
 			tpc.CATECODE ,tpc.CATENAME ,tpc.CATEPARENT 
 				FROM TB_PROD tp INNER JOIN TB_PROD_CATE tpc 
 				ON tp.CATECODE = tpc.CATECODE 
@@ -83,14 +83,20 @@
 		]]>
 	</select>
 	
-	<!-- 상품 등록, tb_prod & tp_prod_cate 다중 테이블 insert를 위해 insert all 사용 -->
+	<!-- 상품 등록 -->
 	<insert id="register">
-			insert into tb_prod(prod_code, cateCode, prod_name,prod_content,prod_img, prod_price, prod_discount, prod_sell_unit, prod_delivery_type,
-								prod_wrap_type, prod_info, prod_allergy, prod_vaild_date, prod_from, prod_caution,prod_quantity,prodThumbImg)
-			values (prodcode_seq.nextval, #{cateCode}, #{prod_name}, #{prod_content}, #{prod_img}, #{prod_price}, #{prod_discount}, #{prod_sell_unit}, #{prod_delivery_type},
-							#{prod_wrap_type}, #{prod_info}, #{prod_allergy}, #{prod_vaild_date}, #{prod_from}, #{prod_caution}, #{prod_quantity}, #{prodThumbImg})
+			insert into tb_prod(prod_code, cateCode, prod_name,prod_content, prod_price, prod_discount, prod_sell_unit, prod_delivery_type,
+								prod_wrap_type, prod_info, prod_allergy, prod_vaild_date, prod_from, prod_caution,stock_quantity)
+			values (prodcode_seq.nextval, #{cateCode}, #{prod_name}, #{prod_content},#{prod_price}, #{prod_discount}, #{prod_sell_unit}, #{prod_delivery_type},
+							#{prod_wrap_type}, #{prod_info}, #{prod_allergy}, #{prod_vaild_date}, #{prod_from}, #{prod_caution}, #{stock_quantity})
 			
 			
+	</insert>
+	
+	<!-- 이미지 등록 -->
+	<insert id="imageUpload">
+		insert into tb_adgoods_Img(fileName, prod_code, uploadPath, uuid)
+		values (#{fileName}, #{prod_code}, #{uploadPath}, #{uuid})
 	</insert>
 	
 	<!-- 카테고리 호출 -->

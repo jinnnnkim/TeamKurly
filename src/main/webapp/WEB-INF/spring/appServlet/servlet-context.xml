@@ -41,15 +41,12 @@
 	
 	<context:component-scan base-package="kr.co.recipetoyou" />
 	
-	<!-- 상품 이미지 업로드 패스 설정 -->
-	<!-- <beans:bean class="java.lang.String" id="uploadPath">
-		<beans:constructor-arg value="C:\git-recipetoyou\RecipeToYou\src\main\webapp\Resources\Admin\Img\AdgoodsImg"/>
-	</beans:bean> -->
+	
 	
 	<!-- 일반 파일 업로드 경로 -->
-	<!-- <resources mapping="/AdgoodsImg/**" location="/recipetoyou/Resources/Admin/Img/AdgoodsImg/" /> -->
+	<!-- <resources mapping="/AdgoodsImg/**" location="/Resources/Admin/Img/AdgoodsImg/" /> -->
 	<!-- 대체 이미지 경로 -->
-	<!-- <resources mapping="/SubgoodsImg/**" location="/recipetoyou/Resources/Admin/Img/SubgoodsImg/" /> -->
+	<!-- <resources mapping="/SubgoodsImg/**" location="/Resources/Admin/Img/SubgoodsImg/" /> -->
 	
 	<!-- multipartResolver 빈 설정 -->
 	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">

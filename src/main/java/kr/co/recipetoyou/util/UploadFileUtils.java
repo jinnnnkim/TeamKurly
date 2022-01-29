@@ -15,27 +15,31 @@ import net.coobird.thumbnailator.Thumbnails;
 public class UploadFileUtils {
 	
 	
-	static final int THUMBNAIL_WIDTH = 300;
-	static final int THUMBNAIL_HEIGHT = 300; 
+	static final int THUMBNAIL_WIDTH = 300;		//썸네일 가로 크기
+	static final int THUMBNAIL_HEIGHT = 300; 	//썸네일 세로 크기
 
 	public static String fileUpload(String uploadPath, String fileName, byte[] fileData, String ymdPath) throws Exception{
 		
 		//같은 파일명이라도 중복되지 않도록 랜덤 문자+파일명 조합한 뒤 생성 폴더에 저장
 		UUID uid = UUID.randomUUID();
 		
-		String newFileName = uid + "_" + fileName;
-		String imgPath = uploadPath + ymdPath;
+		String newFileName = uid + "_" + fileName;		//"랜덤문자+파일명"
+		String imgPath = uploadPath + ymdPath;			//업로드 경로+연월일 경로 = 이미지 저장 경로
 		
+		//이미지 경로에 원본 파일을 저장하겠다.
 		File target = new File(imgPath, newFileName);
 		FileCopyUtils.copy(fileData, target);
 		
-		String thumbFileName = "s_" + newFileName;
+		String thumbFileName = "s_" + newFileName;		//썸네일 파일명 = "s_파일명"
 		File image = new File(imgPath+File.separator+newFileName);
 		
+		//원본 파일의 하위 경로에 "s"폴더를 생성하여 썸네일을 저장하겠다.
 		File thumbnail = new File(imgPath+File.separator+"s"+File.separator+thumbFileName);
 		
 		if(image.exists()) {
+			//썸네일 저장 폴더 생성
 			thumbnail.getParentFile().mkdirs();
+			//썸네일 생성
 			Thumbnails.of(image).size(THUMBNAIL_WIDTH, THUMBNAIL_HEIGHT).toFile(thumbnail);
 		}
 		return newFileName;
