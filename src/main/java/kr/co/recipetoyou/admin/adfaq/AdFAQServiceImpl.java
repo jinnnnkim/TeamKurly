@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 
+import kr.co.recipetoyou.admin.aduser.AdUserVO;
 import kr.co.recipetoyou.util.PagingVO;
 
 @Service("faqService")
@@ -25,5 +26,23 @@ public class AdFAQServiceImpl implements AdFAQService {
 	@Override
 	public int FAQListCount() throws DataAccessException {
 		return dao.FAQListCount();
+	}
+
+	//FAQ 상세 정보 조회
+	@Override
+	public AdFAQVO getFAQInfo(String id) throws DataAccessException {		
+		return dao.readFAQ(id);
+	}
+		
+	//FAQ 정보 삭제
+	@Override
+	public int removeFAQ(String id) throws DataAccessException {	
+		return dao.deleteFAQ(id);	
+	}
+		
+	//FAQ 정보 수정
+	@Override
+	public void updateFAQInfo(AdFAQVO vo) throws DataAccessException {
+		dao.updateFAQ(vo);	
 	}
 }

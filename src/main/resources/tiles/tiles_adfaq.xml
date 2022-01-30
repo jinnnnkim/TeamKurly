@@ -11,17 +11,26 @@
 		<put-attribute name="body" value=""/>
 	</definition>
 	
-						<!-- 전체 상품 조회 -->
+	<!-- FAQ관리환경설정 -->			
 	<definition name="/adfaq/faqEnvironmentSetting" extends="adminBaseLayout">
 		<put-attribute name="title" value="FAQ관리환경설정"/>
 		<put-attribute name="body" value="/WEB-INF/Views/Admin/FAQEnvironmentSetting/faqEnvironmentSetting.jsp"/>
 	</definition>
-	
+	<!-- ====================================== -->	
+	<!-- FAQ관리환경설정 -->	
 	<definition name="/adfaq/faqAdManagement" extends="adminBaseLayout">
 		<put-attribute name="title" value="FAQ관리"/>
 		<put-attribute name="body" value="/WEB-INF/Views/Admin/FAQManagement/faqManagement.jsp"></put-attribute>
 	</definition>
 	
+	<!-- FAQ수정 -->	
+	<definition name="/adfaq/modFAQInfo" extends="adminBaseLayout">
+		<put-attribute name="title" value="FAQ정보수정"/>
+		<put-attribute name="body" value="/WEB-INF/Views/Admin/FAQManagement/faqModRegistration.jsp"></put-attribute>
+	</definition>
+		
+	<!-- ====================================== -->	
+	<!-- FAQ게시물등록 -->	
 	<definition name="/adfaq/faqRegistration" extends="adminBaseLayout">
 		<put-attribute name="title" value="FAQ게시물등록"/>
 		<put-attribute name="body" value="/WEB-INF/Views/Admin/FAQRegistration/faqRegistration.jsp"></put-attribute>

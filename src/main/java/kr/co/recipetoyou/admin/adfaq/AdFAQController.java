@@ -14,4 +14,12 @@ public interface AdFAQController {
 
 	public ModelAndView listFAQManagement(PagingVO vo, HttpServletRequest request, HttpServletResponse response) throws Exception;
 
+	public ModelAndView getFAQInfo(String id, HttpServletRequest request, HttpServletResponse response) throws Exception;
+
+	public ModelAndView updateFAQAction(AdFAQVO vo, HttpServletRequest request, HttpServletResponse response) throws Exception;
+
+	public ModelAndView removeFAQ(String id, HttpServletRequest request, HttpServletResponse response) throws Exception;
+
+	public ModelAndView updateFAQInfo(String id, HttpServletRequest request, HttpServletResponse response) throws Exception;
+
 }

@@ -5,8 +5,11 @@ import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Repository;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import kr.co.recipetoyou.admin.aduser.AdUserVO;
 import kr.co.recipetoyou.util.PagingVO;
 
 @Repository("faqDAO")
@@ -33,9 +36,29 @@ public class AdFAQDAOImpl implements AdFAQDAO{
 		return sqlSession.selectList("mapper.adfaq.FAQListPaging", vo);
 	}
 
+	//FAQ 정보 수 조회
 	@Override
 	public int FAQListCount() {
 		return sqlSession.selectOne("mapper.adfaq.FAQListCount");
 	}
+
+	//FAQ 정보 삭제
+	@Override
+	public int deleteFAQ(@RequestParam("id") String id) throws DataAccessException {	
+		int result = sqlSession.delete("mapper.adfaq.deleteFAQ", id);
+		return result;
+	}
+	
+	//FAQ 상세 정보 조회
+	@Override
+	public AdFAQVO readFAQ(String id) throws DataAccessException {
+		return sqlSession.selectOne("mapper.adfaq.readFAQ", id);
+	}
+		
+	//FAQ 정보 수정
+	@Override
+	public void updateFAQ(AdFAQVO vo) throws DataAccessException {
+		sqlSession.update("mapper.adfaq.updateFAQ", vo);
+	} 
 
 }

@@ -8,7 +8,7 @@
 	<!-- 발송 -->
 	<resultMap type="adFAQVO" id="FAQResult">		
 		<result property="faq_code" column="faq_code" />
-		<result property="faq_info" column="ord_code"/>
+		<result property="faq_info" column="faq_info"/>
 		<result property="faq_confirm" column="faq_confirm"/>
 		<result property="faq_reg_date" column="faq_reg_date"/>
 	</resultMap>
@@ -30,12 +30,40 @@
 		]]>
 	</select>
 	
-	<!-- 총 회원 수 -->
+	<!-- 총 FAQ 수 -->
 	<select id="FAQListCount" resultType="int">
 		<![CDATA[
 			select count(*) from TB_faq
 		]]>
 	</select>
 	
+	<!-- FAQ 정보 삭제  -->
+	<delete id="deleteFAQ" parameterType="String">
+		<![CDATA[
+			delete from tb_faq
+			where faq_code = #{id}
+		]]>
+	</delete>
+	
+	<!-- FAQ 상세 정보 조회 -->
+	<select id="readFAQ" resultMap="FAQResult" parameterType="String">
+		<![CDATA[
+			select *
+			from tb_faq
+			where faq_code = #{id}
+		]]>
+	</select>
+	
+	<!-- FAQ 정보 수정 -->
+	<update id="updateFAQ" parameterType="adFAQVO">
+		<![CDATA[
+			update tb_faq set
+			faq_code = #{faq_code},			
+			faq_info = #{faq_info}, 
+			faq_confirm = #{faq_confirm},
+			faq_reg_date = #{faq_reg_date} 
+			where faq_code = #{faq_code}
+		]]>
+	</update>
 
 </mapper>	
