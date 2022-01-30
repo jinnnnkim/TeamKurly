@@ -1,6 +1,7 @@
 package kr.co.recipetoyou.admin.adgoods;
 
 import org.springframework.http.MediaType;
+
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.net.URLDecoder;
@@ -10,13 +11,10 @@ import java.nio.file.Paths;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.Enumeration;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
-import javax.annotation.Resource;
 import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -25,28 +23,25 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
-import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-
+import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 
-import kr.co.recipetoyou.admin.adgoods.category.AdGoodsCateVO;
 import kr.co.recipetoyou.util.PageMaker;
 import kr.co.recipetoyou.util.PagingVO;
-import kr.co.recipetoyou.util.UploadFileUtils;
 import net.coobird.thumbnailator.Thumbnails;
 
 
@@ -232,12 +227,19 @@ public class AdGoodsControllerImpl implements AdGoodsController {
 	 * 4.ResponseEntity를 통해서 뷰(view)로 상태 코드가 200인 List 객체 전송
 	 * 5.뷰(view)에서 ajax를 통해 요청 시 JSON 타입의 데이터를 요청
 	 */
-	@Override																		//서버에서 뷰로 변환하는 데이터 인코딩
-	@RequestMapping(value = "/adgoods/uploadAction.do", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<List<AdgoodsImgVO>> uploadAction(MultipartFile[] file) throws Exception {
+	@Override																									//서버에서 뷰로 변환하는 데이터 인코딩
+	@RequestMapping(value = "/adgoods/uploadAction.do", headers = ("content-type=multipart/*"), method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseBody
+	public ResponseEntity<List<AdgoodsImgVO>> uploadAction(@RequestParam MultipartFile[] uploadFile) throws Exception {
+		
 		
 		//이미지 파일 체크
-		for(MultipartFile multipartFile : file) {
+		for(MultipartFile multipartFile : uploadFile) {
+			
+			logger.info("-----------------------------");
+			logger.info("파일 이름 : " + multipartFile.getOriginalFilename());
+			logger.info("파일 타입 : " + multipartFile.getContentType());
+			logger.info("파일 크기 : " + multipartFile.getSize());
 			
 			File checkfile = new File(multipartFile.getOriginalFilename());
 			String filetype = null;
@@ -280,7 +282,7 @@ public class AdGoodsControllerImpl implements AdGoodsController {
 		//이미지 정보 담는 객체
 		List<AdgoodsImgVO> list = new ArrayList();
 		
-		for(MultipartFile multipartFile : file) {
+		for(MultipartFile multipartFile : uploadFile) {
 			
 			AdgoodsImgVO imagevo = new AdgoodsImgVO();
 			
@@ -331,6 +333,8 @@ public class AdGoodsControllerImpl implements AdGoodsController {
 	
 	//이미지 삭제
 	@Override
+	@RequestMapping(value = "/adgoods/deleteFile.do")
+	@ResponseBody
 	public ResponseEntity<String> deleteAction(String fileName) throws Exception {
 		
 		logger.info("deleteFile......." + fileName);
@@ -362,6 +366,38 @@ public class AdGoodsControllerImpl implements AdGoodsController {
 		}
 		
 		return new ResponseEntity<String>("success", HttpStatus.OK);
+	}
+	
+	
+	//이미지 출력
+	@Override
+	@RequestMapping(value = "/adgoods/getImageInfo.do", headers = ("content-type=multipart/*"), consumes = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseBody
+	public ResponseEntity<byte[]> getadGoodsImage(String fileName) throws Exception {
+		
+		File file = new File(UPLOAD_DIR+fileName);
+		
+		ResponseEntity<byte[]> result = null;
+		
+		try {
+			
+			HttpHeaders header = new HttpHeaders();
+			header.add("Content-type", Files.probeContentType(file.toPath()));
+			result = new ResponseEntity<>(FileCopyUtils.copyToByteArray(file), header, HttpStatus.OK);
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return result;
+	}
+	
+	//이미지 정보 반환
+	@Override
+	@ResponseBody
+	@RequestMapping(value = "/adgoods/getImageList.do")
+	public ResponseEntity<List<AdgoodsImgVO>> getImageList(int prod_code) throws Exception {
+	
+		return new ResponseEntity<List<AdgoodsImgVO>>(adGoodsService.getGoodsImage(prod_code), HttpStatus.OK);
 	}
 
 	

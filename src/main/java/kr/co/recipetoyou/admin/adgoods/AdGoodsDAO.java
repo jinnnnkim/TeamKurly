@@ -36,5 +36,8 @@ public interface AdGoodsDAO {
 	
 	//이미지 등록
 	public void imageUpload(AdgoodsImgVO imagevo) throws Exception;
+	
+	//이미지 데이터 반환
+	public List<AdgoodsImgVO> getGoodsImage(int prod_code) throws Exception;
 
 }
