@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 2.1//EN"
+       "http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
+       
+<tiles-definitions>
+
+	<definition name="adminBaseLayout" template="/WEB-INF/Views/Admin/Inc/layout.jsp">
+		<put-attribute name="title" value=""/>
+		<put-attribute name="header" value="/WEB-INF/Views/Admin/Inc/homePage.jsp"/>
+		<put-attribute name="body" value=""/>
+	</definition>
+	
+						<!-- 전체 상품 조회 -->
+	<definition name="/adfaq/faqEnvironmentSetting" extends="adminBaseLayout">
+		<put-attribute name="title" value="FAQ관리환경설정"/>
+		<put-attribute name="body" value="/WEB-INF/Views/Admin/FAQEnvironmentSetting/faqEnvironmentSetting.jsp"/>
+	</definition>
+	
+	<definition name="/adfaq/faqAdManagement" extends="adminBaseLayout">
+		<put-attribute name="title" value="FAQ관리"/>
+		<put-attribute name="body" value="/WEB-INF/Views/Admin/FAQManagement/faqManagement.jsp"></put-attribute>
+	</definition>
+	
+	<definition name="/adfaq/faqRegistration" extends="adminBaseLayout">
+		<put-attribute name="title" value="FAQ게시물등록"/>
+		<put-attribute name="body" value="/WEB-INF/Views/Admin/FAQRegistration/faqRegistration.jsp"></put-attribute>
+	</definition>
+
+</tiles-definitions>     
