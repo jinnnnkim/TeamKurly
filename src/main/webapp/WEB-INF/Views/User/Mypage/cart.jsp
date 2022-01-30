@@ -7,7 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>장바구니</title>
-<link href="/recipetoyou/resources/User/Css/Mypage2/reset.css" rel="stylesheet"
+<link href="/recipetoyou/Resources/User/Css/Mypage2/reset.css" rel="stylesheet"
 	type="text/css">
 <link href="/recipetoyou/Resources/User/Css/Mypage2/cart.css"
 	rel="stylesheet" type="text/css">
