@@ -1,9 +1,21 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<c:set var="contextPath" value="${pageContext.servletContext.contextPath }"/>
+<%
+	request.setCharacterEncoding("utf-8");
+%>
+<c:if test="${admin.adminId == null }">
+	<script>
+		alert("관리자 로그인 후 이용이 가능합니다.");
+		location.href="${contextPath}/adLogin.do";
+	</script>
+</c:if>
 <!DOCTYPE html>
 <html>
 <head>
-	<link rel="stylesheet" href="../../../Resources/Admin/Css/FAQRegistration/faqRegistration.css">
+	<link rel="stylesheet" href="/recipetoyou/Resources/Admin/Css//FAQRegistration/faqRegistration.css">
 	<meta charset="UTF-8">
 	<script src="https://cdn.ckeditor.com/ckeditor5/31.1.0/classic/ckeditor.js"></script>
 	<title>FAQ게시글 등록</title>

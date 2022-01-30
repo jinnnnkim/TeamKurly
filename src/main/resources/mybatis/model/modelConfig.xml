@@ -27,7 +27,8 @@
 		<typeAlias type="kr.co.recipetoyou.admin.adsend.ademail.AdEmailVO" alias="adEmailVO"/>
 		<typeAlias type="kr.co.recipetoyou.admin.adsend.adsms.AdSmsVO" alias="adSmsVO"/>
 		
-
+		<typeAlias type="kr.co.recipetoyou.admin.adfaq.AdFAQVO" alias="adSmsVO"/>
+		
 		<!-- user -->
 		<typeAlias type="kr.co.recipetoyou.user.UserVO" alias="userVO"/>
 		

@@ -1,11 +1,23 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<c:set var="contextPath" value="${pageContext.servletContext.contextPath }"/>
+<%
+	request.setCharacterEncoding("utf-8");
+%>
+<c:if test="${admin.adminId == null }">
+	<script>
+		alert("관리자 로그인 후 이용이 가능합니다.");
+		location.href="${contextPath}/adLogin.do";
+	</script>
+</c:if>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet"
-	href="../../../Resources/Admin/Css/FAQEnvironmentSetting/faqEnvironmentSetting.css">
+	href="/recipetoyou/Resources/Admin/Css/FAQEnvironmentSetting/faqEnvironmentSetting.css">
 <title>FAQ관리환경설정</title>
 </head>
 	<body>
