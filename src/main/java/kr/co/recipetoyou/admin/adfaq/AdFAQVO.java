@@ -12,6 +12,10 @@ import org.springframework.stereotype.Component;
 @Component("adFAQVO")
 public class AdFAQVO {
 
+	public AdFAQVO() {
+		System.out.println("AdFAQVO 호출");
+	}
+	
 	private int faq_code;
 	private String faq_info;
 	private int faq_confirm;
