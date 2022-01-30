@@ -7,9 +7,9 @@
 <c:if test="${admin.adminId == null }">
 	<script>
 		alert("관리자 로그인 후 이용이 가능합니다.");
-		location.href="${contextPath}/admin/adloginForm.do";
+		location.href="${contextPath}/adLogin.do";
 	</script>
-</c:if> 
+</c:if>
 <!DOCTYPE html>
 <html>
 <head>
