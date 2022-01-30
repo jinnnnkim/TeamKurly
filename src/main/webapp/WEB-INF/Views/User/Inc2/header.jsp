@@ -263,18 +263,14 @@
 		$(window).scroll(function() { 
 			var position = $(window).scrollTop();
 			var max = position+1200;
-			console.log(position);
 			if(position<=400){
 				$(".quickmenu").css("top","715px");
 			}else if(max>= maxPosition){
 				$(".quickmenu").css("top",currentPosition+"px");
 			}else{
-				console.log(position+currentPosition);
-			
 				$(".quickmenu").stop().animate({
 					"top":position+300+"px"},1000);
 			}
-			console.log("max: "+maxPosition);
 		});
 	});
 

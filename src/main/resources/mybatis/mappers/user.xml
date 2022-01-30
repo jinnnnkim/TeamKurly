@@ -44,10 +44,21 @@
 		]]>
 	</select>
 	
-	<select id="idChk" resultType="int">
+	<select id="idChk" resultType="int" parameterType="java.lang.String">
+		<![CDATA[
 		SELECT COUNT(*) FROM tb_users
 		WHERE user_id = #{user_id}
+		]]>
 	</select>
+	
+	<select id="mailChk" resultType="int" parameterType="java.lang.String">
+		<![CDATA[
+		SELECT COUNT(*) FROM tb_users
+		WHERE user_email = #{user_email}
+		]]>
+	</select>
+	
+	
 	
 	<!-- 페이지정보를 10개씩 가져오기 -->
 	<select id="listPage" resultMap="userResult">
