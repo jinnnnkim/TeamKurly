@@ -28,7 +28,6 @@
 	type="image/x-icon" />
 </head>
 <body>
-	<%--mypageSideMenu end--%>
 	<div class="content">
 		<div class="head">
 			<h2 class="title">

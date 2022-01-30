@@ -69,7 +69,18 @@ public class AdGoodsServiceImpl implements AdGoodsService {
 	@Override
 	public void register(AdGoodsVO agvo) throws Exception {
 		
+		logger.info("(service) register........");
 		adGoodsDAO.register(agvo);
+		
+		//이미지가 없는 경우 register() 메서드 실행 종료
+		if(agvo.getImageList() == null || agvo.getImageList().size() <= 0) {
+			return;
+		}
+		
+		for(AdgoodsImgVO imagevo : agvo.getImageList()) {
+			imagevo.getProd_code();
+			adGoodsDAO.imageUpload(imagevo);
+		}
 		
 	}
 	

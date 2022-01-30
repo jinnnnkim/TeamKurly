@@ -8,7 +8,7 @@ request.setCharacterEncoding("UTF-8");
 <!DOCTYPE html>
 <html>
 <head>
-
+<link href="/recipetoyou/Resources/User/Css/remote.css" rel="stylesheet"  type="text/css">
 <meta charset="UTF-8">
 <title><tiles:insertAttribute name="title" /></title>
 

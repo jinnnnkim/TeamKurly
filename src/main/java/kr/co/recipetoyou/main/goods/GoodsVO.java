@@ -27,7 +27,7 @@ import org.springframework.stereotype.Repository;
 @Repository("goodsVO")
 public class GoodsVO {
 	
-	private String prod_code;
+	private int prod_code;
 	private String prodcatecode;
 	private String prod_name;
 	private String prod_content;
@@ -51,7 +51,7 @@ public class GoodsVO {
 	}
 
 
-	public GoodsVO(String prod_code, String prod_name, String prod_content, String prod_img, int prod_price,
+	public GoodsVO(int prod_code, String prod_name, String prod_content, String prod_img, int prod_price,
 			int prod_discount, int prod_sell_unit, int prod_delivery_type, int prod_wrap_type, String prod_info,
 			String prod_allergy, Date prod_vaild_date, String prod_from, String prod_caution, int prod_quantity,
 			Date prod_reg_date) {
@@ -75,12 +75,12 @@ public class GoodsVO {
 	}
 
 
-	public String getProd_code() {
+	public int getProd_code() {
 		return prod_code;
 	}
 
 
-	public void setProd_code(String prod_code) {
+	public void setProd_code(int prod_code) {
 		this.prod_code = prod_code;
 	}
 

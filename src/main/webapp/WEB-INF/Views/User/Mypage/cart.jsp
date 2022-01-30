@@ -24,6 +24,9 @@
 <link href="/recipetoyou/Resources/User/Img/Mypage2/KurlyIcon.png"
 	rel="icon" type="image/x-icon" />
 <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+    
+    
 </head>
 <body>
 		<div class="body">
@@ -31,22 +34,26 @@
 				<h2>장바구니</h2>
 			</div>
 			<!-- title -->
+		
+		<c:forEach var="cartList" items="${cartList}">		
+			
 			<div class="content">
 				<div class="cart_main">
 					<div class="cart_select">
-						<label> <input type="checkbox" checked> <span>전체선택(1/1)</span>
-						</label> <a href="#" class="select_delete_btn"> <span
-							class="btn_delete_all"> </span> 선택삭제
+						<label> <input type="checkbox" name="checkItem" value="selectall" onclick="selectAll(this)"> <span>전체선택(1/1)</span>
+						</label> <a href="#" class="select_delete_btn">
+						 	<input type="button" class="btn_delete_all" value="선택삭제" onclick="popUp()"> 
 						</a>
 					</div>
 					<!-- cart_select -->
 
 				
 					<div class="cartlist">
-						<label class="inn_check"> <input type="checkbox" checked>
+						<label class="inn_check"> <input type="checkbox" name="checkItem" >
 						</label>
 
-				<c:forEach var="cartkList" items="${cartkList}">
+			
+				
 						<div class="item">
 							<a href="#"> 
 							<img alt="thumbnail"
@@ -56,8 +63,8 @@
 							</a>
 
 							<div class="subject">
-								<a href="" class="subject_tit">${cartkList.prod_name}</a> 
-								<span class="subject_in">${cartkList.prod_content}</span>
+								<a href="" class="subject_tit">${cartList.prod_name}</a> 
+								<span class="subject_in">${cartList.prod_content}</span>
 							</div>
 
 
@@ -73,17 +80,27 @@
 							</div>
 							<!-- inner_option  -,+ 구매수량 -->
 
-							<div class="item_prices">
-								<span class="price"><span id="itemPrice"class="num">${cartkList.prod_price}</span>원</span>
-							</div>
+							<%-- <div class="item_prices">
+								 <span class="price"><span id="itemPrice"class="num">${cartList.prod_price}</span>원</span> 
+							</div> --%>
+								
+						
 
 							<div class="cancle">
 								<i class="fas fa-window-close"></i>
 							</div>
+						
+						
+							<div class="totalItem_prices">
+								 <span class="item_prices"><span id="itemPrice" class="num">${cartList.prod_price}</span>원</span> 
+							</div>
+							<!-- totalItem_prices -->
 
 						</div>
-						<!-- item -->		
-					</c:forEach>
+						<!-- item -->	
+						
+							
+			
 					</div>
 					<!-- cartlist  -->
 				</div>
@@ -91,10 +108,10 @@
 				<div class="bills">
 					<div class="billsInfo">
 						<div class="deliverTitle">배송지</div>
-						<div class="address">서울특별시 강남구 서초대로</div>
-						<div class="deliveryType">샛별배송</div>
+						<div class="address">${cartList.addr}</div>
+						<div class="deliveryType">${cartList.delivery_type}</div>
 						<div class="changeBtn">
-							<button class="changeAddress">배송지 변경</button>
+							<button class="changeAddress" onclick="daumPostcode()">배송지 변경</button>
 						</div>
 						<div class="TotalPriceWrap">
 							<div class="TotalPrice">
@@ -104,7 +121,7 @@
 								</div>
 								<div class="prodDiscount">
 									<span class="txt">상품할인금액</span>
-									<span class="price"><span id="discountPrice" class="num">${cartkList.prod_discount}</span>원</span>
+									<span class="price"><span id="discountPrice" class="num">${cartList.prod_discount}</span>원</span>
 								</div>
 								<div class="deliveryPrice">
 									<span class="txt">배송비</span>
@@ -113,15 +130,16 @@
 								<hr/>
 								<div class="prePayment">
 									<span class="txt">결제예정금액</span>
-									<span class="price"><span id="totalPrice" class="num">0</span>원</span>
+									<span class="price"><span id="totalPrice" class="num">0</span>원</span> 
 								</div>
-								<div class="reserve">구매 시 290원 적립</div>
+								<div class="reserve">구매 시 ${cartList.prod_point}원 적립</div>
 							</div>
 						</div>
 					</div>
+						</c:forEach>	
 					
 					<div class="orderBtn">
-						<button class="btn" onclick="location.href=${contextPath}/">주문하기</button>
+						<button class="btn" onclick="location.href=${contextPath}/user/order.do">주문하기</button>
 					</div>
 					
 				
@@ -141,7 +159,7 @@
 		$(document).ready(function() {
 			var prodAmount = $(".inp").val();
 			$('#basicPrice').text($("#itemPrice").text());
-			$('#totalPrice').text($("#itemPrice").text());
+			$('.totalPrice').text($("#itemPrice").text());
 			$(".down").click(function() {
 				if (prodAmount > 1) {
 					prodAmount = parseInt(prodAmount) - 1;
@@ -212,6 +230,50 @@
 		$('#totalPrice').text(result);
 	}
 		
+	
+	//전체 체크
+	function selectAll(selectAll) {
+			
+		const checkboxes = document.getElementsByName('checkItem');
+		  
+		  checkboxes.forEach((checkbox) => {
+		    checkbox.checked = selectAll.checked;
+		  })
+	}
+	
+	
+	
+	//배송지 변경_미완
+	 function daumPostcode() {
+               new daum.Postcode({
+                   oncomplete: function(data) {
+                      
+                       var roadAddr = data.roadAddress; // 도로명 주소 변수
+                       var extraRoadAddr = ''; 
+                      
+                       if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
+                           extraRoadAddr += data.bname;
+                       }
+                       // 건물명이 있고, 공동주택일 경우 추가한다.
+                       if(data.buildingName !== '' && data.apartment === 'Y'){
+                           extraRoadAddr += (extraRoadAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+                       }
+                      
+                       // 우편번호와 주소 정보를 해당 필드에 넣는다.
+                       document.getElementById('postcode').value = data.zonecode;
+                       document.getElementById("roadAddress").value = roadAddr;
+                   }
+               }).open();
+           }
+	
+	
+		//선택 삭제 팝업
+		function popUp() {
+			window.open("08_2_popup.html", "a", "width=400, height=300, left=100, top=50");
+		}
+	
+	
+	
 	</script>
 </body>
 </html>

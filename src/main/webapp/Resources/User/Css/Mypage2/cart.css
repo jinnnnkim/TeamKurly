@@ -35,11 +35,12 @@
 }
 
 .btn_delete_all {
-	content: "";
-	width: 1px;
-	height: 14px;
+	width: 65px;
+	height: 25px;
 	margin: 6px 21px 0 0;
-	background-color: #ddd;
+	border: 0;
+	background-color: #fff;
+	cursor: pointer;
 }
 .cartlist {
     width: 815px;
@@ -59,7 +60,7 @@
 }
 
 .thumbnail {
-	width: 85px;
+	width: 76px;
 	height: 90px;
 	padding: 30px;
 }
@@ -95,7 +96,7 @@
 	border: 1px solid #dddfe1;
 	border-radius: 3px;
 	padding: 3px;
-	margin: -35px -205px 0 0;
+	margin: -15px -205px 0 0;
 	
 }
 
@@ -114,13 +115,32 @@
 	font-weight: 500;
 }
 
+
+.total_price {
+	
+	margin: -33px -335px 0 0 ;
+}
 .cancle {
 	float: right;
 	font-size: 25px;
 	color: #5f0080;
-	margin: -37px -413px 0 0 ;
+	margin: -16px -465px 0 0 ;
 	
 } 
+
+.totalItem_prices {
+	float: right;
+	color: #000;
+	margin: -10px -365px 0 0 ;
+	
+} 
+
+.item_prices {
+	font-size: 20px;
+	font-weight: 600;
+}
+
+
 .bills{
 	width: 450px;
 }
