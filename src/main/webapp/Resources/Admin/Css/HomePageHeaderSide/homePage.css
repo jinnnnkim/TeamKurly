@@ -15,7 +15,7 @@
 .wrap{
 	margin: 0 auto;
 	width: 1080px;
-	height: 100vh;
+	height: 300px;
 }
 
 .homeBody::after{
