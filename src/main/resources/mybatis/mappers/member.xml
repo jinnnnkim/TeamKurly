@@ -63,12 +63,8 @@
 	</resultMap>
 	
 
-	
-<<<<<<< HEAD
-	<!-- 장바구니 리스트 조회, 상품+찜+장바구니 테이블 조인 -->
-=======
+
 	<!--장바구니 리스트 조회, 상품+찜+사용자 주소 테이블 조인 -->
->>>>>>> 4ccd6888ab006e3cc158cde9b3a2adca27e2d8ea
 	<resultMap type="prodVO" id="cartListResult">
 		<result property="user_id" column="user_id"/>
 		<result property="addr" column="addr"/>
@@ -173,32 +169,3 @@
 	
 	
 </mapper>  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
