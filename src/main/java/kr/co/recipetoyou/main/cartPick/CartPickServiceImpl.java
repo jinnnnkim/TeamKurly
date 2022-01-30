@@ -34,12 +34,13 @@ public class CartPickServiceImpl implements CartPickService{
 		return cartPickDAO.deletePick(prod_name);
 		
 	}
+	
+	
 	//마이페이지 - 찜하기 담기 클릭시 마이페이지 장바구니 이동
 	@Override
 	public int addCart(PickVO pickVO) throws DataAccessException {
 		return cartPickDAO.insertCart(pickVO);
 	}
-
 	
 	//마이페이지 장바구니 목록 조회
 	@Override
@@ -48,6 +49,12 @@ public class CartPickServiceImpl implements CartPickService{
 		return cartList;
 	}
 	
+	//마이페이지 장바구니 목록 삭제
+		@Override
+		public int removeCart(String prod_name) throws DataAccessException {
+			System.out.println("service 호출");
+			return cartPickDAO.deleteCart(prod_name);
+		}
 	
 	
 	
@@ -64,6 +71,8 @@ public class CartPickServiceImpl implements CartPickService{
 	public int addFavPick(FavVO favVO) throws DataAccessException {
 		return cartPickDAO.insertFavAdd(favVO);
 	}
+
+	
 	
 	
 

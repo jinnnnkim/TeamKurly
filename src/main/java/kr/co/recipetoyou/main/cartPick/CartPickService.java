@@ -22,6 +22,20 @@ public interface CartPickService {
 	  public int addCart(PickVO pickVO) throws DataAccessException;
 	  //마이페이지 장바구니 조회
 	  public List<ProdVO> listCarts () throws DataAccessException;
+	  //마이페이지 장바구니 조회 삭제
+	  public int removeCart(String prod_name) throws DataAccessException;
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
 	  
 	  
 	  //장바구니 담기

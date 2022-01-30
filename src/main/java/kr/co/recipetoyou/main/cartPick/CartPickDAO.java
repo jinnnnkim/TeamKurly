@@ -20,8 +20,10 @@ public interface CartPickDAO{
 	public int insertCart(PickVO pickVO) throws DataAccessException;
 	
 	
-	//장바구니 조회
+	//장바구니 목록 조회
 	public List<ProdVO> selectAllCartList() throws DataAccessException;
+	//장바구니 목록 삭제
+	public int deleteCart(String prod_name) throws DataAccessException;
 	
 	
 	//장바구니 담기

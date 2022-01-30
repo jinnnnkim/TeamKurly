@@ -79,10 +79,6 @@ public class CartPickControllerImpl implements CartPickController {
 			return mav;
 		}
 		
-	
-
-	
-	
 	//장바구니 목록 조회
 	@RequestMapping(value = "/cart.do", method = {RequestMethod.GET, RequestMethod.POST})
 	public ModelAndView listCarts (HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -99,9 +95,18 @@ public class CartPickControllerImpl implements CartPickController {
 		return mav;
 		}
 
-	
-
-	
+	//장바구니 목록 삭제
+	@Override
+	@RequestMapping(value = "/removeCart.do", method = RequestMethod.GET)
+	public ModelAndView removeCarts(String prod_name, HttpServletRequest request, HttpServletResponse response)
+			throws Exception {
+				System.out.println("controller 호출");
+				request.setCharacterEncoding("utf-8");
+				cartPickService.removeCart(prod_name);
+				ModelAndView mav = new ModelAndView("redirect:/cart.do");
+				return mav;
+			}
+			
 	
 	
 	
@@ -126,6 +131,8 @@ public class CartPickControllerImpl implements CartPickController {
 		ModelAndView mav =new ModelAndView("redirect:/.do");//수정 (찜 페이지로 이동) 
 		return mav; 
 	}
+
+
 
 
 }

@@ -26,6 +26,9 @@ public interface CartPickController {
 	
 	//장바구니 목록 조회
 	public ModelAndView listCarts (HttpServletRequest request, HttpServletResponse response) throws Exception;
+	//장바구니 목록 삭제
+	public ModelAndView removeCarts (@RequestParam("prod_name") String prod_name, HttpServletRequest request, HttpServletResponse response) throws Exception;
+	
 	
 	
 	

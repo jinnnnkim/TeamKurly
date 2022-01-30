@@ -13,7 +13,7 @@ public class ProdVO {
 	private String prodcatecode;
 	private String prod_name;
 	private String prod_content;
-	private String prod_img;
+
 	private int prod_price;
 	private int prod_discount;
 	private int prod_sell_unit;
@@ -83,12 +83,7 @@ public class ProdVO {
 	public void setProd_content(String prod_content) {
 		this.prod_content = prod_content;
 	}
-	public String getProd_img() {
-		return prod_img;
-	}
-	public void setProd_img(String prod_img) {
-		this.prod_img = prod_img;
-	}
+	
 	public int getProd_price() {
 		return prod_price;
 	}
