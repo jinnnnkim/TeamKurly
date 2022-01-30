@@ -11,7 +11,12 @@ request.setCharacterEncoding("UTF-8");
 
 <meta charset="UTF-8">
 <title><tiles:insertAttribute name="title" /></title>
-
+<link href="/recipetoyou/Resources/User/Css/remote.css" rel="stylesheet"  type="text/css">
+<style>
+	.main{
+		padding-bottom: 40px;
+	}
+</style>
 </head>
 <body>
 	<div class="wrap">

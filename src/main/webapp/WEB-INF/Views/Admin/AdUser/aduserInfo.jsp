@@ -6,6 +6,12 @@
 <%
 	request.setCharacterEncoding("utf-8");
 %>
+<c:if test="${admin.adminId == null }">
+	<script>
+		alert("관리자 로그인 후 이용이 가능합니다.");
+		location.href="${contextPath}/adLogin.do";
+	</script>
+</c:if>
 <!DOCTYPE html>
 <html>
 <head>
@@ -35,7 +41,7 @@
 	</div>
 	
 	<div class="title">
-	<c:out value="${userVO.user_name}"/>님의 회원 정보입니다.
+	<c:out value="${aduserVO.user_name}"/>님의 회원 정보입니다.
 	</div>
 	
 	<form action="">
@@ -44,61 +50,61 @@
 		<table id="userTable">
 			<tr>
 				<td class="grayBg">이름</td>
-				<td class="whiteBg">${userVO.user_name}</td>
+				<td class="whiteBg">${aduserVO.user_name}</td>
 				<td class="grayBg">추천인아이디</td>
-				<td class="whiteBg">${userVO.recommendId}</td>
+				<td class="whiteBg">${aduserVO.recommendId}</td>
 			</tr>
 			<tr>
 				<td class="grayBg">아이디</td>
-				<td class="whiteBg">${userVO.user_id}</td>
+				<td class="whiteBg">${aduserVO.user_id}</td>
 				<td class="grayBg">생일</td>
-				<td class="whiteBg">${userVO.user_birth}</td>
+				<td class="whiteBg">${aduserVO.user_birth}</td>
 			</tr>
 			<tr>
 				<td class="grayBg">성별</td>
-				<td class="whiteBg">${userVO.user_gender}</td>
+				<td class="whiteBg">${aduserVO.user_gender}</td>
 				<td class="grayBg">가입일시</td>
-				<td class="whiteBg">${userVO.join_date}</td>
+				<td class="whiteBg">${aduserVO.join_date}</td>
 			</tr>
 			<tr>
 				<td class="grayBg">회원등급</td>
-				<td class="whiteBg"><b>${userVO.user_grade}</b></td>
+				<td class="whiteBg"><b>${aduserVO.user_grade}</b></td>
 				<td class="grayBg">비밀번호</td>
 				<!-- 클릭시 회원로그인기록 loginRecord.jsp 페이지로 이동 -->
 				<!-- <td "whiteBg"><a href="loginRecord.jsp"><div class="skyblueFont">[LOG]</div></a></td> -->
-				<td class="whiteBG">${userVO.user_pw}</td>
+				<td class="whiteBG">${aduserVO.user_pw}</td>
 			</tr>
 			<tr>
 				<td class="grayBg">휴대전화</td>
-				<td class="whiteBg">${userVO.user_phone}</td>
+				<td class="whiteBg">${aduserVO.user_phone}</td>
 				<td class="grayBg">이메일</td>
-				<td class="whiteBg">${userVO.user_email}</td>
+				<td class="whiteBg">${aduserVO.user_email}</td>
 			</tr>
 			<tr>
 				<td class="grayBg">주소</td>
-				<td class="whiteBg" colspan="3">${userVO.user_addr}</td>
+				<td class="whiteBg" colspan="3">${aduserVO.user_addr}</td>
 			</tr>
 			<tr>
 				<td class="grayBg">적립금</td>
-				<td class="whiteBg">${userVO.user_point}</td>
+				<td class="whiteBg">${aduserVO.user_point}</td>
 				<td class="grayBg">쿠폰</td>
-				<td class="whiteBg">${userVO.cp_code}</td>
+				<td class="whiteBg">${aduserVO.cp_code}</td>
 			</tr>
 			<tr>
 				<td class="grayBg">뉴스레터 수신</td>
-				<td class="whiteBg">${userVO.email_agree}</td>
+				<td class="whiteBg">${aduserVO.email_agree}</td>
 				<td class="grayBg">문자메시지 수신</td>
-				<td class="whiteBg">${userVO.sms_agree}</td>
+				<td class="whiteBg">${aduserVO.sms_agree}</td>
 			</tr>
 			<tr>
 				<td class="grayBg">개인정보수신동의</td>
-				<td class="whiteBg">${userVO.info_agree}</td>
+				<td class="whiteBg">${aduserVO.info_agree}</td>
 				<td class="grayBg">투유패쓰</td>
-				<td class="whiteBg">${userVO.toYou_pass}</td>
+				<td class="whiteBg">${aduserVO.toYou_pass}</td>
 			</tr>
 			<tr colspan="2">
 				<td class="grayBg">참여이벤트명</td>
-				<td class="whiteBg">${userVO.join_event}</td>
+				<td class="whiteBg">${aduserVO.join_event}</td>
 			</tr>
 
 		</table>

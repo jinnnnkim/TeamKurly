@@ -12,7 +12,13 @@ public interface JoinService {
 	public int addUser(UserVO userVO) throws DataAccessException;
 	//public int removeUser(String id) throws DataAccessException;
 
-	public int idChk(UserVO userVO) throws Exception;
+	//public int idChk(UserVO userVO) throws Exception;
+
+	public int idChk(String user_id) throws Exception;
+
+	public int mailChk(String user_email);
+
+	public void certifiedPhoneNumber(String userPhoneNumber, int randomNumber);
 
 	
 	

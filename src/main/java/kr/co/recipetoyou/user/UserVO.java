@@ -237,6 +237,18 @@ public class UserVO {
 	public void setToYou_pass(String toYou_pass) {
 		this.toYou_pass = toYou_pass;
 	}
+
+
+
+	@Override
+	public String toString() {
+		return "UserVO [user_id=" + user_id + ", user_pw=" + user_pw + ", user_name=" + user_name + ", user_email="
+				+ user_email + ", user_phone=" + user_phone + ", user_addr=" + user_addr + ", user_gender="
+				+ user_gender + ", user_birth=" + user_birth + ", recommendId=" + recommendId + ", join_event="
+				+ join_event + ", info_agree=" + info_agree + ", sms_agree=" + sms_agree + ", email_agree="
+				+ email_agree + ", join_date=" + join_date + ", user_grade=" + user_grade + ", user_point=" + user_point
+				+ ", cp_code=" + cp_code + ", toYou_pass=" + toYou_pass + "]";
+	}
 	
 	
 
