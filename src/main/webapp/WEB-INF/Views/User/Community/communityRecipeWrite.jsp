@@ -89,7 +89,7 @@
 				<script type="text/javascript">
 						CKEDITOR.replace('recipe_content', {
 		                    height: 300,
-		                    filebrowserUploadUrl: "${contextPath}/file/fileupload.do",
+		                    filebrowserUploadUrl: "${contextPath}/mine/imageUpload.do"
 		                 });
 				</script>
 				
