@@ -110,7 +110,7 @@
 				<tr align="center">
 					
 					<td><input type="checkbox" name="chk"></td>
-					<td><a href="${contextPath}/user/aduserInfo.do?id=${user.user_id}">${user.user_id }</a></td>
+					<td><a href="${contextPath}/aduser/aduserInfo.do?id=${user.user_id}">${user.user_id }</a></td>
 					<td>${user.user_grade }</td>
 					<td>${user.user_phone}</td>
 					<td>${user.user_addr }</td>

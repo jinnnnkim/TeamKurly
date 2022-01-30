@@ -67,11 +67,6 @@
 	</select>
 	
 	<!-- 회원 정보 수정 -->
-	<!-- ★ jsp 파일의 input 태그에 담긴 데이터를 -> controller를 통해 전달 시에는
-		value=${}에만 담아주면 인식을 못한다.
-		input 안에 name 속성을 넣어줘야 데이터가 전달됨.
-		여기서 name은 쿼리문의 #{}값과 반드시 동일해야함.
-	-->
 	<update id="updateUser" parameterType="adUserVO">
 		<![CDATA[
 			update tb_users set

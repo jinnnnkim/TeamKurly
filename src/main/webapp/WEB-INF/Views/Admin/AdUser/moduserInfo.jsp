@@ -31,7 +31,7 @@
 			회원기본정보
 		</div>
 		
-		<form action="${contextPath}/user/userUpdate.do" method="post">
+		<form action="${contextPath}/aduser/userUpdate.do" method="post">
 		
 			<table border="1">
 			<c:set var="user" />
