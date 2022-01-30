@@ -131,7 +131,7 @@
 	<resultMap type="pickVO" id="cartPickResult">
 
 		<result property="prod_name" column="prod_name"/>
-		<result property="prod_img" column="prod_img"/>
+		
 		<result property="prod_price" column="prod_price"/>
 		<result property="prod_discount" column="prod_discount"/>
 
@@ -155,7 +155,7 @@
 	<!-- 찜하기 목록 조회 -->
 	<select id="selectAllCartPickList" resultMap="cartPickResult">
 		<![CDATA[
-			SELECT tp.PROD_NAME, tp.PROD_IMG, tp.PROD_PRICE, tp.PROD_DISCOUNT
+			SELECT tp.PROD_NAME, tp.PROD_PRICE, tp.PROD_DISCOUNT
 			FROM TB_FAV tf JOIN TB_PROD tp
 			ON tf.PROD_CODE = tp.PROD_CODE
 		]]>

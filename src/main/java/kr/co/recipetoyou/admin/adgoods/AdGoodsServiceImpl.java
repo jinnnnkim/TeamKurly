@@ -73,15 +73,22 @@ public class AdGoodsServiceImpl implements AdGoodsService {
 		adGoodsDAO.register(agvo);
 		
 		//이미지가 없는 경우 register() 메서드 실행 종료
-		if(agvo.getImageList() == null || agvo.getImageList().size() <= 0) {
+		if(agvo.getImageList() == null || agvo.getImageList().size() == 0) {
 			return;
 		}
-		
+		//업로드 이미지 정보 DB 등록
 		for(AdgoodsImgVO imagevo : agvo.getImageList()) {
 			imagevo.getProd_code();
 			adGoodsDAO.imageUpload(imagevo);
 		}
 		
+	}
+	
+	//이미지 데이터
+	@Override
+	public List<AdgoodsImgVO> getGoodsImage(int prod_code) throws Exception {
+		
+		return adGoodsDAO.getGoodsImage(prod_code);
 	}
 	
 	

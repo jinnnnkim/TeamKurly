@@ -9,7 +9,6 @@
 		<result property="prodcatecode" column="prodcatecode"/>
 		<result property="prod_name" column="prod_name"/>
 		<result property="prod_content" column="prod_content"/>
-		<result property="prod_img" column="prod_img"/>
 		<result property="prod_price" column="prod_price"/>
 		<result property="prod_discount" column="prod_discount"/>
 		<result property="prod_sell_unit" column="prod_sell_unit"/>

@@ -89,6 +89,13 @@ public class AdGoodsDAOImpl implements AdGoodsDAO{
 		sqlSession.insert(NAMESPACE+"imageUpload", imagevo);
 		
 	}
+
+	//이미지 데이터 반환
+	@Override
+	public List<AdgoodsImgVO> getGoodsImage(int prod_code) throws Exception {
+		
+		return sqlSession.selectList(NAMESPACE+".getImageList", prod_code);
+	}
 	
 	
 

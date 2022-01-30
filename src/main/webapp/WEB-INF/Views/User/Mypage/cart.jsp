@@ -7,7 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>장바구니</title>
-<link href="/recipetoyou/resources/User/Css/Mypage2/reset.css" rel="stylesheet"
+<link href="/recipetoyou/Resources/User/Css/Mypage2/reset.css" rel="stylesheet"
 	type="text/css">
 <link href="/recipetoyou/Resources/User/Css/Mypage2/cart.css"
 	rel="stylesheet" type="text/css">
@@ -35,35 +35,34 @@
 			</div>
 			<!-- title -->
 		
-		<c:forEach var="cartList" items="${cartList}">		
-			
+		
 			<div class="content">
 				<div class="cart_main">
 					<div class="cart_select">
-						<label> <input type="checkbox" name="checkItem" value="selectall" onclick="selectAll(this)"> <span>전체선택(1/1)</span>
-						</label> <a href="#" class="select_delete_btn">
-						 	<input type="button" class="btn_delete_all" value="선택삭제" onclick="popUp()"> 
-						</a>
+						<label> <input type="checkbox" name="checkItem" value="selectall" onclick="selectAll(this)"> 
+							<span>전체선택(1/1)</span>
+						</label>
 					</div>
 					<!-- cart_select -->
 
 				
+		<c:forEach var="cartList" items="${cartList}">	
 					<div class="cartlist">
+						
 						<label class="inn_check"> <input type="checkbox" name="checkItem" >
-						</label>
-
-			
-				
+					</label>
+	
 						<div class="item">
+												<!-- 이미지 정보가 담기도록 함. -->
+						<div class="image_wrap" data-prod_code="${cartList.imageList[0].prod_code}" data-path="${cartList.imageList[0].uploadPath}"
+												data-uuid="${cartList.imageList[0].uuid}" data-filename="${cartList.imageList[0].fileName}">
 							<a href="#"> 
 							<img alt="thumbnail"
-								src="/recipetoyou/Resources/User/Img/Mypage2/thumbnail.jpg"
-								class="thumbnail">
-								${cartkList.prod_img}
+								src="/recipetoyou/Resources/User/Img/Mypage2/thumbnail.jpg" class="thumbnail">
 							</a>
-
+						</div>
 							<div class="subject">
-								<a href="" class="subject_tit">${cartList.prod_name}</a> 
+								<a href="#" class="subject_tit">${cartList.prod_name}</a> 
 								<span class="subject_in">${cartList.prod_content}</span>
 							</div>
 
@@ -79,15 +78,13 @@
 								</button>
 							</div>
 							<!-- inner_option  -,+ 구매수량 -->
-
-							<%-- <div class="item_prices">
-								 <span class="price"><span id="itemPrice"class="num">${cartList.prod_price}</span>원</span> 
-							</div> --%>
 								
 						
 
 							<div class="cancle">
-								<i class="fas fa-window-close"></i>
+								<a href="${contextPath}/removeCart.do?prod_name=${cartList.prod_name}">
+									<i class="fas fa-window-close"></i>
+								</a>
 							</div>
 						
 						
@@ -98,18 +95,19 @@
 
 						</div>
 						<!-- item -->	
-						
-							
-			
+					
 					</div>
-					<!-- cartlist  -->
+					<!-- cartlist -->
+					</c:forEach>		
 				</div>
 				
+			
+		<c:forEach var="cartList" items="${cartList}">	
 				<div class="bills">
 					<div class="billsInfo">
 						<div class="deliverTitle">배송지</div>
-						<div class="address">${cartList.addr}</div>
-						<div class="deliveryType">${cartList.delivery_type}</div>
+						<div class="address">${cartList.addr }</div>
+						<div class="deliveryType">${cartList.delivery_type }</div>
 						<div class="changeBtn">
 							<button class="changeAddress" onclick="daumPostcode()">배송지 변경</button>
 						</div>
@@ -121,7 +119,7 @@
 								</div>
 								<div class="prodDiscount">
 									<span class="txt">상품할인금액</span>
-									<span class="price"><span id="discountPrice" class="num">${cartList.prod_discount}</span>원</span>
+									<span class="price"><span id="discountPrice" class="num">${cartList.prod_discount }</span>원</span>
 								</div>
 								<div class="deliveryPrice">
 									<span class="txt">배송비</span>
@@ -132,17 +130,16 @@
 									<span class="txt">결제예정금액</span>
 									<span class="price"><span id="totalPrice" class="num">0</span>원</span> 
 								</div>
-								<div class="reserve">구매 시 ${cartList.prod_point}원 적립</div>
+								<div class="reserve">구매 시${cartList.prod_point }원 적립</div>
 							</div>
 						</div>
 					</div>
-						</c:forEach>	
-					
+				
 					<div class="orderBtn">
-						<button class="btn" onclick="location.href=${contextPath}/user/order.do">주문하기</button>
+						<button class="btn" action=${contextPath}/user/order.do">주문하기</button>
 					</div>
 					
-				
+			</c:forEach>
 						
 					<div class="info">
 						<span>쿠폰/적립금은 주문서에서 사용 가능합니다</span><br /> <span>‘입금확인’ 상태일
@@ -151,10 +148,13 @@
 					</div>
 
 				</div>
-				<!-- cart_main -->
+				<!-- content -->
 			</div>
+			<!-- cart_main -->
 		</div>
 		<!-- body -->
+		
+		
 	<script>
 		$(document).ready(function() {
 			var prodAmount = $(".inp").val();
@@ -176,6 +176,25 @@
 				$(".inp").val(prodAmount);
 				priceInfo(prodAmount);
 				
+			});
+			
+			//이미지 삽입
+			$(".image_wrap").each(function(i, obj){
+				
+				const bobj = $(obj);
+				if(bobj.data("prod_code")){
+					
+					const uploadPath = bobj.data("path");
+					const uuid = bobj.data("uuid");
+					const fileName = bobj.data("filename");
+					
+					const fileCallPath = encodeURIComponent(uploadPath + "/s_" + uuid + "_" + fileName);
+					
+					$(this).find("img").attr('src', '${contextPath}/adgoods/getImageInfo.do?fileName=' + fileCallPath);
+					
+					}else {
+						$(this).find("img").attr('src', '/recipetoyou/Resources/Admin/Img/SubgoodsImg/ready.jpg');
+					}
 			});
 		
 			
@@ -265,12 +284,6 @@
                    }
                }).open();
            }
-	
-	
-		//선택 삭제 팝업
-		function popUp() {
-			window.open("08_2_popup.html", "a", "width=400, height=300, left=100, top=50");
-		}
 	
 	
 	

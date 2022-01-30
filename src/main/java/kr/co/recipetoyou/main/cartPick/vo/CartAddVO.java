@@ -1,6 +1,10 @@
 package kr.co.recipetoyou.main.cartPick.vo;
 
+import java.util.List;
+
 import org.springframework.stereotype.Component;
+
+import kr.co.recipetoyou.admin.adgoods.AdgoodsImgVO;
 
 /*
  create table tb_cart(
@@ -21,7 +25,7 @@ public class CartAddVO {
 	private String prod_code;
 	private String prod_quantity;
 	private String user_id;
-	
+
 	public CartAddVO() {
 		// TODO Auto-generated constructor stub
 	}
@@ -65,5 +69,5 @@ public class CartAddVO {
 	public void setUser_id(String user_id) {
 		this.user_id = user_id;
 	}
-	
+
 }

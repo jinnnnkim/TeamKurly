@@ -31,4 +31,7 @@ public interface AdGoodsService {
 		
 	//검색 결과 갯수
 	public int countSearch(AdGoodsCateVO option) throws Exception;
+	
+	//이미지 데이터 반환
+	public List<AdgoodsImgVO> getGoodsImage(int prod_code) throws Exception;
 }
