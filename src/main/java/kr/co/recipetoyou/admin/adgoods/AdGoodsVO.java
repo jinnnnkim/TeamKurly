@@ -1,7 +1,7 @@
 package kr.co.recipetoyou.admin.adgoods;
 
 import java.sql.Date;
-
+import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
@@ -16,7 +16,6 @@ public class AdGoodsVO {
 	private int cateCode;		//상품 등록 시 카테고리 조인하기 위해 추가
 	private String prod_name;
 	private String prod_content;
-	private String prod_img;
 	private int prod_price;
 	private int prod_discount;
 	private int prod_sell_unit;
@@ -24,36 +23,14 @@ public class AdGoodsVO {
 	private int prod_wrap_type;
 	private String prod_info;
 	private String prod_allergy;
-	private Date prod_vaild_date;
+	private String prod_vaild_date;
 	private String prod_from;
 	private String prod_caution;
-	private int prod_quantity;
+	private int stock_quantity;	//재고 수량, 재고관리 테이블과 조인
 	private Date prod_reg_date;
 	private AdGoodsCateVO adGoodsCateVO;	 	//상품 조회 시 카테고리 함께 조회하기 위해 추가
+	private List<AdgoodsImgVO> imageList;		//이미지 정보
 	
-	private String prodThumbImg;				//썸네일 저장할 컬럼 생성
-	
-	
-	public String getProdThumbImg() {
-		return prodThumbImg;
-	}
-
-	public void setProdThumbImg(String prodThumbImg) {
-		this.prodThumbImg = prodThumbImg;
-	}
-
-
-
-	public AdGoodsCateVO getAdGoodsCateVO() {
-		return adGoodsCateVO;
-	}
-
-
-
-	public void setAdGoodsCateVO(AdGoodsCateVO adGoodsCateVO) {
-		this.adGoodsCateVO = adGoodsCateVO;
-	}
-
 
 
 	public AdGoodsVO() {
@@ -77,7 +54,6 @@ public class AdGoodsVO {
 		this.prod_code = prod_code;
 		this.prod_name = prod_name;
 		this.prod_content = prod_content;
-		this.prod_img = prod_img;
 		this.prod_price = prod_price;
 		this.prod_discount = prod_discount;
 		this.prod_sell_unit = prod_sell_unit;
@@ -87,7 +63,6 @@ public class AdGoodsVO {
 		this.prod_allergy = prod_allergy;
 		this.prod_from = prod_from;
 		this.prod_caution = prod_caution;
-		this.prod_quantity = prod_quantity;
 	}
 
 	public int getProd_code() {
@@ -108,12 +83,7 @@ public class AdGoodsVO {
 	public void setProd_content(String prod_content) {
 		this.prod_content = prod_content;
 	}
-	public String getProd_img() {
-		return prod_img;
-	}
-	public void setProd_img(String prod_img) {
-		this.prod_img = prod_img;
-	}
+	
 	public int getProd_price() {
 		return prod_price;
 	}
@@ -156,10 +126,10 @@ public class AdGoodsVO {
 	public void setProd_allergy(String prod_allergy) {
 		this.prod_allergy = prod_allergy;
 	}
-	public Date getProd_vaild_date() {
+	public String getProd_vaild_date() {
 		return prod_vaild_date;
 	}
-	public void setProd_vaild_date(Date prod_vaild_date) {
+	public void setProd_vaild_date(String prod_vaild_date) {
 		this.prod_vaild_date = prod_vaild_date;
 	}
 	public String getProd_from() {
@@ -174,15 +144,42 @@ public class AdGoodsVO {
 	public void setProd_caution(String prod_caution) {
 		this.prod_caution = prod_caution;
 	}
-	public int getProd_quantity() {
-		return prod_quantity;
-	}
-	public void setProd_quantity(int prod_quantity) {
-		this.prod_quantity = prod_quantity;
-	}
+
 	public Date getProd_reg_date() {
 		return prod_reg_date;
 	}
+	public int getStock_quantity() {
+		return stock_quantity;
+	}
+
+	public AdGoodsCateVO getAdGoodsCateVO() {
+		return adGoodsCateVO;
+	}
+
+
+
+	public void setAdGoodsCateVO(AdGoodsCateVO adGoodsCateVO) {
+		this.adGoodsCateVO = adGoodsCateVO;
+	}
+
+	public void setStock_quantity(int stock_quantity) {
+		this.stock_quantity = stock_quantity;
+	}
+
+
+
+	public List<AdgoodsImgVO> getImageList() {
+		return imageList;
+	}
+
+
+
+	public void setImageList(List<AdgoodsImgVO> imageList) {
+		this.imageList = imageList;
+	}
+
+
+
 	public void setProd_reg_date(Date prod_reg_date) {
 		this.prod_reg_date = prod_reg_date;
 	}

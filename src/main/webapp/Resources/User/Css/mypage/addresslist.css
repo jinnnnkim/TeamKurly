@@ -78,27 +78,8 @@
 }
 
 .address_content {
-	width: 815px;
+	width: 100%;
 	border-bottom: 1px solid #f4f4f4;
-}
-
-.select_icon {
-	position: relative;
-}
-
-.select_icon input {
-	width: 22px;
-	height: 22px;
-	opacity: 0%;
-}
-
-.select_icon img {
-	width: 24px;
-    height: 24px;
-    position: absolute;
-    left: 19px;
-    cursor: pointer;
-    
 }
 
 .address {

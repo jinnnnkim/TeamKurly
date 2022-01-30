@@ -111,12 +111,12 @@
 			<div class="recipeList">
 				<ul>
 					<li>
+					<a href="${contextPath }/community/communityRecipeDetail.do">
 						<div class="recipeImg">
 							<img src="/recipetoyou/Resources/User/Img/Notice/market01.jpg">
 						</div>
 						<div class="detail">
-						<a href="#none">
-							<span class="recipeTitle">간단한 술안주로 최고인 버터갈릭새우 만들기</span>
+							<span class="recipeTitle">간단한 술안주로 최고인 버터갈릭새우 만들기111</span>
 							<br/>
 							<span class="writeId">이웃사슴</span>
 							<br/>

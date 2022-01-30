@@ -22,7 +22,8 @@ body{
 	position: relative;
 	text-align: center;
 	line-height: 42px;
-	font-size: 14px
+	font-size: 14px;
+	padding-bottom: 10px;
 }
 
 .topBar a{
@@ -412,7 +413,7 @@ span.review_more {
 #allCate .liquor, #allCate .fruit{
 	position:absolute;
 	top:0;
-	left:193px;
+	left:180px;
 	display:none;
 	background:#f1f3f5;
 }

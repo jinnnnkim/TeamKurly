@@ -72,7 +72,7 @@
 					<li><a href="orignSetting.jsp">기본환경설정</a></li>
 					<li><a href="boardMgm.jsp">게시물관리</a></li>
 					<li><a href="formMgm.jsp">폼관리</a></li>
-					<li><a href="faq.jsp">FAQ관리</a></li>
+					<li><a href="${contextPath}/adfaq/faqAdManagement.do">FAQ관리</a></li>
 					<li><a href="paymentMgm.jsp">결제관리</a></li>
 					<li><a href="${contextPath}/adsend/listadSend.do">발송관리</a></li>
 					<li><a href="${contextPath}/aduser/listadUsers.do">회원관리</a></li>

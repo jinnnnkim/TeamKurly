@@ -41,7 +41,11 @@
 					<div class="pick_add_list">
 						<div>
 							<img id="thumbnail"
+<<<<<<< HEAD
+								src="/recipetoyou/Resources/User/Img/Mypage2/thumbnail.jpg">
+=======
 								src="/recipetoyou/Resources/User/Image/thumbnail.jpg">
+>>>>>>> 4ccd6888ab006e3cc158cde9b3a2adca27e2d8ea
 						</div>
 						<div class="subject">
 							<a href="">${pickList.prod_name}</a>
@@ -65,9 +69,6 @@
 					</div>
 					<!-- pick_add_list -->
 			</c:forEach>
-			
-			
-			
 				</div>
 				<!-- pickpick -->
 			</div>

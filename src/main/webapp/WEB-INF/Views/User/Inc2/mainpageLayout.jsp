@@ -9,6 +9,7 @@ request.setCharacterEncoding("UTF-8");
 <html>
 <head>
 <meta charset="UTF-8">
+<link href="/recipetoyou/Resources/User/Css/remote.css" rel="stylesheet"  type="text/css">
 <title><tiles:insertAttribute name="title" /></title>
 </head>
 <body>
@@ -17,5 +18,6 @@ request.setCharacterEncoding("UTF-8");
 		<tiles:insertAttribute name="body" />
 		<tiles:insertAttribute name="footer" />
 	</div>
+
 </body>
 </html>

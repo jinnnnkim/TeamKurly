@@ -9,7 +9,7 @@
 <c:if test="${admin.adminId == null }">
 	<script>
 		alert("관리자 로그인 후 이용이 가능합니다.");
-		location.href="${contextPath}/admin/adloginForm.do";
+		location.href="${contextPath}/adLogin.do";
 	</script>
 </c:if>
 <!DOCTYPE html>
@@ -110,7 +110,7 @@
 				<tr align="center">
 					
 					<td><input type="checkbox" name="chk"></td>
-					<td><a href="${contextPath}/user/aduserInfo.do?id=${user.user_id}">${user.user_id }</a></td>
+					<td><a href="${contextPath}/aduser/aduserInfo.do?id=${user.user_id}">${user.user_id }</a></td>
 					<td>${user.user_grade }</td>
 					<td>${user.user_phone}</td>
 					<td>${user.user_addr }</td>

@@ -37,17 +37,28 @@
 	</insert>
 	 
 	 <!-- 로그인 -->
-	<select id="loginById" resultType="userVO" parameterType="userVO">
+	<select id="loginById" resultMap="userResult" parameterType="userVO">
 		<![CDATA[
 			select * from tb_users
 			where user_id=#{user_id} and user_pw=#{user_pw}		
 		]]>
 	</select>
 	
-	<select id="idChk" resultType="int">
+	<select id="idChk" resultType="int" parameterType="java.lang.String">
+		<![CDATA[
 		SELECT COUNT(*) FROM tb_users
 		WHERE user_id = #{user_id}
+		]]>
 	</select>
+	
+	<select id="mailChk" resultType="int" parameterType="java.lang.String">
+		<![CDATA[
+		SELECT COUNT(*) FROM tb_users
+		WHERE user_email = #{user_email}
+		]]>
+	</select>
+	
+	
 	
 	<!-- 페이지정보를 10개씩 가져오기 -->
 	<select id="listPage" resultMap="userResult">
@@ -120,7 +131,7 @@
 	<resultMap type="pickVO" id="cartPickResult">
 
 		<result property="prod_name" column="prod_name"/>
-		<result property="prod_img" column="prod_img"/>
+		
 		<result property="prod_price" column="prod_price"/>
 		<result property="prod_discount" column="prod_discount"/>
 
@@ -144,7 +155,7 @@
 	<!-- 찜하기 목록 조회 -->
 	<select id="selectAllCartPickList" resultMap="cartPickResult">
 		<![CDATA[
-			SELECT tp.PROD_NAME, tp.PROD_IMG, tp.PROD_PRICE, tp.PROD_DISCOUNT
+			SELECT tp.PROD_NAME, tp.PROD_PRICE, tp.PROD_DISCOUNT
 			FROM TB_FAV tf JOIN TB_PROD tp
 			ON tf.PROD_CODE = tp.PROD_CODE
 		]]>

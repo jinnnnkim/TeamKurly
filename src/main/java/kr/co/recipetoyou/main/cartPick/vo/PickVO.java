@@ -1,6 +1,10 @@
 package kr.co.recipetoyou.main.cartPick.vo;
 
+import java.util.List;
+
 import org.springframework.stereotype.Component;
+
+import kr.co.recipetoyou.admin.adgoods.AdgoodsImgVO;
 
 //찜하기 테이블 TB_FAV 조회
 @Component("pickVO")
@@ -11,7 +15,6 @@ public class PickVO {
 	private String user_id;
 	private int fav_flag;
 	
-	
 	//prodVO 테이블이랑 조인해서 조회
 	private ProdVO prodVO;
 	
@@ -19,8 +22,7 @@ public class PickVO {
 	private String prod_img;
 	private int prod_price;
 	private int prod_discount;
-	
-	
+
 	public int getFav_flag_code() {
 		return fav_flag_code;
 	}

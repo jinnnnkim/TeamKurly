@@ -7,7 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>장바구니</title>
-<link href="/recipetoyou/resources/User/Css/Mypage2/reset.css" rel="stylesheet"
+<link href="/recipetoyou/Resources/User/Css/Mypage2/reset.css" rel="stylesheet"
 	type="text/css">
 <link href="/recipetoyou/Resources/User/Css/Mypage2/cart.css"
 	rel="stylesheet" type="text/css">
@@ -53,11 +53,14 @@
 					</label>
 	
 						<div class="item">
+												<!-- 이미지 정보가 담기도록 함. -->
+						<div class="image_wrap" data-prod_code="${cartList.imageList[0].prod_code}" data-path="${cartList.imageList[0].uploadPath}"
+												data-uuid="${cartList.imageList[0].uuid}" data-filename="${cartList.imageList[0].fileName}">
 							<a href="#"> 
 							<img alt="thumbnail"
 								src="/recipetoyou/Resources/User/Img/Mypage2/thumbnail.jpg" class="thumbnail">
 							</a>
-
+						</div>
 							<div class="subject">
 								<a href="#" class="subject_tit">${cartList.prod_name}</a> 
 								<span class="subject_in">${cartList.prod_content}</span>
@@ -174,6 +177,25 @@
 				priceInfo(prodAmount);
 				
 			});
+			
+			//이미지 삽입
+			$(".image_wrap").each(function(i, obj){
+				
+				const bobj = $(obj);
+				if(bobj.data("prod_code")){
+					
+					const uploadPath = bobj.data("path");
+					const uuid = bobj.data("uuid");
+					const fileName = bobj.data("filename");
+					
+					const fileCallPath = encodeURIComponent(uploadPath + "/s_" + uuid + "_" + fileName);
+					
+					$(this).find("img").attr('src', '${contextPath}/adgoods/getImageInfo.do?fileName=' + fileCallPath);
+					
+					}else {
+						$(this).find("img").attr('src', '/recipetoyou/Resources/Admin/Img/SubgoodsImg/ready.jpg');
+					}
+			});
 		
 			
 
@@ -263,8 +285,6 @@
                }).open();
            }
 	
-	
-
 	
 	
 	</script>

@@ -32,7 +32,7 @@
 				<h2 class="title">
 					배송지 관리 <span class="subtitle">배송지에 따라 상품정보 및 배송유형이 달라질 수있습니다.</span>
 				</h2>
-				<a href="" class="address_search" onclick="window.open('');">+ 새배송지 추가</a>
+				<a href="" class="address_search" onclick="addAddr()">+ 새배송지 추가</a>
 			</div>
 			<!-- head -->
 			<table class="head_cate">
@@ -48,9 +48,7 @@
 			<c:forEach var="addressList" items="${addressList}">
 			<table class="address_content">
 				<tr>
-					<td class="select_icon"><input type="radio" name="select" checked>
-						<img src="/recipetoyou/Resources/User/Img/Mypage2/ico_checkbox_checked.png">
-					</td>
+					<td class="select_btn"><input type="radio" name="select"></td>
 					<td class="address">
 						<p class="basic_address">기본 배송지</p>
 						<p class="detail_address">${addressList.user_addr}</p>
@@ -68,6 +66,44 @@
 		<%--address_main end --%>
 	</div>
 	<%--content end --%>
+	
+	
+	
+	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+	<script>
+
+		 function addAddr() {
+		        new daum.Postcode({
+		            oncomplete: function(data) {
+		                
+		                var addr = ''; 
+		                var extraAddr = ''; 
+
+		                if (data.userSelectedType === 'R') { 
+		                    addr = data.roadAddress;
+		                } 
+		                else { 
+		                    addr = data.jibunAddress;
+		                }
+
+		                if(data.userSelectedType === 'R'){
+		                	
+		                    document.getElementById("findAddr").value = extraAddr;
+
+		                } else {
+		                    document.getElementById("findAddr").value = '';
+		                }
+
+		                document.getElementById('zipcode').value = data.zonecode;
+		                document.getElementById("jibunAddress").value = addr;
+		                document.getElementById("roadAddress").value = addr;
+		                document.getElementById("namugiAddress").focus();
+		            }
+		        }).open();
+		    }
+		 
+		
+	</script>
 </body>
 </html>
 

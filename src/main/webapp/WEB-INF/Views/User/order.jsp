@@ -63,8 +63,9 @@
 				<table>
 					<tr>
 						<th>배송지</th>
-						<td><span>기본배송지</span><br />서울 강남구 서초대로 이젠아이티 <br />
-						<span>샛별배송</span></td>
+						<td class="txtBox"><span class="basicAddress">기본배송지</span><br />
+						<span class="address">서울 강남구 서초대로 이젠아이티</span><br />
+						<span class="deliMethod">샛별배송</span></td>
 					</tr>
 					<tr>
 						<th>상세정보</th>
@@ -72,7 +73,7 @@
 					</tr>
 				</table>
 			</div>
-			<div>
+			<div class="baaner">
 				<img src="/recipetoyou/Resources/User/Img/Order/market1.jpg" alt="" />
 			</div>
 
@@ -163,11 +164,36 @@
 					페이먼츠의 구매안전(에스크로) 서비스를 이용하실 수 있습니다.</span>
 			</div>
 			<div class="bills">
-				<h3>결제금액</h3>
+				<h2>결제금액</h2>
 				<div class="billBox">
 					<table>
 						<tr>
 							<th>주문금액</th>
+							<td>28,000원</td>
+						</tr>
+						<tr class="sub">
+							<th>ㄴ 상품금액</th>
+							<td><span>31,900</span>원</td>
+						</tr>
+						<tr class="sub">
+							<th>ㄴ 할인금액</th>
+							<td>-<span>3,850</span>원</td>
+						</tr>
+						<tr>
+							<th>배송비</th>
+							<td><span>0</span>원</td>
+						</tr>
+						<tr>
+							<th>쿠폰할인금액</th>
+							<td><span>0</span>원</td>
+						</tr>
+						<tr>
+							<th>적립금사용</th>
+							<td><span>0</span>원</td>
+						</tr>
+						<tr class="totalPayment">
+							<th>최종결제금액</th>
+							<td><span>28,050</span>원</td>
 						</tr>
 					</table>
 				</div>
@@ -226,6 +252,7 @@
 				$('.cardBtn').css('color','black');
 			});
 		});
+	
 			
 	</script>
 </body>
