@@ -17,6 +17,7 @@
 	integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc"
 	crossorigin="anonymous">
 <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+
 </head>
 <body>
 	<form name="frmJoin" method="post">
@@ -28,17 +29,17 @@
 				<tr>
 					<th>아이디<strong>*</strong></th>
 					<td><input id="userID" type="text" name="user_id" placeholder="6자 이상의 영문 혹은 영문과 숫자를 조합" >
-						<input id="userIDChk" type="hidden" value="N"/>
+						<input id="userIDChk" name="userIDChk" type="hidden" value="N"/>
 						<button type="button" id="idCheck" onclick="idChk()">중복확인</button>
 						</td><!-- /join/idChk.do -->
 				</tr>
 				<tr>
 					<th>비밀번호<strong>*</strong></th>
-					<td><input type="text" name="user_pw" placeholder="비밀번호를 입력해주세요."></td>
+					<td><input type="password" name="user_pw" placeholder="비밀번호를 입력해주세요."></td>
 				</tr>
 				<tr>
 					<th>비밀번호 확인<strong>*</strong></th><!-- //user_pw -->
-					<td><input type="text" name="user_pwChk" placeholder="비밀번호를 한번 더 입력해주세요.">
+					<td><input type="password" name="user_pwChk" placeholder="비밀번호를 한번 더 입력해주세요.">
 					</td>
 				</tr>
 				<tr>
@@ -63,9 +64,16 @@
 				</tr>
 				<tr class="address">
 					<th>주소<strong>*</strong></th>
-					<input type="hidden" name="user_addr" value="214241"/>
-					<td><a href="" onclick=""><i class="fas fa-search" ></i>주소검색</a><br />
-						<span>배송지에 따라 상품 정보가 달라질 수 있습니다.</span></td>
+					<td>
+						<input type="text" id="sample4_postcode" name="zipcode" placeholder="우편번호" style="width: 200px;">  
+						<input type="button" onclick="sample4_execDaumPostcode()" style="width: 200px;" value="우편번호 찾기"><br/>
+				지번주소:<br/><input type="text" id="sample4_jibunAddress" name="jibunAddress" placeholder="지번주소" style="width: 400px;"><br/>
+				도로명주소:<br/><input type="text" id="sample4_roadAddress" name="roadAddress" placeholder="도로명주소" style="width: 400px;"><br/>
+				<span id="guide" style="color:#999;display:none"></span>
+				나머지주소:<br/><input type="text" id="sample4_detailAddress" name="namugiAddress" placeholder="상세주소" style="width: 400px;"><br/>
+							<span>배송지에 따라 상품 정보가 달라질 수 있습니다.</span>
+						<input type="hidden" name = "user_addr" value=""/>
+					</td>
 				</tr>
 				<tr>
 					<th>성별</th>
@@ -115,7 +123,7 @@
 				<tr>
 					<th></th>
 					<td>
-					<input type="checkbox" id="tearm_agree" class="chChoice"> <span>이용약관 동의</span> 
+					<input type="checkbox" id="tearm_agree" name="tearm_agree" class="chChoice"> <span>이용약관 동의</span> 
 					<span class="select">(필수)</span> <a href="#none">약관보기</a>
 					</td>
 				</tr>
@@ -150,7 +158,7 @@
 				</tr>
 			</table>
 			<div class="form_footer">
-				<button type="submit" onclick="fn_sendUser()">가입하기</button>
+				<button type="submit" onclick="return fn_sendUser()">가입하기</button>
 			</div>
 		</div>
 	</div>
@@ -255,58 +263,81 @@
 				var user_pw = frmJoin.user_pw.value;
 				var user_pwChk = frmJoin.user_pwChk.value;
 				var user_name = frmJoin.user_name.value;
-				var user_email = frmJoin.user_email.value;		//입력한 값들을 얻음.
-				var user_phone = frmJoin.user_phone.value;		//입력한 값들을 얻음.
+				var user_email = frmJoin.user_email.value;		
+				var user_phone = frmJoin.user_phone.value;
 				var user_addr = frmJoin.user_addr.value;
-				var userIDChk = $("#userIDChk").val;
-				var userMailChk = $("#userMailChk").val;
-				
+				var user_birth = frmJoin.user_birth.value;
+				var userIDChk = frmJoin.userIDChk.value;
+				var userMailChk = frmJoin.userMailChk.value;
 				var phoneAuth = frmJoin.phoneAuth.value;
 				
+				var user_addr = frmJoin.user_addr.value;
+				
+				var zipcode = frmJoin.zipcode.value;
+				var roadAddress = frmJoin.roadAddress.value;
+				
+				var tearm_agree =  frmJoin.tearm_agree.value;
+				
 				var empJ = /\s/g;
-				//아이디 정규식
 				var idJ = /^[a-z0-9]{4,12}$/;
-				// 비밀번호 정규식
 				var pwJ = /^[A-Za-z0-9]{4,12}$/; 
-				// 이름 정규식
 				var nameJ = /^[가-힣]{2,6}$/;
-				// 이메일 검사 정규식
 				var mailJ = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
-				// 휴대폰 번호 정규식
 				var phoneJ = /^01([0|1|6|7|8|9]?)?([0-9]{3,4})?([0-9]{4})$/;
+				
+				
 				
 				if(user_id.length==0 || user_id=="") {
 					alert("아이디는 필수입니다.");
-				}else if(userIDChk=='N'){
-					alert('중복체크를 해주세요');
+					return false;
 				}else if(!idJ.test(user_id)){
 					alert('4자리 이상 영문자로 입력해주세요.');
-				}else if(user_pwChk == user_pw){
+					return false;
+				}else if(userIDChk=='N'){
+					alert('아이디 중복체크를 해주세요');
+					return false;
+				}else if(user_pw.length==0 || user_pw=="") {
+					alert("비밀번호는 필수입니다.");
+					return false;
+				}else if(user_pwChk != user_pw){
 					alert('비밀번호가 일치하지 않습니다.');
+					return false;
+				}else if(user_name.length==0 || user_name=="") {
+					alert("이름은 필수입니다.");
+					return false;
+				}else if(user_email.length == 0||user_email==""){
+					alert("메일을 입력 해주세요");
+					return false;
+				}else if(userMailChk!="Y"){
+					alert("메일중복체크를 해주세요");
+					return false;
+				}else if(user_phone.length==0 || user_phone=="") {
+					alert("휴대번호는 필수입니다.");
+					return false;
 				}else if (phoneAuth == "N"){
 					alert("핸드폰 인증을 해주세요.");
-				}
-				else if(user_pw.length==0 || user_pw=="") {
-					alert("비밀번호는 필수입니다.")
-				}
-				else if(user_name.length==0 || user_name=="") {
-					alert("이름은 필수입니다.")
-				}else if(userMailChk=="N"){
-					alert("메일중복체크를 해주세요");
-				}
-				else if(user_email.length==0 || user_email=="") {
-					alert("이메일은 필수입니다.")
-				}
-				else if(user_phone.length==0 || user_phone=="") {
-					alert("휴대번호는 필수입니다.")
-				}
-				else {
-					frmJoin.method="post";										//전송 방법을 post로 지정함.
-					frmJoin.action="${contextPath}/join/joinProcess.do";			//서블릿 매핑 이름 지정함.		
-					frmJoin.submit();												//서블릿으로 전송함.
+					return false;
+				}else if(zipcode.length==0 || zipcode == "" || roadAddress.length==0 || roadAddress == ""){
+					alert('주소를 입력해주세요.');
+					return false;
+				}else if(user_birth.length==0 || user_birth==""){
+					alert('생년월일을 입력해주세요.');
+					return false;
+				}else if (tearm_agree != "1"){
+					alert('정보이용에 동의해주세요.');
+					return false;
+				}else {
+					if(document.querySelector("#sample4_detailAddress")){
+						var namugiAddress = frmJoin.namugiAddress.value;
+						user_addr = zipcode +" "+roadAddress+" "+namugiAddress;
+					}else {
+						user_addr = zipcode +" "+roadAddress;
+					}
+					frmJoin.method="post";										
+					frmJoin.action="${contextPath}/join/joinProcess.do";					
+					frmJoin.submit();												
 				}
 			}
-		
 		
 		function idChk(){
 			var _userID = document.querySelector('#userID').value;
@@ -333,6 +364,7 @@
 				}					
 			 });
 		}
+		
 		function mailChk(){
 			var _userMail = document.querySelector('#userMail').value;
 			$.ajax({
@@ -358,6 +390,7 @@
 				}					
 			 });
 		}
+		
 		var code2 = "";
 		function smsChk(){
 			var phone =  document.querySelector("#phone").value;
@@ -392,9 +425,36 @@
 				alert("인증번호가 일치하지 않습니다.");
 			} 
 		}
+		function sample4_execDaumPostcode() {
+		    new daum.Postcode({
+		        oncomplete: function(data) {
+		            var roadAddr = data.roadAddress; 
+		            var extraRoadAddr = '';
 
-	
+		            if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
+		                extraRoadAddr += data.bname;
+		            }
+		            if(data.buildingName !== '' && data.apartment === 'Y'){
+		               extraRoadAddr += (extraRoadAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+		            }
+		            if(extraRoadAddr !== ''){
+		                extraRoadAddr = ' (' + extraRoadAddr + ')';
+		            }
+
+		            document.getElementById('sample4_postcode').value = data.zonecode;
+		            document.getElementById("sample4_roadAddress").value = roadAddr;
+		            document.getElementById("sample4_jibunAddress").value = data.jibunAddress;
+		            
+		            if(roadAddr !== ''){
+		               // document.getElementById("sample4_extraAddress").value = extraRoadAddr;
+		            } else {
+		                document.getElementById("sample4_extraAddress").value = '';
+		            }
+
+		        }
+		    }).open();
+		}
 	</script>
-	
+<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>	
 </body>
 </html>

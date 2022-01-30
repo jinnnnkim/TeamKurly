@@ -37,7 +37,7 @@
 	</insert>
 	 
 	 <!-- 로그인 -->
-	<select id="loginById" resultType="userVO" parameterType="userVO">
+	<select id="loginById" resultMap="userResult" parameterType="userVO">
 		<![CDATA[
 			select * from tb_users
 			where user_id=#{user_id} and user_pw=#{user_pw}		

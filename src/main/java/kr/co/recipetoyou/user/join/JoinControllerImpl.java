@@ -41,7 +41,6 @@ public class JoinControllerImpl implements JoinController {
 		
 		request.setCharacterEncoding("utf-8");
 		int result = joinService.addUser(userVO); 	//정상적 inset하면 정수 1을 리턴
-		System.out.println("result : " + result);
 		
 		ModelAndView mav = new ModelAndView("redirect:/login/login.do");
 		
