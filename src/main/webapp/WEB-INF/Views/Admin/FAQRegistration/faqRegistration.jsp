@@ -18,7 +18,7 @@
 	<link rel="stylesheet" href="/recipetoyou/Resources/Admin/Css/FAQRegistration/faqRegistration.css">
 	<meta charset="UTF-8">
 	<script src="https://cdn.ckeditor.com/ckeditor5/31.1.0/classic/ckeditor.js"></script>
-	<title>FAQ게시글 등록</title>
+	<title>FAQ 정보 등록</title>
 </head>
 <body>
 	<div class="wrap">
@@ -77,6 +77,8 @@
 							<span>"+FAQ출력상태를 설정합니다."</span></td>
 					</tr>
 				</table>
+				<input type="submit" class="saveBtn" value="등록">
+				<button type="button" class="backBtn" onclick="location.href='${contextPath}/adfaq/faqAdManagement.do'">뒤로가기</button>
 			</form>
 		</div>	
 	</div>

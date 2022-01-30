@@ -61,7 +61,7 @@
 	<select id="readUser" resultMap="aduserResult" parameterType="String">
 		<![CDATA[
 			select *
-			from tb_faq
+			from tb_users
 			where user_id = #{id}
 		]]>
 	</select>
