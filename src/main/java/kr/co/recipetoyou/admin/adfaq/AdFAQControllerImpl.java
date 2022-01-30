@@ -40,7 +40,7 @@ public class AdFAQControllerImpl implements AdFAQController {
 	//FAQ관리 - 페이징처리한 목록 
 	@Override
 	@RequestMapping(value = "/adfaq/faqManagement.do", method = RequestMethod.GET)
-	public void listSendGET(PagingVO vo, Model model) throws Exception{
+	public void listFAQGET(PagingVO vo, Model model) throws Exception{
 		logger.info("C: listVO 겟 호출" + vo);
 		model.addAttribute("ListUsers", service.listFAQ(vo));
 	}
