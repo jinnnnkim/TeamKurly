@@ -44,7 +44,6 @@
 		<result property="delivery_type" column="delivery_type"/>
 		<result property="prod_name" column="prod_name"/>
 		<result property="point_content" column="point_content"/>
-		<!-- <result property="prod_img" column="prod_img"/> -->
 		<result property="prod_price" column="prod_price"/>
 		<result property="prod_discount" column="prod_discount"/>
 		<result property="prod_point" column="prod_point"/>
