@@ -86,11 +86,11 @@
 				<span>Recipe Content</span>
 			</div>
 			<textarea name="recipe_content"></textarea>
-					<script type="text/javascript">
-							CKEDITOR.replace('recipe_content', {
-			                    height: 300,
-			                    filebrowserUploadUrl: "${contextPath}/file/fileupload.do",
-			                 });
+				<script type="text/javascript">
+						CKEDITOR.replace('recipe_content', {
+		                    height: 300,
+		                    filebrowserUploadUrl: "${contextPath}/mine/imageUpload.do"
+		                 });
 				</script>
 				
 			<div class="writeBtn">

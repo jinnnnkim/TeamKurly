@@ -141,8 +141,6 @@ body, td, select, div, textarea, center {
 /* 첫번째 테이블의 이미지 찾기 버튼을 감싸는 div태그 속성 */
 .file_div {
 	position: relative;
-	height: 30px;
-	width: 100px;
 	overflow: hidden;
 	float: left;
 }
@@ -414,10 +412,22 @@ body, td, select, div, textarea, center {
 	line-height: 20px;
 }
 
-/* 상품 이미지 크기 조절 */
-div.file_div div.goodsImg{
-	loat:left; width:350px;
+.input-file-btn{
+	padding: 6px 25px;
+	background-color: #317CC1;
+	border-radius: 4px;
+	color: white;
+	cursor: pointer;
 }
-div.goods div.goodsImg img {
-	width:350px; height:auto;
+*#fileItem{
+	display: none;
 }
+
+#result_card img{
+		max-width: 100%;
+	    height: auto;
+	    display: block;
+	    padding: 5px;
+	    margin-top: 10px;
+	    margin: auto;	
+	}

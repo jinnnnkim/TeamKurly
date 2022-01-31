@@ -44,26 +44,24 @@
 			</div>
 			
 			<div class="cateList">
+			<c:forEach var="titleList" items="${cateTitleList}" >
 				<div class="cateRow">
-					<span class="cateType">종류별</span>
-					<a class="allCate" href="#none">전체</a>
-					<a href="#none">메인반찬</a>
-					<a href="#none">국/탕</a>
-					<a href="#none">찌개</a>
-					<a href="#none">디저트</a>
-					<a href="#none">면/만두</a>
-					<a href="#none">밥/죽/떡</a>
-					<a href="#none">퓨전</a>
-					<a href="#none">김치/젓갈/장류</a>
-					<a href="#none">양념/소스/잼</a>
-					<a href="#none">양식</a>
-					<a href="#none">샐러드</a>
-					<a href="#none">스프</a>
-					<a href="#none">빵</a>
-					<a href="#none">과자</a>
-					<a href="#none">차/음료/술</a>
-					<a href="#none">기타</a>
+					<c:forEach var="titleList" items="${cateTitleList}" >
+						<c:choose>
+							<c:when test="${titleList.recipe_cate_parent eq null }">
+								<span class="cateType">${titleList.recipe_cate}</span>
+							</c:when>
+							<c:when test="${titleList.recipe_cate eq '전체' }">
+								<a class="allCate" href="#none">${titleList.recipe_cate}</a>
+							</c:when>
+							<c:when test="${titleList.recipe_cate_parent ne null }">
+								<a href="#none">${titleList.recipe_cate}</a>
+							</c:when>
+						</c:choose>
+					</c:forEach>
 				</div>
+				
+			</c:forEach>
 				<div class="cateRow">
 					<span class="cateType">상황별</span>
 					<a class="allCate" href="#none">전체</a>
@@ -105,6 +103,7 @@
 					<a href="#none">기타</a>
 				</div>
 			</div>
+				
 			<div class="writeBtn">
 				<a href="${contextPath}/community/communityRecipeWrite.do">글쓰기</a>
 			</div>
@@ -216,14 +215,15 @@
 						</div>
 						
 					</li>
+					<c:forEach var="list" items="${recipeList}">
 					<li>
 						<div class="recipeImg">
 							<img src="/recipetoyou/Resources/User/Img/Notice/market01.jpg">
 						</div>
 						<div class="detail">
-							<span class="recipeTitle">간단한 술안주로 최고인 버터갈릭새우 만들기</span>
+							<span class="recipeTitle">${list.recipe_title}</span>
 							<br/>
-							<span class="writeId">이웃사슴</span>
+							<span class="writeId">${list.user_id}</span>
 							<br/>
 							<span class="recipeStar">
 								<i class="fas fa-star"></i>
@@ -237,6 +237,7 @@
 						</div>
 						
 					</li>
+					</c:forEach>
 				</ul>
 			</div>
 			

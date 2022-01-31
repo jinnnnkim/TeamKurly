@@ -42,9 +42,15 @@ public interface AdGoodsController {
 	public ModelAndView uploadGoodsRegister(AdGoodsVO agvo, RedirectAttributes rttr) throws Exception;
 	
 	//이미지 업로드
-	public ResponseEntity<List<AdgoodsImgVO>> uploadAction(MultipartFile[] file) throws Exception; 
+	public ResponseEntity<List<AdgoodsImgVO>> uploadAction(@RequestParam MultipartFile[] uploadFile) throws Exception; 
 	
 	//이미지 삭제
 	public ResponseEntity<String> deleteAction(String fileName) throws Exception;
+	
+	//이미지 출력
+	public ResponseEntity<byte[]> getadGoodsImage(String fileName) throws Exception;
+	
+	//이미지 정보 반환
+	public ResponseEntity<List<AdgoodsImgVO>> getImageList(int prod_code) throws Exception;
 	
 }

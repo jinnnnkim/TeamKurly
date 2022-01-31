@@ -1,19 +1,22 @@
 package kr.co.recipetoyou.main.cartPick.vo;
 
-import java.sql.Date; 
+import java.sql.Date;
+import java.util.List;
 
 import org.springframework.stereotype.Component;
+
+import kr.co.recipetoyou.admin.adgoods.AdgoodsImgVO;
 
 
 //상품 테이블 TB_PROD
 @Component("prodVO")
 public class ProdVO {
 	
-	private String prod_code;
+	private int prod_code;
 	private String prodcatecode;
 	private String prod_name;
 	private String prod_content;
-	private String prod_img;
+
 	private int prod_price;
 	private int prod_discount;
 	private int prod_sell_unit;
@@ -28,6 +31,10 @@ public class ProdVO {
 	private Date prod_reg_date;
 	private Date prod_vaild_date;
 	
+	/* 상품 이미지 */
+	private List<AdgoodsImgVO> imageList;
+	
+
 	//사용자 주소 테이블
 	private UserAddrVO useraddrVO;
 	private String user_id;
@@ -59,10 +66,10 @@ public class ProdVO {
 	}
 	
 	
-	public String getProd_code() {
+	public int getProd_code() {
 		return prod_code;
 	}
-	public void setProd_code(String prod_code) {
+	public void setProd_code(int prod_code) {
 		this.prod_code = prod_code;
 	}
 	public String getProdcatecode() {
@@ -83,12 +90,7 @@ public class ProdVO {
 	public void setProd_content(String prod_content) {
 		this.prod_content = prod_content;
 	}
-	public String getProd_img() {
-		return prod_img;
-	}
-	public void setProd_img(String prod_img) {
-		this.prod_img = prod_img;
-	}
+	
 	public int getProd_price() {
 		return prod_price;
 	}
@@ -168,7 +170,12 @@ public class ProdVO {
 		this.prod_vaild_date = prod_vaild_date;
 	}
 	
-	
+	public List<AdgoodsImgVO> getImageList() {
+		return imageList;
+	}
+	public void setImageList(List<AdgoodsImgVO> imageList) {
+		this.imageList = imageList;
+	}
 }
 
 

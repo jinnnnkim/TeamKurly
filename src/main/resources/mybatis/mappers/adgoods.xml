@@ -8,7 +8,6 @@
 		<result property="cateCode" column="cateCode"/>
 		<result property="prod_name" column="prod_name"/>
 		<result property="prod_content" column="prod_content"/>
-		<result property="prod_img" column="prod_img"/>
 		<result property="prod_price" column="prod_price"/>
 		<result property="prod_discount" column="prod_discount"/>
 		<result property="prod_sell_unit" column="prod_sell_unit"/>
@@ -19,9 +18,8 @@
 		<result property="prod_vaild_date" column="prod_vaild_date"/>
 		<result property="prod_from" column="prod_from"/>
 		<result property="prod_caution" column="prod_caution"/>
-		<result property="prod_quantity" column="prod_quantity"/>
+		<result property="stock_quantity" column="stock_quantity"/>
 		<result property="prod_reg_date" column="prod_reg_date"/>
-		<result property="prodThumbImg" column="prodThumbImg"/>
 	</resultMap>
 	
 
@@ -98,6 +96,13 @@
 		insert into tb_adgoods_Img(fileName, prod_code, uploadPath, uuid)
 		values (#{fileName}, #{prod_code}, #{uploadPath}, #{uuid})
 	</insert>
+	
+	<!-- 이미지 정보 얻기 -->
+	<select id="getImageList" resultType="kr.co.recipetoyou.admin.adgoods.AdgoodsImgVO">
+		<![CDATA[
+		select * from tb_adgoods_Img where prod_code = #{prod_code}
+		]]>
+	</select>
 	
 	<!-- 카테고리 호출 -->
 

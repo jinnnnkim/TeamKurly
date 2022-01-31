@@ -49,11 +49,15 @@
 	<!-- <resources mapping="/SubgoodsImg/**" location="/Resources/Admin/Img/SubgoodsImg/" /> -->
 	
 	<!-- multipartResolver 빈 설정 -->
+	<!-- <beans:bean id="multipartResolver" class="org.springframework.web.multipart.support.StandardServletMultipartResolver"/> -->
+	
+		<!-- multipartResolver 빈 설정 -->
 	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
 		<beans:property name="maxUploadSize" value="52428800"/>		<!-- 최대 업로드가 가능한 파일 크기 설정 -->
 		<beans:property name="maxInMemorySize" value="1000000"/>	<!-- 디스크에 임시 파일을 생성하기 전 메모리에 보관할 수 있는 최대 -->
 		<beans:property name="defaultEncoding" value="utf-8" />
 	</beans:bean>
+
 	
 	<!-- <mvc:interceptors>
 		<mvc:interceptor>
