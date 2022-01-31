@@ -67,9 +67,9 @@ public class AdFAQControllerImpl implements AdFAQController {
 	
 	//FAQ 상세 정보 조회
 	@Override
-	@RequestMapping(value = "/adfaq/faqDetailManagement.do", method = RequestMethod.GET)
+	@RequestMapping(value = {"/adfaq/faqInfoManagement.do"}, method = RequestMethod.GET)
 	public ModelAndView getFAQInfo(@RequestParam(value="id") String id, HttpServletRequest request, HttpServletResponse response) throws Exception {
-		logger.info("FAQ:"+id);
+		logger.info("클릭한 아이디:"+id);
 		String viewName = (String)request.getAttribute("viewName");
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName(viewName);
@@ -77,7 +77,7 @@ public class AdFAQControllerImpl implements AdFAQController {
 		return mav;
 	}
 	
-	//회원 정보 수정 페이지로 이동
+	//FAQ 정보 수정 페이지로 이동
 	@Override
 	@RequestMapping(value = "/adfaq/modFAQInfo.do", method = RequestMethod.GET)
 	public ModelAndView updateFAQInfo(@RequestParam(value="id") String id, HttpServletRequest request, HttpServletResponse response) throws Exception {	
@@ -85,7 +85,7 @@ public class AdFAQControllerImpl implements AdFAQController {
 		String viewName = (String)request.getAttribute("viewName");
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName(viewName);	
-		mav.addObject("FAQVO", service.getFAQInfo(id));
+		mav.addObject("adFAQVO", service.getFAQInfo(id));
 		return mav;
 	}
 	
@@ -96,7 +96,7 @@ public class AdFAQControllerImpl implements AdFAQController {
 		request.setCharacterEncoding("utf-8");
 		service.updateFAQInfo(vo);
 		System.out.println("update 통과 확인");
-		ModelAndView mav = new ModelAndView("redirect:adfaq/faqAdManagement.do");
+		ModelAndView mav = new ModelAndView("redirect:faqAdManagement.do");
 		return mav;	
 	}
 
@@ -106,8 +106,28 @@ public class AdFAQControllerImpl implements AdFAQController {
 	public ModelAndView removeFAQ(@RequestParam("id") String id, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		request.setCharacterEncoding("utf-8");
 		service.removeFAQ(id);
-		ModelAndView mav = new ModelAndView("redirect:adfaq/faqAdManagement.do");
+		ModelAndView mav = new ModelAndView("redirect:faqAdManagement.do");
 		return mav;
+	}
+	
+	//FAQ 카테고리 검색 --> 안됨 추가 필요
+	@Override
+	@RequestMapping(value = "/adfaq/FAQCategory.do", method = RequestMethod.GET)
+	public void FAQListCategory(Model model) throws Exception {		
+	}	
+	
+	//FAQ 등록
+	@Override
+	@RequestMapping(value = "/adfaq/FAQInsert.do", method = RequestMethod.POST)
+	public String FAQRegister(AdFAQVO vo, HttpServletRequest request, HttpServletResponse response) throws Exception {
+		logger.info("FAQRegisterPost......"+vo);
+	        
+	    //레코드를 저장함
+	    service.register(vo);
+	        
+	    //게시물을 저장한 후에 게시물 목록페이지로 다시 이동함
+	    return "redirect:faqAdManagement.do";
+	
 	}
 	
 }

@@ -25,7 +25,7 @@ import org.springframework.stereotype.Component;
     ,toYou_pass         varchar2(10)
  */
 
-@Component("aduserVO")
+@Component("adUserVO")
 
 public class AdUserVO {
 	
