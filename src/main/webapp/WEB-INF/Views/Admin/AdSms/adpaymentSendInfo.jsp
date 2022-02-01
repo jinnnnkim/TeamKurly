@@ -40,11 +40,6 @@
 		결제상세정보
 	</div>
 	
-	<div class="title">
-	
-	<c:out value="${userVO.user_name}"/>님의 결제상세정보입니다.
-	</div>
-	
 	<form action="">
 	
 		<div class="adUserData">

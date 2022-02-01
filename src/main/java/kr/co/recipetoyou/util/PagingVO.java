@@ -15,8 +15,9 @@ public class PagingVO {
 		private PageMaker pmake;	//현재 페이지, 페이지당 상품 표시 수 정보
 		
 		private String keyword;	//검색할 키워드
-		//private String type;	//검색할 타입
-		//private String[] typeArr;	//검색 타입 배열
+		private String type;	//검색할 타입
+		private String[] typeArr;	//검색 타입 배열
+		private int cateCode;
 		 
 		public PagingVO() {
 			this.page = 1;
@@ -82,12 +83,36 @@ public class PagingVO {
 		 * void setTypeArr(String[] typeArr) { this.typeArr = typeArr; }
 		 */
 		
+		public String getType() {
+			return type;
+		}
+
+		public void setType(String type) {
+			this.type = type;
+		}
+
+		public String[] getTypeArr() {
+			return typeArr;
+		}
+
+		public void setTypeArr(String[] typeArr) {
+			this.typeArr = typeArr;
+		}
+
+		public int getCateCode() {
+			return cateCode;
+		}
+
+		public void setCateCode(int cateCode) {
+			this.cateCode = cateCode;
+		}
+		
 		//toString()
 		@Override
 		public String toString() {
 			System.out.println("page"+page);	
 			System.out.println("pageSize"+pageSize);
-		return "PagingVO [page=" + page + ", pageSize=" + pageSize + ",keyword=" + keyword + "]";
+		return "PagingVO [page=" + page + ", pageSize=" + pageSize + ",keyword=" + keyword + ",type="+type+",cateCode="+cateCode +"]";
 		}
 
 }

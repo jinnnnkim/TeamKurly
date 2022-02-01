@@ -17,13 +17,17 @@
 <head>
 	<link rel="stylesheet" href="/recipetoyou/Resources/Admin/Css/FAQRegistration/faqRegistration.css">
 	<meta charset="UTF-8">
-	<script src="https://cdn.ckeditor.com/ckeditor5/31.1.0/classic/ckeditor.js"></script>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+	<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+	<script type="text/javascript" src="/recipetoyou/Resources/Common/ckeditor/ckeditor.js"></script>
+	<script type="text/javascript" src="/recipetoyou/Resources/Admin/Js/FAQManagement/faqRegistration.js" charset="UTF-8"></script>
 	<title>FAQ 정보 수정</title>
 </head>
 <body>
 	<div class="FAQ">
 		<div class="main-content">
-			<form action="${contextPath}/ad/userUpdate.do" method="POST" name="userComment">
+			<form action="${contextPath}/adfaq/FAQUpdate.do" method="POST">
 				<table class="subtitle" align="center">
 					<p>
 						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right-square-fill" viewBox="0 0 16 16">
@@ -34,11 +38,15 @@
 					<tr>
 						<th>FAQ분류</th>
 						<td>
-							<select name="selectChar">
+							<select name="faq_cate">
 								<option value="1">-분류선택-</option>
-								<option value="2">서비스관련</option>
-								<option value="3">예약관련</option>
-								<option value="4">적립금/결제관련</option>
+								<option value="2">회원</option>
+								<option value="3">상품</option>
+								<option value="4">주문/결제/대량주문</option>
+								<option value="5">취소/교환/환불</option>
+								<option value="6">서비스이용</option>
+								<option value="7">배송/포장</option>
+								<option value="8">이벤트/쿠폰/적립금</option>
 							</select> 
 							<span> 
 								"+분류설정은"<a href="#">[FAQ관리 환경설정> 카테고리설정]</a>"에서 가능합니다."
@@ -47,39 +55,16 @@
 					</tr>
 					<tr>
 						<th>질문</th>
-						<td><input type="text"/></td>
+						<td><input type="text" id="faq_title" name="faq_title" value="${adFAQVO.faq_title}"/></td>
 					</tr>
-					
-						<!-- ck editor 적용한 부분입니다. -->
-						
 					<tr>
 						<th>답변</th>
 						<td colspan="2">
-							<!-- 표시할 textarea로 영역-->
-							<textarea name="content" id="editor" rows="500" cols="1000" >
-								
-							
-							</textarea>
-							<!-- ckeditor 생성을 위한 JS -->
-							<script>
-							       ClassicEditor
-							           .create( document.querySelector('#editor'))
-							           .then(edit => {
-							           	console.log(editor);
-							           })
-							           .catch(error => {
-							               console.error(error);
-							           });
-							 </script>
+							<textarea id="faq_info" name="faq_info">${adFAQVO.faq_info}</textarea>
+							<script type="text/javascript">
+								CKEDITOR.replace('faq_info');
+							</script>
 						</td>
-					</tr>
-					
-					<tr>
-						<th>출력여부</th>
-						<td>
-							<input type="radio" id="Stream" name="introType"value="출력함">출력함 
-							<input type="radio" id="Don'tStream" name="introType" value="출력안함">출력안함 
-							<span>"+FAQ출력상태를 설정합니다."</span></td>
 					</tr>
 				</table>
 				<input type="submit" class="saveBtn" value="수정">

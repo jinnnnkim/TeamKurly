@@ -9,6 +9,7 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import kr.co.recipetoyou.admin.adgoods.category.AdGoodsCateVO;
 import kr.co.recipetoyou.admin.aduser.AdUserVO;
 import kr.co.recipetoyou.util.PagingVO;
 
@@ -59,6 +60,25 @@ public class AdFAQDAOImpl implements AdFAQDAO{
 	@Override
 	public void updateFAQ(AdFAQVO vo) throws DataAccessException {
 		sqlSession.update("mapper.adfaq.updateFAQ", vo);
+	}
+
+	//카테고리
+	@Override
+	public List<AdFAQCategoryVO> cateFAQList() throws DataAccessException {
+		return sqlSession.selectList("mapper.adfaq.cateFAQList");
+	}
+
+	//상품명 검색
+	@Override
+	public List<AdFAQVO> listFAQSearch(AdFAQCategoryVO option) throws Exception {
+		return sqlSession.selectOne("mapper.adfaq.search", option);
+	}
+
+	//상품 등록
+	@Override
+	public void register(AdFAQVO vo) throws Exception {
+		sqlSession.insert("mapper.adfaq.registerFAQ", vo);
+		
 	} 
 
 }

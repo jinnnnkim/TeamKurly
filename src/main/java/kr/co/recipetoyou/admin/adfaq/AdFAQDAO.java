@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.dao.DataAccessException;
 
+import kr.co.recipetoyou.admin.adgoods.category.AdGoodsCateVO;
 import kr.co.recipetoyou.util.PagingVO;
 
 public interface AdFAQDAO {
@@ -19,5 +20,11 @@ public interface AdFAQDAO {
 	public AdFAQVO readFAQ(String id) throws DataAccessException;
 
 	public void updateFAQ(AdFAQVO vo) throws DataAccessException;
+
+	public List<AdFAQCategoryVO> cateFAQList() throws DataAccessException;
+
+	public List<AdFAQVO> listFAQSearch(AdFAQCategoryVO option) throws Exception ;
+
+	public void register(AdFAQVO vo) throws Exception ;
 
 }

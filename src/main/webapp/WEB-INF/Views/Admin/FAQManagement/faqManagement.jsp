@@ -43,15 +43,14 @@
 				<tr>
 					<td>
 						<select name="selectChar">
-							<option value="1">-출력여부-</option>
-							<option value="2">출력함</option>
-							<option value="3">출력안함</option>
-						</select>
-						<select name="selectChar">
 							<option value="1">-분류선택-</option>
-							<option value="2">서비스관련</option>
-							<option value="3">예약관련</option>
-							<option value="4">적립금/결제관련</option>
+							<option value="2">회원</option>
+							<option value="3">상품</option>
+							<option value="4">주문/결제/대량주문</option>
+							<option value="5">취소/교환/환불</option>
+							<option value="6">서비스이용</option>
+							<option value="7">배송/포장</option>
+							<option value="8">이벤트/쿠폰/적립금</option>
 						</select>
 						<select name="selectChar">
 							<option value="1">질문</option>
@@ -78,8 +77,9 @@
 					
 					</td>
 					<td>FAQ code</td>
+					<td>분류</td>
+					<td>제목</td>
 					<td>정보</td>
-					<td>출력여부</td>
 					<td>등록일</td>
 					<td>수정</td>
 					<td>삭제</td>
@@ -91,8 +91,9 @@
 					<tr align="center">
 						<td><input type="checkbox" name="chk"></td>
 						<td>${faq.faq_code}</td>
+						<td>${faq.faq_cate}</td><!-- 안나옴 -->
+						<td>${faq.faq_title}</td>
 						<td>${faq.faq_info}</td>
-						<td>${faq.faq_confirm}</td>
 						<td>${faq.faq_reg_date}</td>
 						<td><button type="button"><a href="${contextPath}/adfaq/modFAQInfo.do?id=${faq.faq_code}">수정</a></button></td>
 						<td><button onclick="deleteMessage()"><a href="${contextPath}/adfaq/removeFAQ.do?id=${faq.faq_code}">삭제</a></button></td>
@@ -109,7 +110,7 @@
 		<input type="button" value="전체해제" id="uncheck_all">
 		
 		<!-- 클릭시 alert창 띄우는 js 구현되어있음 -->
-		<button class="excelBtn" onclick="regiMessage()"><a href="${contextPath}/adfaq/faqRegistration.do?id=${faq.faq_code}">FAQ 등록</a></button><br><br><br>
+		<button class="excelBtn" onclick="regiMessage()"><a href="${contextPath}/adfaq/FAQInsert.do?id=${faq.faq_code}">FAQ 등록</a></button><br><br><br>
 
 		</div>
 		

@@ -1,33 +1,31 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:set var="contextPath" value="${pageContext.servletContext.contextPath }"/>
 <%
 	request.setCharacterEncoding("utf-8");
+	response.setContentType("application/json");
 %>
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="UTF-8">
-	<title>상품목록</title>
+	<meta charset="UTF-8" contentType="application/json;">
+	<title>Insert title here</title>
 	<link rel=“stylesheet” href=“https://use.fontawesome.com/releases/v5.14.0/css/all.css”
      integrity=“sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc” crossorigin=“anonymous”>
  	<link href=“https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap” rel=“stylesheet”>
 	<link rel="stylesheet" href="/recipetoyou/Resources/Admin/Css/HomePageHeaderSide/reset.css"> 
 	<link rel="stylesheet" href="/recipetoyou/Resources/Admin/Css/ShoppingMallManagement/adgoodsList.css">
+	
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" />
+	<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>	
+	<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+	
 	<script type="text/javascript" src="/recipetoyou/Resources/Admin/Js/ShoppingMallManagement/adgoodsList.js" charset="UTF-8"></script>
-	<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-	
-	<!-- cdn 활용하여 ckeditor 생성 -->
-	<script src="https://cdn.ckeditor.com/ckeditor5/31.1.0/classic/ckeditor.js"></script>
-	
-	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-	<!--<script src="//code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script> -->
+
 </head>
 <body>
-	<!-- 쇼핑몰관리 -> 상품관리 -> 상품목록페이지 -->
 	<div class="wrap">
 	<div class="bar">상품목록</div>
 	<div class="sub-menu">
@@ -38,7 +36,7 @@
 	</div>
 	
 	<%-- <form id="searchForm" action="${contextPath}/product/listCategory.do" method="post"> --%>
-	<form id="searchForm" method="post">
+	<form id="searchForm" method="get"  enctype="multipart/form-data">
 	<input type="hidden" name="page" value="${pageMaker.vo.page}">
 	<input type="hidden" name="pageSize" value="${pageMaker.vo.pageSize}">
 	<input type="hidden" value="${pageMaker.vo.keyword }">
@@ -101,10 +99,13 @@
 						<div class="btn-box">	
 							<button type="submit" id="searchBtn" class="btn btn-sm btn-blue">검색</button>
 							<button type="button" class="btn btn-sm" onclick="document.location.href='productList.jsp'">처음으로</button>
+	
 						</div>
+	</div>
 	</form>	
-					
-					<div class="list-tools">
+	</div>
+	
+	<div class="list-tools">
 						<div class="list-action">
 							선택된 상품을
 							<select id="batch_sale">
@@ -146,19 +147,24 @@
 							</tr>
 						</thead>
 						<tbody>
-							<c:forEach var="prod" items="${prodList }">
+							<c:forEach var="prod" items="${prodList}">
 							<tr>
 							<td>
 								<input class="chChoice" type="checkbox" value="294"/>
 							</td>
-							<td style="text-align: left; padding: 5px">
+							<td class="image" style="text-align: left; padding: 5px">
 								<div style="float: left; width: 60px">
 								<!-- 이미지 넣기 -->
-								<img class="img_style" src="../../../Resources/Admin/Img/ShoppingMallManagement/scale.png">
+								<div class="image_wrap" data-code="${prod.imageList[0].prod_code}" data-path="${prod.imageList[0].uploadPath}"
+												data-uuid="${prod.imageList[0].uuid}" data-filename="${prod.imageList[0].fileName}">
+									<img>
+								
+								</div>
 								</div>	
 								<div style="margin-left: 110px">
 								<div style="line-height: 28px">
-									<a href="${contextPath}/adgoods/goodsInfo.do?code=${prod.prod_code}">
+									<a href="${contextPath}/adgoods/adgoodsInfo.do?prod_code=${prod.prod_code}">
+									<%-- <a class="move" href="<c:out value="${goodsVO.prod_code}"/>"> --%>
 										<b>${prod.prod_name }</b>
 									</a>
 									<div style="float: right;">
@@ -178,7 +184,7 @@
 									</div>
 								</div>
 								<div class="div_style2">
-									<span class="red_b">분류 : 아동용품 > 아동용품</span>
+									<span class="red_b">분류: ${prod.cateName}</span>
 								</div>
 								<div class="div_style2">
 									<span class="sky_b">${prod.prod_price }</span>
@@ -194,11 +200,11 @@
 					</table>
 					
 					<div class="box-footer">
-			<div class="text-center">
+			<div class="page_wrap">
 				<ul class="pagination">
 				 			<!-- 이전prev -->
 				 	<c:if test="${pm.prev }">
-				 		<li><a href="listProduct.do?page=${pm.startPage-1}">&laquo;</a></li>
+				 		<li class="pageBtn prev"><a href="listProduct.do?page=${pm.startPage-1}">이전</a></li>
 				 	</c:if>
 				 			<!-- 페이지블럭 -->
 					<c:forEach var="idx" begin="${pm.startPage}" end="${pm.endPage}">
@@ -209,129 +215,85 @@
 					</c:forEach>
 				 			<!-- 다음next -->
 				 	<c:if test="${pm.next && pm.endPage > 0}">
-				 		<li><a href="listProduct.do?page=${pm.endPage+1}">&raquo;</a></li>
+				 		<li class="pageBtn next"><a href="listProduct.do?page=${pm.endPage+1}">다음</a></li>
 				 	</c:if>
 				 </ul>
 			</div>
 		</div> 
-						
-	</div>
-
-	
-	<!-- 순서변경버튼 클릭시 나타나는 alert창 -> 완성하지 못했음. -->
-	<div id="orderChange_frame" class="popUpDiv1" style="display: none">
-	<div class="popUpDiv2">
-		<span class="ui-dialog-title">상품순서변경</span>
-		<button id="orderChange_frameClose" type="button" class="closeBtn" role="button" title="Close">
-			X
-		</button>
-	</div>
-	</div>
-	
-	<div class="popUpheight">
-	<div class="list-action">
-		<!-- 위로, 아래로, 저장 -> 각각 onclick기능 버튼 기능 넣기 -->
-		<button type="button" class="btn btn-green" onclick="">위로</button>
-		<button  type="button" class="btn btn-green" onclick="">아래로</button>
-		<div style="float: right;">
-			<button type="button" class="btn btn-red" onclick="">저장</button>
-		</div>
-	</div>
-	</div>
-	
-	<!-- <div class="list-action" style="margin-top: 10px">
-		위로, 아래로, 저장 -> 각각 onclick기능 버튼 기능 넣기
-		<button type="button" class="btn btn-green" onclick="">위로</button>
-		<button  type="button" class="btn btn-green" onclick="">아래로</button>
-		<div style="float: right;">
-			<button type="button" class="btn btn-red" onclick="">저장</button>
-		</div>
-	</div> -->
-	
-	</div>
-	
-	
-	<script type="text/javascript">
-	/* 카테고리 */
-	let cateList = JSON.parse('${cateList}');
+		
+		<form id="moveForm" action="${contextPath}/adgoods/listProduct.do" method="get">
+			<input type="hidden" name="page" value="${pm.vo.page}">
+			<input type="hidden" name="pageSize" value="${pm.vo.pageSize}">
+			<input type="hidden" name="keyword" value="${pm.vo.keyword}">
+		</form>
+		
+		<script type="text/javascript">
+		
+		let moveForm = $("#moveForm");
+		
+		//상품 조회 페이지
+		$(".move").on("click", function(e){
 			
-	let searchForm = $("#searchForm");
-
-			let cate1Array = new Array();
-			let cate2Array = new Array();
-			let cate3Array = new Array();
-
-			let cate1Obj = new Object();
-			let cate2Obj = new Object();
-			let cate3Obj = new Object();	
-
-			let cateSelect1 = $(".category1");
-			let cateSelect2 = $(".category2");
-			let cateSelect3 = $(".category3");
-
-			//카테고리 배열 초기화 메서드
-			function makeCateArray(obj, array, cateList, cateGrade){
-				for(let i = 0; i<cateList.length; i++){
-					if(cateList[i].cateGrade == cateGrade){
-						obj = new Object();
-						
-						obj.cateName = cateList[i].cateName;
-						obj.cateCode = cateList[i].cateCode;
-						obj.cateParent = cateList[i].cateParent;
-							
-						array.push(obj);
-					}
+			e.preventDefault();
+			
+			moveForm.append("<input type='hidden' name='prod_code', value='"+$(this).attr("href")+"'>");
+			moveForm.attr("action", "${contextPath}/adgoods/adgoodsInfo.do");
+			moveForm.submit();
+		}) 
+	
+		$(document).ready(function(){
+			
+		//검색 타입 selected
+		/* const selectedType = '<c:out value="${pm.vo.type}"/>';
+		if(selectedType != ""){
+			$("select[name='type']").val(selectedType).attr("selected", "selected");
+		} */
+											
+		//이미지 삽입
+		$(".image_wrap").each(function(i, obj){
+			
+			const bobj = $(obj);
+			if(bobj.data("prod_code")){
+				
+				const uploadPath = bobj.data("path");
+				const uuid = bobj.data("uuid");
+				const fileName = bobj.data("filename");
+				
+				const fileCallPath = encodeURIComponent(uploadPath + "/s_" + uuid + "_" + fileName);
+				
+				$(this).find("img").attr('src', '${contextPath}/adgoods/getImageInfo.do?fileName=' + fileCallPath);
+				
+				}else {
+					$(this).find("img").attr('src', '/recipetoyou/Resources/Admin/Img/SubgoodsImg/ready.jpg');
 				}
-			};		
-
-			/*배열 초기화*/
-			makeCateArray(cate1Obj, cate1Array, cateList, 1);
-			makeCateArray(cate2Obj, cate2Array, cateList, 2);
-			makeCateArray(cate3Obj, cate3Array, cateList, 3);
-
-
-			/* 1차 분류 */
-			for(let i = 0; i < cate1Array.length; i++){
-				
-				cateSelect1.append("<option value='"+cate1Array[i].cateName+"'>"+cate1Array[i].cateName+"</option>");
-				
+		});	
+		
+		});
+		
+		/* 상품 등록 성공 이벤트 */
+		let eResult = '<c:out value="${goodsResult}"/>';
+		checkResult(eResult);
+		function checkResult(result){
+			
+			if(result == ""){
+				return;
 			}
-
-			/* 2차 분류 */	
-
-			$(cateSelect1).on("change",function(){
-					
-				let select1 = $(this).find("option:selected").val();	
-					
-				cateSelect2.children().remove();
-					
-				cateSelect2.append("<option value='none'>선택</option>");
-					
-				for(let i = 0; i < cate2Array.length; i++){
-					if(select1 == cate2Array[i].cateParent){
-						cateSelect2.append("<option value='"+cate2Array[i].cateName+"'>" + cate2Array[i].cateName + "</option>");	
-					}
-				}// for
-					
-			});
-
-			/* 3차 분류 */
-			$(cateSelect2).on("change",function(){
-					
-				let select2 = $(this).find("option:selected").val();
-					
-				cateSelect3.children().remove();
-					
-				cateSelect3.append("<option value='none'>선택</option>");		
-					
-				for(let i = 0; i < cate3Array.length; i++){
-					if(select2 == cate3Array[i].cateParent){
-						cateSelect3.append("<option value='"+cate3Array[i].cateName+"'>" + cate3Array[i].cateName + "</option>");	
-					}
-				}
-			});
-	</script>
-
+			alert("상품"+eResult+"등록이 완료되었습니다.");
+		}
+		
+		/* 수정 성공 이벤트 */
+		let modify_result = '${modify_result}';
+		
+		if(modify_result == 1){
+			alert("수정 완료");
+		}
+		
+		/* 삭제 성공 이벤트 */
+		let delete_result = '${delete_result}';
+		
+		if(delete_result == 1){
+			alert("삭제 완료");
+		}
+		</script>
 </body>
-
 </html>

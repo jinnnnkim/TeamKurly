@@ -9,3 +9,8 @@ CKEDITOR.editorConfig = function( config ) {
 	// config.uiColor = '#AADC6E';
 	config.image_previewText = ' ';
 };
+
+
+CKEDITOR.editorConfig = function(config){
+		config.enterMode = CKEDITOR.ENTER_BR;
+};

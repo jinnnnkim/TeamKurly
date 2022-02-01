@@ -20,8 +20,8 @@
 	
 	<link rel="stylesheet" href="//code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" />
 	<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>	
-	<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
-	<!-- <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script> -->
+	<!-- <script src="https://code.jquery.com/jquery-3.4.1.js"></script> -->
+	<script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
 	
 
 	<script type="text/javascript" src="/recipetoyou/Resources/Admin/Js/ShoppingMallManagement/adgoodsInfo.js" charset="UTF-8"></script>
@@ -45,6 +45,11 @@
 		<li><a href="${contextPath}/adgoods/listProduct.do" class="selected">상품목록</a></li>
 		</ul>
 	</div>
+	
+	<form action="${contextPath}/adgoods/register.do" method="post" id="modifyForm">
+	<input type="hidden" name="prod_code" value="${goodsVO.prod_code }">
+	<!-- 수정(UPDATE) 쿼리문에서 PROD_CODE가 필요하기 때문에 hidden 태그로 추가 -->
+	
 	<table align="center">
 	<tbody>
 		<tr>
@@ -52,8 +57,7 @@
 				
 				<div class="main-content">
 					<div class="sub-title">| 상품 기본정보</div>
-					<%-- <form>태그에 action기능 넣어야 됨. --%>
-					<form action="">
+					
 					<table class="table table1 line_top table_line">
 						<colgroup>
 							<col width="120px">
@@ -84,12 +88,14 @@
 							</tr>
 							<tr>
 								<th>상품명</th>
-								<td><input type="text" value="${prodVO.prod_name }"/></td>
+								<td>
+								<input type="text" value="${goodsVO.prod_name }"/>
+								</td>
 							</tr>
 							<tr>
 								<th>간단설명</th>
 								<td>
-									<input type="text" value="${prodVO.prod_content }"/>
+									<input type="text" value="${goodsVO.prod_content }"/>
 									<div class="helper blue mt5">
 										<span class="red"><span id="ex_byte">0</span>/120Byte</span>
 										<img src="/recipetoyou/Resources/Admin/Img/ShoppingMallManagement/Question-blue.png" width="12px" height="12px">
@@ -100,13 +106,13 @@
 							<tr>
 								<th>판매가격</th>
 								<td>
-									<input type="text" value="${prodVO.prod_price }"/>
+									<input type="text" value="${goodsVO.prod_price }"/>
 								</td>
 							</tr>
 							<tr>
 								<th>할인율</th>
 								<td>
-									<input type="text" value="${prodVO.prod_discount }">
+									<input type="text" value="${goodsVO.prod_discount }">
 									<div class="helper blue mt5">
 										<img src="/recipetoyou/Resources/Admin/Img/ShoppingMallManagement/Question-blue.png" width="12px" height="12px">
 										할인을 하지 않으실 경우 판매가격만 적어 주시면 됩니다.
@@ -118,12 +124,12 @@
 								<th>상품이미지</th>
 								<td>
 									<div class="file_div">
-											<label for="prod_img" class="input-file-btn">이미지 찾기</label>
+											<label for="fileItem" class="input-file-btn">이미지 찾기</label>
 											<!-- <button type="button" class="file_button btn">이미지 찾기</button> -->
-											<input type="file"  id="fileItem" name="file">
+											<input type="file"  multiple="multiple" id="fileItem" name="file" name='uploadFile'>
 											<div id="uploadArea">
-											<!-- <div class="preview"><img id="goodsImg" alt="" src="" width="300px" height="300px"></div>	 -->
-		
+											<!-- <div class="preview"><img id="goodsImg" alt="" src="" width="300px" height="300px"></div> -->
+											
 											</div>
 									</div>		
 								</td>
@@ -131,7 +137,7 @@
 							<tr>
 								<th>알레르기정보</th>
 								<td>
-								<input type="text" value="${prodVO.prod_allergy}" name="prod_allergy">
+								<input type="text" value="${goodsVO.prod_allergy}" name="prod_allergy">
 								
 								</td>
 								
@@ -139,7 +145,7 @@
 							<tr>
 								<th>주의사항</th>
 								<td>
-								<input type="text" value="${prodVO.prod_caution}" name="prod_caution">
+								<input type="text" name="prod_caution" value="${goodsVO.prod_caution}">
 								
 								</td>
 								
@@ -147,7 +153,7 @@
 							<tr>
 								<th>배송구분</th>
 								<td>
-								<input type="text" value="${prodVO.prod_delivery_type}" name="prod_delivery_type">
+								<input type="text" value="${goodsVO.prod_delivery_type}" name="prod_delivery_type">
 								
 								</td>
 								
@@ -155,7 +161,7 @@
 							<tr>
 								<th>원산지</th>
 								<td>
-								<input type="text" value="${prodVO.prod_from}" name="prod_from">
+								<input type="text" value="${goodsVO.prod_from}" name="prod_from">
 								
 								</td>
 								
@@ -163,7 +169,7 @@
 							<tr>
 								<th>안내사항</th>
 								<td>
-								<input type="text" value="${prodVO.prod_info}" name="prod_info">
+								<input type="text" value="${goodsVO.prod_info}" name="prod_info">
 								
 								</td>
 								
@@ -171,7 +177,7 @@
 							<tr>
 								<th>포장타입</th>
 								<td>
-								<input type="text" value="${prodVO.prod_wrap_type}" name="prod_wrap_type">
+								<input type="text" value="${goodsVO.prod_wrap_type}" name="prod_wrap_type">
 								
 								</td>
 								
@@ -179,7 +185,7 @@
 							<tr>
 								<th>유통기한</th>
 								<td>
-								<input type="text" value="${prodVO.prod_vaild_date}" name="prod_vaild_date">
+								<input type="text" value="${goodsVO.prod_vaild_date}" name="prod_vaild_date">
 								
 								</td>
 								
@@ -187,7 +193,7 @@
 							<tr>
 								<th>판매단위</th>
 								<td>
-								<input type="text" value="${prodVO.prod_sell_unit}" name="prod_sell_unit">
+								<input type="text" value="${goodsVO.prod_sell_unit}" name="prod_sell_unit">
 								
 								</td>
 								
@@ -195,7 +201,7 @@
 							<tr>
 								<th>수량</th>
 								<td>
-								<input type="text" value="${prodVO.stock_quantity}" name="stock_quantity">
+								<input type="text" value="${goodsVO.stock_quantity}" name="stock_quantity">
 								
 								</td>
 								
@@ -205,9 +211,6 @@
 							
 						</tbody>
 					</table>
-					
-
-					</form>
 					
 					<div class="btn-box" style="margin-top: 10px">
 						<%-- 1)버튼 클릭시 저장하시겠습니까 alert창이 나타나는 기능 추가해야 됨(상품분류기능을 생략했기때문에 '1차분류입력하세요' alert창도 생략해도 될것 같음.)
@@ -227,234 +230,94 @@
 		</tr>
 	</tbody>
 	</table>
+	</form>
+	
 	</div>
 
 
 	<script type="text/javascript">
-	/* 카테고리 */
-	let cateList = JSON.parse('${cateList}');
-			
-	//let searchForm = $("#searchForm");
-
-	let cate1Array = new Array();
-	let cate1Obj = new Object();
-
-
-	for(let i=0; i<cateList.length; i++){
-		if(cateList[i].level == "1"){
-			
-		cate1Obj = new Object();
-		cate1Obj.cateCode = cateList[i].cateCode;
-		cate1Obj.cateName = cateList[i].cateName;
-		cate1Array.push(cate1Obj);
-	}
-}
-	let cateSelect1 = $("select.category1");
 	
-	for(let i=0; i<cate1Array.length; i++){
-		cateSelect1.append("<option value='"+cate1Array[i].cateCode+"'>" + cate1Array[i].cateName + "</option>");
-	}
-	
-	$(document).on("change", "select.category1", function(){
-		let cate2Array = new Array();
-		let cate2Obj = new Object();
 		
-		//2차 분류 셀렉트박스에 삽입할 데이터 준비
+		/* 카테고리 */
+		let cateList = JSON.parse('${cateList}');
+				
+		//let searchForm = $("#searchForm");
+
+		let cate1Array = new Array();
+		let cate1Obj = new Object();
+
+
 		for(let i=0; i<cateList.length; i++){
-			
-			if(cateList[i].level == "2"){
+			if(cateList[i].level == "1"){
 				
-				cate2Obj = new Object();	//초기화
-				cate2Obj.cateCode = cateList[i].cateCode;
-				cate2Obj.cateName = cateList[i].cateName;
-				cate2Obj.cateParent = cateList[i].cateParent;
-				
-				cate2Array.push(cate2Obj);
-			}
+			cate1Obj = new Object();
+			cate1Obj.cateCode = cateList[i].cateCode;
+			cate1Obj.cateName = cateList[i].cateName;
+			cate1Array.push(cate1Obj);
 		}
-		
-		let cateSelect2 = $("select.category2")
-		
-		for(let i=0; i<cate2Array.length; i++){
-			cateSelect2.append("<option value='"+cate2Array[i].cateCode+"'>" + cate2Array[i].cateName + "</option>")
-		}
-	});
-	
-	/* 이미지 업로드 */
-	$("input[type='file']").on("change", function(e){
-		
-		/* 이미지 존재시 삭제 */
-		/*if($("#result_card").length>0){
-			deleteFile();
-		}*/
-		
-		/*
-			사용자가 선택한 파일을 서버에 전송하기 위해서는 선택된 파일에 접근하는 방법을 알아야 한다.
-			
-			1.<input> 태그를 통해 선택된 파일은 File 객체의 형태로 표현됨.
-			2.File 객체는 FileList(배열 형태의 객체) 객체의 요소로 저장이 됨.
-			3.FileList의 요소에는 File 객체가 저장됨 -> File 객체는 type이 'file'인 <input> 태그의 "files"의 속성.
-			4.사용자가 <input>태그를 통해 파일1개를 선택하게 되면 FileList 첫 번째 요소(FileList[0])인 File 객체에 파일 데이터가 저장됨.
-			5.여러 개의 파일을 선택한다면 선택한 갯수(n)만큼 FileList 첫 번째요소(FileList[0])부터 순서대로 각 요소(FileLsit[n]) File 객체에 저장됨.
-			
-			=>사용자가 선택한 파일을 선택한 파일인 File 객체에 접근하기 위해서는 결국
-			FileList 객체(<input>태그의 files 속성)에 접근해야 함.
-		*/
-		
-		let formData = new FormData();	//첨부 파일을 서버로 전송하기 위한 가상의 <form>태그
-		let fileInput = $('input[name="uploadFile"]');
-		let fileList = fileInput[0].files;
-		let fileObj = fileList[0];
-		
-		console.log("fileList : " + fileList);
-		console.log("fileName : " + fileObj.name);
-		console.log("fileSize : " + fileObj.size);
-		console.log("fileType(MimeType) : " + fileObj.type);
-		
-		
-		
-		if(!fileChk(fileObj.name, fileObj.size)){
-			return false;
-		}
-
-		
-		//multiple 속성을 부여하여 사용자가 여러 개의 파일을 선택할 수 있도록함.
-		for(let i=0; i<fileList.length; i++){
-			formData.append("uploadFile", fileList[i]);
-		}	
-			
-			$.ajax({
-				
-				url : "${contextPath}/adgoods/uploadAction.do",	//서버로 요청을 보낼 url
-				processData : false,			//서버로 전송할 데이터를 queryString 형태로 변환할지 여부
-				contentType : false,			//서버로 전송되는 데이터의 content-type
-				data : formData,				//서버로 전송할 데이터
-				type : 'POST',					//서버 요청 타입(GET, POST)
-				dataType : 'json',				//서버로부터 반환받을 데이터 타입
-				success : function(result){
-					console.log(result);
-					showUploadImage(result);
-				},
-				error : function(result){
-					//alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-					alert("에러");
-					}
-			});
-	}); 
-
-	/* 파일 형식 체크 */
-	 
-	let regex = new RegExp("(.*?)\.(jpg|png)$"); //.jpg, .png 업로드 형식으로 지정
-	let maxSize = 1048576; //1MB
-
-	function fileChk(fileName, fileSize){
-		
-		if(fileSize >= maxSize ){
-			alert("파일 사이즈 초과");
-			return false;
-		}
-		
-		if(!regex.test(fileName)){
-			alert("올바른 파일 형식이 아닙니다.");
-			return false;
-		}
-		
-		return true;
-	}	
-	
-	
-	/* 이미지 출력 */
-	function showUploadImage(uploadResultArr){
-		
-		//전달받은 데이터 체크
-		if(!uploadResultArr || uploadResultArr.length == 0){
-			return;
-		}
-		
-		let uploadResult = $("#uploadArea");
-		
-		let obj = uploadResultArr[0];
-		
-		let str = "";
-		
-		let fileCallPath = encodeURIComponent(obj.uploadPath.replace(/\\/g, '/') + "/s_" + obj.uuid + "_" + obj.fileName);
-		
-		str += "<div id='result_card'>";
-		str += "<img src='${contextPath}/adgoods/getImageInfo.do?fileName=" + fileCallPath +"'>";
-		str += "<div class='imgDeleteBtn' data-file='" + fileCallPath + "'>x</div>";
-		str += "<input type='hidden' name='imageList[0].fileName' value='"+ obj.fileName +"'>";
-		str += "<input type='hidden' name='imageList[0].uuid' value='"+ obj.uuid +"'>";
-		str += "<input type='hidden' name='imageList[0].uploadPath' value='"+ obj.uploadPath +"'>";		
-		str += "</div>";		
-		
-			uploadResult.append(str); 
-		
 	}
-	
-	/* 이미지 정보 호출 */
-	let prod_code = '<c:out value="${prodVO.prod_code}"/>';
-	let uploadArea = $("#uploadArea");
-										/* 여러 개의 이미지를 반환하기 때문에 이미지 정보를 배열 형태로 전달받음. */
-	$.getJSON("${contextPath}/adgoods/getImageList.do", {prod_code : prod_code}, function(arr){
+		let cateSelect1 = $("select.category1");
 		
-		//이미지 없는 경우 대체 이미지 출력
-		if(arr.length == 0){
-			
-			let str = "";
-			str += "<div id = 'result_card'>";
-			str += "<img src='/recipetoyou/Resources/Admin/Img/SubgoodsImg/ready.jpg'>";
-			
-			uploadArea.html(str);
-			
-			return;
+		for(let i=0; i<cate1Array.length; i++){
+			cateSelect1.append("<option value='"+cate1Array[i].cateCode+"'>" + cate1Array[i].cateName + "</option>");
 		}
 		
-		let str = "";
-		let obj = arr[0];
-		
-		let fileCallPath = encodeURIComponent(obj.uploadPath + "/s_" + obj.uuid + "_" + obj.fileName);
-		str += "<div id='result_card'";
-		str += "data-path='" + obj.uploadPath + "' data-uuid='" + obj.uuid + "' data-filename='" + obj.fileName + "'";
-		str += ">";
-		str += "<img src='${contextPath}/adgoods/getImageInfo.do?fileName=" + fileCallPath +"'>";
-		str += "</div>";
-		
-		uploadArea.html(str);
-	});	
-	
-	/* 이미지 삭제 버튼 동작 */
-	$("#uploadArea").on("click", ".imgDeleteBtn", function(e){
-		deleteFile();
-	})
-	
-		
-	/* 파일 삭제 메서드 */
-	function deleteFile(){
-		
-		let targetFile = $(".imgDeleteBtn").data("file");
-		
-		let targetDiv = $("#result_card");
-		
-		$.ajax({
+		$(document).on("change", "select.category1", function(){
+			let cate2Array = new Array();
+			let cate2Obj = new Object();
 			
-			url : "${contextPath}/adgoods/deleteFile.do",
-			data : {fileName : targetFile},
-			dataType : 'text',
-			type : 'POST',
-			success : function(result){
-				console.log(result);
+			//2차 분류 셀렉트박스에 삽입할 데이터 준비
+			for(let i=0; i<cateList.length; i++){
 				
-				targetDiv.remove();
-				$("input[type='file']").val("");
-			},
+				if(cateList[i].level == "2"){
+					
+					cate2Obj = new Object();	//초기화
+					cate2Obj.cateCode = cateList[i].cateCode;
+					cate2Obj.cateName = cateList[i].cateName;
+					cate2Obj.cateParent = cateList[i].cateParent;
+					
+					cate2Array.push(cate2Obj);
+				}
+			}
 			
-			error : function(result){
-				
-				console.log(result);
-				alert("파일을 삭제하지 못하였습니다.")
+			let cateSelect2 = $("select.category2")
+			
+			for(let i=0; i<cate2Array.length; i++){
+				cateSelect2.append("<option value='"+cate2Array[i].cateCode+"'>" + cate2Array[i].cateName + "</option>")
 			}
 		});
-	}
+		
+		/* 이미지 정보 호출 */
+		let prod_code = '<c:out value="${goodsVO.prod_code}"/>';
+		let uploadArea = $("#uploadArea");
+											/* 여러 개의 이미지를 반환하기 때문에 이미지 정보를 배열 형태로 전달받음. */
+		$.getJSON("${contextPath}/adgoods/getImageList.do", {prod_code : prod_code}, function(arr){
+			
+			//이미지 없는 경우 대체 이미지 출력
+			if(arr.length == 0){
+				
+				let str = "";
+				str += "<div id = 'result_card'>";
+				str += "<img src='/recipetoyou/Resources/Admin/Img/SubgoodsImg/ready.jpg'>";
+				
+				uploadArea.html(str);
+				
+				return;
+			}
+			
+			let str = "";
+			let obj = arr[0];
+			
+			let fileCallPath = encodeURIComponent(obj.uploadPath + "/s_" + obj.uuid + "_" + obj.fileName);
+			str += "<div id='result_card'";
+			str += "data-path='" + obj.uploadPath + "' data-uuid='" + obj.uuid + "' data-filename='" + obj.fileName + "'";
+			str += ">";
+			str += "<img src='${contextPath}/adgoods/getImageInfo.do?fileName=" + fileCallPath +"'>";
+			str += "</div>";
+			
+			uploadArea.html(str);
+		});	
+		
 </script>
 	
 
