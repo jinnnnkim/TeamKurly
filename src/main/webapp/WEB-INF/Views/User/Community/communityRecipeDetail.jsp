@@ -25,15 +25,16 @@
 
 		<div class="recipeBox">
 			<div class="thumbnail">
+				${recipeVO.recipe_img}
 				<img src="/recipetoyou/Resources/User/Img/Notice/market01.jpg"/>
 			</div>
 			<div class="userName">
-				<h3>사슴이요리</h3>
-				<h2>간단한 술안주로 최고인 버터갈릭새우 만들기</h2>
+				<h3>${recipeVO.user_id }</h3>
+				<h2>${recipeVO.recipe_title}</h2>
 			</div>
 			<div class="cookingImg">
-				<img src="/recipetoyou/Resources/User/Img/Recipe/recipe1.png"/>
-				<img src="/recipetoyou/Resources/User/Img/Recipe/recipe2.png"/>
+				<h3>${recipeVO.recipe_content}</h3>
+				
 			</div>
 			
 			<div class="relativeItem">
@@ -149,17 +150,20 @@
 			
 		</div>
 		<div class="page">
-				<ul>
-					<li><a href="#"><i class="fas fa-angle-double-left"></i></a></li>
-					<li><a href="#"><i class="fas fa-angle-left"></i></a></li>
-					<li><a href="#">1</a></li>
-					<li><a href="#">2</a></li>
-					<li><a href="#">3</a></li>
-					<li><a href="#"><i class="fas fa-angle-right"></i></a></li>
-					<li><a href="#"><i class="fas fa-angle-double-right"></i></a></li>
-				</ul>
-			</div>
+			<ul>
+				<li><a href="#"><i class="fas fa-angle-double-left"></i></a></li>
+				<li><a href="#"><i class="fas fa-angle-left"></i></a></li>
+				<li><a href="#">1</a></li>
+				<li><a href="#">2</a></li>
+				<li><a href="#">3</a></li>
+				<li><a href="#"><i class="fas fa-angle-right"></i></a></li>
+				<li><a href="#"><i class="fas fa-angle-double-right"></i></a></li>
+			</ul>
 		</div>
+		<div class="BtnBox">
+				<a href="${contextPath}/community/communityRecipeModify.do?recipe_idx=${recipeVO.recipe_idx}">수정</a>
+				<a href="${contextPath}/community/communityRecipeDelete.do?recipe_idx=${recipeVO.recipe_idx}">삭제</a>
+			</div>
 		<script>
 		var starRating = function(){
 			var $star = $(".star-input"),

@@ -7,7 +7,7 @@
 <html>
 <head>
 <link
-	href="/recipetoyou/Resources/User/Css/Community/communityRecipeModify.css"
+	href="/recipetoyou/Resources/User/Css/Community/communityRecipeWrite.css"
 	rel="stylesheet" type="text/css">
 <!-- fontawesome 링크 -->
 <link rel="stylesheet"
@@ -34,7 +34,7 @@
 					<div class="title">
 						<div class="recipeTitle">
 							<span>Recipe Title</span>
-							<input type="text" name="recipe_title" placeholder="예) 소고기 미역국 끓이기" />
+							<input type="text" name="recipe_title" value="${recipeVO.recipe_title }" />
 	
 						</div>
 						<div class="cate">
@@ -42,15 +42,14 @@
 							<select class="cate1">
 							
 							</select> 
-							<select  class="cate2" name="recipe_cate_code">
-								
+							<select  class="cate2" name="recipe_cate_code" >
+								<option value="${recipeVO.recipe_cate_code }"></option>								
 							</select> 
 						
 						</div>
 						<div class="recipeIngred">
 							<span>Ingredient</span>
-							<textarea name="recipe_ingre"
-							placeholder="나만의 레시피에 들어가는 요리 재료를 적어주세요. ex)미역국에 필요한 재료"></textarea>
+							<textarea name="recipe_ingre">${recipeVO.recipe_ingre }</textarea>
 						</div>
 					
 							
@@ -79,7 +78,7 @@
 				<div class="recipeContent">
 					<span>Recipe Content</span>
 				</div>
-				<textarea name="recipe_content"></textarea>
+				<textarea name="recipe_content">${recipeVO.recipe_content }</textarea>
 					<script type="text/javascript">
 							CKEDITOR.replace('recipe_content', {
 			                    height: 300,
@@ -90,9 +89,10 @@
 					</script>
 				<input type="hidden" name="prod_code"/>
 				<input type="hidden" name="recipe_img"/>
+				<input type="hidden" name="recipe_idx" value="${recipeVO.recipe_idx }"/>
 					
 				<div class="writeBtn">
-					<button type="button" onclick="recipeWrite()">글쓰기</button>
+					<button type="button" onclick="recipeWrite()">수정하기</button>
 				</div>
 	
 			</form>
@@ -117,7 +117,7 @@
 		console.log(recipe_title);
 		
 		frmRecipe.method="post";
-		frmRecipe.action = "${contextPath}/community/communityRecipeWriteProcess.do";
+		frmRecipe.action = "${contextPath}/community/communityRecipeModifyProcess.do";
 		frmRecipe.submit();
 	}
 
@@ -172,7 +172,7 @@ $(document).ready(function(){
 		cateSelect2.append("<option value='none'>선택</option>");
 		
 		for(let i = 0; i < cate2Array.length; i++){
-			if(selectVal1 == cate2Array[i].recipe_cate_parent && cate2Array[i].recipe_cate != '전체'){
+			if(selectVal1 == cate2Array[i].recipe_cate_parent && cate2Array[i].recipe_cate != '전체'  ){
 				cateSelect2.append("<option value='"+cate2Array[i].recipe_cate_code+"'>" + cate2Array[i].recipe_cate + "</option>");	
 			}
 		}

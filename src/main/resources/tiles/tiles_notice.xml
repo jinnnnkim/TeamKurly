@@ -5,7 +5,6 @@
        
 <tiles-definitions>
 
-	<!-- 공지사항 레이아웃 -->
 	<definition name="noticeLayout" template="/WEB-INF/Views/User/Inc2/noticeLayout.jsp">
 		<put-attribute name="title" value=""/>
 		<put-attribute name="header" value="/WEB-INF/Views/User/Inc2/headerNotice.jsp"/>
@@ -21,7 +20,6 @@
 		<put-attribute name="footer" value="/WEB-INF/Views/User/Inc2/footer.jsp"/>		
 	</definition>
 	
-	<!-- 레시피 레이아웃 -->
 	<definition name="communityLayout" template="/WEB-INF/Views/User/Inc2/communityLayout.jsp">
 		<put-attribute name="title" value=""/>
 		<put-attribute name="header" value="/WEB-INF/Views/User/Inc2/header.jsp"/>
@@ -85,7 +83,6 @@
 		<put-attribute name="body" value="/WEB-INF/Views/User/Notice/noticeOneToOneQuestionDetail.jsp"/>	
 	</definition>
 	
-	<!-- 레시피 레이아웃 -->
 	<definition name="community/communityRecipeMain" extends="communityLayout">
 		<put-attribute name="title" value="커뮤니티 - 레시피"/>
 		<put-attribute name="body" value="/WEB-INF/Views/User/Community/communityRecipeMain.jsp"/>	
@@ -99,6 +96,11 @@
 	<definition name="community/communityRecipeDetail" extends="communityLayout">
 		<put-attribute name="title" value="레시피 - 상세페이지"/>
 		<put-attribute name="body" value="/WEB-INF/Views/User/Community/communityRecipeDetail.jsp"/>	
+	</definition>
+	
+	<definition name="community/communityRecipeModify" extends="communityLayout">
+		<put-attribute name="title" value="레시피 - 상세페이지"/>
+		<put-attribute name="body" value="/WEB-INF/Views/User/Community/communityRecipeModify.jsp"/>	
 	</definition>
 	
 	

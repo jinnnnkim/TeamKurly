@@ -1,6 +1,6 @@
 @charset "UTF-8";
 .recipeBox{
-	padding:50px;
+	padding-top:50px;
 	text-align:center;
 	width:1080px;
 	margin:0 auto;
@@ -9,6 +9,23 @@
 	width:600px;
 	height:300px;
 	display:inline-block;
+}
+
+.cookingImg{
+	width:1080px;
+	margin:0 auto;
+	text-align:center;
+	padding:50px !important;
+}
+
+.cookingImg h3 p{
+	width:980px !important;
+	margin:0 auto;
+}
+
+.cookingImg h3 p img{
+	width:980px !important;
+	height: auto !important;
 }
 
 .cookingImg img{
@@ -130,3 +147,20 @@ star-input>.input.focus{outline:1px dotted #ddd;}
 .star-input>.input>label[for="p4"]{width:120px;z-index:2;}
 .star-input>.input>label[for="p5"]{width:150px;z-index:1;}
 .star-input>output{display:inline-block;width:60px; font-size:18px;text-align:right; vertical-align:middle;}
+
+.BtnBox{
+	text-align:center;
+	padding-right:15px;
+	margin:20px 0;
+}
+.BtnBox a{
+	display:inline-block;
+	background:purple;
+	color:white;
+	width:100px;
+	height:40px;
+	text-align:center;
+	line-height:40px;
+	border-radius:5px;
+	font-weight:600;
+}
