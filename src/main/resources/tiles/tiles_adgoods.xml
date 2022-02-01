@@ -17,7 +17,7 @@
 		<put-attribute name="body" value="/WEB-INF/Views/Admin/ShoppingMallManagement/adgoodsList.jsp"/>
 	</definition>
 	
-	<definition name="adgoods/goodsInfo" extends="adminBaseLayout">
+	<definition name="adgoods/adgoodsInfo" extends="adminBaseLayout">
 		<put-attribute name="title" value="상품등록"/>
 		<put-attribute name="body" value="/WEB-INF/Views/Admin/ShoppingMallManagement/adgoodsInfo.jsp"></put-attribute>
 	</definition>

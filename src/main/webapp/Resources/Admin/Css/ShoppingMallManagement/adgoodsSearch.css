@@ -2,6 +2,12 @@
 * { font-family: ‘Noto Sans KR’, sans-serif;
 }
 /* 메인페이지 CSS */
+.wrap {
+	width: 1080px;
+	height: 1000px;
+	margin: 0 auto;
+}
+
 
 /* 1번째줄에 나오는 상품목록 CSS */
 .bar{
@@ -372,22 +378,4 @@ li.sort-item {
 	display: block;
 	height: 100px;
 	width: 165%;
-}
-
-.page_wrap{
-	text-align: center;
-	margin-top: 20px;
-}
-
-.next, .prev{
-	border: 1px solid #ccc;
-	padding: 0 10px;
-}
-
-.pageBtn a:link {color: black;}
-.pageBtn_btn a:visited {color: black;}
-.pageBtn_btn a:active {color: black;}
-.pageBtn_btn a:hover {color: black;}
-.next a, .prev a {
-    color: #ccc;
 }

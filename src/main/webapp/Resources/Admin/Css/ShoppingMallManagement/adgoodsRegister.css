@@ -2,13 +2,6 @@
 * { font-family: ‘Noto Sans KR’, sans-serif;
 }
 
-.wrap {
-	width: 1080px;
-	height: 1000px;
-	margin: 0 auto;
-}
-
-
 /* 페이지 가능 윗부분 - 전체테이블 윗부분 */
 .bar{
 	padding: 8px 0px 8px 2px;
@@ -442,8 +435,8 @@ body, td, select, div, textarea, center {
     position: absolute;
     top: 0;
     right: 5%;
-    background-color: #ef7d7d;
-    color: wheat;
+    background-color: black;
+    color: white;
     font-weight: 900;
     width: 30px;
     height: 30px;
@@ -453,4 +446,14 @@ body, td, select, div, textarea, center {
     border: none;
     display: block;
     cursor: pointer;	
+}
+
+.ck-content{
+	height: 200px;
+}
+
+.discount{
+	display: block;
+	padding-top: 5px;
+	font-weight: 500;
 }

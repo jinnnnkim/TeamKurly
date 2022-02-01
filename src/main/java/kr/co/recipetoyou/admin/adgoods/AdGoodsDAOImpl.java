@@ -1,11 +1,14 @@
 package kr.co.recipetoyou.admin.adgoods;
 
+import java.io.IOException;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Repository;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
 
 import kr.co.recipetoyou.admin.adgoods.category.AdGoodsCateVO;
 import kr.co.recipetoyou.util.PageMaker;
@@ -31,31 +34,39 @@ public class AdGoodsDAOImpl implements AdGoodsDAO{
 		return sqlSession.selectList(NAMESPACE+".listPage", page);
 	}
 
-	//페이징 처리하는 동작(PagingVO 객체 사용)
+	//페이징 처리, 상품 목록
 	@Override
 	public List<AdGoodsVO> listPaging(PagingVO vo) throws Exception {
 		
-		return sqlSession.selectList(NAMESPACE+".listPaging", vo);
+		return sqlSession.selectList(NAMESPACE+".getGoodsList", vo);
 	}
+	
 	
 	//상품 수 조회
 	//DB 테이블에 있는 모든 상품수 계산 후 리턴
 	@Override
 	public int goodsCount(PagingVO vo) throws DataAccessException {
 		
-		return sqlSession.selectOne(NAMESPACE+".prodCount");
+		return sqlSession.selectOne(NAMESPACE+".getGoodsCount");
 	}
 
-	//상품 상세 정보 조회
+	//상품 상세 페이지
 	@Override
-	public AdGoodsVO readGoods(int prodCode) throws DataAccessException {
+	public AdGoodsVO readGoods(int prod_code) throws DataAccessException {
 		
-		return sqlSession.selectOne(NAMESPACE+".readProduct", prodCode);
+		return sqlSession.selectOne(NAMESPACE+".getadGoodsDetail", prod_code);
+	}
+	
+	//상품 정보
+	@Override
+	public AdGoodsVO getadGoodsInfo(int prod_code) throws JsonProcessingException {
+		
+		return sqlSession.selectOne(NAMESPACE+".getadGoodsInfo", prod_code);
 	}
 	
 	//카테고리
 	@Override
-	public List<AdGoodsCateVO> cateList() throws Exception {
+	public List<AdGoodsCateVO> cateList() throws IOException {
 		
 		return sqlSession.selectList(NAMESPACE+".cateList");
 	}
@@ -68,9 +79,9 @@ public class AdGoodsDAOImpl implements AdGoodsDAO{
 	}
 
 	@Override
-	public int countSearch(AdGoodsCateVO option) throws Exception {
+	public int countSearch(PagingVO vo) throws Exception {
 		
-		return sqlSession.selectOne(NAMESPACE+".countSearch", option);
+		return sqlSession.selectOne(NAMESPACE+".countSearch", vo);
 	}
 	
 	//상품 등록
@@ -92,10 +103,26 @@ public class AdGoodsDAOImpl implements AdGoodsDAO{
 
 	//이미지 데이터 반환
 	@Override
-	public List<AdgoodsImgVO> getGoodsImage(int prod_code) throws Exception {
+	public List<AdgoodsImgVO> getGoodsImage(int prod_code) throws JsonProcessingException {
 		
 		return sqlSession.selectList(NAMESPACE+".getImageList", prod_code);
 	}
+
+	//상품 정보 수정
+	@Override
+	public int goodsModify(AdGoodsVO agvo) throws Exception {
+		
+		return sqlSession.update(NAMESPACE+".goodsModify", agvo);
+	}
+
+	//상품 정보 삭제
+	@Override
+	public int goodsDelete(int prod_code) throws Exception {
+		
+		return sqlSession.delete(NAMESPACE+".goodsDelete", prod_code);
+	}
+
+	
 	
 	
 
