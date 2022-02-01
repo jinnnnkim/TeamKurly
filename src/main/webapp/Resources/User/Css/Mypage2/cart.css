@@ -55,6 +55,7 @@
 }
 
 .item {
+	width: 270px;
 	min-height: 128px;
 	padding-bottom: 20px;	
 }
@@ -96,7 +97,7 @@
 	border: 1px solid #dddfe1;
 	border-radius: 3px;
 	padding: 3px;
-	margin: -15px -205px 0 0;
+	margin: -30px -205px 0 0;
 	
 }
 
@@ -124,14 +125,14 @@
 	float: right;
 	font-size: 25px;
 	color: #5f0080;
-	margin: -16px -465px 0 0 ;
+	margin: -30px -465px 0 0 ;
 	
 } 
 
 .totalItem_prices {
 	float: right;
 	color: #000;
-	margin: -10px -365px 0 0 ;
+	margin: -27px -365px 0 0 ;
 	
 } 
 

@@ -5,6 +5,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.ui.Model;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import kr.co.recipetoyou.util.PagingVO;
 
@@ -21,5 +22,11 @@ public interface AdFAQController {
 	public ModelAndView removeFAQ(String id, HttpServletRequest request, HttpServletResponse response) throws Exception;
 
 	public ModelAndView updateFAQInfo(String id, HttpServletRequest request, HttpServletResponse response) throws Exception;
+
+	public String FAQRegister(AdFAQVO vo, HttpServletRequest request, HttpServletResponse response) throws Exception;
+
+	public void FAQListCategory(Model model) throws Exception;
+
+	
 
 }

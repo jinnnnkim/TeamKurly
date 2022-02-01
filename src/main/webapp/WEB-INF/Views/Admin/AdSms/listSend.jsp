@@ -83,7 +83,7 @@
 			총 ${cnt}명의 회원이 검색되었습니다.		
 		</div>
 		
- 	<%-- 	<div class="userList_wrap">
+ 	<div class="userList_wrap">
 		<table align="center" id="tableGroup">
 			<thead>
 				
@@ -95,7 +95,7 @@
 					
 					</td>
 					<td id="infoCol">아이디</td>
-					<td id="orderCol">주문날짜</td>
+					<td id="orderCol">주문코드</td>
 					<td id="paydayCol">결제코드</td>
 					<td id="sendContentCol">발송내용</td>
 					<td id="sendDateCol">발송일시</td>
@@ -115,9 +115,9 @@
 				</c:forEach> 
 			</tbody>	
 		</table>
-		</div>  --%>
+		</div>  
 		
-		<div class="userList_wrap">
+<%-- 		<div class="userList_wrap">
 		 <table align="center" id="tableGroup">
 			<thead>
 				
@@ -151,7 +151,7 @@
 				</c:forEach> 
 			</tbody>	
 		</table> 
-		</div> 
+		</div>  --%>
 		<div class="btnGroup">
 		<!-- 버튼클릭시 전체선택되는 js구현되어있음 -->
 		<input type="button" value="전체선택" id="check_all">

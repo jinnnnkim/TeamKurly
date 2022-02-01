@@ -40,18 +40,13 @@
 		주문상세정보
 	</div>
 	
-	<div class="title">
-	
-	<c:out value="${userVO.user_name}"/>님의 주문상세정보입니다.
-	</div>
-	
 	<form action="">
 	
 		<div class="adUserData">
 		<table id="userTable">
 
 			<tr>
-				<td class="grayBg">주문코드${paymentVO.pay_method}</td>
+				<td class="grayBg">주문코드</td>
 				<td class="whiteBg">${orderVO.ord_code}</td>
 				<td class="grayBg">주문일</td>
 				<td class="whiteBg">${orderVO.ord_date}</td>

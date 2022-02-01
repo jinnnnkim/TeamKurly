@@ -22,6 +22,7 @@ public class CartPickDAOImpl implements CartPickDAO {
 	@Autowired
 	private SqlSession sqlSession;
 
+	//찜하기
 	@Override
 	public List<PickVO> selectAllCartPickList() throws DataAccessException {
 		
@@ -49,8 +50,25 @@ public class CartPickDAOImpl implements CartPickDAO {
 			List<ProdVO> cartList = sqlSession.selectList("mapper.member.selectAllCartList");
 			return cartList;
 		}	
-		
-		
+	
+	//마이페이지 장바구니 조회 삭제	
+	@Override
+	public int deleteCart(String prod_name) throws DataAccessException {
+		int result = sqlSession.delete("mapper.member.deleteCart", prod_name);
+		System.out.println("dao 호출"+prod_name);
+		return result;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 		
 	//찜 담기
 	@Override
@@ -65,6 +83,8 @@ public class CartPickDAOImpl implements CartPickDAO {
 		int result = sqlSession.insert("mapper.user.insertCartAdd", cartAddVO);
 		return result;
 	}
+
+	
 
 	
 	

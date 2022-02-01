@@ -5,21 +5,11 @@
 	width: 1080px;
 }
 
-.main-content {
-	padding: 20px;
-	
-	/* display: flex;
-	flex-direction: column; */
-}
-/* body, td, select, div, textarea, center {
-	color: #202020;
-	font-size: 14px;
-} */
-/* 테이블 상세 css 적용부분 */
 .subtitle {
   border-collapse: collapse;
   text-align: left;
   line-height: 1.5;
+  width: 1080px;
 }
 
 .subtitle p{
@@ -28,9 +18,8 @@
     height: 30px;
 }
 
-
 .subtitle th {
-  width: 150px;
+  width: 50px;
   padding: 10px;
   font-weight: bold;
   vertical-align: top;
@@ -44,3 +33,12 @@
   vertical-align: top;
   border-bottom: 1px solid #ccc;
 }
+
+.ck.ck-editor {
+   max-width: 500px;
+}
+
+.ck-editor__editable {
+	min-height: 300px;
+}
+

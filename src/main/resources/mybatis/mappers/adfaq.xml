@@ -5,14 +5,22 @@
 
 <mapper namespace="mapper.adfaq">	<!-- user.xml의 네임스페이스 지정 -->
 
-	<!-- 발송 -->
+	<!-- FAQ -->
 	<resultMap type="adFAQVO" id="FAQResult">		
 		<result property="faq_code" column="faq_code" />
+		<result property="faq_title" column="faq_title"/>
 		<result property="faq_info" column="faq_info"/>
 		<result property="faq_confirm" column="faq_confirm"/>
 		<result property="faq_reg_date" column="faq_reg_date"/>
+		<result property="faq_cate" column="faq_cate"/>
 	</resultMap>
 	
+	<!-- FAQ  cate-->
+	<resultMap type="adFAQCategoryVO" id="FAQCateResult">		
+		<result property="faq_cate_code" column="faq_cate_code" />
+		<result property="faq_cate" column="faq_cate"/>
+		<result property="faq_code" column="faq_code" />
+	</resultMap>
 	
 	<!-- 페이지정보를 10개씩 가져오기 -->
 	<select id="FAQListPage" resultMap="FAQResult">
@@ -45,25 +53,43 @@
 		]]>
 	</delete>
 	
-	<!-- FAQ 상세 정보 조회 -->
+	<!-- FAQ 상세 정보 조회 & 카테고리 테이블과 조인 -->
 	<select id="readFAQ" resultMap="FAQResult" parameterType="String">
 		<![CDATA[
-			select *
-			from tb_faq
-			where faq_code = #{id}
+			select fa.*, fc.* 
+			from tb_faq fa 
+			join tb_faq_cate fc 
+			on fa.faq_code = fc.faq_code 
+			where fa.faq_code = #{faq_code} 
 		]]>
 	</select>
 	
-	<!-- FAQ 정보 수정 -->
+	<!-- FAQ 정보 수정 --> 
 	<update id="updateFAQ" parameterType="adFAQVO">
 		<![CDATA[
-			update tb_faq set
-			faq_code = #{faq_code},			
-			faq_info = #{faq_info}, 
-			faq_confirm = #{faq_confirm},
-			faq_reg_date = #{faq_reg_date} 
+			update tb_faq set 
+			faq_title = #{faq_title},			
+			faq_info = #{faq_info}
 			where faq_code = #{faq_code}
 		]]>
-	</update>
+	</update> 
 
+	<!-- 상품 등록 -->
+	<insert id="registerFAQ" >
+		<![CDATA[
+			insert into tb_faq (faq_code, faq_title, faq_info, faq_reg_date) 
+			values (faq2_seq.nextval, #{faq_title}, #{faq_info},sysdate)
+		]]>
+	</insert> 
+	
+	<!-- 카테고리 호출 -->
+	<select id="cateFAQList" resultType="kr.co.recipetoyou.admin.adfaq.AdFAQCategoryVO">
+		<![CDATA[
+			select *
+			from tb_faq_cate 
+		]]>
+	</select>
+	
+	
+	
 </mapper>	

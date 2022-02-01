@@ -229,23 +229,6 @@
 		</dependency>
 		
 		<!-- 다중 파일 업로드 -->
-		
-		<!-- https://mvnrepository.com/artifact/commons-collections/commons-collections -->
-		<!-- https://mvnrepository.com/artifact/commons-collections/commons-collections -->
-		<dependency>
-		    <groupId>commons-collections</groupId>
-		    <artifactId>commons-collections</artifactId>
-		    <version>3.2</version>
-		</dependency>
-		<!-- https://mvnrepository.com/artifact/commons-lang/commons-lang -->
-		<dependency>
-		    <groupId>commons-lang</groupId>
-		    <artifactId>commons-lang</artifactId>
-		    <version>2.4</version>
-		</dependency>
-				
-				
-		
 		<dependency>
 			<groupId>commons-fileupload</groupId>
 			<artifactId>commons-fileupload</artifactId>
@@ -290,7 +273,7 @@
 		    <artifactId>jackson-databind</artifactId>
 		    <version>2.12.1</version>
 		</dependency>
-		<!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.dataformat/jackson-dataformat-xml -->
+
 		<dependency>
 		    <groupId>com.fasterxml.jackson.dataformat</groupId>
 		    <artifactId>jackson-dataformat-xml</artifactId>
