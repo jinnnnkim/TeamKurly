@@ -9,6 +9,7 @@
 <head>
 <meta charset="UTF-8">
 <title><tiles:insertAttribute name="title" ignore="true"/></title>
+<link href="/recipetoyou/Resources/User/Css/remote.css" rel="stylesheet"  type="text/css">
 </head>
 <body>
  <div class="wrap">

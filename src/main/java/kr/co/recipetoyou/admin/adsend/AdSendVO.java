@@ -4,8 +4,8 @@ import java.sql.Date;
 
 import org.springframework.stereotype.Component;
 
-import kr.co.recipetoyou.admin.adsend.AdPaymentVO;
-import kr.co.recipetoyou.admin.adsend.AdOrderVO;
+import kr.co.recipetoyou.admin.adorder.AdOrderVO;
+import kr.co.recipetoyou.admin.adpayment.AdPaymentVO;
 
 @Component("adsendVO")
 public class AdSendVO {
