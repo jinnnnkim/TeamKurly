@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 
+
 import kr.co.recipetoyou.util.PagingVO;
 
 @Service("faqService")
@@ -45,14 +46,15 @@ public class AdFAQServiceImpl implements AdFAQService {
 		
 	//FAQ 정보 수정
 	@Override
-	public void updateFAQInfo(AdFAQVO vo) throws DataAccessException {
-		dao.updateFAQ(vo);	
+	public int updateFAQInfo(AdFAQVO vo) throws DataAccessException {
+		return dao.updateFAQ(vo);
+		 
 	}
 	
 	//카테고리
 	@Override
 	public List<AdFAQCategoryVO> cateFAQList() throws Exception {
-		logger.info("(service)cateList.....");
+		logger.info("(service)cateFAQList.....");
 		return dao.cateFAQList();
 	}
 
@@ -60,6 +62,12 @@ public class AdFAQServiceImpl implements AdFAQService {
 	@Override
 	public List<AdFAQVO> listSearch(AdFAQCategoryVO option) throws Exception {	
 		return dao.listFAQSearch(option);
+	}
+	
+	//검색 결과 갯수
+	@Override
+	public int countFAQSearch(AdFAQCategoryVO  option) throws Exception {	
+		return dao.countFAQSearch(option);
 	}
 	
 	//상품 등록

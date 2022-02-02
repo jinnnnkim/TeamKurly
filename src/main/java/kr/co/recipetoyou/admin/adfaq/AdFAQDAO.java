@@ -19,12 +19,14 @@ public interface AdFAQDAO {
 
 	public AdFAQVO readFAQ(String id) throws DataAccessException;
 
-	public void updateFAQ(AdFAQVO vo) throws DataAccessException;
+	public int updateFAQ(AdFAQVO vo) throws DataAccessException;
 
 	public List<AdFAQCategoryVO> cateFAQList() throws DataAccessException;
 
 	public List<AdFAQVO> listFAQSearch(AdFAQCategoryVO option) throws Exception ;
 
 	public void register(AdFAQVO vo) throws Exception ;
+
+	public int countFAQSearch(AdFAQCategoryVO option) throws Exception ;
 
 }

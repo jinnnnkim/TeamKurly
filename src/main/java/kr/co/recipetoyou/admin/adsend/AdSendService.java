@@ -4,8 +4,8 @@ import java.util.List;
 
 import org.springframework.dao.DataAccessException;
 
-import kr.co.recipetoyou.admin.adsend.AdPaymentVO;
-import kr.co.recipetoyou.admin.adsend.AdOrderVO;
+import kr.co.recipetoyou.admin.adorder.AdOrderVO;
+import kr.co.recipetoyou.admin.adpayment.AdPaymentVO;
 import kr.co.recipetoyou.admin.aduser.AdUserVO;
 import kr.co.recipetoyou.util.PagingVO;
 
