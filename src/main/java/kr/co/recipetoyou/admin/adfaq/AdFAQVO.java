@@ -62,6 +62,9 @@ public class AdFAQVO {
 	public void setFaq_info(String faq_info) {
 		this.faq_info = faq_info;
 	}
+	public AdFAQCategoryVO getAdFAQCategoryVO() {
+		return adFAQCategoryVO;
+	}
 	public Date getFaq_reg_date() {
 		return faq_reg_date;
 	}

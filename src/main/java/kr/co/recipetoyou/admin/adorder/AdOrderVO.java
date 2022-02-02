@@ -1,4 +1,4 @@
-package kr.co.recipetoyou.admin.adsend;
+package kr.co.recipetoyou.admin.adorder;
 
 import java.sql.Date;
 

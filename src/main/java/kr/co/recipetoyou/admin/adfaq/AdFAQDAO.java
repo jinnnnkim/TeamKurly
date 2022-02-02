@@ -19,7 +19,7 @@ public interface AdFAQDAO {
 
 	public AdFAQVO readFAQ(String id) throws DataAccessException;
 
-	public void updateFAQ(AdFAQVO vo) throws DataAccessException;
+	public int updateFAQ(AdFAQVO vo) throws DataAccessException;
 
 	public List<AdFAQCategoryVO> cateFAQList() throws DataAccessException;
 

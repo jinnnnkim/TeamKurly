@@ -70,6 +70,7 @@
 			</form>
 		</div>	
 	</div>
+	<!-- 카테고리 설정 문제 및 인서트 문제, 수정문제 있음  -->
 	<script type="text/javascript">
 		/* 카테고리 */
 		let cateFAQList = JSON.parse('${cateFAQList}');
@@ -95,8 +96,6 @@
 		
 		
 		$(document).on("select.faq_cate_code", function(){
-			let cateArray = new Array();
-			let cateObj = new Object();
 			
 			// 분류 셀렉트박스 삽입 데이터 준비
 			for(let i=0; i<cateFAQList.length; i++){

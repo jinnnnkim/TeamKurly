@@ -6,8 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 
-import kr.co.recipetoyou.admin.adsend.AdPaymentVO;
-import kr.co.recipetoyou.admin.adsend.AdOrderVO;
+import kr.co.recipetoyou.admin.adorder.AdOrderVO;
+import kr.co.recipetoyou.admin.adpayment.AdPaymentVO;
 import kr.co.recipetoyou.admin.aduser.AdUserVO;
 import kr.co.recipetoyou.util.PagingVO;
 
