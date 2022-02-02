@@ -4,6 +4,7 @@ import org.springframework.http.MediaType;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.IOException;
 import java.net.URLDecoder;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -27,6 +28,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -37,6 +39,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 
@@ -51,7 +54,7 @@ public class AdGoodsControllerImpl implements AdGoodsController {
 	
 	private static final Logger logger = LoggerFactory.getLogger("ProductControllerImpl.class");
 	
-	private static String UPLOAD_DIR = "C:\\git-recipetoyou\\RecipeToYou\\src\\main\\webapp\\Resources\\Admin\\Img\\AdgoodsImg";
+	private static final String UPLOAD_DIR = "C:\\git-recipetoyou\\RecipeToYou\\src\\main\\webapp\\Resources\\Admin\\Img\\AdgoodsImg\\";
 	
 	@Autowired
 	AdGoodsService adGoodsService;
@@ -61,38 +64,54 @@ public class AdGoodsControllerImpl implements AdGoodsController {
 	//전체 상품 목록 조회
 	@Override
 	@RequestMapping(value = "/adgoods/listProduct.do", method = {RequestMethod.GET, RequestMethod.POST})
+	@ResponseBody
 	public ModelAndView listPageGet(PagingVO vo, HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
 		
 		String viewName = (String)request.getAttribute("viewName");
-		PageMaker pm = new PageMaker();
-		pm.setVo(vo);
-		pm.setTotalCount(adGoodsService.prodCount(vo));
-		
-		logger.info("C: vo는"+vo);
-		logger.info("info 레벨 : viewName = "+viewName); 
+		ModelAndView mav = new ModelAndView(viewName);
+		List prodList = adGoodsService.listProduct(vo);
 		
 		int cnt = adGoodsService.prodCount(vo);
-		List<AdGoodsVO> prodList = adGoodsService.listProduct(vo);
-		ModelAndView mav = new ModelAndView(viewName);
 		
-		ObjectMapper objm = new ObjectMapper();
+		if(!prodList.isEmpty()) {
+			mav.addObject("prodList", prodList);
+			mav.addObject("cnt", cnt);
+		}else {
+			mav.addObject("listCheck", "empty");
+		}
 		
-		List list = adGoodsService.cateList();
+		//페이지 데이터
+		mav.addObject("pm", new PageMaker(vo, adGoodsService.prodCount(vo)));
 		
-		String cateList = objm.writeValueAsString(list);
 		
-		mav.addObject("cateList", cateList);
+		/*
+		 * PageMaker pm = new PageMaker(); pm.setVo(vo);
+		 * pm.setTotalCount(adGoodsService.prodCount(vo));
+		 * 
+		 * 
+		 * 
+		 */
 		
-		logger.info("변경 전========"+list);
-		logger.info("변경 후========"+cateList);
 		
-		mav.addObject("prodList", prodList);
-		mav.addObject("cnt", cnt);
-		mav.addObject("pm", pm);
+	
+		//목록 처리
 		
-		PageMaker pageMake = new PageMaker(vo, cnt);
-		mav.addObject("pageMaker", pageMake);
+		/*
+		 * ObjectMapper objm = new ObjectMapper();
+		 * 
+		 * List list = adGoodsService.cateList();
+		 * 
+		 * String cateList = objm.writeValueAsString(list);
+		 * 
+		 * mav.addObject("cateList", cateList);
+		 * 
+		 * mav.addObject("prodList", prodList); 
+		 * mav.addObject("pm", pm);
+		 * 
+		 * PageMaker pageMake = new PageMaker(vo, cnt); mav.addObject("pageMaker",
+		 * pageMake);
+		 */
 		
 		return mav;
 	}
@@ -108,39 +127,31 @@ public class AdGoodsControllerImpl implements AdGoodsController {
 		
 	}
 	
-	//상품 카테고리 검색
+	//상품 조회
 	@Override
-	@RequestMapping(value = "/adgoods/listCategory.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/adgoods/adgoodsSearch.do", method = RequestMethod.GET)
 	public void listCategory(Model model) throws Exception {
 		
-		
-		
+
 	}
 	
 	//상품 상세 정보 조회
 	@Override
-	@RequestMapping(value = {"/adgoods/goodsInfo.do", "adgoods/goodsUpdate.do"}, method = RequestMethod.GET)
-	public void getProductInfo(@RequestParam(value = "code") int code, Model model) throws Exception{
+	@RequestMapping(value = {"/adgoods/adgoodsInfo.do", "/adgoods/adgoodsModify.do"}, produces = "application/json", method = RequestMethod.GET)
+	public void getadGoodsDetail(int prod_code, Model model, PagingVO vo) throws Exception{
 		
-		logger.info("클릭한 상품 : "+code);
-		
-		//목록 페이지 조건 정보
-		//model.addAttribute("option", option);
+		logger.info("클릭한 상품 : "+prod_code);
 		
 		ObjectMapper objm = new ObjectMapper();
 		
-		List list = adGoodsService.cateList();
+		//카테고리 리스트 정보
+		model.addAttribute("cateList", objm.writeValueAsString(adGoodsService.cateList()));
 		
-		String cateList = objm.writeValueAsString(list);
-		
-		//카테고리 리스트 데이터
-		model.addAttribute("cateList", cateList);
-		
-		logger.info("변경 전========"+list);
-		logger.info("변경 후========"+cateList);
+		//목록 페이지 조건 정보
+		model.addAttribute("vo", vo);
 
 		//상품 정보
-		model.addAttribute("prodVO", adGoodsService.getGoodsInfo(code));
+		model.addAttribute("goodsVO", adGoodsService.adgoodsGetDetail(prod_code));
 	
 	}
 	
@@ -174,44 +185,11 @@ public class AdGoodsControllerImpl implements AdGoodsController {
 	public ModelAndView uploadGoodsRegister(AdGoodsVO agvo, RedirectAttributes rttr) throws Exception {
 		
 		
-		  //String imgUploadPath = uploadPath + File.separator+"AdgoodsImg";
-		  //String ymdPath = UploadFileUtils.calcPath(imgUploadPath);
-		  //String fileName = null;
-		 
-		
-
-		//파일 인풋박스에 첨부된 파일이 없다면(=첨부된 파일이 없다면)
-		
-		/*
-		 * if(file.getOriginalFilename() != null && file.getOriginalFilename() != "") {
-		 * 
-		 * fileName =
-		 * UploadFileUtils.fileUpload(imgUploadPath,file.getOriginalFilename(),
-		 * file.getBytes(), ymdPath);
-		 * 
-		 * } else{ //첨부된 파일이 없다면
-		 * 
-		 * fileName = uploadPath + File.separator + "SubgoodsImg" + File.separator +
-		 * "ready.jpg"; agvo.setProd_img(fileName); agvo.setProdThumbImg(fileName);
-		 * 
-		 * Path path = Paths.get(imgUploadPath).toAbsolutePath();
-		 * file.transferTo(path.toFile()); }
-		 * 
-		 * //원본 파일 경로+파일명 저장
-		 * agvo.setProd_img(File.separator+"AdgoodsImg"+ymdPath+File.separator+fileName)
-		 * ;
-		 * 
-		 * //썸네일 파일 경로+썸네일파일 저장
-		 * agvo.setProdThumbImg(File.separator+"AdgoodsImg"+ymdPath+File.separator+"s"+
-		 * File.separator+"s_"+fileName);
-		 */
-		  
-	
 		logger.info("goodsRegisterPost......"+agvo);
 		
 		adGoodsService.register(agvo);
 		
-		//rttr.addFlashAttribute("goodsResult", agvo.getProd_name());
+		rttr.addFlashAttribute("goodsResult", agvo.getProd_name());
 		
 		//상품 등록 후 상품 목록 페이지로 리다이렉트
 		ModelAndView mav = new ModelAndView("redirect:/adgoods/listProduct.do");
@@ -225,10 +203,10 @@ public class AdGoodsControllerImpl implements AdGoodsController {
 	 * 2.썸네일 이미지 파일 생성 및 저장
 	 * 3.각 이미지 정보 List 객체에 저장
 	 * 4.ResponseEntity를 통해서 뷰(view)로 상태 코드가 200인 List 객체 전송
-	 * 5.뷰(view)에서 ajax를 통해 요청 시 JSON 타입의 데이터를 요청
+	 * 5.뷰(view)에서 ajax를 통해 요청 시 JSON 타입의 데이터를 요청						//, consumes = MediaType.APPLICATION_JSON_VALUE
 	 */
 	@Override																									//서버에서 뷰로 변환하는 데이터 인코딩
-	@RequestMapping(value = "/adgoods/uploadAction.do", headers = ("content-type=multipart/*"), method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "/adgoods/uploadAction.do", produces = "application/json")
 	@ResponseBody
 	public ResponseEntity<List<AdgoodsImgVO>> uploadAction(@RequestParam MultipartFile[] uploadFile) throws Exception {
 		
@@ -371,7 +349,7 @@ public class AdGoodsControllerImpl implements AdGoodsController {
 	
 	//이미지 출력
 	@Override
-	@RequestMapping(value = "/adgoods/getImageInfo.do", headers = ("content-type=multipart/*"), consumes = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "/adgoods/getImageInfo.do")
 	@ResponseBody
 	public ResponseEntity<byte[]> getadGoodsImage(String fileName) throws Exception {
 		
@@ -384,7 +362,7 @@ public class AdGoodsControllerImpl implements AdGoodsController {
 			HttpHeaders header = new HttpHeaders();
 			header.add("Content-type", Files.probeContentType(file.toPath()));
 			result = new ResponseEntity<>(FileCopyUtils.copyToByteArray(file), header, HttpStatus.OK);
-		}catch (Exception e) {
+		}catch (IOException e) {
 			e.printStackTrace();
 		}
 		
@@ -393,11 +371,42 @@ public class AdGoodsControllerImpl implements AdGoodsController {
 	
 	//이미지 정보 반환
 	@Override
+	@RequestMapping(value = "/adgoods/getImageList.do", produces = "application/json")
 	@ResponseBody
-	@RequestMapping(value = "/adgoods/getImageList.do")
 	public ResponseEntity<List<AdgoodsImgVO>> getImageList(int prod_code) throws Exception {
 	
 		return new ResponseEntity<List<AdgoodsImgVO>>(adGoodsService.getGoodsImage(prod_code), HttpStatus.OK);
+	}
+
+	
+	//상품 정보 수정
+	@Override
+	@RequestMapping(value = "/adgoods/goodsModify.do")
+	public ModelAndView goodsModify(AdGoodsVO agvo, RedirectAttributes rttr, HttpServletRequest request, HttpServletResponse response) throws Exception {
+		
+		String viewName = (String)request.getAttribute("viewName");
+		ModelAndView mav = new ModelAndView(viewName);
+		
+		int result = adGoodsService.goodsModify(agvo);
+		rttr.addFlashAttribute("modify_result", result);
+		
+		return mav;
+	}
+
+	
+	//상품 정보 삭제
+	@Override
+	@RequestMapping(value = "/adgoods/goodsDelete.do")
+	public ModelAndView goodsDelete(int prod_code, RedirectAttributes rttr, HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
+		
+		String viewName = (String)request.getAttribute("viewName");
+		ModelAndView mav = new ModelAndView(viewName);
+		
+		int result = adGoodsService.goodsDelete(prod_code);
+		rttr.addFlashAttribute("delete_result", result);
+		
+		return mav;
 	}
 
 	

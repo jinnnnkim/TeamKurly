@@ -20,14 +20,11 @@
 	<link rel="stylesheet" href="//code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" />
 	<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>	
 	<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+	<script src="https://cdn.ckeditor.com/ckeditor5/31.1.0/classic/ckeditor.js"></script>
 	<!-- <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script> -->
 	<script type="text/javascript" src="/recipetoyou/Resources/Admin/Js/ShoppingMallManagement/adgoodsRegister.js" charset="UTF-8"></script>
 	
 	
-	
-	
- 	
- 
 	<!-- datepicker 적용 -->
 	
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
@@ -89,7 +86,7 @@
 							<tr>
 								<th>간단설명</th>
 								<td>
-									<input type="text" value="" id="prod_content" name="prod_content"/>
+									<textarea value="" id="prod_content" name="prod_content"></textarea>
 									<span class="ck_msg prod_content_msg">상품 설명을 입력해주세요.</span>
 									<div class="helper blue mt5">
 										<span class="red"><span id="ex_byte">0</span>/120Byte</span>
@@ -110,6 +107,9 @@
 								<th>할인율</th>
 								<td>
 									<input type="text" id="prod_discount" name="prod_discount"/>
+									<input type="hidden" name="goodsDiscount">
+									<span class="discount">할인 가격 : <span class="discount_area"></span></span>
+									<span class="ck_msg prod_discount_msg">1~99 사이의 숫자를 입력해주세요.</span>
 									<div class="helper blue mt5">
 										<img src="/recipetoyou/Resources/Admin/Img/ShoppingMallManagement/Question-blue.png" width="12px" height="12px">
 										할인을 하지 않으실 경우 판매가격만 적어 주시면 됩니다.
@@ -124,13 +124,13 @@
 									<div class="file_div">
 											<label for="fileItem" class="input-file-btn">이미지 찾기</label>
 																<!-- 여러 이미지 선택 허용 -->							<!-- 파일 미리 보여주기 이벤트 -->
-											<input type="file" multiple="multiple" id="fileItem" name='uploadFile'>
-											<div class="uploadArea">
-											<div class="preview"><img id="goodsImg" alt="" src="" width="300px" height="300px"></div>	
-											<div id="result_card">
+											<input type="file" multiple="multiple" id="fileItem" name= "uploadFile">
+											<div id="uploadArea">
+											<!-- <div class="preview"><img id="goodsImg" alt="" src="" width="300px" height="300px"></div>	 -->
+											<!-- <div id="result_card">
 												<div class="imgDeleteBtn">x</div>
 												<img alt="" src="">
-											</div>
+											</div> -->
 											</div>
 									</div>	
 								</td>
@@ -225,7 +225,7 @@
 						
 						<button class="btn btn-lg" id="listBtn">목록</button>
 						
-						<button class="btn btn-lg btn-red" id="removeBtn">삭제</button>
+						<button class="btn btn-lg btn-red" id="deleteBtn">삭제</button>
 					</div>
 					</form>
 					
@@ -303,9 +303,9 @@
 	$("input[type='file']").on("change", function(e){
 		
 		/* 이미지 존재시 삭제 */
-		/*if($("#result_card").length>0){
+		if($("#result_card").length>0){
 			deleteFile();
-		}*/
+		}
 		
 		/*
 			사용자가 선택한 파일을 서버에 전송하기 위해서는 선택된 파일에 접근하는 방법을 알아야 한다.
@@ -409,36 +409,7 @@
 		
 	}
 	
-	/* 이미지 정보 호출 */
-	let prod_code = '<c:out value="${prodVO.prod_code}"/>';
-	let uploadArea = $("#uploadArea");
-										/* 여러 개의 이미지를 반환하기 때문에 이미지 정보를 배열 형태로 전달받음. */
-	$.getJSON("${contextPath}/adgoods/getImageList.do", {prod_code : prod_code}, function(arr){
-		
-		//이미지 없는 경우 대체 이미지 출력
-		if(arr.length == 0){
-			
-			let str = "";
-			str += "<div id = 'result_card'>";
-			str += "<img src='/recipetoyou/Resources/Admin/Img/SubgoodsImg/ready.png'>";
-			
-			uploadArea.html(str);
-			
-			return;
-		}
-		
-		let str = "";
-		let obj = arr[0];
-		
-		let fileCallPath = encodeURIComponent(obj.uploadPath + "/s_" + obj.uuid + "_" + obj.fileName);
-		str += "<div id='result_card'";
-		str += "data-path='" + obj.uploadPath + "' data-uuid='" + obj.uuid + "' data-filename='" + obj.fileName + "'";
-		str += ">";
-		str += "<img src='${contextPath}/adgoods/getImageInfo.do?fileName=" + fileCallPath +"'>";
-		str += "</div>";
-		
-		uploadArea.html(str);
-	});	
+	
 	
 	
 	
@@ -453,10 +424,11 @@
 		let targetFile = $(".imgDeleteBtn").data("file");
 		
 		let targetDiv = $("#result_card");
-		
+		+
 		$.ajax({
 			
-			url : '/adgoods/deleteFile.do',
+			url : '${contextPath}/adgoods/deleteFile.do',
+			contentType : false,
 			data : {fileName : targetFile},
 			dataType : 'text',
 			type : 'POST',
@@ -474,6 +446,41 @@
 			}
 		});
 	}
+	
+	/* CKEditor5 적용 */
+	ClassicEditor
+		.create(document.querySelector('#prod_content'))
+		.catch(error=>{
+			console.error(error);
+		})
+	
+	/* 상품 할인율 설정 */
+	$("#prod_discount").on("propertychange change keyup paste input", function(){
+		let showInput = $("#prod_discount");
+		let discountInput = $("input[name='goodsDiscount']");
+		
+		let discountRate = showInput.val();							//입력한 할인값
+		let sendDiscountRate = discountRate / 100;					//서버에 전송할 할인값
+		let goodsPrice = $("input[name='prod_price']").val();		//원가
+		let discountPrice = goodsPrice * (1 - sendDiscountRate);	//할인가격
+		
+		if(!isNaN(discountRate)){
+			$(".discount_area").html(discountPrice);
+			discountInput.val(sendDiscountRate);
+		}
+		
+	});
+	
+	/* 삭제 버튼 */
+	$("#deleteBtn").on("click", function(e){
+		e.preventDefault();
+		let moveForm = $("#moveForm");
+		moveForm.find("input").remove();
+		moveForm.append('<input type="hidden" name="prod_code" value="${goodsVO.prod_code}">);
+		moveForm.attr("action", "/adgoods/goodsDelete.do");
+		moveForm.attr("method", "post");
+		moveForm.submit();
+	})
 
 </script> 
 	

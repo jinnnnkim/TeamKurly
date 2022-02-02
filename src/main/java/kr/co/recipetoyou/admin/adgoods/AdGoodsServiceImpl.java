@@ -1,5 +1,6 @@
 package kr.co.recipetoyou.admin.adgoods;
 
+import java.io.IOException;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -7,8 +8,14 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.fasterxml.jackson.core.JsonGenerationException;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonMappingException;
 
 import kr.co.recipetoyou.admin.adgoods.category.AdGoodsCateVO;
+import kr.co.recipetoyou.main.cartPick.vo.ProdVO;
 import kr.co.recipetoyou.util.PageMaker;
 import kr.co.recipetoyou.util.PagingVO;
 
@@ -23,8 +30,29 @@ public class AdGoodsServiceImpl implements AdGoodsService {
 	//전체 상품 조회
 	@Override
 	public List<AdGoodsVO> listProduct(PagingVO vo) throws Exception {
-		
+
 		List<AdGoodsVO> prodList = adGoodsDAO.listPaging(vo);
+		
+		
+		prodList.forEach(goods->{
+		
+			try {
+					int code = goods.getProd_code();
+					List<AdgoodsImgVO> imageList  = adGoodsDAO.getGoodsImage(code);
+					goods.setImageList(imageList);
+				
+			} catch (JsonGenerationException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}catch (JsonMappingException e) {
+				// TODO: handle exception
+			}catch (IOException e) {
+				// TODO: handle exception
+			}
+			
+		});
+		
+		
 		return prodList;
 	}
 	
@@ -35,16 +63,26 @@ public class AdGoodsServiceImpl implements AdGoodsService {
 		return adGoodsDAO.goodsCount(vo);
 	}
 	
-	//상품 상세 정보 조회
+	//상품 상세 정보 페이지 
 	@Override
-	public AdGoodsVO getGoodsInfo(int prodCode) throws DataAccessException {
+	public AdGoodsVO adgoodsGetDetail(int prod_code) throws Exception {
 		
-		return adGoodsDAO.readGoods(prodCode);
+		return adGoodsDAO.readGoods(prod_code);
+	}
+	
+	//상품 정보
+	@Override
+	public AdGoodsVO getadGoodsInfo(int prod_code) throws JsonProcessingException {
+		
+		AdGoodsVO goodsVO = adGoodsDAO.getadGoodsInfo(prod_code);
+		goodsVO.setImageList(adGoodsDAO.getGoodsImage(prod_code));
+		
+		return goodsVO;
 	}
 	
 	//카테고리
 	@Override
-	public List<AdGoodsCateVO> cateList() throws Exception {
+	public List<AdGoodsCateVO> cateList() throws IOException {
 		
 		logger.info("(service)cateList.....");
 		
@@ -60,12 +98,13 @@ public class AdGoodsServiceImpl implements AdGoodsService {
 
 	//검색 결과 갯수
 	@Override
-	public int countSearch(AdGoodsCateVO option) throws Exception {
+	public int countSearch(PagingVO vo) throws Exception {
 		
-		return adGoodsDAO.countSearch(option);
+		return adGoodsDAO.countSearch(vo);
 	}
 	
 	//상품 등록
+	@Transactional
 	@Override
 	public void register(AdGoodsVO agvo) throws Exception {
 		
@@ -90,6 +129,22 @@ public class AdGoodsServiceImpl implements AdGoodsService {
 		
 		return adGoodsDAO.getGoodsImage(prod_code);
 	}
+
+	//상품 정보 수정
+	@Override
+	public int goodsModify(AdGoodsVO agvo) throws Exception {
+		
+		return adGoodsDAO.goodsModify(agvo);
+	}
+
+	//상품 정보 삭제
+	@Override
+	public int goodsDelete(int prod_code) throws Exception {
+		
+		return adGoodsDAO.goodsDelete(prod_code);
+	}
+
+	
 	
 	
 	

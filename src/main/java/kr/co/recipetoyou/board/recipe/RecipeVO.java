@@ -6,6 +6,8 @@ import org.springframework.stereotype.Component;
 
 @Component("recipeVO")
 public class RecipeVO {
+	
+	private String recipe_idx;
 	private int prod_code;
 	private String recipe_title;
 	private String recipe_content;
@@ -19,9 +21,10 @@ public class RecipeVO {
 		// TODO Auto-generated constructor stub
 	}
 
-	public RecipeVO(int prod_code, String recipe_title, String recipe_content, String recipe_ingre,
+	public RecipeVO(String recipe_idx, int prod_code, String recipe_title, String recipe_content, String recipe_ingre,
 			int recipe_cate_code, String recipe_img, String user_id, Date recipe_reg_date) {
 		super();
+		this.recipe_idx = recipe_idx;
 		this.prod_code = prod_code;
 		this.recipe_title = recipe_title;
 		this.recipe_content = recipe_content;
@@ -30,6 +33,14 @@ public class RecipeVO {
 		this.recipe_img = recipe_img;
 		this.user_id = user_id;
 		this.recipe_reg_date = recipe_reg_date;
+	}
+
+	public String getRecipe_idx() {
+		return recipe_idx;
+	}
+
+	public void setRecipe_idx(String recipe_idx) {
+		this.recipe_idx = recipe_idx;
 	}
 
 	public int getProd_code() {
@@ -95,6 +106,15 @@ public class RecipeVO {
 	public void setRecipe_reg_date(Date recipe_reg_date) {
 		this.recipe_reg_date = recipe_reg_date;
 	}
+
+	@Override
+	public String toString() {
+		return "RecipeVO [recipe_idx=" + recipe_idx + ", prod_code=" + prod_code + ", recipe_title=" + recipe_title
+				+ ", recipe_content=" + recipe_content + ", recipe_ingre=" + recipe_ingre + ", recipe_cate_code="
+				+ recipe_cate_code + ", recipe_img=" + recipe_img + ", user_id=" + user_id + ", recipe_reg_date="
+				+ recipe_reg_date + "]";
+	}
+	
 	
 
 }

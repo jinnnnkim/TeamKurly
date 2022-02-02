@@ -126,6 +126,7 @@ $(document).on("click", "#saveBtn", function(){
 	let nameChk = false;
 	let contentChk = false;
 	let priceChk = false;
+	let discountChk = false;
 	let imgChk = false;
 	let deliveryChk = false;
 	let infoChk = false;
@@ -133,6 +134,7 @@ $(document).on("click", "#saveBtn", function(){
 	let vaildDateChk = false;
 	let sellUnitChk = false;
 	let quantityChk = false;
+	
 
 
 	/* 체크 대상 변수 */
@@ -141,6 +143,7 @@ $(document).on("click", "#saveBtn", function(){
 	let name = $("input[name='prod_name']").val();
 	let content = $("input[name='prod_content']").val();
 	let price = $("input[name='prod_price']").val();
+	let discount = $("input[name='prod_discount']").val();
 	let img = $("input[name='prod_img']").val();
 	let delivery = $("input[name='prod_delivery_type']").val();
 	let info = $("input[name='prod_info']").val();
@@ -184,6 +187,14 @@ $(document).on("click", "#saveBtn", function(){
 		$(".prod_price_msg").css('display','block');
 		priceChk = false;
 	}
+	
+	if(!isNaN(discount)){
+		$(".prod_discount_msg").css('display','none');
+	} else{
+		$(".prod_discount_msg").css('display','block');
+		priceChk = false;
+	}	
+	
 	if(img){
 		$(".prod_img_msg").css('display','none');
 		imgChk = true;

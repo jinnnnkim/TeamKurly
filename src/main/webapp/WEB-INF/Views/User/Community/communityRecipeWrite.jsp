@@ -7,7 +7,7 @@
 <html>
 <head>
 <link
-	href="/recipetoyou/Resources/User/Css/Community/communityRecipeWrite.css"
+	href="/recipetoyou/Resources/User/Css/Community/communityRecipeModify.css"
 	rel="stylesheet" type="text/css">
 <!-- fontawesome 링크 -->
 <link rel="stylesheet"
@@ -28,121 +28,197 @@
 <body>
 	<div class="wrap">
 		<div class="main">
-			<h2>레시피등록</h2>
-			<div class="content">
-				<div class="title">
-					<div class="recipeTitle">
-						<span>Recipe Title</span><input type="text"
-							placeholder="예) 소고기 미역국 끓이기" />
-
-					</div>
-					<div class="cate">
-						<span>Category </span> <select>
-							<option>종류별</option>
-							<option>상황별</option>
-							<option>재료별</option>
-							<option>방법별</option>
-						</select> <select>
-							<option>일상</option>
-							<option>초스피드</option>
-							<option>손님접대</option>
-							<option>술안주</option>
-						</select> 
-						<select>
-							<option>소고기</option>
-							<option>돼지고기</option>
-							<option>닭고기</option>
-							<option>육류</option>
-						</select> 
+			<form name="frmRecipe" enctype="multipart/form-data">
+				<h2>레시피등록</h2>
+				<div class="content">
+					<div class="title">
+						<div class="recipeTitle">
+							<span>Recipe Title</span>
+							<input type="text" name="recipe_title" placeholder="예) 소고기 미역국 끓이기" />
+	
+						</div>
+						<div class="cate">
+							<span>Category </span> 
+							<select class="cate1">
+							
+							</select> 
+							<select  class="cate2" name="recipe_cate_code">
+								
+							</select> 
+						
+						</div>
+						<div class="recipeIngred">
+							<span>Ingredient</span>
+							<textarea name="recipe_ingre"
+							placeholder="나만의 레시피에 들어가는 요리 재료를 적어주세요. ex)미역국에 필요한 재료"></textarea>
+						</div>
+					
+							
 	
 					</div>
-					<div class="recipeIngred">
-						<span>Ingredient</span>
-						<textarea placeholder="나만의 레시피에 들어가는 요리 재료를 적어주세요. ex)미역국에 필요한 재료"></textarea>
-					</div>
-				
-						
-
-				</div>
-				<div id="root">
-					<div class="contents">
-						<div class="upload-box">
-							<div id="drop-file" class="drag-file">
-								<img src="https://img.icons8.com/pastel-glyph/2x/image-file.png"
-									alt="파일 아이콘" class="image">
-								<p class="message">이미지를 드래그 하세요</p>
-								<img src="" alt="미리보기 이미지" class="preview">
+					<div id="root">
+						<div class="contents">
+							<div class="upload-box">
+								<div id="drop-file" class="drag-file">
+									<img src="https://img.icons8.com/pastel-glyph/2x/image-file.png"
+										alt="파일 아이콘" class="image">
+									<p class="message">이미지를 드래그 하세요</p>
+									<img src="" alt="미리보기 이미지" class="preview">
+								</div>
+								<label class="file-label" for="chooseFile">대표 이미지 등록하기</label> 
+								<!-- <input name="recipe_img"
+									class="file" id="chooseFile" type="file"
+									onchange="dropFile.handleFiles(this.files)"
+									accept="image/png, image/jpeg, image/gif"> -->
+								
 							</div>
-							<label class="file-label" for="chooseFile">대표 이미지 등록하기</label> <input
-								class="file" id="chooseFile" type="file"
-								onchange="dropFile.handleFiles(this.files)"
-								accept="image/png, image/jpeg, image/gif">
 						</div>
 					</div>
+					
 				</div>
-				
-			</div>
-			<div class="recipeContent">
-				<span>Recipe Content</span>
-			</div>
-			<textarea name="recipe_content"></textarea>
-				<script type="text/javascript">
-						CKEDITOR.replace('recipe_content', {
-		                    height: 300,
-		                    filebrowserUploadUrl: "${contextPath}/mine/imageUpload.do"
-		                 });
-				</script>
-				
-			<div class="writeBtn">
-				<a href="#">글쓰기</a>
-			</div>
-
-
+				<div class="recipeContent">
+					<span>Recipe Content</span>
+				</div>
+				<textarea name="recipe_content"></textarea>
+					<script type="text/javascript">
+							CKEDITOR.replace('recipe_content', {
+			                    height: 300,
+			                    filebrowserUploadUrl: "${contextPath}/mine/imageUpload.do"
+			                 });
+							CKEDITOR.instances.recipe_content.getData();
+							
+					</script>
+				<input type="hidden" name="prod_code"/>
+				<input type="hidden" name="recipe_img"/>
+					
+				<div class="writeBtn">
+					<button type="button" onclick="recipeWrite()">글쓰기</button>
+				</div>
+	
+			</form>
 		</div>
 	</div>
 
 
-	<script>
-		function preventDefaults(e) {
-			e.preventDefault();
-			e.stopPropagation();
+<script>
+	function recipeWrite(){ 
+		var recipe_content = CKEDITOR.instances.recipe_content.getData();
+		var recipe_ingre = frmRecipe.recipe_ingre.value;
+		var recipe_cate_code = frmRecipe.recipe_cate_code.value;
+		var recipe_img = frmRecipe.recipe_img.value;
+		var prod_code = frmRecipe.prod_code.value;
+		var recipe_title = frmRecipe.recipe_title.value;
+		
+		console.log(recipe_content);
+		console.log(recipe_ingre);
+		console.log(recipe_cate_code);
+		console.log(recipe_img);
+		console.log(prod_code);
+		console.log(recipe_title);
+		
+		frmRecipe.method="post";
+		frmRecipe.action = "${contextPath}/community/communityRecipeWriteProcess.do";
+		frmRecipe.submit();
+	}
+
+$(document).ready(function(){
+	let cateList = JSON.parse('${cateList}');
+	
+	let cate1Array = new Array();
+	let cate2Array = new Array();
+	
+	let cate1Obj = new Object();
+	let cate2Obj = new Object();
+	
+	let cateSelect1 = $(".cate1");		
+	let cateSelect2 = $(".cate2");
+	var a = 1;
+	for(let i = 0; i < cateList.length; i++){
+		
+		if(cateList[i].recipe_cate_code == a){
+			let cate1Obj = new Object();
+			cate1Obj.recipe_cate_code = cateList[i].recipe_cate_code;
+			cate1Obj.recipe_cate = cateList[i].recipe_cate;
+			cate1Obj.recipe_cate_parent = cateList[i].recipe_cate_parent;
+			cate1Array.push(cate1Obj);				
+			
 		}
-
-		const dropArea = document.getElementById("drop-file");
-
-		function highlight(e) {
-			preventDefaults(e);
-			dropArea.classList.add("highlight");
+		a = a+1;
+	}
+	
+	
+	function makeCateArray(obj,array,cateList){
+		for(let i = 0; i < cateList.length; i++){
+				obj = new Object();
+				obj.recipe_cate_code = cateList[i].recipe_cate_code;
+				obj.recipe_cate = cateList[i].recipe_cate;
+				obj.recipe_cate_parent = cateList[i].recipe_cate_parent;
+				
+				array.push(obj);				
+			}
+	}	
+	
+	makeCateArray(cate2Obj,cate2Array,cateList);
+	
+	for(let i = 0; i < cate1Array.length; i++){
+		cateSelect1.append("<option value='"+cate1Array[i].recipe_cate_code+"'>" + cate1Array[i].recipe_cate + "</option>");
+	}
+	
+	$(cateSelect1).on("change",function(){
+		let selectVal1 = $(this).find("option:selected").val();	
+		
+		cateSelect2.children().remove();
+		
+		cateSelect2.append("<option value='none'>선택</option>");
+		
+		for(let i = 0; i < cate2Array.length; i++){
+			if(selectVal1 == cate2Array[i].recipe_cate_parent && cate2Array[i].recipe_cate != '전체'){
+				cateSelect2.append("<option value='"+cate2Array[i].recipe_cate_code+"'>" + cate2Array[i].recipe_cate + "</option>");	
+			}
 		}
+	});
+});
+	function preventDefaults(e) {
+		e.preventDefault();
+		e.stopPropagation();
+	}
 
-		function unhighlight(e) {
-			preventDefaults(e);
-			dropArea.classList.remove("highlight");
-		}
+	const dropArea = document.getElementById("drop-file");
 
-		dropArea.addEventListener("dragenter", highlight, false);
-		dropArea.addEventListener("dragover", highlight, false);
-		dropArea.addEventListener("dragleave", unhighlight, false);
+	function highlight(e) {
+		preventDefaults(e);
+		dropArea.classList.add("highlight");
+	}
 
-		function handleDrop(e) {
-			unhighlight(e);
-			let dt = e.dataTransfer;
-			let files = dt.files;
+	function unhighlight(e) {
+		preventDefaults(e);
+		dropArea.classList.remove("highlight");
+	}
 
-			console.log(files);
+	dropArea.addEventListener("dragenter", highlight, false);
+	dropArea.addEventListener("dragover", highlight, false);
+	dropArea.addEventListener("dragleave", unhighlight, false);
 
-		}
+	function handleDrop(e) {
+		unhighlight(e);
+		let dt = e.dataTransfer;
+		let files = dt.files;
 
-		function renderFile(file) {
-			let reader = new FileReader();
-			reader.readAsDataURL(file);
-			reader.onloadend = function() {
-				let img = dropArea.getElementsByClassName("preview")[0];
-				img.src = reader.result;
-				img.style.display = "block";
-			};
-		}
-	</script>
+		console.log(files);
+
+	}
+
+	function renderFile(file) {
+		let reader = new FileReader();
+		reader.readAsDataURL(file);
+		reader.onloadend = function() {
+			let img = dropArea.getElementsByClassName("preview")[0];
+			img.src = reader.result;
+			img.style.display = "block";
+		};
+	}
+		
+</script>
 	
 </body>
 </html>

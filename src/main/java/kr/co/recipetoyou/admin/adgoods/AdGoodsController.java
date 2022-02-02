@@ -1,5 +1,6 @@
 package kr.co.recipetoyou.admin.adgoods;
 
+import java.io.IOException;
 import java.sql.Date;
 import java.util.List;
 
@@ -16,6 +17,8 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+
 import kr.co.recipetoyou.admin.adgoods.category.AdGoodsCateVO;
 import kr.co.recipetoyou.util.PageMaker;
 import kr.co.recipetoyou.util.PagingVO;
@@ -30,7 +33,7 @@ public interface AdGoodsController {
 	
 	
 	//상품 상세 정보 조회
-	public void getProductInfo(@RequestParam(value = "code") int code, Model model) throws Exception;
+	public void getadGoodsDetail(int prod_code, Model model, PagingVO vo) throws Exception;
 	
 	//상품 등록 페이지로 이동
 	public ModelAndView moveRegister(Model model, HttpServletRequest request, HttpServletResponse response) throws Exception;
@@ -53,4 +56,10 @@ public interface AdGoodsController {
 	//이미지 정보 반환
 	public ResponseEntity<List<AdgoodsImgVO>> getImageList(int prod_code) throws Exception;
 	
+	//상품 정보 수정
+	public ModelAndView goodsModify(AdGoodsVO agvo, RedirectAttributes rttr, HttpServletRequest request, HttpServletResponse response) throws Exception;
+	
+	
+	//상품 정보 삭제
+	public ModelAndView goodsDelete(int prod_code, RedirectAttributes rttr, HttpServletRequest request, HttpServletResponse response) throws Exception;
 }

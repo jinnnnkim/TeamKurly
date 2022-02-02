@@ -30,6 +30,7 @@ public class AdGoodsVO {
 	private Date prod_reg_date;
 	private AdGoodsCateVO adGoodsCateVO;	 	//상품 조회 시 카테고리 함께 조회하기 위해 추가
 	private List<AdgoodsImgVO> imageList;		//이미지 정보
+	private String cateName;
 	
 
 
@@ -37,19 +38,9 @@ public class AdGoodsVO {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public int getCateCode() {
-		return cateCode;
-	}
-
-
-
-	public void setCateCode(int cateCode) {
-		this.cateCode = cateCode;
-	}
-	
-	public AdGoodsVO(int prod_code, String prod_name, String prod_content, String prod_img, int prod_price,
+	public AdGoodsVO(int prod_code, String prod_name, String prod_content, int prod_price,
 			int prod_discount, int prod_sell_unit, int prod_delivery_type, int prod_wrap_type, String prod_info,
-			String prod_allergy, String prod_from, String prod_caution, int prod_quantity) {
+			String prod_allergy, String prod_from, String prod_caution) {
 		super();
 		this.prod_code = prod_code;
 		this.prod_name = prod_name;
@@ -185,6 +176,22 @@ public class AdGoodsVO {
 	}
 	
 	
+	public String getCateName() {
+		return cateName;
+	}
+
+	public void setCateName(String cateName) {
+		this.cateName = cateName;
+	}
 	
+	public int getCateCode() {
+		return cateCode;
+	}
+
+
+
+	public void setCateCode(int cateCode) {
+		this.cateCode = cateCode;
+	}
 
 }

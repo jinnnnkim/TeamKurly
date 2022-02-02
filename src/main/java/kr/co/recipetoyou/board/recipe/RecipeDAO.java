@@ -1,6 +1,7 @@
 package kr.co.recipetoyou.board.recipe;
 
 import java.util.List;
+import java.util.Map;
 
 public interface RecipeDAO {
 
@@ -9,5 +10,17 @@ public interface RecipeDAO {
 	public List<RecipeCateVO> selectRecipeCateTitleList();
 
 	public List<RecipeCateVO> selectRecipeCateDetailList();
+
+	public List<RecipeCateVO> selectRecipeCateList();
+
+	public void insertRecipe(Map recipeMap);
+
+	public RecipeVO selectRecipeDetail(int recipe_idx);
+
+	public RecipeVO modifyRecipe(int recipe_idx);
+
+	public void deleteRecipe(int recipe_idx);
+
+	public void updateRecipe(Map recipeMap);
 
 }

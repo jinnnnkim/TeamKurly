@@ -44,64 +44,24 @@
 			</div>
 			
 			<div class="cateList">
-			<c:forEach var="titleList" items="${cateTitleList}" >
-				<div class="cateRow">
-					<c:forEach var="titleList" items="${cateTitleList}" >
-						<c:choose>
-							<c:when test="${titleList.recipe_cate_parent eq null }">
-								<span class="cateType">${titleList.recipe_cate}</span>
-							</c:when>
-							<c:when test="${titleList.recipe_cate eq '전체' }">
-								<a class="allCate" href="#none">${titleList.recipe_cate}</a>
-							</c:when>
-							<c:when test="${titleList.recipe_cate_parent ne null }">
-								<a href="#none">${titleList.recipe_cate}</a>
-							</c:when>
-						</c:choose>
-					</c:forEach>
-				</div>
-				
-			</c:forEach>
-				<div class="cateRow">
-					<span class="cateType">상황별</span>
-					<a class="allCate" href="#none">전체</a>
-					<a href="#none">메인반찬</a>
-					<a href="#none">국/탕</a>
-					<a href="#none">찌개</a>
-					<a href="#none">디저트</a>
-					<a href="#none">면/만두</a>
-					<a href="#none">밥/죽/떡</a>
-					<a href="#none">퓨전</a>
-					<a href="#none">김치/젓갈/장류</a>
-					<a href="#none">양념/소스/잼</a>
-					<a href="#none">양식</a>
-					<a href="#none">샐러드</a>
-					<a href="#none">스프</a>
-					<a href="#none">빵</a>
-					<a href="#none">과자</a>
-					<a href="#none">차/음료/술</a>
-					<a href="#none">기타</a>
-				</div>
-				<div class="cateRow">
-					<span class="cateType">재료별</span>
-					<a class="allCate" href="#none">전체</a>
-					<a href="#none">메인반찬</a>
-					<a href="#none">국/탕</a>
-					<a href="#none">찌개</a>
-					<a href="#none">디저트</a>
-					<a href="#none">면/만두</a>
-					<a href="#none">밥/죽/떡</a>
-					<a href="#none">퓨전</a>
-					<a href="#none">김치/젓갈/장류</a>
-					<a href="#none">양념/소스/잼</a>
-					<a href="#none">양식</a>
-					<a href="#none">샐러드</a>
-					<a href="#none">스프</a>
-					<a href="#none">빵</a>
-					<a href="#none">과자</a>
-					<a href="#none">차/음료/술</a>
-					<a href="#none">기타</a>
-				</div>
+				<c:forEach var="titleList" items="${cateTitleList}" varStatus="status" begin="0" end="5" >
+					<div class="cateRow">
+						<span class="cateType">${titleList.recipe_cate}</span>
+						<c:forEach var="cateDetailList" items="${cateDetailList}">
+							<c:if test="${cateDetailList.recipe_cate_parent eq status.count}">
+								<c:choose>
+									<c:when test="${cateDetailList.recipe_cate eq '전체' }">
+										<a class="allCate" href="#none">${cateDetailList.recipe_cate}</a>
+									</c:when>
+									<c:otherwise>
+										<a href="#none">${cateDetailList.recipe_cate}</a>
+									</c:otherwise>
+								</c:choose>
+							</c:if>
+						</c:forEach> 
+					</div>
+					
+				</c:forEach>
 			</div>
 				
 			<div class="writeBtn">
@@ -109,133 +69,28 @@
 			</div>
 			<div class="recipeList">
 				<ul>
-					<li>
-					<a href="${contextPath }/community/communityRecipeDetail.do">
-						<div class="recipeImg">
-							<img src="/recipetoyou/Resources/User/Img/Notice/market01.jpg">
-						</div>
-						<div class="detail">
-							<span class="recipeTitle">간단한 술안주로 최고인 버터갈릭새우 만들기111</span>
-							<br/>
-							<span class="writeId">이웃사슴</span>
-							<br/>
-							<span class="recipeStar">
-								<i class="fas fa-star"></i>
-								<i class="fas fa-star"></i>
-								<i class="fas fa-star"></i>
-								<i class="fas fa-star"></i>
-								<i class="fas fa-star"></i>
-							</span>
-							<span class="recipeReview">(57)</span>
-							<span class="recipeHit">조회수 <span class="recipeHitNumber">15</span>만</span>
-						</a>
-						</div>
-					</li>
-					<li>
-						<div class="recipeImg">
-							<img src = "/recipetoyou/Resources/User/Img/Notice/market01.jpg">
-						</div>
-						<div class="detail">
-							<span class="recipeTitle">간단한 술안주로 최고인 버터갈릭새우 만들기</span>
-							<br/>
-							<span class="writeId">이웃사슴</span>
-							<br/>
-							<span class="recipeStar">
-								<i class="fas fa-star"></i>
-								<i class="fas fa-star"></i>
-								<i class="fas fa-star"></i>
-								<i class="fas fa-star"></i>
-								<i class="fas fa-star"></i>
-							</span>
-							<span class="recipeReview">(57)</span>
-							<span class="recipeHit">조회수 <span class="recipeHitNumber">15</span>만</span>
-						</div>
-						
-					</li>
-					<li>
-						<div class="recipeImg">
-							<img src="/recipetoyou/Resources/User/Img/Notice/market01.jpg">
-						</div>
-						<div class="detail">
-							<span class="recipeTitle">간단한 술안주로 최고인 버터갈릭새우 만들기</span>
-							<br/>
-							<span class="writeId">이웃사슴</span>
-							<br/>
-							<span class="recipeStar">
-								<i class="fas fa-star"></i>
-								<i class="fas fa-star"></i>
-								<i class="fas fa-star"></i>
-								<i class="fas fa-star"></i>
-								<i class="fas fa-star"></i>
-							</span>
-							<span class="recipeReview">(57)</span>
-							<span class="recipeHit">조회수 <span class="recipeHitNumber">15</span>만</span>
-						</div>
-						
-					</li>
-					<li>
-						<div class="recipeImg">
-							<img src="/recipetoyou/Resources/User/Img/Notice/market01.jpg">
-						</div>
-						<div class="detail">
-							<span class="recipeTitle">간단한 술안주로 최고인 버터갈릭새우 만들기</span>
-							<br/>
-							<span class="writeId">이웃사슴</span>
-							<br/>
-							<span class="recipeStar">
-								<i class="fas fa-star"></i>
-								<i class="fas fa-star"></i>
-								<i class="fas fa-star"></i>
-								<i class="fas fa-star"></i>
-								<i class="fas fa-star"></i>
-							</span>
-							<span class="recipeReview">(57)</span>
-							<span class="recipeHit">조회수 <span class="recipeHitNumber">15</span>만</span>
-						</div>
-						
-					</li>
-					<li>
-						<div class="recipeImg">
-							<img src="/recipetoyou/Resources/User/Img/Notice/market01.jpg">
-						</div>
-						<div class="detail">
-							<span class="recipeTitle">간단한 술안주로 최고인 버터갈릭새우 만들기</span>
-							<br/>
-							<span class="writeId">이웃사슴</span>
-							<br/>
-							<span class="recipeStar">
-								<i class="fas fa-star"></i>
-								<i class="fas fa-star"></i>
-								<i class="fas fa-star"></i>
-								<i class="fas fa-star"></i>
-								<i class="fas fa-star"></i>
-							</span>
-							<span class="recipeReview">(57)</span>
-							<span class="recipeHit">조회수 <span class="recipeHitNumber">15</span>만</span>
-						</div>
-						
-					</li>
 					<c:forEach var="list" items="${recipeList}">
 					<li>
-						<div class="recipeImg">
-							<img src="/recipetoyou/Resources/User/Img/Notice/market01.jpg">
-						</div>
-						<div class="detail">
-							<span class="recipeTitle">${list.recipe_title}</span>
-							<br/>
-							<span class="writeId">${list.user_id}</span>
-							<br/>
-							<span class="recipeStar">
-								<i class="fas fa-star"></i>
-								<i class="fas fa-star"></i>
-								<i class="fas fa-star"></i>
-								<i class="fas fa-star"></i>
-								<i class="fas fa-star"></i>
-							</span>
-							<span class="recipeReview">(57)</span>
-							<span class="recipeHit">조회수 <span class="recipeHitNumber">15</span>만</span>
-						</div>
-						
+						<a href="${contextPath }/community/communityRecipeDetail.do?recipe_idx=${list.recipe_idx}">
+							<div class="recipeImg">
+								<img src="/recipetoyou/Resources/User/Img/Notice/market01.jpg">
+							</div>
+							<div class="detail">
+								<span class="recipeTitle">${list.recipe_title}</span>
+								<br/>
+								<span class="writeId">${list.user_id}</span>
+								<br/>
+								<span class="recipeStar">
+									<i class="fas fa-star"></i>
+									<i class="fas fa-star"></i>
+									<i class="fas fa-star"></i>
+									<i class="fas fa-star"></i>
+									<i class="fas fa-star"></i>
+								</span>
+								<span class="recipeReview">(57)</span>
+								<span class="recipeHit">조회수 <span class="recipeHitNumber">15</span>만</span>
+							</div>
+						</a>
 					</li>
 					</c:forEach>
 				</ul>
@@ -254,5 +109,15 @@
 			</div>
 		</div>
 	</div>
+	<script>
+	$(document).ready(function(){
+		$(".cateRow a").click(function(){
+			/* $(this).css("background","grey"); */
+			
+		});
+			
+		
+	});
+	</script>
 </body>
 </html>
