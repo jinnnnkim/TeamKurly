@@ -38,7 +38,7 @@
 	<div class="sub-menu">
 		<ul>	<!-- css 수정 필요함. 왼쪽으로 이동해야 됨. -->
 		<li><a href="${contextPath}/adgoods/moveRegister.do">상품등록</a></li>
-		<li><a href="${contextPath}/adgoods/moveRegister.do" class="selected">상품목록</a></li>
+		<li><a href="${contextPath}/adgoods/listProduct.do" class="selected">상품목록</a></li>
 		</ul>
 	</div>
 
@@ -123,8 +123,8 @@
 								<td>
 									<div class="file_div">
 											<label for="fileItem" class="input-file-btn">이미지 찾기</label>
-																<!-- 여러 이미지 선택 허용 -->							<!-- 파일 미리 보여주기 이벤트 -->
-											<input type="file" multiple="multiple" id="fileItem" name= "uploadFile">
+																<!-- 여러 이미지 선택 허용 -->							
+											<input type="file" multiple="multiple" id="fileItem" name= 'uploadFile'>
 											<div id="uploadArea">
 											<!-- <div class="preview"><img id="goodsImg" alt="" src="" width="300px" height="300px"></div>	 -->
 											<!-- <div id="result_card">
@@ -471,17 +471,6 @@
 		
 	});
 	
-	/* 삭제 버튼 */
-	$("#deleteBtn").on("click", function(e){
-		e.preventDefault();
-		let moveForm = $("#moveForm");
-		moveForm.find("input").remove();
-		moveForm.append('<input type="hidden" name="prod_code" value="${goodsVO.prod_code}">);
-		moveForm.attr("action", "/adgoods/goodsDelete.do");
-		moveForm.attr("method", "post");
-		moveForm.submit();
-	})
-
 </script> 
 	
 </body>
