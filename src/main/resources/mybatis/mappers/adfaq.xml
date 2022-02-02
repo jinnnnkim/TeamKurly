@@ -8,18 +8,17 @@
 	<!-- FAQ -->
 	<resultMap type="adFAQVO" id="FAQResult">		
 		<result property="faq_code" column="faq_code" />
+		<result property="faq_cate" column="faq_cate"/>
 		<result property="faq_title" column="faq_title"/>
 		<result property="faq_info" column="faq_info"/>
-		<result property="faq_confirm" column="faq_confirm"/>
+		<result property="faq_cate_code" column="faq_cate_code" />
 		<result property="faq_reg_date" column="faq_reg_date"/>
-		<result property="faq_cate" column="faq_cate"/>
 	</resultMap>
 	
 	<!-- FAQ  cate-->
 	<resultMap type="adFAQCategoryVO" id="FAQCateResult">		
 		<result property="faq_cate_code" column="faq_cate_code" />
 		<result property="faq_cate" column="faq_cate"/>
-		<result property="faq_code" column="faq_code" />
 	</resultMap>
 	
 	<!-- 페이지정보를 10개씩 가져오기 -->
@@ -34,10 +33,26 @@
 	<!-- 페이지정보를 지정한 크기만큼 가져오기 -->
 	<select id="FAQListPaging" resultMap="FAQResult">
 		<![CDATA[
-			select * from (select rownum AS rn, tb_faq.* from tb_faq)  where rn between #{rowStart} and #{rowEnd}
+			select * 
+			from (
+				select rownum AS rn, fa.faq_code, fc.faq_cate, fa.faq_title, 
+					   fa.faq_info, fa.faq_reg_date 
+				from tb_faq fa, tb_faq_cate fc 
+				where fa.faq_cate_code = fc.faq_cate_code
+				) 
+			where rn between #{rowStart} and #{rowEnd}
 		]]>
+		
 	</select>
-	
+<!-- 		<![CDATA[
+			select * 
+			from (
+				select rownum AS rn, 
+						tb_faq.* 
+						from tb_faq
+				) 
+			where rn between #{rowStart} and #{rowEnd}
+		]]> -->
 	<!-- 총 FAQ 수 -->
 	<select id="FAQListCount" resultType="int">
 		<![CDATA[
@@ -54,13 +69,13 @@
 	</delete>
 	
 	<!-- FAQ 상세 정보 조회 & 카테고리 테이블과 조인 -->
-	<select id="readFAQ" resultMap="FAQResult" parameterType="String">
+	<select id="readFAQ" resultMap="FAQResult">
 		<![CDATA[
-			select fa.*, fc.* 
-			from tb_faq fa 
+			select fa.faq_code, fc.faq_cate, fa.faq_title, fa.faq_info, fa.faq_reg_date
+			from tb_faq fa
 			join tb_faq_cate fc 
-			on fa.faq_code = fc.faq_code 
-			where fa.faq_code = #{faq_code} 
+			on fa.faq_cate_code = fc.faq_cate_code 
+			where fa.faq_cate_code = #{faq_cate_code} 
 		]]>
 	</select>
 	
@@ -77,19 +92,16 @@
 	<!-- 상품 등록 -->
 	<insert id="registerFAQ" >
 		<![CDATA[
-			insert into tb_faq (faq_code, faq_title, faq_info, faq_reg_date) 
-			values (faq2_seq.nextval, #{faq_title}, #{faq_info},sysdate)
+			insert into tb_faq (faq_code, faq_title, faq_info, faq_cate_code, faq_reg_date) 
+			values (faq_seq.nextval, '#{faq_title}', '#{faq_info}', #{faq_cate_code}, sysdate)
 		]]>
 	</insert> 
 	
 	<!-- 카테고리 호출 -->
 	<select id="cateFAQList" resultType="kr.co.recipetoyou.admin.adfaq.AdFAQCategoryVO">
 		<![CDATA[
-			select *
+			select faq_cate_code, faq_cate
 			from tb_faq_cate 
 		]]>
 	</select>
-	
-	
-	
 </mapper>	

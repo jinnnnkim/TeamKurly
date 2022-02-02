@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import kr.co.recipetoyou.util.PageMaker;
 import kr.co.recipetoyou.util.PagingVO;
 
@@ -110,11 +112,30 @@ public class AdFAQControllerImpl implements AdFAQController {
 		return mav;
 	}
 	
-	//FAQ 카테고리 검색 --> 안됨 추가 필요
+	//FAQ 카테고리 검색
 	@Override
 	@RequestMapping(value = "/adfaq/FAQCategory.do", method = RequestMethod.GET)
 	public void FAQListCategory(Model model) throws Exception {		
 	}	
+	
+	//FAQ 등록 페이지로 이동
+	@Override
+	@RequestMapping(value = "/adfaq/moveRegister.do", method = RequestMethod.GET)
+	public ModelAndView moveRegister(Model model, HttpServletRequest request, HttpServletResponse response) throws Exception {
+			
+		ObjectMapper objm = new ObjectMapper();	
+		List list = service.cateFAQList();	
+		String cateFAQList = objm.writeValueAsString(list);	
+		model.addAttribute("cateFAQList", cateFAQList);
+			
+		logger.info("변경 전========"+list);
+		logger.info("변경 후========"+cateFAQList);
+			
+		String viewName = (String)request.getAttribute("viewName");
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName(viewName);
+		return mav;	
+	}
 	
 	//FAQ 등록
 	@Override

@@ -27,4 +27,6 @@ public interface AdFAQDAO {
 
 	public void register(AdFAQVO vo) throws Exception ;
 
+	public int countFAQSearch(AdFAQCategoryVO option) throws Exception ;
+
 }

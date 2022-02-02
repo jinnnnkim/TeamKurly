@@ -110,7 +110,7 @@
 		<input type="button" value="전체해제" id="uncheck_all">
 		
 		<!-- 클릭시 alert창 띄우는 js 구현되어있음 -->
-		<button class="excelBtn" onclick="regiMessage()"><a href="${contextPath}/adfaq/FAQInsert.do?id=${faq.faq_code}">FAQ 등록</a></button><br><br><br>
+		<button class="excelBtn" onclick="regiMessage()"><a href="${contextPath}/adfaq/moveRegister.do?id=${faq.faq_code}">FAQ 등록</a></button><br><br><br>
 
 		</div>
 		

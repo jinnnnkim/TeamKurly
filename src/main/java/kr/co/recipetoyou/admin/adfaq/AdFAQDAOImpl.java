@@ -80,5 +80,9 @@ public class AdFAQDAOImpl implements AdFAQDAO{
 		sqlSession.insert("mapper.adfaq.registerFAQ", vo);
 		
 	} 
-
+	
+	@Override
+	public int countFAQSearch(AdFAQCategoryVO option) throws Exception {
+		return sqlSession.selectOne("mapper.adfaq.countSearch", option);
+	}
 }

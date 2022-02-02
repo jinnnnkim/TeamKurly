@@ -26,5 +26,7 @@ public interface AdFAQService {
 
 	public void register(AdFAQVO vo) throws Exception;
 
+	int countFAQSearch(AdFAQCategoryVO option) throws Exception;
+
 
 }

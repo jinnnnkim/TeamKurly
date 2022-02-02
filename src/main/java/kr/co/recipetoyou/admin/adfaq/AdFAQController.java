@@ -27,6 +27,8 @@ public interface AdFAQController {
 
 	public void FAQListCategory(Model model) throws Exception;
 
+	public ModelAndView moveRegister(Model model, HttpServletRequest request, HttpServletResponse response) throws Exception;
+
 	
 
 }
