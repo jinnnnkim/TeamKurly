@@ -31,8 +31,17 @@ public class AdGoodsVO {
 	private AdGoodsCateVO adGoodsCateVO;	 	//상품 조회 시 카테고리 함께 조회하기 위해 추가
 	private List<AdgoodsImgVO> imageList;		//이미지 정보
 	private String cateName;
+	private String cateParent;
 	
 
+
+	public String getCateParent() {
+		return cateParent;
+	}
+
+	public void setCateParent(String cateParent) {
+		this.cateParent = cateParent;
+	}
 
 	public AdGoodsVO() {
 		// TODO Auto-generated constructor stub

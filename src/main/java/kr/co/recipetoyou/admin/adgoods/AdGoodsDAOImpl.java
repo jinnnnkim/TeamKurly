@@ -54,7 +54,7 @@ public class AdGoodsDAOImpl implements AdGoodsDAO{
 	@Override
 	public AdGoodsVO readGoods(int prod_code) throws DataAccessException {
 		
-		return sqlSession.selectOne(NAMESPACE+".getadGoodsDetail", prod_code);
+		return sqlSession.selectOne(NAMESPACE+".adGoodsDetail", prod_code);
 	}
 	
 	//상품 정보
@@ -97,7 +97,7 @@ public class AdGoodsDAOImpl implements AdGoodsDAO{
 	public void imageUpload(AdgoodsImgVO imagevo) throws Exception {
 		
 		
-		sqlSession.insert(NAMESPACE+"imageUpload", imagevo);
+		sqlSession.insert(NAMESPACE+".imageUpload", imagevo);
 		
 	}
 

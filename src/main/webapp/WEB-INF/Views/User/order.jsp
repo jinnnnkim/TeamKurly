@@ -24,6 +24,9 @@
 <link href="/recipetoyou/Resources/User/Img/Mypage2/KurlyIcon.png"
 	rel="icon" type="image/x-icon" />
 <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+<!-- iamport.payment.js -->
+<script type="text/javascript"
+	src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
 </head>
 <body>
 	<div class="content">
@@ -50,8 +53,8 @@
 					</tr>
 					<tr>
 						<th>이메일</th>
-						<td>cccc@gmail.com<br />이메일을 통해 주문처리과정을 보내드립니다.<br />변경은 개인정보
-							수정에서 가능합니다.
+						<td>cccc@gmail.com<br />이메일을 통해 주문처리과정을 보내드립니다.<br />변경은
+							개인정보 수정에서 가능합니다.
 						</td>
 					</tr>
 				</table>
@@ -64,8 +67,8 @@
 					<tr>
 						<th>배송지</th>
 						<td class="txtBox"><span class="basicAddress">기본배송지</span><br />
-						<span class="address">서울 강남구 서초대로 이젠아이티</span><br />
-						<span class="deliMethod">샛별배송</span></td>
+							<span class="address">서울 강남구 서초대로 이젠아이티</span><br /> <span
+							class="deliMethod">샛별배송</span></td>
 					</tr>
 					<tr>
 						<th>상세정보</th>
@@ -103,7 +106,7 @@
 					<tr>
 						<th>결제수단선택</th>
 						<td>
-							<button class="kakaopay">
+							<button id="iamportPayment" class="kakaopay">
 								<img class="kakaoImg"
 									src="/recipetoyou/Resources/User/Img/Order/kakaopayoff.png" />
 							</button>
@@ -138,12 +141,12 @@
 					</tr>
 					<tr class="port">
 						<th></th>
-						<td><label><input type="radio" />차이<span>혜택</span></label>
-							<label><input type="radio" />토스<span>혜택</span></label><br /> <label><input
+						<td><label><input type="radio" />차이<span>혜택</span></label> <label><input
+								type="radio" />토스<span>혜택</span></label><br /> <label><input
 								type="radio" />네이버페이<span>혜택</span></label> <label><input
 								type="radio" />페이코<span>혜택</span></label><br /> <label><input
-								type="radio" />스마일페이</label><br />
-						<br /> <span> 차이<br />2만원 이상 생애 첫 결제 시 <br />3천원 즉시할인
+								type="radio" />스마일페이</label><br /> <br /> <span> 차이<br />2만원
+								이상 생애 첫 결제 시 <br />3천원 즉시할인
 						</span> <span> 토스<br />1만원 이상 첫 결제 시, 1천원 캐시백 즉시 적립 <br />· 1/3
 								11시 ~ 1/31 24시, 기간 내 1회, 선착순 토스로 첫 결제 시 적용
 						</span> <span> 네이버페이<br />5만원 이상 결제 시 2천원 네이버페이 포인트 적립<br />·
@@ -151,16 +154,17 @@
 								취소 되지 않는 내역에 대해 2월 8일 일괄 적립
 						</span> <span> 페이코<br />페이코 최대 10% 적립 + 1천원 할인쿠폰 <br />· (1) 최대
 								10% 적립<br />· 1/17 11시 ~ 1/31 11시 <br />· 페이코 충전포인트로 결제할 때 마다
-								페이코 포인트 최대 10% 적립 (건당 최대 2,000P) <br />· (2) 1천원 할인 쿠폰
-								(15,000원 이상 구매시)<br />· 1/3 11시 ~ 2/28 24시<br />· 페이코 앱 내
-								쿠폰영역에서 마켓컬리 쿠폰 다운로드 (1일 ID당 1회)
+								페이코 포인트 최대 10% 적립 (건당 최대 2,000P) <br />· (2) 1천원 할인 쿠폰 (15,000원
+								이상 구매시)<br />· 1/3 11시 ~ 2/28 24시<br />· 페이코 앱 내 쿠폰영역에서 마켓컬리
+								쿠폰 다운로드 (1일 ID당 1회)
 						</span></td>
 					</tr>
 				</table>
 			</div>
 			<div>
-				<span class="cont">※ 카카오페이, 차이, 토스, 네이버페이, 페이코 결제 시, 결제하신 수단으로만 환불되는 점
-					양해부탁드립니다.</span><br/><span class="cont">※고객님은 안전거래를 위해 현금 등으로 결제시 저희 쇼핑몰에서 가입한 토스
+				<span class="cont">※ 카카오페이, 차이, 토스, 네이버페이, 페이코 결제 시, 결제하신
+					수단으로만 환불되는 점 양해부탁드립니다.</span><br />
+				<span class="cont">※고객님은 안전거래를 위해 현금 등으로 결제시 저희 쇼핑몰에서 가입한 토스
 					페이먼츠의 구매안전(에스크로) 서비스를 이용하실 수 있습니다.</span>
 			</div>
 			<div class="bills">
@@ -169,7 +173,7 @@
 					<table>
 						<tr>
 							<th>주문금액</th>
-							<td>28,000원</td>
+							<td class="payPrice">28,000원</td>
 						</tr>
 						<tr class="sub">
 							<th>ㄴ 상품금액</th>
@@ -177,7 +181,8 @@
 						</tr>
 						<tr class="sub">
 							<th>ㄴ 할인금액</th>
-							<td>-<span>3,850</span>원</td>
+							<td>-<span>3,850</span>원
+							</td>
 						</tr>
 						<tr>
 							<th>배송비</th>
@@ -203,7 +208,7 @@
 					<h2>개인정보 수집/제공</h2>
 					<div class="agree">
 						<label><input type="checkbox" />
-						<h3 class="disNone">결제 진행 필수 동의</h3></label><br /> &nbsp;&nbsp;<span
+							<h3 class="disNone">결제 진행 필수 동의</h3></label><br /> &nbsp;&nbsp;<span
 							class="ordTxt">개인정보 수집·이용 및 처리동의<span class="grey">(필수)</span></span><a
 							href="#none">보기 > </a><br /> &nbsp;&nbsp;<span class="ordTxt">전자지급
 							결제대행 서비스 이용약관 동의<span class="grey">(필수)</span>
@@ -226,34 +231,66 @@
 	<!-- body -->
 
 	<script>
-		$().ready(function(){
+		$().ready(function() {
 			var flag = true;
-			$('.kakaopay').click(function(){
-				if(flag) $('.kakaoImg').attr('src','/recipetoyou/Resources/User/Img/Order/kakaopayon.png');
+			$('.kakaopay').click(function() {
+				if (flag) $('.kakaoImg').attr('src','/recipetoyou/Resources/User/Img/Order/kakaopayon.png');
 				else $('.kakaoImg').attr('src','/recipetoyou/Resources/User/Img/Order/kakaopayoff.png');
-				flag = !flag;	
+				flag = !flag;
 			});
 			
-			$('.cardBtn').click(function(){
-				$('.card').css('display','table-row');
-				$('.port').css('display','none');
-				$('.cardBtn').css('background','#5f0080');
-				$('.cardBtn').css('color','white');
-				$('.portBtn').css('background','white');
-				$('.portBtn').css('color','black');
+			$("#iamportPayment").click(function(){ 
+		    	payment(); 
+		    }); 
+			function payment(data) {
+				
+				var _name = $('.box h4').text();
+				var _price = $('.totalPayment td span').text();
+				_price = removeStr(_price,",");
+				
+			    IMP.init('imp38939005');
+			    IMP.request_pay({
+			        pg: "kakaopay.TC0ONETIME", 
+			        pay_method: "card",
+			        merchant_uid: "iamport_test_id",
+			        name: _name, 
+			        amount: _price,
+			        buyer_email : "test@naver.com", 
+			        buyer_name : "홍길동",
+			        buyer_tel : "01000000000"
+			    }, function (rsp) { 
+			        if (rsp.success) {
+			            alert("완료 -> imp_uid : "+rsp.imp_uid+" / merchant_uid(orderKey) : " +rsp.merchant_uid);
+			        } else {
+			            alert("실패 : 코드("+rsp.error_code+") / 메세지(" + rsp.error_msg + ")");
+			        }
+			    });
+			}
+
+			$('.cardBtn').click(function() {
+				$('.card').css('display', 'table-row');
+				$('.port').css('display', 'none');
+				$('.cardBtn').css('background', '#5f0080');
+				$('.cardBtn').css('color', 'white');
+				$('.portBtn').css('background', 'white');
+				$('.portBtn').css('color', 'black');
+			});
+
+			$('.portBtn').click(function() {
+				$('.card').css('display', 'none');
+				$('.port').css('display', 'table-row');
+				$('.portBtn').css('background', '#5f0080');
+				$('.portBtn').css('color', 'white');
+				$('.cardBtn').css('background', 'white');
+				$('.cardBtn').css('color', 'black');
 			});
 			
-			$('.portBtn').click(function(){
-				$('.card').css('display','none');
-				$('.port').css('display','table-row');
-				$('.portBtn').css('background','#5f0080');
-				$('.portBtn').css('color','white');
-				$('.cardBtn').css('background','white');
-				$('.cardBtn').css('color','black');
-			});
+			function removeStr(doc, str){
+				doc = doc.replace(str,"");
+				return doc;
+			}
+			
 		});
-	
-			
 	</script>
 </body>
 </html>

@@ -106,33 +106,7 @@ $(document).ready(function() {
 });
 
 		
-/*유통기한 입력 위한 캘린더 위젯 적용*/
 
-/* 설정 */
-const config = {
-		dateFormat: 'yy-mm-dd',
-		showOn : "button",
-		buttonText : "날짜 선택",
-		prevText: '이전 달',
-	    nextText: '다음 달',
-	    monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
-	    monthNamesShort: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
-	    dayNames: ['일','월','화','수','목','금','토'],
-	    dayNamesShort: ['일','월','화','수','목','금','토'],
-	    dayNamesMin: ['일','월','화','수','목','금','토'],
-	    yearSuffix: '년',
-	    changeMonth: true,
-        changeYear: true
-}
-
-/* 캘린더 */
-$(function(){
-	let vaildDate = '${goodsVO.prod_vaild_date}';
-	let vaild_length = vaildDate.indexOf(" ");
-	vaildDate = vaildDate.substring(0, vaild_length);
-	$("input[name='prod_vaild_date']").datepicker(config);
-	$("input[name='prod_vaild_date']").datepicker('setDate', prod_vaild_date);
-});
 
 function readURL(input, index) {
 	if(input.files && input.files[0]){
@@ -143,6 +117,13 @@ function readURL(input, index) {
 		reader.readAsDataURL(input.files[0]);
 	}
 }
+
+/* CKEditor5 적용 */
+	ClassicEditor
+		.create(document.querySelector('#prod_content'))
+		.catch(error=>{
+			console.error(error);
+		})
 
 	});
 		

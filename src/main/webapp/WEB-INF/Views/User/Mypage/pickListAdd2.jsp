@@ -57,7 +57,7 @@
 								<button class="btn_delete">삭제</button>
 							</a>
 							<br/>
-							<button class="btn_add" onclick="">
+							<button class="btn_add">
 								<i class="fas fa-shopping-cart"></i>담기
 							</button>
 						</div>
@@ -71,8 +71,6 @@
 			<!-- pickadd_main -->
 		</div>
 		<!-- content -->
-	</div>
-	<!-- main -->
 </body>
 </html>
 

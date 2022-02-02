@@ -44,7 +44,7 @@
 		</ul>
 	</div>
 	
-	<form action="${contextPath}/adgoods/adgoodsModify.do" method="post" id="modifyForm">
+	<form action="${contextPath}/adgoods/register.do" method="post" id="modifyForm">
 	<input type="hidden" name="prod_code" value="${goodsVO.prod_code }">
 	<!-- 수정(UPDATE) 쿼리문에서 PROD_CODE가 필요하기 때문에 hidden 태그로 추가 -->
 	
@@ -87,7 +87,7 @@
 							<tr>
 								<th>상품명</th>
 								<td>
-								<input type="text" value="${goodsVO.prod_name}" name="prod_name"/>
+								<input type="text" value="${goodsVO.prod_name}"/>
 								</td>
 							</tr>
 							<tr>
@@ -105,13 +105,13 @@
 							<tr>
 								<th>판매가격</th>
 								<td>
-									<input type="text" value="${goodsVO.prod_price }" name="prod_price"/>
+									<input type="text" value="${goodsVO.prod_price }"/>
 								</td>
 							</tr>
 							<tr>
 								<th>할인율</th>
 								<td>
-									<input type="text" value="${goodsVO.prod_discount }" name="prod_discount">
+									<input type="text" value="${goodsVO.prod_discount }">
 									<div class="helper blue mt5">
 										<img src="/recipetoyou/Resources/Admin/Img/ShoppingMallManagement/Question-blue.png" width="12px" height="12px">
 										할인을 하지 않으실 경우 판매가격만 적어 주시면 됩니다.
@@ -212,11 +212,14 @@
 					</table>
 					
 					<div class="btn-box" style="margin-top: 10px">
-						<button class="btn btn-lg btn-blue" id="saveBtn">수정</button>
+						<%-- 1)버튼 클릭시 저장하시겠습니까 alert창이 나타나는 기능 추가해야 됨(상품분류기능을 생략했기때문에 '1차분류입력하세요' alert창도 생략해도 될것 같음.)
+						 	 2)저장버튼 클릭시 상품이 저장되는 기능 넣기  -> 상품목록 페이지로 이동 기능 넣기  --%>
+						<button class="btn btn-lg btn-blue" id="saveBtn">저장</button>
 						
-						<button class="btn btn-lg"><a href="${contextPath}/adgoods/listProduct.do" class="selected">목록</a></button>
-						
-						<button id="deleteBtn" class="btn btn-lg btn-red">삭제</button>
+						<button class="btn btn-lg" 
+						onclick="document.location.href='productList.jsp'">목록</button>
+						<%-- 삭제버튼 클릭시 상품후기 목록에서 해당상품이 삭제되는 기능 넣기 -> 상품후기목록 페이지로 이동 기능 넣기 --%>
+						<button id="deleteBtn" class="btn btn-lg btn-red" onclick="">삭제</button>
 					</div>
 					
 					<!-- 옵션정보 테이블의 옵션등록버튼 클릭시, 또는 추가옵션 테이블의 추가옵션등록버튼 클릭시 나타나는 팝업창 -->
@@ -381,13 +384,11 @@
 											
 		/* 삭제 버튼 */
 		$("#deleteBtn").on("click", function(e){
-			console.log("del 실행");
-			
-			e.preventDefault();
-			var moveForm = $("#moveForm");
+			//e.preventDefault();
+			let moveForm = $("#moveForm");
 			moveForm.find("input").remove();
 			moveForm.append('<input type="hidden" name="prod_code" value="${goodsVO.prod_code}">');
-			moveForm.attr("action", "${contextPath}/adgoods/adgoodsDelete.do");
+			moveForm.attr("action", "/adgoods/goodsDelete.do");
 			moveForm.attr("method", "post");
 			moveForm.submit();
 		}) 
