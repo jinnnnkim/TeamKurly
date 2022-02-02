@@ -5,7 +5,7 @@ import java.sql.Date;
 
 import org.springframework.stereotype.Component;
 
-@Component("adpaymentVO")
+@Component("adPaymentVO")
 public class AdPaymentVO {
 
 	private int pay_code;
