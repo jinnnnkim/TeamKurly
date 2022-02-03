@@ -24,8 +24,8 @@ import java.sql.Date;
 
 import org.springframework.stereotype.Component;
 
-@Component("userVO")
-public class UserVO {
+@Component("usersVO")
+public class UsersVO {
 	
 	private String user_id;
 	private String user_pw;
@@ -46,13 +46,13 @@ public class UserVO {
 	private int cp_code;
 	private String toYou_pass;
 	
-	public UserVO() {
+	public UsersVO() {
 		// TODO Auto-generated constructor stub
 	}
 	
 	
 
-	public UserVO(String user_id, String user_pw, String user_name, String user_email, String user_phone,
+	public UsersVO(String user_id, String user_pw, String user_name, String user_email, String user_phone,
 			String user_addr, int user_gender, String user_birth) {
 		super();
 		this.user_id = user_id;
@@ -67,7 +67,7 @@ public class UserVO {
 
 
 
-	public UserVO(String user_id, String user_pw, String user_name, String user_email, String user_phone,
+	public UsersVO(String user_id, String user_pw, String user_name, String user_email, String user_phone,
 			String user_addr, int user_gender, String user_birth, String recommendId, String join_event, int info_agree,
 			int sms_agree, int email_agree, Date join_date, int user_grade, int user_point, int cp_code,
 			String toYou_pass) {

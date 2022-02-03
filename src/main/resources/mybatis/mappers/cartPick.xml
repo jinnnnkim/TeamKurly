@@ -5,7 +5,7 @@
   
 <mapper namespace="mapper.cartPick">					<!-- member.xml의 네임스페이스 지정 -->
 	
-	<resultMap type="CartPickVO" id="CartPickResult">	
+	<!-- <resultMap type="CartPickVO" id="CartPickResult">	
 		<result property="cart_code" column="cart_code"/>		
 		<result property="prod_code" column="prod_code"/>
 		<result property="prod_quantity" column="prod_quantity"/>		
@@ -13,7 +13,7 @@
 	</resultMap>
 	
 	
-	<select id="selectAllCartPickList" resultMap="CartPickResult"> <!-- order by cart_code desc -->
+	<select id="selectAllCartPickList" resultMap="CartPickResult"> order by cart_code desc
 		<![CDATA[
 			select * from tb_cart 
 		]]>
@@ -26,15 +26,15 @@
 		]]>
 	</insert>
 	
-	<!-- parameterType : 회원 ID는 문자열이므로 parameterType을 String으로 설정함
-	#{id} <== (DAO로부터)전달된 ID를 조건 값으로 해당 회원 정보를 삭제  -->
+	parameterType : 회원 ID는 문자열이므로 parameterType을 String으로 설정함
+	#{id} <== (DAO로부터)전달된 ID를 조건 값으로 해당 회원 정보를 삭제 
 	<delete id="deleteCartPick" parameterType="String">
 		<![CDATA[
 			delete from tb_cart 
 			where
 			cart_code = #{cart_code}
 		]]>
-	</delete>
+	</delete> -->
 	
 	 
 	<!-- id : DAO에서 id를 이용해 해당 SQL문을 호출함 -->

@@ -1,9 +1,5 @@
 package kr.co.recipetoyou.main.cartPick;
 
-<<<<<<< HEAD
-=======
-
->>>>>>> 73327b0b5319c321c2a70427a6ba4013a5acd816
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,33 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-<<<<<<< HEAD
 import kr.co.recipetoyou.user.login.LoginDAO;
-
-@Service("cartPickService")
-@Transactional(propagation = Propagation.REQUIRED)
-public class CartPickServiceImpl implements CartPickService {
-	@Autowired
-	private CartPickDAO cartPickDAO;
-
-	@Override
-	public List<CartPickVO__> listCartPicks() throws DataAccessException {
-		List<CartPickVO__> membersList = cartPickDAO.selectAllCartPickList();
-		return membersList;
-	}
-
-	@Override
-	public int addCartPick(CartPickVO__ cartPickVO) throws DataAccessException {
-		return cartPickDAO.insertCartPick(cartPickVO);
-	}
-
-	@Override
-	public int removeCartPick(String id) throws DataAccessException {
-		return cartPickDAO.deleteCartPick(id);
-	}
-
-	
-=======
 import kr.co.recipetoyou.admin.adgoods.AdGoodsDAO;
 import kr.co.recipetoyou.admin.adgoods.AdgoodsImgVO;
 import kr.co.recipetoyou.main.cartPick.vo.CartAddVO;
@@ -54,7 +24,7 @@ public class CartPickServiceImpl implements CartPickService{
 	private CartPickDAO cartPickDAO;
 
 	@Autowired
-	AdGoodsDAO adGoodsDAO;
+	private AdGoodsDAO adGoodsDAO;
 	
 	@Override
 	public List<PickVO> listPicks () throws DataAccessException {
@@ -101,13 +71,6 @@ public class CartPickServiceImpl implements CartPickService{
 		}
 	
 		
-		
-		
-		
-		
-		
-		
-		
 	//장바구니 담기
 	@Override
 	public int addCartPick(CartAddVO cartAddVO) throws DataAccessException {
@@ -120,9 +83,22 @@ public class CartPickServiceImpl implements CartPickService{
 		return cartPickDAO.insertFavAdd(favVO);
 	}
 
-	
-	
-	
->>>>>>> 73327b0b5319c321c2a70427a6ba4013a5acd816
 
+	@Override
+	public List<CartPickVO__> listCartPicks() throws DataAccessException {
+		List<CartPickVO__> membersList = cartPickDAO.selectAllCartPickList__();
+		return membersList;
+	}
+
+	@Override
+	public int addCartPick(CartPickVO__ cartPickVO) throws DataAccessException {
+		return cartPickDAO.insertCartPick(cartPickVO);
+	}
+
+	@Override
+	public int removeCartPick(String id) throws DataAccessException {
+		return cartPickDAO.deleteCartPick(id);
+	}
+	
+	
 }

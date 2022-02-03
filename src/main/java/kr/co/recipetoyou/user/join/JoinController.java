@@ -6,15 +6,12 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-<<<<<<< HEAD
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-=======
 import org.springframework.web.servlet.ModelAndView;
 
 import kr.co.recipetoyou.user.UserVO;
->>>>>>> 73327b0b5319c321c2a70427a6ba4013a5acd816
 
 public interface JoinController {
 	
