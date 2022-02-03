@@ -1,7 +1,8 @@
 package kr.co.recipetoyou.main.cartPick;
 
-<<<<<<< HEAD
+
 import javax.servlet.http.HttpServletRequest;
+
 =======
 import javax.servlet.http.HttpServletRequest;  
 >>>>>>> 73327b0b5319c321c2a70427a6ba4013a5acd816

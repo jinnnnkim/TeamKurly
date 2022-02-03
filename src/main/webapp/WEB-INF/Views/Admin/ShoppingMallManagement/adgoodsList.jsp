@@ -76,12 +76,7 @@
 								
 								<label>2차 분류</label>
 								<select class="category2">
-									<option selected="selected" value="none">선택</option>
-								</select>
-								
-								<label>3차 분류</label>
-								<select class="category3" name="cateCode">
-									<option selected="selected" value="none">선택</option>
+									<option selected="selected" value="none" name="cateCode">선택</option>
 								</select>
 
 							</td>
@@ -222,12 +217,78 @@
 		</div> 
 		
 		<form id="moveForm" action="${contextPath}/adgoods/listProduct.do" method="get">
-			<input type="hidden" name="page" value="${pm.vo.page}">
+			<%-- <input type="hidden" name="page" value="${pm.vo.page}">
 			<input type="hidden" name="pageSize" value="${pm.vo.pageSize}">
-			<input type="hidden" name="keyword" value="${pm.vo.keyword}">
+			<input type="hidden" name="keyword" value="${pm.vo.keyword}"> --%>
 		</form>
 		
 		<script type="text/javascript">
+		
+		/* 카테고리 */
+		let cateList = JSON.parse('${cateList}');
+		
+		
+
+		let cate1Array = new Array();
+		let cate1Obj = new Object();
+
+		
+		//1차 분류 셀렉트박스 삽입 데이터 준비
+		for(let i=0; i<cateList.length; i++){
+			if(cateList[i].level == "1"){
+				
+			cate1Obj = new Object();
+			cate1Obj.cateCode = cateList[i].cateCode;
+			cate1Obj.cateName = cateList[i].cateName;
+			cate1Array.push(cate1Obj);
+		}
+	}
+		//1차 분류 셀렉트박스에 데이터 삽입
+		let cateSelect1 = $("select.category1");
+		
+		for(let i=0; i<cate1Array.length; i++){
+			cateSelect1.append("<option value='"+cate1Array[i].cateCode+"'>" + cate1Array[i].cateName + "</option>");
+		}
+		
+		$(document).on("change", "select.category1", function(){
+			let cate2Array = new Array();
+			let cate2Obj = new Object();
+			
+			//2차 분류 셀렉트박스에 삽입할 데이터 준비
+			for(let i=0; i<cateList.length; i++){
+				
+				if(cateList[i].level == "2"){
+					
+					cate2Obj = new Object();	//초기화
+					cate2Obj.cateCode = cateList[i].cateCode;
+					cate2Obj.cateName = cateList[i].cateName;
+					cate2Obj.cateParent = cateList[i].cateParent;
+					
+					cate2Array.push(cate2Obj);
+				}
+			}
+			
+			let cateSelect2 = $("select.category2");
+			
+			
+			//cate2Select 값을 제거함(초기화)
+			cateSelect2.children().remove();
+			
+			$("option:selected", this).each(function(){
+				
+				let selectVal = $(this).val();	//현재 선택한 cateSelect1 값 저장
+				cateSelect2.append("<option value='" + selectVal + "'>전체</option>");	//cateSelect2의 '전체'에 현재 선택한 cateSelect1과 같은 값 부여
+				
+				//cate2Array의 데이터를 cateSelect2에 추가
+				for(let i=0; i<cate2Array.length; i++){
+					
+					if(selectVal == cate2Array[i].cateParent){
+						cateSelect2.append("<option value='"+cate2Array[i].cateCode+"'>" + cate2Array[i].cateName + "</option>")
+					}
+				}
+			});
+		});
+		
 		
 		let moveForm = $("#moveForm");
 		

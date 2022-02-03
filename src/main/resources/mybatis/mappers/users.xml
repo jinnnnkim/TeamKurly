@@ -5,7 +5,7 @@
   
 <mapper namespace="mapper.user">					<!-- member.xml의 네임스페이스 지정 -->
  	
-	<resultMap type="userVO" id="userResult">		<!-- SQL문 실행한 후 반환되는 레코드들을 typeAlias태그에서 지정한 memberVO빈에 저장함. -->
+	<resultMap type="userVO" id="userResult2">		<!-- SQL문 실행한 후 반환되는 레코드들을 typeAlias태그에서 지정한 memberVO빈에 저장함. -->
 		<result property="user_id" column="user_id"/>		
 		<result property="user_pw" column="user_pw"/>
 		<result property="user_name" column="user_name"/>		<!-- 레코드의 컬럼 이름에 대해 memberVO의 같은 속성에 값을 설정함. -->
@@ -133,7 +133,7 @@
 	 -->
 	 
 	 
-	<insert id="insertUser" parameterType="userVO">
+<!-- 	<insert id="insertUser" parameterType="userVO">
 		<![CDATA[
 			insert into tb_users (user_id, user_pw, user_name, user_email, user_phone, user_addr, user_gender, user_birth,
 			 recommendId, join_event, info_agree, sms_agree, email_agree, join_date)
@@ -153,5 +153,5 @@
 		SELECT COUNT(*) FROM tb_users
 		WHERE user_id = #{user_id}
 	</select>
-	
+	 -->
 </mapper>

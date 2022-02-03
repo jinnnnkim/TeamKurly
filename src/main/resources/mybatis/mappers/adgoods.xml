@@ -197,9 +197,11 @@
 	<!-- 카테고리 호출 -->
 
 	<select id="cateList" resultType="kr.co.recipetoyou.admin.adgoods.category.AdGoodsCateVO">
+		<![CDATA[
 		select level, cateCode, cateName, cateParent
 		from tb_prod_cate 
 		start with cateParent is null connect by prior cateCode = cateParent
+		]]>
 	</select>
 	
 	<!-- 상품 정보 수정 -->
@@ -225,7 +227,9 @@
 	
 	<!-- 상품 정보 삭제 -->
 	<delete id="goodsDelete" parameterType="int">
+		<![CDATA[
 		delete from tb_prod where prod_code = #{prod_code}
+		]]>
 	</delete>
 	
 	<!-- 상품 검색 -->
