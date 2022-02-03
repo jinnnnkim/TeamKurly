@@ -52,14 +52,23 @@
 	
 	
 
-	<!-- 배송지관리 조회 -->
-	<resultMap type="addressVO" id="addressResult">
+	<!-- 배송지관리 조회  사용자 Tb + 회원 주소 -->
+	<resultMap type="useraddrVO" id="addressResult">
 		<result property="user_name" column="user_name"/>
 		<result property="user_phone" column="user_phone"/>
-		<result property="user_addr" column="user_addr"/>
+		<result property="addr" column="addr"/>
 		<result property="delivery_type" column="delivery_type"/>
 	</resultMap>
 
+
+	<!-- 주문내역 조회 - 주문 + 주문상품 + 상품 주소 -->
+	<resultMap type="ordingVO" id="orderListResult">
+		<result property="ord_code" column="ord_code"/>
+		<result property="status" column="status"/>
+		<result property="price" column="price"/>
+		<result property="ord_date" column="ord_date"/>
+		<result property="prod_name" column="prod_name"/>
+	</resultMap>
 	
 	
 	<!-- id : DAO에서 id를 이용해 해당 SQL문을 호출함 -->
@@ -128,9 +137,6 @@
 		]]>
 	</select>
 	
-	
-
-
 
 	<!-- 포인트 조회하기 -->
 	<select id="selectAllPointList" resultMap="pointResult">
@@ -145,11 +151,21 @@
 	<!-- 배송지관리 조회 -->
 	<select id="selectAllAddressList" resultMap="addressResult">
 		<![CDATA[
-			SELECT TU.USER_NAME, TU.USER_PHONE, TU.USER_ADDR, TUA.DELIVERY_TYPE
+			SELECT TU.USER_NAME, TU.USER_PHONE, TUA.addr , TUA.DELIVERY_TYPE
 			FROM TB_USER_ADDR tua JOIN TB_USERS tu 
 			ON TUA.USER_ID = TU.USER_ID
 		]]>
 	</select>	
+	
+	<!-- 주문내역 조회 -->
+	<select id="selectAllOrderList" resultMap="orderListResult">
+		<![CDATA[
+			SELECT tp.PROD_NAME, toi.ORD_CODE, toi.STATUS, toi.PRICE, to2.ORD_DATE 
+			FROM TB_ORD_ING toi, TB_ORDER to2, TB_PROD tp
+			WHERE toi.ORD_CODE = to2.ORD_CODE 
+			AND toi.PROD_CODE = tp.PROD_CODE
+		]]>
+	</select>
 	
 	
 </mapper>  

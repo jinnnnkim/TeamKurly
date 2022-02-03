@@ -71,6 +71,22 @@
 			<!-- pickadd_main -->
 		</div>
 		<!-- content -->
+	
+		
+<script type="text/javascript">
+	$(".btn_add").click(function () {
+		
+		var check = confirm("상품이 장바구니에 담겼습니다. 확인하시겠습니까?");
+		
+		if(check) {
+			location.assign("cart.do");
+		}
+		
+	})
+	
+	
+</script>
+	
 </body>
 </html>
 

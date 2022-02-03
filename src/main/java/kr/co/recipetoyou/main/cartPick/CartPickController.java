@@ -37,7 +37,6 @@ public interface CartPickController {
 	
 	
 	
-	
 	//장바구니 담기 
 	//public ModelAndView addCartPick(@ModelAttribute("info") ,
 	//	 HttpServletRequest request, HttpServletResponse response) throws Exception;
