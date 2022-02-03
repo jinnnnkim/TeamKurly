@@ -1,6 +1,19 @@
 package kr.co.recipetoyou.main.cartPick;
 
 import java.util.List;
+<<<<<<< HEAD
+
+import org.springframework.dao.DataAccessException;
+
+import kr.co.recipetoyou.user.join.UserVO;
+
+public interface CartPickDAO {
+	
+	public List<CartPickVO__> selectAllCartPickList() throws DataAccessException;
+	public int insertCartPick(CartPickVO__ cartPickVO) throws DataAccessException;
+	public int deleteCartPick(String id) throws DataAccessException;
+
+=======
 import java.util.Map;
 
 import org.springframework.dao.DataAccessException;
@@ -32,4 +45,5 @@ public interface CartPickDAO{
 	public int insertFavAdd(FavVO favVO) throws DataAccessException;
 	
 	
+>>>>>>> 73327b0b5319c321c2a70427a6ba4013a5acd816
 }

@@ -40,7 +40,7 @@
 	<!-- 페이지정보를 지정한 크기만큼 가져오기 -->
 	<select id="listOrdPaging" resultMap="orderResult">
 		<![CDATA[
-			select * 
+			select *
 			from ( select rownum AS rn, 
 					toa.user_id, 
 					tu.user_name, 
@@ -53,10 +53,10 @@
 					tpc.pay_card_idx, 
 					toa.ord_date 
 					from tb_order toa, 
-						tb_users tu, 
-						tb_prod tp, 
-						tb_ord_ing toi, 
-						tb_payment_card_reg tpc 
+						 tb_users tu, 
+						 tb_prod tp, 
+						 tb_ord_ing toi, 
+						 tb_payment_card_reg tpc 
 					where toa.user_id = tu.user_id 
 					and toi.prod_code = tp.prod_code 
 					and toa.ord_code = toi.ord_code 

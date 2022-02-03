@@ -52,9 +52,15 @@
 		<put-attribute name="body" value="/WEB-INF/Views/User/Mypage/reviewWrite.jsp"/>
 	</definition>
 	
+<<<<<<< HEAD
+	<definition name="mypage/pickListAdd" extends="mypageLayout">
+		<put-attribute name="title" value="마이페이지 - 장바구니추가"/><!--장바구니-> 장바구니추가로 변경했음  -->
+		<put-attribute name="body" value="/WEB-INF/Views/User/Mypage/pickListAdd2.jsp"/>	
+=======
 	<definition name="QandA" extends="mypagelayout">
 		<put-attribute name="title" value="상품 문의"/>		
 		<put-attribute name="body" value="/WEB-INF/Views/User/Mypage/QandA.jsp"/>
+>>>>>>> 73327b0b5319c321c2a70427a6ba4013a5acd816
 	</definition>
 	
 	<definition name="point" extends="mypagelayout">

@@ -10,6 +10,13 @@
 		<setting name="mapUnderscoreToCamelCase" value="true" />
 	</settings>
 	<typeAliases>
+<<<<<<< HEAD
+		<typeAlias type="kr.co.recipetoyou.main.goods.GoodsVO" alias="GoodsVO"/>
+		<typeAlias type="kr.co.recipetoyou.user.join.UserVO" alias="userVO"/>
+		<typeAlias type="kr.co.recipetoyou.main.cartPick.CartPickVO" alias="cartPickVO"/>
+		
+		
+=======
 	
 	
 		<!-- admin -->
@@ -62,5 +69,6 @@
 		<typeAlias type="kr.co.recipetoyou.board.recipe.RecipeCateVO" alias="recipeCateVO"/>
 
 
+>>>>>>> 73327b0b5319c321c2a70427a6ba4013a5acd816
 	</typeAliases>
 </configuration> 

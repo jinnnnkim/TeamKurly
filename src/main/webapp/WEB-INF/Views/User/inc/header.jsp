@@ -37,8 +37,20 @@
 							<a href="${contextPath}/mypage/myinfo.do">마이페이지</a>
 								<a href="${contextPath}/notice/notice.do"  class ="link-menu3" onclick="">고객센터<i class="fas fa-caret-down"></i></a>
 							</li>
-							<li class="menu_login"><a href="#" class ="link-menu2">로그인 &#124;</a></li>
+							<li class="menu_login">
+								<c:choose>
+									<c:when test="${isLogOn == true && userVO != null}">
+										<h3>환영합니다. ${userVO.user_name}님 !!</h3>
+										<a href="${contextPath}/login/logout.do"><h3>로그아웃</h3></a>
+									</c:when>
+									<c:otherwise>
+										<a href="${contextPath}/login/login.do" class ="link-menu2"><h3>로그인 &#124;</h3></a>
+									</c:otherwise>
+								</c:choose>
+							</li>
+							
 							<li class="menu_join"><a href="#"  class ="link-menu1" style=" color: #5f0080;">회원가입 &#124;</a></li>
+							
 						</ul>
 					</div>
 				

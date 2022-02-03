@@ -137,12 +137,13 @@ public class AdGoodsControllerImpl implements AdGoodsController {
 	
 	//상품 상세 정보 조회
 	@Override
-	@RequestMapping(value = {"/adgoods/adgoodsInfo.do", "/adgoods/adgoodsModify.do"}, produces = "application/json", method = RequestMethod.GET)
+	@RequestMapping(value = "/adgoods/adgoodsInfo.do", produces = "application/json", method = {RequestMethod.GET, RequestMethod.POST})
 	public void getadGoodsDetail(int prod_code, Model model, PagingVO vo) throws Exception{
 		
 		logger.info("클릭한 상품 : "+prod_code);
 		
 		ObjectMapper objm = new ObjectMapper();
+		
 		
 		//카테고리 리스트 정보
 		model.addAttribute("cateList", objm.writeValueAsString(adGoodsService.cateList()));
@@ -381,31 +382,27 @@ public class AdGoodsControllerImpl implements AdGoodsController {
 	
 	//상품 정보 수정
 	@Override
-	@RequestMapping(value = "/adgoods/goodsModify.do")
+	@RequestMapping(value = "/adgoods/adgoodsModify.do")
 	public ModelAndView goodsModify(AdGoodsVO agvo, RedirectAttributes rttr, HttpServletRequest request, HttpServletResponse response) throws Exception {
-		
-		String viewName = (String)request.getAttribute("viewName");
-		ModelAndView mav = new ModelAndView(viewName);
 		
 		int result = adGoodsService.goodsModify(agvo);
 		rttr.addFlashAttribute("modify_result", result);
 		
-		return mav;
+		ModelAndView mav = new ModelAndView("redirect:listProduct.do");
+		return mav;	
 	}
 
 	
 	//상품 정보 삭제
 	@Override
-	@RequestMapping(value = "/adgoods/goodsDelete.do")
+	@RequestMapping(value = "/adgoods/adgoodsDelete.do")
 	public ModelAndView goodsDelete(int prod_code, RedirectAttributes rttr, HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
-		
-		String viewName = (String)request.getAttribute("viewName");
-		ModelAndView mav = new ModelAndView(viewName);
 		
 		int result = adGoodsService.goodsDelete(prod_code);
 		rttr.addFlashAttribute("delete_result", result);
 		
+		ModelAndView mav = new ModelAndView("redirect:listProduct.do");
 		return mav;
 	}
 
