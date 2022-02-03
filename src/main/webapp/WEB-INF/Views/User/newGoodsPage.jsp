@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html>
 <head>
@@ -49,9 +51,10 @@
 			<!-- list_goods -->
 			<div class="inner_listgoods">
 				<ul class="glists">
-					<li><a href="goodsView.jsp"><img alt="두부면 파스타"
-							src="/recipetoyou/Resources/User/Img/Meal/paster1.jpg"></a>
+					<li><a href="${contextPath}/prodDetail.do?prod_code=2">
+					<img alt="두부면 파스타" src="/recipetoyou/Resources/User/Img/Meal/paster1.jpg"></a>
 						<div class="group_btn">
+						<%-- ${} --%>
 							<!-- 장바구니 아이콘 -->
 							<i class="fas fa-cart-arrow-down"></i>
 						</div>
@@ -62,7 +65,7 @@
 							</a>
 						</div></li>
 
-					<li><a href="#"><img alt="바질 파스타"
+					<li><a href="${contextPath}/prodDetail.do"><img alt="바질 파스타"
 							src="/recipetoyou/Resources/User/Img/Meal/paster2.jpg"></a>
 						<div class="group_btn">
 							<!-- 장바구니 아이콘 -->

@@ -2,6 +2,10 @@
 	font-family: 'Noto Sans KR', sans-serif;
 }
 
+body{
+	z-index:299;
+}
+
 .wrap {
 	max-width: 100%;
 }
@@ -13,15 +17,17 @@
 }
 
 
-.topBar {		
+.topBar {			
+	width: 100%;
 	position: relative;
-	min-width: 1050px;
 	text-align: center;
 	line-height: 42px;
-	font-size: 14px
+	font-size: 14px;
+	padding-bottom: 10px;
 }
 
 .topBar a{
+	width: 100%;
 	text-decoration:none;
 	display: block;
 	height: 42px;
@@ -80,7 +86,6 @@
 	width: 100%;
 	float: none;
 	padding: 10px 0 10px 0;
-	position:relative;
 	
 }
 
@@ -168,6 +173,11 @@ img {
 .item1 {
 	padding: 65px 0px 40px;
 }
+
+.item2 {
+	padding: 65px 0px 40px;
+	top: 250px;
+}
 .item_how {
 	display: flex;
 	flex-direction: column;
@@ -178,12 +188,49 @@ img {
 	padding: 0;
 }
 
-.how_goods {
+.item_price {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	margin-bottom: 50px;
+	font-size: 30px;
+	padding: 0;
+}
+
+.how_goods, .price_goods {
 	width: 1050px;
 }
-.how_goods img {
+.how_goods img, .price_goods img {
 	height: 320px;
 	width: 250px;
+}
+
+.goods_info {
+	margin: 10px;
+}
+
+span.name {
+	display: block;
+	overflow: hidden;
+	max-height: 58px;
+	font-size: 16px;
+	color: #333;
+	
+}
+
+span.cost {
+	font-size: 14px;
+	font-weight: 800;
+	color: #333;
+}
+
+span.mean {
+	display: block;
+	padding-top: 11px;
+	font-size: 13px;
+	color: #999;
+	line-height: 19px;
 }
 
 .beef {
@@ -198,49 +245,72 @@ img {
 	height: 140px;
 	width: 1050px;
 }
+ 
+ /* 페이징 기능 */
 
-.item2 {
-	padding: 230px 0px 40px;
+.item1, .item2 {
+	position:relative;
 }
 
-.item_price {
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-	margin-bottom: 50px;
-	font-size: 30px;
-	padding: 0;
+.arrowSlider .prev {
+		position: absolute;
+		top:300px;
+		left:-40px;
+		cursor: pointer;
 }
-.price_goods {
-	width: 1050px;
+					
+.arrowSlider .next {
+		position: absolute;
+		top:300px;
+		right:-10px;
+		cursor: pointer;
 }
-
-.price_goods img {
-	height: 320px;
-	width: 250px;
+.arrowSlider2 .prev3 {
+		position: absolute;
+		top:162px;
+		left:-17px;
+		cursor: pointer;
 }
-
+					
+.arrowSlider2 .next3{
+		position: absolute;
+		top:162px;
+		right:-12px;
+		cursor: pointer;
+}
+							
+.arrowSlider .fas {
+	font-size: 60px;
+	color: #5f0080;
+}					
+					
+.arrowSlider2 .fas {
+	font-size: 45px;
+	color: #999;
+}					
+		
+ /* 새벽 광고 */
 .dawn_delivery {
 	position: relative;
-	padding: 0;
+	padding: 50px 0;
+	top: 255px;
 }
 
 .dawn_delivery img {
-	
-	padding-top: 40px;
-	padding-bottom: 40px;
 	height: 140px;
 	width: 1050px;
 }
 
 .review {
-	padding: 32px 0 40px;
+	position: relative;
 	width: 1050px;
-	margin: auto;
+	padding: 0;
+	margin-top: 300px;
+	margin-bottom: 100px;
 }
 
 .review_list {
+	
 	margin-top: 27px;
 	display: flex;
 	flex-direction: column;
@@ -261,12 +331,11 @@ span.review_more {
 	line-height: 1.45;
 	letter-spacing: -0.2px;
 	color: rgb(153, 153, 153);
-	margin-top: 15px;
-	margin-bottom: 15px;
+	margin: 15px 0 20px 0;
 }
 
 .move {
-	margin-top: 40px;
+	margin-top: 50px;
 	text-align: center;
 	line-height: 2.1;
 }
@@ -289,11 +358,11 @@ span.review_more {
 }
 
 .review_photo img {
-	width: 370px;
-	height: 265px;
+	width: 250px;
+	height: 200px;
 } 
 
-
+		
 #allCate{
 	height:420px;
 	position:absolute;
@@ -309,15 +378,18 @@ span.review_more {
 	margin:0;
 	padding-top:0;
 	overflow:hidden;
+	border:1px solid #e9ecef;
+	background:white;
 }
 
 #allCate ul li{
 	margin:0;
 	padding:0;
-	width:150px;
+	width:180px;
 	height:30px;
 	font-size:15px;
 	line-height:30px;
+	
 }
 #allCate ul li a{
 	padding:5px 5px 5px 25px;
@@ -325,9 +397,14 @@ span.review_more {
 }
 #allCate ul li:hover{
 	cursor: pointer;
-	background:#666;
+	background:#e9ecef;
+	padding:5px;
 }
-
+.cateImg{
+	width:20px;
+	height:20px;
+	vertical-align: middle;
+} 
 #allCate .vegetables, #allCate .sul,
 #allCate .seafood,#allCate .meat,
 #allCate .meal,#allCate .salad,
@@ -336,10 +413,12 @@ span.review_more {
 #allCate .liquor, #allCate .fruit{
 	position:absolute;
 	top:0;
-	left:150px;
+	left:180px;
 	display:none;
+	background:#f1f3f5;
 }
 
 #allCate ul li{
-	background:#d2d2d2;
+	padding:5px;
+	
 }

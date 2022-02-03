@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans:beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<beans:beans xmlns="http://www.springframework.org/schema/mvc"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:beans="http://www.springframework.org/schema/beans"
 	xmlns:context="http://www.springframework.org/schema/context"
-	xmlns="http://www.springframework.org/schema/mvc"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
 	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
@@ -11,6 +12,8 @@
 	
 	<!-- Enables the Spring MVC @Controller programming model -->
 	<annotation-driven />
+    
+
 
 	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
 	<resources mapping="/Resources/**" location="/Resources/" />
@@ -36,14 +39,30 @@
 		</interceptor>
 	</interceptors>	
 	
-	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
-		<beans:property name="maxUploadSize" value="52428800"/>		
-		<beans:property name="maxInMemorySize" value="1000000"/>	
-		<beans:property name="defaultEncoding" value="utf-8" />
-	</beans:bean>
-	
 	<context:component-scan base-package="kr.co.recipetoyou" />
 	
 	
+	
+	<!-- 일반 파일 업로드 경로 -->
+	<!-- <resources mapping="/AdgoodsImg/**" location="/Resources/Admin/Img/AdgoodsImg/" /> -->
+	<!-- 대체 이미지 경로 -->
+	<!-- <resources mapping="/SubgoodsImg/**" location="/Resources/Admin/Img/SubgoodsImg/" /> -->
+	
+	<!-- multipartResolver 빈 설정 -->
+	<!-- <beans:bean id="multipartResolver" class="org.springframework.web.multipart.support.StandardServletMultipartResolver"/> -->
+	
+		<!-- multipartResolver 빈 설정 -->
+	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<beans:property name="maxUploadSize" value="52428800"/>		<!-- 최대 업로드가 가능한 파일 크기 설정 -->
+		<beans:property name="maxInMemorySize" value="1000000"/>	<!-- 디스크에 임시 파일을 생성하기 전 메모리에 보관할 수 있는 최대 -->
+		<beans:property name="defaultEncoding" value="utf-8" />
+	</beans:bean>
+	
+	<!-- <mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/user/**"/>			
+			<beans:bean class="kr.co.recipetoyou.admin.AdminInterceptor"/>
+		</mvc:interceptor>
+	</mvc:interceptors> -->
 	
 </beans:beans>

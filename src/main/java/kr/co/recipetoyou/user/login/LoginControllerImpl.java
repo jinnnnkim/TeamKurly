@@ -1,5 +1,6 @@
 package kr.co.recipetoyou.user.login;
 
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -13,7 +14,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+<<<<<<< HEAD
 import kr.co.recipetoyou.user.join.UserVO;
+=======
+import kr.co.recipetoyou.user.UserVO;
+
+>>>>>>> 73327b0b5319c321c2a70427a6ba4013a5acd816
 
 @Controller("loginController")
 public class LoginControllerImpl implements LoginController {
@@ -37,11 +43,18 @@ public class LoginControllerImpl implements LoginController {
 			HttpServletRequest request, HttpServletResponse response) throws Exception{
 		
 		ModelAndView mav = new ModelAndView();
+<<<<<<< HEAD
 	
 		userVO = loginService.login(userVO);
 		
 		if (userVO != null) {
 			HttpSession session = request.getSession();
+=======
+		userVO = loginService.login(userVO);
+		if (userVO != null) {
+			HttpSession session = request.getSession();
+			System.out.println(userVO.getUser_name());
+>>>>>>> 73327b0b5319c321c2a70427a6ba4013a5acd816
 			session.setAttribute("userVO", userVO);		//세션에 회원 정보를 저장함.
 			session.setAttribute("isLogOn", true);
 			mav.setViewName("redirect:/main.do");
@@ -93,8 +106,11 @@ public class LoginControllerImpl implements LoginController {
 		// TODO Auto-generated method stub
 		return null;
 	}
+<<<<<<< HEAD
 
 	
+=======
+>>>>>>> 73327b0b5319c321c2a70427a6ba4013a5acd816
 	
 	
 	

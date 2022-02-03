@@ -49,6 +49,8 @@ public class CategoryControllerImpl {
 		return mav;
 	}
 	
+	//goddsViewProcess.do
+	
 	@RequestMapping(value="/user/kf365Page",method=RequestMethod.GET)
 	public ModelAndView kf365Page(HttpServletRequest request, HttpServletResponse response) throws Exception{
 		

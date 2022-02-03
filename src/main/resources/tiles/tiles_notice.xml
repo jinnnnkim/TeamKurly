@@ -4,17 +4,11 @@
        "http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
        
 <tiles-definitions>
+
 	<definition name="noticeLayout" template="/WEB-INF/Views/User/Inc2/noticeLayout.jsp">
 		<put-attribute name="title" value=""/>
-		<put-attribute name="header" value="/WEB-INF/Views/User/Inc2/header.jsp"/>
+		<put-attribute name="header" value="/WEB-INF/Views/User/Inc2/headerNotice.jsp"/>
 		<put-attribute name="side" value="/WEB-INF/Views/User/Inc2/noticeSideMenu.jsp"/>			
-		<put-attribute name="body" value=""/>
-		<put-attribute name="footer" value="/WEB-INF/Views/User/Inc2/footer.jsp"/>		
-	</definition>
-	
-	<definition name="communityLayout" template="/WEB-INF/Views/User/Inc2/communityLayout.jsp">
-		<put-attribute name="title" value=""/>
-		<put-attribute name="header" value="/WEB-INF/Views/User/Inc2/header.jsp"/>
 		<put-attribute name="body" value=""/>
 		<put-attribute name="footer" value="/WEB-INF/Views/User/Inc2/footer.jsp"/>		
 	</definition>
@@ -25,6 +19,13 @@
 		<put-attribute name="body" value=""/>
 		<put-attribute name="footer" value="/WEB-INF/Views/User/Inc2/footer.jsp"/>		
 	</definition>
+	
+	<definition name="communityLayout" template="/WEB-INF/Views/User/Inc2/communityLayout.jsp">
+		<put-attribute name="title" value=""/>
+		<put-attribute name="header" value="/WEB-INF/Views/User/Inc2/header.jsp"/>
+		<put-attribute name="body" value=""/>
+		<put-attribute name="footer" value="/WEB-INF/Views/User/Inc2/footer.jsp"/>		
+	</definition>	
 	
 	<definition name="/notice/notice" extends="noticeLayout">
 		<put-attribute name="title" value="공지사항"/>
@@ -90,6 +91,16 @@
 	<definition name="community/communityRecipeWrite" extends="communityLayout">
 		<put-attribute name="title" value="레시피 - 상세페이지"/>
 		<put-attribute name="body" value="/WEB-INF/Views/User/Community/communityRecipeWrite.jsp"/>	
+	</definition>
+	
+	<definition name="community/communityRecipeDetail" extends="communityLayout">
+		<put-attribute name="title" value="레시피 - 상세페이지"/>
+		<put-attribute name="body" value="/WEB-INF/Views/User/Community/communityRecipeDetail.jsp"/>	
+	</definition>
+	
+	<definition name="community/communityRecipeModify" extends="communityLayout">
+		<put-attribute name="title" value="레시피 - 상세페이지"/>
+		<put-attribute name="body" value="/WEB-INF/Views/User/Community/communityRecipeModify.jsp"/>	
 	</definition>
 	
 	

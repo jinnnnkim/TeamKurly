@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--   <td>${ord.user_id }</td>
+					<td>${ord.user_name }</td>
+					<td>${ord.user_phone}</td>
+					<td>${ord.user_addr }</td>
+					<td>${ord.prod_name }</td>
+					<td>${ord.prod_content }</td>
+					<td>${ord.quantity }</td>
+					<td>${ord.price }</td>
+					<td>${ord.pay_card_idx }</td>
+					<td>${ord.ord_date }</td> -->
+  <mapper namespace="mapper.adorder">
+  	<resultMap type="adOrderVO" id="orderResult">	
+  		<result property="user_id" column="user_id" />
+  		<result property="user_name" column="user_name" />
+  		<result property="user_phone" column="user_phone" />
+  		<result property="user_addr" column="user_addr" />
+    	<result property="prod_name" column="prod_name" />
+  		<result property="prod_content" column="prod_content" />
+  		<result property="quantity" column="quantity" />
+  		<result property="price" column="price" />
+  		<result property="pay_card_idx" column="pay_card_idx" />
+  		<result property="ord_date" column="ord_date" />
+  	</resultMap>
+
+  
+  
+	<!-- 페이지정보를 10개씩 가져오기 -->
+	<select id="listOrdPage" resultMap="orderResult">
+		<![CDATA[
+			select * 
+			from tb_order 
+			where rownum #{page} <= 10
+		]]>
+	</select> 
+
+	<!-- 페이지정보를 지정한 크기만큼 가져오기 -->
+	<select id="listOrdPaging" resultMap="orderResult">
+		<![CDATA[
+			select *
+			from ( select rownum AS rn, 
+					toa.user_id, 
+					tu.user_name, 
+					tu.user_phone, 
+					tu.user_addr,
+					tp.prod_name, 
+					tp.prod_content, 
+					toi.quantity, 
+					toi.price, 
+					tpc.pay_card_idx, 
+					toa.ord_date 
+					from tb_order toa, 
+						 tb_users tu, 
+						 tb_prod tp, 
+						 tb_ord_ing toi, 
+						 tb_payment_card_reg tpc 
+					where toa.user_id = tu.user_id 
+					and toi.prod_code = tp.prod_code 
+					and toa.ord_code = toi.ord_code 
+					and tu.user_id = tpc.user_id )
+			where rn between #{rowStart} and #{rowEnd}
+		]]>
+	</select>
+	
+	<!-- 총 주문 수 -->
+	<select id="ordCount" resultType="int">
+		<![CDATA[
+			select count(*) from tb_order
+		]]>
+	</select>
+	
+	<!-- 주문 정보 삭제  -->
+	<delete id="deleteOrd" parameterType="String">
+		<![CDATA[
+			delete from tb_order
+			where ord_code = #{id}
+		]]>
+	</delete>
+	
+	<!-- 주문 상세 정보 조회 -->
+	<select id="readOrd" resultMap="orderResult" parameterType="String">
+		<![CDATA[
+			select *
+			from tb_order
+			where ord_code = #{id}
+		]]>
+	</select>
+	
+	<!-- 주문 정보 수정 -->
+	<update id="updateOrd" parameterType="adOrderVO">
+		<![CDATA[
+			update tb_order set
+			user_name = #{user_name},			
+			user_phone = #{user_phone},
+			user_addr = #{user_addr}
+			where ord_code = #{ord_code}
+		]]>
+	</update>
+
+</mapper>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  

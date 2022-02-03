@@ -1,8 +1,8 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+<%-- <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<c:set var="contextPath" value="${pageContext.request.servletContext.contextPath}"/>
+<c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 <%request.setCharacterEncoding("UTF-8");%>    
 <!DOCTYPE html>
 <html>
@@ -76,12 +76,12 @@
 				 혹은 팝업창 띄우는 걸로 대체하든지 해야 함
 				 일단 다들 구현이 되는지 확인만 하면 됨	
 			 -->
-			<%-- <jsp:include page="design_entire_setting.jsp" flush="true"/> --%>
+			<jsp:include page="design_entire_setting.jsp" flush="true"/>
 		</div>
 	</div>
 </body>
 </html>
-
+ --%>
 
 
 

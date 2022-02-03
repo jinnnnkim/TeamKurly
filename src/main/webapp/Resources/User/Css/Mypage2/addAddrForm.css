@@ -1,0 +1,66 @@
+@charset "UTF-8";
+
+.content {
+	text-align: center;
+	padding-top: 50px;
+}
+.title {
+	text-align: center;
+}
+		
+#title1 {
+	color: #257cd8;
+	font-size: 22px;
+	font-weight: 600;
+}
+		
+#title1 span {
+	font-size: 22px;
+	color: black;
+}
+		
+p {
+	font-size: 15px;
+	color: #999;
+}
+		
+#jibunAddress {
+	width: 340px;
+	height: 40px;
+	border: 1px solid black;
+	border-radius: 3px;
+}
+		
+#search {
+	width: 100px;
+	height: 43px;
+	margin-left: 10px;
+	border: 1px solid #5f0080;
+	border-radius: 3px;
+	background-color: white;
+	color: #5f0080;
+	font-weight: 800;
+}
+		
+#namugiAddress {
+	width: 450px;
+	height: 40px;
+	margin-top: 10px;
+	margin-bottom: 20px;
+	border: 1px solid black;
+	border-radius: 3px;
+}
+		
+#basic_Address {
+	margin-right: 303px;
+}
+		
+#save {
+	width: 454px;
+	height: 40px;
+	margin-top: 20px;
+	background-color: #5f0080;
+	color: #fff;
+	border: 1px solid #5f0080;
+	border-radius: 3px;
+}

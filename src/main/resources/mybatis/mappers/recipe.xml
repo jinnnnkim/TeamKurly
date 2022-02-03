@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="mapper.recipe">					
+	
+	<resultMap type="recipeVO" id="recipeResult">
+		<result property="recipe_idx" column="recipe_idx"/>
+		<result property="prod_code" column="prod_code"/>
+		<result property="recipe_title" column="recipe_title"/>
+		<result property="recipe_content" column="recipe_content"/>
+		<result property="recipe_ingre" column="recipe_ingre"/>
+		<result property="recipe_cate_code" column="recipe_cate_code"/>
+		<result property="recipe_img" column="recipe_img"/>
+		<result property="user_id" column="user_id"/>
+		<result property="recipe_reg_date" column="recipe_reg_date"/>
+	</resultMap>
+	
+	<resultMap type="recipeCateVO" id="recipeCateResult">
+		<result property="recipe_cate_code" column="recipe_cate_code"/>
+		<result property="recipe_cate" column="recipe_cate"/>
+		<result property="recipe_cate_parent" column="recipe_cate_parent"/>
+	</resultMap>
+	
+	<select id="selectRecipeList" resultMap="recipeResult">
+		<![CDATA[
+			SELECT *
+			FROM tb_recipe
+		]]>
+	</select>
+	
+	<select id="selectRecipeCateTitleList" resultMap="recipeCateResult">
+		<![CDATA[
+		SELECT * 
+		FROM TB_RECIPE_CATE
+		WHERE RECIPE_CATE_PARENT IS NULL
+		ORDER BY RECIPE_CATE_CODE
+		]]>
+	</select>
+	
+	<select id="selectRecipeCateDetailList" resultMap="recipeCateResult">
+		<![CDATA[
+			SELECT trc2.* 
+			FROM TB_RECIPE_CATE trc, TB_RECIPE_CATE trc2
+			WHERE trc.RECIPE_CATE_CODE = trc2.RECIPE_CATE_PARENT
+			ORDER BY trc2.RECIPE_CATE_CODE
+		]]>
+	</select>
+	
+	<select id="selectRecipeCateList" resultMap="recipeCateResult">
+		<![CDATA[
+			SELECT * FROM TB_RECIPE_CATE ORDER BY RECIPE_CATE_CODE
+		]]>
+	</select>
+	
+	<insert id="insertRecipe" parameterType="java.util.Map">
+	<choose>
+	<when test="recipe_recipe_img != null">
+	<![CDATA[
+		INSERT INTO ADMIN.TB_RECIPE (RECIPE_IDX, PROD_CODE, RECIPE_TITLE, 
+		RECIPE_CONTENT,RECIPE_INGRE, RECIPE_CATE_CODE, RECIPE_IMG)
+		VALUES(recipe_seq.NEXTVAL, #{prod_code}, #{recipe_title}, 
+		#{recipe_content},#{recipe_ingre}, #{recipe_cate_code}, #{recipe_img})
+		]]>
+	</when>
+	<otherwise>
+		INSERT INTO ADMIN.TB_RECIPE (RECIPE_IDX, PROD_CODE, RECIPE_TITLE, 
+		RECIPE_CONTENT,RECIPE_INGRE, RECIPE_CATE_CODE)
+		VALUES(recipe_seq.NEXTVAL, #{prod_code}, #{recipe_title}, 
+		#{recipe_content},#{recipe_ingre}, #{recipe_cate_code})
+	</otherwise>
+	</choose>
+	
+	
+	</insert>
+	
+	<select id="selectRecipeDetail" parameterType="int" resultMap="recipeResult">
+		<![CDATA[
+			SELECT * FROM TB_RECIPE WHERE RECIPE_IDX = #{recipe_idx}
+		]]>
+	</select>
+	
+	<select id="modifyRecipe" parameterType="int" resultMap="recipeResult">
+		<![CDATA[
+			SELECT * FROM TB_RECIPE WHERE RECIPE_IDX = #{recipe_idx}
+		]]>
+	</select>
+	
+	<update id="updateRecipe" parameterType="java.util.Map">
+	<![CDATA[
+		UPDATE ADMIN.TB_RECIPE SET 
+		RECIPE_TITLE = #{recipe_title}, RECIPE_CONTENT = #{recipe_content},
+		RECIPE_INGRE = #{recipe_ingre}, RECIPE_CATE_CODE = #{recipe_cate_code},
+		]]>
+		
+		<if test="recipe_recipe_img != null"> RECIPE_IMG = #{recipe_recipe_img},</if>
+	<![CDATA[
+		 RECIPE_REG_DATE = sysdate
+		WHERE RECIPE_IDX = #{recipe_idx}
+	]]>
+	</update>
+	
+	<delete id="deleteRecipe" parameterType="int">
+		DELETE FROM ADMIN.TB_RECIPE WHERE RECIPE_IDX = #{recipe_idx} 
+	</delete>
+	
+	
+</mapper>  

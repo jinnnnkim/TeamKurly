@@ -6,12 +6,14 @@
 <head>
 <meta charset="UTF-8">
 <title>Recipe to You :: 내일의 장보기, 레시피투유</title>
-<link href="/recipetoyou/recipetoyou/Resources/User/Img/KurlyIcon.png" rel="icon"
+<link href="/recipetoyou/Resources/User/Img/KurlyIcon.png" rel="icon"
 	type="image/x-icon" />
 <!-- slick 링크 연결 -->
-<link rel="stylesheet" type="text/css" href="slick/slick.css" />
-<link rel="stylesheet" type="text/css" href="slick/slick-theme.css" />
-
+<link rel="stylesheet" type="text/css" href="/recipetoyou/Resources/Common/slick/slick.css" />
+<link rel="stylesheet" type="text/css" href="/recipetoyou/Resources/Common/slick/slick-theme.css" />
+<script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+<script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+<script type="text/javascript" src="/recipetoyou/Resources/Common/slick/slick.min.js"></script>
 </head>
 <body>
 
@@ -33,12 +35,7 @@
 		</div>
 
 		<!-- banner js 부분 -->
-		<script type="text/javascript"
-			src="//code.jquery.com/jquery-1.11.0.min.js"></script>
-		<script type="text/javascript"
-			src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
-		<script type="text/javascript"
-			src="/recipetoyou/RecipeToYou/Resources/Common/slick/slick.min.js"></script>
+
 
 		<script type="text/javascript">
 			$('.banner-img').slick({
@@ -252,6 +249,7 @@
 		<!-- main 닫힌 테그 -->
 	</div>
 	<!-- banner 닫힌 테그 -->
+
 </body>
 </html>
 

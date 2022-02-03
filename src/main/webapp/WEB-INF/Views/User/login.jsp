@@ -4,7 +4,11 @@
 <%
 	request.setCharacterEncoding("UTF-8");
 %>
+<<<<<<< HEAD
 <c:set var="contextPath" value="${pageContext.servletContext.contextPath}"/>  
+=======
+<c:set var="contextPath" value="${pageContext.servletContext.contextPath}"/> 
+>>>>>>> 73327b0b5319c321c2a70427a6ba4013a5acd816
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,7 +16,11 @@
 	<title>Recipe to You :: 내일의 장보기, 레시피투유</title>
 	<link href="/recipetoyou/Resources/User/Css/login.css" rel="stylesheet"
 		type="text/css">
+<<<<<<< HEAD
  	<c:choose>
+=======
+	<c:choose>
+>>>>>>> 73327b0b5319c321c2a70427a6ba4013a5acd816
 		<c:when test="${param.result == 'loginFailed'}">
 			<script type="text/javascript">
 				window.onload=function() {
@@ -21,11 +29,18 @@
 			</script>
 		</c:when>
 	</c:choose> 
+<<<<<<< HEAD
 	
 	
 </head>
 <body>
 <form name="frmLogin" method="post" action="">
+=======
+		
+</head>
+<body>
+	<form name="frmLogin" method="post" action="">
+>>>>>>> 73327b0b5319c321c2a70427a6ba4013a5acd816
 	<div class="main">
 		<div class="login">
 			<h3>로그인</h3>
@@ -48,7 +63,11 @@
 	</div>
 	</form>
 	
+<<<<<<< HEAD
  	<script type="text/javascript">
+=======
+	<script type="text/javascript">
+>>>>>>> 73327b0b5319c321c2a70427a6ba4013a5acd816
 		function fn_sendUser() {
 			var frmLogin = document.frmLogin
 			var user_id = frmLogin.user_id.value;
@@ -67,5 +86,9 @@
 			}
 		}
 	</script> 
+<<<<<<< HEAD
+=======
+	
+>>>>>>> 73327b0b5319c321c2a70427a6ba4013a5acd816
 </body>
 </html>

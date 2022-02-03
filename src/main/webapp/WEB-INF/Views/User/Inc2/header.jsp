@@ -23,7 +23,7 @@
 
 <body>
 <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
-		<div class="container">
+		<div id="header" class="container">
 				<div class="topBar" id="topMessage">	<!-- banner 가입시 100원~ -->
 					<a href="#" id="eventPage">	<%-- 고유 페이지임으로 id 선언 --%>
 						지금 가입하고 인기상품 <b>100원</b>에 받아가세요!
@@ -33,6 +33,7 @@
 				<div class="header">			<!-- header -->
 					<div id ="userMenu">		<!-- 로그인, 회원가입, 고객센터 목록 -->
 						<ul class="list_menu">	
+<<<<<<< HEAD
 							<li class="menu_list">	<!-- onclick시 카데고리  -->
 							<a href="${contextPath}/mypage/myinfo.do">마이페이지</a>
 								<a href="${contextPath}/notice/notice.do"  class ="link-menu3" onclick="">고객센터<i class="fas fa-caret-down"></i></a>
@@ -51,6 +52,26 @@
 							
 							<li class="menu_join"><a href="#"  class ="link-menu1" style=" color: #5f0080;">회원가입 &#124;</a></li>
 							
+=======
+							<c:choose>
+								<c:when test="${isLogOn == true && userVO != null }">
+									<li class="menu_login"><a href="#none" class ="link-menu2">${userVO.user_name}님</a></li>
+									<li class="menu_list">	<!-- onclick시 카데고리  -->
+									<a href="${contextPath}/orderList.do">마이페이지</a></li>
+									<li>
+										<a href="${contextPath}/notice/notice.do"  class ="link-menu3" onclick="">고객센터<i class="fas fa-caret-down"></i></a>
+									</li>
+									<li class="menu_join"><a href="${contextPath}/login/logout.do"  class ="link-menu1" style=" color: #5f0080;">로그아웃 &#124;</a></li>
+									</c:when>
+									<c:otherwise>
+									<li>
+									<a href="${contextPath}/notice/notice.do"  class ="link-menu3" onclick="">고객센터<i class="fas fa-caret-down"></i></a>
+									</li>
+									<li class="menu_login"><a href="${contextPath}/login/login.do" class ="link-menu2">로그인 &#124;</a></li>
+									<li class="menu_join"><a href="${contextPath}/join/regist.do"  class ="link-menu1" style=" color: #5f0080;">회원가입 &#124;</a></li>
+									</c:otherwise>
+								</c:choose>
+>>>>>>> 73327b0b5319c321c2a70427a6ba4013a5acd816
 						</ul>
 					</div>
 				
@@ -89,18 +110,18 @@
 						
 						<div id="allCate">
 							<ul id="cateMain">
-								<li id="sul">설 선물세트</li>
-								<li id="vegetables">채소</li>
-								<li id="fruit">과일ㆍ견과ㆍ쌀</li>
-								<li id="seafood">수산ㆍ해산ㆍ건어물</li>
-								<li id="meat">정육ㆍ계란</li>
-								<li id="meal">국ㆍ반찬ㆍ메인요리</li>
-								<li id="salad">샐러드ㆍ간편식</li>
-								<li id="noodle">면ㆍ양념ㆍ오일</li>
-								<li id="snack">간식ㆍ과자ㆍ떡</li>
-								<li id="bakery">베이커리ㆍ치즈ㆍ델리</li>
-								<li id="health">건강식품</li>
-								<li id="liquor">전통주</li>
+								<li id="sul"><img class="cateImg" src="/recipetoyou/Resources/User/Img/Cate/gift.png"/>설 선물세트</li>
+								<li id="vegetables"><img class="cateImg" src="/recipetoyou/Resources/User/Img/Cate/carrot.png"/>채소</li>
+								<li id="fruit"><img class="cateImg" src="/recipetoyou/Resources/User/Img/Cate/apple.png"/>과일ㆍ견과ㆍ쌀</li>
+								<li id="seafood"><img class="cateImg" src="/recipetoyou/Resources/User/Img/Cate/fish.png"/>수산ㆍ해산ㆍ건어물</li>
+								<li id="meat"><img class="cateImg" src="/recipetoyou/Resources/User/Img/Cate/meat.png"/>정육ㆍ계란</li>
+								<li id="meal"><img class="cateImg" src="/recipetoyou/Resources/User/Img/Cate/soup.png"/>국ㆍ반찬ㆍ메인요리</li>
+								<li id="salad"><img class="cateImg" src="/recipetoyou/Resources/User/Img/Cate/salad.png"/>샐러드ㆍ간편식</li>
+								<li id="noodle"><img class="cateImg" src="/recipetoyou/Resources/User/Img/Cate/noodle.png"/>면ㆍ양념ㆍ오일</li>
+								<li id="snack"><img class="cateImg" src="/recipetoyou/Resources/User/Img/Cate/cookie.png"/>간식ㆍ과자ㆍ떡</li>
+								<li id="bakery"><img class="cateImg" src="/recipetoyou/Resources/User/Img/Cate/bakery.png"/>베이커리ㆍ치즈ㆍ델리</li>
+								<li id="health"><img class="cateImg" src="/recipetoyou/Resources/User/Img/Cate/healthFood.png"/>건강식품</li>
+								<li id="liquor"><img class="cateImg" src="/recipetoyou/Resources/User/Img/Cate/alcohol.png"/>전통주</li>
 							</ul>
 							<ul class="sul">
 								<li>홍삼ㆍ즙ㆍ건강식품</li>	
@@ -221,18 +242,92 @@
 						<a href="#"><i class="far fa-heart"></i></a>
 					</div>
 					<div class="cart_set">	<!-- 장바구니 -->
-						<a href="#"><i class="fas fa-shopping-cart"></i></a>
+						<a href="${contextPath}/cart.do"><i class="fas fa-shopping-cart"></i></a>
 					</div>
 				</div>
 			</div>	<!-- head -->
 		</div>	<!-- container -->
+	<!-- <div class="remote">
+		<div class="remote_deliver">
+			<a href="#none">
+				<img src="/recipetoyou/Resources/User/Img/remote.png"/>
+			</a>
+		</div>
+		<div class="remote_list">
+			<ul>
+				<li><a href="#none">등급별 혜택</a></li>
+				<li><a href="#none">레시피</a></li>
+				<li><a href="#none">베스트후기</a></li>
+			</ul>
+		</div>
+	</div> -->
+	<div class="quickmenu"> 
+		<div class="quickmenu_img">
+				<a href="#none">
+					<img src="/recipetoyou/Resources/User/Img/remote.png"/>
+				</a>
+		</div>
+		<ul class="quickmenuList"> 
+			<li><a href="#">등급별혜택</a></li> 
+			<li><a href="#">1:1문의</a></li>
+			<li><a href="#">후기</a></li> 
+			<li><a href="#">최근본상품<br/>
+			<img src="/recipetoyou/Resources/User/Img/goods5.jpg"/></a></li>
+		</ul> 
+	</div>
+
+	<script>
+	
+	$(document).ready(function(){ 
+		
+		var headerOffset = document.querySelector("#header").clientHeight;
+		var maxPosition = document.querySelector(".wrap").clientHeight;
+		//maxPosition = maxPosition - 415;
+		if(document.querySelector(".banner-img")){
+			var bannerOffset = document.querySelector(".banner-img").clientHeight;
+		}
+		var minPosition = headerOffset+bannerOffset;
+		var currentPosition = parseInt($(".quickmenu").css("top")); 
+		var position = $(window).scrollTop();
+		
+		if(minPosition >= position){
+			$(".quickmenu").css("top","715px");
+		}
+		$(window).scroll(function() { 
+			var position = $(window).scrollTop();
+			var max = position+1200;
+			if(position<=400){
+				$(".quickmenu").css("top","715px");
+			}else if(max>= maxPosition){
+				$(".quickmenu").css("top",currentPosition+"px");
+			}else{
+				$(".quickmenu").stop().animate({
+					"top":position+300+"px"},1000);
+			}
+		});
+	});
+
+	</script>
 
 
 <script>
 	$(document).ready(function (){
 	    $('#catagoryMenu .menu1').mouseenter(function(){
 	        $('#allCate ul').css('display','block');
-	        
+	        $('.sul').css('display','block');
+	        $('.sul').css('z-index','300');
+        	$('.vegetables').css('display','none');
+        	$('.fruit').css('display','none');
+        	$('.seafood').css('display','none');
+        	$('.meat').css('display','none');
+        	$('.meal').css('display','none');
+        	$('.salad').css('display','none');
+        	$('.noodle').css('display','none');
+        	$('.snack').css('display','none');
+        	$('.bakery').css('display','none');
+        	$('.health').css('display','none');
+        	$('.liquor').css('display','none');
+        	
 	        $('#sul').mouseenter(function(){
 	        	$('.sul').css('display','block');
 	        	$('.vegetables').css('display','none');

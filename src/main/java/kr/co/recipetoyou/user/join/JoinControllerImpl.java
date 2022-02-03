@@ -1,29 +1,54 @@
 package kr.co.recipetoyou.user.join;
 
+import java.net.URLDecoder;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+<<<<<<< HEAD
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+=======
+import org.apache.commons.lang3.StringEscapeUtils; 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+>>>>>>> 73327b0b5319c321c2a70427a6ba4013a5acd816
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import kr.co.recipetoyou.user.login.LoginService;
 
+import kr.co.recipetoyou.user.UserVO;
+
 @Controller("joinController")
+<<<<<<< HEAD
 public class JoinControllerImpl {
+=======
+public class JoinControllerImpl implements JoinController {
+>>>>>>> 73327b0b5319c321c2a70427a6ba4013a5acd816
 	@Autowired
 	private JoinService joinService;
 	@Autowired
 	private UserVO userVO;
+<<<<<<< HEAD
 
 	
 	@RequestMapping(value="/join/regist.do", method = {RequestMethod.GET, RequestMethod.POST})
+=======
+	
+	@RequestMapping(value="/join/regist.do",  method =  {RequestMethod.GET, RequestMethod.POST})
+>>>>>>> 73327b0b5319c321c2a70427a6ba4013a5acd816
 	public ModelAndView regist(@ModelAttribute("userVO") UserVO userVO,
 			HttpServletRequest request, HttpServletResponse response) throws Exception{
 		
@@ -32,7 +57,10 @@ public class JoinControllerImpl {
 		
 	}
 	
+<<<<<<< HEAD
 	
+=======
+>>>>>>> 73327b0b5319c321c2a70427a6ba4013a5acd816
 	@RequestMapping(value="/join/joinProcess.do", method = {RequestMethod.GET, RequestMethod.POST})
 	public ModelAndView registProcess(@ModelAttribute("userVO") UserVO userVO,
 			HttpServletRequest request, HttpServletResponse response) throws Exception{
@@ -40,11 +68,15 @@ public class JoinControllerImpl {
 		
 		request.setCharacterEncoding("utf-8");
 		int result = joinService.addUser(userVO); 	//정상적 inset하면 정수 1을 리턴
+<<<<<<< HEAD
 		System.out.println("result : " + result);
+=======
+>>>>>>> 73327b0b5319c321c2a70427a6ba4013a5acd816
 		
 		ModelAndView mav = new ModelAndView("redirect:/login/login.do");
 		
 		return mav;
+<<<<<<< HEAD
 		
 		
 		
@@ -93,3 +125,34 @@ public class JoinControllerImpl {
 	
 
 }
+=======
+		 
+		 
+	}
+	@RequestMapping(value = "/user/idChk.do", method = {RequestMethod.POST, RequestMethod.GET})
+	@ResponseBody
+	public int idChk(
+			@RequestParam("user_id") String user_id,
+			HttpServletRequest request, HttpServletResponse response) throws Exception {
+		int result = joinService.idChk(user_id);
+		return result;
+	}
+	
+	@RequestMapping(value = "/user/mailChk.do", method = {RequestMethod.POST, RequestMethod.GET})
+	@ResponseBody
+	public int mailChk(
+			@RequestParam("user_mail") String user_mail,
+			HttpServletRequest request, HttpServletResponse response) throws Exception {
+		int result = joinService.mailChk(user_mail);
+		return result;
+	}
+	
+	@RequestMapping(value = "/user/phoneCheck.do", method = RequestMethod.GET) 
+	@ResponseBody 
+	public String sendSMS(@RequestParam("phone") String userPhoneNumber) { 
+		int randomNumber = (int)((Math.random()* (9999 - 1000 + 1)) + 1000);
+		joinService.certifiedPhoneNumber(userPhoneNumber,randomNumber); 
+		return Integer.toString(randomNumber); 
+	}
+}
+>>>>>>> 73327b0b5319c321c2a70427a6ba4013a5acd816

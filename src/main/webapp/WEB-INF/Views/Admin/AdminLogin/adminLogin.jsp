@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>	
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,7 +11,15 @@
 <link rel="stylesheet"
 	href="/Resources/Admin/Css/AdminLogin/adminLogin.css">
 <script type="text/javascript" src="adminLogin.js"></script>
-
+<c:choose>
+		<c:when test="${param.result == 'loginFailed' }">
+			<script type="text/javascript">
+				window.onload = function(){
+					alert("아이디나 비밀번호가 틀립니다. 다시 로그인하세요!");
+				}
+			</script>
+		</c:when>
+	</c:choose>
 </head>
 <body class="homeBody">
 	<div class="wrap">
@@ -84,7 +93,8 @@
 				<!--수정버튼은 아직 자바스크립트나 제이쿼리를 적용 못했다. -->
 				<table class="button" align="center">
 					<tr>
-						<td><input type="reset" value="리셋" /> <input type="submit"
+						<td><input type="reset" value="리셋" />
+						 <input type="submit"
 							value="수정" /></td>
 					</tr>
 				</table>

@@ -12,6 +12,7 @@
 	text-align:center;
 	font-size: 24px;
 	color: #333;
+	
 }
 
 .myInfoMain {
@@ -52,7 +53,7 @@
     vertical-align: -7px;
     
 }
-table tr td a{
+table tr td button{
 	text-align: center;
 	border: 1px solid #5f0080;
 	border-radius: 3px;
@@ -168,5 +169,10 @@ table tr.privacyContract{
     color: #fff;	
     cursor: pointer;
 }
+
+/* 
+.authBox{
+	display:none;
+} */
 
 

@@ -1,41 +1,25 @@
 @charset "UTF-8";
 /*전체 CSS 적용부분  */
-.wrap{
+.FAQ{
 	margin: 0 auto;
 	width: 1080px;
-	height: 100vh;
 }
 
-.main-content {
-	padding: 20px;
-	width: 100%;
-	margin: 0 auto;
-	/* display: flex;
-	flex-direction: column; */
-}
-/* body, td, select, div, textarea, center {
-	color: #202020;
-	font-size: 14px;
-} */
-/* 테이블 상세 css 적용부분 */
 .subtitle {
   border-collapse: collapse;
   text-align: left;
   line-height: 1.5;
+  width: 1080px;
+}
 
+.subtitle p{
+	border-style: solid;
+    background-color: #e9e9e9;
+    height: 30px;
 }
 
 .subtitle th {
-  padding: 10px;
-  font-weight: bold;
-  vertical-align: top;
-/*   color: #369;
- */  border-bottom: 3px solid #036;
-  background-color: red;
-}
-
-.subtitle th {
-  width: 150px;
+  width: 50px;
   padding: 10px;
   font-weight: bold;
   vertical-align: top;
@@ -50,4 +34,11 @@
   border-bottom: 1px solid #ccc;
 }
 
-/*css가 먹지를 않는다. css는 나중에 하자.*/
+.ck.ck-editor {
+   max-width: 500px;
+}
+
+.ck-editor__editable {
+	min-height: 300px;
+}
+

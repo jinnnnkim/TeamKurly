@@ -7,7 +7,7 @@
 <title>선물내역</title>
 <link rel="stylesheet" href="/recipetoyou/Resources/User/Css/Mypage2/mypageInfo.css"
 	type="text/css">
-<link href="/recipetoyou/Resources/User/Css/reset.css" rel="stylesheet"
+<link href="/recipetoyou/Resources/User/Css/Mypage2/reset.css" rel="stylesheet"
 	type="text/css">
 <link href="/recipetoyou/Resources/User/Css/Mypage2/giftlist.css" rel="stylesheet"
 	type="text/css">
@@ -23,8 +23,6 @@
 <!-- 파비콘 링크 -->
 <link href="/recipetoyou/Resources/User/Img/KurlyIcon.png" rel="icon"
 	type="image/x-icon" />
-</head>
-<body>
 	<div class="content">
 		<div class="gift_main">
 			<div class="head">
@@ -51,9 +49,6 @@
 		<!-- gift_main -->
 	</div>
 	<%--content end --%>
-</body>
-</html>
-
 
 
 
