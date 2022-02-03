@@ -50,7 +50,7 @@
 		<definition name="reviewWrite" extends="mypagelayout">
 		<put-attribute name="title" value="상품 후기"/>		
 		<put-attribute name="body" value="/WEB-INF/Views/User/Mypage/reviewWrite.jsp"/>
-	</definition>
+	</definition> 
 	<!-- 
 	<definition name="mypage/pickListAdd" extends="mypageLayout">
 		<put-attribute name="title" value="마이페이지 - 장바구니추가"/>장바구니-> 장바구니추가로 변경했음 
