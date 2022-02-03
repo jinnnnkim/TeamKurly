@@ -1,24 +1,18 @@
 package kr.co.recipetoyou.user.join;
 
-<<<<<<< HEAD
-=======
 import java.util.HashMap;
 
 import org.json.simple.JSONObject;
->>>>>>> 73327b0b5319c321c2a70427a6ba4013a5acd816
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-<<<<<<< HEAD
-=======
 import kr.co.recipetoyou.user.UserVO;
 import net.nurigo.java_sdk.api.Message;
 import net.nurigo.java_sdk.exceptions.CoolsmsException;
 
->>>>>>> 73327b0b5319c321c2a70427a6ba4013a5acd816
 @Service("joinService")
 @Transactional(propagation = Propagation.REQUIRED)
 public class JoinServiceImpl implements JoinService {
@@ -31,13 +25,11 @@ public class JoinServiceImpl implements JoinService {
 	}
 
 	@Override
-<<<<<<< HEAD
 	public int idChk(UserVO userVO) throws Exception {
 		int result = joinDAO.idChk(userVO);
 		return result;
 	}
 
-=======
 	public int idChk(String user_id) throws Exception {
 		int result = joinDAO.idChk(user_id);
 		return result;
@@ -69,5 +61,4 @@ public class JoinServiceImpl implements JoinService {
 	}
 
 
->>>>>>> 73327b0b5319c321c2a70427a6ba4013a5acd816
 }

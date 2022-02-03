@@ -1,54 +1,28 @@
 package kr.co.recipetoyou.user.join;
 
-import java.net.URLDecoder;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
-<<<<<<< HEAD
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-=======
-import org.apache.commons.lang3.StringEscapeUtils; 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
->>>>>>> 73327b0b5319c321c2a70427a6ba4013a5acd816
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
-import kr.co.recipetoyou.user.login.LoginService;
 
 import kr.co.recipetoyou.user.UserVO;
 
 @Controller("joinController")
-<<<<<<< HEAD
-public class JoinControllerImpl {
-=======
+
 public class JoinControllerImpl implements JoinController {
->>>>>>> 73327b0b5319c321c2a70427a6ba4013a5acd816
 	@Autowired
 	private JoinService joinService;
 	@Autowired
 	private UserVO userVO;
-<<<<<<< HEAD
-
 	
-	@RequestMapping(value="/join/regist.do", method = {RequestMethod.GET, RequestMethod.POST})
-=======
-	
-	@RequestMapping(value="/join/regist.do",  method =  {RequestMethod.GET, RequestMethod.POST})
->>>>>>> 73327b0b5319c321c2a70427a6ba4013a5acd816
+	@RequestMapping(value="/join/regist2.do",  method =  {RequestMethod.GET, RequestMethod.POST})
 	public ModelAndView regist(@ModelAttribute("userVO") UserVO userVO,
 			HttpServletRequest request, HttpServletResponse response) throws Exception{
 		
@@ -57,10 +31,6 @@ public class JoinControllerImpl implements JoinController {
 		
 	}
 	
-<<<<<<< HEAD
-	
-=======
->>>>>>> 73327b0b5319c321c2a70427a6ba4013a5acd816
 	@RequestMapping(value="/join/joinProcess.do", method = {RequestMethod.GET, RequestMethod.POST})
 	public ModelAndView registProcess(@ModelAttribute("userVO") UserVO userVO,
 			HttpServletRequest request, HttpServletResponse response) throws Exception{
@@ -68,21 +38,11 @@ public class JoinControllerImpl implements JoinController {
 		
 		request.setCharacterEncoding("utf-8");
 		int result = joinService.addUser(userVO); 	//정상적 inset하면 정수 1을 리턴
-<<<<<<< HEAD
-		System.out.println("result : " + result);
-=======
->>>>>>> 73327b0b5319c321c2a70427a6ba4013a5acd816
 		
 		ModelAndView mav = new ModelAndView("redirect:/login/login.do");
 		
 		return mav;
-<<<<<<< HEAD
-		
-		
-		
-		
-		
-		
+	}		
 		//회원가입하면서 로그인 - 서비스에서 doa inser 되면서 서비스에서 로그인 함수 실행해서 회원 불러오고 메인페이지 돌려주면서 세션이구현. 
 				//컨트롤러에서 구현.  신사임당5000원 넣고, - 트랜젝션 - 회원가입시키고 로그인시킴 .
 				//로그인 페이지로 이동한다-> 먼저 만들고. 
@@ -108,10 +68,6 @@ public class JoinControllerImpl implements JoinController {
 		 * 
 		 */
 		 
-		 
-	}
-	
-
 	@RequestMapping(value="/idChk.do", method = {RequestMethod.GET, RequestMethod.POST})
 	public int  idChk(@ModelAttribute("userVO") UserVO userVO,
 			HttpServletRequest request, HttpServletResponse response) throws Exception{
@@ -119,16 +75,8 @@ public class JoinControllerImpl implements JoinController {
 		int result = joinService.idChk(userVO);
 		System.out.println("result : " + result);	
 		return result;
-		
 	}
 	
-	
-
-}
-=======
-		 
-		 
-	}
 	@RequestMapping(value = "/user/idChk.do", method = {RequestMethod.POST, RequestMethod.GET})
 	@ResponseBody
 	public int idChk(
@@ -154,5 +102,11 @@ public class JoinControllerImpl implements JoinController {
 		joinService.certifiedPhoneNumber(userPhoneNumber,randomNumber); 
 		return Integer.toString(randomNumber); 
 	}
+
+	@Override
+	public ModelAndView login(UserVO userVO, HttpServletRequest request, HttpServletResponse response)
+			throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }
->>>>>>> 73327b0b5319c321c2a70427a6ba4013a5acd816
