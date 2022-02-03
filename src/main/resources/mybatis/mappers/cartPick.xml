@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="mapper.cartPick">					<!-- member.xml의 네임스페이스 지정 -->
+	
+<!--
+	<resultMap type="pickVO" id="CartPickResult">	
+
+	 <resultMap type="CartPickVO" id="CartPickResult">	
+		<result property="cart_code" column="cart_code"/>		
+		<result property="prod_code" column="prod_code"/>
+		<result property="prod_quantity" column="prod_quantity"/>		
+		<result property="user_id" column="user_id"/>
+	</resultMap>
+	
+	
+	<select id="selectAllCartPickList" resultMap="CartPickResult"> order by cart_code desc
+		<![CDATA[
+			select * from tb_cart 
+		]]>
+	</select>
+	
+	<insert id="insertCartPick" parameterType="pickVO">
+		<![CDATA[
+			insert into tb_cart (cart_code, prod_code, prod_quantity, user_id)
+			values (#{cart_code}, #{prod_code}, #{prod_quantity}, #{user_id}) 
+		]]>
+	</insert>
+	
+	parameterType : 회원 ID는 문자열이므로 parameterType을 String으로 설정함
+	#{id} <== (DAO로부터)전달된 ID를 조건 값으로 해당 회원 정보를 삭제 
+	<delete id="deleteCartPick" parameterType="String">
+		<![CDATA[
+			delete from tb_cart 
+			where
+			cart_code = #{cart_code}
+		]]>
+	</delete> -->
+	
+	 
+	<!-- id : DAO에서 id를 이용해 해당 SQL문을 호출함 -->
+	<!-- resultMap : 반환되는 레코드를 memResult에 저장함 -->
+<!-- 	
+	
+	resultType : 문자열로 지정해 SQL문으로 조회한 이름(문자열)을 호출한 메서드로 반환함
+	<select id="selectName" resultType="String">
+		<![CDATA[
+			select name from t_member 
+			where id = 'ezenac'
+		]]>
+	</select>
+	
+	resultType : 속성을 int로 지정해 SQL문으로 조회한 정수를 호출한 메서드로 반환함
+	<select id="selectPwd" resultType="int">
+		<![CDATA[
+			select pwd from t_member 
+			where id = 'ezenac'
+		]]>
+	</select>
+	
+	memberVO : (검색해서)조회되는 한 개의 레코드를 memberVO에 저장함 
+	String : MemberDAO에서 SQL문 호출시 전달되는 매개변수의 데이터 타입을 지정
+	<select id="selectUserById" resultType="memberVO" parameterType="String">
+		<![CDATA[
+			select * from t_member 
+			where id = #{id}
+		]]>
+	</select>
+	
+	<select id="selectUserByPwd" resultMap="memResult"  parameterType="int">
+		<![CDATA[
+			select * from t_member 
+			where pwd = #{pwd}
+		]]>
+	</select>
+	
+	
+	
+	values <== HashMap의 각각의 key로 저장된 value를 가져와 테이블에 추가함
+	<insert id="insertMember2" parameterType="java.util.HashMap">
+		<![CDATA[
+			insert into t_member (id, pwd, name, email)
+			values (#{id}, #{pwd}, #{name}, #{email})
+		]]>
+	</insert>
+	
+	parameterType : SQL문에 사용될 데이터를 meberVO빈에 설정해 전달함.
+	set pwd=#{pwd},,, : memberVO 빈의 속성 값을 각 컬럼의 수정값으로 설정함.
+	<update id="updateUser" parameterType="userVO">
+		<![CDATA[
+			update t_member 
+			set pwd=#{pwd}, name=#{name}, email=#{email}
+			where
+			id = #{id}
+		]]>
+	</update>
+	
+	
+	
+	<select id="searchMember" parameterType="memberVO" resultMap="memResult">
+		<![CDATA[
+			select * from t_member 		
+		]]>
+		<where>
+			<choose>
+				<when test="name !='' and name != null and email !='' and email != null">
+					name = #{name} and email = #{email}
+				</when>
+				<when test="name !='' and name != null">
+					name = #{name}
+				</when>
+				<when test="email !='' and email != null">
+					email = #{email}
+				</when>
+			</choose>
+		</where>
+		order by joinDate desc
+	</select>
+	
+	<select id="foreachSelect" resultMap="memResult" parameterType="java.util.Map">
+		<![CDATA[
+			select * from t_member 		
+		]]>
+		where name in 
+		<foreach collection="list" item="item" open="(" separator="," close=")">
+			#{item}
+		</foreach>
+		order by joinDate desc
+	</select>
+	 -->
+	 
+	 
+	
+	 
+
+	
+</mapper>

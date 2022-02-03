@@ -25,6 +25,11 @@ public class JoinServiceImpl implements JoinService {
 	}
 
 	@Override
+	public int idChk(UserVO userVO) throws Exception {
+		int result = joinDAO.idChk(userVO);
+		return result;
+	}
+
 	public int idChk(String user_id) throws Exception {
 		int result = joinDAO.idChk(user_id);
 		return result;

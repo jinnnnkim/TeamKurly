@@ -1,11 +1,17 @@
 package kr.co.recipetoyou.main.cartPick;
 
+
 import javax.servlet.http.HttpServletRequest;  
+
+
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+
+import kr.co.recipetoyou.user.join.UsersVO;
+
 
 import kr.co.recipetoyou.main.cartPick.vo.CartAddVO;
 import kr.co.recipetoyou.main.cartPick.vo.FavVO;
@@ -37,8 +43,12 @@ public interface CartPickController {
 	//	 HttpServletRequest request, HttpServletResponse response) throws Exception;
 	public ModelAndView addCartPick(CartAddVO cartAddVO, HttpServletRequest
 			request, HttpServletResponse response)throws Exception; //찜(좋아요) 담기 public
-	ModelAndView addFavPick(FavVO favVO, HttpServletRequest request,
+	public ModelAndView addFavPick(FavVO favVO, HttpServletRequest request,
 			HttpServletResponse response) throws Exception;
+	public ModelAndView listCartPick(HttpServletRequest request, HttpServletResponse response) throws Exception;
+	public ModelAndView addCartPick(CartPickVO__ cartPickVO, HttpServletRequest request, HttpServletResponse response)
+			throws Exception;
+	public ModelAndView removeCartPick(String id, HttpServletRequest request, HttpServletResponse response) throws Exception;
 
 }
 

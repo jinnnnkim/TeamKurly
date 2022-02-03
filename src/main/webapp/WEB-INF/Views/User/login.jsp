@@ -4,7 +4,8 @@
 <%
 	request.setCharacterEncoding("UTF-8");
 %>
-<c:set var="contextPath" value="${pageContext.servletContext.contextPath}"/> 
+<c:set var="contextPath" value="${pageContext.servletContext.contextPath}"/>  
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,6 +22,10 @@
 			</script>
 		</c:when>
 	</c:choose> 
+	
+	
+</head>
+<body>
 		
 </head>
 <body>

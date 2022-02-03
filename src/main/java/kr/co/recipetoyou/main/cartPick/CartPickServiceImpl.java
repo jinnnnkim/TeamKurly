@@ -1,6 +1,5 @@
 package kr.co.recipetoyou.main.cartPick;
 
-
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import kr.co.recipetoyou.user.login.LoginDAO;
 import kr.co.recipetoyou.admin.adgoods.AdGoodsDAO;
 import kr.co.recipetoyou.admin.adgoods.AdgoodsImgVO;
 import kr.co.recipetoyou.main.cartPick.vo.CartAddVO;
@@ -24,7 +24,7 @@ public class CartPickServiceImpl implements CartPickService{
 	private CartPickDAO cartPickDAO;
 
 	@Autowired
-	AdGoodsDAO adGoodsDAO;
+	private AdGoodsDAO adGoodsDAO;
 	
 	@Override
 	public List<PickVO> listPicks () throws DataAccessException {
@@ -71,13 +71,6 @@ public class CartPickServiceImpl implements CartPickService{
 		}
 	
 		
-		
-		
-		
-		
-		
-		
-		
 	//장바구니 담기
 	@Override
 	public int addCartPick(CartAddVO cartAddVO) throws DataAccessException {
@@ -90,8 +83,22 @@ public class CartPickServiceImpl implements CartPickService{
 		return cartPickDAO.insertFavAdd(favVO);
 	}
 
-	
-	
-	
 
+	@Override
+	public List<CartPickVO__> listCartPicks() throws DataAccessException {
+		List<CartPickVO__> membersList = cartPickDAO.selectAllCartPickList__();
+		return membersList;
+	}
+
+	@Override
+	public int addCartPick(CartPickVO__ cartPickVO) throws DataAccessException {
+		return cartPickDAO.insertCartPick(cartPickVO);
+	}
+
+	@Override
+	public int removeCartPick(String id) throws DataAccessException {
+		return cartPickDAO.deleteCartPick(id);
+	}
+	
+	
 }

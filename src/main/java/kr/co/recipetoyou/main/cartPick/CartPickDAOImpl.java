@@ -1,13 +1,12 @@
 package kr.co.recipetoyou.main.cartPick;
 
-
-import java.util.List; 
+import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Repository;
-import org.springframework.web.bind.annotation.RequestMapping;
+
 import org.springframework.web.bind.annotation.RequestParam;
 
 import kr.co.recipetoyou.main.cartPick.vo.CartAddVO;
@@ -60,16 +59,6 @@ public class CartPickDAOImpl implements CartPickDAO {
 	}
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-		
 	//찜 담기
 	@Override
 	public int insertFavAdd(FavVO favVO) throws DataAccessException {
@@ -84,11 +73,23 @@ public class CartPickDAOImpl implements CartPickDAO {
 		return result;
 	}
 
-	
 
-	
-	
+	@Override
+	public int insertCartPick(CartPickVO__ cartPickVO) throws DataAccessException {
+		int result = sqlSession.insert("mapper.cartPick.insertCartPick", cartPickVO);
+		return result;
+	}
 
-	
-	
+	@Override
+	public int deleteCartPick(String id) throws DataAccessException {
+		int result = sqlSession.delete("mapper.cartPick.deleteCartPick", id);
+		return result;
+	}
+
+	@Override
+	public List<CartPickVO__> selectAllCartPickList__() throws DataAccessException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

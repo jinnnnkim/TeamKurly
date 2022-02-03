@@ -7,8 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Repository;
 
-import kr.co.recipetoyou.user.UserVO;
-
+import kr.co.recipetoyou.user.join.UsersVO;
 
 @Repository("loginDAO")
 public class LoginDAOImpl implements LoginDAO {
@@ -16,26 +15,27 @@ public class LoginDAOImpl implements LoginDAO {
 	@Autowired
 	private SqlSession sqlSession;
 
-	/*
-	 * @Override public List<UserVO> selectAllUserList() throws DataAccessException
-	 * { List<UserVO> usersList =
-	 * sqlSession.selectList("mapper.user.selectAllUserList"); return usersList; }
-	 */
+	@Override
+	public List<UsersVO> selectAllUserList() throws DataAccessException {
+		List<UsersVO> usersList = sqlSession.selectList("mapper.user.selectAllUserList");
+		return usersList;
+	}
 
 	@Override
-	public int insertUser(UserVO userVO) throws DataAccessException {
+	public int insertUser(UsersVO userVO) throws DataAccessException {
 		int result = sqlSession.insert("mapper.user.insertUser", userVO);
 		return result;
 	}
 
-	/*
-	 * @Override public int deleteUser(String id) throws DataAccessException { int
-	 * result = sqlSession.delete("mapper.user.deleteUser", id); return result; }
-	 */
+	@Override
+	public int deleteUser(String id) throws DataAccessException {
+		int result = sqlSession.delete("mapper.user.deleteUser", id);
+		return result;
+	}
 
 	@Override
-	public UserVO loginById(UserVO userVO) throws DataAccessException {
-		UserVO vo = sqlSession.selectOne("mapper.user.loginById", userVO);
+	public UsersVO loginById(UsersVO userVO) throws DataAccessException {
+		UsersVO vo = sqlSession.selectOne("mapper.user.loginById", userVO);
 		return vo;
 	}
 

@@ -10,22 +10,22 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import kr.co.recipetoyou.user.UserVO;
-
+import kr.co.recipetoyou.user.join.UsersVO;
 
 @Controller("loginController")
 public class LoginControllerImpl implements LoginController {
 	@Autowired
 	private LoginService loginService;
 	@Autowired
-	private UserVO userVO;
+	private UsersVO userVO;
 
 	
 	@RequestMapping(value="/login/login.do", method = {RequestMethod.GET, RequestMethod.POST})
-	public ModelAndView login(@ModelAttribute("userVO") UserVO userVO,
+	public ModelAndView login(@ModelAttribute("userVO") UsersVO userVO,
 			HttpServletRequest request, HttpServletResponse response) throws Exception{
 		
 		ModelAndView mav = new ModelAndView();	
@@ -34,11 +34,17 @@ public class LoginControllerImpl implements LoginController {
 	}
 	
 	@RequestMapping(value="/login/loginProcess.do", method = {RequestMethod.GET, RequestMethod.POST})
-	public ModelAndView loginProcess(@ModelAttribute("userVO") UserVO userVO, RedirectAttributes rAttr,
+	public ModelAndView loginProcess(@ModelAttribute("userVO") UsersVO userVO, RedirectAttributes rAttr,
 			HttpServletRequest request, HttpServletResponse response) throws Exception{
 		
 		ModelAndView mav = new ModelAndView();
+	
 		userVO = loginService.login(userVO);
+		
+		if (userVO != null) {
+			HttpSession session = request.getSession();
+		userVO = loginService.login(userVO);
+		}
 		if (userVO != null) {
 			HttpSession session = request.getSession();
 			System.out.println(userVO.getUser_name());
@@ -80,16 +86,31 @@ public class LoginControllerImpl implements LoginController {
 		return null;
 	}
 
+
 	@Override
-	public ModelAndView addMember(UserVO userVO, HttpServletRequest request, HttpServletResponse response)
+	public ModelAndView removeMember(String id, HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public ModelAndView removeMember(String id, HttpServletRequest request, HttpServletResponse response)
-			throws Exception {
+	public ModelAndView addMember(kr.co.recipetoyou.user.UserVO userVO, HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ModelAndView login(kr.co.recipetoyou.user.UserVO userVO, HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ModelAndView loginProcess(kr.co.recipetoyou.user.UserVO userVO, RedirectAttributes rAttr,
+			HttpServletRequest request, HttpServletResponse response) throws Exception {
 		// TODO Auto-generated method stub
 		return null;
 	}

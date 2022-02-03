@@ -1,15 +1,17 @@
 package kr.co.recipetoyou.main.cartPick;
 
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.dao.DataAccessException;
+
+import kr.co.recipetoyou.user.join.UsersVO;
+
+import java.util.Map;
 
 import kr.co.recipetoyou.main.cartPick.vo.CartAddVO;
 import kr.co.recipetoyou.main.cartPick.vo.FavVO;
 import kr.co.recipetoyou.main.cartPick.vo.PickVO;
 import kr.co.recipetoyou.main.cartPick.vo.ProdVO;
-import kr.co.recipetoyou.user.UserVO;
 
 public interface CartPickDAO{
 	//조회
@@ -31,5 +33,9 @@ public interface CartPickDAO{
 	//찜 담기
 	public int insertFavAdd(FavVO favVO) throws DataAccessException;
 	
+	public int insertCartPick(CartPickVO__ cartPickVO) throws DataAccessException;
+	public int deleteCartPick(String id) throws DataAccessException;
+	
+	public List<CartPickVO__> selectAllCartPickList__() throws DataAccessException;
 	
 }

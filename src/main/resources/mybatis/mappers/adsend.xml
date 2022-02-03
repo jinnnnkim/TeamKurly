@@ -17,7 +17,7 @@
 	</resultMap>
 	
 	<!-- 회원 -->
-	<resultMap type="adUserVO" id="userResult">		
+	<resultMap type="adUserVO" id="aduserResult">		
 		<result property="user_id" column="user_id" />
 		<result property="user_pw" column="user_pw"/>
 		<result property="user_name" column="user_name"/>
@@ -82,7 +82,7 @@
 	</select>
 	
 	<!-- 회원 상세 정보 조회 -->
-	<select id="readUserSend" resultMap="userResult" parameterType="String">
+	<select id="readUserSend" resultMap="aduserResult" parameterType="String">
 		<![CDATA[
 			select a.* 
 			 from tb_users a 

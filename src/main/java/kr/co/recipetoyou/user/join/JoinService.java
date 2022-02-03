@@ -12,6 +12,7 @@ public interface JoinService {
 	public int addUser(UserVO userVO) throws DataAccessException;
 	//public int removeUser(String id) throws DataAccessException;
 
+	public int idChk(UserVO userVO) throws Exception;
 	//public int idChk(UserVO userVO) throws Exception;
 
 	public int idChk(String user_id) throws Exception;

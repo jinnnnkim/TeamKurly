@@ -19,6 +19,10 @@ public class JoinDAOImpl implements JoinDAO {
 	}
 
 	@Override
+	public int idChk(UserVO userVO) throws DataAccessException {
+		int result = sqlSession.selectOne("mapper.user.idChk", userVO);
+		return result;
+	}
 	public int idChk(String user_id) throws DataAccessException {
 		int result = sqlSession.selectOne("mapper.user.idChk", user_id);
 		return result;
