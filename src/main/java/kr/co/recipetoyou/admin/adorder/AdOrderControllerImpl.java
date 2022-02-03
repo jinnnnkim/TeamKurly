@@ -51,6 +51,7 @@ public class AdOrderControllerImpl implements AdOrderController {
 		List<AdOrderVO> ordList = service.listOrdUsers(vo);
 	    ModelAndView mav = new ModelAndView(viewName);
 		mav.addObject("ordList", ordList);
+		
 		mav.addObject("cnt", cnt);
 		mav.addObject("pm",pm);	 
 		return mav;
