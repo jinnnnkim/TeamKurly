@@ -23,4 +23,6 @@ public interface MypageController {
 	//배송지관리 조회
 	public ModelAndView listAddress(HttpServletRequest request, HttpServletResponse response) throws Exception;
 
+	//상품문의 조회
+	public ModelAndView listQnA(HttpServletRequest request, HttpServletResponse response) throws Exception;
 }
