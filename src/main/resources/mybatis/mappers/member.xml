@@ -171,7 +171,7 @@
 			FROM TB_ORD_ING toi, TB_ORDER to2, TB_PROD tp
 			WHERE toi.ORD_CODE = to2.ORD_CODE 
 			AND toi.PROD_CODE = tp.PROD_CODE
-
+	]]>
 	<!-- 상품문의 조회 -->
 	<select id="selectAllQnAList" resultMap="qnaResult">
 		<![CDATA[
