@@ -48,6 +48,7 @@ public class AdUserVO {
 	private int cp_code;
 	private String toYou_pass;
 	
+	
 	public AdUserVO() {
 		// TODO Auto-generated constructor stub
 	}
