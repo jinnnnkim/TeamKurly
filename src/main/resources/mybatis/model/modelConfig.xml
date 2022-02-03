@@ -61,6 +61,5 @@
 		<typeAlias type="kr.co.recipetoyou.board.recipe.RecipeCateVO" alias="recipeCateVO"/>
 		<typeAlias type="kr.co.recipetoyou.main.cartPick.CartPickVO__" alias="cartPickVO"/>
 
-
 	</typeAliases>
 </configuration> 

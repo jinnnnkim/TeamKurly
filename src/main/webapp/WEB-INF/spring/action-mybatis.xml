@@ -10,7 +10,6 @@
 			<value>/WEB-INF/config/jdbc/jdbc.properties</value>
 		</property>
 	</bean>
-
 	<!-- 마이바티스에서 제공하는 PooledDataSource 이용해서 dataSource 빈을 생성 -->
 	<bean id="dataSource" class="org.apache.ibatis.datasource.pooled.PooledDataSource">
 		<property name="driver"  value="${jdbc.driverClassName}" />

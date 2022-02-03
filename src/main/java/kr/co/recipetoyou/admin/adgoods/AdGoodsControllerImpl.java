@@ -68,15 +68,19 @@ public class AdGoodsControllerImpl implements AdGoodsController {
 	public ModelAndView listPageGet(PagingVO vo, HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
 		
+		ObjectMapper objm = new ObjectMapper();
 		String viewName = (String)request.getAttribute("viewName");
 		ModelAndView mav = new ModelAndView(viewName);
 		List prodList = adGoodsService.listProduct(vo);
+		List list = adGoodsService.cateList();
+		String cateList = objm.writeValueAsString(list);
 		
 		int cnt = adGoodsService.prodCount(vo);
 		
 		if(!prodList.isEmpty()) {
 			mav.addObject("prodList", prodList);
 			mav.addObject("cnt", cnt);
+			mav.addObject("cateList", cateList);
 		}else {
 			mav.addObject("listCheck", "empty");
 		}
