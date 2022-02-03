@@ -13,11 +13,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-
 import kr.co.recipetoyou.user.mypage.vo.CouponVO;
 import kr.co.recipetoyou.user.mypage.vo.OrdIngVO;
 import kr.co.recipetoyou.user.mypage.vo.PointVO;
+
 import kr.co.recipetoyou.user.mypage.vo.UserAddrVO;
+
+import kr.co.recipetoyou.user.mypage.vo.QnAVO;
+
 
 @Controller("mypageController")
 public class MypageControllerImpl implements MypageController{
@@ -26,18 +29,21 @@ public class MypageControllerImpl implements MypageController{
 	
 	@Autowired
 	private MypageService mypageService;
-	
 	@Autowired
 	private CouponVO couponVO;
-	
 	@Autowired
 	private PointVO pointVO;
+
 	
 	@Autowired
 	private UserAddrVO useraddrVO;
 	
 	@Autowired
 	private OrdIngVO ordingVO;
+
+	@Autowired
+	private QnAVO qnaVO;
+
 
 	@RequestMapping(value = "/mypage/main.do", method = RequestMethod.GET)
 	public ModelAndView main(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -65,6 +71,7 @@ public class MypageControllerImpl implements MypageController{
 		return mav;
 	}
 	
+
 	
 	//배송지 조회
 	@RequestMapping(value = "/addresslist.do", method = RequestMethod.GET)
@@ -92,9 +99,32 @@ public class MypageControllerImpl implements MypageController{
 	 
 	@RequestMapping(value = "/QandA.do", method = RequestMethod.GET)
 	public ModelAndView QandA(HttpServletRequest request, HttpServletResponse response) throws Exception {
+
+
+	
+	
+	@RequestMapping(value = "/review.do", method = RequestMethod.GET)
+	public ModelAndView review(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
 		ModelAndView mav = new ModelAndView();
 		
+		return mav;
+	}
+	
+	@RequestMapping(value = "/QnA.do", method = RequestMethod.GET)
+	public ModelAndView listQnA(HttpServletRequest request, HttpServletResponse response) throws Exception {
+
+		
+		String viewName = (String) request.getAttribute("viewName");
+		
+		logger.info("info : "+ viewName);
+		logger.debug("debug : "+ viewName);
+	
+		
+		List<QnAVO> qnaList = mypageService.listQnA();
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("qnaList", qnaList);
+	
 		return mav;
 	}
 	

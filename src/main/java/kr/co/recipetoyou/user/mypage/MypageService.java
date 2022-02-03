@@ -7,7 +7,11 @@ import org.springframework.dao.DataAccessException;
 import kr.co.recipetoyou.user.mypage.vo.CouponVO;
 import kr.co.recipetoyou.user.mypage.vo.OrdIngVO;
 import kr.co.recipetoyou.user.mypage.vo.PointVO;
+
 import kr.co.recipetoyou.user.mypage.vo.UserAddrVO;
+
+import kr.co.recipetoyou.user.mypage.vo.QnAVO;
+
 
 public interface MypageService {
 
@@ -24,5 +28,8 @@ public interface MypageService {
 	
 	//주문내역 조회
 	public List<OrdIngVO> listOrders() throws DataAccessException;
-	 
+
+	//상품문의
+	public List<QnAVO> listQnA() throws DataAccessException;
+
 }

@@ -23,7 +23,7 @@
 	href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400&display=swap"
 	rel="stylesheet">
 <!-- 파비콘 링크 -->
-<link href="/recipetoyou/Resources/User/Image/KurlyIcon.png" rel="icon"
+<link href="/recipetoyou/Resources/User/Img/Mypage2/KurlyIcon.png" rel="icon"
 	type="image/x-icon" />
 </head>
 <body>

@@ -37,6 +37,7 @@
 		<typeAlias type="kr.co.recipetoyou.user.mypage.vo.CouponUseVO" alias="couponUseVO"/>
 		<typeAlias type="kr.co.recipetoyou.user.mypage.vo.PointUseVO" alias="pointUseVO"/>
 		<typeAlias type="kr.co.recipetoyou.user.mypage.vo.PointVO" alias="pointVO"/>
+		<typeAlias type="kr.co.recipetoyou.user.mypage.vo.QnAVO" alias="qnaVO"/>
 
 		<typeAlias type="kr.co.recipetoyou.user.mypage.vo.PointUseVO" alias="pointuseVO"/>
 		<typeAlias type="kr.co.recipetoyou.main.cartPick.vo.CartAddVO" alias="cartAddVO"/>

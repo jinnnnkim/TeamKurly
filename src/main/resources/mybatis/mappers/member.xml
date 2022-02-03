@@ -15,6 +15,7 @@
 		<result property="prod_discount" column="prod_discount"/>
 	</resultMap> 
 	
+	
 	<!-- 쿠폰 조회 -->
 	<resultMap type="couponVO" id="couponResult">
 		<result property="cp_name" column="cp_name"/>
@@ -25,6 +26,7 @@
 		<result property="cp_payment_details" column="cp_payment_details"/>
 	</resultMap>
 	
+	
 	<!-- 적립금 조회 -->
 	<resultMap type="pointVO" id="pointResult">
 		<result property="accum_date" column="accum_date"/>
@@ -33,11 +35,8 @@
 		<result property="point" column="point"/>
 	</resultMap>
 	
-
-
-
+	
 	<!--장바구니 리스트 조회, 상품+찜+사용자 주소 테이블 조인 -->
-
 	<resultMap type="prodVO" id="cartListResult">
 		<result property="user_id" column="user_id"/>
 		<result property="addr" column="addr"/>
@@ -48,9 +47,7 @@
 		<result property="prod_discount" column="prod_discount"/>
 		<result property="prod_point" column="prod_point"/>
 	</resultMap>
-	
-	
-	
+
 
 	<!-- 배송지관리 조회  사용자 Tb + 회원 주소 -->
 	<resultMap type="useraddrVO" id="addressResult">
@@ -68,7 +65,16 @@
 		<result property="price" column="price"/>
 		<result property="ord_date" column="ord_date"/>
 		<result property="prod_name" column="prod_name"/>
-	</resultMap>
+
+	
+	
+	<!-- 상품문의 조회 -->
+	<resultMap type="QnAVO" id="qnaResult">
+		<result property="inq_title" column="inq_title"/>
+		<result property="inq_content" column="inq_content"/>
+		<result property="inq_reg_date" column="inq_reg_date"/>
+		<result property="inq_status" column="inq_status"/>
+
 	
 	
 	<!-- id : DAO에서 id를 이용해 해당 SQL문을 호출함 -->
@@ -157,6 +163,7 @@
 		]]>
 	</select>	
 	
+
 	<!-- 주문내역 조회 -->
 	<select id="selectAllOrderList" resultMap="orderListResult">
 		<![CDATA[
@@ -164,6 +171,11 @@
 			FROM TB_ORD_ING toi, TB_ORDER to2, TB_PROD tp
 			WHERE toi.ORD_CODE = to2.ORD_CODE 
 			AND toi.PROD_CODE = tp.PROD_CODE
+
+	<!-- 상품문의 조회 -->
+	<select id="selectAllQnAList" resultMap="qnaResult">
+		<![CDATA[
+			SELECT * FROM TB_PROD_INQ
 		]]>
 	</select>
 	

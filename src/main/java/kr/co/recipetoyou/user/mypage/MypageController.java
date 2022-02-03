@@ -27,4 +27,6 @@ public interface MypageController {
 	//주문내역 조회
 	public ModelAndView listOrders(HttpServletRequest request, HttpServletResponse response) throws Exception;
 
+	//상품문의 조회
+	public ModelAndView listQnA(HttpServletRequest request, HttpServletResponse response) throws Exception;
 }

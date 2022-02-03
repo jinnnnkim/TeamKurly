@@ -4,7 +4,7 @@ import org.springframework.stereotype.Component;
 
 import kr.co.recipetoyou.user.UserVO;
 
-//사용자 주소 태이블
+//사용자 주소 테이블
 @Component("useraddrVO")
 public class UserAddrVO {
 	
