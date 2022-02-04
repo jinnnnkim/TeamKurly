@@ -20,7 +20,6 @@ public interface MypageController {
 	//포인트 내역 조회
 	public ModelAndView listPoints(HttpServletRequest request, HttpServletResponse response) throws Exception;
 
-	
 	//배송지관리 조회
 	public ModelAndView listAddress(HttpServletRequest request, HttpServletResponse response) throws Exception;
 	

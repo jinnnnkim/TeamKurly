@@ -134,11 +134,11 @@
 	<!-- 장바구니 목록 조회 -->
 	<select id="selectAllCartList" resultMap="cartListResult">
 		<![CDATA[
-				SELECT tp.PROD_NAME , tp.PROD_CONTENT,  tp.PROD_PRICE, tp.PROD_DISCOUNT, tp.PROD_POINT, 
-				tua.USER_ID, tua.ADDR, tua.DELIVERY_TYPE 
-				FROM TB_PROD tp, TB_CART tc, TB_USER_ADDR tua 
-				WHERE tp.PROD_CODE = tc.PROD_CODE 
-				and  tc.USER_ID =tua.USER_ID   
+			SELECT tp.PROD_NAME , tp.PROD_CONTENT,  tp.PROD_PRICE, tp.PROD_DISCOUNT, tp.PROD_POINT, 
+			tua.USER_ID, tua.ADDR, tua.DELIVERY_TYPE 
+			FROM TB_PROD tp, TB_CART tc, TB_USER_ADDR tua 
+			WHERE tp.PROD_CODE = tc.PROD_CODE 
+			and  tc.USER_ID =tua.USER_ID   
 		]]>
 	</select>
 

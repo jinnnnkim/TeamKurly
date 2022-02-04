@@ -59,7 +59,7 @@
 				</tr>
 			</table>
 			<!-- point_cate -->
-			 <c:forEach var="pointList" items="${pointList}">
+			<c:forEach var="pointList" items="${pointList}">
 			<table class="point_main">
 				<tr>
 					<td class="main_date">${pointList.accum_date}</td>
@@ -67,7 +67,6 @@
 					<td class="main_vaild">${pointList.use_date}</td>
 					<td class="main_price">${pointList.point}원</td>
 				</tr>
-
 			</table>
 			<!-- point_main -->
 			</c:forEach>

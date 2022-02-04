@@ -55,8 +55,8 @@
 						<td colspan="2">작성한 후기가 없습니다.</td>
 						--%>
 					<%--후기 존재 시 --%>
-					<c:forEach var="reviewList" items="${reviewList}">
 						<td colspan="2">
+						<c:forEach var="reviewList" items="${reviewList}">
 							<div class="review_prodName">
 								<span>${reviewList.prod_name}</span>
 							</div>
@@ -74,8 +74,8 @@
 									</div>
 								</div>
 							</div>
+							</c:forEach>
 						</td>
-						</c:forEach>
 					</tr>
 				</table>
 				

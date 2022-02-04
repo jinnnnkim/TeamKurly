@@ -85,7 +85,7 @@
 					<!-- noticeOneToOneQuestionDetail.do -->
 					<!-- order_info -->
 					<div class="order_status">
-						<a class="inner_status" href="${contextPath}/notice/noticeOneToOneQuestionDetail.do">
+						<a href="${contextPath}/notice/noticeOneToOneQuestionDetail.do" class="inner_status">
 						1:1 문의
 						</a>
 					</div>

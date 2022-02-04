@@ -74,7 +74,7 @@ public class MypageServiceImpl implements MypageService{
 	@Override
 	public List<ReviewVO> listReviews() throws DataAccessException {
 		List<ReviewVO> reviewList = mypageDAO.selectAllReviewList();
-		return null;
+		return reviewList;
 	}
 	 
 
