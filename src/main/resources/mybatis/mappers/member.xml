@@ -65,7 +65,7 @@
 		<result property="price" column="price"/>
 		<result property="ord_date" column="ord_date"/>
 		<result property="prod_name" column="prod_name"/>
-
+	</resultMap>
 	
 	
 	<!-- 상품문의 조회 -->
@@ -74,7 +74,7 @@
 		<result property="inq_content" column="inq_content"/>
 		<result property="inq_reg_date" column="inq_reg_date"/>
 		<result property="inq_status" column="inq_status"/>
-
+	</resultMap>
 	
 	
 	<!-- id : DAO에서 id를 이용해 해당 SQL문을 호출함 -->
@@ -171,7 +171,8 @@
 			FROM TB_ORD_ING toi, TB_ORDER to2, TB_PROD tp
 			WHERE toi.ORD_CODE = to2.ORD_CODE 
 			AND toi.PROD_CODE = tp.PROD_CODE
-	]]>
+		]]>
+	</select>
 	<!-- 상품문의 조회 -->
 	<select id="selectAllQnAList" resultMap="qnaResult">
 		<![CDATA[

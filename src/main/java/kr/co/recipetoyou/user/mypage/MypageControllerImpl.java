@@ -89,28 +89,16 @@ public class MypageControllerImpl implements MypageController{
 	  }
 	  
 	  
-	  @RequestMapping(value = "/review.do", method = RequestMethod.GET) public
-	  ModelAndView review(HttpServletRequest request, HttpServletResponse response)
-	  throws Exception {
+	  @RequestMapping(value = "/review.do", method = RequestMethod.GET) 
+	  public ModelAndView review(HttpServletRequest request, HttpServletResponse response) throws Exception {
 	  
 	  ModelAndView mav = new ModelAndView();
 	  
-	  return mav; }
-	 
-	@RequestMapping(value = "/QandA.do", method = RequestMethod.GET)
-	public ModelAndView QandA(HttpServletRequest request, HttpServletResponse response) throws Exception {
+	  return mav; 
+	  
+	  }
+	
 
-
-	
-	
-	@RequestMapping(value = "/review.do", method = RequestMethod.GET)
-	public ModelAndView review(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		
-		ModelAndView mav = new ModelAndView();
-		
-		return mav;
-	}
-	
 	@RequestMapping(value = "/QnA.do", method = RequestMethod.GET)
 	public ModelAndView listQnA(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
