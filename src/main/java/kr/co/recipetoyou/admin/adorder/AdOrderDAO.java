@@ -15,9 +15,9 @@ public interface AdOrderDAO {
 
 	int deleteOrd(String id) throws DataAccessException;
 
-	AdOrderVO readOrd(String id) throws DataAccessException;
+	AdOrdIngVO readOrdIng(int id) throws DataAccessException;
 
-	void updateOrd(AdOrderVO vo) throws DataAccessException;
+	void updateOrdIng(AdOrdIngVO vo) throws DataAccessException;
 
 	
 
