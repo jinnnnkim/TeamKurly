@@ -17,7 +17,7 @@
 
 .sidemenu ul li {
 	width:180px;
-	height:35px;
+	height:50px;
 	font-size: 14px;
 	color: #666;
 	text-decoration: none;
@@ -50,11 +50,15 @@
 .help {
     width: 180px;
     height: 80px;
-    padding: 10px 56px 41px 19px;
+    padding: 10px 34px 41px 19px;
     border-radius: 0 100px 100px 0;
     background-color: #fafafa;
     font-size: 14px;
     margin-left: 20px;
+}
+
+.inquiry {
+	margin-top: 20px;
 }
 
 .inquiry a p {

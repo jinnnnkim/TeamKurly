@@ -119,6 +119,7 @@ td .birth input {
 
 .form_footer {
 	margin: 40px 288px 0 288px;
+	display: flex;
 }
 
 .form_footer a, button {

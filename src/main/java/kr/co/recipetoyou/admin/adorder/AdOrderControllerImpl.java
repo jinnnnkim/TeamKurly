@@ -61,7 +61,7 @@ public class AdOrderControllerImpl implements AdOrderController {
 	@RequestMapping(value = "/adorder/*Form.do", method = RequestMethod.GET)
 	 public ModelAndView form(@RequestParam(value = "result", required = false) String result, HttpServletRequest request, HttpServletResponse response) throws Exception{
 	 	//String viewName = getViewName(request);
-		String viewName = (String)request.getAttribute("viewName");		
+		String viewName = (String)request.getAttribute("viewName");	
 	 	ModelAndView mav = new ModelAndView(viewName);
 	 	mav.addObject("result", result);
 	 	return mav;
@@ -70,31 +70,31 @@ public class AdOrderControllerImpl implements AdOrderController {
 	//주문 상세 정보 조회
 	@Override
 	@RequestMapping(value = "/adorder/adOrdInfo.do", method = RequestMethod.GET)
-	public ModelAndView getOrdInfo(@RequestParam(value="id") String id, HttpServletRequest request, HttpServletResponse response) throws Exception {
+	public ModelAndView getOrdIngInfo(@RequestParam(value="id") int id, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		logger.info("클릭한 아이디:"+id);
 		String viewName = (String)request.getAttribute("viewName");
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName(viewName);
-		mav.addObject("adOrdVO", service.getOrdInfo(id));
+		mav.addObject("adOrdIngVO", service.getOrdIngInfo(id));
 		return mav;
 	}
 
 	//주문 정보 수정 페이지로 이동
 	@Override
-	@RequestMapping(value = "/adorder/modOrdInfo.do", method = RequestMethod.GET)
-	public ModelAndView updateOrdInfo(@RequestParam(value="id") String id, HttpServletRequest request, HttpServletResponse response) throws Exception {	
+	@RequestMapping(value = "/adorder/modOrdIngInfo.do", method = RequestMethod.GET)
+	public ModelAndView updateOrdInfo(@RequestParam(value="id") int id, HttpServletRequest request, HttpServletResponse response) throws Exception {	
 		logger.info("클릭한 id : "+id);
 		String viewName = (String)request.getAttribute("viewName");
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName(viewName);	
-		mav.addObject("adOrdVO", service.getOrdInfo(id));
+		mav.addObject("adOrdIngVO", service.getOrdIngInfo(id));
 		return mav;
 	}
 		
 	//주문 정보 수정 완료
 	@Override
-	@RequestMapping(value = "/adorder/ordUpdate.do", method = {RequestMethod.GET, RequestMethod.POST})
-	public ModelAndView updateAction(@ModelAttribute AdOrderVO vo, HttpServletRequest request, HttpServletResponse response) throws Exception {
+	@RequestMapping(value = "/adorder/ordIngUpdate.do", method = {RequestMethod.GET, RequestMethod.POST})
+	public ModelAndView updateAction(@ModelAttribute AdOrdIngVO vo, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		System.out.println("controller 주문코드:"+vo.getOrd_code());
 		request.setCharacterEncoding("utf-8");
 		service.updateOrdInfo(vo);
@@ -103,7 +103,7 @@ public class AdOrderControllerImpl implements AdOrderController {
 		return mav;	
 	}
 
-	//주문 정보 삭제
+	//결제취소 
 	@Override
 	@RequestMapping(value = "/adorder/removeOrd.do", method = RequestMethod.GET)
 	public ModelAndView removeOrd(@RequestParam("id") String id, HttpServletRequest request, HttpServletResponse response) throws Exception {

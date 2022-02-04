@@ -61,7 +61,7 @@
 		<put-attribute name="title" value="마이페이지 - 장바구니추가"/>장바구니-> 장바구니추가로 변경했음 
 		<put-attribute name="body" value="/WEB-INF/Views/User/Mypage/pickListAdd2.jsp"/>	
 	</definition> -->
-	<definition name="QnA" extends="mypagelayout">
+	<definition name="QandA" extends="mypagelayout">
 		<put-attribute name="title" value="상품 문의"/>		
 		<put-attribute name="body" value="/WEB-INF/Views/User/Mypage/QandA.jsp"/>
 	</definition>
