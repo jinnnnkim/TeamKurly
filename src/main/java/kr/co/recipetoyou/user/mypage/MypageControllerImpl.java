@@ -63,6 +63,13 @@ public class MypageControllerImpl implements MypageController{
 		return mav;
 	}
 
+	//주문내역 상세
+	@RequestMapping(value = "/orderDetail.do", method = RequestMethod.GET)
+	public ModelAndView orderDetail(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		
+		ModelAndView mav = new ModelAndView();	
+		return mav;
+	}
 	
 	@RequestMapping(value = "/giftList.do", method = RequestMethod.GET)
 	public ModelAndView giftList(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -89,27 +96,13 @@ public class MypageControllerImpl implements MypageController{
 	  }
 	  
 	  
-	  @RequestMapping(value = "/review.do", method = RequestMethod.GET) public
-	  ModelAndView review(HttpServletRequest request, HttpServletResponse response)
-	  throws Exception {
+	  @RequestMapping(value = "/review.do", method = RequestMethod.GET) 
+	  public ModelAndView review(HttpServletRequest request, HttpServletResponse response) throws Exception {
 	  
 	  ModelAndView mav = new ModelAndView();
-	  
-	  return mav; }
+	  return mav;
+	  }
 	 
-	@RequestMapping(value = "/QandA.do", method = RequestMethod.GET)
-	public ModelAndView QandA(HttpServletRequest request, HttpServletResponse response) throws Exception {
-
-
-	
-	
-	@RequestMapping(value = "/review.do", method = RequestMethod.GET)
-	public ModelAndView review(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		
-		ModelAndView mav = new ModelAndView();
-		
-		return mav;
-	}
 	
 	@RequestMapping(value = "/QnA.do", method = RequestMethod.GET)
 	public ModelAndView listQnA(HttpServletRequest request, HttpServletResponse response) throws Exception {

@@ -1,9 +1,11 @@
 package kr.co.recipetoyou.user.mypage.vo;
 
 import java.sql.Date;
+import java.util.List;
 
 import org.springframework.stereotype.Component;
 
+import kr.co.recipetoyou.admin.adgoods.AdgoodsImgVO;
 import kr.co.recipetoyou.main.cartPick.vo.ProdVO;
 import kr.co.recipetoyou.main.order.OrderVO;
 
@@ -26,7 +28,18 @@ public class OrdIngVO {
 	private OrderVO orderVO;
 	private Date ord_date;
 	
+	/* 상품 이미지 */
+	private List<AdgoodsImgVO> imageList;
 	
+	
+	
+	
+	public List<AdgoodsImgVO> getImageList() {
+		return imageList;
+	}
+	public void setImageList(List<AdgoodsImgVO> imageList) {
+		this.imageList = imageList;
+	}
 	public int getOrd_ing_code() {
 		return ord_ing_code;
 	}
