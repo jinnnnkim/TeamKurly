@@ -11,6 +11,7 @@ import kr.co.recipetoyou.user.mypage.vo.PointVO;
 import kr.co.recipetoyou.user.mypage.vo.UserAddrVO;
 
 import kr.co.recipetoyou.user.mypage.vo.QnAVO;
+import kr.co.recipetoyou.user.mypage.vo.ReviewVO;
 
 
 public interface MypageService {
@@ -31,5 +32,8 @@ public interface MypageService {
 
 	//상품문의
 	public List<QnAVO> listQnA() throws DataAccessException;
+	
+	//상품후기
+	public List<ReviewVO> listReviews() throws DataAccessException;
 
 }

@@ -20,6 +20,7 @@ import kr.co.recipetoyou.user.mypage.vo.PointVO;
 import kr.co.recipetoyou.user.mypage.vo.UserAddrVO;
 
 import kr.co.recipetoyou.user.mypage.vo.QnAVO;
+import kr.co.recipetoyou.user.mypage.vo.ReviewVO;
 
 
 @Controller("mypageController")
@@ -88,18 +89,21 @@ public class MypageControllerImpl implements MypageController{
 	  return mav; 
 	  }
 	  
-	  
-	  @RequestMapping(value = "/review.do", method = RequestMethod.GET) 
-	  public ModelAndView review(HttpServletRequest request, HttpServletResponse response) throws Exception {
-	  
-	  ModelAndView mav = new ModelAndView();
-	  
-	  return mav; 
-	  
-	  }
 	
+	@RequestMapping(value = "/review.do", method = RequestMethod.GET)
+	public ModelAndView listReviews(HttpServletRequest request, HttpServletResponse response) throws Exception {
+	  
+		String viewName = (String) request.getAttribute("viewName");
+		  
+		logger.info("info : "+ viewName); logger.debug("debug : "+ viewName);
+		  
+		List<ReviewVO> reviewList = mypageService.listReviews();
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("reviewList", reviewList);
+		return mav; 
+		}
 
-	@RequestMapping(value = "/QnA.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/QandA.do", method = RequestMethod.GET)
 	public ModelAndView listQnA(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
 		

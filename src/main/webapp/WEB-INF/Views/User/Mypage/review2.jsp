@@ -41,6 +41,7 @@
 					<!-- subtitle -->
 				</div>
 				<!-- head -->
+				
 				<table class="review_menu">
 					<tr>
 						<td class="review_before">작성가능 후기</td>
@@ -54,27 +55,30 @@
 						<td colspan="2">작성한 후기가 없습니다.</td>
 						--%>
 					<%--후기 존재 시 --%>
-					<td colspan="2">
-						<div class="review_prodName">
-							<span>[YOZM] 녹차 그릭 요거트100g</span>
-						</div>
-						<div class="review_box">
-							<div class="review_txtBox">
-								<span class="review_title">굿</span>
-								<span class="review_date"><span>22.01.04</span> 작성</span>
+					<c:forEach var="reviewList" items="${reviewList}">
+						<td colspan="2">
+							<div class="review_prodName">
+								<span>${reviewList.prod_name}</span>
 							</div>
-							<div class="prod">
-								<div class="img">
-									<img src="/recipetoyou/Resources/User/Img/goods6.jpg" />
+							<div class="review_box">
+								<div class="review_txtBox">
+									<span class="review_title">${reviewList.title}</span>
+									<span class="review_date"><span>${reviewList.reg_date}</span> 작성</span>
 								</div>
-								<div class="prodInfo">
-									<span class="prodSub">녹차 좋아해서 구매했는데 괜찮네요!</span>
+								<div class="prod">
+									<div class="img">
+										<img src="/recipetoyou/Resources/User/Img/goods6.jpg" />
+									</div>
+									<div class="prodInfo">
+										<span class="prodSub">${reviewList.content}</span>
+									</div>
 								</div>
 							</div>
-						</div>
-					</td>
+						</td>
+						</c:forEach>
 					</tr>
 				</table>
+				
 				<!-- review_menu -->
 			</div>
 			<!-- review_main -->
