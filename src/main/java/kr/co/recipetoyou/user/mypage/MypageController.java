@@ -1,6 +1,6 @@
 package kr.co.recipetoyou.user.mypage;
 
-import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletRequest;  
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -19,8 +19,14 @@ public interface MypageController {
 	
 	//포인트 내역 조회
 	public ModelAndView listPoints(HttpServletRequest request, HttpServletResponse response) throws Exception;
+
 	
 	//배송지관리 조회
 	public ModelAndView listAddress(HttpServletRequest request, HttpServletResponse response) throws Exception;
+	
+	//주문내역 조회
+	public ModelAndView listOrders(HttpServletRequest request, HttpServletResponse response) throws Exception;
 
+	//상품문의 조회
+	public ModelAndView listQnA(HttpServletRequest request, HttpServletResponse response) throws Exception;
 }

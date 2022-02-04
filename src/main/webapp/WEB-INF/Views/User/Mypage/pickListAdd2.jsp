@@ -24,7 +24,7 @@
 	href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400&display=swap"
 	rel="stylesheet">
 <!-- 파비콘 링크 -->
-<link href="/recipetoyou/Resources/User/Img/KurlyIcon.png" rel="icon"
+<link href="/recipetoyou/Resources/User/Img/Mypage2/KurlyIcon.png" rel="icon"
 	type="image/x-icon" />
 </head>
 <body>
@@ -71,6 +71,22 @@
 			<!-- pickadd_main -->
 		</div>
 		<!-- content -->
+	
+		
+<script type="text/javascript">
+	$(".btn_add").click(function () {
+		
+		var check = confirm("상품이 장바구니에 담겼습니다. 확인하시겠습니까?");
+		
+		if(check) {
+			location.assign("cart.do");
+		}
+		
+	})
+	
+	
+</script>
+	
 </body>
 </html>
 

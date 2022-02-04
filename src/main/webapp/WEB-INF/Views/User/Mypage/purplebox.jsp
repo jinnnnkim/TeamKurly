@@ -9,7 +9,7 @@
 <title>퍼플 박스</title>
 <link rel="stylesheet"
 	href="/recipetoyou/Resources/User/Css/Mypage2/mypageInfo.css">
-<link href="/recipetoyou/resources/User/Css/Mypage2/reset.css" rel="stylesheet"
+<link href="/recipetoyou/Resources/User/Css/Mypage2/reset.css" rel="stylesheet"
 	type="text/css">
 <link rel="stylesheet" href="/recipetoyou/Resources/User/Css/Mypage2/purple.css"
 	type="text/css">
@@ -23,7 +23,7 @@
 	href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400&display=swap"
 	rel="stylesheet">
 <!-- 파비콘 링크 -->
-<link href="/recipetoyou/Resources/User/Css/Img/KurlyIcon.png" rel="icon"
+<link href="/recipetoyou/Resources/User/Img/Mypage2/KurlyIcon.png" rel="icon"
 	type="image/x-icon" />
 </head>
 <body>

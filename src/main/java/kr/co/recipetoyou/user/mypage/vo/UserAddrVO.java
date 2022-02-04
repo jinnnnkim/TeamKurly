@@ -1,22 +1,28 @@
 package kr.co.recipetoyou.user.mypage.vo;
 
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Component;   
 
 import kr.co.recipetoyou.user.UserVO;
 
-@Component("addressVO")
-public class AddressVO {
+//사용자 주소 테이블
+@Component("useraddrVO")
+public class UserAddrVO {
 	
 	private String addr_code;
 	private String addr;
 	private String user_id;
 	private String delivery_type;
 	
-	//TB_USERS
+	//사용자 테이블
 	private UserVO userVO;
 	private String user_name;
 	private String user_phone;
-	private String user_addr;
+	
+	
+	public UserAddrVO() {
+		System.out.println("useraddrVO 호출");
+	}
+	
 	
 	public String getAddr_code() {
 		return addr_code;
@@ -42,12 +48,6 @@ public class AddressVO {
 	public void setDelivery_type(String delivery_type) {
 		this.delivery_type = delivery_type;
 	}
-	public UserVO getUserVO() {
-		return userVO;
-	}
-	public void setUserVO(UserVO userVO) {
-		this.userVO = userVO;
-	}
 	public String getUser_name() {
 		return user_name;
 	}
@@ -60,14 +60,9 @@ public class AddressVO {
 	public void setUser_phone(String user_phone) {
 		this.user_phone = user_phone;
 	}
-	public String getUser_addr() {
-		return user_addr;
-	}
-	public void setUser_addr(String user_addr) {
-		this.user_addr = user_addr;
-	}
 	
 	
 	
 	
+
 }

@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="contextPath" value="${pageContext.request.contextPath}" />	
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,7 +23,7 @@
 	href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400&display=swap"
 	rel="stylesheet">
 <!-- 파비콘 링크 -->
-<link href="/recipetoyou/Resources/User/Image/KurlyIcon.png" rel="icon"
+<link href="/recipetoyou/Resources/User/Img/Mypage2/KurlyIcon.png" rel="icon"
 	type="image/x-icon" />
 </head>
 <body>
@@ -38,13 +40,57 @@
 					<option value='2020'>2020</option>
 				</select>
 			</div>
-			<!-- head -->
+			
+		<!-- head -->
+		<c:forEach var="orderList" items="${orderList }">
 			<div class="order_list">
-				<ul>
-					<li>주문내역이 없습니다.</li>
-				</ul>
+				<div class="order_date_wrap">
+					<span class="order_date">${orderList.ord_date}</span>
+				</div>
+				<div class="orderlist_wrap">
+					<div class="order_tit">
+						<a>${orderList.prod_name}</a>
+						<i class="fas fa-chevron-right"></i>
+					</div>
+					
+					<div class="order_info">
+						<div class="order_info_img">
+							<a><img alt="" src="/recipetoyou/Resources/User/Img/goods1.jpg"></a>
+						</div>
+						<!-- order_info_img -->
+						<div class="desc">
+							<dl>
+								<dt>주문번호</dt>
+								<dd>${orderList.ord_code}</dd>
+							</dl>
+							<dl>
+								<dt>결제금액</dt>
+								<dd>${orderList.price}원</dd>
+							</dl>
+							<dl>
+								<dt>주문상태</dt>
+								<dd>${orderList.status}</dd>
+							</dl>
+						</div>
+						<!-- desc -->	
+					
+					</div>
+					<!-- order_info -->
+					<div class="order_status">
+						<span class="inner_status">
+						1:1 문의
+						</span>
+					</div>
+					<!-- order_status -->
+					
+					
+				</div>
+				<!-- orderlist_wrap -->
 			</div>
 			<!-- order_list -->
+			
+		</c:forEach>		
+			
 		</div>
 		<!-- order_main -->
 	</div>

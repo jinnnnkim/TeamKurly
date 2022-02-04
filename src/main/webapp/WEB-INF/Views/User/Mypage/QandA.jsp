@@ -9,7 +9,7 @@
 <title>마이페이지_주문내역</title>
 <link rel="stylesheet"
 	href="/recipetoyou/Resources/User/Css/Mypage2/mypageInfo.css">
-<link href="/recipetoyou/resources/User/Css/Mypage2/reset.css" rel="stylesheet"
+<link href="/recipetoyou/Resources/User/Css/Mypage2/reset.css" rel="stylesheet"
 	type="text/css">
 <link rel="stylesheet" href="/recipetoyou/Resources/User/Css/Mypage2/QandA.css"
 	type="text/css">
@@ -39,21 +39,30 @@
 					</ul>
 				</div>
 				<!-- head -->
-				<table class="QandA_main">
+				<table class="QnA_main">
 					<tr>
-						<th class="empty"></th>
+						<th class="no">번호</th>
 						<th class="title">제목</th>
 						<th class="date">작성일</th>
 						<th class="reply">답변상태</th>
 					</tr>
 				</table>
-				<!-- QandA_main -->
-				<div class="QandA_content">
-					<ul>
-						<li>작성한 상품 문의가 없습니다.</li>
-					</ul>
+				<!-- QnA_main -->
+				<c:forEach var="qnaList" items="${qnaList}">
+				<table class="QnA_content">
+					<tr>
+						<td class="content_no">1</td>
+						<td class="content_title" onclick="Open()">${qnaList.inq_title}</td>
+						<td class="content_date">${qnaList.inq_reg_date}</td>
+						<td class="content_reply">${qnaList.inq_status}</td>
+					</tr>
+				</table>
+				<div id="content">
+					<span>${qnaList.inq_content}</span>
+					<input type="button" value="수정" id="edit">
 				</div>
-				<!-- QandA_content -->
+				</c:forEach>
+				<!-- QnA_content -->
 				<div class="paging_navi">
 					<button type="button" class="paging_prev">
 						<i class="fas fa-chevron-left"></i>
@@ -67,6 +76,17 @@
 			<!-- review_main -->
 		</div>
 		<!-- content -->
+		
+	<script type="text/javascript">
+		function Open() {
+			if(document.getElementById('content').style.display === 'block') {
+				document.getElementById('content').style.display = 'none';
+		    } 
+			else {
+				document.getElementById('content').style.display = 'block';
+		    }
+		}
+	</script>
 </body>
 </html>
 
