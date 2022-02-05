@@ -161,20 +161,24 @@
 			$('#basicPrice').text($("#itemPrice").text());
 			$('.totalPrice').text($("#itemPrice").text());
 			$(".down").click(function() {
-				if (prodAmount > 1) {
-					prodAmount = parseInt(prodAmount) - 1;
-					$(".inp").val(prodAmount);
+				console.log("down");
+				let aa1 = $(this).parent("div").find(".inp");
+				let aa = $(this).parent("div").find(".inp").val();
+				if (aa > 1) {
+					aa = parseInt(aa) - 1;
+					aa1.val(aa);
 				} else {
 					alert('구매수량은 1개 이상이여야 합니다.');
 				}
-				priceInfo(prodAmount);
+				
 			});
 
 			$(".up").click(function() {
-				prodAmount = parseInt(prodAmount) + 1;
-				console.log(prodAmount);
-				$(".inp").val(prodAmount);
-				priceInfo(prodAmount);
+				console.log("up");
+				let aa1 = $(this).parent("div").find(".inp");
+				let aa = $(this).parent("div").find(".inp").val();
+				aa = parseInt(aa) + 1;
+				aa1.val(aa);
 				
 			});
 			

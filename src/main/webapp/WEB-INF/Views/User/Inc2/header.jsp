@@ -33,9 +33,8 @@
 				<div class="header">			<!-- header -->
 					<div id ="userMenu">		<!-- 로그인, 회원가입, 고객센터 목록 -->
 						<ul class="list_menu">	
-<<<<<<< HEAD
 							<li class="menu_list">	<!-- onclick시 카데고리  -->
-							<a href="${contextPath}/mypage/myinfo.do">마이페이지</a>
+							<a href="${contextPath}/orderList.do">마이페이지</a>
 								<a href="${contextPath}/notice/notice.do"  class ="link-menu3" onclick="">고객센터<i class="fas fa-caret-down"></i></a>
 							</li>
 							<li class="menu_login">
@@ -52,7 +51,6 @@
 							
 							<li class="menu_join"><a href="#"  class ="link-menu1" style=" color: #5f0080;">회원가입 &#124;</a></li>
 							
-=======
 							<c:choose>
 								<c:when test="${isLogOn == true && userVO != null }">
 									<li class="menu_login"><a href="#none" class ="link-menu2">${userVO.user_name}님</a></li>
@@ -71,7 +69,7 @@
 									<li class="menu_join"><a href="${contextPath}/join/regist.do"  class ="link-menu1" style=" color: #5f0080;">회원가입 &#124;</a></li>
 									</c:otherwise>
 								</c:choose>
->>>>>>> 73327b0b5319c321c2a70427a6ba4013a5acd816
+
 						</ul>
 					</div>
 				
@@ -79,14 +77,14 @@
 						<a href="#"><img alt="delivery" src="/recipetoyou/Resources/User/Img/delivery.png"></a>	
 					</div>
 					<div class="logo">
-						<a href="/View/User/mainPage.jsp"><img alt="logo" src="/recipetoyou//Resources/User/Img/logo.gif"></a>
+						<a href="${contextPath}/main.do"><img alt="logo" src="/recipetoyou//Resources/User/Img/logo.gif"></a>
 					</div>
 				
 		
 					<div id="catagoryMenu" class="Tcatagory" >	     <!-- 전체 카데고리 -->
 						<ul>
 							<li class="menu1">
-								<a href="${contextPath }/user/mainPage.do" onclick="">
+								<a href="${contextPath}/main.do" >
 									<span class="ico"><i class="fas fa-bars"></i></span>
 									<span class="txt">전체 카테고리</span>
 								</a>
