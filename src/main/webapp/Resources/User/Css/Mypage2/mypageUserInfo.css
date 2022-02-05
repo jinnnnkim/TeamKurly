@@ -96,7 +96,7 @@ td .birth input {
 .birth {
 	border: 1px solid #ccc;
 	border-radius: 3px;
-	width: 360px;
+	width: 361px;
 }
 
 .myInfoMain input[type="checkbox"] {
@@ -119,6 +119,7 @@ td .birth input {
 
 .form_footer {
 	margin: 40px 288px 0 288px;
+	display: flex;
 }
 
 .form_footer a, button {

@@ -6,12 +6,12 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>퍼플 박스</title>
-<link rel="stylesheet"
-	href="/recipetoyou/Resources/User/Css/Mypage2/mypageInfo.css">
+<title>배송지 관리</title>
+<link rel="stylesheet" href="/recipetoyou/Resources/User/Css/Mypage2/mypageInfo.css"
+	type="text/css">
 <link href="/recipetoyou/Resources/User/Css/Mypage2/reset.css" rel="stylesheet"
 	type="text/css">
-<link rel="stylesheet" href="/recipetoyou/Resources/User/Css/Mypage2/purple.css"
+<link href="/recipetoyou/Resources/User/Css/Mypage2/addrModify.css" rel="stylesheet"
 	type="text/css">
 <!-- fontawesome 링크 -->
 <link rel="stylesheet"
@@ -26,13 +26,23 @@
 <link href="/recipetoyou/Resources/User/Img/Mypage2/KurlyIcon.png" rel="icon"
 	type="image/x-icon" />
 </head>
+<meta charset="UTF-8">
+<title>배송지 수정</title>
+</head>
 <body>
-	<div class="main">
-		<div class="content">
-			<div class="main">
-				<img src="/recipetoyou/Resources/User/Img/Mypage2/img_main.jpg">
-			</div>
-		</div>
+	<div class="addrModify">
+		<h2>배송지 수정</h2>
+		<span class="basic_address">기본 배송지</span>
+		<p class="address">주소</p>
+		<input type="text" placeholder="나머지 주소를 입력해주세요">
+		
+		<p>받으실 분</p>
+		<input type="text" placeholder="이름을 입력해주세요">
+		
+		<p>휴대폰</p>
+		<input type="text" placeholder="번호를 입력해주세요">
+		<br>
+		<button type="submit" class="save">저장</button>
 	</div>
 </body>
 </html>

@@ -1,11 +1,13 @@
 package kr.co.recipetoyou.main.cartPick.vo;
 
-import java.sql.Date;
+import java.sql.Date;  
 import java.util.List;
 
 import org.springframework.stereotype.Component;
 
 import kr.co.recipetoyou.admin.adgoods.AdgoodsImgVO;
+import kr.co.recipetoyou.user.mypage.vo.UserAddrVO;
+
 
 
 //상품 테이블 TB_PROD

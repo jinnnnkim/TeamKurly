@@ -27,6 +27,15 @@
   		<result property="prod_code" column="prod_code" />
   	</resultMap>
 
+  	<resultMap type="adOrdIngVO" id="ordIngResult">	
+  		<result property="ord_ing_code" column="ord_ing_code" />
+  		<result property="prod_code" column="prod_code" />
+  		<result property="ord_code" column="ord_code" />
+  		<result property="user_id" column="user_id" />
+    	<result property="quantity" column="quantity" />
+  		<result property="price" column="price" />
+  		<result property="status" column="status" />
+  	</resultMap>
   
   
 	<!-- 페이지정보를 10개씩 가져오기 -->
@@ -73,20 +82,21 @@
 		]]>
 	</select>
 	
-	<!-- 주문 정보 삭제  -->
+	<!-- 결제 취소  -->
 	<delete id="deleteOrd" parameterType="String">
 		<![CDATA[
-			delete from tb_order
-			where ord_code = #{id}
+			delete from tb_payment_card_reg tpc
+			where tpc.user_id = #{id}
 		]]>
 	</delete>
 	
 	<!-- 주문 상세 정보 조회 -->
-	<select id="readOrd" resultMap="orderResult" parameterType="String">
+	<select id="readOrdIng" resultMap="ordIngResult" parameterType="int">
 		<![CDATA[
-			select *
-			from tb_order
-			where ord_code = #{id}
+			select toi.*
+			from tb_ord_ing toi, tb_order toa
+			where toa.ord_code = toi.ord_code 
+			and toa.ord_code = #{id}
 		]]>
 	</select>
 	
@@ -99,16 +109,17 @@
 	</select>
 	
 	<!-- 주문 정보 수정 -->
-	<update id="updateOrd" parameterType="adOrderVO">
+	<update id="updateOrdIng" parameterType="adOrdIngVO">
 		<![CDATA[
-			update tb_order set
-			user_name = #{user_name},			
-			user_phone = #{user_phone},
-			user_addr = #{user_addr}
-			where ord_code = #{ord_code}
+			update tb_ord_ing set		
+			prod_code = #{prod_code},
+			ord_code = #{ord_code},
+			quantity = #{quantity},
+			price = #{price},
+			status = #{status}
+			where ord_ing_code = #{ord_ing_code}
 		]]>
 	</update>
-
 </mapper>
   
   

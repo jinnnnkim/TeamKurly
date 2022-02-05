@@ -11,14 +11,14 @@ public class AdOrdIngVO {
 	private String user_id;
 	private int quantity;
 	private int price;
-	private int status;
+	private String status;
 	
 	public AdOrdIngVO() {
 		// TODO Auto-generated constructor stub
 	}
 	
 	public AdOrdIngVO(int ord_ing_code, int prod_code, int ord_code, String user_id, int quantity, int price,
-			int status) {
+			String status) {
 		super();
 		this.ord_ing_code = ord_ing_code;
 		this.prod_code = prod_code;
@@ -77,11 +77,11 @@ public class AdOrdIngVO {
 		this.price = price;
 	}
 
-	public int getStatus() {
+	public String getStatus() {
 		return status;
 	}
 
-	public void setStatus(int status) {
+	public void setStatus(String status) {
 		this.status = status;
 	}
 	

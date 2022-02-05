@@ -35,7 +35,7 @@
 			<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right-square-fill" viewBox="0 0 16 16">
   			<path d="M0 14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2a2 2 0 0 0-2 2v12zm4.5-6.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5a.5.5 0 0 1 0-1z"/>
 			</svg>
-			주문관리
+			주문/결제관리
 		</div>
 	<form action="#" method="post">
 		<div class="list_head">
@@ -123,8 +123,8 @@
 					<td>${ord.pay_card_idx }</td>
 					<td>${ord.ord_date }</td>
 					<!--  -->
-					<td><button type="button"><a href="${contextPath}/adorder/modOrdInfo.do?id=${ord.ord_code}">수정</a></button></td>
-					<td><button onclick="deleteMessage()"><a href="${contextPath}/adorder/removeOrd.do?id=${ord.ord_code}">삭제</a></button></td>
+					<td><button type="button"><a href="${contextPath}/adorder/modOrdIngInfo.do?id=${ord.ord_code}">주문수정</a></button></td>
+					<td><button onclick="deleteMessage()"><a href="${contextPath}/adorder/removeOrd.do?id=${ord.ord_code}">결제취소</a></button></td>
 				</tr>
 			</c:forEach>
 		</tbody>	
