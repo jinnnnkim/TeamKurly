@@ -24,7 +24,7 @@
 	href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400&display=swap"
 	rel="stylesheet">
 <!-- 파비콘 링크 -->
-<link href="/recipetoyou/Resources/User/Img/KurlyIcon.png" rel="icon"
+<link href="/recipetoyou/Resources/User/Img/Mypage2/KurlyIcon.png" rel="icon"
 	type="image/x-icon" />
 </head>
 <body>
@@ -59,7 +59,7 @@
 				</tr>
 			</table>
 			<!-- point_cate -->
-			 <c:forEach var="pointList" items="${pointList}">
+			<c:forEach var="pointList" items="${pointList}">
 			<table class="point_main">
 				<tr>
 					<td class="main_date">${pointList.accum_date}</td>
@@ -67,7 +67,6 @@
 					<td class="main_vaild">${pointList.use_date}</td>
 					<td class="main_price">${pointList.point}원</td>
 				</tr>
-
 			</table>
 			<!-- point_main -->
 			</c:forEach>

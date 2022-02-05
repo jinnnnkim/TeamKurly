@@ -32,29 +32,43 @@
 		<div class="pickadd_main">
 			<div class="head">
 				<h2 class="title">
-					찜한 상품() <span class="subtitle">찜한 상품은 최대 200개까지 저장됩니다.</span>
+					주문내역상세
 				</h2>
+				<div class="order_num">
+				주문번호
+				</div>
+				<div class="sub_link">
+					배송 또는 상품에 문제가 있나요?
+					<a class="qb_link" href="${contextPath}/notice/noticeOneToOneQuestionDetail.do">1:1 문의하기</a>
+				</div>
 			</div>
 			<!-- head -->
 			<div class="pickpick">
-		<c:forEach var="pickList" items="${pickList}">
+	
 					<div class="pick_add_list">
 						<div>
 							<img id="thumbnail"
 								src="/recipetoyou/Resources/User/Img/Mypage2/thumbnail.jpg">
 						</div>
 						<div class="subject">
-							<a href="">${pickList.prod_name}</a>
-							<div class="price">
-								<span class="discountRate">${pickList.prod_discount}%</span> <span class="discountPrice">3,627원</span>
-								<span class="costPrice">${pickList.prod_price}원</span>
+							<a href="">상품 이름</a>
+							
+							<div class="goods_content">
+								<span class="goods_sub">상품 내용</span>
 							</div>
+							
+							<div class="goods_price">
+								 <span class="goods_discountPrice">10,000원</span>
+								 <span class="goods_costPrice">15,000원</span>
+							</div> 
+							
 							<!-- price -->
 						</div>
 						<!-- subject -->
+						
 						<div class="button_two">	<!-- 쿼리스트링으로 넘어가는 값은 파라미터=값(파라미터 이름으로 적용) -->
-							<a href="${contextPath}/removePick.do?prod_name=${pickList.prod_name}">
-								<button class="btn_delete">삭제</button>
+							<a href="#">
+								<button class="btn_review">후기완료</button>
 							</a>
 							<br/>
 							<button class="btn_add">
@@ -64,9 +78,20 @@
 						<!-- button_two -->
 					</div>
 					<!-- pick_add_list -->
-			</c:forEach>
+		
 				</div>
 				<!-- pickpick -->
+				
+				<div class="order_cancle">
+					<div class="inner_cancle">
+						<button type="button" class="all_cart">전체 상품 다시 담기</button>
+						<button type="button" class="all_cart_cancle">전체 상품 주문 취소</button>
+					</div>
+					<p class="cancle_notice">주문취소는 ‘배송준비중’ 이전 상태일 경우에만 가능합니다.</p>
+				</div>
+				
+				
+				
 			</div>
 			<!-- pickadd_main -->
 		</div>

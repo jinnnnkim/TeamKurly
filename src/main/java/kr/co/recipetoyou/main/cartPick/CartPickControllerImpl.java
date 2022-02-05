@@ -111,9 +111,6 @@ public class CartPickControllerImpl implements CartPickController {
 	}
 
 
-
-
-
 	//장바구니 담기
 	@Override
 	@RequestMapping(value = "/cartPick/addCartPick2.do", method ={RequestMethod.GET, RequestMethod.POST}) 
@@ -170,6 +167,7 @@ public class CartPickControllerImpl implements CartPickController {
 		return mav;
 	}
 
+	
 
 }
 

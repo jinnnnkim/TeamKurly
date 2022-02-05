@@ -69,11 +69,11 @@
 
 							<div class="inner_option">
 								<!-- inner_option -->
-								<button type="button" class="btn down">
+								<button type="button" class="btn down${cartList.prod_code }">
 									<i class="fas fa-minus"></i>
 								</button>
 								<input type="number" readonly="readonly" class="inp" value="1">
-								<button type="button" class="btn up">
+								<button type="button" class="btn up${cartList.prod_code }">
 									<i class="fas fa-plus"></i>
 								</button>
 							</div>

@@ -1,6 +1,6 @@
 package kr.co.recipetoyou.user.mypage;
 
-import java.util.List;
+import java.util.List; 
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
@@ -8,12 +8,18 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import kr.co.recipetoyou.user.mypage.vo.AddressVO;
 import kr.co.recipetoyou.user.mypage.vo.CouponVO;
+import kr.co.recipetoyou.user.mypage.vo.OrdIngVO;
 import kr.co.recipetoyou.user.mypage.vo.PointVO;
 
+import kr.co.recipetoyou.user.mypage.vo.UserAddrVO;
+
+import kr.co.recipetoyou.user.mypage.vo.QnAVO;
+import kr.co.recipetoyou.user.mypage.vo.ReviewVO;
+
+
 @Service("mypageService")
-@Transactional(propagation =  Propagation.REQUIRED)
+@Transactional(propagation = Propagation.REQUIRED)
 public class MypageServiceImpl implements MypageService{
 	
 	@Autowired
@@ -39,13 +45,37 @@ public class MypageServiceImpl implements MypageService{
 		List<PointVO> pointList = mypageDAO.selectAllPointList();
 		return pointList;
 	}
+	
+	 //배송지관리
+	 @Override 
+	 public List<UserAddrVO> listAddress() throws DataAccessException {
+		  
+		 System.out.println("addr Service 호출");
+	 
+		 List<UserAddrVO> addressList = mypageDAO.selectAllAddressList(); 
+		 return addressList; 
+	 }
 
-	//배송지관리
+	//상품문의
 	@Override
-	public List<AddressVO> listAddress() throws DataAccessException {
-		List<AddressVO> addressList = mypageDAO.selectAllAddressList();
-		return addressList;
+	public List<QnAVO> listQnA() throws DataAccessException {
+		List<QnAVO> qnaList = mypageDAO.selectAllQnAList();
+		return qnaList;
 	}
 
+	 //주문내역 조회
+	@Override
+	public List<OrdIngVO> listOrders() throws DataAccessException {
+		List<OrdIngVO> OderList = mypageDAO.selectAllOrderList();
+		return OderList;
+	}
+
+	//상품후기 조회
+	@Override
+	public List<ReviewVO> listReviews() throws DataAccessException {
+		List<ReviewVO> reviewList = mypageDAO.selectAllReviewList();
+		return reviewList;
+	}
+	 
 
 }

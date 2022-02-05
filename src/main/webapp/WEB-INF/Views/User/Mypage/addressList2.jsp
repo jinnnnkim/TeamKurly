@@ -23,7 +23,7 @@
 	href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400&display=swap"
 	rel="stylesheet">
 <!-- 파비콘 링크 -->
-<link href="/recipetoyou/Resources/User/Img/Mypage/KurlyIcon.png" rel="icon"
+<link href="/recipetoyou/Resources/User/Img/Mypage2/KurlyIcon.png" rel="icon"
 	type="image/x-icon" />
 </head>
 	<div class="content">
@@ -42,26 +42,32 @@
 					<th class="title_name">받으실 분</th>
 					<th class="title_phone">연락처</th>
 					<th class="title_delivery">배송유형</th>
-					<th class="title_modify">수정</th>
+					<th class="title_modify" onclick="popupOpen()">수정</th>
 				</tr>
+			
 			</table>
-			<c:forEach var="addressList" items="${addressList}">
+		
+		
+		<c:forEach var="addressList" items="${addressList}">	
 			<table class="address_content">
 				<tr>
-					<td class="select_btn"><input type="radio" name="select"></td>
+					<td class="select_btn">
+						<input type="radio" name="select"></td>
 					<td class="address">
 						<p class="basic_address">기본 배송지</p>
-						<p class="detail_address">${addressList.user_addr}</p>
+						<p class="detail_address">${addressList.addr}</p>
 					</td>
 					<td class="name">${addressList.user_name}</td>
 					<td class="phone">${addressList.user_phone}</td>
 					<td class="delivery_type"><p>${addressList.delivery_type}</p></td>
-					<td class="modify"><a href="" class="modify_pop" onclick="window.open('');">
+					<td class="modify"><a href="addrModify.jsp" class="modify_pop"
+						onclick="window.open(this.href, '_blank', 'width=600px, height=600px, toolbars=no, scrollbars=no'); return false;">
 						<img src="/recipetoyou/Resources/User/Img/Mypage2/ico_modify_x2.png"></a> 
 					</td>
-				</tr>
+				</tr>	
 			</table>
-			</c:forEach>
+		</c:forEach>
+			
 		</div>
 		<%--address_main end --%>
 	</div>
@@ -101,7 +107,6 @@
 		            }
 		        }).open();
 		    }
-		 
 		
 	</script>
 </body>

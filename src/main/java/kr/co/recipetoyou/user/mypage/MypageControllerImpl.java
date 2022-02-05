@@ -1,6 +1,6 @@
 package kr.co.recipetoyou.user.mypage;
 
-import java.util.List;
+import java.util.List; 
 
 import javax.servlet.http.HttpServletRequest; 
 import javax.servlet.http.HttpServletResponse;
@@ -13,9 +13,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import kr.co.recipetoyou.user.mypage.vo.AddressVO;
 import kr.co.recipetoyou.user.mypage.vo.CouponVO;
+import kr.co.recipetoyou.user.mypage.vo.OrdIngVO;
 import kr.co.recipetoyou.user.mypage.vo.PointVO;
+
+import kr.co.recipetoyou.user.mypage.vo.UserAddrVO;
+
+import kr.co.recipetoyou.user.mypage.vo.QnAVO;
+import kr.co.recipetoyou.user.mypage.vo.ReviewVO;
+
 
 @Controller("mypageController")
 public class MypageControllerImpl implements MypageController{
@@ -24,15 +30,21 @@ public class MypageControllerImpl implements MypageController{
 	
 	@Autowired
 	private MypageService mypageService;
-	
 	@Autowired
 	private CouponVO couponVO;
-	
 	@Autowired
 	private PointVO pointVO;
 
+	
 	@Autowired
-	private AddressVO addressVO;
+	private UserAddrVO useraddrVO;
+	
+	@Autowired
+	private OrdIngVO ordingVO;
+
+	@Autowired
+	private QnAVO qnaVO;
+
 
 	@RequestMapping(value = "/mypage/main.do", method = RequestMethod.GET)
 	public ModelAndView main(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -41,27 +53,66 @@ public class MypageControllerImpl implements MypageController{
 		return mav;
 	}
 	
-	@RequestMapping(value = "/orderList.do", method = RequestMethod.GET)
-	public ModelAndView orderList(HttpServletRequest request, HttpServletResponse response) throws Exception {
+	
 
+	@RequestMapping(value = "/orderList.do", method = RequestMethod.GET)
+	public ModelAndView listOrders(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
+		List<OrdIngVO> orderList = mypageService.listOrders();
 		ModelAndView mav = new ModelAndView();
+		mav.addObject("orderList", orderList);
+		return mav;
+	}
+
+	//주문내역 상세
+	@RequestMapping(value = "/orderDetail.do", method = RequestMethod.GET)
+	public ModelAndView orderDetail(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
+		ModelAndView mav = new ModelAndView();	
 		return mav;
 	}
 	
 	@RequestMapping(value = "/giftList.do", method = RequestMethod.GET)
 	public ModelAndView giftList(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
-		ModelAndView mav = new ModelAndView();
-		
+		ModelAndView mav = new ModelAndView();	
 		return mav;
 	}
 	
 
 	
+	//배송지 조회
 	@RequestMapping(value = "/addresslist.do", method = RequestMethod.GET)
-	public ModelAndView listAddress(HttpServletRequest request, HttpServletResponse response) throws Exception {
+	  public ModelAndView listAddress(HttpServletRequest request, HttpServletResponse response) throws Exception {
+	  
+	  String viewName = (String) request.getAttribute("viewName");
+	  
+	  logger.info("info : "+ viewName); logger.debug("debug : "+ viewName);
+	  
+	  System.out.println("addrlist Controller 호출"); 
+	  List<UserAddrVO> addressList = mypageService.listAddress();
+	  ModelAndView mav = new ModelAndView();
+	  mav.addObject("addressList", addressList);
+	  return mav; 
+	  }
+	  
+	
+	@RequestMapping(value = "/review.do", method = RequestMethod.GET)
+	public ModelAndView listReviews(HttpServletRequest request, HttpServletResponse response) throws Exception {
+	  
+		String viewName = (String) request.getAttribute("viewName");
+		  
+		logger.info("info : "+ viewName); logger.debug("debug : "+ viewName);
+		  
+		List<ReviewVO> reviewList = mypageService.listReviews();
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("reviewList", reviewList);
+		return mav; 
+		}
+
+	@RequestMapping(value = "/QandA.do", method = RequestMethod.GET)
+	public ModelAndView listQnA(HttpServletRequest request, HttpServletResponse response) throws Exception {
+
 		
 		String viewName = (String) request.getAttribute("viewName");
 		
@@ -69,29 +120,14 @@ public class MypageControllerImpl implements MypageController{
 		logger.debug("debug : "+ viewName);
 	
 		
-		List<AddressVO> addresslist = mypageService.listAddress();
+		List<QnAVO> qnaList = mypageService.listQnA();
 		ModelAndView mav = new ModelAndView();
-		mav.addObject("addresslist", addresslist);
+		mav.addObject("qnaList", qnaList);
 	
 		return mav;
 	}
 	
-	@RequestMapping(value = "/review.do", method = RequestMethod.GET)
-	public ModelAndView review(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		
-		ModelAndView mav = new ModelAndView();
-		
-		return mav;
-	}
-	
-	@RequestMapping(value = "/QandA.do", method = RequestMethod.GET)
-	public ModelAndView QandA(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		
-		ModelAndView mav = new ModelAndView();
-		
-		return mav;
-	}
-	
+	//포인트 조회
 	@RequestMapping(value = "/point.do", method = RequestMethod.GET)
 	public ModelAndView listPoints(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
@@ -158,6 +194,7 @@ public class MypageControllerImpl implements MypageController{
 		return mav;
 	}
 
+	
 
 }
 

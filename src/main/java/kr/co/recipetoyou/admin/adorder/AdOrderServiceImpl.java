@@ -30,11 +30,11 @@ public class AdOrderServiceImpl implements AdOrderService {
 		
 	//주문 상세 정보 조회
 	@Override
-	public AdOrderVO getOrdInfo(String id) throws DataAccessException {		
-		return dao.readOrd(id);
+	public AdOrdIngVO getOrdIngInfo(int id) throws DataAccessException {		
+		return dao.readOrdIng(id);
 	}
 		
-	//주문 정보 삭제
+	//결제취소
 	@Override
 	public int removeOrd(String id) throws DataAccessException {	
 		return dao.deleteOrd(id);	
@@ -42,7 +42,7 @@ public class AdOrderServiceImpl implements AdOrderService {
 		
 	//주문 정보 수정
 	@Override
-	public void updateOrdInfo(AdOrderVO vo) throws DataAccessException {
-		dao.updateOrd(vo);	
+	public void updateOrdInfo(AdOrdIngVO vo) throws DataAccessException {
+		dao.updateOrdIng(vo);	
 	}
 }
