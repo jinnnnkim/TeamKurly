@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.sql.Date;
 import java.util.List;
 
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -39,8 +40,8 @@ public interface AdGoodsController {
 	//상품 등록 페이지로 이동
 	public ModelAndView moveRegister(Model model, HttpServletRequest request, HttpServletResponse response) throws Exception;
 	
-	//상품 카테고리 검색
-	public void listCategory(Model model) throws Exception;
+	//상품 검색
+	public String searhGoods(PagingVO vo, Model model)throws Exception;
 	
 	//상품 등록
 	public ModelAndView uploadGoodsRegister(AdGoodsVO agvo, RedirectAttributes rttr) throws Exception;
@@ -63,4 +64,12 @@ public interface AdGoodsController {
 	
 	//상품 정보 삭제
 	public ModelAndView goodsDelete(int prod_code, RedirectAttributes rttr, HttpServletRequest request, HttpServletResponse response) throws Exception;
+	
+	//ck에디터 이미지 업로드
+	public void imageUpload(HttpServletRequest request, HttpServletResponse response, MultipartHttpServletRequest multiFile , @RequestParam MultipartFile upload) throws Exception;
+	
+	//ck이미지 전송
+	public void ckSubmit(@RequestParam(value="uid") String uid , @RequestParam(value="fileName") String fileName 
+			, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException;
+	
 }

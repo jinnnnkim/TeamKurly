@@ -125,7 +125,7 @@
 									<div class="file_div">
 											<label for="fileItem" class="input-file-btn">이미지 찾기</label>
 											<!-- <button type="button" class="file_button btn">이미지 찾기</button> -->
-											<input type="file"  multiple="multiple" id="fileItem" name="file" name='uploadFile'>
+											<!-- <input type="file"  multiple="multiple" id="fileItem" name="file" name='uploadFile'> -->
 											<div id="uploadArea">
 											<!-- <div class="preview"><img id="goodsImg" alt="" src="" width="300px" height="300px"></div> -->
 											
@@ -360,6 +360,7 @@
 				let str = "";
 				str += "<div id = 'result_card'>";
 				str += "<img src='/recipetoyou/Resources/Admin/Img/SubgoodsImg/ready.jpg'>";
+				str += "</div>";
 				
 				uploadArea.html(str);
 				
@@ -373,7 +374,7 @@
 			str += "<div id='result_card'";
 			str += "data-path='" + obj.uploadPath + "' data-uuid='" + obj.uuid + "' data-filename='" + obj.fileName + "'";
 			str += ">";
-			str += "<img src='${contextPath}/adgoods/getImageInfo.do?fileName=" + fileCallPath +"'>";
+			str += "<img src='/adgoods/getImageInfo.do?fileName=" + fileCallPath +"'>";
 			str += "</div>";
 			
 			uploadArea.html(str);

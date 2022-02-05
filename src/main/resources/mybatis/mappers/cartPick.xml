@@ -6,7 +6,6 @@
 <mapper namespace="mapper.cartPick">					<!-- member.xml의 네임스페이스 지정 -->
 	
 
-	<resultMap type="pickVO" id="CartPickResult">	
 
 	<!-- <resultMap type="CartPickVO" id="CartPickResult">	
 		<result property="cart_code" column="cart_code"/>		

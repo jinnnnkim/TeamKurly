@@ -44,19 +44,5 @@ $(document).ready(function() {
 		  		
 
 
-//상품명 검색
-$("#searchBtn").on("click", function(e){
-	e.preventDefault();
-	let val = $("input[name='keyword']").val();
-	let val2 = searchForm.find("input[name='keyword']").val(val);
-	let val3 = searchForm.find("input[name='page']").val(1);
-	
-	alert(val);
-	alert(val2);
-	alert(val3);
-	
-    searchForm.submit();
-    
-   
-});    						
+    						
 
