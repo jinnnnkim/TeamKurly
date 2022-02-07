@@ -20,6 +20,7 @@
 		<typeAlias type="kr.co.recipetoyou.admin.adgoods.AdGoodsVO" alias="adGoodsVO"/>
 		<typeAlias type="kr.co.recipetoyou.admin.adgoods.category.AdGoodsCateVO" alias="adGoodsCateVO"/>
 		<typeAlias type="kr.co.recipetoyou.admin.adgoods.stock.AdGoodsStockVO" alias="adGoodsStockVO"/>
+		<typeAlias type="kr.co.recipetoyou.admin.adgoods.AdgoodsImgVO" alias="adGoodsImgVO"/>
 		
 		<typeAlias type="kr.co.recipetoyou.admin.adsend.AdSendVO" alias="adSendVO"/>
 		<typeAlias type="kr.co.recipetoyou.admin.adsend.ademail.AdEmailVO" alias="adEmailVO"/>
@@ -44,7 +45,7 @@
 		<typeAlias type="kr.co.recipetoyou.user.mypage.vo.PointUseVO" alias="pointuseVO"/>
 		<typeAlias type="kr.co.recipetoyou.main.cartPick.vo.CartAddVO" alias="cartAddVO"/>
 		<typeAlias type="kr.co.recipetoyou.main.cartPick.vo.FavVO" alias="favVO"/>
-		<typeAlias type="kr.co.recipetoyou.user.mypage.vo.OrdIngVO" alias="ordingVO"/>
+		<typeAlias type="kr.co.recipetoyou.user.mypage.vo.MyOrderVO" alias="myorderVO"/>
 		
 		
 

@@ -15,10 +15,9 @@ import kr.co.recipetoyou.user.mypage.vo.UserAddrVO;
 public class ProdVO {
 	
 	private int prod_code;
-	private String prodcatecode;
+	private String catecode;
 	private String prod_name;
 	private String prod_content;
-
 	private int prod_price;
 	private int prod_discount;
 	private int prod_sell_unit;
@@ -43,42 +42,17 @@ public class ProdVO {
 	private String addr;
 	private String delivery_type;
 	
-	
-
-	public void setUseraddrVO(UserAddrVO useraddrVO) {
-		this.useraddrVO = useraddrVO;
-	}
-	public String getUser_id() {
-		return user_id;
-	}
-	public void setUser_id(String user_id) {
-		this.user_id = user_id;
-	}
-	public String getAddr() {
-		return addr;
-	}
-	public void setAddr(String addr) {
-		this.addr = addr;
-	}
-	public String getDelivery_type() {
-		return delivery_type;
-	}
-	public void setDelivery_type(String delivery_type) {
-		this.delivery_type = delivery_type;
-	}
-	
-	
 	public int getProd_code() {
 		return prod_code;
 	}
 	public void setProd_code(int prod_code) {
 		this.prod_code = prod_code;
 	}
-	public String getProdcatecode() {
-		return prodcatecode;
+	public String getCatecode() {
+		return catecode;
 	}
-	public void setProdcatecode(String prodcatecode) {
-		this.prodcatecode = prodcatecode;
+	public void setCatecode(String catecode) {
+		this.catecode = catecode;
 	}
 	public String getProd_name() {
 		return prod_name;
@@ -92,7 +66,6 @@ public class ProdVO {
 	public void setProd_content(String prod_content) {
 		this.prod_content = prod_content;
 	}
-	
 	public int getProd_price() {
 		return prod_price;
 	}
@@ -171,13 +144,41 @@ public class ProdVO {
 	public void setProd_vaild_date(Date prod_vaild_date) {
 		this.prod_vaild_date = prod_vaild_date;
 	}
-	
 	public List<AdgoodsImgVO> getImageList() {
 		return imageList;
 	}
 	public void setImageList(List<AdgoodsImgVO> imageList) {
 		this.imageList = imageList;
 	}
+	public UserAddrVO getUseraddrVO() {
+		return useraddrVO;
+	}
+	public void setUseraddrVO(UserAddrVO useraddrVO) {
+		this.useraddrVO = useraddrVO;
+	}
+	public String getUser_id() {
+		return user_id;
+	}
+	public void setUser_id(String user_id) {
+		this.user_id = user_id;
+	}
+	public String getAddr() {
+		return addr;
+	}
+	public void setAddr(String addr) {
+		this.addr = addr;
+	}
+	public String getDelivery_type() {
+		return delivery_type;
+	}
+	public void setDelivery_type(String delivery_type) {
+		this.delivery_type = delivery_type;
+	}
+	
+	
+
+	
+
 }
 
 

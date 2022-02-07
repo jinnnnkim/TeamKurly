@@ -4,8 +4,10 @@ import java.util.List;
 
 import org.springframework.dao.DataAccessException;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+
 import kr.co.recipetoyou.user.mypage.vo.CouponVO;
-import kr.co.recipetoyou.user.mypage.vo.OrdIngVO;
+import kr.co.recipetoyou.user.mypage.vo.MyOrderVO;
 import kr.co.recipetoyou.user.mypage.vo.PointVO;
 
 import kr.co.recipetoyou.user.mypage.vo.UserAddrVO;
@@ -28,8 +30,13 @@ public interface MypageService {
 	public List<UserAddrVO> listAddress() throws DataAccessException;
 	
 	//주문내역 조회
-	public List<OrdIngVO> listOrders() throws DataAccessException;
+	public List<MyOrderVO> listOrders() throws DataAccessException;
 
+	//주문 상세 페이지
+	public MyOrderVO orderDetail(int ord_code) throws Exception;
+	
+
+	
 	//상품문의
 	public List<QnAVO> listQnA() throws DataAccessException;
 	

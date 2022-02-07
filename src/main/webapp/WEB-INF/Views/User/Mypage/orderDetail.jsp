@@ -26,6 +26,7 @@
 <!-- 파비콘 링크 -->
 <link href="/recipetoyou/Resources/User/Img/Mypage2/KurlyIcon.png" rel="icon"
 	type="image/x-icon" />
+<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>		
 </head>
 <body>
 	<div class="content">
@@ -35,8 +36,9 @@
 					주문내역상세
 				</h2>
 				<div class="order_num">
-				주문번호
+					${myorderVO.ord_code}
 				</div>
+				
 				<div class="sub_link">
 					배송 또는 상품에 문제가 있나요?
 					<a class="qb_link" href="${contextPath}/notice/noticeOneToOneQuestionDetail.do">1:1 문의하기</a>
@@ -46,20 +48,33 @@
 			<div class="pickpick">
 	
 					<div class="pick_add_list">
-						<div>
+							<!-- 이미지 정보가 담기도록 함. css 깨짐-->
+					<%-- 	<div class="image_wrap" data-prod_code="${cartList.imageList[0].prod_code}" data-path="${cartList.imageList[0].uploadPath}"
+												data-uuid="${cartList.imageList[0].uuid}" data-filename="${cartList.imageList[0].fileName}">  --%>
+						<a href="#"> 
+						
 							<img id="thumbnail"
 								src="/recipetoyou/Resources/User/Img/Mypage2/thumbnail.jpg">
-						</div>
+						</a>
+						
 						<div class="subject">
-							<a href="">상품 이름</a>
+							<a href="">
+								${myorderVO.prod_name}
+							 </a>
 							
 							<div class="goods_content">
-								<span class="goods_sub">상품 내용</span>
+								<span class="goods_sub">
+									${myorderVO.prod_content}
+								</span>
 							</div>
 							
 							<div class="goods_price">
-								 <span class="goods_discountPrice">10,000원</span>
-								 <span class="goods_costPrice">15,000원</span>
+								 <span class="goods_discountPrice">
+									${myorderVO.price}원
+								 </span>
+								 <span class="goods_costPrice">
+								 	 ${myorderVO.prod_discount}원
+								 </span>
 							</div> 
 							
 							<!-- price -->
@@ -84,8 +99,8 @@
 				
 				<div class="order_cancle">
 					<div class="inner_cancle">
-						<button type="button" class="all_cart">전체 상품 다시 담기</button>
-						<button type="button" class="all_cart_cancle">전체 상품 주문 취소</button>
+						<button type="button" class="all_cart">상품 다시 담기</button>
+						<button type="button" class="all_cart_cancle">주문 취소</button>
 					</div>
 					<p class="cancle_notice">주문취소는 ‘배송준비중’ 이전 상태일 경우에만 가능합니다.</p>
 				</div>
@@ -107,7 +122,25 @@
 			location.assign("cart.do");
 		}
 		
-	})
+	});
+		//이미지 삽입
+	$(".image_wrap").each(function(i, obj){
+		
+		const bobj = $(obj);
+		if(bobj.data("prod_code")){
+			
+			const uploadPath = bobj.data("path");
+			const uuid = bobj.data("uuid");
+			const fileName = bobj.data("filename");
+			
+			const fileCallPath = encodeURIComponent(uploadPath + "/s_" + uuid + "_" + fileName);
+			
+			$(this).find("img").attr('src', '${contextPath}/adgoods/getImageInfo.do?fileName=' + fileCallPath);
+			
+			}else {
+				$(this).find("img").attr('src', '/recipetoyou/Resources/Admin/Img/SubgoodsImg/ready.jpg');
+			}
+	});
 	
 	
 </script>
