@@ -33,10 +33,6 @@
 				<div class="header">			<!-- header -->
 					<div id ="userMenu">		<!-- 로그인, 회원가입, 고객센터 목록 -->
 						<ul class="list_menu">	
-
-							
-							<li class="menu_join"><a href="#"  class ="link-menu1" style=" color: #5f0080;">회원가입 &#124;</a></li>
-							
 							<c:choose>
 								<c:when test="${isLogOn == true && userVO != null }">
 									<li class="menu_login"><a href="#none" class ="link-menu2">${userVO.user_name}님</a></li>

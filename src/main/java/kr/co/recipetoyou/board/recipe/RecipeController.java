@@ -10,9 +10,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
+import kr.co.recipetoyou.util.PagingVO;
+
 public interface RecipeController {
 	
-	public ModelAndView communityRecipeMain(HttpServletRequest request, HttpServletResponse response) throws Exception;
+	public ModelAndView communityRecipeMain(PagingVO vo, HttpServletRequest request, HttpServletResponse response) throws Exception;
 	
 	public ModelAndView communityRecipeWrite(HttpServletRequest request, HttpServletResponse response, Model model) throws Exception;
 
