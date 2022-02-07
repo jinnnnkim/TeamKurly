@@ -4,12 +4,12 @@ import java.util.List;
 
 import org.springframework.dao.DataAccessException;
 
-import kr.co.recipetoyou.user.join.UsersVO;
+import kr.co.recipetoyou.user.UserVO;
 
 public interface LoginService {
 
-	public List<UsersVO> listUsers() throws DataAccessException;
-	public int addUser(UsersVO userVO) throws DataAccessException;
+	public List<UserVO> listUsers() throws DataAccessException;
+	public int addUser(UserVO userVO) throws DataAccessException;
 	public int removeUser(String id) throws DataAccessException;
-	public UsersVO login(UsersVO userVO) throws DataAccessException;
+	public UserVO login(UserVO userVO) throws DataAccessException;
 }

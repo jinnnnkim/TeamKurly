@@ -34,7 +34,7 @@ public class AdGoodsDAOImpl implements AdGoodsDAO{
 		return sqlSession.selectList(NAMESPACE+".listPage", page);
 	}
 
-	//페이징 처리, 상품 목록
+	//페이징 처리, 상품 목록, 상품명으로 검색
 	@Override
 	public List<AdGoodsVO> listPaging(PagingVO vo) throws Exception {
 		
@@ -73,9 +73,9 @@ public class AdGoodsDAOImpl implements AdGoodsDAO{
 	
 	//상품명 검색
 	@Override
-	public List<AdGoodsVO> listSearch(AdGoodsCateVO option) throws Exception {
+	public List<AdGoodsVO> listSearch(PagingVO vo) throws Exception {
 		
-		return sqlSession.selectOne(NAMESPACE+".search", option);
+		return sqlSession.selectOne(NAMESPACE+".search", vo);
 	}
 
 	@Override
@@ -120,6 +120,14 @@ public class AdGoodsDAOImpl implements AdGoodsDAO{
 	public int goodsDelete(int prod_code) throws Exception {
 		
 		return sqlSession.delete(NAMESPACE+".goodsDelete", prod_code);
+	}
+
+	//재고 관리
+	@Override
+	public void updageStock(AdGoodsVO agvo) throws Exception {
+		
+		sqlSession.update(NAMESPACE+".updageStock", agvo);
+		
 	}
 
 	

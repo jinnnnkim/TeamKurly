@@ -2,9 +2,15 @@ package kr.co.recipetoyou.admin.adgoods;
 
 import org.springframework.http.MediaType;
 
+
 import java.awt.image.BufferedImage;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStream;
+import java.io.PrintWriter;
 import java.net.URLDecoder;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -17,6 +23,8 @@ import java.util.Map;
 import java.util.UUID;
 
 import javax.imageio.ImageIO;
+import javax.servlet.ServletException;
+import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -36,6 +44,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -131,12 +140,30 @@ public class AdGoodsControllerImpl implements AdGoodsController {
 		
 	}
 	
-	//상품 조회
+	//상품 검색
 	@Override
-	@RequestMapping(value = "/adgoods/adgoodsSearch.do", method = RequestMethod.GET)
-	public void listCategory(Model model) throws Exception {
+	@RequestMapping(value = "/adgoods/search.do")
+	public String searhGoods(PagingVO vo, Model model) throws Exception {
 		
-
+		List<AdGoodsVO> list = adGoodsService.listProduct(vo);
+		if(!list.isEmpty()) {
+			model.addAttribute("list", list);
+		}else {
+			model.addAttribute("listcheck", "empty");
+			return "/adgoods/search.do";
+		}
+		
+		model.addAttribute("pageMaker", new PageMaker(vo, adGoodsService.prodCount(vo)));
+		
+		String[] typeArr = vo.getType().split("");
+		
+		for(String s : typeArr) {
+			if(s.equals("G") || s.equals("C")) {
+				//model.addAttribute("filter_info", adGoodsService.g)
+			}
+		}
+		
+		return "/adgoods/search.do";
 	}
 	
 	//상품 상세 정보 조회
@@ -411,5 +438,85 @@ public class AdGoodsControllerImpl implements AdGoodsController {
 	}
 
 	
+	@RequestMapping(value="/adgoods/ckimageUpload.do", method = RequestMethod.POST) 
+	public void imageUpload(HttpServletRequest request, HttpServletResponse response, 
+			MultipartHttpServletRequest multiFile , @RequestParam MultipartFile upload) throws Exception{ 
+		UUID uid = UUID.randomUUID(); 
+		OutputStream out = null; 
+		PrintWriter printWriter = null; 
+		response.setCharacterEncoding("utf-8");
+		response.setContentType("text/html;charset=utf-8"); 
+		try{ 
+			String fileName = upload.getOriginalFilename(); 
+			byte[] bytes = upload.getBytes(); 
+			String path = UPLOAD_DIR;
+			String ckUploadPath = path + uid + "_" + fileName;
+			System.out.println("path:"+ckUploadPath);
+			File folder = new File(path); 
+			if(!folder.exists()){ 
+				try{ folder.mkdirs(); 
+				}catch(Exception e){ 
+					e.getStackTrace(); 
+				} 
+			} 
+			out = new FileOutputStream(new File(ckUploadPath)); 
+			out.write(bytes); 
+			out.flush(); 
+			String callback = request.getParameter("CKEditorFuncNum"); 
+			printWriter = response.getWriter(); 
+			String fileUrl = "/recipetoyou/adgoods/ckimageSubmit.do?uid=" + uid + "&fileName=" + fileName;
+			printWriter.println("{\"filename\" : \""+fileName+"\", \"uploaded\" : 1, \"url\":\""+fileUrl+"\"}"); 
+			printWriter.flush(); 
+			System.out.println("upload complete");
+		}catch(IOException e){
+			e.printStackTrace();
+		} finally { 
+			try {
+				if(out != null) { 
+					out.close(); 
+				} 
+				if(printWriter != null) { 
+					printWriter.close(); 
+				} 
+			} catch(IOException e) { 
+				e.printStackTrace(); 
+			} 
+		}return; 
+	}
+	
+	@RequestMapping(value="/adgoods/ckimageSubmit.do")
+	public void ckSubmit(@RequestParam(value="uid") String uid , @RequestParam(value="fileName") String fileName 
+			, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{ 
+		String path = UPLOAD_DIR;
+		String sDirPath = path + uid + "_" + fileName; 
+		File imgFile = new File(sDirPath); 
+		if(imgFile.isFile()){ 
+			byte[] buf = new byte[1024]; 
+			int readByte = 0; 
+			int length = 0;
+			byte[] imgBuf = null; 
+			FileInputStream fileInputStream = null; 
+			ByteArrayOutputStream outputStream = null; 
+			ServletOutputStream out = null; 
+			try{ 
+				fileInputStream = new FileInputStream(imgFile); 
+				outputStream = new ByteArrayOutputStream(); 
+				out = response.getOutputStream();
+				while((readByte = fileInputStream.read(buf)) != -1){ 
+					outputStream.write(buf, 0, readByte); 
+				} 
+				imgBuf = outputStream.toByteArray(); 
+				length = imgBuf.length; out.write(imgBuf, 0, length); 
+				out.flush(); 
+			}catch(IOException e){ 
+				e.printStackTrace();
+			}finally { 
+				outputStream.close(); 
+				fileInputStream.close(); 
+				out.close(); 
+			}
+		}
+
+	}
 
 }

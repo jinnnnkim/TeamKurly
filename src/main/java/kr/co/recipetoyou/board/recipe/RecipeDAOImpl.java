@@ -7,6 +7,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import kr.co.recipetoyou.util.PagingVO;
+
 @Repository("RecipeDAO")
 public class RecipeDAOImpl implements RecipeDAO{
 	
@@ -14,8 +16,8 @@ public class RecipeDAOImpl implements RecipeDAO{
 	private SqlSession sqlSession;
 
 	@Override
-	public List<RecipeVO> selectRecipeList() {
-		List<RecipeVO> recipeList = sqlSession.selectList("mapper.recipe.selectRecipeList");
+	public List<RecipeVO> selectRecipeList(PagingVO vo) {
+		List<RecipeVO> recipeList = sqlSession.selectList("mapper.recipe.selectRecipeList",vo);
 		return recipeList;
 	}
 
@@ -64,6 +66,13 @@ public class RecipeDAOImpl implements RecipeDAO{
 	public void updateRecipe(Map recipeMap) {
 		sqlSession.update("mapper.recipe.updateRecipe",recipeMap);
 		
+	}
+
+	@Override
+	public int selectRecipeCount() {
+		int result = sqlSession.selectOne("mapper.recipe.recipeCount");
+		System.out.println("recipe dao:"+result);
+		return result;
 	}
 	
 	

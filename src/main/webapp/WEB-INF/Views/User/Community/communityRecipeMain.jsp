@@ -2,6 +2,10 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
+<c:set var="articlesList" value="${articlesMap.articlesList }" />
+<c:set var="totArticles" value="${articlesMap.totArticles }" />
+<c:set var="section" value="${articlesMap.section }" />
+<c:set var="pageNum" value="${articlesMap.pageNum }" />
 <!DOCTYPE html>
 <html>
 <head>
@@ -32,9 +36,10 @@
 			<div class="searchBar">
 				<div class="searchSelect">
 					<span>·&nbsp;검색어</span>
-					<label><input type="checkbox"/>이름</label>
-					<label><input type="checkbox"/>제목</label>
-					<label><input type="checkbox"/>내용</label>
+					<label><input name="searchOption" type="checkbox"/>이름</label>
+					<label><input name="searchOption" type="checkbox"/>제목</label>
+					<label><input name="searchOption" type="checkbox"/>내용</label>
+					<input type="hidden" id="arrayParam" name="arrayParam"/>
 				</div>
 				
 				<div class="searchInput">
@@ -44,28 +49,36 @@
 			</div>
 			
 			<div class="cateList">
-				<c:forEach var="titleList" items="${cateTitleList}" varStatus="status" begin="0" end="5" >
-					<div class="cateRow">
-						<span class="cateType">${titleList.recipe_cate}</span>
-						<c:forEach var="cateDetailList" items="${cateDetailList}">
-							<c:if test="${cateDetailList.recipe_cate_parent eq status.count}">
-								<c:choose>
-									<c:when test="${cateDetailList.recipe_cate eq '전체' }">
-										<a class="allCate" href="#none">${cateDetailList.recipe_cate}</a>
-									</c:when>
-									<c:otherwise>
-										<a href="#none">${cateDetailList.recipe_cate}</a>
-									</c:otherwise>
-								</c:choose>
-							</c:if>
-						</c:forEach> 
-					</div>
-					
-				</c:forEach>
+					<c:forEach var="titleList" items="${cateTitleList}" varStatus="status" begin="0" end="5" >
+						<div class="cateRow">
+							<span class="cateType">${titleList.recipe_cate}</span>
+							<c:forEach var="cateDetailList" items="${cateDetailList}" varStatus="status1">
+								<c:if test="${cateDetailList.recipe_cate_parent eq status.count}">
+									<c:choose>
+										
+											<c:when test="${cateDetailList.recipe_cate eq '전체' }">
+											<div class="disInlineBlock">
+												<a class="allCate cateSearch" href="">${cateDetailList.recipe_cate}</a>
+												<input class="code" type="hidden" value="${cateDetailList.recipe_cate_code}"/>
+											</div>
+											</c:when>
+											<c:otherwise>
+											<div class="disInlineBlock">
+												<a href="" class="cateSearch">${cateDetailList.recipe_cate}</a>
+												<input class="code" type="hidden" value="${cateDetailList.recipe_cate_code}"/>
+												</div>
+											</c:otherwise>
+										
+									</c:choose>
+								</c:if>
+							</c:forEach> 
+						</div>
+					</c:forEach>
 			</div>
 				
 			<div class="writeBtn">
-				<a href="${contextPath}/community/communityRecipeWrite.do">글쓰기</a>
+				<a href="javascript:fn_articleForm('${isLogOn}','${contextPath}/login/login.do',
+				'${contextPath}/community/communityRecipeWrite.do')">글쓰기</a>
 			</div>
 			<div class="recipeList">
 				<ul>
@@ -98,25 +111,55 @@
 			
 			<div class="page">
 				<ul>
-					<li><a href="#"><i class="fas fa-angle-double-left"></i></a></li>
-					<li><a href="#"><i class="fas fa-angle-left"></i></a></li>
-					<li><a href="#">1</a></li>
-					<li><a href="#">2</a></li>
-					<li><a href="#">3</a></li>
-					<li><a href="#"><i class="fas fa-angle-right"></i></a></li>
-					<li><a href="#"><i class="fas fa-angle-double-right"></i></a></li>
+					<c:if test="${pm.prev }">
+				 		<li><a href="${contextPath}/community/communityRecipeMain.do?page=${pm.startPage-1}">&laquo;</a></li>
+				 	</c:if>
+				 			<!-- 페이지블럭 -->
+					<c:forEach var="idx" begin="${pm.startPage}" end="${pm.endPage}">
+								<!-- 삼항연산자를 사용해서 class로 스타일적용  -->
+						<li ${pm.vo.page == idx? 'class=active':''}>
+						 	<a href="${contextPath}/community/communityRecipeMain.do?page=${idx}">${idx}</a>
+						</li>				
+					</c:forEach>
+				 			<!-- 다음next -->
+				 	<c:if test="${pm.next && pm.endPage > 0}">
+				 		<li><a href="${contextPath}/community/communityRecipeMain.do?page=${pm.endPage+1}">&raquo;</a></li>
+				 	</c:if>
 				</ul>
 			</div>
 		</div>
 	</div>
 	<script>
+	function fn_articleForm(isLogOn,login,recipeWrite) {
+		if (isLogOn != '' && isLogOn != 'false') {
+			location.href=recipeWrite;
+		} 
+		else {
+			alert("로그인 후 글쓰기가 가능합니다.");
+			location.href=login;
+		}
+	}
+	
 	$(document).ready(function(){
-		$(".cateRow a").click(function(){
-			/* $(this).css("background","grey"); */
-			
-		});
-			
-		
+		$(".cateSearch").click(function(){
+			let code = $(this).parent("div").find(".code").val();
+			$.ajax({
+				type: "post",
+				async: true,
+				url: "http://localhost:8080/recipetoyou/community/communityRecipeMain.do",
+				dataType: "text",
+				data:{cateCode:code},
+				success: function(data){
+					$('body').html(data);
+				},
+				error : function(data, textStatus) {			
+					alert("에러가 발생했습니다.")	;
+				},
+				complete : function(data, textStatus) {			
+				
+				}					
+			 });
+		}); 
 	});
 	</script>
 </body>

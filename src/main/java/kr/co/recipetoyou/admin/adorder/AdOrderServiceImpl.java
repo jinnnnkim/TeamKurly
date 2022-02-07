@@ -30,19 +30,19 @@ public class AdOrderServiceImpl implements AdOrderService {
 		
 	//주문 상세 정보 조회
 	@Override
-	public AdOrdIngVO getOrdIngInfo(int id) throws DataAccessException {		
-		return dao.readOrdIng(id);
+	public AdOrderVO getOrdInfo(int id) throws DataAccessException {		
+		return dao.readOrd(id);
 	}
 		
 	//결제취소
 	@Override
-	public int removeOrd(String id) throws DataAccessException {	
+	public int removeOrd(int id) throws DataAccessException {	
 		return dao.deleteOrd(id);	
 	}
 		
 	//주문 정보 수정
-	@Override
-	public void updateOrdInfo(AdOrdIngVO vo) throws DataAccessException {
-		dao.updateOrdIng(vo);	
-	}
+//	@Override
+//	public void updateOrdInfo(AdOrderVO vo) throws DataAccessException {
+//		dao.updateOrdIng(vo);	
+//	}
 }

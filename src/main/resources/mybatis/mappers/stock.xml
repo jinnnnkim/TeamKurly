@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.stock">
+	<resultMap type="adGoodsStockVO" id="stockResult">
+		<result property="stock_code" column="stock_code"/>
+		<result property="stock_status" column="stock_status"/>
+		<result property="stock_quantity" column="stock_quantity"/>
+		<result property="prod_code" column="prod_code"/>
+	</resultMap>
+	
+	<!-- 재고 상태 업데이트 (1일 때 판매중, 0일 때 품절) -->
+	<update id="updateStatus">
+		update tb_stock
+		stock_status = '1'
+		where
+		prod_code = #{prod_code}
+	</update>
+</mapper>

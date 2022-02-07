@@ -11,17 +11,26 @@
 		<put-attribute name="footer" value="/WEB-INF/Views/User/Inc2/footer.jsp"/>		
 	</definition>
 	
+	<definition name="mainSideNoLayout" template="/WEB-INF/Views/User/Inc2/mainpageLayout.jsp">
+		<put-attribute name="title" value=""/>
+		<put-attribute name="header" value="/WEB-INF/Views/User/Inc2/headerSideNo.jsp"/>		
+		<put-attribute name="body" value=""/>
+		<put-attribute name="footer" value="/WEB-INF/Views/User/Inc2/footer.jsp"/>		
+	</definition>
+	
+	
+	
 	<definition name="main" extends="mainLayout">
 		<put-attribute name="title" value="메인페이지"/>
 		<put-attribute name="body" value="/WEB-INF/Views/User/mainPage.jsp"/>	
 	</definition>
 	
-	<definition name="join/regist" extends="mainLayout">
+	<definition name="join/regist" extends="mainSideNoLayout">
 		<put-attribute name="title" value="회원가입"/>
 		<put-attribute name="body" value="/WEB-INF/Views/User/join.jsp"/>	
 	</definition>
 	
-	<definition name="login/login" extends="mainLayout">
+	<definition name="login/login" extends="mainSideNoLayout">
 		<put-attribute name="title" value="로그인"/>
 		<put-attribute name="body" value="/WEB-INF/Views/User/login.jsp"/>	
 	</definition>

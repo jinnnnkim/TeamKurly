@@ -20,6 +20,7 @@
 		<result property="prod_caution" column="prod_caution"/>
 		<result property="stock_quantity" column="stock_quantity"/>
 		<result property="prod_reg_date" column="prod_reg_date"/>
+		<result property="quantity" column="quantity"/>
 	</resultMap>
 	
 
@@ -62,14 +63,16 @@
 	<select id="getGoodsList" resultMap="adgoodsResult">
 		<![CDATA[
 			select * from (
-				select rownum AS rn, prod_name, prod_price, prod_code,
+				select rownum AS rn, prod_name, prod_price, prod_code, cateCode,
 				(SELECT cateName FROM TB_PROD_CATE WHERE TB_PROD_CATE.CATECODE = tb_prod.CATECODE) cateName
 				from tb_prod
 				where
 				
 		]]>
-			<!-- 상품명으로 검색 -->
-			<if test="keyword != null">prod_name like '%'||#{keyword}||'%' and</if>
+			<!-- 상품명, 카테고리로 검색 -->
+			<if test="keyword != null">prod_name like '%'||#{keyword}||'%' and </if>
+			
+			<if test="cateCode != null and cateCode != '100000'">cateCode like '%'||#{cateCode}||'%' and </if>
 			
 		<![CDATA[	
 			rownum <= #{page} * #{pageSize} 
@@ -84,30 +87,7 @@
 				<if test="keyword != null">prod_name like '%'||#{keyword}||'%'</if>
 	</select>
 	
-	<!-- 상품 카테고리 검색 -->
-	<select  id="listPaging2" resultMap="adgoodsResult">
-		<![CDATA[
-			select *
-			from ( select rownum AS rn,
-				tb_prod.* from tb_prod
-				where
-				rownum <= #{page} * #{pageSize} 
-		]]>
-			<!-- 카테고리로 검색 -->
-			<if test="keyword != null">and prod_name like '%'||#{keyword}||'%' AND cateCode like '%' || #{cateCode} || '%'</if>
-			
-		<![CDATA[	
-			)			
-			where rn > (#{page}-1) * #{pageSize} AND rn <= #{page} * #{pageSize}
-		]]>	
-	</select>
-	
-	<!-- 과일/견과/쌀 카테고리 리스트 -->
-	<select id="getCateCode">
-		<![CDATA[
-			select * from tb_prod_cate where cateCode = 1
-		]]>
-	</select>
+
 	
 	<!-- 검색 카테고리 리스트 -->
 	<select id="getCateList" resultType="String">
@@ -183,8 +163,11 @@
 	
 	<!-- 이미지 등록 -->
 	<insert id="imageUpload">
-		insert into tb_adgoods_Img(fileName, prod_code, uploadPath, uuid)
-		values (#{fileName}, #{prod_code}, #{uploadPath}, #{uuid})
+		<selectKey resultType="int" keyProperty="prod_code" order="BEFORE">
+			select prodcode_seq.nextval from dual
+		</selectKey>
+			insert into tb_adgoods_Img(fileName, prod_code, uploadPath, uuid)
+			values (#{fileName}, #{prod_code}, #{uploadPath}, #{uuid})
 	</insert>
 	
 	<!-- 이미지 정보 얻기 -->
@@ -247,4 +230,12 @@
 			and prod_code > 0
 		]]>	
 	</select> -->
+	
+	<!-- 상품 재고 업데이트 -->
+	<update id="updageStock">
+		update tb_prod
+			set stock_quantity = quantity - #{quantity}
+	</update>
+	
+	
 </mapper>

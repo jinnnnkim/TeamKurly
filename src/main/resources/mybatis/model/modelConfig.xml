@@ -19,6 +19,7 @@
 		
 		<typeAlias type="kr.co.recipetoyou.admin.adgoods.AdGoodsVO" alias="adGoodsVO"/>
 		<typeAlias type="kr.co.recipetoyou.admin.adgoods.category.AdGoodsCateVO" alias="adGoodsCateVO"/>
+		<typeAlias type="kr.co.recipetoyou.admin.adgoods.stock.AdGoodsStockVO" alias="adGoodsStockVO"/>
 		
 		<typeAlias type="kr.co.recipetoyou.admin.adsend.AdSendVO" alias="adSendVO"/>
 		<typeAlias type="kr.co.recipetoyou.admin.adsend.ademail.AdEmailVO" alias="adEmailVO"/>
@@ -28,7 +29,6 @@
 		<typeAlias type="kr.co.recipetoyou.admin.adfaq.AdFAQCategoryVO" alias="adFAQCategoryVO"/>
 		
 		<typeAlias type="kr.co.recipetoyou.admin.adorder.AdOrderVO" alias="adOrderVO"/>
-		<typeAlias type="kr.co.recipetoyou.admin.adorder.AdOrdIngVO" alias="adOrdIngVO"/>
 		<typeAlias type="kr.co.recipetoyou.admin.adpayment.AdPaymentVO" alias="adPaymentVO"/>
 		
 		<!-- user -->
@@ -64,6 +64,9 @@
 		<typeAlias type="kr.co.recipetoyou.board.recipe.RecipeVO" alias="recipeVO"/>
 		<typeAlias type="kr.co.recipetoyou.board.recipe.RecipeCateVO" alias="recipeCateVO"/>
 		<typeAlias type="kr.co.recipetoyou.main.cartPick.CartPickVO__" alias="cartPickVO"/>
+		
+		
+		<typeAlias type="kr.co.recipetoyou.admin.adpoint.AdPointVO" alias="adPointVO"/>
 
 	</typeAliases>
 </configuration> 

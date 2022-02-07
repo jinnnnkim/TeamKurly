@@ -204,6 +204,17 @@ public class MypageControllerImpl implements MypageController{
 		ModelAndView mav = new ModelAndView("redirect:/coupon.do");
 		return mav;
 	}
+	
+	
+	@RequestMapping(value = "/addrModify.do", method = RequestMethod.GET)
+	public ModelAndView addrModify(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		
+		ModelAndView mav = new ModelAndView();
+
+        return mav;
+	}
+	
+
 
 
 

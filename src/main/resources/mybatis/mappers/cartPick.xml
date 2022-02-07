@@ -4,7 +4,7 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
 <mapper namespace="mapper.cartPick">					<!-- member.xml의 네임스페이스 지정 -->
-	
+
 <!--
 	<resultMap type="pickVO" id="CartPickResult">	
 

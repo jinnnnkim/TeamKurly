@@ -25,10 +25,36 @@
 	
 	<select id="selectRecipeList" resultMap="recipeResult">
 		<![CDATA[
-			SELECT *
-			FROM tb_recipe
+			SELECT * from
+				(select rownum as rn, trc.* FROM tb_recipe trc
+			]]>
+				<if test="cateCode != '' and cateCode != 0">
+				where recipe_cate_code = #{cateCode}
+				</if>
+			<![CDATA[
+			
+				 )
+			where rn between #{rowStart} and #{rowEnd}
 		]]>
+			
 	</select>
+	
+	<!--  
+    title like '%검색%'
+    
+    content like '%검색%'
+    
+    writer like '%검색%'    
+   
+    (title like '%검색%' OR content like '%검색%')
+    
+    (content like '%검색%' OR writer like '%검색%')
+    
+    (title like '%검색%' OR content like '%검색%' OR writer like '%검색%') -->
+    
+    <select id="recipeCount" resultType="int">
+    	SELECT count(*) FROM TB_RECIPE
+    </select>
 	
 	<select id="selectRecipeCateTitleList" resultMap="recipeCateResult">
 		<![CDATA[
