@@ -18,8 +18,8 @@
  	<link href=“https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap” rel=“stylesheet”>
 	<link rel="stylesheet" href="/recipetoyou/Resources/Admin/Css/AdUser/moduserInfo.css">
 	<link rel="stylesheet" href="/recipetoyou/Resources/Admin/Css/HomePageHeaderSide/reset.css">
-	<script type="text/javascript" src="../../../Resources/SmartEditor/js/service/HuskyEZCreator.js" charset="utf-8"></script>
-	<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script><script type="text/javascript" src="/recipetoyou/Resources/Admin/Js/AdUser/moduserInfo.js" charset="UTF-8"></script>
+	<script type="text/javascript" src="/recipetoyou/Resources/Admin/Js/AdUser/moduserInfo.js" charset="UTF-8"></script>
+	<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
 </head>
 <body>
 
@@ -149,26 +149,7 @@
 				관리자메모
 			</div> -->
 			
-		<textarea id="mailContent" rows="10" cols="100" style="width: 100%">
-		</textarea>
-		<script id="smartEditor"  type="text/javascript">
-			var oEditors = [];
-				nhn.husky.EZCreator.createInIFrame({
-				    oAppRef: oEditors,
-				    elPlaceHolder: "mailContent",  
-				    sSkinURI: "../../../Resources/SmartEditor/SmartEditor2Skin.html",  //smartEditor2Skin.html 경로 입력
-				    fCreator: "createSEditor2",
-				    htParams : { 
-				    	// 툴바 사용 여부 (true:사용/ false:사용하지 않음) 
-				        bUseToolbar : true, 
-						// 입력창 크기 조절바 사용 여부 (true:사용/ false:사용하지 않음) 
-						bUseVerticalResizer : true, 
-						// 모드 탭(Editor | HTML | TEXT) 사용 여부 (true:사용/ false:사용하지 않음) 
-						bUseModeChanger : true
-				    }
-				});
-
-		</script>	
+		
 		
 			<%-- <button type="button" class="saveBtn" onsubmit="return _onSubmit();"><a href="${contextPath}/user/userUpdate.do?user_id=${userVO.user_id}">수정</a></button> --%>
 			<input type="submit" class="saveBtn" value="수정">

@@ -32,8 +32,10 @@ public class AdGoodsVO {
 	private List<AdgoodsImgVO> imageList;		//이미지 정보
 	private String cateName;
 	private String cateParent;
-	
+	private int quantity;
+	private int stock_status;
 
+	
 
 	public String getCateParent() {
 		return cateParent;
@@ -202,5 +204,21 @@ public class AdGoodsVO {
 	public void setCateCode(int cateCode) {
 		this.cateCode = cateCode;
 	}
+	
+	public int getQuantity() {
+		return quantity;
+	}
 
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
+	}
+
+	public int getStock_status() {
+		return stock_status;
+	}
+
+	public void setStock_status(int stock_status) {
+		this.stock_status = stock_status;
+	}
+	
 }

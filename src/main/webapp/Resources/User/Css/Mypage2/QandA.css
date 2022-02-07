@@ -49,9 +49,6 @@
 	font-size: 14px;
 }
 
-.no {
-	width: 100px;
-}
 
 .title {
 	width: 520px;
@@ -66,7 +63,7 @@
 }
 
 .QnA_content {
-    padding: 15px 0;
+    padding: 15px 0px 15px 10px;
     text-align: center;
     border-bottom: 1px solid #f4f4f4;
     font-size: 12px;
@@ -76,12 +73,8 @@
 	padding-left: 0px;
 }
 
-.content_no {
-	width: 100px;
-}
-
 .content_title {
-	width: 520px;
+	width: 580px;
 	text-align: left;
 }
 
@@ -90,7 +83,7 @@
 }
 
 .content_reply {
-	width: 100px;
+	width: 110px;
 }
 
 .paging_navi {
@@ -122,10 +115,10 @@
 }
 
 #content {
-    display: none;
-	font-size: 12px;
+	display: none;
+    font-size: 12px;
     width: 815px;
-    padding: 20px 205px 20px 105px;
+    padding: 20px 220px 20px 15px;
     border-bottom: 1px solid #eee;
 }
 

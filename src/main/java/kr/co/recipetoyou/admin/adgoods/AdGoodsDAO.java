@@ -32,7 +32,7 @@ public interface AdGoodsDAO {
 	public List<AdGoodsCateVO> cateList() throws IOException;
 		
 	//상품명 검색
-	public List<AdGoodsVO> listSearch(AdGoodsCateVO option) throws Exception;
+	public List<AdGoodsVO> listSearch(PagingVO vo) throws Exception;
 	
 	//상품 등록
 	public void register(AdGoodsVO agvo) throws Exception;
@@ -51,5 +51,8 @@ public interface AdGoodsDAO {
 	
 	//상품 정보 삭제
 	public int goodsDelete(int prod_code) throws Exception;
+	
+	//재고 수량 조절
+	public void updageStock(AdGoodsVO agvo) throws Exception;
 
 }

@@ -1,6 +1,7 @@
 package kr.co.recipetoyou.admin.adgoods;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -37,8 +38,8 @@ public class AdGoodsServiceImpl implements AdGoodsService {
 		prodList.forEach(goods->{
 		
 			try {
-					int code = goods.getProd_code();
-					List<AdgoodsImgVO> imageList  = adGoodsDAO.getGoodsImage(code);
+					int prod_code = goods.getProd_code();
+					List<AdgoodsImgVO> imageList  = adGoodsDAO.getGoodsImage(prod_code);
 					goods.setImageList(imageList);
 				
 			} catch (JsonGenerationException e) {
@@ -91,9 +92,17 @@ public class AdGoodsServiceImpl implements AdGoodsService {
 
 	//상품명 검색
 	@Override
-	public List<AdGoodsVO> listSearch(AdGoodsCateVO option) throws Exception {
+	public List<AdGoodsVO> listSearch(PagingVO vo) throws Exception {
 		
-		return adGoodsDAO.listSearch(option);
+		String type = vo.getType();
+		String[] typeArr = type.split("");
+		
+		if(type.equals("G") || type.equals("C") || type.equals("GC")) {
+			return new ArrayList<>();
+		}
+		
+		
+		return adGoodsDAO.listSearch(vo);
 	}
 
 	//검색 결과 갯수
@@ -144,7 +153,14 @@ public class AdGoodsServiceImpl implements AdGoodsService {
 		return adGoodsDAO.goodsDelete(prod_code);
 	}
 
-	
+	//재고 관리
+	@Override
+	public void updageStock(AdGoodsVO agvo) throws Exception {
+		
+		adGoodsDAO.updageStock(agvo);
+		
+	}
+
 	
 	
 	

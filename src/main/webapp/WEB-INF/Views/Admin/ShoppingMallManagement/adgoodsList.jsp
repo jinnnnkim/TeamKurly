@@ -40,6 +40,8 @@
 	<input type="hidden" name="page" value="${pageMaker.vo.page}">
 	<input type="hidden" name="pageSize" value="${pageMaker.vo.pageSize}">
 	<input type="hidden" value="${pageMaker.vo.keyword }">
+	<input type="hidden" name="cateCode" value="${pageMaker.vo.cateCode}">
+	
 		<div class="main-content">
 						<table class="table table1 table_line">
 						<colgroup>
@@ -54,10 +56,7 @@
 								<input type="radio" name="sale_status" value="all" checked/>전체
 								</label>
 								<label class="lbl">
-								<input type="radio" name="sale_status" value="on"/>정상판매
-								</label>
-								<label class="lbl">
-								<input type="radio" name="sale_status" value="pause" />판매중지
+								<input type="radio" name="sale_status" value="on"/>판매중
 								</label>
 								<label class="lbl">
 								<input type="radio" name="sale_status" value="soldout" />품절
@@ -70,13 +69,13 @@
 							<td style="text-align: left;">
 								
 								<label>1차 분류</label>
-								<select class="category1">
+								<select class="category1" id="category1">
 									<option selected="selected" value="none">선택</option>
 								</select>
 								
 								<label>2차 분류</label>
-								<select class="category2">
-									<option selected="selected" value="none" name="cateCode">선택</option>
+								<select class="category2" id="category2">
+									<option selected="selected" value="none" name="cateCode" value="${pm.vo.cateCode}">선택</option>
 								</select>
 
 							</td>
@@ -85,7 +84,7 @@
 							<tr>
 								<th>상품명</th>
 								<td style="text-align: left;">
-									<input type="text" id="keywordInput" name="keyword" style="width: 95%" value="${pageMaker.vo.keyword}"/>
+									<input type="text" id="keywordInput" name="keyword" style="width: 95%" value="${pm.vo.keyword}"/>
 								</td>
 							</tr>
 						</tbody>
@@ -187,7 +186,15 @@
 								</div>
 							</td>
 							<td>
-								<span class="lable label-xs lable-blue">판매중</span>
+								<c:choose>
+									<c:when test="${prod.stock_quantity != 0}">
+										<span class="lable label-xs lable-blue">판매중</span>
+									</c:when>
+									<c:otherwise>
+										<span class="lable label-xs lable-blue">품절</span>
+									</c:otherwise>
+								</c:choose>
+								
 							</td>
 							</tr>
 							</c:forEach>
@@ -217,9 +224,10 @@
 		</div> 
 		
 		<form id="moveForm" action="${contextPath}/adgoods/listProduct.do" method="get">
-			<%-- <input type="hidden" name="page" value="${pm.vo.page}">
+			<input type="hidden" name="page" value="${pm.vo.page}">
 			<input type="hidden" name="pageSize" value="${pm.vo.pageSize}">
-			<input type="hidden" name="keyword" value="${pm.vo.keyword}"> --%>
+			<input type="hidden" id="keyword" name="keyword" value="${pm.vo.keyword}">
+			<input type="hidden" id="cateCode" name="cateCode" value="${pm.vo.cateCode}">
 		</form>
 		
 		<script type="text/javascript">
@@ -320,7 +328,7 @@
 				const uuid = bobj.data("uuid");
 				const fileName = bobj.data("filename");
 				
-				const fileCallPath = encodeURIComponent(uploadPath + "/s_" + uuid + "_" + fileName);
+				const fileCallPath = encodeURIComponent(uploadPath + "s_" + uuid + "_" + fileName);
 				
 				$(this).find("img").attr('src', '${contextPath}/adgoods/getImageInfo.do?fileName=' + fileCallPath);
 				
@@ -355,6 +363,64 @@
 		if(delete_result == 1){
 			alert("삭제 완료");
 		}
+		
+		
+		/*상품명 검색*/
+		$("#searchBtn").on("click", function(e){
+			e.preventDefault();
+			
+			/* if(var){
+				var var1 = $("input[name='keyword']").val();
+				var var2 = $("#category2 option:selected").val();
+			} */
+			
+			
+			/* $.ajax{
+				
+			} */
+			
+			let val = $("input[name='keyword']").val();
+			
+			if(!($("#category1 option:selected")).val() != "none"){
+				var val2 = $("#category2 option:selected");
+				
+				if(val2.val() != "undefinded"){
+					var val3 = $("#category2 option:selected").val();
+				}
+			}
+			
+			//alert(val2);
+			//moveForm.find("input[name='keyword']").val();
+			//moveForm.find("#category2 option:selected").val();
+			if(val != ""){
+				$("#keyword").val(val);
+			}else{
+				$("#keyword").val("");
+			}
+			if(val3 != "" && val3 != "none"){
+				$("#cateCode").val(val3);
+			}else{
+				$("#cateCode").val(100000);
+			}
+			moveForm.find("input[name='page']").val(1);
+			
+		
+			
+			moveForm.submit();
+		    
+		   
+		});
+		
+		/*$(document).on('click', '#searchBtn', function(e){
+			e.preventDefault();
+			var url = "${contextPath}/adgoods/search.do";
+			url += "?cda_mapping=" + $('#cda_type').val();
+			url += "$inspect_group=" + $('#groupList').val();
+			
+			location.href = url;
+			console.log(url);
+		})*/
+		
 		</script>
 </body>
 </html>

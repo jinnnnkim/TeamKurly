@@ -25,6 +25,7 @@
 <!-- 파비콘 링크 -->
 <link href="/recipetoyou/Resources/User/Img/Mypage2/KurlyIcon.png" rel="icon"
 	type="image/x-icon" />
+<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>	
 </head>
 <body>
 	<div class="content">
@@ -49,14 +50,20 @@
 				</div>
 				<div class="orderlist_wrap">
 					<div class="order_tit">
-						<a>${orderList.prod_name}</a>
+						<a href="${contextPath}/orderDetail.do">${orderList.prod_name}
 						<i class="fas fa-chevron-right"></i>
+						</a>
 					</div>
 					
 					<div class="order_info">
+											<!-- 이미지 정보가 담기도록 함. -->
+						<div class="image_wrap" data-prod_code="${cartList.imageList[0].prod_code}" data-path="${cartList.imageList[0].uploadPath}"
+												data-uuid="${cartList.imageList[0].uuid}" data-filename="${cartList.imageList[0].fileName}">
+												
 						<div class="order_info_img">
 							<a><img alt="" src="/recipetoyou/Resources/User/Img/goods1.jpg"></a>
 						</div>
+						
 						<!-- order_info_img -->
 						<div class="desc">
 							<dl>
@@ -75,11 +82,12 @@
 						<!-- desc -->	
 					
 					</div>
+					<!-- noticeOneToOneQuestionDetail.do -->
 					<!-- order_info -->
 					<div class="order_status">
-						<span class="inner_status">
+						<a href="${contextPath}/notice/noticeOneToOneQuestionDetail.do" class="inner_status">
 						1:1 문의
-						</span>
+						</a>
 					</div>
 					<!-- order_status -->
 					
@@ -95,6 +103,33 @@
 		<!-- order_main -->
 	</div>
 	<%--content end --%>
+	
+	
+	<script type="text/javascript">
+	//이미지 삽입
+	$(".image_wrap").each(function(i, obj){
+		
+		const bobj = $(obj);
+		if(bobj.data("prod_code")){
+			
+			const uploadPath = bobj.data("path");
+			const uuid = bobj.data("uuid");
+			const fileName = bobj.data("filename");
+			
+			const fileCallPath = encodeURIComponent(uploadPath + "/s_" + uuid + "_" + fileName);
+			
+			$(this).find("img").attr('src', '${contextPath}/adgoods/getImageInfo.do?fileName=' + fileCallPath);
+			
+			}else {
+				$(this).find("img").attr('src', '/recipetoyou/Resources/Admin/Img/SubgoodsImg/ready.jpg');
+			}
+	});
+
+	
+	
+	</script>
+	
+	
 </body>
 </html>
 

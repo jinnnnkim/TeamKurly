@@ -14,6 +14,7 @@ import kr.co.recipetoyou.user.mypage.vo.PointVO;
 import kr.co.recipetoyou.user.mypage.vo.UserAddrVO;
 
 import kr.co.recipetoyou.user.mypage.vo.QnAVO;
+import kr.co.recipetoyou.user.mypage.vo.ReviewVO;
 
 
 @Repository("mypageDAO")
@@ -45,23 +46,23 @@ public class MypageDAOImpl implements MypageDAO{
 	}
 
 		
-		  //배송지관리 조회
-		  @Override 
-		  public List<UserAddrVO> selectAllAddressList() throws DataAccessException {
+	//배송지관리 조회
+	@Override 
+	public List<UserAddrVO> selectAllAddressList() throws DataAccessException {
 		  
-		  System.out.println("addrlist DAO 호출");
+		System.out.println("addrlist DAO 호출");
 		  
-		  List<UserAddrVO> addressList = sqlSession.selectList("mapper.member.selectAllAddressList"); 
-		  return addressList; 
-		  }
+		List<UserAddrVO> addressList = sqlSession.selectList("mapper.member.selectAllAddressList"); 
+		return addressList; 
+	}
 
-		 //주문내역 조회 
-		@Override
-		public List<OrdIngVO> selectAllOrderList() throws DataAccessException {
+	//주문내역 조회 
+	@Override
+	public List<OrdIngVO> selectAllOrderList() throws DataAccessException {
 			
-			List<OrdIngVO> OrderList = sqlSession.selectList("mapper.member.selectAllOrderList");
-			return OrderList;
-		}
+		List<OrdIngVO> OrderList = sqlSession.selectList("mapper.member.selectAllOrderList");
+		return OrderList;
+	}
 		 
 
 	//상품문의 조회
@@ -69,6 +70,13 @@ public class MypageDAOImpl implements MypageDAO{
 	public List<QnAVO> selectAllQnAList() throws DataAccessException {
 		List<QnAVO> qnaList = sqlSession.selectList("mapper.member.selectAllQnAList");
 		return qnaList;
+	}
+
+	//상품후기 조회
+	@Override
+	public List<ReviewVO> selectAllReviewList() throws DataAccessException {
+		List<ReviewVO> reviewList = sqlSession.selectList("mapper.member.selectAllReviewList");
+		return reviewList;
 	}
 
 }
