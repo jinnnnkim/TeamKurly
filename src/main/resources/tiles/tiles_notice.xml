@@ -7,7 +7,7 @@
 
 	<definition name="noticeLayout" template="/WEB-INF/Views/User/Inc2/noticeLayout.jsp">
 		<put-attribute name="title" value=""/>
-		<put-attribute name="header" value="/WEB-INF/Views/User/Inc2/headerNotice.jsp"/>
+		<put-attribute name="header" value="/WEB-INF/Views/User/Inc2/headerSideNo.jsp"/>
 		<put-attribute name="side" value="/WEB-INF/Views/User/Inc2/noticeSideMenu.jsp"/>			
 		<put-attribute name="body" value=""/>
 		<put-attribute name="footer" value="/WEB-INF/Views/User/Inc2/footer.jsp"/>		

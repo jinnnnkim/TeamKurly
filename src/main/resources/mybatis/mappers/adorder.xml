@@ -13,7 +13,8 @@
 					<td>${ord.pay_card_idx }</td>
 					<td>${ord.ord_date }</td> -->
   <mapper namespace="mapper.adorder">
-  	<resultMap type="adOrderVO" id="orderResult">	
+  	<resultMap type="adOrderVO" id="orderResult">
+  		<result property="ord_code" column="ord_code" />
   		<result property="user_id" column="user_id" />
   		<result property="user_name" column="user_name" />
   		<result property="user_phone" column="user_phone" />
@@ -22,21 +23,8 @@
   		<result property="prod_content" column="prod_content" />
   		<result property="quantity" column="quantity" />
   		<result property="price" column="price" />
-  		<result property="pay_card_idx" column="pay_card_idx" />
   		<result property="ord_date" column="ord_date" />
-  		<result property="prod_code" column="prod_code" />
   	</resultMap>
-
-  	<resultMap type="adOrdIngVO" id="ordIngResult">	
-  		<result property="ord_ing_code" column="ord_ing_code" />
-  		<result property="prod_code" column="prod_code" />
-  		<result property="ord_code" column="ord_code" />
-  		<result property="user_id" column="user_id" />
-    	<result property="quantity" column="quantity" />
-  		<result property="price" column="price" />
-  		<result property="status" column="status" />
-  	</resultMap>
-  
   
 	<!-- 페이지정보를 10개씩 가져오기 -->
 	<select id="listOrdPage" resultMap="orderResult">
@@ -52,25 +40,21 @@
 		<![CDATA[
 			select *
 			from ( select rownum AS rn, 
+					toa.ord_code,
 					toa.user_id, 
 					tu.user_name, 
 					tu.user_phone, 
 					tu.user_addr,
 					tp.prod_name, 
 					tp.prod_content, 
-					toi.quantity, 
-					toi.price, 
-					tpc.pay_card_idx, 
+					toa.quantity, 
+					toa.price,  
 					toa.ord_date 
 					from tb_order toa, 
 						 tb_users tu, 
-						 tb_prod tp, 
-						 tb_ord_ing toi, 
-						 tb_payment_card_reg tpc 
+						 tb_prod tp
 					where toa.user_id = tu.user_id 
-					and toi.prod_code = tp.prod_code 
-					and toa.ord_code = toi.ord_code 
-					and tu.user_id = tpc.user_id )
+					and toa.ord_code = tp.ord_code )
 			where rn between #{rowStart} and #{rowEnd}
 		]]>
 	</select>
@@ -83,33 +67,33 @@
 	</select>
 	
 	<!-- 결제 취소  -->
-	<delete id="deleteOrd" parameterType="String">
+	<delete id="deleteOrd" parameterType="int">
 		<![CDATA[
-			delete from tb_payment_card_reg tpc
-			where tpc.user_id = #{id}
+			delete from tb_order toa
+			where toa.ord_code = #{id}
 		]]>
 	</delete>
 	
 	<!-- 주문 상세 정보 조회 -->
-	<select id="readOrdIng" resultMap="ordIngResult" parameterType="int">
+<!-- 	<select id="readOrdIng" resultMap="ordResult" parameterType="int">
 		<![CDATA[
 			select toi.*
 			from tb_ord_ing toi, tb_order toa
 			where toa.ord_code = toi.ord_code 
 			and toa.ord_code = #{id}
 		]]>
-	</select>
+	</select> -->
 	
 	<!-- 상품 수량 조절 보조 -->
-	<select id="updageStock_sub" resultType="adOrderVO">
+<!-- 	<select id="updateStock_sub" resultType="adOrderVO">
 		select
 			ord_code, prod_code ,quantity
 		from tb_order
 			where ord_code = #{ord_code}
-	</select>
+	</select> -->
 	
 	<!-- 주문 정보 수정 -->
-	<update id="updateOrdIng" parameterType="adOrdIngVO">
+<!-- 	<update id="updateOrdIng" parameterType="adOrderVO">
 		<![CDATA[
 			update tb_ord_ing set		
 			prod_code = #{prod_code},
@@ -119,7 +103,7 @@
 			status = #{status}
 			where ord_ing_code = #{ord_ing_code}
 		]]>
-	</update>
+	</update> -->
 </mapper>
   
   

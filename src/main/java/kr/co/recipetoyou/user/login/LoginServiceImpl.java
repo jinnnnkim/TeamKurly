@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import kr.co.recipetoyou.user.join.UsersVO;
+import kr.co.recipetoyou.user.UserVO;
 
 
 @Service("loginService")
@@ -18,13 +18,13 @@ public class LoginServiceImpl implements LoginService {
 	private LoginDAO loginDAO;
 
 	@Override
-	public List<UsersVO> listUsers() throws DataAccessException {
-		List<UsersVO> usersList = loginDAO.selectAllUserList();
+	public List<UserVO> listUsers() throws DataAccessException {
+		List<UserVO> usersList = loginDAO.selectAllUserList();
 		return usersList;
 	}
 
 	@Override
-	public int addUser(UsersVO userVO) throws DataAccessException {
+	public int addUser(UserVO userVO) throws DataAccessException {
 		return loginDAO.insertUser(userVO);
 	}
 
@@ -34,7 +34,7 @@ public class LoginServiceImpl implements LoginService {
 	}
 
 	@Override
-	public UsersVO login(UsersVO userVO) throws DataAccessException {
+	public UserVO login(UserVO userVO) throws DataAccessException {
 		return loginDAO.loginById(userVO);
 	}
 

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html>
@@ -48,7 +49,6 @@
 				
 		<c:forEach var="cartList" items="${cartList}">	
 					<div class="cartlist">
-						
 						<label class="inn_check"> <input type="checkbox" name="checkItem" >
 					</label>
 	
@@ -69,11 +69,11 @@
 
 							<div class="inner_option">
 								<!-- inner_option -->
-								<button type="button" class="btn down${cartList.prod_code }">
+								<button type="button" class="btn down">
 									<i class="fas fa-minus"></i>
 								</button>
 								<input type="number" readonly="readonly" class="inp" value="1">
-								<button type="button" class="btn up${cartList.prod_code }">
+								<button type="button" class="btn up">
 									<i class="fas fa-plus"></i>
 								</button>
 							</div>
@@ -89,7 +89,9 @@
 						
 						
 							<div class="totalItem_prices">
-								 <span class="item_prices"><span id="itemPrice" class="num">${cartList.prod_price}</span>원</span> 
+								 <span class="item_prices"><span id="itemPrice" class="num">
+								 <fmt:formatNumber value= "${cartList.prod_price}" pattern="###,###"/> 
+								</span>원</span> 
 							</div>
 							<!-- totalItem_prices -->
 
@@ -115,7 +117,9 @@
 							<div class="TotalPrice">
 								<div class="prodPrice">
 									<span class="txt">상품금액</span>
-									<span class="price"><span id="basicPrice" class="num">0</span>원</span>
+									<span class="price"><span id="basicPrice" class="num">
+									 <fmt:formatNumber value= "${cartList.prod_price}" pattern="###,###"/> 
+									</span>원</span>
 								</div>
 								<div class="prodDiscount">
 									<span class="txt">상품할인금액</span>
@@ -123,7 +127,8 @@
 								</div>
 								<div class="deliveryPrice">
 									<span class="txt">배송비</span>
-									<span class="price"><span id="deliveryPrice" class="num">0</span>원</span>
+									<span class="price"><span id="deliveryPrice" class="num">
+									 3,000</span>원</span>
 								</div>
 								<hr/>
 								<div class="prePayment">
@@ -181,6 +186,28 @@
 				aa1.val(aa);
 				
 			});
+			
+			//계산
+			let itemPrice = 0;		 //1개 상품가격
+			let basicPrice = 0;		//상품 가격 누적
+			let totalPrice = 0;	    //상품가격 총 금액
+			let deliveryPrice = 0;	//배송금액
+			
+			
+			if(basicPrice >= 30000) {
+				deliveryPrice =0;
+			}else if(basicPrice == 0) {
+					deliveryPrice = 0;
+			}else {
+				deliveryPrice =3000원;
+			}
+			
+			totalPrice = basicPrice +_deliveryPrice;
+			
+			
+			
+			
+			
 			
 			//이미지 삽입
 			$(".image_wrap").each(function(i, obj){

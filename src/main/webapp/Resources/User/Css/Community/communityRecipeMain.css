@@ -12,6 +12,10 @@
 	color:#999;
 }
 
+.disInlineBlock{
+	display:inline-block;
+}
+
 .main .searchBar{
 	text-align:right;
 }

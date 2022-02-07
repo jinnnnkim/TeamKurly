@@ -1,5 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<c:set var="contextPath" value="${pageContext.servletContext.contextPath }"/>
+<%
+	request.setCharacterEncoding("utf-8");
+%>     
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,10 +15,10 @@
 	<link rel=“stylesheet” href=“https://use.fontawesome.com/releases/v5.14.0/css/all.css”
      integrity=“sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc” crossorigin=“anonymous”>
     <link href=“https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap” rel=“stylesheet”>
-	<link rel="stylesheet" href="../../../Resources/Admin/Css/Point/userPoint.css">
-	<link rel="stylesheet" href="../../../Resources/Admin/Css/HomePageHeaderSide/reset.css">
+	<link rel="stylesheet" href="/recipetoyou/Resources/Admin/Css/Point/userPoint.css">
+	<link rel="stylesheet" href="/recipetoyou/Resources/Admin/Css/HomePageHeaderSide/reset.css">
 	<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
-	<script type="text/javascript" src="../../../Resources/Admin/Js/Point/userPoint.js" charset="UTF-8"></script>
+	<script type="text/javascript" src="/recipetoyou/Resources/Admin/Js/Point/userPoint.js" charset="UTF-8"></script>
  	<script type="text/javascript" src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
  	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
@@ -93,14 +99,19 @@
 				</tr>
 			</thead>
 			
-			<tbody class = "table_content">	
-				<tr>
-					<td><input type="checkbox" name="chk"></td>
-					<td><a href="aduserInfo.jsp">kim1z63</a></td>
-					<td>이재훈</td>
-					<td>일반회원</td>
-					<td>1000</td>
+			<tbody class = "table_content" >	
+				<c:forEach var="listPoint" items="${listPoint}">
+				
+				
+				<tr>  <%--  <a href="aduserInfo.jsp">${listPoint.userVO.user_id}</a> --%> 
+					<td><input type="checkbox" name="chk" value="${listPoint.userVO.user_id}"></td>
+					<td><a href="${contextPath}/aduser/aduserInfo.do?id=${listPoint.userVO.user_id}">${listPoint.userVO.user_id}</a></td>
+					<td>${listPoint.userVO.user_name}</td>
+					<td>${listPoint.userVO.user_grade}</td>
+					<td>${listPoint.point}</td>
 				</tr>
+				
+				</c:forEach>
 			
 				<tr>
 					<td><input type="checkbox" name="chk"></td>
@@ -159,5 +170,26 @@
 		
 	</form>
 	</div>
+	
+	<script type="text/javascript">
+
+	/* 체크박스 값 넘기기 */
+	function checkboxArr() {
+	    var checkArr = [];     // 배열 초기화
+	    $("input[name='chk']:checked").each(function(i)) {
+	        checkArr.push($(this).val());     // 체크된 것만 값을 뽑아서 배열에 push
+	    }
+	 
+	    $.ajax({
+	        url: 'chk'
+	        , type: 'post'
+	        , dataType: 'text'
+	        , data: {
+	            chkValueArr: checkArr
+	        }
+	    });
+	}
+	
+	</script>
 </body>
 </html>

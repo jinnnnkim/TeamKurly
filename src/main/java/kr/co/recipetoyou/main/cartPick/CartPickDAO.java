@@ -4,10 +4,6 @@ import java.util.List;
 
 import org.springframework.dao.DataAccessException;
 
-import kr.co.recipetoyou.user.join.UsersVO;
-
-import java.util.Map;
-
 import kr.co.recipetoyou.main.cartPick.vo.CartAddVO;
 import kr.co.recipetoyou.main.cartPick.vo.FavVO;
 import kr.co.recipetoyou.main.cartPick.vo.PickVO;
