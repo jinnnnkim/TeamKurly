@@ -1,7 +1,5 @@
 package kr.co.recipetoyou.admin.adpoint;
 
-import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -9,20 +7,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
-
-import kr.co.recipetoyou.admin.adorder.AdOrderVO;
-import kr.co.recipetoyou.admin.adsend.AdSendService;
-import kr.co.recipetoyou.admin.adsend.AdSendVO;
-import kr.co.recipetoyou.admin.aduser.AdUserVO;
-import kr.co.recipetoyou.user.join.UsersVO;
-import kr.co.recipetoyou.util.PageMaker;
-import kr.co.recipetoyou.util.PagingVO;
 
 @Controller("adPointController")
 public class AdPointControllerImpl implements AdPointController {
