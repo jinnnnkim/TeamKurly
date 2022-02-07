@@ -1,20 +1,26 @@
 package kr.co.recipetoyou.user.mypage;
 
-import java.util.List; 
+import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest; 
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.collections.map.HashedMap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import kr.co.recipetoyou.user.mypage.vo.CouponVO;
-import kr.co.recipetoyou.user.mypage.vo.OrdIngVO;
+import kr.co.recipetoyou.user.mypage.vo.MyOrderVO;
 import kr.co.recipetoyou.user.mypage.vo.PointVO;
 
 import kr.co.recipetoyou.user.mypage.vo.UserAddrVO;
@@ -34,13 +40,12 @@ public class MypageControllerImpl implements MypageController{
 	private CouponVO couponVO;
 	@Autowired
 	private PointVO pointVO;
-
 	
 	@Autowired
 	private UserAddrVO useraddrVO;
 	
 	@Autowired
-	private OrdIngVO ordingVO;
+	private MyOrderVO myorderVO;
 
 	@Autowired
 	private QnAVO qnaVO;
@@ -54,25 +59,31 @@ public class MypageControllerImpl implements MypageController{
 	}
 	
 	
-
+	//주문 내역 조회
 	@RequestMapping(value = "/orderList.do", method = RequestMethod.GET)
 	public ModelAndView listOrders(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
-		List<OrdIngVO> orderList = mypageService.listOrders();
+		List<MyOrderVO> orderList = mypageService.listOrders();
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("orderList", orderList);
 		return mav;
 	}
 
-	//주문내역 상세
-	@RequestMapping(value = "/orderDetail.do", method = RequestMethod.GET)
-	public ModelAndView orderDetail(HttpServletRequest request, HttpServletResponse response) throws Exception {
+	
+	//주문 내역 상세 조회하기
+	@Override
+	@RequestMapping(value = "/orderDetail.do", method = RequestMethod.GET) 
+	public void orderDetail(@RequestParam(value="ord_code", required = false) int ord_code, Model model) throws Exception {
 		
-		ModelAndView mav = new ModelAndView();	
-		return mav;
+		logger.info("클릭한 주문 코드 : "+ord_code);
+		
+		System.out.println("orderDetail Controller 호출");
+		//상품정보 출력
+		model.addAttribute("myorderVO", mypageService.orderDetail(ord_code));	
 	}
 	
-	@RequestMapping(value = "/giftList.do", method = RequestMethod.GET)
+	
+	@RequestMapping(value = "/giftList.do", method = {RequestMethod.GET, RequestMethod.POST})
 	public ModelAndView giftList(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
 		ModelAndView mav = new ModelAndView();	
@@ -193,6 +204,10 @@ public class MypageControllerImpl implements MypageController{
 		ModelAndView mav = new ModelAndView("redirect:/coupon.do");
 		return mav;
 	}
+
+
+
+	
 
 	
 

@@ -50,13 +50,13 @@
 				</div>
 				<div class="orderlist_wrap">
 					<div class="order_tit">
-						<a href="${contextPath}/orderDetail.do">${orderList.prod_name}
+						<a href="${contextPath}/orderDetail.do?ord_code=${orderList.ord_code}">${orderList.prod_name}
 						<i class="fas fa-chevron-right"></i>
 						</a>
 					</div>
 					
 					<div class="order_info">
-											<!-- 이미지 정보가 담기도록 함. -->
+						<!-- 이미지 정보가 담기도록 함. -->
 						<div class="image_wrap" data-prod_code="${cartList.imageList[0].prod_code}" data-path="${cartList.imageList[0].uploadPath}"
 												data-uuid="${cartList.imageList[0].uuid}" data-filename="${cartList.imageList[0].fileName}">
 												
