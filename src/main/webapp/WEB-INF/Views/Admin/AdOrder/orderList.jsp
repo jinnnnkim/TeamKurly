@@ -24,7 +24,7 @@
  	<link href="/recipetoyou/Resources/Admin/Css/AdUser/aduserList.css" rel="stylesheet">
 	<link href="/recipetoyou/Resources/Admin/Css/HomePageHeaderSide/reset.css" rel="stylesheet">
 	<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>	
-	<script type="text/javascript" src="/recipetoyou/Resources/Admin/Js/AdUser/aduserList.js" charset="UTF-8"></script>
+	<script type="text/javascript" src="/recipetoyou/Resources/Admin/Js/AdUser/adOrdList.js" charset="UTF-8"></script>
 	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 	<link rel="stylesheet" href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css">
@@ -35,7 +35,7 @@
 			<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right-square-fill" viewBox="0 0 16 16">
   			<path d="M0 14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2a2 2 0 0 0-2 2v12zm4.5-6.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5a.5.5 0 0 1 0-1z"/>
 			</svg>
-			주문/결제관리
+			주문관리
 		</div>
 	<form action="#" method="post">
 		<div class="list_head">
@@ -93,6 +93,7 @@
 					<input type="checkbox" id="checkAll" name="chk">
 					
 					</td>
+					<td id="ordCol">주문코드</td>
 					<td id="idCol">아이디</td>
 					<td id="nameCol">이름</td>
 					<td id="phoneCol">휴대전화</td>
@@ -100,11 +101,9 @@
 					<td id="prodNameCol">상품명</td>
 					<td id="prodInfoCol">상품정보</td>
 					<td id="amountCol">수량</td>
-					<td id="priceCol">결제금액</td>
-					<td id="payCardCol">카드번호</td>
+					<td id="payCardCol">가격</td>
 					<td id="ordDateCol">주문일</td>
-					<td id="modCol">수정</td>
-					<td id="delCol">삭제</td>
+					<td id="delCol">결제취소</td>
 				</tr>
 			</thead>	
 				
@@ -112,6 +111,7 @@
 			<c:forEach var="ord" items="${ordList }">
 				<tr align="center">
 					<td><input type="checkbox" name="chk"></td>
+					<td>${ord.ord_code }</td>
 					<td>${ord.user_id }</td>
 					<td>${ord.user_name }</td>
 					<td>${ord.user_phone}</td>
@@ -120,11 +120,8 @@
 					<td>${ord.prod_content }</td>
 					<td>${ord.quantity }</td>
 					<td>${ord.price }</td>
-					<td>${ord.pay_card_idx }</td>
 					<td>${ord.ord_date }</td>
-					<!--  -->
-					<td><button type="button"><a href="${contextPath}/adorder/modOrdIngInfo.do?id=${ord.ord_code}">주문수정</a></button></td>
-					<td><button onclick="deleteMessage()"><a href="${contextPath}/adorder/removeOrd.do?id=${ord.ord_code}">결제취소</a></button></td>
+					<td><button onclick="deleteMessage()"><a href="${contextPath}/adorder/removeOrd.do?id=${ord.ord_code}">주문취소</a></button></td>
 				</tr>
 			</c:forEach>
 		</tbody>	
@@ -132,15 +129,10 @@
 		</div>
 		
 		<div class="btnGroup">
-		<!-- 버튼클릭시 전체선택되는 js구현되어있음 -->
-		<input type="button" value="전체선택" id="check_all">
-		<!-- 버튼클릭시 전체선택 해제되는 js구현되어있음 -->
-		<input type="button" value="전체해제" id="uncheck_all">
-		
-		
-		<!-- 클릭시 alert창 띄우는 js 구현되어있음 -->
-		<button class="excelBtn" onclick="saveMessage()">엑셀파일로 저장</button><br><br><br>
-
+			<!-- 버튼클릭시 전체선택되는 js구현되어있음 -->
+			<input type="button" value="전체선택" id="check_all">
+			<!-- 버튼클릭시 전체선택 해제되는 js구현되어있음 -->
+			<input type="button" value="전체해제" id="uncheck_all">
 		</div>
 		
 		<div class="box-footer">
@@ -164,8 +156,6 @@
 				 </ul>
 			</div>
 		</div> 
-		
 	</form>
-
 </body>
 </html>

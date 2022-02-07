@@ -13,11 +13,11 @@ public interface AdOrderDAO {
 
 	int ordCount() throws DataAccessException;
 
-	int deleteOrd(String id) throws DataAccessException;
+	int deleteOrd(int id) throws DataAccessException;
 
-	AdOrdIngVO readOrdIng(int id) throws DataAccessException;
+	AdOrderVO readOrd(int id) throws DataAccessException;
 
-	void updateOrdIng(AdOrdIngVO vo) throws DataAccessException;
+//	void updateOrdIng(AdOrderVO vo) throws DataAccessException;
 
 	
 
