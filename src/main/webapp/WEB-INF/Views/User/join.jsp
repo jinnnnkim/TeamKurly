@@ -4,19 +4,14 @@
 <%
 	request.setCharacterEncoding("UTF-8");
 %>
-<<<<<<< HEAD
-<c:set var="contextPath" value="${pageContext.servletContext.contextPath}"/> 
-=======
 <c:set var="contextPath" value="${pageContext.servletContext.contextPath}"/>
->>>>>>> 73327b0b5319c321c2a70427a6ba4013a5acd816
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Recipe to You :: 내일의 장보기, 레시피투유</title>
 <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
-<link href="/recipetoyou/Resources/User/Css/join.css" rel="stylesheet"
-	type="text/css">
+<link href="/recipetoyou/Resources/User/Css/join.css" rel="stylesheet" type="text/css">
 <link rel="stylesheet"
 	href="https://use.fontawesome.com/releases/v5.14.0/css/all.css"
 	integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc"
@@ -33,22 +28,10 @@
 			<table class="myInfoMain">
 				<tr>
 					<th>아이디<strong>*</strong></th>
-<<<<<<< HEAD
-					<td><input type="text" name="user_id" placeholder="6자 이상의 영문 혹은 영문과 숫자를 조합">
-						<a href="" >중복확인</a></td><!-- /join/idChk.do -->
-				</tr>
-				<tr>
-					<th>비밀번호<strong>*</strong></th>
-					<td><input type="text" name="user_pw" placeholder="비밀번호를 입력해주세요."></td>
-				</tr>
-				<tr>
-					<th>비밀번호 확인<strong>*</strong></th><!-- //user_pw -->
-					<td><input type="text" placeholder="비밀번호를 한번 더 입력해주세요.">
-=======
-					<td><input id="userID" type="text" name="user_id" placeholder="6자 이상의 영문 혹은 영문과 숫자를 조합" >
+					<td><input type="text" id="userID" name="user_id" placeholder="4자 이상의 영문">
 						<input id="userIDChk" name="userIDChk" type="hidden" value="N"/>
-						<button type="button" id="idCheck" onclick="idChk()">중복확인</button>
-						</td><!-- /join/idChk.do -->
+						<button class="btn" type="button" id="idCheck" onclick="idChk()">중복확인</button>
+						</td>
 				</tr>
 				<tr>
 					<th>비밀번호<strong>*</strong></th>
@@ -56,9 +39,8 @@
 				</tr>
 				<tr>
 					<th>비밀번호 확인<strong>*</strong></th><!-- //user_pw -->
-					<td><input type="password" name="user_pwChk" placeholder="비밀번호를 한번 더 입력해주세요.">
->>>>>>> 73327b0b5319c321c2a70427a6ba4013a5acd816
-					</td>
+					<td><input class="user_pwChk" type="password" name="user_pwChk" placeholder="비밀번호를 한번 더 입력해주세요." onchange="pwConfirmChk()">
+						</td>
 				</tr>
 				<tr>
 					<th>이름<strong>*</strong></th>
@@ -66,31 +48,21 @@
 				</tr>
 				<tr class="email">
 					<th>이메일<strong>*</strong></th>
-<<<<<<< HEAD
-					<td><input type="text" name="user_email" placeholder="예:exam@gmail.com">
-						<a href="" onclick="">중복확인</a></td>
+					<td><input id="userMail" type="text" name="user_email" placeholder="예:exam@gmail.com">
+					<input type="hidden" id="userMailChk" name ="userMailChk" value="N"/>
+						<button class="btn" type="button" onclick="mailChk()">중복확인</button></td>
 				</tr>
 				<tr class="phone">
 					<th>휴대폰<strong>*</strong></th>
-					<td><input type="text" name="user_phone" placeholder="숫자만 입력해주세요"> <a
-						href="" onclick="">인증번호 받기</a></td>
-				</tr>
-				<tr class="address">
-					<th>주소<strong>*</strong></th><!-- name="user_addr" 어디에 넣어요? -->
-					<input type="hidden" name="user_addr" value="214241">
-					<td><a href="" onclick=""><i class="fas fa-search" ></i>주소검색</a><br />
-						<span>배송지에 따라 상품 정보가 달라질 수 있습니다.</span></td>
-=======
-					<td><input id="userMail" type="email" name="user_email" placeholder="예:exam@gmail.com">
-					<input id="userMailChk" type="hidden" value="N"/>
-						<button type="button" onclick="mailChk()">중복확인</button></td>
+					<td><input type="text" name="user_phone" placeholder="숫자만 입력해주세요"> 
+					<button class="btn" type="button" onclick="smsChk()">인증번호 받기</button></td>
 				</tr>
 				<tr class="phone">
 					<th>휴대폰<strong>*</strong></th>
 					<td><input id="phone" type="text" name="user_phone" placeholder="숫자만 입력해주세요">
 					 <button type="button" onclick="smsChk()">인증번호 받기</button>
 					 <div class="authBox"><input id="authNum" type="text" name="phone"/>
-					  <button type="button" onclick="authBtn()">인증하기</button>
+					  <button type="button" type="button" onclick="authBtn()">인증하기</button>
 					 </div>
 					<input type="hidden" value="N" name="phoneAuth" id="phoneAuth">
 					 </td>
@@ -107,7 +79,6 @@
 							<span>배송지에 따라 상품 정보가 달라질 수 있습니다.</span>
 						<input type="hidden" name = "user_addr" value=""/>
 					</td>
->>>>>>> 73327b0b5319c321c2a70427a6ba4013a5acd816
 				</tr>
 				<tr>
 					<th>성별</th>
@@ -157,11 +128,8 @@
 				<tr>
 					<th></th>
 					<td>
-<<<<<<< HEAD
 					<input type="checkbox" id="tearm_agree" class="chChoice"> <span>이용약관 동의</span> 
-=======
-					<input type="checkbox" id="tearm_agree" name="tearm_agree" class="chChoice"> <span>이용약관 동의</span> 
->>>>>>> 73327b0b5319c321c2a70427a6ba4013a5acd816
+					<input type="checkbox" id="" name="tearm_agree" class="chChoice"> <span>이용약관 동의</span> 
 					<span class="select">(필수)</span> <a href="#none">약관보기</a>
 					</td>
 				</tr>
@@ -196,18 +164,14 @@
 				</tr>
 			</table>
 			<div class="form_footer">
-<<<<<<< HEAD
 				<button type="submit" onclick="fn_sendUser()">가입하기</button>
-=======
 				<button type="submit" onclick="return fn_sendUser()">가입하기</button>
->>>>>>> 73327b0b5319c321c2a70427a6ba4013a5acd816
 			</div>
 		</div>
 	</div>
 	</form>
 	
 	<script type="text/javascript">
-<<<<<<< HEAD
 	$(function(){
 		$(".added .recom").click(function(){
 			$('.recommend').css('display','block');
@@ -330,53 +294,6 @@
 			}
 		}
 
-
-</script>
-
-
-<!-- 
-	<script type="text/javascript">
-		function fn_idChk() {
-			var _id = $("#t_id").val();
-			if(_id == '') {
-				alert("ID를 입력하세요.");
-				return;			/* 더이상 진행이 안되도록 끝냄(아이디가 없을 경우) */
-				
-			}
-			
-			$.ajax({
-				type: "post",
-				async: true,		/* 비동기 처리가 되어야 하므로 true! */
-				url: "http://localhost:8080/Chap19_Ajax/mem",
-				dataType: "text",
-				data: {id: _id},
-				success: function(data, textStatus) {
-					
-					if(data=='usable') {
-						$('#message').text("사용할 수 있는 ID입니다.");
-						$('btnDuplicate').prop("disabled", true);
-					}
-					else {
-						$('#message').text("사용할 수 없는 ID입니다.");
-					}
-					
-				},
-				error: function(data, textStatus) {
-					alert("에러가 발생했습니다.");
-				},
-				complete: function(data, textStatus) {
-					alert("작업을 완료했습니다.");
-				}
-			});
-		}
-	
-	</script>
-
- -->
-
-
-
-=======
 		$(function(){
 			$(".added .recom").click(function(){
 				$('.recommend').css('display','block');
@@ -464,11 +381,6 @@
 			
 		});
 		
-			
-	</script>
-
-	<script type="text/javascript">
-	
 		function fn_sendUser() {
 			var frmJoin = document.frmJoin
 				var user_id = frmJoin.user_id.value;
@@ -491,7 +403,7 @@
 				var tearm_agree =  frmJoin.tearm_agree.value;
 				
 				var empJ = /\s/g;
-				var idJ = /^[a-z0-9]{4,12}$/;
+				
 				var pwJ = /^[A-Za-z0-9]{4,12}$/; 
 				var nameJ = /^[가-힣]{2,6}$/;
 				var mailJ = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
@@ -499,13 +411,8 @@
 				
 				
 				
-				if(user_id.length==0 || user_id=="") {
-					alert("아이디는 필수입니다.");
-					return false;
-				}else if(!idJ.test(user_id)){
-					alert('4자리 이상 영문자로 입력해주세요.');
-					return false;
-				}else if(userIDChk=='N'){
+				
+				if(userIDChk=='N'){
 					alert('아이디 중복체크를 해주세요');
 					return false;
 				}else if(user_pw.length==0 || user_pw=="") {
@@ -552,55 +459,66 @@
 			}
 		
 		function idChk(){
+			console.log("idchk실행");
+			var idJ = /^[a-z0-9]{4,12}$/;
 			var _userID = document.querySelector('#userID').value;
-			$.ajax({
-				type: "post",
-				async: true,
-				url: "http://localhost:8080/recipetoyou/user/idChk.do",
-				dataType: "text",
-				data: {user_id: _userID},
-				success: function(result) {
-					console.log(result);
-					if (result!= 1) {
-						alert("사용 가능한 아이디 입니다.");
-						$('#userIDChk').attr("value", "Y");
-					}else {
-						alert("아이디가 이미 존재합니다.");
-					}
-				},
-				error : function(data, textStatus) {			
-					alert("에러가 발생했습니다.")	
-				},
-				complete : function(data, textStatus) {			
-				
-				}					
-			 });
+			if (_userID == null || _userID == ""){
+				alert("아이디를 입력해주세요")
+			}else if(!idJ.test(_userID)){
+				alert('4자리 이상 영문자로 입력해주세요.');
+			}else{
+				$.ajax({
+					type: "post",
+					async: true,
+					url: "http://localhost:8080/recipetoyou/user/idChk.do",
+					dataType: "text",
+					data: {user_id: _userID},
+					success: function(result) {
+						console.log(result);
+						if (result!= 1) {
+							alert("사용 가능한 아이디 입니다.");
+							$('#userIDChk').attr("value", "Y");
+						}else {
+							alert("아이디가 이미 존재합니다.");
+						}
+					},
+					error : function(data, textStatus) {			
+						alert("에러가 발생했습니다.")	
+					},
+					complete : function(data, textStatus) {			
+					
+					}					
+				 });
+			}
 		}
 		
 		function mailChk(){
 			var _userMail = document.querySelector('#userMail').value;
-			$.ajax({
-				type: "post",
-				async: true,
-				url: "http://localhost:8080/recipetoyou/user/mailChk.do",
-				dataType: "text",
-				data: {user_mail: _userMail},
-				success: function(result) {
-					console.log(result);
-					if (result!= 1) {
-						alert("사용 가능한 메일 입니다.");
-						$('#userMailChk').attr("value", "Y");
-					}else {
-						alert("이미 해당 메일로 가입되었습니다.");
-					}
-				},
-				error : function(data, textStatus) {			
-					alert("에러가 발생했습니다.")	
-				},
-				complete : function(data, textStatus) {			
-				
-				}					
-			 });
+			if(_userMail == "" || _userMail == null){
+				alert("메일 주소를 입력해주세요.");
+			}else{
+				$.ajax({
+					type: "post",
+					async: true,
+					url: "http://localhost:8080/recipetoyou/user/mailChk.do",
+					dataType: "text",
+					data: {user_mail: _userMail},
+					success: function(result) {
+						console.log(result);
+						if (result!= 1) {
+							alert("사용 가능한 메일 입니다.");
+							$('#userMailChk').attr("value", "Y");
+						}else {
+							alert("이미 해당 메일로 가입되었습니다.");
+						}
+					},
+					error : function(data, textStatus) {			
+						alert("에러가 발생했습니다.")	
+					},
+					complete : function(data, textStatus) {			
+					}					
+				 });
+			}
 		}
 		
 		var code2 = "";
@@ -666,8 +584,18 @@
 		        }
 		    }).open();
 		}
+		
+		function pwConfirmChk(e){
+			var user_pw = frmJoin.user_pw.value;
+			var user_pwChk = frmJoin.user_pwChk.value;
+			var pwChk_focus = document.querySelector(".user_pwChk");
+			
+			if (user_pw != user_pwChk){
+				alert("비밀번호가 일치하지 않습니다.");
+				pwChk_focus.focus();
+			}
+		}
 	</script>
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>	
->>>>>>> 73327b0b5319c321c2a70427a6ba4013a5acd816
 </body>
 </html>

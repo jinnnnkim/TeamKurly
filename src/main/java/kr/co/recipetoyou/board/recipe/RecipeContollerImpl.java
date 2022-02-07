@@ -34,6 +34,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import kr.co.recipetoyou.util.PageMaker;
+import kr.co.recipetoyou.util.PagingVO;
+
 @Controller("recipeContoller")
 public class RecipeContollerImpl implements RecipeController{
 
@@ -47,10 +50,18 @@ public class RecipeContollerImpl implements RecipeController{
 	@Autowired
 	private RecipeVO recipeVO;
 
-	@RequestMapping(value="/community/communityRecipeMain.do", method=RequestMethod.GET )
-	public ModelAndView communityRecipeMain(HttpServletRequest request, HttpServletResponse response) throws Exception{
-
-		List<RecipeVO> recipeList = recipeService.recipeList();
+	@RequestMapping(value="/community/communityRecipeMain.do", method= {RequestMethod.GET,RequestMethod.POST} )
+	public ModelAndView communityRecipeMain(PagingVO vo, 
+			HttpServletRequest request, HttpServletResponse response) throws Exception{
+		PageMaker pm = new PageMaker();
+		pm.setVo(vo);
+		System.out.println("게시글 총 갯수"+recipeService.recipeCount());
+		pm.setTotalCount(recipeService.recipeCount());
+		int cnt = pm.getTotalCount();
+		
+		
+		List<RecipeVO> recipeList = recipeService.recipeList(vo);
+		
 		List<RecipeCateVO> cateTitleList = recipeService.recipeCateTitleList();
 		List<RecipeCateVO> cateDetailList = recipeService.recipeCateDetailList();
 
@@ -59,6 +70,8 @@ public class RecipeContollerImpl implements RecipeController{
 		mav.addObject("recipeList", recipeList);
 		mav.addObject("cateTitleList", cateTitleList);
 		mav.addObject("cateDetailList", cateDetailList);
+		mav.addObject("cnt",cnt);
+		mav.addObject("pm",pm);
 
 		return mav;
 	}

@@ -28,6 +28,9 @@
     font-size: 14px;
     text-align: left;
     font-weight: 500;
+    display: inline-block;
+    height: 70px;
+    line-height: 70px;
 }
 
 .myInfoMain td {
@@ -151,7 +154,8 @@ table tr.privacyContract{
 	
 }
 
-.form_footer a, button {
+.form_footer a,
+.form_footer button {
 	display: inline-block;
     width: 120px;
     margin-left: 5px;
@@ -169,6 +173,11 @@ table tr.privacyContract{
     color: #fff;	
     cursor: pointer;
 }
+.btn:hover{
+	cursor: pointer;
+	background: #f4f4f4;
+}
+
 
 /* 
 .authBox{
