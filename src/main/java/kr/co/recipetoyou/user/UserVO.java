@@ -44,7 +44,7 @@ public class UserVO {
 	private int email_agree;
 	private Date join_date;
 	private int user_grade;
-	private int user_point;
+	private int user_point;//point_code
 	private int cp_code;
 	private String toYou_pass;
 	
