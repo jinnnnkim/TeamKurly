@@ -53,3 +53,7 @@ $(function(){
 function appliMessage(){
 	alert('적립금 지급 회원을 선택하여주십시오');
 }
+
+
+
+

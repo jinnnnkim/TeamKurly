@@ -20,7 +20,7 @@
 	<link rel="stylesheet" href="//code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" />
 	<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>	
 	<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
-	<script src="https://cdn.ckeditor.com/ckeditor5/31.1.0/classic/ckeditor.js"></script>
+	<script src="/recipetoyou/Resources/Common/ckeditor/ckeditor.js"></script>
 	<!-- <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script> -->
 	<script type="text/javascript" src="/recipetoyou/Resources/Admin/Js/ShoppingMallManagement/adgoodsRegister.js" charset="UTF-8"></script>
 	
@@ -202,6 +202,13 @@
 								<th>판매단위</th>
 								<td>
 								<input type="text" id="prod_sell_unit" name="prod_sell_unit">
+								<select name="select_unit">
+									<option>단위 선택</option>
+									<option>봉</option>
+									<option>개</option>
+									<option>망</option>
+									<option>팩</option>
+								</select>
 								<span class="ck_msg prod_sell_unit_msg">판매단위를 입력해주세요.</span>
 								</td>
 								
@@ -344,7 +351,7 @@
 			
 			$.ajax({
 				
-				url : "${contextPath}/adgoods/uploadAction.do",	//서버로 요청을 보낼 url
+				url : '${contextPath}/adgoods/uploadAction.do',	//서버로 요청을 보낼 url
 				processData : false,			//서버로 전송할 데이터를 queryString 형태로 변환할지 여부
 				contentType : false,			//서버로 전송되는 데이터의 content-type
 				data : formData,				//서버로 전송할 데이터
@@ -385,9 +392,7 @@
 	function showUploadImage(uploadResultArr){
 		
 		//전달받은 데이터 체크
-		if(!uploadResultArr || uploadResultArr.length == 0){
-			return;
-		}
+		if(!uploadResultArr || uploadResultArr.length == 0){return}
 		
 		let uploadResult = $("#uploadArea");
 		
@@ -395,14 +400,12 @@
 		
 		let str = "";
 		
-		let fileCallPath = encodeURIComponent(obj.uploadPath.replace(/\\/g, '/') + "/s_" + obj.uuid + "_" + obj.fileName);
+		//let fileCallPath = encodeURIComponent(obj.uploadPath.replace(/\\/g, '/') + "/s_" + obj.uuid + "_" + obj.fileName);
+		let fileCallPath = encodeURIComponent(obj.uploadPath + "/s_" + obj.uuid + "_" + obj.fileName);
 		
 		str += "<div id='result_card'>";
 		str += "<img src='${contextPath}/adgoods/getImageInfo.do?fileName=" + fileCallPath +"'>";
-		str += "<div class='imgDeleteBtn' data-file='" + fileCallPath + "'>x</div>";
-		str += "<input type='hidden' name='imageList[0].fileName' value='"+ obj.fileName +"'>";
-		str += "<input type='hidden' name='imageList[0].uuid' value='"+ obj.uuid +"'>";
-		str += "<input type='hidden' name='imageList[0].uploadPath' value='"+ obj.uploadPath +"'>";		
+		str += "<div class='imgDeleteBtn' data-file='" + fileCallPath + "'>x</div>";	
 		str += "</div>";		
 		
 			uploadResult.append(str); 
@@ -424,11 +427,11 @@
 		let targetFile = $(".imgDeleteBtn").data("file");
 		
 		let targetDiv = $("#result_card");
-		+
+		
 		$.ajax({
 			
 			url : '${contextPath}/adgoods/deleteFile.do',
-			contentType : false,
+			//contentType : false,
 			data : {fileName : targetFile},
 			dataType : 'text',
 			type : 'POST',
@@ -448,11 +451,14 @@
 	}
 	
 	/* CKEditor5 적용 */
-	ClassicEditor
-		.create(document.querySelector('#prod_content'))
-		.catch(error=>{
-			console.error(error);
-		})
+	var ckeditor_config = {
+		resize_enaleb : false,
+		enterMode : CKEDITOR.ENTER_BR,
+		shiftEnterMode : CKEDITOR.ENTER_P,
+		filebrowserUploadUrl : "${contextPath}/adgoods/ckimageUpload.do"
+		}
+		CKEDITOR.replace("prod_content", ckeditor_config);
+	
 	
 	/* 상품 할인율 설정 */
 	$("#prod_discount").on("propertychange change keyup paste input", function(){
@@ -470,6 +476,18 @@
 		}
 		
 	});
+	
+	/* 판매 단위 선택 */
+	$("select[name=select_unit]").on("change", function(){
+		var $unit = $(this).closset(".form").find("input[name=prod_sell_unit]");
+		if($(this).val()=="etc"){
+			$unit.val('');
+			$unit.prop("readonly",false);
+		}else{
+			$unit.val($(this).val());
+			$unit.prop("readonly",true);
+		}
+	})
 	
 </script> 
 	

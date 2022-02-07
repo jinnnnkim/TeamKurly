@@ -25,6 +25,9 @@ public class AdOrderVO {
 	private int ord_code;
 	private String user_id;
 	private Date ord_date;	
+	private int prod_code;
+	
+
 	public AdOrderVO() {
 		// TODO Auto-generated constructor stub
 	}
@@ -69,6 +72,14 @@ public class AdOrderVO {
 	}
 	public void setOrd_date(Date ord_date) {
 		this.ord_date = ord_date;
+	}
+	
+	public int getProd_code() {
+		return prod_code;
+	}
+
+	public void setProd_code(int prod_code) {
+		this.prod_code = prod_code;
 	}
 	
 	//사용자	

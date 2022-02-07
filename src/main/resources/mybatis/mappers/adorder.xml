@@ -24,6 +24,7 @@
   		<result property="price" column="price" />
   		<result property="pay_card_idx" column="pay_card_idx" />
   		<result property="ord_date" column="ord_date" />
+  		<result property="prod_code" column="prod_code" />
   	</resultMap>
 
   	<resultMap type="adOrdIngVO" id="ordIngResult">	
@@ -97,6 +98,14 @@
 			where toa.ord_code = toi.ord_code 
 			and toa.ord_code = #{id}
 		]]>
+	</select>
+	
+	<!-- 상품 수량 조절 보조 -->
+	<select id="updageStock_sub" resultType="adOrderVO">
+		select
+			ord_code, prod_code ,quantity
+		from tb_order
+			where ord_code = #{ord_code}
 	</select>
 	
 	<!-- 주문 정보 수정 -->
