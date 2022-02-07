@@ -63,7 +63,7 @@ public class AdGoodsControllerImpl implements AdGoodsController {
 	
 	private static final Logger logger = LoggerFactory.getLogger("ProductControllerImpl.class");
 	
-	private static final String UPLOAD_DIR = "C:\\git-recipetoyou\\RecipeToYou\\src\\main\\webapp\\Resources\\Admin\\Img\\AdgoodsImg\\";
+	//private static final String UPLOAD_DIR = "C:\\git-recipetoyou\\RecipeToYou\\src\\main\\webapp\\Resources\\Admin\\Img\\AdgoodsImg\\";
 	
 	@Autowired
 	AdGoodsService adGoodsService;
@@ -246,11 +246,6 @@ public class AdGoodsControllerImpl implements AdGoodsController {
 		//이미지 파일 체크
 		for(MultipartFile multipartFile : uploadFile) {
 			
-			logger.info("-----------------------------");
-			logger.info("파일 이름 : " + multipartFile.getOriginalFilename());
-			logger.info("파일 타입 : " + multipartFile.getContentType());
-			logger.info("파일 크기 : " + multipartFile.getSize());
-			
 			File checkfile = new File(multipartFile.getOriginalFilename());
 			String filetype = null;
 			
@@ -270,6 +265,7 @@ public class AdGoodsControllerImpl implements AdGoodsController {
 			}
 		}//for
 		
+		String UPLOAD_DIR = "C:\\git-recipetoyou\\RecipeToYou\\src\\main\\webapp\\Resources\\Admin\\Img\\AdgoodsImg\\";
 		
 		/*너무 많은 파일이 한 곳에 모여있지 않도록 날짜 폴더 경로 생성*/
 		//날짜 경로 문자열 얻기
@@ -354,7 +350,7 @@ public class AdGoodsControllerImpl implements AdGoodsController {
 		try{
 			
 			//썸네일 파일 삭제
-			file = new File(UPLOAD_DIR+URLDecoder.decode(fileName, "UTF-8"));
+			file = new File("C:\\git-recipetoyou\\RecipeToYou\\src\\main\\webapp\\Resources\\Admin\\Img\\AdgoodsImg\\"+URLDecoder.decode(fileName, "UTF-8"));
 			
 			file.delete();
 			
@@ -385,7 +381,7 @@ public class AdGoodsControllerImpl implements AdGoodsController {
 	@ResponseBody
 	public ResponseEntity<byte[]> getadGoodsImage(String fileName) throws Exception {
 		
-		File file = new File(UPLOAD_DIR+fileName);
+		File file = new File("C:\\git-recipetoyou\\RecipeToYou\\src\\main\\webapp\\Resources\\Admin\\Img\\AdgoodsImg\\"+fileName);
 		
 		ResponseEntity<byte[]> result = null;
 		
@@ -449,7 +445,7 @@ public class AdGoodsControllerImpl implements AdGoodsController {
 		try{ 
 			String fileName = upload.getOriginalFilename(); 
 			byte[] bytes = upload.getBytes(); 
-			String path = UPLOAD_DIR;
+			String path = "C:\\git-recipetoyou\\RecipeToYou\\src\\main\\webapp\\Resources\\Admin\\Img\\AdgoodsImg\\";
 			String ckUploadPath = path + uid + "_" + fileName;
 			System.out.println("path:"+ckUploadPath);
 			File folder = new File(path); 
@@ -487,7 +483,7 @@ public class AdGoodsControllerImpl implements AdGoodsController {
 	@RequestMapping(value="/adgoods/ckimageSubmit.do")
 	public void ckSubmit(@RequestParam(value="uid") String uid , @RequestParam(value="fileName") String fileName 
 			, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{ 
-		String path = UPLOAD_DIR;
+		String path = "C:\\git-recipetoyou\\RecipeToYou\\src\\main\\webapp\\Resources\\Admin\\Img\\AdgoodsImg\\";
 		String sDirPath = path + uid + "_" + fileName; 
 		File imgFile = new File(sDirPath); 
 		if(imgFile.isFile()){ 
