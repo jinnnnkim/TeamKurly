@@ -31,4 +31,6 @@ public interface MypageController {
 	
 	//상품리뷰 조회
 	public ModelAndView listReviews(HttpServletRequest request, HttpServletResponse response) throws Exception;
+
+	public ModelAndView addrModify(HttpServletRequest request, HttpServletResponse response) throws Exception;
 }
