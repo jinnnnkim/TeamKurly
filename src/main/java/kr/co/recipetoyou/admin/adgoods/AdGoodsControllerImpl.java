@@ -63,7 +63,7 @@ public class AdGoodsControllerImpl implements AdGoodsController {
 	
 	private static final Logger logger = LoggerFactory.getLogger("ProductControllerImpl.class");
 	
-	//private static final String UPLOAD_DIR = "C:\\git-recipetoyou\\RecipeToYou\\src\\main\\webapp\\Resources\\Admin\\Img\\AdgoodsImg\\";
+	private static final String UPLOAD_DIR = "C:\\git-recipetoyou\\RecipeToYou\\src\\main\\webapp\\Resources\\Admin\\Img\\AdgoodsImg\\";
 	
 	@Autowired
 	AdGoodsService adGoodsService;
@@ -341,7 +341,7 @@ public class AdGoodsControllerImpl implements AdGoodsController {
 	@Override
 	@RequestMapping(value = "/adgoods/deleteFile.do")
 	@ResponseBody
-	public ResponseEntity<String> deleteAction(String fileName) throws Exception {
+	public ResponseEntity<String> deleteAction(String fileName, int prod_code) throws Exception {
 		
 		logger.info("deleteFile......." + fileName);
 		
@@ -362,6 +362,8 @@ public class AdGoodsControllerImpl implements AdGoodsController {
 			file = new File(originFile);
 			
 			file.delete();
+			
+			adGoodsService.removeImage(prod_code);
 			
 			
 		}catch (Exception e) {
@@ -409,13 +411,14 @@ public class AdGoodsControllerImpl implements AdGoodsController {
 	
 	//상품 정보 수정
 	@Override
-	@RequestMapping(value = "/adgoods/adgoodsModify.do")
-	public ModelAndView goodsModify(AdGoodsVO agvo, RedirectAttributes rttr, HttpServletRequest request, HttpServletResponse response) throws Exception {
+	@RequestMapping(value = "/adgoods/adgoodsModify.do", method = {RequestMethod.GET, RequestMethod.POST})
+	public ModelAndView goodsModify(@RequestParam(value = "prod_code") int prod_code, AdGoodsVO agvo, RedirectAttributes rttr, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
 		int result = adGoodsService.goodsModify(agvo);
 		rttr.addFlashAttribute("modify_result", result);
 		
 		ModelAndView mav = new ModelAndView("redirect:listProduct.do");
+		mav.addObject("prod_code", prod_code);
 		return mav;	
 	}
 
@@ -425,6 +428,26 @@ public class AdGoodsControllerImpl implements AdGoodsController {
 	@RequestMapping(value = "/adgoods/adgoodsDelete.do")
 	public ModelAndView goodsDelete(int prod_code, RedirectAttributes rttr, HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
+		
+		List<AdgoodsImgVO> fileList = adGoodsService.getGoodsImage(prod_code);
+		
+		if(fileList != null) {
+			List<Path> pathList = new ArrayList();
+			
+			fileList.forEach(agvo ->{
+				//원본 이미지
+				Path path = Paths.get(UPLOAD_DIR, agvo.getUploadPath(), agvo.getUuid()+"_"+agvo.getFileName());
+				pathList.add(path);
+				
+				//썸네일 이미지
+				path = Paths.get(UPLOAD_DIR, agvo.getUploadPath(), "s_"+agvo.getUuid()+"_"+agvo.getFileName());
+				pathList.add(path);
+			});
+			
+			pathList.forEach(path ->{
+				path.toFile().delete();
+			});
+		}
 		
 		int result = adGoodsService.goodsDelete(prod_code);
 		rttr.addFlashAttribute("delete_result", result);

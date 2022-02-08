@@ -47,6 +47,9 @@ public interface AdGoodsService {
 	//상품 정보 삭제
 	public int goodsDelete(int prod_code) throws Exception;
 	
+	//상품 이미지 삭제
+	public void removeImage(int prod_code)throws Exception;
+	
 	//재고 관리
 	public void updageStock(AdGoodsVO agvo) throws Exception;
 }
