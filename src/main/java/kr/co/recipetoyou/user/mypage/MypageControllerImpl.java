@@ -12,6 +12,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -19,6 +20,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import kr.co.recipetoyou.user.UserVO;
 import kr.co.recipetoyou.user.mypage.vo.CouponVO;
 import kr.co.recipetoyou.user.mypage.vo.MyOrderVO;
 import kr.co.recipetoyou.user.mypage.vo.PointVO;
@@ -155,11 +157,22 @@ public class MypageControllerImpl implements MypageController{
 		return mav;
 	}
 	
-	
-	@RequestMapping(value = "/mypageUserInfo.do", method = RequestMethod.GET)
-	public ModelAndView mypageUserInfo(HttpServletRequest request, HttpServletResponse response) throws Exception {
+	//개인정보 수정 - 비밀번호 재확인
+	@RequestMapping(value = "/mypageUserInfoPwdCheck.do", method = RequestMethod.GET)
+	public ModelAndView mypageUserInfoPwdCheck(HttpServletRequest request,HttpServletResponse response) throws Exception {
 		
 		ModelAndView mav = new ModelAndView();
+		
+		return mav;
+	}
+	
+	@Override
+	@RequestMapping(value = "/mypageUserInfoUpdate.do", method = RequestMethod.GET)
+	public ModelAndView userInfoUpdate(@ModelAttribute UserVO userVO, HttpServletRequest request, HttpServletResponse response) throws Exception {
+		logger.info("mypageUserInfoUpdate 호출");
+		
+		mypageService.updateUser(userVO);
+		ModelAndView mav = new ModelAndView("redirect:mypageUserInfoUpdate.do");
 		
 		return mav;
 	}

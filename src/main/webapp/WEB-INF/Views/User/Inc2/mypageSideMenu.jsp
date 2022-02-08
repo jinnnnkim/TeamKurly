@@ -26,7 +26,7 @@
 			<i class="fas fa-chevron-right"></i></a></li>
 		<li class="coupon"><a href="${contextPath}/coupon.do">쿠폰
 			<i class="fas fa-chevron-right"></i></a></li>
-		<li class="userInfo"><a href="${contextPath}/mypageUserInfo.do">개인 정보 수정
+		<li class="userInfo"><a href="${contextPath}/mypageUserInfoPwdCheck.do">개인 정보 수정
 			<i class="fas fa-chevron-right"></i>
 		</a></li>
 	</ul>
