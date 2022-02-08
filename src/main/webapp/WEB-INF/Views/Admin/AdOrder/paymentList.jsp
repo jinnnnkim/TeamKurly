@@ -42,39 +42,39 @@
 			<table align="center" id="tableGroup">
 				<tr>
 					<td>
-							<input type="checkbox">
-							<!-- 달력 js 구현되어있음 -->
-							<input type="text" id="datepicker1"> ~
-  							<input type="text" id="datepicker2">
-							<input class="btn_option" type="button" value="오늘날짜">
-							<input class="btn_option" type="button" value="최근1주일">
-							<input class="btn_option" type="button" value="최근15일">
-							<input class="btn_option" type="button" value="최근 1개월">
-							<input class="btn_option" type="button" value="최근2개월">
-							<input class="btn_option" type="button" value="최근3개월">
+						<input type="checkbox">
+						<!-- 달력 js 구현되어있음 -->
+						<input type="text" id="datepicker1"> ~
+  						<input type="text" id="datepicker2">
+						<input class="btn_option" type="button" value="오늘날짜">
+						<input class="btn_option" type="button" value="최근1주일">
+						<input class="btn_option" type="button" value="최근15일">
+						<input class="btn_option" type="button" value="최근 1개월">
+						<input class="btn_option" type="button" value="최근2개월">
+						<input class="btn_option" type="button" value="최근3개월">
 					</td>
 				</tr>
 				
 				<tr>
 					<td>
-							<select name="userGrade">
-								<option value="generalUser">회원등급</option>
-								<option value="Operator">운영자</option>
-								<option value="sub_Operator">일반(General)</option>
-								<option value="specialUser">프렌즈(Friends)</option>
-								<option value="superUser">호스트(Host)</option>
-								<option value="regularUser">쿡(Cook)</option>
-								<option value="assoUser">셰프(Chef)</option>
-							</select>
-							<select name="searchOption">
-								<option value="userId">아이디</option>
-								<option value="userName">이름</option>
-								<option value="userEmail">이메일</option>
-								<option value="phone">휴대전화</option>
-								<option value="addr">주소</option>
-							</select>
-							<input type="text" name="userSearch">
-							<input class="search_btn" type="button" value="검색">
+						<select name="userGrade">
+							<option value="generalUser">회원등급</option>
+							<option value="Operator">운영자</option>
+							<option value="sub_Operator">일반(General)</option>
+							<option value="specialUser">프렌즈(Friends)</option>
+							<option value="superUser">호스트(Host)</option>
+							<option value="regularUser">쿡(Cook)</option>
+							<option value="assoUser">셰프(Chef)</option>
+						</select>
+						<select name="searchOption">
+							<option value="userId">아이디</option>
+							<option value="userName">이름</option>
+							<option value="userEmail">이메일</option>
+							<option value="phone">휴대전화</option>
+							<option value="addr">주소</option>
+						</select>
+						<input type="text" name="userSearch">
+						<input class="search_btn" type="button" value="검색">
 					</td>
 				</tr>	
 			</table>
@@ -93,35 +93,31 @@
 					<input type="checkbox" id="checkAll" name="chk">
 					
 					</td>
-					<td id="ordCol">주문코드</td>
+					<td id="payCol">결제코드</td>
 					<td id="idCol">아이디</td>
 					<td id="nameCol">이름</td>
 					<td id="phoneCol">휴대전화</td>
 					<td id="addrCol">주소</td>
 					<td id="prodNameCol">상품명</td>
-					<td id="prodInfoCol">상품정보</td>
-					<td id="amountCol">수량</td>
-					<td id="payCardCol">가격</td>
-					<td id="ordDateCol">주문일</td>
-					<td id="delCol">주문취소</td>
+					<td id="paymentCol">총 결제금액</td>
+					<td id="ordDateCol">결제일</td>
+					<td id="delCol">결제취소</td>
 				</tr>
 			</thead>	
 				
 		<tbody class="table_content">
-			<c:forEach var="ord" items="${ordList }">
+			<c:forEach var="pay" items="${payList }">
 				<tr align="center">
 					<td><input type="checkbox" name="chk"></td>
-					<td>${ord.ord_code }</td>
-					<td>${ord.user_id }</td>
-					<td>${ord.user_name }</td>
-					<td>${ord.user_phone}</td>
-					<td>${ord.user_addr }</td>
-					<td>${ord.prod_name }</td>
-					<td>${ord.prod_content }</td>
-					<td>${ord.quantity }</td>
-					<td>${ord.price }</td>
-					<td>${ord.ord_date }</td>
-					<td><button onclick="deleteMessage()"><a href="${contextPath}/adorder/removeOrd.do?id=${ord.ord_code}">주문취소</a></button></td>
+					<td>${pay.pay_code }</td>
+					<td>${pay.user_id }</td>
+					<td>${pay.user_name }</td>
+					<td>${pay.user_phone}</td>
+					<td>${pay.user_addr }</td>
+					<td>${pay.prod_name }</td>
+					<td>${pay.pay_price }</td>
+					<td>${pay.pay_date }</td>
+					<td><button onclick="deleteMessage()"><a href="${contextPath}/adpayment/removePay.do?id=${pay.pay_code}">주문취소</a></button></td>
 				</tr>
 			</c:forEach>
 		</tbody>	
@@ -140,18 +136,18 @@
 				<ul class="pagination">
 				 			<!-- 이전prev -->
 				 	<c:if test="${pm.prev }">
-				 		<li><a href="listadOrd.do?page=${pm.startPage-1}">&laquo;</a></li>
+				 		<li><a href="listadPay.do?page=${pm.startPage-1}">&laquo;</a></li>
 				 	</c:if>
 				 			<!-- 페이지블럭 -->
 					<c:forEach var="idx" begin="${pm.startPage}" end="${pm.endPage}">
 								<!-- 삼항연산자를 사용해서 class로 스타일적용  -->
 						<li ${pm.vo.page == idx? 'class=active':''}>
-						 	<a href="listadOrd.do?page=${idx}">${idx}</a>
+						 	<a href="listadPay.do?page=${idx}">${idx}</a>
 						</li>				
 					</c:forEach>
 				 			<!-- 다음next -->
 				 	<c:if test="${pm.next && pm.endPage > 0}">
-				 		<li><a href="listadOrd.do?page=${pm.endPage+1}">&raquo;</a></li>
+				 		<li><a href="listadPay.do?page=${pm.endPage+1}">&raquo;</a></li>
 				 	</c:if>
 				 </ul>
 			</div>
