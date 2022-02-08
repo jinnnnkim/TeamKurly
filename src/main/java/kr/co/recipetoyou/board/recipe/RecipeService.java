@@ -25,6 +25,6 @@ public interface RecipeService {
 
 	public void updateRecipe(Map recipeMap);
 
-	public int recipeCount();
+	public int recipeCount(PagingVO vo);
 
 }

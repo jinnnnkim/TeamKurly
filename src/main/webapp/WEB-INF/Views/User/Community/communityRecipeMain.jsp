@@ -2,10 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
-<c:set var="articlesList" value="${articlesMap.articlesList }" />
-<c:set var="totArticles" value="${articlesMap.totArticles }" />
-<c:set var="section" value="${articlesMap.section }" />
-<c:set var="pageNum" value="${articlesMap.pageNum }" />
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -34,18 +31,20 @@
 			</div>
 			
 			<div class="searchBar">
+			<form name="frmSearch">
 				<div class="searchSelect">
 					<span>·&nbsp;검색어</span>
-					<label><input name="searchOption" type="checkbox"/>이름</label>
-					<label><input name="searchOption" type="checkbox"/>제목</label>
-					<label><input name="searchOption" type="checkbox"/>내용</label>
+					<label><input name="type" type="checkbox" value="W"/>이름</label>
+					<label><input name="type" type="checkbox" value="T"/>제목</label>
+					<label><input name="type" type="checkbox" value="C"/>내용</label>
 					<input type="hidden" id="arrayParam" name="arrayParam"/>
 				</div>
 				
 				<div class="searchInput">
-					<input type="text"/>
-					<a href="#"><i class="fas fa-search"></i></a>
+					<input type="text" name="keyword"/>
+					<a id="searchBtn"><i class="fas fa-search"></i></a>
 				</div>
+			</form>
 			</div>
 			
 			<div class="cateList">
@@ -58,13 +57,13 @@
 										
 											<c:when test="${cateDetailList.recipe_cate eq '전체' }">
 											<div class="disInlineBlock">
-												<a class="allCate cateSearch" href="">${cateDetailList.recipe_cate}</a>
+												<a class="allCate cateSearch" href="${contextPath}/community/communityRecipeMain.do?cateCode=${cateDetailList.recipe_cate_code}">${cateDetailList.recipe_cate}</a>
 												<input class="code" type="hidden" value="${cateDetailList.recipe_cate_code}"/>
 											</div>
 											</c:when>
 											<c:otherwise>
 											<div class="disInlineBlock">
-												<a href="" class="cateSearch">${cateDetailList.recipe_cate}</a>
+												<a href="${contextPath }/community/communityRecipeMain.do?cateCode=${cateDetailList.recipe_cate_code}" class="cateSearch">${cateDetailList.recipe_cate}</a>
 												<input class="code" type="hidden" value="${cateDetailList.recipe_cate_code}"/>
 												</div>
 											</c:otherwise>
@@ -141,25 +140,46 @@
 	}
 	
 	$(document).ready(function(){
-		$(".cateSearch").click(function(){
-			let code = $(this).parent("div").find(".code").val();
-			$.ajax({
+		var _type = "";
+		var _typeArr = [];
+		var i=0;
+		$("#searchBtn").click(function(){
+			var search = $(".searchSelect input:checkbox[name=type]").each(function(){
+				
+				if(this.checked){
+					_typeArr[i] = this.value;		
+				}
+				i = i+1;
+			});
+			_typeArr= _typeArr.filter(function(item) {
+				  return item !== null && item !== undefined && item !== '';
+				});
+			_type = _typeArr.join("");
+			
+			var frmSearch = document.frmSearch;
+			var type = $(".searchSelect input:checkbox[name=type]");
+			type = _type;
+			frmSearch.method = "post";
+			frmSearch.action = "${contextPath}/community/communityRecipeMain.do";
+			frmSearch.submit();
+
+			/* $.ajax({
 				type: "post",
 				async: true,
 				url: "http://localhost:8080/recipetoyou/community/communityRecipeMain.do",
 				dataType: "text",
-				data:{cateCode:code},
-				success: function(data){
-					$('body').html(data);
+				data: {type: _type},
+				success: function(result) {
+					
 				},
 				error : function(data, textStatus) {			
-					alert("에러가 발생했습니다.")	;
+					alert("에러가 발생했습니다.")	
 				},
 				complete : function(data, textStatus) {			
-				
 				}					
-			 });
-		}); 
+			 }); */
+			
+		});
 	});
 	</script>
 </body>
