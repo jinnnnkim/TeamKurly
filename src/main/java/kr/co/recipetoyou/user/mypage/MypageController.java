@@ -31,6 +31,9 @@ public interface MypageController {
 	//주문내역 상세 정보 조회
 	public void orderDetail(@RequestParam("ord_code")int ord_code, Model model) throws Exception;
 	
+	//주문내역 연도별 검색
+	/* public String searchOrderYear () */
+	
 	//상품문의 조회
 	public ModelAndView listQnA(HttpServletRequest request, HttpServletResponse response) throws Exception;
 	

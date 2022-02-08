@@ -16,7 +16,7 @@ public class MyOrderVO {
 	private int prod_code;
 	private int quantity;
 	private int price;
-	private String status;
+	private int status;
 	private String user_id;
 	private Date ord_date;
 	
@@ -60,10 +60,10 @@ public class MyOrderVO {
 	public void setPrice(int price) {
 		this.price = price;
 	}
-	public String getStatus() {
+	public int getStatus() {
 		return status;
 	}
-	public void setStatus(String status) {
+	public void setStatus(int status) {
 		this.status = status;
 	}
 	public String getUser_id() {
@@ -79,7 +79,6 @@ public class MyOrderVO {
 	public void setOrd_date(Date ord_date) {
 		this.ord_date = ord_date;
 	}
-
 
 	public String getProd_name() {
 		return prod_name;
