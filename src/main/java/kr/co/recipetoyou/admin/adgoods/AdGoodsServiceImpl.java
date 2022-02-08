@@ -35,12 +35,12 @@ public class AdGoodsServiceImpl implements AdGoodsService {
 		List<AdGoodsVO> prodList = adGoodsDAO.listPaging(vo);
 		
 		
-		prodList.forEach(goods->{
+		prodList.forEach(agvo->{
 		
 			try {
-					int prod_code = goods.getProd_code();
+					int prod_code = agvo.getProd_code();
 					List<AdgoodsImgVO> imageList  = adGoodsDAO.getGoodsImage(prod_code);
-					goods.setImageList(imageList);
+					agvo.setImageList(imageList);
 				
 			} catch (JsonGenerationException e) {
 				// TODO Auto-generated catch block
