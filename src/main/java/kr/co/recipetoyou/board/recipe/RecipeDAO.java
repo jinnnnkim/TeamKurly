@@ -25,6 +25,6 @@ public interface RecipeDAO {
 
 	public void updateRecipe(Map recipeMap);
 
-	public int selectRecipeCount();
+	public int selectRecipeCount(PagingVO vo);
 
 }
