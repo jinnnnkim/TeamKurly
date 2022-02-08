@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import kr.co.recipetoyou.user.UserVO;
 import kr.co.recipetoyou.user.mypage.vo.CouponVO;
 
 public interface MypageController {
@@ -37,5 +38,12 @@ public interface MypageController {
 	//상품리뷰 조회
 	public ModelAndView listReviews(HttpServletRequest request, HttpServletResponse response) throws Exception;
 
+	//배송지 수정
 	public ModelAndView addrModify(HttpServletRequest request, HttpServletResponse response) throws Exception;
+	
+	//회원정보 수정
+	public ModelAndView userInfoUpdate(UserVO userVO, HttpServletRequest request, HttpServletResponse response) throws Exception;
+	
+	
+	
 }

@@ -6,6 +6,7 @@ import org.springframework.dao.DataAccessException;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 
+import kr.co.recipetoyou.user.UserVO;
 import kr.co.recipetoyou.user.mypage.vo.CouponVO;
 import kr.co.recipetoyou.user.mypage.vo.MyOrderVO;
 import kr.co.recipetoyou.user.mypage.vo.PointVO;
@@ -35,12 +36,11 @@ public interface MypageService {
 	//주문 상세 페이지
 	public MyOrderVO orderDetail(int ord_code) throws Exception;
 	
-
-	
 	//상품문의
 	public List<QnAVO> listQnA() throws DataAccessException;
 	
 	//상품후기
 	public List<ReviewVO> listReviews() throws DataAccessException;
 
+	public void updateUser(UserVO userVO) throws DataAccessException;
 }
