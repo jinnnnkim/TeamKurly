@@ -8,7 +8,7 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Repository;
 
 import kr.co.recipetoyou.user.mypage.vo.CouponVO;
-import kr.co.recipetoyou.user.mypage.vo.OrdIngVO;
+import kr.co.recipetoyou.user.mypage.vo.MyOrderVO;
 import kr.co.recipetoyou.user.mypage.vo.PointVO;
 
 import kr.co.recipetoyou.user.mypage.vo.UserAddrVO;
@@ -58,12 +58,20 @@ public class MypageDAOImpl implements MypageDAO{
 
 	//주문내역 조회 
 	@Override
-	public List<OrdIngVO> selectAllOrderList() throws DataAccessException {
+	public List<MyOrderVO> selectAllOrderList() throws DataAccessException {
 			
-		List<OrdIngVO> OrderList = sqlSession.selectList("mapper.member.selectAllOrderList");
+		List<MyOrderVO> OrderList = sqlSession.selectList("mapper.member.selectAllOrderList");
 		return OrderList;
 	}
 		 
+	//주문내역 상세 정보 조회
+	@Override
+	public MyOrderVO orderDetailList(int ord_code) throws DataAccessException {
+		
+		System.out.println("orderDetail DAO 호출");
+		return sqlSession.selectOne("mapper.member.orderDetailList", ord_code);
+	}
+
 
 	//상품문의 조회
 	@Override
@@ -79,4 +87,6 @@ public class MypageDAOImpl implements MypageDAO{
 		return reviewList;
 	}
 
+	
+	
 }

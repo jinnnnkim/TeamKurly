@@ -55,8 +55,17 @@ public class RecipeContollerImpl implements RecipeController{
 			HttpServletRequest request, HttpServletResponse response) throws Exception{
 		PageMaker pm = new PageMaker();
 		pm.setVo(vo);
-		System.out.println("게시글 총 갯수"+recipeService.recipeCount());
-		pm.setTotalCount(recipeService.recipeCount());
+		/*
+		 * if(!(vo.getType().equals("")) && vo.getType() != null) { String searchVar =
+		 * null; System.out.println("keyword: "+ vo.getKeyword());
+		 * System.out.println("type:"+vo.getType());
+		 * 
+		 * vo.setTypeArr(vo.getType().split(",")); for(int
+		 * i=0;i<vo.getTypeArr().length;i++) { searchVar += vo.getTypeArr()[i]; }
+		 * 
+		 * System.out.println("문자열"+searchVar); vo.setType(searchVar); }
+		 */
+		pm.setTotalCount(recipeService.recipeCount(vo));
 		int cnt = pm.getTotalCount();
 		
 		

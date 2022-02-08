@@ -67,8 +67,8 @@ public class RecipeServiceImpl implements RecipeService{
 	}
 
 	@Override
-	public int recipeCount() {
-		return recipeDAO.selectRecipeCount();
+	public int recipeCount(PagingVO vo) {
+		return recipeDAO.selectRecipeCount(vo);
 	}
 	
 

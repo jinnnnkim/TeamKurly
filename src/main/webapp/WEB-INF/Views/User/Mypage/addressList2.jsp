@@ -42,7 +42,7 @@
 					<th class="title_name">받으실 분</th>
 					<th class="title_phone">연락처</th>
 					<th class="title_delivery">배송유형</th>
-					<th class="title_modify" onclick="popupOpen()">수정</th>
+					<th class="title_modify">수정</th>
 				</tr>
 			
 			</table>
@@ -60,14 +60,12 @@
 					<td class="name">${addressList.user_name}</td>
 					<td class="phone">${addressList.user_phone}</td>
 					<td class="delivery_type"><p>${addressList.delivery_type}</p></td>
-					<td class="modify"><a href="addrModify.jsp" class="modify_pop"
-						onclick="window.open(this.href, '_blank', 'width=600px, height=600px, toolbars=no, scrollbars=no'); return false;">
+					<td class="modify"><a href="" class="modify_pop" onclick="openPop()">
 						<img src="/recipetoyou/Resources/User/Img/Mypage2/ico_modify_x2.png"></a> 
 					</td>
 				</tr>	
 			</table>
 		</c:forEach>
-			
 		</div>
 		<%--address_main end --%>
 	</div>
@@ -107,6 +105,10 @@
 		            }
 		        }).open();
 		    }
+		 
+		 function openPop() {
+			    window.open('addrModify.do', '배송지수정', 'width=600px, height=550px');
+			  }
 		
 	</script>
 </body>

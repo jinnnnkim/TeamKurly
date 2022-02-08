@@ -23,14 +23,58 @@
 		<result property="recipe_cate_parent" column="recipe_cate_parent"/>
 	</resultMap>
 	
+	<sql id="criteria">
+       <choose>
+           <when test="type == 'T'">
+               recipe_title like '%'||#{keyword}||'%' 
+           </when>
+           <when test="type == 'C'">
+              recipe_content like '%'||#{keyword}||'%' 
+           </when>
+           <when test="type == 'W'">
+               user_id like '%'||#{keyword}||'%' 
+           </when>
+           <when test="type == 'TC'">
+               recipe_title like '%'||#{keyword}||'%' or recipe_content like '%'||#{keyword}||'%' 
+           </when>
+           <when test="type == 'TW'">
+               recipe_title like '%'||#{keyword}||'%' or user_id like '%'||#{keyword}||'%' 
+           </when>
+           <when test="type == 'CW'">
+               recipe_content like '%'||#{keyword}||'%' or user_id like '%'||#{keyword}||'%'
+           </when>
+           <when test="type == 'TCW'">
+               recipe_title like '%'||#{keyword}||'%' or
+               recipe_content like '%'||#{keyword}||'%' or
+               user_id like '%'||#{keyword}||'%' 
+           </when>
+       </choose>
+    </sql>
+ 
+	
 	<select id="selectRecipeList" resultMap="recipeResult">
+	
 		<![CDATA[
 			SELECT * from
-				(select rownum as rn, trc.* FROM tb_recipe trc
+				(select rownum as rn, tr.* FROM tb_recipe tr
 			]]>
-				<if test="cateCode != '' and cateCode != 0">
-				where recipe_cate_code = #{cateCode}
-				</if>
+			
+			<if test="keyword != null">
+                   where <include refid="criteria"></include> 
+             </if>
+			
+			<choose>
+				<when test="0 lt cateCode and cateCode lt 10">
+					, (SELECT DISTINCT b.* 
+					FROM tb_recipe_cate a, TB_RECIPE_CATE b 
+					WHERE #{cateCode} = b.recipe_cate_parent) td WHERE td.recipe_cate_code = tr.RECIPE_CATE_CODE
+				</when>
+				
+				<when test="cateCode != '' and cateCode != 0">
+					where recipe_cate_code = #{cateCode}
+				</when>
+			</choose>
+			
 			<![CDATA[
 			
 				 )
@@ -39,21 +83,13 @@
 			
 	</select>
 	
-	<!--  
-    title like '%검색%'
-    
-    content like '%검색%'
-    
-    writer like '%검색%'    
-   
-    (title like '%검색%' OR content like '%검색%')
-    
-    (content like '%검색%' OR writer like '%검색%')
-    
-    (title like '%검색%' OR content like '%검색%' OR writer like '%검색%') -->
-    
+  
+ 
     <select id="recipeCount" resultType="int">
     	SELECT count(*) FROM TB_RECIPE
+    	<if test="cateCode  != null and cateCode != 0">
+    		where recipe_cate_code = #{cateCode}
+    	</if>
     </select>
 	
 	<select id="selectRecipeCateTitleList" resultMap="recipeCateResult">

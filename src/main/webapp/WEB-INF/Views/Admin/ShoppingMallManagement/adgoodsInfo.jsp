@@ -345,9 +345,6 @@
 			$(".category2").append("<option value='"+ select_cateCode + "' selected='selected'>전체</option>");
 		}
 		
-});
-	
-
 		/* 이미지 정보 호출 */
 		let prod_code = '<c:out value="${goodsVO.prod_code}"/>';
 		let uploadArea = $("#uploadArea");
@@ -374,11 +371,15 @@
 			str += "<div id='result_card'";
 			str += "data-path='" + obj.uploadPath + "' data-uuid='" + obj.uuid + "' data-filename='" + obj.fileName + "'";
 			str += ">";
-			str += "<img src='/adgoods/getImageInfo.do?fileName=" + fileCallPath +"'>";
+			str += "<img src='${contextPath}/adgoods/getImageInfo.do?fileName=" + fileCallPath +"'>";
 			str += "</div>";
 			
 			uploadArea.html(str);
 		});	
+});
+	
+
+		
 											
 		/* 삭제 버튼 */
 		$("#deleteBtn").on("click", function(e){

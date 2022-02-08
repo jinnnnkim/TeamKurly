@@ -7,8 +7,6 @@
 <head>
 <meta charset="UTF-8">
 <title>배송지 관리</title>
-<link rel="stylesheet" href="/recipetoyou/Resources/User/Css/Mypage2/mypageInfo.css"
-	type="text/css">
 <link href="/recipetoyou/Resources/User/Css/Mypage2/reset.css" rel="stylesheet"
 	type="text/css">
 <link href="/recipetoyou/Resources/User/Css/Mypage2/addrModify.css" rel="stylesheet"

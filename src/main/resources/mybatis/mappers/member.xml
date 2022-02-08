@@ -58,14 +58,18 @@
 	</resultMap>
 
 
-	<!-- 주문내역 조회 - 주문 + 주문상품 + 상품 주소 -->
-	<resultMap type="ordingVO" id="orderListResult">
+	<!-- 주문내역 조회 - 주문 + 상품, 주문 상세 내역 조회  -->
+	<resultMap type="myorderVO" id="orderListResult">
 		<result property="ord_code" column="ord_code"/>
 		<result property="status" column="status"/>
 		<result property="price" column="price"/>
 		<result property="ord_date" column="ord_date"/>
 		<result property="prod_name" column="prod_name"/>
+		<result property="prod_content" column="prod_content"/>
+		<result property="prod_discount" column="prod_discount"/>
 	</resultMap>
+	
+	
 	
 	
 	<!-- 상품문의 조회 -->
@@ -176,13 +180,24 @@
 	<!-- 주문내역 조회 -->
 	<select id="selectAllOrderList" resultMap="orderListResult">
 		<![CDATA[
-			SELECT tp.PROD_NAME, toi.ORD_CODE, toi.STATUS, toi.PRICE, to2.ORD_DATE 
-			FROM TB_ORD_ING toi, TB_ORDER to2, TB_PROD tp
-			WHERE toi.ORD_CODE = to2.ORD_CODE 
-			AND toi.PROD_CODE = tp.PROD_CODE
+			SELECT tp.PROD_NAME, to2.ORD_CODE, to2.STATUS, to2.PRICE, to2.ORD_DATE 
+			FROM  TB_ORDER to2, TB_PROD tp,TB_USERS tu 
+			WHERE tp.ORD_CODE = to2.ORD_CODE
+			AND to2.USER_ID = tu.USER_ID
 		]]>
 	</select>
 
+	<!-- 주문내역 상세 조회 -->
+	<select id="orderDetailList" parameterType="int"  resultMap="orderListResult">
+		<![CDATA[
+			SELECT tp.PROD_NAME, tp.PROD_CONTENT, tp.PROD_DISCOUNT,
+					to2.ORD_CODE , to2.PRICE 
+			FROM TB_PROD tp INNER JOIN TB_ORDER to2 
+			ON tp.ORD_CODE = to2.ORD_CODE 
+			WHERE tp.ORD_CODE = #{ord_code}
+		]]>
+	</select>
+	
 	
 	<!-- 상품문의 조회 -->
 	<select id="selectAllQnAList" resultMap="qnaResult">
