@@ -313,20 +313,20 @@
 			let cateSelect2 = $("select.category2");
 			
 			cateSelect2.children().remove();
-			
 			$("option:selected", this).each(function(){
 				
 				let selectVal = $(this).val();
 				cateSelect2.append("<option value='" + selectVal + "'>전체</option>");
-			})
 			
-			for(let i=0; i<cate2Array.length; i++){
-				if(selectVal == cate2Array[i].cateParent){
+			
+				for(let i=0; i<cate2Array.length; i++){
+					if(selectVal == cate2Array[i].cateParent){
+						
+						cateSelect2.append("<option value='"+cate2Array[i].cateCode+"'>" + cate2Array[i].cateName + "</option>");
+					}
 					
-					cateSelect2.append("<option value='"+cate2Array[i].cateCode+"'>" + cate2Array[i].cateName + "</option>");
 				}
-				
-			}
+			});
 		});
 		
 		
@@ -334,6 +334,8 @@
 		let select_cateCode = '${goodsVO.cateCode}';
 		let select_cateParent = '${goodsVO.cateParent}';
 		let select_cateName = '${goodsVO.cateName}';
+		
+		//alert("select_cateCode"+select_cateCode +" "+select_cateParent+" "+select_cateName);
 		
 		if(select_cateParent != null && select_cateParent != ''){
 			$(".category1").val(select_cateParent);

@@ -25,8 +25,8 @@
 
 		<div class="recipeBox">
 			<div class="thumbnail">
-				${recipeVO.recipe_img}
-				<img src="/recipetoyou/Resources/User/Img/Notice/market01.jpg"/>
+				
+				<img src="/recipetoyou/Resources/Upload/${recipeVO.recipe_img}"/>
 			</div>
 			<div class="userName">
 				<h3>${recipeVO.user_id }</h3>
@@ -80,52 +80,27 @@
 			</div>
 			
 			<div class="cookingReview">
-				<h4>댓글 <strong>57</strong></h4>
+				
+				<h4>댓글 <strong>${cnt}</strong></h4>
+				<c:forEach var="recipeReviewVO" items="${recipeReviewVO}">
 				<div class="cookCont">
-					<span class="userID">고르곤졸라이</span>
-					<span class="regDate">2020-04-15 19:51</span> 							
-					<span class="recipeStar">
-						<i class="fas fa-star"></i>
-						<i class="fas fa-star"></i>
-						<i class="fas fa-star"></i>
-						<i class="fas fa-star"></i>
-						<i class="fas fa-star"></i>
-					</span><br/>
-					<span class="cookContent">
-						집들이 메뉴 중 하나였어요. 새우 한봉지를 다 사용하고 소스 두배로 만드니까 딱 좋았어요 ♥︎ 
-					</span>
+					
+						<span class="userID">${recipeReviewVO.user_id}</span>
+						<span class="regDate">${recipeReviewVO.reg_date }</span> 							
+						<span class="recipeStar">
+							<c:forEach begin="1" end="${recipeReviewVO.recipe_star}">
+								<i class="fas fa-star"></i>
+							</c:forEach>
+						</span><br/>
+						<span class="cookContent">
+							${recipeReviewVO.content }
+						</span>
+					
 				</div>
-				<div class="cookCont">
-					<span class="userID">고르곤졸라이</span>
-					<span class="regDate">2020-04-15 19:51</span> 							
-					<span class="recipeStar">
-						<i class="fas fa-star"></i>
-						<i class="fas fa-star"></i>
-						<i class="fas fa-star"></i>
-						<i class="fas fa-star"></i>
-						<i class="fas fa-star"></i>
-					</span><br/>
-					<span class="cookContent">
-						집들이 메뉴 중 하나였어요. 새우 한봉지를 다 사용하고 소스 두배로 만드니까 딱 좋았어요 ♥︎ 
-					</span>
-				</div>
-				<div class="cookCont">
-					<span class="userID">고르곤졸라이</span>
-					<span class="regDate">2020-04-15 19:51</span> 							
-					<span class="recipeStar">
-						<i class="fas fa-star"></i>
-						<i class="fas fa-star"></i>
-						<i class="fas fa-star"></i>
-						<i class="fas fa-star"></i>
-						<i class="fas fa-star"></i>
-					</span><br/>
-					<span class="cookContent">
-						집들이 메뉴 중 하나였어요. 새우 한봉지를 다 사용하고 소스 두배로 만드니까 딱 좋았어요 ♥︎ 
-					</span>
-				</div>
+				</c:forEach>
 				
 				<div class="reviewForm">
-					<form>
+					<form name="frmRecipeReview">
 					<span class="star-input">
 						<span class="input">
 					    	<input type="radio" name="star-input" value="1" id="p1">
@@ -141,29 +116,46 @@
 					  	</span>
 					  	<output for="star-input"><b>0</b>점</output>						
 					</span>
-					<input type="text" class="cookReview"/>
-					<button>댓글쓰기</button>
+					<input type="text" name="content" class="content"/>
+					<button type="button" id="review_write" 
+					onclick="fn_articleForm('${isLogOn}','${contextPath}/login/login.do','${contextPath}/community/communityRecipeDetail.do')">댓글쓰기</button>
+					<input class="recipe_star" type="hidden" name="recipe_star"/>
+					<input type="hidden" name="user_id" value="${user_id}"/>
+					<input type="hidden" name="recipe_idx" value="${recipeVO.recipe_idx}"/>
 					</form>
 				</div>
 				
 			</div>
 			
 		</div>
+		
 		<div class="page">
 			<ul>
-				<li><a href="#"><i class="fas fa-angle-double-left"></i></a></li>
-				<li><a href="#"><i class="fas fa-angle-left"></i></a></li>
-				<li><a href="#">1</a></li>
-				<li><a href="#">2</a></li>
-				<li><a href="#">3</a></li>
-				<li><a href="#"><i class="fas fa-angle-right"></i></a></li>
-				<li><a href="#"><i class="fas fa-angle-double-right"></i></a></li>
+				<c:if test="${pm.prev }">
+			 		<li><a href="${contextPath}/community/communityRecipeMain.do?page=${pm.startPage-1}">&laquo;</a></li>
+			 	</c:if>
+			 			<!-- 페이지블럭 -->
+				<c:forEach var="idx" begin="${pm.startPage}" end="${pm.endPage}">
+							<!-- 삼항연산자를 사용해서 class로 스타일적용  -->
+					<c:if test="${idx != 0 }">
+						<li ${pm.vo.page == idx? 'class=active':''}>
+						 	<a href="${contextPath}/community/communityRecipeMain.do?page=${idx}">${idx}</a>
+						</li>			
+					</c:if>	
+				</c:forEach>
+			 			<!-- 다음next -->
+			 	<c:if test="${pm.next && pm.endPage > 0}">
+			 		<li><a href="${contextPath}/community/communityRecipeMain.do?page=${pm.endPage+1}">&raquo;</a></li>
+			 	</c:if>
 			</ul>
 		</div>
-		<div class="BtnBox">
-				<a href="${contextPath}/community/communityRecipeModify.do?recipe_idx=${recipeVO.recipe_idx}">수정</a>
-				<a href="${contextPath}/community/communityRecipeDelete.do?recipe_idx=${recipeVO.recipe_idx}">삭제</a>
+
+		<c:if test="${recipeVO.user_id eq user_id}">
+			<div class="BtnBox">
+					<a href="${contextPath}/community/communityRecipeModify.do?recipe_idx=${recipeVO.recipe_idx}">수정</a>
+					<a href="${contextPath}/community/communityRecipeDelete.do?recipe_idx=${recipeVO.recipe_idx}">삭제</a>
 			</div>
+		</c:if>
 		<script>
 		var starRating = function(){
 			var $star = $(".star-input"),
@@ -201,6 +193,30 @@
 			};
 
 			starRating();
+			
+function fn_articleForm(isLogOn,login,recipeWrite) {
+	if (isLogOn != '' && isLogOn != 'false') {
+		var star = $(".input").find("input[name=star-input]:checked").val();
+		
+		var content = frmRecipeReview.content.value;
+		var recipe_star = frmRecipeReview.recipe_star;
+		$(".recipe_star").val(star);
+		if(content == "" || content == null){
+			alert("댓글을 입력해주세요.");
+		}else if(recipe_star == 0 || recipe_star == null || recipe_star == undefined){
+			alert("별점을 입력해주세요.");
+		}else{
+			frmRecipeReview.method="post";
+			frmRecipeReview.action = "${contextPath}/community/communityRecipeReviewWrite.do";
+			frmRecipeReview.submit();
+		}
+		
+	}else {
+		alert("로그인 후 글쓰기가 가능합니다.");
+		location.href=login;
+	}
+}
+	
 		</script>
 </body>
 </html>

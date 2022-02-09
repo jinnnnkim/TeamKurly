@@ -57,20 +57,9 @@
 					</div>
 					<div id="root">
 						<div class="contents">
-							<div class="upload-box">
-								<div id="drop-file" class="drag-file">
-									<img src="https://img.icons8.com/pastel-glyph/2x/image-file.png"
-										alt="파일 아이콘" class="image">
-									<p class="message">이미지를 드래그 하세요</p>
-									<img src="" alt="미리보기 이미지" class="preview">
-								</div>
-								<label class="file-label" for="chooseFile">대표 이미지 등록하기</label> 
-								<!-- <input name="recipe_img"
-									class="file" id="chooseFile" type="file"
-									onchange="dropFile.handleFiles(this.files)"
-									accept="image/png, image/jpeg, image/gif"> -->
-								
-							</div>
+							<h3>대표이미지 등록</h3>
+						
+							<input type="file" name="recipe_img"/>
 						</div>
 					</div>
 					
@@ -88,7 +77,6 @@
 							
 					</script>
 				<input type="hidden" name="prod_code"/>
-				<input type="hidden" name="recipe_img"/>
 				<input type="hidden" name="recipe_idx" value="${recipeVO.recipe_idx }"/>
 					
 				<div class="writeBtn">
@@ -109,16 +97,20 @@
 		var prod_code = frmRecipe.prod_code.value;
 		var recipe_title = frmRecipe.recipe_title.value;
 		
-		console.log(recipe_content);
-		console.log(recipe_ingre);
-		console.log(recipe_cate_code);
-		console.log(recipe_img);
-		console.log(prod_code);
-		console.log(recipe_title);
+		if(recipe_title == "" || recipe_title == null){
+			alert("제목을 입력해주세요.")
+		}else if(recipe_ingre == "" || recipe_ingre == null){
+			alert("재료를 입력해주세요.");
+		}else if(recipe_img == "" || recipe_img == null || recipe_img == undefined){
+			alert("섬네일 이미지를 등록해주세요.");
+		}else if(recipe_content == "" || recipe_content == null){
+			alert("내용을 입력해주세요.");
+		}else{
+			frmRecipe.method="post";
+			frmRecipe.action = "${contextPath}/community/communityRecipeModifyProcess.do";
+			frmRecipe.submit();
+		}
 		
-		frmRecipe.method="post";
-		frmRecipe.action = "${contextPath}/community/communityRecipeModifyProcess.do";
-		frmRecipe.submit();
 	}
 
 $(document).ready(function(){
@@ -178,45 +170,7 @@ $(document).ready(function(){
 		}
 	});
 });
-	function preventDefaults(e) {
-		e.preventDefault();
-		e.stopPropagation();
-	}
 
-	const dropArea = document.getElementById("drop-file");
-
-	function highlight(e) {
-		preventDefaults(e);
-		dropArea.classList.add("highlight");
-	}
-
-	function unhighlight(e) {
-		preventDefaults(e);
-		dropArea.classList.remove("highlight");
-	}
-
-	dropArea.addEventListener("dragenter", highlight, false);
-	dropArea.addEventListener("dragover", highlight, false);
-	dropArea.addEventListener("dragleave", unhighlight, false);
-
-	function handleDrop(e) {
-		unhighlight(e);
-		let dt = e.dataTransfer;
-		let files = dt.files;
-
-		console.log(files);
-
-	}
-
-	function renderFile(file) {
-		let reader = new FileReader();
-		reader.readAsDataURL(file);
-		reader.onloadend = function() {
-			let img = dropArea.getElementsByClassName("preview")[0];
-			img.src = reader.result;
-			img.style.display = "block";
-		};
-	}
 		
 </script>
 	

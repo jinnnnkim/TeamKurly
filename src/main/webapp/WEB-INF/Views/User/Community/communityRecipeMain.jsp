@@ -85,7 +85,7 @@
 					<li>
 						<a href="${contextPath }/community/communityRecipeDetail.do?recipe_idx=${list.recipe_idx}">
 							<div class="recipeImg">
-								<img src="/recipetoyou/Resources/User/Img/Notice/market01.jpg">
+								<img src="/recipetoyou/Resources/Upload/${list.recipe_img}">
 							</div>
 							<div class="detail">
 								<span class="recipeTitle">${list.recipe_title}</span>
@@ -110,19 +110,20 @@
 			
 			<div class="page">
 				<ul>
+					
 					<c:if test="${pm.prev }">
-				 		<li><a href="${contextPath}/community/communityRecipeMain.do?page=${pm.startPage-1}">&laquo;</a></li>
+				 		<li><a href="${contextPath}/community/communityRecipeDetail.do?page=${pm.startPage-1}">&laquo;</a></li>
 				 	</c:if>
 				 			<!-- 페이지블럭 -->
 					<c:forEach var="idx" begin="${pm.startPage}" end="${pm.endPage}">
 								<!-- 삼항연산자를 사용해서 class로 스타일적용  -->
 						<li ${pm.vo.page == idx? 'class=active':''}>
-						 	<a href="${contextPath}/community/communityRecipeMain.do?page=${idx}">${idx}</a>
+						 	<a href="${contextPath}/community/communityRecipeDetail.do?page=${idx}">${idx}</a>
 						</li>				
 					</c:forEach>
 				 			<!-- 다음next -->
 				 	<c:if test="${pm.next && pm.endPage > 0}">
-				 		<li><a href="${contextPath}/community/communityRecipeMain.do?page=${pm.endPage+1}">&raquo;</a></li>
+				 		<li><a href="${contextPath}/community/communityRecipeDetail.do?page=${pm.endPage+1}">&raquo;</a></li>
 				 	</c:if>
 				</ul>
 			</div>

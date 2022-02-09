@@ -18,6 +18,8 @@ public class PagingVO {
 		private String type;	//검색할 타입
 		private String[] typeArr;	//검색 타입 배열
 		private int cateCode;
+		private int recipe_idx;
+		
 		 
 		public PagingVO() {
 			this.page = 1;
@@ -107,6 +109,14 @@ public class PagingVO {
 			this.cateCode = cateCode;
 		}
 		
+		public int getRecipe_idx() {
+			return recipe_idx;
+		}
+
+		public void setRecipe_idx(int recipe_idx) {
+			this.recipe_idx = recipe_idx;
+		}
+
 		//toString()
 		@Override
 		public String toString() {

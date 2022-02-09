@@ -21,6 +21,7 @@ public class RecipeDAOImpl implements RecipeDAO{
 			vo.setCateCode(vo.getCateCode()/1000);
 			System.out.println("cateCode:"+vo.getCateCode());
 		}
+		System.out.println("type:"+vo.getType());
 		List<RecipeVO> recipeList = sqlSession.selectList("mapper.recipe.selectRecipeList",vo);
 		System.out.println(recipeList);
 		return recipeList;
@@ -76,8 +77,27 @@ public class RecipeDAOImpl implements RecipeDAO{
 	@Override
 	public int selectRecipeCount(PagingVO vo) {
 		int result = sqlSession.selectOne("mapper.recipe.recipeCount",vo);
-		System.out.println("recipe dao:"+result);
 		return result;
+	}
+
+	@Override
+	public int selectRecipeReviewCount(int recipe_idx) {
+		
+		
+		return sqlSession.selectOne("mapper.recipe.selectRecipeReviewCount",recipe_idx);
+	}
+
+	@Override
+	public List<RecipeReviewVO> selectRecipeReviewList(PagingVO vo) {
+		List<RecipeReviewVO> list = sqlSession.selectList("mapper.recipe.selectRecipeReviewList", vo);
+		System.out.println(list);
+		return list;
+	}
+
+	@Override
+	public void insertRecipeReview(RecipeReviewVO recipeReviewVO) {
+		sqlSession.insert("mapper.recipe.insertRecipeReview",recipeReviewVO);
+		
 	}
 	
 	
