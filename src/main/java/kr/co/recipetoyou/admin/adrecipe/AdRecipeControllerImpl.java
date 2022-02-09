@@ -1,4 +1,4 @@
-package kr.co.recipetoyou.admin.adpayment;
+package kr.co.recipetoyou.admin.adrecipe;
 
 import java.util.List;
 
@@ -15,48 +15,47 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-
 import kr.co.recipetoyou.util.PageMaker;
 import kr.co.recipetoyou.util.PagingVO;
 
-@Controller("adPaymentController")
-public class AdPaymentControllerImpl implements AdPaymentController {
+@Controller("adRecipeController")
+public class AdRecipeControllerImpl implements AdRecipeController {
 
-	private static final Logger logger = LoggerFactory.getLogger("AdPaymentControllerImpl.class");
+	private static final Logger logger = LoggerFactory.getLogger("AdRecipeControllerImpl.class");
 	
 	@Autowired
-	private AdPaymentService service;
-	
-	//페이징처리한 글목록
+	private AdRecipeService service;
+
+	//페이징처리한 레시피 글목록
 	@Override
-	@RequestMapping(value = "/adpayment/listPay.do", method = RequestMethod.GET)
-	public void listPayGET(PagingVO vo, Model model) throws Exception{
-		logger.info("C: listPayVO 겟 호출" + vo);
-		model.addAttribute("ListPayUsers", service.listPayUsers(vo));
+	@RequestMapping(value = "/adrecipe/listRecipe.do", method = RequestMethod.GET)
+	public void listRecipeGET(PagingVO vo, Model model) throws Exception{
+		logger.info("C: listRecipeVO 겟 호출" + vo);
+		model.addAttribute("ListRecipe", service.listRecipe(vo));
 	}
 		
 	//글목록보기(PageMaker객체 사용)
-	//전체 주문 조회
+	//전체 레시피 게시글 조회
 	@Override
-	@RequestMapping(value = "/adpayment/listadPay.do", method = RequestMethod.GET)
-	public ModelAndView listPayPageGet(PagingVO vo, HttpServletRequest request, HttpServletResponse response) throws Exception {
+	@RequestMapping(value = "/adrecipe/listadRecipe.do", method = RequestMethod.GET)
+	public ModelAndView lisRecipePageGet(PagingVO vo, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String viewName = (String)request.getAttribute("viewName");
 	    PageMaker pm = new PageMaker();
 		pm.setVo(vo);
-	    pm.setTotalCount(service.payCount()); 
+	    pm.setTotalCount(service.recipeCount()); 
 		logger.info("C: vo는 "+ vo);
 		logger.info("info 레벨 : viewName = "+viewName);  
-		int cnt = service.payCount();  
-		List<AdPaymentVO> payList = service.listPayUsers(vo);
+		int cnt = service.recipeCount();  
+		List<AdRecipeVO> recipeList = service.listRecipe(vo);
 	    ModelAndView mav = new ModelAndView(viewName);
-		mav.addObject("payList", payList);
+		mav.addObject("recipeList", recipeList);
 		mav.addObject("cnt", cnt);
 		mav.addObject("pm",pm);	 
 		return mav;
 	}
 	
 	//페이징 이동 시에 필요함 
-	@RequestMapping(value = "/adpayment/*Form.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/recipe/*Form.do", method = RequestMethod.GET)
 	 public ModelAndView form(@RequestParam(value = "result", required = false) String result, HttpServletRequest request, HttpServletResponse response) throws Exception{
 	 	//String viewName = getViewName(request);
 		String viewName = (String)request.getAttribute("viewName");	
@@ -65,26 +64,26 @@ public class AdPaymentControllerImpl implements AdPaymentController {
 	 	return mav;
 	 }
 	
-	//주문 상세 정보 조회
+	//레시피 게시글 상세 정보 조회
 	@Override
-	@RequestMapping(value = "/adpayment/adPayInfo.do", method = RequestMethod.GET)
-	public ModelAndView getPayInfo(@RequestParam(value="id") int id, HttpServletRequest request, HttpServletResponse response) throws Exception {
+	@RequestMapping(value = "/adrecipe/adRecipeInfo.do", method = RequestMethod.GET)
+	public ModelAndView getRecipeInfo(@RequestParam(value="id") String id, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		logger.info("클릭한 아이디:"+id);
 		String viewName = (String)request.getAttribute("viewName");
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName(viewName);
-		mav.addObject("adPayIngVO", service.getPayInfo(id));
+		mav.addObject("adRecipeVO", service.getRecipeInfo(id));
 		return mav;
 	}
 
-	//결제취소 
+	//레시피 게시글 삭제  
 	@Override
-	@RequestMapping(value = "/adpayment/removePay.do", method = RequestMethod.GET)
-	public ModelAndView removePay(@RequestParam("id") int id, HttpServletRequest request, HttpServletResponse response) throws Exception {
+	@RequestMapping(value = "/adrecipe/removeRecipe.do", method = RequestMethod.GET)
+	public ModelAndView removePay(@RequestParam("id") String id, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		logger.info("id : " + id);
 		request.setCharacterEncoding("utf-8");
-		service.removePay(id);
-		ModelAndView mav = new ModelAndView("redirect:listadPay.do");
+		service.removeRecipe(id);
+		ModelAndView mav = new ModelAndView("redirect:listadRecipe.do");
 		return mav;
 	}
 }

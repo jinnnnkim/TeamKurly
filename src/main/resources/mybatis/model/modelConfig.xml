@@ -31,6 +31,7 @@
 		
 		<typeAlias type="kr.co.recipetoyou.admin.adorder.AdOrderVO" alias="adOrderVO"/>
 		<typeAlias type="kr.co.recipetoyou.admin.adpayment.AdPaymentVO" alias="adPaymentVO"/>
+		<typeAlias type="kr.co.recipetoyou.admin.adrecipe.AdRecipeVO" alias="adRecipeVo"/>
 		
 		<!-- user -->
 		<typeAlias type="kr.co.recipetoyou.user.UserVO" alias="userVO"/>
