@@ -70,6 +70,22 @@ public class RecipeServiceImpl implements RecipeService{
 	public int recipeCount(PagingVO vo) {
 		return recipeDAO.selectRecipeCount(vo);
 	}
+
+	@Override
+	public int recipeReviewCount(int recipe_idx) {
+		return recipeDAO.selectRecipeReviewCount(recipe_idx);
+	}
+
+	@Override
+	public List<RecipeReviewVO> recipeReviewList(PagingVO vo) {
+		return recipeDAO.selectRecipeReviewList(vo);
+	}
+
+	@Override
+	public void addRecipeReview(RecipeReviewVO recipeReviewVO) {
+		recipeDAO.insertRecipeReview(recipeReviewVO);
+		
+	}
 	
 
 }

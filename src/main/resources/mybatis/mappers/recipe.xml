@@ -23,6 +23,18 @@
 		<result property="recipe_cate_parent" column="recipe_cate_parent"/>
 	</resultMap>
 	
+	<resultMap type="recipeReviewVO" id="recipeReviewResult">
+		<result property="recipe_comment_idx" column="recipe_comment_idx"/>
+		<result property="recipe_idx" column="recipe_idx"/>
+		<result property="user_id" column="user_id"/>
+		<result property="reg_date" column="reg_date"/>
+		<result property="content" column="content"/>
+		<result property="recipe_star" column="recipe_star"/>
+		<collection property="recipeVO" resultMap="recipeResult"></collection>
+	</resultMap>
+	
+	
+	
 	<sql id="criteria">
        <choose>
            <when test="type == 'T'">
@@ -56,13 +68,41 @@
 	
 		<![CDATA[
 			SELECT * from
-				(select rownum as rn, tr.* FROM tb_recipe tr
+				(SELECT rownum as rn, tr.* FROM (SELECT tr.* FROM tb_recipe tr  ORDER BY RECIPE_REG_DATE DESC
+			) tr
 			]]>
-			
 			<if test="keyword != null">
-                   where <include refid="criteria"></include> 
+					where
+                   <choose>
+		           <when test='type == "T"'>
+		               recipe_title like '%'||#{keyword}||'%' 
+		           </when>
+		           <when test='type == "C"'>
+		              recipe_content like '%'||#{keyword}||'%' 
+		           </when>
+		           <when test='type == "W"'>
+		               user_id like '%'||#{keyword}||'%' 
+		           </when>
+		           <when test='type == "TC"'>
+		               recipe_title like '%'||#{keyword}||'%' or recipe_content like '%'||#{keyword}||'%' 
+		           </when>
+		           <when test='type == "WT"'>
+		               recipe_title like '%'||#{keyword}||'%' or user_id like '%'||#{keyword}||'%' 
+		           </when>
+		           <when test='type == "CW"'>
+		               recipe_content like '%'||#{keyword}||'%' or user_id like '%'||#{keyword}||'%'
+		           </when>
+		           <when test='type == "TCW" || type== null'>
+		               recipe_title like '%'||#{keyword}||'%' or
+		               recipe_content like '%'||#{keyword}||'%' or
+		               user_id like '%'||#{keyword}||'%' 
+		           </when>
+		           
+       			</choose>
              </if>
+             
 			
+			<if test="cateCode != '' and cateCode != 0">
 			<choose>
 				<when test="0 lt cateCode and cateCode lt 10">
 					, (SELECT DISTINCT b.* 
@@ -70,14 +110,14 @@
 					WHERE #{cateCode} = b.recipe_cate_parent) td WHERE td.recipe_cate_code = tr.RECIPE_CATE_CODE
 				</when>
 				
-				<when test="cateCode != '' and cateCode != 0">
+				<otherwise>
 					where recipe_cate_code = #{cateCode}
-				</when>
+				</otherwise>
 			</choose>
-			
+			</if>
 			<![CDATA[
 			
-				 )
+			)
 			where rn between #{rowStart} and #{rowEnd}
 		]]>
 			
@@ -118,23 +158,21 @@
 	
 	<insert id="insertRecipe" parameterType="java.util.Map">
 	<choose>
-	<when test="recipe_recipe_img != null">
+	<when test="recipe_img != null">
 	<![CDATA[
 		INSERT INTO ADMIN.TB_RECIPE (RECIPE_IDX, PROD_CODE, RECIPE_TITLE, 
-		RECIPE_CONTENT,RECIPE_INGRE, RECIPE_CATE_CODE, RECIPE_IMG)
+		RECIPE_CONTENT,RECIPE_INGRE, RECIPE_CATE_CODE, RECIPE_IMG, USER_ID)
 		VALUES(recipe_seq.NEXTVAL, #{prod_code}, #{recipe_title}, 
-		#{recipe_content},#{recipe_ingre}, #{recipe_cate_code}, #{recipe_img})
+		#{recipe_content},#{recipe_ingre}, #{recipe_cate_code}, #{recipe_img},#{user_id})
 		]]>
 	</when>
 	<otherwise>
 		INSERT INTO ADMIN.TB_RECIPE (RECIPE_IDX, PROD_CODE, RECIPE_TITLE, 
-		RECIPE_CONTENT,RECIPE_INGRE, RECIPE_CATE_CODE)
+		RECIPE_CONTENT,RECIPE_INGRE, RECIPE_CATE_CODE, USER_ID)
 		VALUES(recipe_seq.NEXTVAL, #{prod_code}, #{recipe_title}, 
-		#{recipe_content},#{recipe_ingre}, #{recipe_cate_code})
+		#{recipe_content},#{recipe_ingre}, #{recipe_cate_code},#{user_id})
 	</otherwise>
 	</choose>
-	
-	
 	</insert>
 	
 	<select id="selectRecipeDetail" parameterType="int" resultMap="recipeResult">
@@ -156,7 +194,7 @@
 		RECIPE_INGRE = #{recipe_ingre}, RECIPE_CATE_CODE = #{recipe_cate_code},
 		]]>
 		
-		<if test="recipe_recipe_img != null"> RECIPE_IMG = #{recipe_recipe_img},</if>
+		<if test="recipe_img != null"> RECIPE_IMG = #{recipe_img},</if>
 	<![CDATA[
 		 RECIPE_REG_DATE = sysdate
 		WHERE RECIPE_IDX = #{recipe_idx}
@@ -167,5 +205,37 @@
 		DELETE FROM ADMIN.TB_RECIPE WHERE RECIPE_IDX = #{recipe_idx} 
 	</delete>
 	
+	<select id="selectRecipeReviewList" resultMap="recipeReviewResult">
+		<![CDATA[
+			SELECT * from
+				(SELECT rownum as rn, tr.* FROM 
+					(SELECT tr.* 
+						FROM TB_RECIPE_REVIEW tr 
+						where recipe_idx = #{recipe_idx} 
+						ORDER BY REG_DATE DESC
+				) tr
+			]]>
+		<![CDATA[
+			
+			)
+			where rn between #{rowStart} and #{rowEnd}
+		]]>
+	</select>
 	
+	<select id="selectRecipeReviewCount" resultType="int">
+    	SELECT count(*)
+		FROM TB_RECIPE_REVIEW 
+		WHERE RECIPE_IDX = #{recipe_idx}
+    </select>
+    
+    <insert id="insertRecipeReview" parameterType="recipeReviewVO">
+		<![CDATA[
+		INSERT INTO ADMIN.TB_RECIPE_REVIEW
+		(RECIPE_COMMENT_IDX, RECIPE_IDX, USER_ID, REG_DATE, CONTENT, RECIPE_STAR)
+		VALUES(TB_RECIPE_REVIEW_SEQ.nextval, #{recipe_idx}, #{user_id}, sysdate 
+		    , #{content},#{recipe_star})
+		]]>
+	</insert>
+    
+    
 </mapper>  

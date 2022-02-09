@@ -68,6 +68,7 @@
 		
 		
 		<typeAlias type="kr.co.recipetoyou.admin.adpoint.AdPointVO" alias="adPointVO"/>
+		<typeAlias type="kr.co.recipetoyou.board.recipe.RecipeReviewVO" alias="recipeReviewVO"/>
 
 	</typeAliases>
 </configuration> 
