@@ -85,7 +85,7 @@
 		<put-attribute name="body" value="/WEB-INF/Views/User/Mypage/mypageUserInfoPwdCheck.jsp"/>
 	</definition>
 	
-	<definition name="/mypageUserInfoUpdate.do" extends="mypagelayout">
+	<definition name="/mypageUserInfo.do" extends="mypagelayout">
 		<put-attribute name="title" value="개인 정보 수정"/>		
 		<put-attribute name="body" value="/WEB-INF/Views/User/Mypage/mypageUserInfo.jsp"/>
 	</definition>

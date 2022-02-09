@@ -1,14 +1,14 @@
 @charset "UTF-8";
 
-.content {
+.addAddrPopup {
 	text-align: center;
 	padding-top: 50px;
 }
-.title {
+.popupTitle {
 	text-align: center;
 }
 		
-#title1 {
+#popupTitle1 {
 	color: #257cd8;
 	font-size: 22px;
 	font-weight: 600;

@@ -27,14 +27,14 @@
 	type="image/x-icon" />
 </head>
 <body>
-	<div class="content">
-		<div class="title">
-			<div id="title1">배송타입 <span>지역입니다.</span></div>
+	<div class="addAddrPopup">
+		<div class="popupTitle">
+			<div id="popupTitle1">배송타입 <span>지역입니다.</span></div>
 			<p>오늘 주문하면 다음 날 바로 도착해요.(일요일 휴무)</p>
 		</div>
 		
-		<input type="text" id="jibunAddress"><button id="search">재검색</button><br>
-		<input type="text" id="namugiAddress" placeholder="   나머지 주소를 입력해주세요"><br>
+		<input type="text" id="jibunAddress" readonly="readonly"><button id="search">재검색</button><br>
+		<input type="text" id="namugiAddress" placeholder="   나머지 주소를 입력해주세요" readonly="readonly"><br>
 		<label id="basic_Address"><input type="checkbox">기본 배송지로 저장</label>
 		<br>
 		<input type="button" id="save" value="저장">

@@ -167,12 +167,12 @@ public class MypageControllerImpl implements MypageController{
 	}
 	
 	@Override
-	@RequestMapping(value = "/mypageUserInfoUpdate.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/mypageUserInfo.do", method = RequestMethod.GET)
 	public ModelAndView userInfoUpdate(@ModelAttribute UserVO userVO, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		logger.info("mypageUserInfoUpdate 호출");
 		
 		mypageService.updateUser(userVO);
-		ModelAndView mav = new ModelAndView("redirect:mypageUserInfoUpdate.do");
+		ModelAndView mav = new ModelAndView("redirect:mypageUserInfo.do");
 		
 		return mav;
 	}
