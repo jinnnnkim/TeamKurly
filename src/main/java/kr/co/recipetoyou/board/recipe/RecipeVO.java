@@ -4,6 +4,8 @@ import java.sql.Date;
 
 import org.springframework.stereotype.Component;
 
+import kr.co.recipetoyou.util.PagingVO;
+
 @Component("recipeVO")
 public class RecipeVO {
 	
@@ -16,24 +18,17 @@ public class RecipeVO {
 	private String recipe_img;
 	private String user_id;
 	private Date recipe_reg_date;
-	private String type;
-	private String []typeArr;
+	private PagingVO pagingVO;
 	
-	public String getType() {
-		return type;
+	
+
+
+	public PagingVO getPagingVO() {
+		return pagingVO;
 	}
 
-	public void setType(String type) {
-		this.type = type;
-		this.typeArr = type.split("");
-	}
-
-	public String[] getTypeArr() {
-		return typeArr;
-	}
-
-	public void setTypeArr(String[] typeArr) {
-		this.typeArr = typeArr;
+	public void setPagingVO(PagingVO pagingVO) {
+		this.pagingVO = pagingVO;
 	}
 
 	public RecipeVO() {
