@@ -35,12 +35,12 @@ public class AdGoodsServiceImpl implements AdGoodsService {
 		List<AdGoodsVO> prodList = adGoodsDAO.listPaging(vo);
 		
 		
-		prodList.forEach(goods->{
+		prodList.forEach(agvo->{
 		
 			try {
-					int prod_code = goods.getProd_code();
+					int prod_code = agvo.getProd_code();
 					List<AdgoodsImgVO> imageList  = adGoodsDAO.getGoodsImage(prod_code);
-					goods.setImageList(imageList);
+					agvo.setImageList(imageList);
 				
 			} catch (JsonGenerationException e) {
 				// TODO Auto-generated catch block
@@ -147,17 +147,18 @@ public class AdGoodsServiceImpl implements AdGoodsService {
 		int result = adGoodsDAO.goodsModify(agvo);
 		
 		if(result == 1 && agvo.getImageList() != null && agvo.getImageList().size() > 0) {
-			adGoodsDAO.goodsDelete(agvo.getProd_code());
+			adGoodsDAO.removeImage(agvo.getProd_code());
 			agvo.getImageList().forEach(imagevo->{
-				
-				
-				try {
-					imagevo.setProd_code(agvo.getProd_code());
-					adGoodsDAO.imageUpload(imagevo);
-				} catch (Exception e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+
+					
+					try {
+						imagevo.setProd_code(agvo.getProd_code());
+						adGoodsDAO.imageUpload(imagevo);
+					} catch (Exception e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+
 			});
 		}
 		
@@ -170,6 +171,13 @@ public class AdGoodsServiceImpl implements AdGoodsService {
 		
 		return adGoodsDAO.goodsDelete(prod_code);
 	}
+	
+	//상품 이미지 삭제
+	@Override
+	public void removeImage(int prod_code) throws Exception {
+		adGoodsDAO.removeImage(prod_code);
+		
+	}
 
 	//재고 관리
 	@Override
@@ -178,6 +186,8 @@ public class AdGoodsServiceImpl implements AdGoodsService {
 		adGoodsDAO.updageStock(agvo);
 		
 	}
+
+	
 
 	
 	

@@ -220,5 +220,18 @@ public class AdGoodsVO {
 	public void setStock_status(int stock_status) {
 		this.stock_status = stock_status;
 	}
+
+	@Override
+	public String toString() {
+		return "AdGoodsVO [prod_code=" + prod_code + ", cateCode=" + cateCode + ", prod_name=" + prod_name
+				+ ", prod_content=" + prod_content + ", prod_price=" + prod_price + ", prod_discount=" + prod_discount
+				+ ", prod_sell_unit=" + prod_sell_unit + ", prod_delivery_type=" + prod_delivery_type
+				+ ", prod_wrap_type=" + prod_wrap_type + ", prod_info=" + prod_info + ", prod_allergy=" + prod_allergy
+				+ ", prod_vaild_date=" + prod_vaild_date + ", prod_from=" + prod_from + ", prod_caution=" + prod_caution
+				+ ", stock_quantity=" + stock_quantity + ", prod_reg_date=" + prod_reg_date + ", adGoodsCateVO="
+				+ adGoodsCateVO + ", imageList=" + imageList + ", cateName=" + cateName + ", cateParent=" + cateParent
+				+ ", quantity=" + quantity + ", stock_status=" + stock_status + "]";
+	}
+	
 	
 }

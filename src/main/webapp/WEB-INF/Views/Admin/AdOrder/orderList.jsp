@@ -103,7 +103,7 @@
 					<td id="amountCol">수량</td>
 					<td id="payCardCol">가격</td>
 					<td id="ordDateCol">주문일</td>
-					<td id="delCol">결제취소</td>
+					<td id="delCol">주문취소</td>
 				</tr>
 			</thead>	
 				

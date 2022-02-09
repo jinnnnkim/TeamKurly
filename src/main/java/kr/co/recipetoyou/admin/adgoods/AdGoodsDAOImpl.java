@@ -112,6 +112,8 @@ public class AdGoodsDAOImpl implements AdGoodsDAO{
 	@Override
 	public int goodsModify(AdGoodsVO agvo) throws Exception {
 		
+		System.out.println(agvo.toString());
+	
 		return sqlSession.update(NAMESPACE+".goodsModify", agvo);
 	}
 
@@ -120,6 +122,16 @@ public class AdGoodsDAOImpl implements AdGoodsDAO{
 	public int goodsDelete(int prod_code) throws Exception {
 		
 		return sqlSession.delete(NAMESPACE+".goodsDelete", prod_code);
+	}
+	
+	//지정 상품 이미지 삭제
+	@Override
+	public void removeImage(int prod_code) throws Exception {
+		
+		System.out.println("prod_codeeeeeeeeeeeee"+prod_code);
+		
+		sqlSession.delete(NAMESPACE+".removeImageAll",prod_code);
+		
 	}
 
 	//재고 관리
@@ -130,8 +142,5 @@ public class AdGoodsDAOImpl implements AdGoodsDAO{
 		
 	}
 
-	
-	
-	
 
 }

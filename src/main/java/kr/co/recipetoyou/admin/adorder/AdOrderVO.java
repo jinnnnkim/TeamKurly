@@ -26,7 +26,7 @@ public class AdOrderVO {
 	private int prod_code;
 	private int quantity;
 	private int price;
-	private String status;
+	private int status;
 	
 	public AdOrderVO() {
 		
@@ -51,7 +51,7 @@ public class AdOrderVO {
 
 	}
 
-	public AdOrderVO(int ord_code, String user_id, Date ord_date, int prod_code, int quantity, int price, String status,
+	public AdOrderVO(int ord_code, String user_id, Date ord_date, int prod_code, int quantity, int price, int status,
 			AdUserVO adUserVO, String user_name, String user_phone, String user_addr,
 			AdGoodsVO adGoodsVO, String prod_name, String prod_content) {
 		super();
@@ -119,11 +119,11 @@ public class AdOrderVO {
 		this.price = price;
 	}
 
-	public String getStatus() {
+	public int getStatus() {
 		return status;
 	}
 
-	public void setStatus(String status) {
+	public void setStatus(int status) {
 		this.status = status;
 	}
 

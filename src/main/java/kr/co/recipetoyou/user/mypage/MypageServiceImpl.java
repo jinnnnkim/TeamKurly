@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 
+import kr.co.recipetoyou.user.UserVO;
 import kr.co.recipetoyou.user.mypage.vo.CouponVO;
 import kr.co.recipetoyou.user.mypage.vo.MyOrderVO;
 import kr.co.recipetoyou.user.mypage.vo.PointVO;
@@ -85,6 +86,12 @@ public class MypageServiceImpl implements MypageService{
 	public List<ReviewVO> listReviews() throws DataAccessException {
 		List<ReviewVO> reviewList = mypageDAO.selectAllReviewList();
 		return reviewList;
+	}
+
+	@Override
+	public void updateUser(UserVO userVO) throws DataAccessException {
+		mypageDAO.updateUser(userVO);
+		
 	}
 	
 

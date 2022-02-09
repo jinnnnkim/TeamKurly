@@ -148,13 +148,13 @@
 							</td>
 							<td class="image" style="text-align: left; padding: 5px">
 								<div style="float: left; width: 60px">
-								<!-- 이미지 넣기 -->
-								<div class="image_wrap" data-code="${prod.imageList[0].prod_code}" data-path="${prod.imageList[0].uploadPath}"
+		
+								<div class="image_wrap" data-prod_code="${prod.imageList[0].prod_code}" data-path="${prod.imageList[0].uploadPath}"
 												data-uuid="${prod.imageList[0].uuid}" data-filename="${prod.imageList[0].fileName}">
 									<img>
 								
 								</div>
-								</div>	
+								</div>		
 								<div style="margin-left: 110px">
 								<div style="line-height: 28px">
 									<a href="${contextPath}/adgoods/adgoodsInfo.do?prod_code=${prod.prod_code}">
@@ -328,7 +328,7 @@
 				const uuid = bobj.data("uuid");
 				const fileName = bobj.data("filename");
 				
-				const fileCallPath = encodeURIComponent(uploadPath + "s_" + uuid + "_" + fileName);
+				const fileCallPath = encodeURIComponent(uploadPath + "/s_" + uuid + "_" + fileName);
 				
 				$(this).find("img").attr('src', '${contextPath}/adgoods/getImageInfo.do?fileName=' + fileCallPath);
 				
