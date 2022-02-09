@@ -23,8 +23,7 @@ public class MypageDAOImpl implements MypageDAO{
 	
 	@Autowired
 	private SqlSession sqlSession;
-	private String namespace;
-
+	
 	//조회
 	@Override
 	public List<CouponVO> selectAllCouponList() throws DataAccessException {
@@ -91,7 +90,7 @@ public class MypageDAOImpl implements MypageDAO{
 
 	@Override
 	public void updateUser(UserVO userVO) throws DataAccessException {
-		sqlSession.update(namespace + ".updateUser", userVO);
+		sqlSession.update("mapper.member.updateUser", userVO);
 		
 	}
 
