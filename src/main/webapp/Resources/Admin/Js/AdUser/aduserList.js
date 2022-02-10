@@ -68,3 +68,4 @@ function saveMessage() {
 		return;
 	}
 }
+
