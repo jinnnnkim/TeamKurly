@@ -6,6 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Repository;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import kr.co.recipetoyou.user.UserVO;
 import kr.co.recipetoyou.user.mypage.vo.CouponVO;
@@ -91,6 +92,14 @@ public class MypageDAOImpl implements MypageDAO{
 	@Override
 	public void updateUser(UserVO userVO) throws DataAccessException {
 		sqlSession.update("mapper.member.updateUser", userVO);
+		
+	}
+
+	//상품문의 삭제
+	@Override
+	public int removeQnA(@RequestParam("prod_inq_code") int prod_inq_code) throws DataAccessException {
+		int result = sqlSession.delete("mapper.member.deleteQnA", prod_inq_code);
+		return result;
 		
 	}
 

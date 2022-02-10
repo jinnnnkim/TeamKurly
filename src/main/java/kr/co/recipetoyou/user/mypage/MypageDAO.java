@@ -40,6 +40,9 @@ public interface MypageDAO {
 	//상품문의 조회
 	public List<QnAVO> selectAllQnAList() throws DataAccessException;
 	
+	//상품문의 삭제
+	public int removeQnA(int prod_inq_code) throws DataAccessException;
+	
 	//상품후기 조회
 	public List<ReviewVO> selectAllReviewList() throws DataAccessException;
 	
