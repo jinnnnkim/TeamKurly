@@ -85,10 +85,12 @@ public class AdGoodsControllerImpl implements AdGoodsController {
 		String cateList = objm.writeValueAsString(list);
 		
 		int cnt = adGoodsService.prodCount(vo);
+		int searchcnt = adGoodsService.countSearch(vo);
 		
 		if(!prodList.isEmpty()) {
 			mav.addObject("prodList", prodList);
 			mav.addObject("cnt", cnt);
+			mav.addObject("searchcnt", searchcnt);
 			mav.addObject("cateList", cateList);
 		}else {
 			mav.addObject("listCheck", "empty");

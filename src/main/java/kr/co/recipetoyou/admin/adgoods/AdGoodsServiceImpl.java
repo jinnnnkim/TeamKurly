@@ -91,19 +91,17 @@ public class AdGoodsServiceImpl implements AdGoodsService {
 	}
 
 	//상품명 검색
-	@Override
-	public List<AdGoodsVO> listSearch(PagingVO vo) throws Exception {
-		
-		String type = vo.getType();
-		String[] typeArr = type.split("");
-		
-		if(type.equals("G") || type.equals("C") || type.equals("GC")) {
-			return new ArrayList<>();
-		}
-		
-		
-		return adGoodsDAO.listSearch(vo);
-	}
+	/*
+	 * @Override public List<AdGoodsVO> listSearch(PagingVO vo) throws Exception {
+	 * 
+	 * String type = vo.getType(); String[] typeArr = type.split("");
+	 * 
+	 * if(type.equals("G") || type.equals("C") || type.equals("GC")) { return new
+	 * ArrayList<>(); }
+	 * 
+	 * 
+	 * return adGoodsDAO.listSearch(vo); }
+	 */
 
 	//검색 결과 갯수
 	@Override

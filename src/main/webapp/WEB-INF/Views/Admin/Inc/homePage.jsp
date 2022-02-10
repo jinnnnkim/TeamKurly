@@ -47,29 +47,34 @@
 				<ul>
 					<li><a href="${contextPath}/adgoods/listProduct.do">쇼핑몰관리</a></li>
 					<li><a href="orignSetting.jsp">기본환경설정</a></li>
-					<li><a href="boardMgm.jsp">게시물관리</a></li>
-					<li><a href="formMgm.jsp">폼관리</a></li>
-					<li><a href="faq.jsp">FAQ관리</a></li>
-					<li><a href="paymentMgm.jsp">결제관리</a></li>
 					<li><a href="${contextPath}/aduser/listadUsers.do">회원관리</a></li>
 					<li><a href="${contextPath}/aduserWithdraw/listadUsersWithdraw.do">탈퇴회원관리</a></li>
+					<li><a href="${contextPath}/adorder/listadOrd.do">주문관리</a></li>
+					<li><a href="${contextPath}/adpayment/listadPay.do">결제관리</a></li>
+					<li><a href="${contextPath}/adsend/listadSend.do">발송관리</a></li>
+					<li><a href="${contextPath}/adfaq/faqAdManagement.do">FAQ관리</a></li>
 				</ul>
 			</div>
 		</div>
 	
 		<div class="sideBar" id="followMenuBtn">
-			<button onclick="dropMenu_btn()" class="sideMenu"><i class="fas fa-bars"> Menu</i></button>
-			<div class="sideBtn" id="drop_content">	
+			<button onclick="dropMenu_btn1()" class="sideMenu"><i class="fas fa-bars"> Menu</i></button>
+			<div class="sideBtn" id="drop_content1">	
 				<ul>
 					<li class="menu">
-						<a href="${contextPath}/adgoods/listProduct.do">쇼핑몰관리</a>
-						<ul class="hide">
+						<a href="${contextPath}/adgoods/listProduct.do" onclick="dropMenu_btn2(); return false;">쇼핑몰관리</a>
+						<div id="drop_content2">
+						<ul class="drop_content2">
 							<li>메인페이지</li>
 							<li>상품관리</li>
 							<li>주문관리</li>
 						</ul>
+						</div>
 					</li>	
 					<li><a href="orignSetting.jsp">기본환경설정</a></li>
+
+					<li><a href="${contextPath}/aduser/listadUsers.do">회원관리</a></li>
+					<li><a href="${contextPath}/aduserWithdraw/listadUsersWithdraw.do">탈퇴회원관리</a></li>
 					<li><a href="boardMgm.jsp">게시물관리</a></li>
 					<li><a href="formMgm.jsp">폼관리</a></li>
 					<li><a href="${contextPath}/adfaq/faqAdManagement.do">FAQ관리</a></li>
@@ -77,8 +82,8 @@
 					<li><a href="${contextPath}/adorder/listadOrd.do">주문관리</a></li>
 					<li><a href="${contextPath}/adpayment/listadPay.do">결제관리</a></li>
 					<li><a href="${contextPath}/adsend/listadSend.do">발송관리</a></li>
-					<li><a href="${contextPath}/aduser/listadUsers.do">회원관리</a></li>
-					<li><a href="${contextPath}/aduserWithdraw/listadUsersWithdraw.do">탈퇴회원관리</a></li>
+					<li><a href="${contextPath}/adfaq/faqAdManagement.do">FAQ관리</a></li>
+					
 				</ul>
 			</div>
 		</div>
