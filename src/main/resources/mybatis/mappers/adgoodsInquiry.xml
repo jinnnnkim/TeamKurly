@@ -3,7 +3,7 @@
 <mapper namespace="mapper.adgoodsInquiry"> <!-- adgoodsInquiry.xml의 네임스페이스 지정 -->
 
 	<resultMap type="adInquiryVO" id="adInquiryResult">	
-		<result property="prod_inq_code" column=""/>
+		<result property="prod_inq_code" column="prod_inq_code"/>
 		<result property="prod_code" column="prod_code"/>
 		<result property="user_id" column="user_id"/>
 		<result property="inq_title" column="inq_title"/>
