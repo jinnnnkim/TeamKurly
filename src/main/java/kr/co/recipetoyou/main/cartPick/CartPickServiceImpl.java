@@ -1,5 +1,6 @@
 package kr.co.recipetoyou.main.cartPick;
 
+import java.io.IOException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +8,9 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
+
+import com.fasterxml.jackson.core.JsonGenerationException;
+import com.fasterxml.jackson.databind.JsonMappingException;
 
 import kr.co.recipetoyou.user.login.LoginDAO;
 import kr.co.recipetoyou.admin.adgoods.AdGoodsDAO;
@@ -30,7 +34,9 @@ public class CartPickServiceImpl implements CartPickService{
 	public List<PickVO> listPicks () throws DataAccessException {
 	
 		List<PickVO> pickList = cartPickDAO.selectAllCartPickList();
+		
 		return pickList;
+		
 	}
 
 	@Override
@@ -52,13 +58,25 @@ public class CartPickServiceImpl implements CartPickService{
 	public List<ProdVO> listCarts() throws Exception {
 		List<ProdVO> cartList = cartPickDAO.selectAllCartList();
 		
-		for(ProdVO prodvo : cartList) {
+		cartList.forEach(agvo->{
 			
-			//이미지 정보 얻기
-			int prod_code = prodvo.getProd_code();
-			List<AdgoodsImgVO> imageList = adGoodsDAO.getGoodsImage(prod_code);
-			prodvo.setImageList(imageList);
-		}
+			try {
+					int prod_code = agvo.getProd_code();
+					List<AdgoodsImgVO> imageList  = adGoodsDAO.getGoodsImage(prod_code);
+					agvo.setImageList(imageList);
+					System.out.println(imageList);
+				
+			} catch (JsonGenerationException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}catch (JsonMappingException e) {
+				// TODO: handle exception
+			}catch (IOException e) {
+				// TODO: handle exception
+			}
+			
+		});
+		
 		
 		return cartList;
 	}

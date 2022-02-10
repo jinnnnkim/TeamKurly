@@ -30,6 +30,33 @@ function dropMenu_btn2(){
                 click.style.display = "none";
             }
         }
+function dropMenu_btn3(){
+            let click = document.getElementById("drop_content3");
+            if(click.style.display === "none"){
+                click.style.display = "block";
+ 
+            }else{
+                click.style.display = "none";
+            }
+        }
+function dropMenu_btn4(){
+            let click = document.getElementById("drop_content4");
+            if(click.style.display === "none"){
+                click.style.display = "block";
+ 
+            }else{
+                click.style.display = "none";
+            }
+        }
+function dropMenu_btn5(){
+            let click = document.getElementById("drop_content5");
+            if(click.style.display === "none"){
+                click.style.display = "block";
+ 
+            }else{
+                click.style.display = "none";
+            }
+        }                        
 
 	
 		

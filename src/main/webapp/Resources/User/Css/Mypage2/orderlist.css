@@ -96,3 +96,9 @@
 	padding-left: 28px;
 	
 }
+
+.image_wrap img{
+	display: block;
+	height: 100px;
+	width: 100px;
+}

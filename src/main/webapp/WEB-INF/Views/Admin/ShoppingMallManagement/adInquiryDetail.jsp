@@ -8,14 +8,14 @@
 	<link rel=“stylesheet” href=“https://use.fontawesome.com/releases/v5.14.0/css/all.css”
      integrity=“sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc” crossorigin=“anonymous”>
  	<link href=“https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap” rel=“stylesheet”>
-	<link rel="stylesheet" href="../../../Resources/Admin/Css/HomePageHeaderSide/reset.css"> 
-	<link rel="stylesheet" href="../../../Resources/Admin/Css/ShoppingMallManagement/productInquiry.css">
+	<link rel="stylesheet" href="/recipetoyou/Resources/Admin/Css/HomePageHeaderSide/reset.css"> 
+	<link rel="stylesheet" href="/recipetoyou/Resources/Admin/Css/ShoppingMallManagement/adInquiryDetail.css">
 	<!-- cdn 활용하여 ckeditor 생성 -->
 	<script src="https://cdn.ckeditor.com/ckeditor5/31.1.0/classic/ckeditor.js"></script>
 	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 </head>
 <body>
-	<!-- 쇼핑몰관리 -> 상품문의 -> 상품문의 페이지 (상품문의목록 페이지페이지에서 상품에 관한 문의문장을 클릭하면 상품문의 페이지로 이동) -->
+	
 	<div class="wrap">
 		<div class="bar">상품문의</div>
 		<table align="center">
@@ -34,9 +34,9 @@
 								<tbody>
 									<tr>
 										<th>작성자</th>
-										<td>조모모</td>
+										<td>${inquiry.user_id }</td>
 										<th>작성일시</th>
-										<td>2016-07-27 12:02:43</td>
+										<td>${inquiry.inq_reg_date }</td>
 									</tr>
 									<tr>
 										<th>연관상품</th>
@@ -44,11 +44,11 @@
 									</tr>
 									<tr>
 										<th>문의제목</th>
-										<td colspan="3">대량구매도 가능한가요?!</td>
+										<td colspan="3">${inquiry.inq_title }</td>
 									</tr>
 									<tr>
 										<th>문의내용</th>
-										<td colspan="3">대량구매도 가능한가요?!</td>
+										<td colspan="3">${inquiry.inq_content }</td>
 									</tr>
 								</tbody>
 							</table>

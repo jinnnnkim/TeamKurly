@@ -56,10 +56,8 @@
 												<!-- 이미지 정보가 담기도록 함. -->
 						<div class="image_wrap" data-prod_code="${cartList.imageList[0].prod_code}" data-path="${cartList.imageList[0].uploadPath}"
 												data-uuid="${cartList.imageList[0].uuid}" data-filename="${cartList.imageList[0].fileName}">
-							<a href="#"> 
-							<img alt="thumbnail"
-								src="/recipetoyou/Resources/User/Img/Mypage2/thumbnail.jpg" class="thumbnail">
-							</a>
+							<img>
+
 						</div>
 							<div class="subject">
 								<a href="#" class="subject_tit">${cartList.prod_name}</a> 
@@ -203,10 +201,6 @@
 			}
 			
 			totalPrice = basicPrice +_deliveryPrice;
-			
-			
-			
-			
 			
 			
 			//이미지 삽입
