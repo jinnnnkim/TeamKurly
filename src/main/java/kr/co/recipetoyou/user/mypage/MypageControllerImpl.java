@@ -58,7 +58,7 @@ public class MypageControllerImpl implements MypageController{
 	
 		ModelAndView mav = new ModelAndView();
 		return mav;
-	}
+	} 
 	
 	
 	//주문 내역 조회
