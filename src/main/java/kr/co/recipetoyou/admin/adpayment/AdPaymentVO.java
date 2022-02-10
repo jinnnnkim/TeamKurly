@@ -26,7 +26,6 @@ public class AdPaymentVO {
 	private String user_addr;
 		
 	private void AdUserVO() {
-
 	}
 		
 	//상품
@@ -35,10 +34,9 @@ public class AdPaymentVO {
 	private String prod_content;
 		
 	private void AdGoodsVO() {
-
 	}
+	
 	public AdPaymentVO() {
-		// TODO Auto-generated constructor stub
 	}
 	
 	
@@ -127,8 +125,8 @@ public class AdPaymentVO {
 		this.user_id = user_id;
 	}
 	public AdPaymentVO(int pay_code, int pay_method, Date pay_date, int pay_price, int cp_code, int ord_code,
-			kr.co.recipetoyou.admin.aduser.AdUserVO adUserVO, String user_id, String user_name, String user_phone,
-			String user_addr, kr.co.recipetoyou.admin.adgoods.AdGoodsVO adGoodsVO, String prod_name,
+			AdUserVO adUserVO, String user_id, String user_name, String user_phone,
+			String user_addr, AdGoodsVO adGoodsVO, String prod_name,
 			String prod_content) {
 		super();
 		this.pay_code = pay_code;

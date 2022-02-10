@@ -34,7 +34,7 @@ public class AdPaymentDAOImpl implements AdPaymentDAO {
 		return sqlSession.selectList("mapper.adpayment.listPayPaging", vo);
 	}
 		
-	//주문 전체 수 조회
+	//결제 전체 수 조회
 	//DB 테이블에 있는 모든 회원의 주문 수 계산 후 리턴
 	@Override
 	public int payCount() throws DataAccessException {	

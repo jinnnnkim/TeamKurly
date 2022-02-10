@@ -236,6 +236,7 @@
 		]]>
 	</select>
 	
+	
 	<update id="updateUser" parameterType="userVO">
 		<![CDATA[
 			UPDATE TB_USERS SET

@@ -1,6 +1,7 @@
 package kr.co.recipetoyou.user.mypage.vo;
 
 import java.sql.Date; 
+
 import java.util.List;
 
 import org.springframework.stereotype.Component;
@@ -26,16 +27,10 @@ public class MyOrderVO {
 	private String prod_discount;
 	private String prod_content;
 	
-
 	
 	/* 상품 이미지 */
 	private List<AdgoodsImgVO> imageList;
-	
-	
-	
-	public List<AdgoodsImgVO> getImageList() {
-		return imageList;
-	}
+
 	public int getOrd_code() {
 		return ord_code;
 	}
@@ -99,6 +94,12 @@ public class MyOrderVO {
 		this.prod_content = prod_content;
 	}
 
-
+	public List<AdgoodsImgVO> getImageList() {
+		return imageList;
+	}
+	
+	public void setImageList(List<AdgoodsImgVO> imageList) {
+		this.imageList = imageList;
+	}
 
 }

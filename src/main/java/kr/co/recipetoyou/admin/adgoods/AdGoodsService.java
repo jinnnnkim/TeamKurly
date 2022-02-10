@@ -30,7 +30,7 @@ public interface AdGoodsService {
 	public List<AdGoodsCateVO> cateList() throws Exception;
 		
 	//상품명 검색
-	public List<AdGoodsVO> listSearch(PagingVO vo) throws Exception;
+	//public List<AdGoodsVO> listSearch(PagingVO vo) throws Exception;
 	
 	//상품 등록
 	public void register(AdGoodsVO agvo) throws Exception;
