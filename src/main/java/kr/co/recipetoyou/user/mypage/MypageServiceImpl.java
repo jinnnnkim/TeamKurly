@@ -86,7 +86,7 @@ public class MypageServiceImpl implements MypageService{
 					int prod_code = order.getProd_code();
 					List<AdgoodsImgVO> imageList  = adGoodsDAO.getGoodsImage(prod_code);
 					order.setImageList(imageList);
-					System.out.println(imageList);
+					System.out.println(imageList.toString());
 				
 			} catch (JsonGenerationException e) {
 				// TODO Auto-generated catch block
