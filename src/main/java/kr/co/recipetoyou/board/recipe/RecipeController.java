@@ -18,21 +18,26 @@ public interface RecipeController {
 	
 	public ModelAndView communityRecipeWrite(HttpServletRequest request, HttpServletResponse response, Model model) throws Exception;
 
-	public String communityRecipeWriteProcess(
-			MultipartHttpServletRequest mhsr, HttpServletResponse response) throws Exception;
+	public ResponseEntity communityRecipeWriteProcess(
+			MultipartHttpServletRequest multipartRequest,
+			HttpServletResponse response) throws Exception;
 	
-	public ModelAndView communityRecipeDetail(@RequestParam("recipe_idx") int recipe_idx, HttpServletRequest request, HttpServletResponse response) throws Exception;
+	public ModelAndView communityRecipeDetail(@RequestParam("recipe_idx") int recipe_idx,PagingVO vo, HttpServletRequest request, HttpServletResponse response) throws Exception;
 	
 	public ModelAndView communityRecipeModify(@RequestParam("recipe_idx") int recipe_idx, Model model,
 			HttpServletRequest request, HttpServletResponse response) throws Exception;
 	
-	public String communityRecipeModifyProcess(	MultipartHttpServletRequest multipartRequest,
+	public ResponseEntity communityRecipeModifyProcess(
+			MultipartHttpServletRequest multipartRequest,
 			HttpServletResponse response) throws Exception;
 	
 	public ModelAndView communityRecipeModifyProcess(@RequestParam("recipe_idx") int recipe_idx, 
 			HttpServletRequest request, HttpServletResponse response) throws Exception;
 	
 	public String communityRecipeDelete(@RequestParam("recipe_idx") int recipe_idx, 
+			HttpServletRequest request, HttpServletResponse response) throws Exception;
+	
+	public String communityRecipeReviewWrite(RecipeReviewVO recipeReviewVO,
 			HttpServletRequest request, HttpServletResponse response) throws Exception;
 
 }

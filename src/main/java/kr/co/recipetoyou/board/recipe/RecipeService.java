@@ -27,4 +27,10 @@ public interface RecipeService {
 
 	public int recipeCount(PagingVO vo);
 
+	public int recipeReviewCount(int recipe_idx);
+
+	public List<RecipeReviewVO> recipeReviewList(PagingVO vo);
+
+	public void addRecipeReview(RecipeReviewVO recipeReviewVO);
+
 }

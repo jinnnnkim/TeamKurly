@@ -85,7 +85,7 @@
 					<li>
 						<a href="${contextPath }/community/communityRecipeDetail.do?recipe_idx=${list.recipe_idx}">
 							<div class="recipeImg">
-								<img src="/recipetoyou/Resources/User/Img/Notice/market01.jpg">
+								<img src="/recipetoyou/Resources/Upload/${list.recipe_img}">
 							</div>
 							<div class="detail">
 								<span class="recipeTitle">${list.recipe_title}</span>

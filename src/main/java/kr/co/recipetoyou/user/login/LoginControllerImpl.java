@@ -38,15 +38,10 @@ public class LoginControllerImpl implements LoginController {
 		
 		ModelAndView mav = new ModelAndView();
 	
-		//userVO = loginService.login(userVO);
+		userVO = loginService.login(userVO);
 		
 		if (userVO != null) {
 			HttpSession session = request.getSession();
-			userVO = loginService.login(userVO);
-		}
-		if (userVO != null) {
-			HttpSession session = request.getSession();
-			System.out.println(userVO.getUser_name());
 			session.setAttribute("userVO", userVO);		//세션에 회원 정보를 저장함.
 			session.setAttribute("isLogOn", true);
 			mav.setViewName("redirect:/main.do");

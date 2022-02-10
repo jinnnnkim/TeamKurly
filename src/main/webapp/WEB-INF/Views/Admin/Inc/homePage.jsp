@@ -72,8 +72,13 @@
 						</div>
 					</li>	
 					<li><a href="orignSetting.jsp">기본환경설정</a></li>
+
 					<li><a href="${contextPath}/aduser/listadUsers.do">회원관리</a></li>
 					<li><a href="${contextPath}/aduserWithdraw/listadUsersWithdraw.do">탈퇴회원관리</a></li>
+					<li><a href="boardMgm.jsp">게시물관리</a></li>
+					<li><a href="formMgm.jsp">폼관리</a></li>
+					<li><a href="${contextPath}/adfaq/faqAdManagement.do">FAQ관리</a></li>
+					<li><a href="${contextPath}/adrecipe/listadRecipe.do">레시피관리</a></li>
 					<li><a href="${contextPath}/adorder/listadOrd.do">주문관리</a></li>
 					<li><a href="${contextPath}/adpayment/listadPay.do">결제관리</a></li>
 					<li><a href="${contextPath}/adsend/listadSend.do">발송관리</a></li>

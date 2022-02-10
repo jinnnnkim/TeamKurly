@@ -1,42 +1,28 @@
-package kr.co.recipetoyou.board.recipe;
+package kr.co.recipetoyou.admin.adrecipe;
 
 import java.sql.Date;
 
 import org.springframework.stereotype.Component;
 
-import kr.co.recipetoyou.util.PagingVO;
+@Component("adRecipeVO")
+public class AdRecipeVO {
 
-@Component("recipeVO")
-public class RecipeVO {
-	
 	private String recipe_idx;
 	private int prod_code;
 	private String recipe_title;
 	private String recipe_content;
 	private String recipe_ingre;
-	private int recipe_cate_code;
+	private String recipe_cate_code;
 	private String recipe_img;
-	private String user_id;
 	private Date recipe_reg_date;
-	private PagingVO pagingVO;
+	private String user_id;
 	
-	
-
-
-	public PagingVO getPagingVO() {
-		return pagingVO;
-	}
-
-	public void setPagingVO(PagingVO pagingVO) {
-		this.pagingVO = pagingVO;
-	}
-
-	public RecipeVO() {
+	public AdRecipeVO() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public RecipeVO(String recipe_idx, int prod_code, String recipe_title, String recipe_content, String recipe_ingre,
-			int recipe_cate_code, String recipe_img, String user_id, Date recipe_reg_date) {
+	public AdRecipeVO(String recipe_idx, int prod_code, String recipe_title, String recipe_content, String recipe_ingre,
+			String recipe_cate_code, String recipe_img, Date recipe_reg_date, String user_id) {
 		super();
 		this.recipe_idx = recipe_idx;
 		this.prod_code = prod_code;
@@ -45,8 +31,8 @@ public class RecipeVO {
 		this.recipe_ingre = recipe_ingre;
 		this.recipe_cate_code = recipe_cate_code;
 		this.recipe_img = recipe_img;
-		this.user_id = user_id;
 		this.recipe_reg_date = recipe_reg_date;
+		this.user_id = user_id;
 	}
 
 	public String getRecipe_idx() {
@@ -89,11 +75,11 @@ public class RecipeVO {
 		this.recipe_ingre = recipe_ingre;
 	}
 
-	public int getRecipe_cate_code() {
+	public String getRecipe_cate_code() {
 		return recipe_cate_code;
 	}
 
-	public void setRecipe_cate_code(int recipe_cate_code) {
+	public void setRecipe_cate_code(String recipe_cate_code) {
 		this.recipe_cate_code = recipe_cate_code;
 	}
 
@@ -105,14 +91,6 @@ public class RecipeVO {
 		this.recipe_img = recipe_img;
 	}
 
-	public String getUser_id() {
-		return user_id;
-	}
-
-	public void setUser_id(String user_id) {
-		this.user_id = user_id;
-	}
-
 	public Date getRecipe_reg_date() {
 		return recipe_reg_date;
 	}
@@ -121,14 +99,14 @@ public class RecipeVO {
 		this.recipe_reg_date = recipe_reg_date;
 	}
 
-	@Override
-	public String toString() {
-		return "RecipeVO [recipe_idx=" + recipe_idx + ", prod_code=" + prod_code + ", recipe_title=" + recipe_title
-				+ ", recipe_content=" + recipe_content + ", recipe_ingre=" + recipe_ingre + ", recipe_cate_code="
-				+ recipe_cate_code + ", recipe_img=" + recipe_img + ", user_id=" + user_id + ", recipe_reg_date="
-				+ recipe_reg_date + "]";
+	public String getUser_id() {
+		return user_id;
+	}
+
+	public void setUser_id(String user_id) {
+		this.user_id = user_id;
 	}
 	
 	
-
+	
 }

@@ -27,4 +27,10 @@ public interface RecipeDAO {
 
 	public int selectRecipeCount(PagingVO vo);
 
+	public int selectRecipeReviewCount(int recipe_idx);
+
+	public List<RecipeReviewVO> selectRecipeReviewList(PagingVO vo);
+
+	public void insertRecipeReview(RecipeReviewVO recipeReviewVO);
+
 }
