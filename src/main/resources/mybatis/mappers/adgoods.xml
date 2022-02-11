@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="mapper.adgoods">	<!-- adgoods.xml의 네임스페이스 지정 -->
+<mapper namespace="mapper.adgoods">	<!-- product.xml의 네임스페이스 지정 -->
 
 	<resultMap type="adGoodsVO" id="adgoodsResult">
 		<result property="prod_code" column="prod_code"/>
