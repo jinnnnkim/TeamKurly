@@ -31,7 +31,7 @@ public class AdPaymentControllerImpl implements AdPaymentController {
 	@Override
 	@RequestMapping(value = "/adpayment/listPay.do", method = RequestMethod.GET)
 	public void listPayGET(PagingVO vo, Model model) throws Exception{
-		logger.info("C: listOrdVO 겟 호출" + vo);
+		logger.info("C: listPayVO 겟 호출" + vo);
 		model.addAttribute("ListPayUsers", service.listPayUsers(vo));
 	}
 		

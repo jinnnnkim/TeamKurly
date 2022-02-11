@@ -30,9 +30,6 @@ public interface AdGoodsDAO {
 		
 	//카테고리
 	public List<AdGoodsCateVO> cateList() throws IOException;
-		
-	//상품명 검색
-	public List<AdGoodsVO> listSearch(PagingVO vo) throws Exception;
 	
 	//상품 등록
 	public void register(AdGoodsVO agvo) throws Exception;

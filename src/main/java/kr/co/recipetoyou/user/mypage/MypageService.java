@@ -43,6 +43,9 @@ public interface MypageService {
 	//상품문의
 	public List<QnAVO> listQnA() throws DataAccessException;
 	
+	//상품문의 삭제
+	public int removeQnA(int prod_inq_code) throws DataAccessException;
+	
 	//상품후기
 	public List<ReviewVO> listReviews() throws DataAccessException;
 

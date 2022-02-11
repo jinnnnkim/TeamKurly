@@ -2,7 +2,7 @@ package kr.co.recipetoyou.util;
 
 import java.util.Arrays;
 
-
+import kr.co.recipetoyou.admin.adgoods.Inquiry.AdInquiryVO;
 import kr.co.recipetoyou.util.PageMaker;
 
 public class PagingVO {
@@ -19,8 +19,18 @@ public class PagingVO {
 		private String[] typeArr;	//검색 타입 배열
 		private int cateCode;
 		private int recipe_idx;
+		private int prod_code;
+		private String prod_name;
 		
-		 
+		private String title;
+		private String user_id;
+		private String content;
+		
+		
+		
+		private int prod_inq_code;
+		
+
 		public PagingVO() {
 			this.page = 1;
 			this.pageSize = 10;
@@ -115,6 +125,14 @@ public class PagingVO {
 
 		public void setRecipe_idx(int recipe_idx) {
 			this.recipe_idx = recipe_idx;
+		}
+		
+		public int getProd_inq_code() {
+			return prod_inq_code;
+		}
+
+		public void setProd_inq_code(int prod_inq_code) {
+			this.prod_inq_code = prod_inq_code;
 		}
 
 		//toString()

@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<c:set var="contextPath" value="${pageContext.servletContext.contextPath }"/>    
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,8 +11,8 @@
 	<link rel=“stylesheet” href=“https://use.fontawesome.com/releases/v5.14.0/css/all.css”
      integrity=“sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc” crossorigin=“anonymous”>
  	<link href=“https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap” rel=“stylesheet”>
-	<link rel="stylesheet" href="../../../Resources/Admin/Css/HomePageHeaderSide/reset.css"> 
-	<link rel="stylesheet" href="../../../Resources/Admin/Css/ShoppingMallManagement/productInquirylist.css">
+	<link rel="stylesheet" href="/recipetoyou/Resources/Admin/Css/HomePageHeaderSide/reset.css"> 
+	<link rel="stylesheet" href="/recipetoyou/Resources/Admin/Css/ShoppingMallManagement/adgoodsInquiry.css">
 	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 </head>
 <body>
@@ -21,7 +24,7 @@
 				<tr>
 					<td align="left">
 						<div class="main-content">
-							<%-- form 기능 필요하다면 설정하기 / action기능 넣기 --%>
+							
 							<form name="RADShopQnaSearchFrm" method="get" action="">
 								<table class="table table1 table_line" >
 									<colgroup>
@@ -108,8 +111,9 @@
 								</tr>
 							</thead>
 							<tbody>
+							<c:forEach var="inquiry" items="${inquiryList}">
 							<tr>
-								<td>282</td>
+								<td>${inquiry.prod_inq_code}</td>
 								<td><input class="chChoice" type="checkbox" value="286"/></td>
 								<td>
 									<span class="lable">답변대기</span>
@@ -118,105 +122,42 @@
 									<div> <%-- href : 상품등록 페이지로 이동 --%>
 										<a href="productRegister.jsp" class="helper-col">체중계</a>
 									</div>
-									<a href="productInquiry.jsp">대량구매도 가능한가요?!</a>
+									<a href="${contextPath }/adInquiry/adInquiryDetail.do?prod_inq_code=${inquiry.prod_inq_code}">${inquiry.inq_title}</a>
 								</td>
-								<td>조모모</td>
-								<td>2016-07-27 12:02</td>
+								<td>${inquiry.user_id}</td>
+								<td>${inquiry.inq_reg_date}</td>
 							</tr>
-							<tr>
-								<td>281</td>
-								<td><input class="chChoice" type="checkbox" value="284"/></td>
-								<td>
-									<span class="lable label-xs label-hold">답변대기</span>
-								</td>
-								<td style="text-align: left">
-									<div> <%-- href : 상품등록 페이지로 이동 --%>
-										<a href="productRegister.jsp" class="helper-col">애착인형</a>
-									</div>
-									<a href="productInquiry.jsp">선물할껀데 이번주 금요일까지는 오나요?</a>
-								</td>
-								<td>랭크업</td>
-								<td>2015-08-25 14:04</td>
-							</tr>
-							<tr>
-								<td>280</td>
-								<td><input class="chChoice" type="checkbox" value="283"/></td>
-								<td style="text-align: left;">
-									<span class="lable label-xs label-hold">답변대기</span>
-								</td>
-								<td style="text-align: left">
-									<div> <%-- href : 상품등록 페이지로 이동 --%>
-										<a href="productRegister.jsp" class="helper-col">자동차튜닝용품</a>
-									</div>
-									<a href="productInquiry.jsp">바쁘시겠지만 불량 확인해주시고 빠른 배송 부탁드립니다. 많이파세요^^*</a>
-								</td>
-								<td>랭크업</td>
-								<td>2015-08-25 14:04</td>
-							</tr>
+							</c:forEach>
 							</tbody>
 						</table>
-						
-						<div id="paging">
-							<ul class="paging-number">
-								<li> <%-- href: 처음페이지로 이동해야 됨 --%>
-									<a href="#">	
-										<img alt="처음" src="../../../Resources/Admin/Img/ShoppingMallManagement/page_pprev.png" width="10" height="10">
-									</a>
-								</li>
-								<li><%-- href: 이전페이지로 이동해야 됨 --%>
-									<a href="">	
-										<img alt="이전" src="../../../Resources/Admin/Img/ShoppingMallManagement/page_prev.png" width="10" height="10">
-									</a>
-								</li>
-								<li class="num">
-									<a href="" class="on">1</a>
-								</li>
-								<li class="num">
-									<a href="" >2</a>
-								</li>
-								<li class="num">
-									<a href="" >3</a>
-								</li>
-								<li class="num">
-									<a href="" >4</a>
-								</li>
-								<li class="num">
-									<a href="" >5</a>
-								</li>
-								<li class="num">
-									<a href="" >6</a>
-								</li>
-								<li class="num">
-									<a href="" >7</a>
-								</li>
-								<li class="num">
-									<a href="" >8</a>
-								</li>
-								<li class="num">
-									<a href="" >9</a>
-								</li>
-								<li class="num">
-									<a href="" >10</a>
-								</li>
-								
-								<li><%-- href: 다음페이지로 이동해야 됨 --%>
-									<a href="">
-										<img alt="다음" src="../../../Resources/Admin/Img/ShoppingMallManagement/page_next.png" width="10" height="10">
-									</a>
-								</li>
-								<li><%-- href: 마지막페이지로 이동해야 됨 --%>
-									<a href="">
-										<img alt="마지막" src="../../../Resources/Admin/Img/ShoppingMallManagement/page_nnext.png" width="10" height="10">
-									</a>
-								</li>
-							</ul>
-						</div>
 						</div>
 					</td>
 				</tr>
 			</tbody>
 		</table>	
 	</div>
+	
+	<div class="box-footer">
+			<div class="page_wrap">
+				<ul class="pagination">
+				 			<!-- 이전prev -->
+				 	<c:if test="${pm.prev }">
+				 		<li class="pageBtn prev"><a href="listProduct.do?page=${pm.startPage-1}">이전</a></li>
+				 	</c:if>
+				 			<!-- 페이지블럭 -->
+					<c:forEach var="idx" begin="${pm.startPage}" end="${pm.endPage}">
+								<!-- 삼항연산자를 사용해서 class로 스타일적용  -->
+						<li ${pm.vo.page == idx? 'class=active':''}>
+						 	<a href="listProduct.do?page=${idx}">${idx}</a>
+						</li>				
+					</c:forEach>
+				 			<!-- 다음next -->
+				 	<c:if test="${pm.next && pm.endPage > 0}">
+				 		<li class="pageBtn next"><a href="listProduct.do?page=${pm.endPage+1}">다음</a></li>
+				 	</c:if>
+				 </ul>
+			</div>
+		</div> 
 	
 	<script type="text/javascript">
 		//체크박스 모두 선택하는 기능

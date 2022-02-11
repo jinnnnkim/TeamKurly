@@ -1,16 +1,26 @@
 package kr.co.recipetoyou.user.mypage;
 
+
 import java.sql.Date;
+
+import java.util.List;
+import java.io.IOException;
+
 import java.util.List; 
 
+import org.apache.catalina.mapper.Mapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.fasterxml.jackson.core.JsonGenerationException;
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonMappingException;
 
+import kr.co.recipetoyou.admin.adgoods.AdGoodsDAO;
+import kr.co.recipetoyou.admin.adgoods.AdgoodsImgVO;
 import kr.co.recipetoyou.user.UserVO;
 import kr.co.recipetoyou.user.mypage.vo.CouponVO;
 import kr.co.recipetoyou.user.mypage.vo.MyOrderVO;
@@ -28,6 +38,9 @@ public class MypageServiceImpl implements MypageService{
 	
 	@Autowired
 	private MypageDAO mypageDAO;
+	
+	@Autowired
+	private AdGoodsDAO adGoodsDAO;
 	
 	//쿠폰
 	@Override
@@ -70,8 +83,31 @@ public class MypageServiceImpl implements MypageService{
 	 //주문내역 조회
 	@Override
 	public List<MyOrderVO> listOrders() throws DataAccessException {
-		List<MyOrderVO> OderList = mypageDAO.selectAllOrderList();
-		return OderList;
+		List<MyOrderVO> orderList = mypageDAO.selectAllOrderList();
+		
+		
+		orderList.forEach(order->{
+			
+			try {
+					int prod_code = order.getProd_code();
+					List<AdgoodsImgVO> imageList  = mypageDAO.getGoodsImage(prod_code);
+					order.setImageList(imageList);
+					System.out.println(imageList.toString());
+				
+			} catch (JsonGenerationException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}catch (JsonMappingException e) {
+				// TODO: handle exception
+			}catch (IOException e) {
+				// TODO: handle exception
+			}
+			
+		});
+		
+		
+		return orderList;
+		
 	}
 	
 	//주문내역 상세 조회
@@ -101,7 +137,13 @@ public class MypageServiceImpl implements MypageService{
 		
 	}
 
-	
+
+	//상품문의 삭제
+	@Override
+	public int removeQnA(int prod_inq_code) throws DataAccessException {
+		 return mypageDAO.removeQnA(prod_inq_code);
+	}
+
 	
 
 }

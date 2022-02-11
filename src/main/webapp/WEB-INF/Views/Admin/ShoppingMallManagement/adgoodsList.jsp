@@ -117,7 +117,7 @@
 						<div class="summary">
 							검색된 상품
 							<span class="f-bold f-red f-num"></span>
-							${cnt }개
+							${searchcnt }개
 							<span>|</span>
 							총 등록상품
 							<span class="f-bold f-num"></span>

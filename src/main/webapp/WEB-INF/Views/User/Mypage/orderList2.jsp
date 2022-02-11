@@ -57,11 +57,10 @@
 					
 					<div class="order_info">
 						<!-- 이미지 정보가 담기도록 함. -->
-						<div class="image_wrap" data-prod_code="${cartList.imageList[0].prod_code}" data-path="${cartList.imageList[0].uploadPath}"
-												data-uuid="${cartList.imageList[0].uuid}" data-filename="${cartList.imageList[0].fileName}">
+						<div class="image_wrap" data-prod_code="${orderList.imageList[0].prod_code}" data-path="${orderList.imageList[0].uploadPath}"
+												data-uuid="${orderList.imageList[0].uuid}" data-filename="${orderList.imageList[0].fileName}">
 												
-						<div class="order_info_img">
-							<a><img alt="" src="/recipetoyou/Resources/User/Img/goods1.jpg"></a>
+						<img>
 						</div>
 						
 						<!-- order_info_img -->
@@ -106,6 +105,8 @@
 	
 	
 	<script type="text/javascript">
+	
+	$(document).ready(function(){
 	//이미지 삽입
 	$(".image_wrap").each(function(i, obj){
 		
@@ -124,6 +125,7 @@
 				$(this).find("img").attr('src', '/recipetoyou/Resources/Admin/Img/SubgoodsImg/ready.jpg');
 			}
 	});
+	});	
 
 	//연도별 주문 조회
 	$(document).ready(function() {

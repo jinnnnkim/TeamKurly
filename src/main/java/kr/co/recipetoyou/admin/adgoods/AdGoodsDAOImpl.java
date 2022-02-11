@@ -71,17 +71,14 @@ public class AdGoodsDAOImpl implements AdGoodsDAO{
 		return sqlSession.selectList(NAMESPACE+".cateList");
 	}
 	
-	//상품명 검색
-	@Override
-	public List<AdGoodsVO> listSearch(PagingVO vo) throws Exception {
-		
-		return sqlSession.selectOne(NAMESPACE+".search", vo);
-	}
-
+	//검색 결과 개수
 	@Override
 	public int countSearch(PagingVO vo) throws Exception {
 		
-		return sqlSession.selectOne(NAMESPACE+".countSearch", vo);
+		System.out.println(vo.getKeyword());
+		System.out.println(vo.getCateCode());
+		
+		return sqlSession.selectOne(NAMESPACE+".getSearchCount", vo);
 	}
 	
 	//상품 등록
