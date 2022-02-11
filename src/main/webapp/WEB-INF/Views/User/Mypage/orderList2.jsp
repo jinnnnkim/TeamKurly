@@ -129,13 +129,14 @@
 
 	//연도별 주문 조회
 	$(document).ready(function() {
-		$("#seach_year").on('change', function() {
-			searchOrderList();
-		})
+		$(".data_year option").click(function(){
+			console.log("abc");
+		});			
+		
 	});
 	
-	function searchOrderList() {
-		var yearOrder= ${"#seach_year option" }.val();
+	/* function searchOrderList() {
+		var yearOrder= ${".data_year option" }.val();
 		console.log("yearOrder"+yearOrder);
 		
 		$.ajax({
@@ -150,11 +151,11 @@
 				alert("주문 내역이 없습니다.");
 			}
 			
-		});
+		}); 
 		
 		
 		
-	}
+	}*/
 	
 	</script>
 	
