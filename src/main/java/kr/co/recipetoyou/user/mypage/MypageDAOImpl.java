@@ -118,7 +118,7 @@ public class MypageDAOImpl implements MypageDAO{
 
 	//상품문의 삭제
 	@Override
-	public int removeQnA(@RequestParam("prod_inq_code") int prod_inq_code) throws DataAccessException {
+    public int removeQnA(@RequestParam("prod_inq_code") int prod_inq_code) throws DataAccessException {
 		int result = sqlSession.delete("mapper.member.deleteQnA", prod_inq_code);
 		return result;
 		
