@@ -111,6 +111,13 @@
 		<result property="toYou_pass" column="toYou_pass"/>
 	</resultMap>
 	
+	<resultMap type="adGoodsImgVO" id="goodsImgResult">
+		<result property="fileName" column="fileName"/>
+		<result property="prod_code" column="prod_code"/>
+		<result property="uploadPath" column="uploadPath"/>
+		<result property="uuid" column="uuid"/>
+	</resultMap>
+	
 	<!-- id : DAO에서 id를 이용해 해당 SQL문을 호출함 -->
 	<!-- resultMap : 반환되는 레코드를 memResult에 저장함  -->
 	
@@ -251,7 +258,12 @@
 		]]>
 	</update>
 	
-	
+	<!-- 이미지 정보 얻기 -->
+	<select id="getImageList" resultMap="goodsImgResult">
+		<![CDATA[
+		select * from tb_adgoods_Img where prod_code = #{prod_code}
+		]]>
+	</select>
 	
 	
 	

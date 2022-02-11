@@ -84,7 +84,7 @@ public class MypageServiceImpl implements MypageService{
 			
 			try {
 					int prod_code = order.getProd_code();
-					List<AdgoodsImgVO> imageList  = adGoodsDAO.getGoodsImage(prod_code);
+					List<AdgoodsImgVO> imageList  = mypageDAO.getGoodsImage(prod_code);
 					order.setImageList(imageList);
 					System.out.println(imageList);
 				

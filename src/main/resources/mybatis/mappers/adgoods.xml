@@ -92,6 +92,7 @@
 	<select id="getGoodsCount" resultType="int">
 			select count(*) from TB_PROD
 				<if test="keyword != null">prod_name like '%'||#{keyword}||'%'</if>
+				<if test="cateCode != null and cateCode != '100000'">cateCode like '%'||#{cateCode}||'%' </if>
 	</select>
 	
 
@@ -246,14 +247,25 @@
 	<!-- 검색어에 맞는 상품 수 구하기 -->
 	<select id="getSearchCount" resultType="int">
 			select count(prod_code) from TB_PROD where 
-				<!-- 상품명, 카테고리로 검색 -->
-			<if test="keyword != null">prod_name like '%'||#{keyword}||'%'</if>
 			
-			<if test="cateCode != null and cateCode != '100000'">cateCode like '%'||#{cateCode}||'%'</if>
-		<!-- <![CDATA[
-			and prod_code > 0
-		]]>		 -->
+				<choose>
+					<when test ="keyword != null and cateCode lt '5000'">
+						prod_name like '%'||#{keyword}||'%' and cateCode like '%'||#{cateCode}||'%'
+					</when>
+					<when test="keyword != null">
+						prod_name like '%'||#{keyword}||'%'
+					</when>
+					<when test="cateCode != null and cateCode != '100000'">
+						cateCode like '%'||#{cateCode}||'%' 
+					</when>
+				</choose>
+
+				<!-- 상품명, 카테고리로 검색 -->
+			<!-- <if test="keyword != null">prod_name like '%'||#{keyword}||'%'</if>
+			
+			<if test="cateCode != null and cateCode != '100000'">cateCode like '%'||#{cateCode}||'%'</if> -->	
 	</select>
+	
 	
 	<!-- 상품 재고 업데이트 -->
 	<update id="updageStock">

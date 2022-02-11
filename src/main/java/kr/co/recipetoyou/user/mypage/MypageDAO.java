@@ -6,6 +6,7 @@ import org.springframework.dao.DataAccessException;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 
+import kr.co.recipetoyou.admin.adgoods.AdgoodsImgVO;
 import kr.co.recipetoyou.user.UserVO;
 import kr.co.recipetoyou.user.mypage.vo.CouponVO;
 import kr.co.recipetoyou.user.mypage.vo.MyOrderVO;
@@ -44,6 +45,9 @@ public interface MypageDAO {
 	public List<ReviewVO> selectAllReviewList() throws DataAccessException;
 	
 	public void updateUser(UserVO userVO) throws DataAccessException;
+	
+	//이미지 데이터 얻기
+	public List<AdgoodsImgVO> getGoodsImage(int prod_code) throws JsonProcessingException;
  
 
 }
