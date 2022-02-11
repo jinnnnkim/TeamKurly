@@ -32,39 +32,27 @@
 		<table>
 			<tr>
 				<th class="td1">제목</th>
-				<td class="td2"><span>[마켓컬리] CJ대한통운 택배 파업으로 인한 주문불가지역 안내</span></td>
+				<td class="td2"><span>${noticeVO.notice_title }</span></td>
 			</tr>
 			<tr>
 				<th>작성자</th>
-				<td class="td3"><span>MarketKurly</span></td>
+				<td class="td3"><span>${noticeVO.admin_id }</span></td>
 			</tr>
 
 			<tr>
 				<td colspan="2">
 					<ul>
 						<li class="dateTitle">작성일</li>
-						<li class="writeDate"><span>2022-01-04</span></li>
+						<li class="writeDate"><span>${noticeVO.notice_reg_date }</span></li>
 						<li class="hitTitle">조회수</li>
-						<li class="hit"><span>1072</span></li>
+						<li class="hit"><span>${noticeVO.notice_hit }</span></li>
 					</ul>
 				</td>
 			</tr>
 			<tr>
 				<td class="contentRow" colspan="3">
 					<div class="content">
-						<br /> 안녕하세요. 마켓컬리입니다.<br />
-						<br /> CJ대한통운 택배 노조 파업 영향으로 일부 지역의 택배배송이 원활하지 않습니다.<br /> 이로 인해
-						배송현황이 원할하지 않은 일부 지역은 일시적으로 주문이 불가한 점 안내 드립니다.<br />
-						<br /> ■ 주문불가지역 (1월 3일 22시 이후부터)<br /> &nbsp;- 경기: 광주시, 군포시, 김포시,
-						성남시, 이천시, 포천시, 여주시, 안성시<br /> &nbsp;- 세종: 연동면<br /> &nbsp;- 충남:
-						홍성군<br /> &nbsp;- 충북: 단양군<br /> &nbsp;- 강원: 동해시, 삼척시, 양구군, 인제군,
-						춘천시, 화천군<br /> &nbsp;- 울산: 남구<br /> &nbsp;- 경남: 의령군<br /> &nbsp;-
-						경북: 경주시<br />
-						<br />
-						<br /> 이용에 불편을 드려 죄송합니다.<br /> 택배 파업이 해결되는 즉시 주문 재개할 수 있도록 하겠습니다.<br />
-						<br /> 마켓컬리 드림.<br />
-						<br />
-						<br />
+						${noticeVO.notice_content}
 					</div>
 				</td>
 			</tr>

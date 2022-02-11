@@ -26,6 +26,7 @@
 <link href="/recipetoyou/Resources/User/Img/Mypage2/KurlyIcon.png" rel="icon"
 	type="image/x-icon" />
 <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>	
+
 </head>
 <body>
 	<div class="content">
@@ -34,7 +35,7 @@
 				<h2 class="title">
 					주문 내역 <span class="subtitle">지난 3년간의 주문 내역 조회가 가능합니다</span>
 				</h2>
-				<select class='data_year'>
+				<select class='data_year' name="abd" id="seach_year">
 					<option value='all_year' selected>전체기간</option>
 					<option value='2022'>2022</option>
 					<option value='2021'>2021</option>
@@ -102,10 +103,13 @@
 		<!-- order_main -->
 	</div>
 	<%--content end --%>
+	<script>
+	
+	</script>
 	
 	
 	<script type="text/javascript">
-	
+
 	$(document).ready(function(){
 	//이미지 삽입
 	$(".image_wrap").each(function(i, obj){
@@ -125,8 +129,30 @@
 				$(this).find("img").attr('src', '/recipetoyou/Resources/Admin/Img/SubgoodsImg/ready.jpg');
 			}
 	});
+	
+	//연도별 주문 조회
+	$("#seach_year").change(function(){
+		var year = this.value;
+		$.ajax({
+			type: "get",
+			async: true,
+			url: "http://localhost:8080/recipetoyou/searchOrderYear.do?ord_date="+year,
+			dataType: "text",
+			success: function(result) {
+				
+			},
+			error : function(data, textStatus) {			
+				alert("에러가 발생했습니다.")	
+			},
+			complete : function(data, textStatus) {			
+			}	
+		});
 	});	
-
+});
+	
+	
+	
+	
 	
 	
 	</script>

@@ -1,5 +1,6 @@
 package kr.co.recipetoyou.user.mypage;
 
+import java.sql.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -19,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.fasterxml.jackson.annotation.JacksonInject.Value;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import kr.co.recipetoyou.user.UserVO;
@@ -27,7 +29,7 @@ import kr.co.recipetoyou.user.mypage.vo.MyOrderVO;
 import kr.co.recipetoyou.user.mypage.vo.PointVO;
 
 import kr.co.recipetoyou.user.mypage.vo.UserAddrVO;
-
+import kr.co.recipetoyou.util.PagingVO;
 import kr.co.recipetoyou.user.mypage.vo.QnAVO;
 import kr.co.recipetoyou.user.mypage.vo.ReviewVO;
 
@@ -85,6 +87,23 @@ public class MypageControllerImpl implements MypageController{
 		//상품정보 출력
 		model.addAttribute("myorderVO", mypageService.orderDetail(ord_code));	
 	}
+	
+	
+	  //주문내역 연도별 조회	
+	@Override
+	  @RequestMapping(value = "/searchOrderYear.do", method = RequestMethod.GET)
+	  public String searchOrderYear(int ord_date, Model model) throws Exception {
+	  System.out.println("================");
+	  System.out.println(ord_date);
+	  System.out.println("searchOrderYear Colltroller 호출");
+	
+	  
+	  //연도별 상품 정보 출력 
+	  //model.addAttribute("myorderVO", mypageService.searchOrderList(ord_date));
+	  	return "redirect:/orderList.do";
+	  }
+	 
+
 	
 	
 	@RequestMapping(value = "/giftList.do", method = {RequestMethod.GET, RequestMethod.POST})
@@ -261,6 +280,12 @@ public class MypageControllerImpl implements MypageController{
         return mav;
 	}
 
+
+	@Override
+	public void searchOrderYear(Date ord_date, Model model) throws Exception {
+		// TODO Auto-generated method stub
+		
+	}
 
 
 	

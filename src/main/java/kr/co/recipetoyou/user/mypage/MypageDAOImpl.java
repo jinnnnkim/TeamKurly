@@ -1,5 +1,6 @@
 package kr.co.recipetoyou.user.mypage;
 
+import java.sql.Date;
 import java.util.List; 
 
 import org.apache.ibatis.session.SqlSession;
@@ -17,7 +18,7 @@ import kr.co.recipetoyou.user.mypage.vo.MyOrderVO;
 import kr.co.recipetoyou.user.mypage.vo.PointVO;
 
 import kr.co.recipetoyou.user.mypage.vo.UserAddrVO;
-
+import kr.co.recipetoyou.util.PagingVO;
 import kr.co.recipetoyou.user.mypage.vo.QnAVO;
 import kr.co.recipetoyou.user.mypage.vo.ReviewVO;
 
@@ -76,7 +77,15 @@ public class MypageDAOImpl implements MypageDAO{
 		System.out.println("orderDetail DAO 호출");
 		return sqlSession.selectOne("mapper.member.orderDetailList", ord_code);
 	}
+	
+	//주문내역 연도별 검색
+	@Override
+	public MyOrderVO searchOrderList(Date ord_date) throws DataAccessException {
+		System.out.println("sesarOrder DAO 호출");
+		return sqlSession.selectOne("mapper.member.searchOrderList", ord_date);
+	}
 
+	
 
 	//상품문의 조회
 	@Override
@@ -103,7 +112,9 @@ public class MypageDAOImpl implements MypageDAO{
 	public List<AdgoodsImgVO> getGoodsImage(int prod_code) throws JsonProcessingException {
 		
 		return sqlSession.selectList("mapper.member.getImageList", prod_code);
+
 	}	
+
 
 	//상품문의 삭제
 	@Override
@@ -113,6 +124,9 @@ public class MypageDAOImpl implements MypageDAO{
 		
 
 	}
+
+	
+
 
 	
 

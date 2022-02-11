@@ -226,6 +226,18 @@
 		]]>
 	</select>
 	
+	<!-- 주문 연도별 조회 -->
+	<select id="searchOrderList" parameterType="int"  resultMap="orderListResult">
+		<![CDATA[
+			SELECT tp.PROD_NAME, to2.ORD_CODE, to2.STATUS, to2.PRICE, to2.ORD_DATE
+			FROM TB_ORDER to2 JOIN TB_PROD tp
+			ON to2.ORD_CODE = tp.ORD_CODE
+			JOIN TB_USERS tu
+			ON to2.USER_ID = tu.USER_ID
+			WHERE TO_CHAR(to2.ORD_DATE,'YYYY') = #{ord_date};2022 2021
+		]]>
+	</select>
+	
 	
 	<!-- 상품문의 조회 -->
 	<select id="selectAllQnAList" resultMap="qnaResult">
