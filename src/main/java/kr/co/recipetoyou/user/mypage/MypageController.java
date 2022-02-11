@@ -1,5 +1,7 @@
 package kr.co.recipetoyou.user.mypage;
 
+import java.sql.Date;
+
 import javax.servlet.http.HttpServletRequest;  
 import javax.servlet.http.HttpServletResponse;
 
@@ -7,9 +9,14 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import kr.co.recipetoyou.user.UserVO;
 import kr.co.recipetoyou.user.mypage.vo.CouponVO;
+
+
+import kr.co.recipetoyou.user.mypage.vo.QnAVO;
+
 
 public interface MypageController {
 	
@@ -32,11 +39,15 @@ public interface MypageController {
 	//주문내역 상세 정보 조회
 	public void orderDetail(@RequestParam("ord_code")int ord_code, Model model) throws Exception;
 	
-	//주문내역 연도별 검색
-	/* public String searchOrderYear () */
+	//주문내역 연도별 조회
+	public void searchOrderYear(Date ord_date, Model model) throws Exception; 
 	
 	//상품문의 조회
 	public ModelAndView listQnA(HttpServletRequest request, HttpServletResponse response) throws Exception;
+	
+	//상품문의 삭제
+	public ModelAndView removeQnA(int prod_inq_code, HttpServletRequest request, HttpServletResponse response) throws Exception;
+	 
 	
 	//상품리뷰 조회
 	public ModelAndView listReviews(HttpServletRequest request, HttpServletResponse response) throws Exception;
@@ -46,6 +57,8 @@ public interface MypageController {
 	
 	//회원정보 수정
 	public ModelAndView userInfoUpdate(UserVO userVO, HttpServletRequest request, HttpServletResponse response) throws Exception;
+
+	
 	
 	
 	

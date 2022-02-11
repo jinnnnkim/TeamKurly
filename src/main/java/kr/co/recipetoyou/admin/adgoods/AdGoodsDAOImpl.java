@@ -75,6 +75,9 @@ public class AdGoodsDAOImpl implements AdGoodsDAO{
 	@Override
 	public int countSearch(PagingVO vo) throws Exception {
 		
+		System.out.println(vo.getKeyword());
+		System.out.println(vo.getCateCode());
+		
 		return sqlSession.selectOne(NAMESPACE+".getSearchCount", vo);
 	}
 	

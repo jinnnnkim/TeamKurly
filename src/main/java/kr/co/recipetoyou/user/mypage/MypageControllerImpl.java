@@ -1,5 +1,6 @@
 package kr.co.recipetoyou.user.mypage;
 
+import java.sql.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -17,7 +18,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.fasterxml.jackson.annotation.JacksonInject.Value;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import kr.co.recipetoyou.user.UserVO;
@@ -26,7 +29,7 @@ import kr.co.recipetoyou.user.mypage.vo.MyOrderVO;
 import kr.co.recipetoyou.user.mypage.vo.PointVO;
 
 import kr.co.recipetoyou.user.mypage.vo.UserAddrVO;
-
+import kr.co.recipetoyou.util.PagingVO;
 import kr.co.recipetoyou.user.mypage.vo.QnAVO;
 import kr.co.recipetoyou.user.mypage.vo.ReviewVO;
 
@@ -62,6 +65,7 @@ public class MypageControllerImpl implements MypageController{
 	
 	
 	//주문 내역 조회
+	@Override
 	@RequestMapping(value = "/orderList.do", method = RequestMethod.GET)
 	public ModelAndView listOrders(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
@@ -85,6 +89,21 @@ public class MypageControllerImpl implements MypageController{
 	}
 	
 	
+	  //주문내역 연도별 조회	
+	  @Override
+	  @RequestMapping(value = "/searchOrderYear.do", method = RequestMethod.GET)
+	  public void searchOrderYear(Date ord_date, Model model) throws Exception {
+	  
+	  System.out.println("searchOrderYear Colltroller 호출");
+	
+	  
+	  //연도별 상품 정보 출력 
+	  model.addAttribute("myorderVO", mypageService.searchOrderList(ord_date));
+	  }
+	 
+
+	
+	
 	@RequestMapping(value = "/giftList.do", method = {RequestMethod.GET, RequestMethod.POST})
 	public ModelAndView giftList(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
@@ -95,6 +114,7 @@ public class MypageControllerImpl implements MypageController{
 
 	
 	//배송지 조회
+	@Override
 	@RequestMapping(value = "/addresslist.do", method = RequestMethod.GET)
 	  public ModelAndView listAddress(HttpServletRequest request, HttpServletResponse response) throws Exception {
 	  
@@ -109,7 +129,7 @@ public class MypageControllerImpl implements MypageController{
 	  return mav; 
 	  }
 	  
-	
+	@Override
 	@RequestMapping(value = "/review.do", method = RequestMethod.GET)
 	public ModelAndView listReviews(HttpServletRequest request, HttpServletResponse response) throws Exception {
 	  
@@ -123,6 +143,7 @@ public class MypageControllerImpl implements MypageController{
 		return mav; 
 		}
 
+	@Override
 	@RequestMapping(value = "/QandA.do", method = RequestMethod.GET)
 	public ModelAndView listQnA(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
@@ -140,7 +161,37 @@ public class MypageControllerImpl implements MypageController{
 		return mav;
 	}
 	
+	/*
+	 * //상품문의 삭제하기
+	 * 
+	 * @Override
+	 * 
+	 * @RequestMapping(value = "/remove/QandA.do", method = RequestMethod.GET)
+	 * public ModelAndView removeQnA(@RequestParam("prod_inq_code") int
+	 * prod_inq_code, HttpServletRequest request, HttpServletResponse response)
+	 * throws Exception {
+	 * 
+	 * mypageService.removeQnA(prod_inq_code); ModelAndView mav = new
+	 * ModelAndView("redirect:QandA.do");
+	 * 
+	 * return mav; }
+	 */
+	
+	//상품문의 삭제
+	@Override
+	@RequestMapping(value = "/remove/QandA.do", method = RequestMethod.GET)
+	public ModelAndView removeQnA(@RequestParam("prod_inq_code") int prod_inq_code, HttpServletRequest request, HttpServletResponse response) throws Exception {
+		
+		logger.info("prod_inq_code: " + prod_inq_code);
+		request.setCharacterEncoding("utf-8");
+		mypageService.removeQnA(prod_inq_code);
+		ModelAndView mav = new ModelAndView("redirect:QandA.do");
+		return mav;
+	
+	}
+	
 	//포인트 조회
+	@Override
 	@RequestMapping(value = "/point.do", method = RequestMethod.GET)
 	public ModelAndView listPoints(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
@@ -218,7 +269,7 @@ public class MypageControllerImpl implements MypageController{
 		return mav;
 	}
 	
-	
+	@Override
 	@RequestMapping(value = "/addrModify.do", method = RequestMethod.GET)
 	public ModelAndView addrModify(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
@@ -226,6 +277,8 @@ public class MypageControllerImpl implements MypageController{
 
         return mav;
 	}
+
+
 	
 
 

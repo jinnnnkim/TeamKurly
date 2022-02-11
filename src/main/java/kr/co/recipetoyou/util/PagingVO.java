@@ -19,10 +19,14 @@ public class PagingVO {
 		private String[] typeArr;	//검색 타입 배열
 		private int cateCode;
 		private int recipe_idx;
+		private int prod_code;
+		private String prod_name;
 		
 		private String title;
 		private String user_id;
 		private String content;
+		
+		
 		
 		private int prod_inq_code;
 		
