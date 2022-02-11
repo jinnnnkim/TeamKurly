@@ -1,5 +1,6 @@
 package kr.co.recipetoyou.user.mypage;
 
+import java.sql.Date;
 import java.util.List; 
 
 import org.springframework.dao.DataAccessException;
@@ -12,7 +13,7 @@ import kr.co.recipetoyou.user.mypage.vo.MyOrderVO;
 import kr.co.recipetoyou.user.mypage.vo.PointVO;
 
 import kr.co.recipetoyou.user.mypage.vo.UserAddrVO;
-
+import kr.co.recipetoyou.util.PagingVO;
 import kr.co.recipetoyou.user.mypage.vo.QnAVO;
 import kr.co.recipetoyou.user.mypage.vo.ReviewVO;
 
@@ -36,6 +37,8 @@ public interface MypageDAO {
 	//주문내역 상세 정보 조회
 	public MyOrderVO orderDetailList(int ord_code) throws DataAccessException;
 	
+	//주문내역 연도별 조회
+	public MyOrderVO searchOrderList(Date ord_date) throws DataAccessException;
 	
 	//상품문의 조회
 	public List<QnAVO> selectAllQnAList() throws DataAccessException;

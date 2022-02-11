@@ -1,5 +1,6 @@
 package kr.co.recipetoyou.user.mypage;
 
+import java.sql.Date;
 import java.util.List; 
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -80,6 +81,12 @@ public class MypageServiceImpl implements MypageService{
 		return mypageDAO.orderDetailList(ord_code);
 	}
 
+	//주문내역 연도별 조회
+	@Override
+	public MyOrderVO searchOrderList(Date ord_date) throws Exception {
+		System.out.println("searchOrderList Service 호출");
+		return mypageDAO.searchOrderList(ord_date);
+	}
 
 	//상품후기 조회
 	@Override
@@ -93,6 +100,8 @@ public class MypageServiceImpl implements MypageService{
 		mypageDAO.updateUser(userVO);
 		
 	}
+
+	
 	
 
 }
