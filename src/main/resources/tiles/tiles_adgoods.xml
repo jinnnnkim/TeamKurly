@@ -32,7 +32,7 @@
 		<put-attribute name="body" value="/WEB-INF/Views/Admin/ShoppingMallManagement/adgoodsInquiry.jsp"></put-attribute>
 	</definition>
 
-	<definition name="/adInquiry/adInquiryDetail" extends="adminBaseLayout">
+	<definition name="adInquiry/adInquiryDetail" extends="adminBaseLayout">
 		<put-attribute name="title" value="상품문의조회"/>
 		<put-attribute name="body" value="/WEB-INF/Views/Admin/ShoppingMallManagement/adInquiryDetail.jsp"></put-attribute>
 	</definition>

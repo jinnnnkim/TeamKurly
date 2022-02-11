@@ -7,9 +7,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import kr.co.recipetoyou.user.UserVO;
 import kr.co.recipetoyou.user.mypage.vo.CouponVO;
+import kr.co.recipetoyou.user.mypage.vo.QnAVO;
 
 public interface MypageController {
 	
@@ -38,6 +40,10 @@ public interface MypageController {
 	//상품문의 조회
 	public ModelAndView listQnA(HttpServletRequest request, HttpServletResponse response) throws Exception;
 	
+	//상품문의 삭제
+	public ModelAndView removeQnA(int prod_inq_code, HttpServletRequest request, HttpServletResponse response) throws Exception;
+	 
+	
 	//상품리뷰 조회
 	public ModelAndView listReviews(HttpServletRequest request, HttpServletResponse response) throws Exception;
 
@@ -46,6 +52,8 @@ public interface MypageController {
 	
 	//회원정보 수정
 	public ModelAndView userInfoUpdate(UserVO userVO, HttpServletRequest request, HttpServletResponse response) throws Exception;
+
+	
 	
 	
 	

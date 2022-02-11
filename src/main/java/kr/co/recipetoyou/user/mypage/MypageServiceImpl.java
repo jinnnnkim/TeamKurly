@@ -1,8 +1,10 @@
 package kr.co.recipetoyou.user.mypage;
 
+import java.util.List;
 import java.io.IOException;
 import java.util.List; 
 
+import org.apache.catalina.mapper.Mapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
@@ -86,7 +88,7 @@ public class MypageServiceImpl implements MypageService{
 					int prod_code = order.getProd_code();
 					List<AdgoodsImgVO> imageList  = mypageDAO.getGoodsImage(prod_code);
 					order.setImageList(imageList);
-					System.out.println(imageList);
+					System.out.println(imageList.toString());
 				
 			} catch (JsonGenerationException e) {
 				// TODO Auto-generated catch block
@@ -123,6 +125,12 @@ public class MypageServiceImpl implements MypageService{
 	public void updateUser(UserVO userVO) throws DataAccessException {
 		mypageDAO.updateUser(userVO);
 		
+	}
+
+	//상품문의 삭제
+	@Override
+	public int removeQnA(int prod_inq_code) throws DataAccessException {
+		 return mypageDAO.removeQnA(prod_inq_code);
 	}
 	
 
