@@ -58,6 +58,8 @@ public interface MypageController {
 	//회원정보 수정
 	public ModelAndView userInfoUpdate(UserVO userVO, HttpServletRequest request, HttpServletResponse response) throws Exception;
 
+	String searchOrderYear(int ord_date, Model model) throws Exception;
+
 	
 	
 	

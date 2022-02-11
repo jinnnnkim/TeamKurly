@@ -78,7 +78,7 @@ public class MypageControllerImpl implements MypageController{
 	
 	//주문 내역 상세 조회하기
 	@Override
-	@RequestMapping(value = "/orderDetail.do", method = RequestMethod.GET) 
+	@RequestMapping(value = "/orderDetail.do", produces = "application/json", method = {RequestMethod.GET, RequestMethod.POST}) 
 	public void orderDetail(@RequestParam(value="ord_code", required = false) int ord_code, Model model) throws Exception {
 		
 		logger.info("클릭한 주문 코드 : "+ord_code);
@@ -90,15 +90,17 @@ public class MypageControllerImpl implements MypageController{
 	
 	
 	  //주문내역 연도별 조회	
-	  @Override
+	@Override
 	  @RequestMapping(value = "/searchOrderYear.do", method = RequestMethod.GET)
-	  public void searchOrderYear(Date ord_date, Model model) throws Exception {
-	  
+	  public String searchOrderYear(int ord_date, Model model) throws Exception {
+	  System.out.println("================");
+	  System.out.println(ord_date);
 	  System.out.println("searchOrderYear Colltroller 호출");
 	
 	  
 	  //연도별 상품 정보 출력 
-	  model.addAttribute("myorderVO", mypageService.searchOrderList(ord_date));
+	  //model.addAttribute("myorderVO", mypageService.searchOrderList(ord_date));
+	  	return "redirect:/orderList.do";
 	  }
 	 
 
@@ -276,6 +278,13 @@ public class MypageControllerImpl implements MypageController{
 		ModelAndView mav = new ModelAndView();
 
         return mav;
+	}
+
+
+	@Override
+	public void searchOrderYear(Date ord_date, Model model) throws Exception {
+		// TODO Auto-generated method stub
+		
 	}
 
 

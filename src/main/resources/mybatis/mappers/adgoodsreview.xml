@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.adgoodsreview">
+
+	<resultMap type="adGoodsReviewVO" id="adReviewResult">
+		<result property="prod_review_code" column="prod_review_code"/>
+		<result property="prod_code" column="prod_code"/>
+		<result property="review_idx" column="review_idx"/>
+		<result property="title" column="title"/>
+		<result property="reg_date" column="reg_date"/>
+		<result property="content" column="content"/>
+		<result property="user_id" column="user_id"/>
+	</resultMap>
+	
+	<!-- 페이지 정보를 10개씩 가져오기 -->
+	<select id="listPage" resultMap="adReviewResult">
+		<![CDATA[
+			select * 
+			from tb_prod_review
+			where rownum #{page} <= 10
+		]]>
+	</select>
+	
+	<!-- 전체 후기 목록 조회 -->
+	<select id="getReviewList" resultMap="adReviewResult">
+		<![CDATA[
+			select * from(
+				select rownum AS rn, review_idx, title, user_id, reg_date
+				from tb_prod_review
+				where
+		]]>
+			<if test="title != null"> inq_title like '%'||#{title}||'%' and </if>
+			<if test="user_id != null"> user_id '%'||#{user_id}||'%' and </if>
+			<if test="content != null"> inq_content like '%'||#{inq_content}||'%' and </if>
+		<![CDATA[
+			rownum <= #{page} * #{pageSize} 
+			)			
+			where rn > (#{page}-1) * #{pageSize} AND rn <= #{page} * #{pageSize}
+		]]>	
+	</select>
+	
+	<!-- 후기 상세 정보 -->
+	<select id="getReviewDetail" resultMap="adReviewResult">
+		<![CDATA[
+			select * from tb_prod_review
+			where prod_review_code = #{prod_review_code}
+		]]>
+	</select>
+	
+	<!-- 총 후기 수 -->
+	<select id="getReviewAllCount" resultType="int">
+		select count(*) from tb_prod_review
+			<if test="title != null"> title like '%'||#{title}||'%'</if>
+			<if test="user_id != null"> user_id '%'||#{user_id}||'%'</if>
+			<if test="content != null"> content like '%'||#{inq_content}||'%'</if>
+	</select>
+	
+	<!-- 검색어에 맞는 문의 수 구하기 -->
+	<select id="getReviewCount">
+		select count(prod_review_code) from tb_prod_review where
+			<choose>
+				<when test="title != null">
+					title like '%'||#{title}||'%'
+				</when>
+				<when test="user_id != null">
+					user_id like '%'||#{user_id}||'%'
+				</when>
+				<when test="content != null">
+					content like '%'||#{content}||'%'
+				</when>
+			</choose>
+	</select>
+</mapper>

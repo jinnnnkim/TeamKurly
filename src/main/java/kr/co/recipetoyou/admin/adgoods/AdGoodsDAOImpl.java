@@ -1,6 +1,7 @@
 package kr.co.recipetoyou.admin.adgoods;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -47,6 +48,7 @@ public class AdGoodsDAOImpl implements AdGoodsDAO{
 	@Override
 	public int goodsCount(PagingVO vo) throws DataAccessException {
 		
+	
 		return sqlSession.selectOne(NAMESPACE+".getGoodsCount");
 	}
 

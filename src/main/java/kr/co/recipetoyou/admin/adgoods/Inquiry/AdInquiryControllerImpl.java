@@ -28,7 +28,7 @@ public class AdInquiryControllerImpl implements AdInquiryController{
 
 	//상품 문의 목록
 	@Override
-	@RequestMapping(value = "/adInquiry/adgoodsInquiry.do", method = {RequestMethod.GET, RequestMethod.POST})
+	@RequestMapping(value = "/adgoods/inquiryList.do", method = {RequestMethod.GET, RequestMethod.POST})
 	public ModelAndView listInquiryGet(PagingVO vo, HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
 		
@@ -43,15 +43,15 @@ public class AdInquiryControllerImpl implements AdInquiryController{
 
 	//상품 문의 목록 조회 및 페이징 처리
 	@Override
-	
+	@RequestMapping(value = "/adgoods/listInquiry.do")
 	public void listInquiry(PagingVO vo, Model model) throws Exception {
 		
-		model.addAttribute("ListProd", adInquiryService.listInquiry(vo));
+		model.addAttribute("ListInquiry", adInquiryService.listInquiry(vo));
 	}
 
 	//상품 문의 상세 조회
 	@Override
-	@RequestMapping(value = "/adInquiry/adInquiryDetail.do", method = {RequestMethod.GET, RequestMethod.POST})
+	@RequestMapping(value = "/adgoods/adInquiryDetail.do", method = {RequestMethod.GET, RequestMethod.POST})
 	public void getInquiryDetail(int prod_inq_code, Model model, PagingVO vo) throws Exception {
 		
 		System.out.println("상품문의"+prod_inq_code);

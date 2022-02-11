@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<c:set var="contextPath" value="${pageContext.servletContext.contextPath }"/>       
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,13 +12,13 @@
 	<link rel=“stylesheet” href=“https://use.fontawesome.com/releases/v5.14.0/css/all.css”
      integrity=“sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc” crossorigin=“anonymous”>
  	<link href=“https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap” rel=“stylesheet”>
-	<link rel="stylesheet" href="../../../Resources/Admin/Css/HomePageHeaderSide/reset.css">
-	<link rel="stylesheet" href="../../../Resources/Admin/Css/ShoppingMallManagement/productReviewDetail.css">
+	<link rel="stylesheet" href="/recipetoyou/Resources/Admin/Css/HomePageHeaderSide/reset.css">
+	<link rel="stylesheet" href="/recipetoyou/Resources/Admin/Css/ShoppingMallManagement/adgoodsReviewDetail.css">
 	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 	
 </head>
 <body>
-	<!-- 쇼핑몰관리 -> 상품후기페이지 -> 후기상세페이지(상품후기페이지에서 상품이름클릭시 이동하는 페이지) -->
+	
 	<div class="wrap">
 		<div class="bar">상품후기</div>
 			<table align="center">
@@ -35,9 +38,9 @@
 								<tbody>
 									<tr>
 										<th>작성자</th>
-										<td>여인옥</td>
+										<td>${review.user_id }</td>
 										<th>작성일시</th>
-										<td>2017-01-17 23:47:39</td>
+										<td>${review.reg_date }</td>
 									</tr>
 									<tr>
 										<th>연관상품</th>
@@ -53,7 +56,7 @@
 									</tr>
 									<tr>
 										<th>후기제목</th>
-										<td colspan="3">빠른배송 감사합니다.	</td>
+										<td colspan="3">${review.title }</td>
 									</tr>
 									<tr>
 										<th>후기내용</th>
@@ -61,7 +64,7 @@
 											<div class="img-diary">
 												<img class="img-style2" src="../../../Resources/Admin/Img/ShoppingMallManagement/background.png" />
 											</div>
-											빠른배송 감사합니다.	
+											${review.content }
 										</td>
 									</tr>
 									<tr>

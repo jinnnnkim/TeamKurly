@@ -51,11 +51,8 @@
 							<!-- 이미지 정보가 담기도록 함. css 깨짐-->
 					<%-- 	<div class="image_wrap" data-prod_code="${cartList.imageList[0].prod_code}" data-path="${cartList.imageList[0].uploadPath}"
 												data-uuid="${cartList.imageList[0].uuid}" data-filename="${cartList.imageList[0].fileName}">  --%>
-						<a href="#"> 
-						
-							<img id="thumbnail"
-								src="/recipetoyou/Resources/User/Img/Mypage2/thumbnail.jpg">
-						</a>
+						<div id="uploadArea">
+						</div>
 						
 						<div class="subject">
 							<a href="">
@@ -114,6 +111,47 @@
 	
 		
 <script type="text/javascript">
+
+$(document).ready(function(){
+	
+
+	/* 이미지 정보 호출 */
+	let prod_code = '<c:out value="${myorderVO.prod_code}"/>';
+	let uploadArea = $("#uploadArea");
+										/* 여러 개의 이미지를 반환하기 때문에 이미지 정보를 배열 형태로 전달받음. */
+	$.getJSON("${contextPath}/adgoods/getImageList.do", {prod_code : prod_code}, function(arr){
+		
+		//이미지 없는 경우 대체 이미지 출력
+		if(arr.length == 0){
+			
+			let str = "";
+			str += "<div id = 'result_card'>";
+			str += "<img src='/recipetoyou/Resources/Admin/Img/SubgoodsImg/ready.jpg'>";
+			str += "</div>";
+			
+			uploadArea.html(str);
+			
+			return;
+		}
+		
+		let str = "";
+		let obj = arr[0];
+		
+		let fileCallPath = encodeURIComponent(obj.uploadPath + "/s_" + obj.uuid + "_" + obj.fileName);
+		str += "<div id='result_card'";
+		str += "data-path='" + obj.uploadPath + "' data-uuid='" + obj.uuid + "' data-filename='" + obj.fileName + "'";
+		str += ">";
+		str += "<img src='${contextPath}/adgoods/getImageInfo.do?fileName=" + fileCallPath +"'>";
+		str += "<input type='hidden' name='imageList[0].fileName' value='"+ obj.fileName +"'>";
+		str += "<input type='hidden' name='imageList[0].uuid' value='"+ obj.uuid +"'>";
+		str += "<input type='hidden' name='imageList[0].uploadPath' value='"+ obj.uploadPath +"'>";	
+		str += "</div>";
+		
+		uploadArea.html(str);
+	});	
+	
+});
+	
 	$(".btn_add").click(function () {
 		
 		var check = confirm("상품이 장바구니에 담겼습니다. 확인하시겠습니까?");
@@ -121,28 +159,7 @@
 		if(check) {
 			location.assign("cart.do");
 		}
-		
-	});
-		//이미지 삽입
-	$(".image_wrap").each(function(i, obj){
-		
-		const bobj = $(obj);
-		if(bobj.data("prod_code")){
-			
-			const uploadPath = bobj.data("path");
-			const uuid = bobj.data("uuid");
-			const fileName = bobj.data("filename");
-			
-			const fileCallPath = encodeURIComponent(uploadPath + "/s_" + uuid + "_" + fileName);
-			
-			$(this).find("img").attr('src', '${contextPath}/adgoods/getImageInfo.do?fileName=' + fileCallPath);
-			
-			}else {
-				$(this).find("img").attr('src', '/recipetoyou/Resources/Admin/Img/SubgoodsImg/ready.jpg');
-			}
-	});
-	
-	
+	});	
 </script>
 	
 </body>
