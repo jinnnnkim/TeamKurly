@@ -76,7 +76,7 @@ public class MypageControllerImpl implements MypageController{
 	
 	//주문 내역 상세 조회하기
 	@Override
-	@RequestMapping(value = "/orderDetail.do", method = RequestMethod.GET) 
+	@RequestMapping(value = "/orderDetail.do", produces = "application/json", method = {RequestMethod.GET, RequestMethod.POST}) 
 	public void orderDetail(@RequestParam(value="ord_code", required = false) int ord_code, Model model) throws Exception {
 		
 		logger.info("클릭한 주문 코드 : "+ord_code);

@@ -103,6 +103,7 @@ public class MypageDAOImpl implements MypageDAO{
 	public List<AdgoodsImgVO> getGoodsImage(int prod_code) throws JsonProcessingException {
 		
 		return sqlSession.selectList("mapper.member.getImageList", prod_code);
+	}	
 
 	//상품문의 삭제
 	@Override

@@ -206,7 +206,9 @@
 				<ul class="pagination">
 				 			<!-- 이전prev -->
 				 	<c:if test="${pm.prev }">
-				 		<li class="pageBtn prev"><a href="listProduct.do?page=${pm.startPage-1}">이전</a></li>
+				 		<li class="pageBtn prev">
+				 			<a href="listProduct.do?page=${pm.startPage-1}">이전</a>
+				 		</li>
 				 	</c:if>
 				 			<!-- 페이지블럭 -->
 					<c:forEach var="idx" begin="${pm.startPage}" end="${pm.endPage}">

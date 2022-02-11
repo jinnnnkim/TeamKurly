@@ -239,8 +239,7 @@
 
 	<script type="text/javascript">
 	
-	$(document).ready(function(){
-		
+	
 		/*유통기한 입력 위한 캘린더 위젯 적용*/
 
 		/* 설정 */

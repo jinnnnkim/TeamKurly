@@ -1,10 +1,10 @@
 package kr.co.recipetoyou.user.mypage;
 
 import java.util.List;
+
 import java.io.IOException;
 import java.util.List; 
 
-import org.apache.catalina.mapper.Mapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
@@ -23,7 +23,6 @@ import kr.co.recipetoyou.user.mypage.vo.MyOrderVO;
 import kr.co.recipetoyou.user.mypage.vo.PointVO;
 
 import kr.co.recipetoyou.user.mypage.vo.UserAddrVO;
-
 import kr.co.recipetoyou.user.mypage.vo.QnAVO;
 import kr.co.recipetoyou.user.mypage.vo.ReviewVO;
 
@@ -110,7 +109,11 @@ public class MypageServiceImpl implements MypageService{
 	@Override
 	public MyOrderVO orderDetail(int ord_code) throws Exception {
 		System.out.println("orderDetail Service 호출");
-		return mypageDAO.orderDetailList(ord_code);
+		
+		MyOrderVO orderVO = mypageDAO.orderDetailList(ord_code);
+		orderVO.setImageList(mypageDAO.getGoodsImage(ord_code));
+		
+		return orderVO;
 	}
 
 

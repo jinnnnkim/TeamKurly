@@ -47,4 +47,28 @@
 			where prod_inq_code = #{prod_inq_code}
 		]]>
 	</select>
+	
+	<!-- 총 문의 수 -->
+	<select id="getInquiryAllCount" resultType="int">
+		select count(*) from tb_prod_inq
+			<if test="title != null"> inq_title like '%'||#{title}||'%'</if>
+			<if test="user_id != null"> user_id '%'||#{user_id}||'%'</if>
+			<if test="content != null"> inq_content like '%'||#{inq_content}||'%'</if>
+	</select>
+	
+	<!-- 검색어에 맞는 문의 수 구하기 -->
+	<select id="getInquiryCount">
+		select count(prod_inq_code) from tb_prod_inq where
+			<choose>
+				<when test="title != null">
+					inq_title like '%'||#{title}||'%'
+				</when>
+				<when test="user_id != null">
+					user_id like '%'||#{user_id}||'%'
+				</when>
+				<when test="content != null">
+					inq_content like '%'||#{inq_content}||'%'
+				</when>
+			</choose>
+	</select>
 </mapper>
