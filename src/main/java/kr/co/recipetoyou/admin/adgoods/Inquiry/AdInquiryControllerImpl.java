@@ -54,6 +54,8 @@ public class AdInquiryControllerImpl implements AdInquiryController{
 	@RequestMapping(value = "/adInquiry/adInquiryDetail.do", method = {RequestMethod.GET, RequestMethod.POST})
 	public void getInquiryDetail(int prod_inq_code, Model model, PagingVO vo) throws Exception {
 		
+		System.out.println("상품문의"+prod_inq_code);
+		System.out.println("=======================");
 		//페이징 정보
 		model.addAttribute("vo", vo);
 		

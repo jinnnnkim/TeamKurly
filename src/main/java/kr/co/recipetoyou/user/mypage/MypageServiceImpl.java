@@ -1,8 +1,14 @@
 package kr.co.recipetoyou.user.mypage;
 
+
+import java.sql.Date;
+
+import java.util.List;
 import java.io.IOException;
+
 import java.util.List; 
 
+import org.apache.catalina.mapper.Mapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
@@ -84,9 +90,9 @@ public class MypageServiceImpl implements MypageService{
 			
 			try {
 					int prod_code = order.getProd_code();
-					List<AdgoodsImgVO> imageList  = adGoodsDAO.getGoodsImage(prod_code);
+					List<AdgoodsImgVO> imageList  = mypageDAO.getGoodsImage(prod_code);
 					order.setImageList(imageList);
-					System.out.println(imageList);
+					System.out.println(imageList.toString());
 				
 			} catch (JsonGenerationException e) {
 				// TODO Auto-generated catch block
@@ -111,6 +117,12 @@ public class MypageServiceImpl implements MypageService{
 		return mypageDAO.orderDetailList(ord_code);
 	}
 
+	//주문내역 연도별 조회
+	@Override
+	public MyOrderVO searchOrderList(Date ord_date) throws Exception {
+		System.out.println("searchOrderList Service 호출");
+		return mypageDAO.searchOrderList(ord_date);
+	}
 
 	//상품후기 조회
 	@Override
@@ -124,6 +136,14 @@ public class MypageServiceImpl implements MypageService{
 		mypageDAO.updateUser(userVO);
 		
 	}
+
+
+	//상품문의 삭제
+	@Override
+	public int removeQnA(int prod_inq_code) throws DataAccessException {
+		 return mypageDAO.removeQnA(prod_inq_code);
+	}
+
 	
 
 }

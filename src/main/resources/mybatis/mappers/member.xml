@@ -69,17 +69,14 @@
 		<result property="prod_discount" column="prod_discount"/>
 	</resultMap>
 	
-	
-	
-	
 	<!-- 상품문의 조회 -->
 	<resultMap type="QnAVO" id="qnaResult">
+		<result property="prod_inq_code" column="prod_inq_code"/>
 		<result property="inq_title" column="inq_title"/>
 		<result property="inq_content" column="inq_content"/>
 		<result property="inq_reg_date" column="inq_reg_date"/>
 		<result property="inq_status" column="inq_status"/>
 	</resultMap>
-	
 	
 	<!-- 상품후기 조회 -->
 	<resultMap type="reviewVO" id="reviewResult">
@@ -109,6 +106,13 @@
 		<result property="user_point" column="user_point"/>
 		<result property="cp_code" column="cp_code"/>
 		<result property="toYou_pass" column="toYou_pass"/>
+	</resultMap>
+	
+	<resultMap type="adGoodsImgVO" id="goodsImgResult">
+		<result property="fileName" column="fileName"/>
+		<result property="prod_code" column="prod_code"/>
+		<result property="uploadPath" column="uploadPath"/>
+		<result property="uuid" column="uuid"/>
 	</resultMap>
 	
 	<!-- id : DAO에서 id를 이용해 해당 SQL문을 호출함 -->
@@ -219,6 +223,18 @@
 		]]>
 	</select>
 	
+	<!-- 주문 연도별 조회 -->
+	<select id="searchOrderList" parameterType="Date"  resultMap="orderListResult">
+		<![CDATA[
+			SELECT tp.PROD_NAME, to2.ORD_CODE, to2.STATUS, to2.PRICE, to2.ORD_DATE
+			FROM TB_ORDER to2 JOIN TB_PROD tp
+			ON to2.ORD_CODE = tp.ORD_CODE
+			JOIN TB_USERS tu
+			ON to2.USER_ID = tu.USER_ID
+			WHERE TO_CHAR(to2.ORD_DATE,'YYYY') = #{ord_date};
+		]]>
+	</select>
+	
 	
 	<!-- 상품문의 조회 -->
 	<select id="selectAllQnAList" resultMap="qnaResult">
@@ -226,6 +242,15 @@
 			SELECT * FROM TB_PROD_INQ
 		]]>
 	</select>
+	
+	<!-- 상품문의 삭제 -->
+	<delete id="deleteQnA" parameterType="int">
+		<![CDATA[
+			DELETE FROM TB_PROD_INQ
+			WHERE 
+			PROD_INQ_CODE = #{PROD_INQ_CODE}
+		]]>
+	</delete>
 	
 	<!-- 상품후기 조회 -->
 	<select id="selectAllReviewList" resultMap="reviewResult">
@@ -251,7 +276,12 @@
 		]]>
 	</update>
 	
-	
+	<!-- 이미지 정보 얻기 -->
+	<select id="getImageList" resultMap="goodsImgResult">
+		<![CDATA[
+		select * from tb_adgoods_Img where prod_code = #{prod_code}
+		]]>
+	</select>
 	
 	
 	

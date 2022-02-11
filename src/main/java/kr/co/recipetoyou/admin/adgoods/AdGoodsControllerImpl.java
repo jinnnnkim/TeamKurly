@@ -63,7 +63,7 @@ public class AdGoodsControllerImpl implements AdGoodsController {
 	
 	private static final Logger logger = LoggerFactory.getLogger("ProductControllerImpl.class");
 	
-	private static final String UPLOAD_DIR = "C:\\git-recipetoyou\\RecipeToYou\\src\\main\\webapp\\Resources\\Admin\\Img\\AdgoodsImg\\";
+	private static final String UPLOAD_DIR = "C:\\workspace_git\\src\\main\\webapp\\Resources\\Admin\\Img\\AdgoodsImg\\";
 	
 	@Autowired
 	AdGoodsService adGoodsService;

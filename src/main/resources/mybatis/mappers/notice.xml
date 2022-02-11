@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="mapper.notice">					
+	
+	<resultMap type="noticeVO" id="noticeResult">
+		<result property="notice_idx" column="notice_idx"/>
+		<result property="notice_type" column="notice_type"/>
+		<result property="notice_title" column="notice_title"/>
+		<result property="notice_content" column="notice_content"/>
+		<result property="notice_reg_date" column="notice_reg_date"/>
+		<result property="admin_id" column="admin_id"/>
+		<result property="notice_hit" column="notice_hit"/>
+	</resultMap>
+	
+	<sql id="criteria">
+       <choose>
+           <when test='type == "T"'>
+               notice_title like '%'||#{keyword}||'%' 
+           </when>
+           <when test='type == "C"'>
+              notice_content like '%'||#{keyword}||'%' 
+           </when>
+           <when test='type == "W"'>
+               admin_id like '%'||#{keyword}||'%' 
+           </when>
+           <when test='type == "TC"'>
+               notice_title like '%'||#{keyword}||'%' or notice_content like '%'||#{keyword}||'%' 
+           </when>
+           <when test='type == "TW"'>
+               notice_title like '%'||#{keyword}||'%' or admin_id like '%'||#{keyword}||'%' 
+           </when>
+           <when test='type == "CW"'>
+               notice_content like '%'||#{keyword}||'%' or admin_id like '%'||#{keyword}||'%'
+           </when>
+           <when test='type == "TCW"'>
+               notice_title like '%'||#{keyword}||'%' or
+               notice_content like '%'||#{keyword}||'%' or
+               admin_id like '%'||#{keyword}||'%' 
+           </when>
+       </choose>
+    </sql>
+	
+	<select id="getNoticeCount" resultType="int">
+		SELECT count(*)
+		FROM TB_NOTICE tn
+	</select>	
+	
+	<select id="getNoticeList" resultMap="noticeResult">
+		<![CDATA[
+		SELECT * from
+				(SELECT rownum as rn, tn.* FROM 
+					(SELECT tn.* FROM TB_NOTICE tn  
+					
+		]]>
+			<if test="keyword != null">
+			where
+				<include refid="criteria"></include>
+			</if>
+		<![CDATA[		
+					ORDER BY NOTICE_REG_DATE DESC
+					) 
+				tn )
+			where rn between #{rowStart} and #{rowEnd}
+		]]>
+	</select>
+	
+	<select id="selectNoticeFrequencyCount" resultType="int">
+		SELECT count(*)
+		FROM TB_FAQ
+	</select>	
+	
+	<select id="selectNoticeFrequencyList" resultMap="noticeResult">
+		<![CDATA[
+		SELECT * from
+				(SELECT rownum as rn, tn.* FROM 
+					(SELECT tn.* FROM TB_FAQ tn ORDER BY FAQ_REG_DATE DESC
+					) 
+				tn )
+			where rn between #{rowStart} and #{rowEnd}
+		]]>
+	</select>		
+	
+	<select id="selectNoticeDetail" resultMap="noticeResult">
+		SELECT * 
+		from TB_NOTICE tn
+		WHERE notice_idx = #{notice_idx}
+	</select>	
+    
+</mapper>  

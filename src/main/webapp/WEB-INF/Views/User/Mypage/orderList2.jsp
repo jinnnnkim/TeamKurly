@@ -34,11 +34,11 @@
 				<h2 class="title">
 					주문 내역 <span class="subtitle">지난 3년간의 주문 내역 조회가 가능합니다</span>
 				</h2>
-				<select class='data_year'>
-					<option value='all_year' selected>전체기간</option>
-					<option value='2022'>2022</option>
-					<option value='2021'>2021</option>
-					<option value='2020'>2020</option>
+				<select class='data_year' id="seach_year">
+					<option value='all_year' id="all_year" selected>전체기간</option>
+					<option value='2022' id="2022">2022</option>
+					<option value='2021' id="2021">2021</option>
+					<option value='2020' id="2020">2020</option>
 				</select>
 			</div>
 			
@@ -127,7 +127,34 @@
 	});
 	});	
 
+	//연도별 주문 조회
+	$(document).ready(function() {
+		$("#seach_year").on('change', function() {
+			searchOrderList();
+		})
+	});
 	
+	function searchOrderList() {
+		var yearOrder= ${"#seach_year option" }.val();
+		console.log("yearOrder"+yearOrder);
+		
+		$.ajax({
+			type: "post",
+			url: "http://localhost:8080/recipetoyou/orderList.do",
+			datatype: "text",
+			data: {}
+			success: function(data) {
+				$("data").appendTo('#orderList');
+				}
+			, error: functoin() {
+				alert("주문 내역이 없습니다.");
+			}
+			
+		});
+		
+		
+		
+	}
 	
 	</script>
 	

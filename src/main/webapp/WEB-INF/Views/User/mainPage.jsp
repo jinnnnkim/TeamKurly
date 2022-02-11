@@ -33,7 +33,6 @@
 					src="/recipetoyou/Resources/User/Img/main3.jpg"></a>
 			</div>
 		</div>
-
 		<!-- banner js 부분 -->
 
 
@@ -137,7 +136,6 @@
 												autoplaySpeed : 3000
 											});
 					</script>
-					
 			</div>
 			<!-- item1 닫힌 태그 -->
 
@@ -303,7 +301,7 @@
 				<div class="move">
 					<div class="move_comu">
 						<span class="review_more2">더 많은 후기가 궁금하다면?</span><br>
-						 <a	href="#"><span>커뮤니티 바로가기</span></a>
+						 <a	href="${contextPath }/recipetoyou/community/communityRecipeMain.do"><span>커뮤니티 바로가기</span></a>
 					</div>
 				</div>
 				<!-- move-->

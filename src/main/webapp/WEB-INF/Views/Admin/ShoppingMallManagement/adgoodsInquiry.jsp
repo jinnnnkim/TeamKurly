@@ -113,7 +113,7 @@
 							<tbody>
 							<c:forEach var="inquiry" items="${inquiryList}">
 							<tr>
-								<td>${inquiryList.prod_inq_code}</td>
+								<td>${inquiry.prod_inq_code}</td>
 								<td><input class="chChoice" type="checkbox" value="286"/></td>
 								<td>
 									<span class="lable">답변대기</span>
@@ -122,10 +122,10 @@
 									<div> <%-- href : 상품등록 페이지로 이동 --%>
 										<a href="productRegister.jsp" class="helper-col">체중계</a>
 									</div>
-									<a href="${contextPath }/adInquiry/adInquiryDetail.do?prod_inq_code=${inquiryList.prod_inq_code}">${inquiryList.inq_title}</a>
+									<a href="${contextPath }/adInquiry/adInquiryDetail.do?prod_inq_code=${inquiry.prod_inq_code}">${inquiry.inq_title}</a>
 								</td>
-								<td>${inquiryList.user_id}</td>
-								<td>${inquiryList.inq_reg_date}</td>
+								<td>${inquiry.user_id}</td>
+								<td>${inquiry.inq_reg_date}</td>
 							</tr>
 							</c:forEach>
 							</tbody>
