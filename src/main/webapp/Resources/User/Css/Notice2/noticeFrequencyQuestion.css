@@ -167,6 +167,9 @@
 .noticeTable table .cont{
 	text-align:left;
 }
+.faq td img{
+	height:15px;
+}
 
 .page{
 	width:700px;

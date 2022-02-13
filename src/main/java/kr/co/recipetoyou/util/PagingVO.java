@@ -25,6 +25,7 @@ public class PagingVO {
 		private String title;
 		private String user_id;
 		private String content;
+		private int faq_cate_code;
 		
 		
 		
@@ -135,12 +136,20 @@ public class PagingVO {
 			this.prod_inq_code = prod_inq_code;
 		}
 
+		public int getFaq_cate_code() {
+			return faq_cate_code;
+		}
+
+		public void setFaq_cate_code(int faq_cate_code) {
+			this.faq_cate_code = faq_cate_code;
+		}
+
 		//toString()
 		@Override
 		public String toString() {
 			System.out.println("page"+page);	
 			System.out.println("pageSize"+pageSize);
-		return "PagingVO [page=" + page + ", pageSize=" + pageSize + ",keyword=" + keyword + ",type="+type+",cateCode="+cateCode +"]";
+		return "PagingVO [page=" + page + ", pageSize=" + pageSize + ",keyword=" + keyword + ",type="+type+",cateCode="+cateCode +",faq_cate_code="+faq_cate_code+"]";
 		}
 
 }
