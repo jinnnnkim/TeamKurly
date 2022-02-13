@@ -67,8 +67,8 @@
 							<li><a href="${contextPath}/adgoods/listProduct.do">상품관리</a></li>
 							<li><a href="${contextPath}/adorder/listadOrd.do">주문관리</a></li>
 							<li><a href="${contextPath}/adpayment/listadPay.do">결제관리</a></li>
-							<li><a href="${contextPath }/adInquiry/adgoodsInquiry.do">상품문의</a></li>
-							<li>상품후기</li>
+							<li><a href="${contextPath }/adgoods/inquiryList.do">상품문의</a></li>
+							<li><a href="${contextPath }/adgoods/adReviewList.do">상품후기</a></li>
 						</ul>
 					</li>	
 						

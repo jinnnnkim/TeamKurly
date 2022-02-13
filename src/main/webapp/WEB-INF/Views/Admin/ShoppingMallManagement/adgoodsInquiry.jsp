@@ -122,7 +122,7 @@
 									<div> <%-- href : 상품등록 페이지로 이동 --%>
 										<a href="productRegister.jsp" class="helper-col">체중계</a>
 									</div>
-									<a href="${contextPath }/adInquiry/adInquiryDetail.do?prod_inq_code=${inquiry.prod_inq_code}">${inquiry.inq_title}</a>
+									<a href="${contextPath }/adgoods/adInquiryDetail.do?prod_inq_code=${inquiry.prod_inq_code}">${inquiry.inq_title}</a>
 								</td>
 								<td>${inquiry.user_id}</td>
 								<td>${inquiry.inq_reg_date}</td>

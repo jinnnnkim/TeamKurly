@@ -9,7 +9,7 @@ function Open() {
 		
 function remove_QnA(){
 	if(confirm("작성한 문의를 삭제 하시겠습니까?") == true){
-		document.form.submit();
+		document.delForm.submit();
 	}
 	else{
 		return;

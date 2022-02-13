@@ -36,26 +36,6 @@
 		<result property="uploadPath" column="uploadPath"/>
 		<result property="uuid" column="uuid"/>
 	</resultMap>
-	
-	<!-- 검색조건 -->
-	<sql id="searchoption">
-		
-		<trim prefix="(" suffix=") AND" prefixOverrides="AND">
-			<foreach collection="typeArr" item="type">
-				<trim prefix="AND">
-					<choose>
-						<when test="type == 'G'.toString()">
-							prod_name like '%' || #{keyword} || '%'
-						</when>
-						<when test="type == 'C'.toString()">
-							cateCode like '%' || #{cateCode} || '%'
-						</when>
-					</choose>
-				</trim>
-			</foreach>
-		</trim>
-		
-	</sql>
 
 	<!-- 페이지 정보를 10개씩 가져오기 -->
 	<select id="listPage" resultMap="adgoodsResult">
@@ -89,39 +69,10 @@
 	</select>
 	
 	<!-- 총 상품 수 -->
-	<select id="getGoodsCount" resultType="int">
+	<select id="getGoodsCount" parameterType="kr.co.recipetoyou.util.PagingVO" resultType="int">
 			select count(*) from TB_PROD
 				<if test="keyword != null">prod_name like '%'||#{keyword}||'%'</if>
 				<if test="cateCode != null and cateCode != '100000'">cateCode like '%'||#{cateCode}||'%' </if>
-	</select>
-	
-
-	
-	<!-- 검색 카테고리 리스트 -->
-	<select id="getCateList" resultType="String">
-		select distinct cateCode from tb_prod where
-		<foreach collection="typeArr" item="type">
-			<choose>
-				<when test="type == 'G'.toString()">
-					prod_name like '%' || #{keyword} || '%'
-				</when>
-			</choose>
-		</foreach>
-	</select>
-	
-	<!-- 카테고리 정보 -->
-	<select id="getCateInfo" resultType="kr.co.recipetoyou.admin.adgoods.category.AdGoodsCateVO">
-		select distinct count(*) cateCount, tp.CATECODE , tpc.CATENAME
-		FROM TB_PROD tp LEFT JOIN TB_PROD_CATE tpc ON tp.CATECODE = tpc.CATECODE
-		where
-			<foreach collection="typeArr" item="type">
-				<choose>
-					<when test="type == 'G'.toString()">
-						prod_name like '%' || #{keyword} || '%'
-					</when>
-				</choose>
-			</foreach>
-		group by tp.CATECODE , tpc.CATENAME	
 	</select>
 	
 	<!-- 상품 상세 정보-->

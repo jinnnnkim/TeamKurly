@@ -2,12 +2,6 @@
 * { font-family: ‘Noto Sans KR’, sans-serif;
 }
 
-.wrap {
-	width: 1080px;
-	height: 1000px;
-	margin: 0 auto;
-}
-
 
 /* 페이지 가능 윗부분 - 전체테이블 윗부분 */
 .bar{

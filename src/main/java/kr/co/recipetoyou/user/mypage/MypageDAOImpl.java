@@ -112,10 +112,13 @@ public class MypageDAOImpl implements MypageDAO{
 	public List<AdgoodsImgVO> getGoodsImage(int prod_code) throws JsonProcessingException {
 		
 		return sqlSession.selectList("mapper.member.getImageList", prod_code);
-	}
+
+	}	
+
+
 	//상품문의 삭제
 	@Override
-	public int removeQnA(@RequestParam("prod_inq_code") int prod_inq_code) throws DataAccessException {
+    public int removeQnA(@RequestParam("prod_inq_code") int prod_inq_code) throws DataAccessException {
 		int result = sqlSession.delete("mapper.member.deleteQnA", prod_inq_code);
 		return result;
 		
