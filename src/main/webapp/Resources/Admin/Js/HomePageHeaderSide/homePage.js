@@ -22,7 +22,7 @@ function dropMenu_btn1(){
             }
         }
 function dropMenu_btn2(){
-            let click = document.getElementById("drop_content2");
+            let click = document.getElementById("drop_content2"); 
             if(click.style.display === "none"){
                 click.style.display = "block";
  
