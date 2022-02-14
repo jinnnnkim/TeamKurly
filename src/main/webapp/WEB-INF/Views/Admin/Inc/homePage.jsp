@@ -69,7 +69,7 @@
 							<li><a href="${contextPath}/aduser/listadUsers.do">회원관리</a></li>
 							<li><a href="${contextPath}/aduserWithdraw/listadUsersWithdraw.do">탈퇴회원관리</a></li>
 							<li><a href="${contextPath}/adfaq/faqAdManagement.do">FAQ관리</a></li>
-							<li><a href="${contextPath}/adfaq/noticeList.do">공지사항관리</a></li>
+							<li><a href="${contextPath}/adnotice/listadNotice.do">공지사항관리</a></li>
 						</ul>
 						</div>
 					</li>
