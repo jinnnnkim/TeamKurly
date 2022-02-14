@@ -11,5 +11,11 @@ public interface AdInquiryService {
 	
 	//문의 상세 페이지
 	public AdInquiryVO adInquiryDetail(int prod_inq_code)throws Exception;
+	
+	//총 문의 수
+	public int inquiryAllCount(PagingVO vo)throws Exception;
+	
+	//검색 결과 개수
+	public int inquiryCount(PagingVO vo) throws Exception;
 
 }

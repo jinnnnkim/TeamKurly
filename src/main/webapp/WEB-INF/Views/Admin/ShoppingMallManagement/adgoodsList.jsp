@@ -200,6 +200,11 @@
 							</c:forEach>
 						</tbody>
 					</table>
+					<c:if test="${listCheck == 'empty'}">
+						<div>
+							등록된 상품이 없습니다.
+						</div>
+					</c:if>
 					
 					<div class="box-footer">
 			<div class="page_wrap">
