@@ -35,13 +35,13 @@
 			<div class="optional">
 				<a href="#none" class="listOff">선택<i class="fas fa-caret-down"></i></a>
 				<ul class="choiceLayer">
-					<li><a href="#">배송/포장/상품</a></li>
-					<li><a href="#">선물하기</a></li>
-					<li><a href="#">주문/결제/대량주문</a></li>
-					<li><a href="#">취소/교환/환불</a></li>
-					<li><a href="#">이벤트/쿠폰/적립금</a></li>
-					<li><a href="#">회원</a></li>
-					<li><a href="#">서비스이용</a></li>
+					<li><a href="${contextPath}/notice/noticeFrequencyQuestion.do?faq_cate_code=1"><input type="hidden" value="1"/>배송/포장/상품</a></li>
+					<li><a href="${contextPath}/notice/noticeFrequencyQuestion.do?faq_cate_code=2"><input type="hidden" value="2"/>선물하기</a></li>
+					<li><a href="${contextPath}/notice/noticeFrequencyQuestion.do?faq_cate_code=3"><input type="hidden" value="3"/>주문/결제/대량주문</a></li>
+					<li><a href="${contextPath}/notice/noticeFrequencyQuestion.do?faq_cate_code=4"><input type="hidden" value="4"/>취소/교환/환불</a></li>
+					<li><a href="${contextPath}/notice/noticeFrequencyQuestion.do?faq_cate_code=5"><input type="hidden" value="5"/>이벤트/쿠폰/적립금</a></li>
+					<li><a href="${contextPath}/notice/noticeFrequencyQuestion.do?faq_cate_code=6"><input type="hidden" value="6"/>회원</a></li>
+					<li><a href="${contextPath}/notice/noticeFrequencyQuestion.do?faq_cate_code=7"><input type="hidden" value="7"/>서비스이용</a></li>
 				</ul>
 			</div>
 		</div>
@@ -53,28 +53,24 @@
 					<th class="cate">카테고리</th>
 					<th class="title">제목</th>
 				</tr>
-				
+				<tbody class="abcd">
 				<c:forEach var="notice" items="${noticeFrequencyList }">
 					<tr>
 						<td>${notice.faq_title }</td>
-						<td>${notice.faq_cate_code}</td>
-						<td class="cont detail88"><a href="#none">아이디 패스워드를
-								잊어버렸습니다.</a></td>
+						<td>${notice.faq_code}</td>
+						<td class="cont detail"><a href="#none">
+						<input class="${notice.faq_title}" type="hidden" value="${notice.faq_title}"/>
+						${notice.faq_info}</a></td>
+						
 					</tr>
-	
-					<tr class="faq88">
+					<tr class="faq ${notice.faq_title}">
 						<td><img src="/recipetoyou/Resources/User/Img/Notice/market1.gif"></td>
 						<td class="cont" colspan='2'>
 						${notice.faq_reply}
 						</td>
 					</tr>
 				</c:forEach>
-				<tr>
-					<td>87</td>
-					<td>관리자</td>
-					<td class="detail"><a href="#">여기에는 어떤 내용이 들어가야 하나요.</a></td>
-				</tr>
-
+				</tbody>
 			</table>
 		</div>
 		<div class="page">
@@ -105,11 +101,13 @@
 				$('ul.choiceLayer').css("top","20px");
 				$('ul.choiceLayer li').css("width","162px");
 			});
-		});
-
-		$(document).ready(function() {
-			$('.detail88 a').click(function() {
-				$('.faq88').fadeToggle();
+			
+			$(".faq").css("display","none");
+			
+			$('.detail a').click(function() {
+				var str = $(this).children().val();
+				$("."+str).fadeToggle();
+			
 			});
 		});
 	</script>

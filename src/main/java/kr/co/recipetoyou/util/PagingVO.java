@@ -25,8 +25,9 @@ public class PagingVO {
 		private String title;
 		private String user_id;
 		private String content;
-		
-		
+
+		private String searchOption;
+		private int faq_cate_code;
 		
 		private int prod_inq_code;
 		
@@ -135,12 +136,94 @@ public class PagingVO {
 			this.prod_inq_code = prod_inq_code;
 		}
 
+		
+		public int getTotal() {
+			return total;
+		}
+
+		public void setTotal(int total) {
+			this.total = total;
+		}
+
+		public PageMaker getPmake() {
+			return pmake;
+		}
+
+		public void setPmake(PageMaker pmake) {
+			this.pmake = pmake;
+		}
+
+		public int getProd_code() {
+			return prod_code;
+		}
+
+		public void setProd_code(int prod_code) {
+			this.prod_code = prod_code;
+		}
+
+		public String getProd_name() {
+			return prod_name;
+		}
+
+		public void setProd_name(String prod_name) {
+			this.prod_name = prod_name;
+		}
+
+		public String getTitle() {
+			return title;
+		}
+
+		public void setTitle(String title) {
+			this.title = title;
+		}
+
+		public String getUser_id() {
+			return user_id;
+		}
+
+		public void setUser_id(String user_id) {
+			this.user_id = user_id;
+		}
+
+		public String getContent() {
+			return content;
+		}
+
+		public void setContent(String content) {
+			this.content = content;
+		}
+
+		public String getSearchOption() {
+			return searchOption;
+		}
+
+		public void setSearchOption(String searchOption) {
+			this.searchOption = searchOption;
+		}
+
+		public void setRowStart(int rowStart) {
+			this.rowStart = rowStart;
+		}
+
+		public void setRowEnd(int rowEnd) {
+			this.rowEnd = rowEnd;
+		}
+		
+
+		public int getFaq_cate_code() {
+			return faq_cate_code;
+		}
+
+		public void setFaq_cate_code(int faq_cate_code) {
+			this.faq_cate_code = faq_cate_code;
+		}
+
 		//toString()
 		@Override
 		public String toString() {
 			System.out.println("page"+page);	
 			System.out.println("pageSize"+pageSize);
-		return "PagingVO [page=" + page + ", pageSize=" + pageSize + ",keyword=" + keyword + ",type="+type+",cateCode="+cateCode +"]";
+		return "PagingVO [page=" + page + ", pageSize=" + pageSize + ",keyword=" + keyword + ",type="+type+",cateCode="+cateCode +",faq_cate_code="+faq_cate_code+"]";
 		}
 
 }

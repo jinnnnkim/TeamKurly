@@ -27,4 +27,16 @@ public class AdgoodsReviewServiceImpl implements AdgoodsReviewService {
 		return adgoodsReviewDAO.readReview(prod_review_code);
 	}
 
+	@Override
+	public int reviewCount(PagingVO vo) throws Exception {
+		
+		return adgoodsReviewDAO.reviewCount(vo);
+	}
+
+	@Override
+	public int reviewAllCount(PagingVO vo) throws Exception {
+		
+		return adgoodsReviewDAO.reviewAllCount(vo);
+	}
+
 }

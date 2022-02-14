@@ -100,10 +100,16 @@ public class NoticeControllerImpl implements NoticeController{
 
 	@Override
 	@RequestMapping(value="notice/noticeFrequencyQuestion.do", method= {RequestMethod.GET,RequestMethod.POST})
-	public ModelAndView noticeFrequencyQuestion(PagingVO vo,HttpServletRequest request, HttpServletResponse response)
+	public ModelAndView noticeFrequencyQuestion(@RequestParam(value="faq_cate_code", required=false) String faq_cate_code ,
+			PagingVO vo,HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
 		String viewName = (String) request.getAttribute("viewName");
 		logger.info(viewName);
+		
+		if(faq_cate_code != null && faq_cate_code != "") {
+			int result = Integer.parseInt(faq_cate_code);
+			vo.setCateCode(result);
+		}
 		
 		PageMaker pm = new PageMaker();
 		pm.setVo(vo);
@@ -111,6 +117,7 @@ public class NoticeControllerImpl implements NoticeController{
 		int cnt  = pm.getTotalCount();
 		
 		List<NoticeVO> noticeFrequencyList = noticeService.noticeFrequencyList(vo);
+		System.out.println(noticeFrequencyList.toString());
 		
 		
 		ModelAndView mav = new ModelAndView();

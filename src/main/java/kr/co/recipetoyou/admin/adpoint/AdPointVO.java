@@ -13,7 +13,6 @@ public class AdPointVO {
 	private int ord_code;
 	private int pay_code;
 	
-	
 	//UserVO를 변수로 사용
 	private UserVO userVO;
 	

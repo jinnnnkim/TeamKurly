@@ -7,30 +7,41 @@ import org.springframework.stereotype.Component;
 @Component("noticeFAQVO")
 public class NoticeFAQVO {
 	
-	private int faq_code;
+	private String faq_code;
 	private String faq_title;
 	private String faq_info;
 	private int faq_cate_code;
 	private Date faq_reg_date;
+	private String faq_reply;
 	
 	public NoticeFAQVO() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public NoticeFAQVO(int faq_code, String faq_title, String faq_info, int faq_cate_code, Date faq_reg_date) {
+	public NoticeFAQVO(String faq_code, String faq_title, String faq_info, int faq_cate_code, Date faq_reg_date,
+			String faq_reply) {
 		super();
 		this.faq_code = faq_code;
 		this.faq_title = faq_title;
 		this.faq_info = faq_info;
 		this.faq_cate_code = faq_cate_code;
 		this.faq_reg_date = faq_reg_date;
+		this.faq_reply = faq_reply;
+	}
+	
+	public String getFaq_reply() {
+		return faq_reply;
 	}
 
-	public int getFaq_code() {
+	public void setFaq_reply(String faq_reply) {
+		this.faq_reply = faq_reply;
+	}
+
+	public String getFaq_code() {
 		return faq_code;
 	}
 
-	public void setFaq_code(int faq_code) {
+	public void setFaq_code(String faq_code) {
 		this.faq_code = faq_code;
 	}
 

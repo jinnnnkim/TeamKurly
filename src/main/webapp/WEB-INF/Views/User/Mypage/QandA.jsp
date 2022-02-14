@@ -27,14 +27,13 @@
 	type="image/x-icon" />
 <script type="text/javascript" src="/recipetoyou/Resources/User/Js/Mypage/userQandA.js" charset="UTF-8"></script>
 <body>
-	<form action="#" method="post">
+	<form action="" method="post" name="delForm">
 		<div class="content">
 			<div class="review_main">
 				<div class="head">
 					<h2 class="title">상품문의</h2>
 					<ul>
-						<li>· 상품에 대한 문의를 남기는 공간입니다. 해당 게시판의 성격과 다른 글은 사전동의 없이 담당
-							게시판으로 이동될 수 있습니다.</li>
+						<li>· 상품에 대한 문의를 남기는 공간입니다. 해당 게시판의 성격과 다른 글은 사전동의 없이 담당 게시판으로 이동될 수 있습니다.</li>
 						<li>· 배송관련, 주문(취소/교환/환불)관련 문의 및 요청사항은 마이컬리 내
 						<a href="${contextPath}/notice/noticeOneToOneQuestionDetail.do">1:1문의</a>에 남겨주세요.
 						</li>

@@ -25,7 +25,10 @@
 					<td align="left">
 						<div class="main-content">
 							
-							<form name="RADShopQnaSearchFrm" method="get" action="">
+							<form method="post" action="${contextPath }/adgoods/inquiryList.do">
+							<input type="hidden" name="page" value="${pageMaker.vo.page}">
+							<input type="hidden" name="pageSize" value="${pageMaker.vo.pageSize}">
+							<input type="hidden" name="keyword" value="${pageMaker.vo.keyword }">
 								<table class="table table1 table_line" >
 									<colgroup>
 										<col width="120px">
@@ -54,23 +57,26 @@
 										<tr>
 											<th>검색어</th>
 											<td colspan="3" style="text-align: left;">
-												<select name="sf">
-													<option value="title">제목</option>
-													<option value="content">내용</option>
-													<option value="content_name">상품명</option>
-													<option value="writer_name">문의자명</option>
-													<option value="writer_id">문의자아이디</option>
-												</select>
-												<input type="text" name="sw" style="width: 500px"/>
+											<div class="search_area">
+												<select name="searchOption">
+												<option value="title" <c:out value="${pageMaker.vo.searchOption == 'title'?'selected':''}"/>>
+												제목</option>
+												<option value="content" <c:out value="${pageMaker.vo.searchOption == 'content'?'selected':''}"/>>
+												내용</option>
+												<option value="user_id" <c:out value="${pageMaker.vo.searchOption == 'user_id'?'selected':''}"/>>
+												문의자 아이디</option>
+											</select>
+												<input type="text" name="keyword" style="width: 500px" value="${pm.vo.keyword}"/>
 											</td>
 										</tr>
 									</tbody>
 								</table>
 								<div class="btn-box">	<%-- 인라인 속성이기 떄문에 버튼을 가운데로 보내기위해 <div>태그로 감쌌다. --%>
-									<button type="submit" class="btn btn-sm btn-blue">검색</button>
+									<button type="submit" id="searchBtn" class="btn btn-sm btn-blue">검색</button>
 									<%-- href 추가해야됨 --%>
 									<button type="reset" class="btn btn-sm" 
 									onclick="document.location.href='productInquirylist.jsp'">처음으로</button>
+								</div>
 								</div>
 							</form>	
 							
@@ -158,6 +164,13 @@
 				 </ul>
 			</div>
 		</div> 
+		
+		<form id="moveForm" action="${contextPath}/adgoods/inquiryList.do" method="get">
+			<input type="hidden" name="page" value="${pm.vo.page}">
+			<input type="hidden" name="pageSize" value="${pm.vo.pageSize}">
+			<input type="hidden" id="keyword" name="keyword" value="${pm.vo.keyword}">
+			<input type="hidden" id="searchOption" name="searchOption" value="${pm.vo.searchOption }">
+		</form>
 	
 	<script type="text/javascript">
 		//체크박스 모두 선택하는 기능
@@ -176,6 +189,31 @@
 			$('#selectRemove').click(function(){
 				alert('삭제할 문의를 선택하세요.');
 			});
+			
+			let moveForm = $("#moveForm");
+			
+			$("#searchBtn").on("click",function(e){
+				e.preventDefault();
+				
+				let searchOption = $(".search_area select").val();
+				let keyword = $(".search_area input[name='keyword']").val();
+				
+				if(!searchOption){
+					alert("검색 종류를 선택하세요.");
+					return false;
+				}
+				
+				if(!keyword){
+					alert("검색어를 입력하세요.");
+					return false;
+				}
+				
+				moveForm.find("input[name='searchOption']").val(searchOption);
+				moveForm.find("input[name='keyword']").val(keyword);
+				moveForm.find("input[name='page']").val(1);
+				moveForm.submit();
+			});
+			
 		});
 		
 		//

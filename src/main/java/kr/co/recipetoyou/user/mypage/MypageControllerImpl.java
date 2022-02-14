@@ -175,22 +175,6 @@ public class MypageControllerImpl implements MypageController{
 		return mav;
 	}
 	
-	/*
-	 * //상품문의 삭제하기
-	 * 
-	 * @Override
-	 * 
-	 * @RequestMapping(value = "/remove/QandA.do", method = RequestMethod.GET)
-	 * public ModelAndView removeQnA(@RequestParam("prod_inq_code") int
-	 * prod_inq_code, HttpServletRequest request, HttpServletResponse response)
-	 * throws Exception {
-	 * 
-	 * mypageService.removeQnA(prod_inq_code); ModelAndView mav = new
-	 * ModelAndView("redirect:QandA.do");
-	 * 
-	 * return mav; }
-	 */
-	
 	//상품문의 삭제
 	@Override
 	@RequestMapping(value = "/remove/QandA.do", method = RequestMethod.GET)
