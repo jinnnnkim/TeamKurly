@@ -27,8 +27,6 @@ public class PagingVO {
 		private String content;
 		private int faq_cate_code;
 		
-		
-		
 		private int prod_inq_code;
 		
 
@@ -142,6 +140,14 @@ public class PagingVO {
 
 		public void setFaq_cate_code(int faq_cate_code) {
 			this.faq_cate_code = faq_cate_code;
+		}
+		
+		public String getUser_id() {
+			return user_id;
+		}
+
+		public void setUser_id(String user_id) {
+			this.user_id = user_id;
 		}
 
 		//toString()

@@ -76,18 +76,18 @@
 		<div class="page">
 			<ul>
 				<c:if test="${pm.prev }">
-			 		<li><a href="${contextPath}/community/communityRecipeMain.do?page=${pm.startPage-1}">&laquo;</a></li>
+			 		<li><a href="${contextPath}/notice/noticeFrequencyQuestion.do?page=${pm.startPage-1}">&laquo;</a></li>
 			 	</c:if>
 			 			<!-- 페이지블럭 -->
 				<c:forEach var="idx" begin="${pm.startPage}" end="${pm.endPage}">
 							<!-- 삼항연산자를 사용해서 class로 스타일적용  -->
 					<li ${pm.vo.page == idx? 'class=active':''}>
-					 	<a href="${contextPath}/community/communityRecipeMain.do?page=${idx}">${idx}</a>
+					 	<a href="${contextPath}/notice/noticeFrequencyQuestion.do?page=${idx}">${idx}</a>
 					</li>				
 				</c:forEach>
 			 			<!-- 다음next -->
 			 	<c:if test="${pm.next && pm.endPage > 0}">
-			 		<li><a href="${contextPath}/community/communityRecipeMain.do?page=${pm.endPage+1}">&raquo;</a></li>
+			 		<li><a href="${contextPath}/notice/noticeFrequencyQuestion.do?page=${pm.endPage+1}">&raquo;</a></li>
 			 	</c:if>
 			</ul>
 		</div>

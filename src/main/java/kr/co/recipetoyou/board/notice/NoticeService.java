@@ -16,4 +16,8 @@ public interface NoticeService {
 
 	public List<NoticeVO> noticeFrequencyList(PagingVO vo);
 
+	public int noticeOneToOneCount(PagingVO vo);
+
+	public List<NoticeINQVO> noticeOneToOneist(PagingVO vo);
+
 }

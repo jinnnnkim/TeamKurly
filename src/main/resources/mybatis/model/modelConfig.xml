@@ -74,6 +74,7 @@
 		<typeAlias type="kr.co.recipetoyou.board.recipe.RecipeReviewVO" alias="recipeReviewVO"/>
 		<typeAlias type="kr.co.recipetoyou.board.notice.NoticeVO" alias="noticeVO"/>
 		<typeAlias type="kr.co.recipetoyou.board.notice.NoticeFAQVO" alias="noticeFAQVO"/>
+		<typeAlias type="kr.co.recipetoyou.board.notice.NoticeINQVO" alias="noticeINQVO"/>
 
 	</typeAliases>
 </configuration> 
