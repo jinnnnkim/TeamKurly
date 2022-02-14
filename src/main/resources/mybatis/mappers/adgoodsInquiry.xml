@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.adgoodsInquiry"> <!-- adgoodsInquiry.xml의 네임스페이스 지정 -->
+
+	<resultMap type="adInquiryVO" id="adInquiryResult">	
+		<result property="prod_inq_code" column="prod_inq_code"/>
+		<result property="prod_code" column="prod_code"/>
+		<result property="user_id" column="user_id"/>
+		<result property="inq_title" column="inq_title"/>
+		<result property="inq_content" column="inq_content"/>
+		<result property="inq_reg_date" column="inq_reg_date"/>
+		<result property="inq_status" column="inq_status"/>
+		<result property="inq_secret" column="inq_secret"/>
+	</resultMap>
+
+	<!-- 페이지 정보를 10개씩 가져오기 -->
+	<select id="listPage" resultMap="adInquiryResult">
+		<![CDATA[
+			select * 
+			from tb_prod_inq
+			where rownum #{page} <= 10
+		]]>
+	</select>
+	
+	<!-- 전체 상품 문의 목록 조회 -->
+	<select id="getInquiryList" resultMap="adInquiryResult">
+		<![CDATA[
+			select * from(
+				select rownum AS rn, prod_inq_code, prod_code, inq_title, inq_status, user_id, inq_reg_date
+				from tb_prod_inq
+				where
+		]]>
+			<if test="title != null"> inq_title like '%'||#{title}||'%' and </if>
+			<if test="user_id != null"> user_id '%'||#{user_id}||'%' and </if>
+			<if test="content != null"> inq_content like '%'||#{inq_content}||'%' and </if>
+		<![CDATA[
+			rownum <= #{page} * #{pageSize} 
+			)			
+			where rn > (#{page}-1) * #{pageSize} AND rn <= #{page} * #{pageSize}
+		]]>
+	</select>
+	
+	<!-- 문의 상세 정보 -->
+	<select id="getInquiryDetail" resultMap="adInquiryResult">
+		<![CDATA[
+			select * from tb_prod_inq
+			where prod_inq_code = #{prod_inq_code}
+		]]>
+	</select>
+	
+	<!-- 총 문의 수 -->
+	<select id="getInquiryAllCount" resultType="int">
+		select count(*) from tb_prod_inq
+			<if test="title != null"> inq_title like '%'||#{title}||'%'</if>
+			<if test="user_id != null"> user_id '%'||#{user_id}||'%'</if>
+			<if test="content != null"> inq_content like '%'||#{inq_content}||'%'</if>
+	</select>
+	
+	<!-- 검색어에 맞는 문의 수 구하기 -->
+	<select id="getInquiryCount">
+		select count(prod_inq_code) from tb_prod_inq where
+			<choose>
+				<when test="title != null">
+					inq_title like '%'||#{title}||'%'
+				</when>
+				<when test="user_id != null">
+					user_id like '%'||#{user_id}||'%'
+				</when>
+				<when test="content != null">
+					inq_content like '%'||#{inq_content}||'%'
+				</when>
+			</choose>
+	</select>
+</mapper>

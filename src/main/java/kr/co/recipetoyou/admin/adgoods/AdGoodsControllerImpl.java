@@ -85,10 +85,12 @@ public class AdGoodsControllerImpl implements AdGoodsController {
 		String cateList = objm.writeValueAsString(list);
 		
 		int cnt = adGoodsService.prodCount(vo);
+		int searchcnt = adGoodsService.countSearch(vo);
 		
 		if(!prodList.isEmpty()) {
 			mav.addObject("prodList", prodList);
 			mav.addObject("cnt", cnt);
+			mav.addObject("searchcnt", searchcnt);
 			mav.addObject("cateList", cateList);
 		}else {
 			mav.addObject("listCheck", "empty");
@@ -246,11 +248,6 @@ public class AdGoodsControllerImpl implements AdGoodsController {
 		//이미지 파일 체크
 		for(MultipartFile multipartFile : uploadFile) {
 			
-			logger.info("-----------------------------");
-			logger.info("파일 이름 : " + multipartFile.getOriginalFilename());
-			logger.info("파일 타입 : " + multipartFile.getContentType());
-			logger.info("파일 크기 : " + multipartFile.getSize());
-			
 			File checkfile = new File(multipartFile.getOriginalFilename());
 			String filetype = null;
 			
@@ -269,7 +266,6 @@ public class AdGoodsControllerImpl implements AdGoodsController {
 				return new ResponseEntity<List<AdgoodsImgVO>>(list, HttpStatus.BAD_REQUEST);		
 			}
 		}//for
-		
 		
 		/*너무 많은 파일이 한 곳에 모여있지 않도록 날짜 폴더 경로 생성*/
 		//날짜 경로 문자열 얻기
@@ -345,7 +341,7 @@ public class AdGoodsControllerImpl implements AdGoodsController {
 	@Override
 	@RequestMapping(value = "/adgoods/deleteFile.do")
 	@ResponseBody
-	public ResponseEntity<String> deleteAction(String fileName) throws Exception {
+	public ResponseEntity<String> deleteAction(String fileName, int prod_code) throws Exception {
 		
 		logger.info("deleteFile......." + fileName);
 		
@@ -366,6 +362,8 @@ public class AdGoodsControllerImpl implements AdGoodsController {
 			file = new File(originFile);
 			
 			file.delete();
+			
+			adGoodsService.removeImage(prod_code);
 			
 			
 		}catch (Exception e) {
@@ -413,13 +411,14 @@ public class AdGoodsControllerImpl implements AdGoodsController {
 	
 	//상품 정보 수정
 	@Override
-	@RequestMapping(value = "/adgoods/adgoodsModify.do")
-	public ModelAndView goodsModify(AdGoodsVO agvo, RedirectAttributes rttr, HttpServletRequest request, HttpServletResponse response) throws Exception {
+	@RequestMapping(value = "/adgoods/adgoodsModify.do", method = {RequestMethod.GET, RequestMethod.POST})
+	public ModelAndView goodsModify(@RequestParam(value = "prod_code") int prod_code, AdGoodsVO agvo, RedirectAttributes rttr, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
 		int result = adGoodsService.goodsModify(agvo);
 		rttr.addFlashAttribute("modify_result", result);
 		
 		ModelAndView mav = new ModelAndView("redirect:listProduct.do");
+		mav.addObject("prod_code", prod_code);
 		return mav;	
 	}
 
@@ -429,6 +428,26 @@ public class AdGoodsControllerImpl implements AdGoodsController {
 	@RequestMapping(value = "/adgoods/adgoodsDelete.do")
 	public ModelAndView goodsDelete(int prod_code, RedirectAttributes rttr, HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
+		
+		List<AdgoodsImgVO> fileList = adGoodsService.getGoodsImage(prod_code);
+		
+		if(fileList != null) {
+			List<Path> pathList = new ArrayList();
+			
+			fileList.forEach(agvo ->{
+				//원본 이미지
+				Path path = Paths.get(UPLOAD_DIR, agvo.getUploadPath(), agvo.getUuid()+"_"+agvo.getFileName());
+				pathList.add(path);
+				
+				//썸네일 이미지
+				path = Paths.get(UPLOAD_DIR, agvo.getUploadPath(), "s_"+agvo.getUuid()+"_"+agvo.getFileName());
+				pathList.add(path);
+			});
+			
+			pathList.forEach(path ->{
+				path.toFile().delete();
+			});
+		}
 		
 		int result = adGoodsService.goodsDelete(prod_code);
 		rttr.addFlashAttribute("delete_result", result);
@@ -449,10 +468,9 @@ public class AdGoodsControllerImpl implements AdGoodsController {
 		try{ 
 			String fileName = upload.getOriginalFilename(); 
 			byte[] bytes = upload.getBytes(); 
-			String path = UPLOAD_DIR;
-			String ckUploadPath = path + uid + "_" + fileName;
+			String ckUploadPath = UPLOAD_DIR+ uid + "_" + fileName;
 			System.out.println("path:"+ckUploadPath);
-			File folder = new File(path); 
+			File folder = new File(UPLOAD_DIR); 
 			if(!folder.exists()){ 
 				try{ folder.mkdirs(); 
 				}catch(Exception e){ 
@@ -487,8 +505,8 @@ public class AdGoodsControllerImpl implements AdGoodsController {
 	@RequestMapping(value="/adgoods/ckimageSubmit.do")
 	public void ckSubmit(@RequestParam(value="uid") String uid , @RequestParam(value="fileName") String fileName 
 			, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{ 
-		String path = UPLOAD_DIR;
-		String sDirPath = path + uid + "_" + fileName; 
+		
+		String sDirPath = UPLOAD_DIR + uid + "_" + fileName; 
 		File imgFile = new File(sDirPath); 
 		if(imgFile.isFile()){ 
 			byte[] buf = new byte[1024]; 

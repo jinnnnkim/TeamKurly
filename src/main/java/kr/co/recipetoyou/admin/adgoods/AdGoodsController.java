@@ -1,6 +1,6 @@
 package kr.co.recipetoyou.admin.adgoods;
 
-import java.io.IOException;
+import java.io.IOException; 
 
 import java.sql.Date;
 import java.util.List;
@@ -50,7 +50,7 @@ public interface AdGoodsController {
 	public ResponseEntity<List<AdgoodsImgVO>> uploadAction(@RequestParam MultipartFile[] uploadFile) throws Exception; 
 	
 	//이미지 삭제
-	public ResponseEntity<String> deleteAction(String fileName) throws Exception;
+	public ResponseEntity<String> deleteAction(String fileName, int prod_code) throws Exception;
 	
 	//이미지 출력
 	public ResponseEntity<byte[]> getadGoodsImage(String fileName) throws Exception;
@@ -59,7 +59,7 @@ public interface AdGoodsController {
 	public ResponseEntity<List<AdgoodsImgVO>> getImageList(int prod_code) throws Exception;
 	
 	//상품 정보 수정
-	public ModelAndView goodsModify(AdGoodsVO agvo, RedirectAttributes rttr, HttpServletRequest request, HttpServletResponse response) throws Exception;
+	public ModelAndView goodsModify(@RequestParam(value = "prod_code") int prod_code, AdGoodsVO agvo, RedirectAttributes rttr, HttpServletRequest request, HttpServletResponse response) throws Exception;
 	
 	
 	//상품 정보 삭제

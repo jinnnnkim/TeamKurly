@@ -38,10 +38,6 @@
 }
 
 
-.order_date_wrap {
-
-	padding-top: 25px;
-}
 .order_date {
 	color: #ddd;
 	font-weight: 700;
@@ -99,4 +95,10 @@
 	line-height: 32px;
 	padding-left: 28px;
 	
+}
+
+.image_wrap img{
+	display: block;
+	height: 100px;
+	width: 100px;
 }

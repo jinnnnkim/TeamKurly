@@ -2,7 +2,7 @@ package kr.co.recipetoyou.util;
 
 import java.util.Arrays;
 
-
+import kr.co.recipetoyou.admin.adgoods.Inquiry.AdInquiryVO;
 import kr.co.recipetoyou.util.PageMaker;
 
 public class PagingVO {
@@ -18,7 +18,20 @@ public class PagingVO {
 		private String type;	//검색할 타입
 		private String[] typeArr;	//검색 타입 배열
 		private int cateCode;
-		 
+		private int recipe_idx;
+		private int prod_code;
+		private String prod_name;
+		
+		private String title;
+		private String user_id;
+		private String content;
+		private int faq_cate_code;
+		
+		
+		
+		private int prod_inq_code;
+		
+
 		public PagingVO() {
 			this.page = 1;
 			this.pageSize = 10;
@@ -107,12 +120,36 @@ public class PagingVO {
 			this.cateCode = cateCode;
 		}
 		
+		public int getRecipe_idx() {
+			return recipe_idx;
+		}
+
+		public void setRecipe_idx(int recipe_idx) {
+			this.recipe_idx = recipe_idx;
+		}
+		
+		public int getProd_inq_code() {
+			return prod_inq_code;
+		}
+
+		public void setProd_inq_code(int prod_inq_code) {
+			this.prod_inq_code = prod_inq_code;
+		}
+
+		public int getFaq_cate_code() {
+			return faq_cate_code;
+		}
+
+		public void setFaq_cate_code(int faq_cate_code) {
+			this.faq_cate_code = faq_cate_code;
+		}
+
 		//toString()
 		@Override
 		public String toString() {
 			System.out.println("page"+page);	
 			System.out.println("pageSize"+pageSize);
-		return "PagingVO [page=" + page + ", pageSize=" + pageSize + ",keyword=" + keyword + ",type="+type+",cateCode="+cateCode +"]";
+		return "PagingVO [page=" + page + ", pageSize=" + pageSize + ",keyword=" + keyword + ",type="+type+",cateCode="+cateCode +",faq_cate_code="+faq_cate_code+"]";
 		}
 
 }

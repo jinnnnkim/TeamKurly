@@ -44,10 +44,9 @@
 		</ul>
 	</div>
 	
-	<form action="${contextPath}/adgoods/adgoodsModify.do" method="post" id="modifyForm">
-	<input type="hidden" name="prod_code" value="${goodsVO.prod_code }">
-	<!-- 수정(UPDATE) 쿼리문에서 PROD_CODE가 필요하기 때문에 hidden 태그로 추가 -->
-	
+	<form action="${contextPath}/adgoods/adgoodsModify.do" method="post" id="modifyForm" enctype="multipart/form-data">
+	<input type="hidden" name="prod_code" value="${goodsVO.prod_code }" class="prod_code">
+	<!-- 수정(UPDATE) 쿼리문에서 PROD_CODE가 필요하기 때문에 hidden 태그로 추가 -->	
 	<table align="center">
 	<tbody>
 		<tr>
@@ -71,8 +70,8 @@
 										</select>
 								
 									<label>2차 분류</label>
-										<select class="category2">
-											<option selected="selected" value="none" name="cateCode"></option>
+										<select class="category2" name="cateCode">
+											<option selected="selected"></option>
 										</select>
 								
 											
@@ -125,12 +124,13 @@
 									<div class="file_div">
 											<label for="fileItem" class="input-file-btn">이미지 찾기</label>
 											<!-- <button type="button" class="file_button btn">이미지 찾기</button> -->
-											<!-- <input type="file"  multiple="multiple" id="fileItem" name="file" name='uploadFile'> -->
+											<input type="file"  multiple="multiple" id="fileItem" name="uploadFile">
 											<div id="uploadArea">
 											<!-- <div class="preview"><img id="goodsImg" alt="" src="" width="300px" height="300px"></div> -->
 											
 											</div>
-									</div>		
+									</div>	
+									
 								</td>
 							</tr>
 							<tr>
@@ -239,8 +239,7 @@
 
 	<script type="text/javascript">
 	
-	$(document).ready(function(){
-		
+	
 		/*유통기한 입력 위한 캘린더 위젯 적용*/
 
 		/* 설정 */
@@ -286,11 +285,13 @@
 			cate1Array.push(cate1Obj);
 		}
 	}
+		
 		let cateSelect1 = $("select.category1");
 		
 		for(let i=0; i<cate1Array.length; i++){
 			cateSelect1.append("<option value='"+cate1Array[i].cateCode+"'>" + cate1Array[i].cateName + "</option>");
 		}
+		
 		
 		$(document).on("change", "select.category1", function(){
 			let cate2Array = new Array();
@@ -313,27 +314,30 @@
 			let cateSelect2 = $("select.category2");
 			
 			cateSelect2.children().remove();
+
 			
-			$("option:selected", this).each(function(){
+			$("option:selected",this).each(function(){
 				
-				let selectVal = $(this).val();
+				var selectVal = $(this).val();
 				cateSelect2.append("<option value='" + selectVal + "'>전체</option>");
-			})
-			
-			for(let i=0; i<cate2Array.length; i++){
-				if(selectVal == cate2Array[i].cateParent){
+
+				for(let i=0; i<cate2Array.length; i++){
+					if(selectVal == cate2Array[i].cateParent){
+						
+						cateSelect2.append("<option value='"+cate2Array[i].cateCode+"'>" + cate2Array[i].cateName + "</option>");
+					}
 					
-					cateSelect2.append("<option value='"+cate2Array[i].cateCode+"'>" + cate2Array[i].cateName + "</option>");
 				}
-				
-			}
+
+			});
+
 		});
-		
-		
 		
 		let select_cateCode = '${goodsVO.cateCode}';
 		let select_cateParent = '${goodsVO.cateParent}';
 		let select_cateName = '${goodsVO.cateName}';
+		
+		//alert("select_cateCode"+select_cateCode +" "+select_cateParent+" "+select_cateName);
 		
 		if(select_cateParent != null && select_cateParent != ''){
 			$(".category1").val(select_cateParent);
@@ -344,10 +348,8 @@
 			$(".category1").val(select_cateCode);
 			$(".category2").append("<option value='"+ select_cateCode + "' selected='selected'>전체</option>");
 		}
+					
 		
-});
-	
-
 		/* 이미지 정보 호출 */
 		let prod_code = '<c:out value="${goodsVO.prod_code}"/>';
 		let uploadArea = $("#uploadArea");
@@ -374,11 +376,19 @@
 			str += "<div id='result_card'";
 			str += "data-path='" + obj.uploadPath + "' data-uuid='" + obj.uuid + "' data-filename='" + obj.fileName + "'";
 			str += ">";
-			str += "<img src='/adgoods/getImageInfo.do?fileName=" + fileCallPath +"'>";
+			str += "<img src='${contextPath}/adgoods/getImageInfo.do?fileName=" + fileCallPath +"'>";
+			str += "<div class='imgDeleteBtn' data-file='" + fileCallPath + "'>x</div>";
+			str += "<input type='hidden' name='imageList[0].fileName' value='"+ obj.fileName +"'>";
+			str += "<input type='hidden' name='imageList[0].uuid' value='"+ obj.uuid +"'>";
+			str += "<input type='hidden' name='imageList[0].uploadPath' value='"+ obj.uploadPath +"'>";	
 			str += "</div>";
 			
 			uploadArea.html(str);
 		});	
+	});
+	
+
+		
 											
 		/* 삭제 버튼 */
 		$("#deleteBtn").on("click", function(e){
@@ -391,10 +401,8 @@
 			moveForm.attr("action", "${contextPath}/adgoods/adgoodsDelete.do");
 			moveForm.attr("method", "post");
 			moveForm.submit();
-		}) 
+		}); 
 		
-	
-
 /* 수정 버튼 */
 $("#saveBtn").on("click", function(e){
 			
@@ -416,7 +424,11 @@ $("#saveBtn").on("click", function(e){
 
 	/* 체크 대상 변수 */
 
-	let cateCode = $("select[name='cateCode']").val();
+	
+	let cateCode = $("category2.select option[name='cateCode']").val();
+	
+	//let cateCode = $("select[name='cateCode']").val();
+	alert(category2.select);
 	let name = $("input[name='prod_name']").val();
 	let content = $("input[name='prod_content']").val();
 	let price = $("input[name='prod_price']").val();
@@ -541,6 +553,133 @@ $("#saveBtn").on("click", function(e){
 
 }); 
 		
+	/* 이미지 삭제 버튼 동작 */
+	$("#uploadArea").on("click", ".imgDeleteBtn", function(e){
+		deleteFile();
+	});
+	
+	/* 파일 삭제 메서드 */
+	/*function deleteFile(){
+		$("#result_card").remove();
+	}*/
+	
+	/* 파일 삭제 메서드 */
+	function deleteFile(){
+		
+		let _prod_code = $(".prod_code").val();
+		
+		let targetFile = $(".imgDeleteBtn").data("file");
+		
+		let targetDiv = $("#result_card");
+		
+		$.ajax({
+			
+			url : '${contextPath}/adgoods/deleteFile.do',
+			//contentType : false,
+			data : {fileName : targetFile, prod_code : _prod_code},
+			dataType : 'text',
+			type : 'POST',
+			success : function(result){
+				console.log(result);
+				
+				targetDiv.remove();
+				$("input[type='file']").val("");
+			},
+			
+			error : function(result){
+				
+				console.log(result);
+				alert("파일을 삭제하지 못하였습니다.")
+			}
+		});
+	}
+	
+	/* 이미지 업로드 */
+	$("input[type='file']").on("change", function(e){
+		
+		/* 이미지 존재시 삭제 */
+		/*if($("#result_card").length>0){
+			deleteFile();
+		}*/
+		
+		let formData = new FormData();	//첨부 파일을 서버로 전송하기 위한 가상의 <form>태그
+		let fileInput = $('input[name="uploadFile"]');
+		let fileList = fileInput[0].files;
+		let fileObj = fileList[0];
+	
+		
+		if(!fileChk(fileObj.name, fileObj.size)){
+			return false;
+		}
+
+
+		formData.append("uploadFile", fileObj);
+			
+			$.ajax({
+				
+				url : '${contextPath}/adgoods/uploadAction.do',	//서버로 요청을 보낼 url
+				processData : false,			//서버로 전송할 데이터를 queryString 형태로 변환할지 여부
+				contentType : false,			//서버로 전송되는 데이터의 content-type
+				data : formData,				//서버로 전송할 데이터
+				type : 'POST',					//서버 요청 타입(GET, POST)
+				dataType : 'json',				//서버로부터 반환받을 데이터 타입
+				success : function(result){
+					console.log(result);
+					showUploadImage(result);
+				},
+				error : function(result){
+					//alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+					alert("에러");
+					}
+			});
+	}); 
+	
+	/* 파일 형식 체크 */
+	 
+	let regex = new RegExp("(.*?)\.(jpg|png)$"); //.jpg, .png 업로드 형식으로 지정
+	let maxSize = 1048576; //1MB
+
+	function fileChk(fileName, fileSize){
+		
+		if(fileSize >= maxSize ){
+			alert("파일 사이즈 초과");
+			return false;
+		}
+		
+		if(!regex.test(fileName)){
+			alert("올바른 파일 형식이 아닙니다.");
+			return false;
+		}
+		
+		return true;
+	}
+	
+	/* 이미지 출력 */
+	function showUploadImage(uploadResultArr){
+		
+		//전달받은 데이터 체크
+		if(!uploadResultArr || uploadResultArr.length == 0){return}
+		
+		let uploadResult = $("#uploadArea");
+		
+		let obj = uploadResultArr[0];
+		
+		let str = "";
+		
+		//let fileCallPath = encodeURIComponent(obj.uploadPath.replace(/\\/g, '/') + "/s_" + obj.uuid + "_" + obj.fileName);
+		let fileCallPath = encodeURIComponent(obj.uploadPath + "/s_" + obj.uuid + "_" + obj.fileName);
+		
+		str += "<div id='result_card'>";
+		str += "<img src='${contextPath}/adgoods/getImageInfo.do?fileName=" + fileCallPath +"'>";
+		str += "<div class='imgDeleteBtn' data-file='" + fileCallPath + "'>x</div>";
+		str += "<input type='hidden' name='imageList[0].fileName' value='"+ obj.fileName +"'>";
+		str += "<input type='hidden' name='imageList[0].uuid' value='"+ obj.uuid +"'>";
+		str += "<input type='hidden' name='imageList[0].uploadPath' value='"+ obj.uploadPath +"'>";
+		str += "</div>";		
+		
+			uploadResult.append(str); 
+		
+	}
 		
 </script>
 	

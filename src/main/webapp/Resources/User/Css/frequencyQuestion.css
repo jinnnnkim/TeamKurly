@@ -112,15 +112,15 @@
 
 .optional .choiceLayer{
 	display:none;
-	position:absolute;
-	right:10px;
-	top:49px;
-	color:#999;
+	position: absolute;
+    right: -370px;
+    top: 20px;
+    color: #999;
 }
 .optional .choiceLayer li{
 	font-size:12px;
 	border:1px solid #f4f4f4;
-	width:150px;
+	width:162px;
 	height:30px;
 	margin-top:-1px;
 	

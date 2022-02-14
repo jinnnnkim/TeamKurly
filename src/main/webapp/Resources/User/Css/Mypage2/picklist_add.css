@@ -37,10 +37,10 @@
 	
 }
 
-#thumbnail {
-	width: 60px;
-	height: 78px;
-	margin-right: 20px;
+#result_card img {
+	width: 100px;
+	height: 100px;
+	padding-right: 10px;
 }
 
 .subject {

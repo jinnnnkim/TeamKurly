@@ -4,6 +4,8 @@ import java.sql.Date;
 
 import org.springframework.stereotype.Component;
 
+import kr.co.recipetoyou.util.PagingVO;
+
 @Component("recipeVO")
 public class RecipeVO {
 	
@@ -16,7 +18,19 @@ public class RecipeVO {
 	private String recipe_img;
 	private String user_id;
 	private Date recipe_reg_date;
+	private PagingVO pagingVO;
 	
+	
+
+
+	public PagingVO getPagingVO() {
+		return pagingVO;
+	}
+
+	public void setPagingVO(PagingVO pagingVO) {
+		this.pagingVO = pagingVO;
+	}
+
 	public RecipeVO() {
 		// TODO Auto-generated constructor stub
 	}

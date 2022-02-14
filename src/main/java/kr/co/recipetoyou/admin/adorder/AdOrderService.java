@@ -12,11 +12,11 @@ public interface AdOrderService {
 
 	int ordCount() throws DataAccessException;
 
-	AdOrdIngVO getOrdIngInfo(int id) throws DataAccessException;
+	AdOrderVO getOrdInfo(int id) throws DataAccessException;
 
-	int removeOrd(String id) throws DataAccessException;
+	int removeOrd(int id) throws DataAccessException;
 
-	void updateOrdInfo(AdOrdIngVO vo) throws DataAccessException;
+//	void updateOrdInfo(AdOrderVO vo) throws DataAccessException;
 
 
 }

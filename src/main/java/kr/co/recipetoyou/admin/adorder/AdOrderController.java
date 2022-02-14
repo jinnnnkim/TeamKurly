@@ -14,14 +14,13 @@ public interface AdOrderController {
 
 	ModelAndView listOrdPageGet(PagingVO vo, HttpServletRequest request, HttpServletResponse response) throws Exception;
 
-	ModelAndView getOrdIngInfo(int id, HttpServletRequest request, HttpServletResponse response) throws Exception;
+	ModelAndView getOrdInfo(int id, HttpServletRequest request, HttpServletResponse response) throws Exception;
 
-	ModelAndView updateOrdInfo(int id, HttpServletRequest request, HttpServletResponse response) throws Exception;
+//	ModelAndView updateOrdInfo(int id, HttpServletRequest request, HttpServletResponse response) throws Exception;
+//
+//	ModelAndView updateAction(AdOrderVO vo, HttpServletRequest request, HttpServletResponse response) throws Exception;
 
-	ModelAndView updateAction(AdOrdIngVO vo, HttpServletRequest request, HttpServletResponse response) throws Exception;
-
-	ModelAndView removeOrd(String id, HttpServletRequest request, HttpServletResponse response) throws Exception;
-
+	ModelAndView removeOrd(int id, HttpServletRequest request, HttpServletResponse response) throws Exception;
 
 
 }

@@ -26,11 +26,16 @@
 				공지사항 <span>레시피 to you의 새로운 소식들과 유용한 정보들을 한곳에서 확인하세요.</span>
 			</h2>
 		</div>
-		<div class="Contsearch">
-			<span>검색어</span> <input type="checkbox" />이름 <input type="checkbox" />제목
-			<input type="checkbox" />내용 <input class="searchInput" type="text" /><a
-				href="#"><i class="fas fa-search"></i></a>
-		</div>
+		<form name="frmSearch">
+			<div class="Contsearch">
+				<span>검색어</span> 
+				<label><input name="type" type="checkbox" value="W"/>이름</label>
+				<label><input name="type" type="checkbox" value="T"/>제목</label>
+				<label><input name="type" type="checkbox" value="C"/>내용</label>
+				<input class="searchInput" type="text" name="keyword"/>
+				<a id="searchBtn"><i class="fas fa-search"></i></a>
+			</div>
+		</form>
 		<div class="noticeTable">
 			<table>
 				<tr class="th">
@@ -40,48 +45,64 @@
 					<th class="writeDate">작성일</th>
 					<th class="hit">조회</th>
 				</tr>
-
-				<tr>
-					<td>공지</td>
-					<td class="titleCont"><a href="${contextPath}/notice/noticeDetail.do">[레시피투유]CJ대한통운
-							택배파업으로 인한 주문 불가지역 안내</a></td>
-					<td>Recipe</td>
-					<td>2022-01-04</td>
-					<td>15</td>
-				</tr>
-
-				<tr>
-					<td>공지</td>
-					<td class="titleCont"><a href="${contextPath}/notice/noticeDetail.do">[레시피투유]CJ대한통운
-							택배파업으로 인한 주문 불가지역 안내</a></td>
-					<td>Recipe</td>
-					<td>2022-01-04</td>
-					<td>15</td>
-				</tr>
-
-				<tr>
-					<td>공지</td>
-					<td class="titleCont"><a href="${contextPath}/notice/noticeDetail.do">[레시피투유]CJ대한통운
-							택배파업으로 인한 주문 불가지역 안내</a></td>
-					<td>Recipe</td>
-					<td>2022-01-04</td>
-					<td>15</td>
-				</tr>
+				<c:forEach var="notice" items="${noticeList}">
+					<tr>
+						<td>${notice.notice_type }</td>
+						<td class="titleCont"><a href="${contextPath}/notice/noticeDetail.do?notice_idx=${notice.notice_idx}">
+						${notice.notice_title }</a></td>
+						<td>${notice.admin_id }</td>
+						<td>${notice.notice_reg_date }</td>
+						<td>${notice.notice_hit }</td>
+					</tr>
+				</c:forEach>
 			</table>
 		</div>
 		<div class="page">
-			<ul>
-				<li><a href="#"><i class="fas fa-angle-double-left"></i></a></li>
-				<li><a href="#"><i class="fas fa-angle-left"></i></a></li>
-				<li><a href="#">1</a></li>
-				<li><a href="#">2</a></li>
-				<li><a href="#">3</a></li>
-				<li><a href="#"><i class="fas fa-angle-double-right"></i></a></li>
-				<li><a href="#"><i class="fas fa-angle-right"></i></a></li>
-			</ul>
-		</div>
+				<ul>
+					<c:if test="${pm.prev }">
+				 		<li><a href="${contextPath}/community/communityRecipeMain.do?page=${pm.startPage-1}">&laquo;</a></li>
+				 	</c:if>
+				 			<!-- 페이지블럭 -->
+					<c:forEach var="idx" begin="${pm.startPage}" end="${pm.endPage}">
+								<!-- 삼항연산자를 사용해서 class로 스타일적용  -->
+						<li ${pm.vo.page == idx? 'class=active':''}>
+						 	<a href="${contextPath}/community/communityRecipeMain.do?page=${idx}">${idx}</a>
+						</li>				
+					</c:forEach>
+				 			<!-- 다음next -->
+				 	<c:if test="${pm.next && pm.endPage > 0}">
+				 		<li><a href="${contextPath}/community/communityRecipeMain.do?page=${pm.endPage+1}">&raquo;</a></li>
+				 	</c:if>
+				</ul>
+			</div>
 	</div>
-
+<script type="text/javascript">
+$(document).ready(function(){
+	var _type = "";
+	var _typeArr = [];
+	var i=0;
+	$("#searchBtn").click(function(){
+		var search = $(".searchSelect input:checkbox[name=type]").each(function(){
+			
+			if(this.checked){
+				_typeArr[i] = this.value;		
+			}
+			i = i+1;
+		});
+		_typeArr= _typeArr.filter(function(item) {
+			  return item !== null && item !== undefined && item !== '';
+			});
+		_type = _typeArr.join("");
+		
+		var frmSearch = document.frmSearch;
+		var type = $(".searchSelect input:checkbox[name=type]");
+		type = _type;
+		frmSearch.method = "post";
+		frmSearch.action = "${contextPath}/notice/notice.do";
+		frmSearch.submit();
+	});
+});
+</script>
 
 </body>
 </html>

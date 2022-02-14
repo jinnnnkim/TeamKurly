@@ -58,24 +58,26 @@
 	</resultMap>
 
 
-	<!-- 주문내역 조회 - 주문 + 주문상품 + 상품 주소 -->
-	<resultMap type="ordingVO" id="orderListResult">
+	<!-- 주문내역 조회 - 주문 + 상품, 주문 상세 내역 조회  -->
+	<resultMap type="myorderVO" id="orderListResult">
 		<result property="ord_code" column="ord_code"/>
+		<result property="prod_code" column="prod_code"/>
 		<result property="status" column="status"/>
 		<result property="price" column="price"/>
 		<result property="ord_date" column="ord_date"/>
 		<result property="prod_name" column="prod_name"/>
+		<result property="prod_content" column="prod_content"/>
+		<result property="prod_discount" column="prod_discount"/>
 	</resultMap>
-	
 	
 	<!-- 상품문의 조회 -->
 	<resultMap type="QnAVO" id="qnaResult">
+		<result property="prod_inq_code" column="prod_inq_code"/>
 		<result property="inq_title" column="inq_title"/>
 		<result property="inq_content" column="inq_content"/>
 		<result property="inq_reg_date" column="inq_reg_date"/>
 		<result property="inq_status" column="inq_status"/>
 	</resultMap>
-	
 	
 	<!-- 상품후기 조회 -->
 	<resultMap type="reviewVO" id="reviewResult">
@@ -84,6 +86,34 @@
 		<result property="content" column="content"/>
 		<result property="attach_img" column="attach_img"/>
 		<result property="prod_name" column="prod_name"/>
+	</resultMap>
+	
+	<resultMap type="userVO" id="userResult">
+		<result property="user_id" column="user_id" />
+		<result property="user_pw" column="user_pw"/>
+		<result property="user_name" column="user_name"/>
+		<result property="user_email" column="user_email"/>
+		<result property="user_phone" column="user_phone"/>
+		<result property="user_addr" column="user_addr"/>
+		<result property="user_gender" column="user_gender"/>
+		<result property="user_birth" column="user_birth"/>
+		<result property="recommendId" column="recommendId"/>
+		<result property="join_event" column="join_event"/>
+		<result property="info_agree" column="info_agree"/>
+		<result property="sms_agree" column="sms_agree"/>
+		<result property="email_agree" column="email_agree"/>
+		<result property="join_date" column="join_date"/>
+		<result property="user_grade" column="user_grade"/>
+		<result property="user_point" column="user_point"/>
+		<result property="cp_code" column="cp_code"/>
+		<result property="toYou_pass" column="toYou_pass"/>
+	</resultMap>
+	
+	<resultMap type="adGoodsImgVO" id="goodsImgResult">
+		<result property="fileName" column="fileName"/>
+		<result property="prod_code" column="prod_code"/>
+		<result property="uploadPath" column="uploadPath"/>
+		<result property="uuid" column="uuid"/>
 	</resultMap>
 	
 	<!-- id : DAO에서 id를 이용해 해당 SQL문을 호출함 -->
@@ -176,13 +206,38 @@
 	<!-- 주문내역 조회 -->
 	<select id="selectAllOrderList" resultMap="orderListResult">
 		<![CDATA[
-			SELECT tp.PROD_NAME, toi.ORD_CODE, toi.STATUS, toi.PRICE, to2.ORD_DATE 
-			FROM TB_ORD_ING toi, TB_ORDER to2, TB_PROD tp
-			WHERE toi.ORD_CODE = to2.ORD_CODE 
-			AND toi.PROD_CODE = tp.PROD_CODE
+			SELECT tp.PROD_NAME, tp.prod_code, to2.ORD_CODE, to2.STATUS, to2.PRICE, to2.ORD_DATE 
+			FROM  TB_ORDER to2, TB_PROD tp,TB_USERS tu 
+			WHERE tp.ORD_CODE = to2.ORD_CODE
+			AND to2.USER_ID = tu.USER_ID
+			AND tp.PROD_CODE = to2.PROD_CODE 
 		]]>
 	</select>
 
+	<!-- 주문내역 상세 조회 -->
+	<select id="orderDetailList" parameterType="int"  resultMap="orderListResult">
+		<![CDATA[
+			SELECT tp.PROD_NAME, tp.prod_code, tp.PROD_CONTENT, tp.PROD_DISCOUNT,
+					to2.ORD_CODE , to2.PRICE 
+			FROM TB_PROD tp INNER JOIN TB_ORDER to2 
+			ON tp.ORD_CODE = to2.ORD_CODE 
+			WHERE tp.ORD_CODE = #{ord_code}
+			and tp.prod_code = to2.prod_code
+		]]>
+	</select>
+	
+	<!-- 주문 연도별 조회 -->
+	<select id="searchOrderList" parameterType="int"  resultMap="orderListResult">
+		<![CDATA[
+			SELECT tp.PROD_NAME, to2.ORD_CODE, to2.STATUS, to2.PRICE, to2.ORD_DATE
+			FROM TB_ORDER to2 JOIN TB_PROD tp
+			ON to2.ORD_CODE = tp.ORD_CODE
+			JOIN TB_USERS tu
+			ON to2.USER_ID = tu.USER_ID
+			WHERE TO_CHAR(to2.ORD_DATE,'YYYY') = #{ord_date};2022 2021
+		]]>
+	</select>
+	
 	
 	<!-- 상품문의 조회 -->
 	<select id="selectAllQnAList" resultMap="qnaResult">
@@ -190,6 +245,15 @@
 			SELECT * FROM TB_PROD_INQ
 		]]>
 	</select>
+	
+	<!-- 상품문의 삭제 -->
+	<delete id="deleteQnA" parameterType="int">
+		<![CDATA[
+			DELETE FROM TB_PROD_INQ
+			WHERE 
+			PROD_INQ_CODE = #{PROD_INQ_CODE}
+		]]>
+	</delete>
 	
 	<!-- 상품후기 조회 -->
 	<select id="selectAllReviewList" resultMap="reviewResult">
@@ -201,7 +265,26 @@
 	</select>
 	
 	
+	<update id="updateUser" parameterType="userVO">
+		<![CDATA[
+			UPDATE TB_USERS SET
+			USER_PW = #{user_pw} 
+			,USER_NAME = #{user_name} 
+			,USER_EMAIL = #{user_email}
+			,USER_PHONE = #{user_phone} 
+			,USER_ADDR = #{user_addr} 
+			,USER_GENDER = #{user_gender} 
+			,USER_BIRTH = #{user_birth}
+			WHERE USER_ID = #{user_id}
+		]]>
+	</update>
 	
+	<!-- 이미지 정보 얻기 -->
+	<select id="getImageList" resultMap="goodsImgResult">
+		<![CDATA[
+		select * from tb_adgoods_Img where prod_code = #{prod_code}
+		]]>
+	</select>
 	
 	
 	

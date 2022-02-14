@@ -1,6 +1,7 @@
 package kr.co.recipetoyou.admin.adgoods;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -47,6 +48,7 @@ public class AdGoodsDAOImpl implements AdGoodsDAO{
 	@Override
 	public int goodsCount(PagingVO vo) throws DataAccessException {
 		
+	
 		return sqlSession.selectOne(NAMESPACE+".getGoodsCount");
 	}
 
@@ -71,17 +73,14 @@ public class AdGoodsDAOImpl implements AdGoodsDAO{
 		return sqlSession.selectList(NAMESPACE+".cateList");
 	}
 	
-	//상품명 검색
-	@Override
-	public List<AdGoodsVO> listSearch(PagingVO vo) throws Exception {
-		
-		return sqlSession.selectOne(NAMESPACE+".search", vo);
-	}
-
+	//검색 결과 개수
 	@Override
 	public int countSearch(PagingVO vo) throws Exception {
 		
-		return sqlSession.selectOne(NAMESPACE+".countSearch", vo);
+		System.out.println(vo.getKeyword());
+		System.out.println(vo.getCateCode());
+		
+		return sqlSession.selectOne(NAMESPACE+".getSearchCount", vo);
 	}
 	
 	//상품 등록
@@ -112,6 +111,8 @@ public class AdGoodsDAOImpl implements AdGoodsDAO{
 	@Override
 	public int goodsModify(AdGoodsVO agvo) throws Exception {
 		
+		System.out.println(agvo.toString());
+	
 		return sqlSession.update(NAMESPACE+".goodsModify", agvo);
 	}
 
@@ -120,6 +121,16 @@ public class AdGoodsDAOImpl implements AdGoodsDAO{
 	public int goodsDelete(int prod_code) throws Exception {
 		
 		return sqlSession.delete(NAMESPACE+".goodsDelete", prod_code);
+	}
+	
+	//지정 상품 이미지 삭제
+	@Override
+	public void removeImage(int prod_code) throws Exception {
+		
+		System.out.println("prod_codeeeeeeeeeeeee"+prod_code);
+		
+		sqlSession.delete(NAMESPACE+".removeImageAll",prod_code);
+		
 	}
 
 	//재고 관리
@@ -130,8 +141,5 @@ public class AdGoodsDAOImpl implements AdGoodsDAO{
 		
 	}
 
-	
-	
-	
 
 }

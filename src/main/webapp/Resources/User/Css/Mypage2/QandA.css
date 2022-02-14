@@ -49,6 +49,9 @@
 	font-size: 14px;
 }
 
+.no {
+	width: 70px;
+}
 
 .title {
 	width: 520px;
@@ -71,6 +74,10 @@
 
 .QnA_content ul {
 	padding-left: 0px;
+}
+
+.content_no {
+	width: 70px;
 }
 
 .content_title {
@@ -118,19 +125,21 @@
 	display: none;
     font-size: 12px;
     width: 815px;
-    padding: 20px 220px 20px 15px;
+    padding: 20px 220px 20px 82px;
     border-bottom: 1px solid #eee;
 }
 
-#edit {
+#content a {
 	width: 45px;
 	height: 27px;
     font-size: 12px;
     border: 1px solid #5f0080;
+    border-radius: 3px;
     background-color: white;
     color: #5f0080;
+	padding: 5px 10px;
+	margin-left: 5px;
 }
-
 
 
 

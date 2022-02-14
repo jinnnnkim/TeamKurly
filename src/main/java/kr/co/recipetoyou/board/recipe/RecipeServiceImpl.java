@@ -6,6 +6,8 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import kr.co.recipetoyou.util.PagingVO;
+
 @Service("recipeService")
 public class RecipeServiceImpl implements RecipeService{
 	
@@ -13,8 +15,8 @@ public class RecipeServiceImpl implements RecipeService{
 	private RecipeDAO recipeDAO;
 
 	@Override
-	public List<RecipeVO> recipeList() {
-		List<RecipeVO> recipeList = recipeDAO.selectRecipeList();
+	public List<RecipeVO> recipeList(PagingVO vo) {
+		List<RecipeVO> recipeList = recipeDAO.selectRecipeList(vo);
 		return recipeList;
 	}
 
@@ -61,6 +63,27 @@ public class RecipeServiceImpl implements RecipeService{
 	@Override
 	public void updateRecipe(Map recipeMap) {
 		recipeDAO.updateRecipe(recipeMap);
+		
+	}
+
+	@Override
+	public int recipeCount(PagingVO vo) {
+		return recipeDAO.selectRecipeCount(vo);
+	}
+
+	@Override
+	public int recipeReviewCount(int recipe_idx) {
+		return recipeDAO.selectRecipeReviewCount(recipe_idx);
+	}
+
+	@Override
+	public List<RecipeReviewVO> recipeReviewList(PagingVO vo) {
+		return recipeDAO.selectRecipeReviewList(vo);
+	}
+
+	@Override
+	public void addRecipeReview(RecipeReviewVO recipeReviewVO) {
+		recipeDAO.insertRecipeReview(recipeReviewVO);
 		
 	}
 	

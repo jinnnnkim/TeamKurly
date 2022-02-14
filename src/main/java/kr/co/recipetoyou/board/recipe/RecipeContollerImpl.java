@@ -7,8 +7,10 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
@@ -17,13 +19,16 @@ import javax.servlet.ServletException;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -34,11 +39,15 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import kr.co.recipetoyou.user.UserVO;
+import kr.co.recipetoyou.util.PageMaker;
+import kr.co.recipetoyou.util.PagingVO;
+
 @Controller("recipeContoller")
 public class RecipeContollerImpl implements RecipeController{
 
-	private static String ARTICLE_IMAGE_REPO ="C:/workspace_recipeToYou/repo/";
-	
+	private static String ARTICLE_IMAGE_REPO ="C:/workspace_git/src/main/webapp/Resources/Upload";
+
 	private static final Logger logger = LoggerFactory.getLogger("RecipeContollerImpl.class");
 
 	@Autowired
@@ -47,18 +56,42 @@ public class RecipeContollerImpl implements RecipeController{
 	@Autowired
 	private RecipeVO recipeVO;
 
-	@RequestMapping(value="/community/communityRecipeMain.do", method=RequestMethod.GET )
-	public ModelAndView communityRecipeMain(HttpServletRequest request, HttpServletResponse response) throws Exception{
-
-		List<RecipeVO> recipeList = recipeService.recipeList();
+	@RequestMapping(value="/community/communityRecipeMain.do", method= {RequestMethod.GET,RequestMethod.POST} )
+	public ModelAndView communityRecipeMain(PagingVO vo, 
+			HttpServletRequest request, HttpServletResponse response) throws Exception{
+		PageMaker pm = new PageMaker();
+		pm.setVo(vo);
+		String _type = vo.getType();
+		String searchVar = ""; 
+		  if(_type != null) { 
+		  
+		  	vo.setTypeArr(vo.getType().split(",")); 
+		  	for(int i=0;i<vo.getTypeArr().length;i++) { 
+		  		searchVar += vo.getTypeArr()[i]; 
+		  	}
+		  
+		  vo.setType(searchVar); 
+		 }
+		 
+		pm.setTotalCount(recipeService.recipeCount(vo));
+		int cnt = pm.getTotalCount();
+		
+		
+		List<RecipeVO> recipeList = recipeService.recipeList(vo);
+		
 		List<RecipeCateVO> cateTitleList = recipeService.recipeCateTitleList();
 		List<RecipeCateVO> cateDetailList = recipeService.recipeCateDetailList();
+		
+		HttpSession session = request.getSession();
+		UserVO userVO = (UserVO) session.getAttribute("userVO");
 
 		ModelAndView mav = new ModelAndView();
 
 		mav.addObject("recipeList", recipeList);
 		mav.addObject("cateTitleList", cateTitleList);
 		mav.addObject("cateDetailList", cateDetailList);
+		mav.addObject("cnt",cnt);
+		mav.addObject("pm",pm);
 
 		return mav;
 	}
@@ -76,6 +109,10 @@ public class RecipeContollerImpl implements RecipeController{
 		logger.info("cateList: "+cateList);
 
 		model.addAttribute("cateList", cateList);
+		System.out.println("=========write=========");
+		HttpSession session = request.getSession();
+		UserVO userVO = (UserVO) session.getAttribute("userVO");
+		System.out.println(userVO.getUser_id());
 
 		
 		return mav;
@@ -83,7 +120,8 @@ public class RecipeContollerImpl implements RecipeController{
 	}
 	
 	@RequestMapping(value="/community/communityRecipeWriteProcess.do" ,method=RequestMethod.POST)
-	public String communityRecipeWriteProcess(
+	@ResponseBody
+	public ResponseEntity communityRecipeWriteProcess(
 			MultipartHttpServletRequest multipartRequest,
 			HttpServletResponse response) throws Exception{
 		
@@ -94,24 +132,85 @@ public class RecipeContollerImpl implements RecipeController{
 		Enumeration enun = multipartRequest.getParameterNames();
 		while (enun.hasMoreElements()) {
 			String name = (String) enun.nextElement();
+			
+			//if(name.equals("recipe_idx")) recipe_idx = multipartRequest.getParameter(name);
+			
 			String value = multipartRequest.getParameter(name);
+			System.out.println("name:"+name +" | "+"value:"+value);
 			recipeMap.put(name, value);
 		}
 		
-		ModelAndView mav = new ModelAndView();
+		HttpSession session = multipartRequest.getSession();
+		UserVO userVO = (UserVO) session.getAttribute("userVO");
+		System.out.println("write user_id:"+userVO.getUser_id());
+		String user_id = userVO.getUser_id();
+		recipeMap.put("user_id", user_id);
+		
+		String recipe_img = upload(multipartRequest);
+		recipeMap.put("recipe_img", recipe_img);
 		
 		recipeService.addRecipe(recipeMap);
 		
-		return "redirect:/community/communityRecipeMain.do";
+		HttpHeaders responseHeaders = new HttpHeaders(); 
+		responseHeaders.add("Content-Type", "text/html; charset=utf-8");
+		
+		String message;
+		ResponseEntity resEnt = null;
+		
+		try {
+			//서비스 호출
+			message = "<script>";
+			message += " alert('새글을 추가했습니다.');" ;
+			message += " location.href='"+multipartRequest.getContextPath()+"/community/communityRecipeMain.do';";
+			message += "</script>";
+			resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.CREATED);
+			
+		} 
+		catch (Exception e) {
+			
+			message = "<script>";
+			message += " alert('오류가 발생했습니다. 다시 시도해 주세요.');" ;
+			message += " location.href='"+multipartRequest.getContextPath()+"/community/communityRecipeMain.do';";
+			message += "</script>";
+			resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.CREATED);			
+						
+			e.printStackTrace();
+		}
+		
+		return resEnt;
 	}
 
 	@RequestMapping(value="/community/communityRecipeDetail.do", method=RequestMethod.GET )
-	public ModelAndView communityRecipeDetail(@RequestParam("recipe_idx") int recipe_idx, 
+	public ModelAndView communityRecipeDetail(@RequestParam(value = "recipe_idx", required=false) int recipe_idx, PagingVO vo,
 			HttpServletRequest request, HttpServletResponse response) throws Exception{
 		recipeVO = recipeService.recipeDetail(recipe_idx);
+		PageMaker pm = new PageMaker();
+		pm.setVo(vo);
+		
+		pm.setTotalCount(recipeService.recipeReviewCount(recipe_idx));
+		int cnt = pm.getTotalCount();
+		
+		HttpSession session = request.getSession();
+		UserVO userVO = (UserVO) session.getAttribute("userVO");
+		String user_id = "";
+		if(userVO != null) {
+			if(userVO.getUser_id() == null || userVO.getUser_id() == "") {
+				user_id = "";
+			}else {
+				System.out.println("write user_id:"+userVO.getUser_id());
+				user_id = userVO.getUser_id();
+			}
+		}
+		
+		
+		List<RecipeReviewVO> recipeReviewVO = recipeService.recipeReviewList(vo);
 		
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("recipeVO", recipeVO);
+		mav.addObject("recipeReviewVO",recipeReviewVO);
+		mav.addObject("cnt",cnt);
+		mav.addObject("user_id",user_id);
+		mav.addObject("pm",pm);
 		
 		return mav;
 	}
@@ -135,31 +234,84 @@ public class RecipeContollerImpl implements RecipeController{
 		return mav;
 	}
 	
+	@RequestMapping(value="/community/communityRecipeReviewWrite.do", method=RequestMethod.POST )
+	public String communityRecipeReviewWrite(RecipeReviewVO recipeReviewVO,
+			HttpServletRequest request, HttpServletResponse response) throws Exception{
+		
+		
+		HttpSession session = request.getSession();
+		UserVO userVO = (UserVO) session.getAttribute("userVO");
+		recipeReviewVO.setUser_id(userVO.getUser_id());
+		
+		recipeService.addRecipeReview(recipeReviewVO);
+		
+		ModelAndView mav = new ModelAndView();
+
+		return "redirect:/community/communityRecipeDetail.do?recipe_idx="+recipeReviewVO.getRecipe_idx();
+	}
+	
 	@RequestMapping(value="/community/communityRecipeModifyProcess.do" ,method=RequestMethod.POST)
-	public String communityRecipeModifyProcess(
+	@ResponseBody
+	public ResponseEntity communityRecipeModifyProcess(
 			MultipartHttpServletRequest multipartRequest,
 			HttpServletResponse response) throws Exception{
 		
 		multipartRequest.setCharacterEncoding("utf-8");
 		String imageFileName = null;
-		String recipe_idx = null;
+		
 		Map recipeMap = new HashMap();
 		Enumeration enun = multipartRequest.getParameterNames();
 		while (enun.hasMoreElements()) {
 			String name = (String) enun.nextElement();
-			if(name.equals("recipe_idx")) recipe_idx = multipartRequest.getParameter(name);
+			
+			//if(name.equals("recipe_idx")) recipe_idx = multipartRequest.getParameter(name);
 			
 			String value = multipartRequest.getParameter(name);
+			System.out.println("name:"+name +" | "+"value:"+value);
 			recipeMap.put(name, value);
 		}
 		
-		ModelAndView mav = new ModelAndView();
+		HttpSession session = multipartRequest.getSession();
+		UserVO userVO = (UserVO) session.getAttribute("userVO");
+		System.out.println(userVO.getUser_id());
+		//String user_id = userVO.getUser_id();
+		
+		String recipe_img = upload(multipartRequest);
+		System.out.println("=====================================\n 이미지명:"+recipe_img);
+		recipeMap.put("recipe_img", recipe_img);
 		
 		recipeService.updateRecipe(recipeMap);
 		
+		HttpHeaders responseHeaders = new HttpHeaders(); 
+		responseHeaders.add("Content-Type", "text/html; charset=utf-8");
 		
-		return "redirect:/community/communityRecipeDetail.do?recipe_idx="+recipeMap.get("recipe_idx");
+		String message;
+		ResponseEntity resEnt = null;
+		
+		try {
+			//서비스 호출
+			message = "<script>";
+			message += " alert('글을 업데이트 했습니다.');" ;
+			message += " location.href='"+multipartRequest.getContextPath()+"/community/communityRecipeMain.do';";
+			message += "</script>";
+			resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.CREATED);
+			
+		} 
+		catch (Exception e) {
+			
+			message = "<script>";
+			message += " alert('오류가 발생했습니다. 다시 시도해 주세요.');" ;
+			message += " location.href='"+multipartRequest.getContextPath()+"/community/communityRecipeMain.do';";
+			message += "</script>";
+			resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.CREATED);			
+						
+			e.printStackTrace();
+		}
+		
+		return resEnt;
 	}
+	
+
 	
 	@Override
 	public ModelAndView communityRecipeModifyProcess(int recipe_idx, HttpServletRequest request,
@@ -185,6 +337,12 @@ public class RecipeContollerImpl implements RecipeController{
 		PrintWriter printWriter = null; 
 		response.setCharacterEncoding("utf-8");
 		response.setContentType("text/html;charset=utf-8"); 
+		/*차후 번호 붙여서 파일 저장하기
+		 * Enumeration enun = multiFile.getParameterNames(); String recipe_idx = null;
+		 * while (enun.hasMoreElements()) { String name = (String) enun.nextElement();
+		 * if(name.equals("recipe_idx")) recipe_idx = multiFile.getParameter(name); }
+		 * System.out.println("idx:"+recipe_idx);
+		 */
 		try{ 
 			String fileName = upload.getOriginalFilename(); 
 			byte[] bytes = upload.getBytes(); 
@@ -257,117 +415,27 @@ public class RecipeContollerImpl implements RecipeController{
 		}
 
 	}
-	/*
-	@Override
-	@RequestMapping(value = "/board/addNewArticle.do", method = RequestMethod.POST)
-	@ResponseBody
-	public ResponseEntity addNewArticle(MultipartHttpServletRequest multipartRequest, HttpServletResponse response)
-			throws Exception {
-		
-		multipartRequest.setCharacterEncoding("utf-8");
-		String imageFileName = null;
-		
-		Map articleMap = new HashMap();
-		Enumeration enun = multipartRequest.getParameterNames();
-		while (enun.hasMoreElements()) {
-			String name = (String) enun.nextElement();
-			String value = multipartRequest.getParameter(name);
-			articleMap.put(name, value);
-		}
-		
-		HttpSession session = multipartRequest.getSession();
+	private String upload(MultipartHttpServletRequest multipartRequest) throws ServletException, IOException {
+			String fileName = null;
+			Iterator<String> fileNames = multipartRequest.getFileNames();
+				fileName = fileNames.next();
+				MultipartFile mFile = multipartRequest.getFile(fileName);
+				String originalFilename = mFile.getOriginalFilename();
+				
+				if (originalFilename != "" && originalFilename != null) {
+					fileName = originalFilename;
+					File file = new File(ARTICLE_IMAGE_REPO +"\\"+ fileName);
+					if(mFile.getSize() != 0) {		// File Null Check
+						if (!file.exists() ) {		// 경로상에 존재하지 않는다면
+							file.getParentFile().mkdirs();	//경로에 해당하는 디렉토리들을 생성
+							mFile.transferTo(new File(ARTICLE_IMAGE_REPO +"\\"+ originalFilename));  //임시로
+						}															// 저장한 MultipartFile을 실제 파일로 전송
+					}
+			}
+			
 	
-	
-		 UserVO userVO = (UserVO) session.getAttribute("userVO"); String id =
-		 userVO.getUser_id(); articleMap.put("id", id);
-		 
-		
-		String parentNO = (String) session.getAttribute("parentNO");
-		articleMap.put("parentNO", (parentNO == null ? 0 : parentNO));
-		
-		List<String> fileList = upload(multipartRequest);
-		List<ImageVO> imageFileList = new ArrayList<>();
-		if (fileList != null && fileList.size() != 0) {
-			for (String fileName : fileList) {
-				ImageVO imageVO = new ImageVO();
-				imageVO.setImageFileName(fileName);
-				imageFileList.add(imageVO);
-			}
-			articleMap.put("imageFileList", imageFileList);
+			return fileName;
 		}
-		
-		HttpHeaders responseHeaders = new HttpHeaders(); 
-		responseHeaders.add("Content-Type", "text/html; charset=utf-8");
-		
-		String message;
-		ResponseEntity resEnt = null;
-		
-		try {
-			//서비스 호출
-			int articleNO = boardService.addNewArticle(articleMap);
-			
-			if (imageFileList != null && imageFileList.size() != 0) {
-				for (ImageVO imageVO : imageFileList) {
-					imageFileName = imageVO.getImageFileName();
-					File srcFile = new File(ARTICLE_IMAGE_REPO +"\\"+ "temp" +"\\"+ imageFileName);
-					File destFile = new File(ARTICLE_IMAGE_REPO +"\\"+ articleNO);
-					FileUtils.moveFileToDirectory(srcFile, destFile, true);
-				}
-			}
-			
-			message = "<script>";
-			message += " alert('새글을 추가했습니다.');" ;
-			message += " location.href='"+multipartRequest.getContextPath()+"/board/listArticles.do';";
-			message += "</script>";
-			resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.CREATED);
-			
-		} 
-		catch (Exception e) {
-			if (imageFileList != null && imageFileList.size() != 0) {
-				for (ImageVO imageVO : imageFileList) {
-					imageFileName = imageVO.getImageFileName();
-					File srcFile = new File(ARTICLE_IMAGE_REPO +"\\"+ "temp" +"\\"+ imageFileName);
-					srcFile.delete();
-				}
-			}
-			
-			message = "<script>";
-			message += " alert('오류가 발생했습니다. 다시 시도해 주세요.');" ;
-			message += " location.href='"+multipartRequest.getContextPath()+"/board/articleForm.do';";
-			message += "</script>";
-			resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.CREATED);			
-						
-			e.printStackTrace();
-		}
-		
-		return resEnt;
-	}
-	
-	private List<String> upload(MultipartHttpServletRequest multipartRequest) throws ServletException, IOException {
-		
-		List<String> fileList = new ArrayList<>();
-		Iterator<String> fileNames = multipartRequest.getFileNames();
-		while (fileNames.hasNext()) {
-			String fileName = fileNames.next();
-			MultipartFile mFile = multipartRequest.getFile(fileName);
-			String originalFilename = mFile.getOriginalFilename();
-			
-			if (originalFilename != "" && originalFilename != null) {
-				fileList.add(originalFilename);
-				File file = new File(ARTICLE_IMAGE_REPO +"\\"+ fileName);
-				if(mFile.getSize() != 0) {		// File Null Check
-					if (!file.exists() ) {		// 경로상에 존재하지 않는다면
-						file.getParentFile().mkdirs();	//경로에 해당하는 디렉토리들을 생성
-						mFile.transferTo(new File(ARTICLE_IMAGE_REPO +"\\"+ "temp" +"\\"+ originalFilename));  //임시로
-					}															// 저장한 MultipartFile을 실제 파일로 전송
-				}
-			}
-		}
-		
-
-		return fileList;
-	}
-	*/
 
 }
 

@@ -42,21 +42,21 @@ public class AdOrderDAOImpl implements AdOrderDAO {
 
 	//결제 취소
 	@Override
-	public int deleteOrd(@RequestParam("id") String id) throws DataAccessException {	
+	public int deleteOrd(@RequestParam("id") int id) throws DataAccessException {	
 		int result = sqlSession.delete("mapper.adorder.deleteOrd", id);
 		return result;
 	}
 	
 	//주문 상세 정보 조회
 	@Override
-	public AdOrdIngVO readOrdIng(int id) throws DataAccessException {
-		return sqlSession.selectOne("mapper.adorder.readOrdIng", id);
+	public AdOrderVO readOrd(int id) throws DataAccessException {
+		return sqlSession.selectOne("mapper.adorder.readOrd", id);
 	}
 		
 	//주문 정보 수정
-	@Override
-	public void updateOrdIng(AdOrdIngVO vo) throws DataAccessException {
-		sqlSession.update("mapper.adorder.updateOrdIng", vo);
-	} 
+//	@Override
+//	public void updateOrdIng(AdOrderVO vo) throws DataAccessException {
+//		sqlSession.update("mapper.adorder.updateOrdIng", vo);
+//	} 
 
 }

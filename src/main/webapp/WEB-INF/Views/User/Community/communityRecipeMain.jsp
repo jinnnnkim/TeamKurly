@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -30,42 +31,53 @@
 			</div>
 			
 			<div class="searchBar">
+			<form name="frmSearch">
 				<div class="searchSelect">
 					<span>·&nbsp;검색어</span>
-					<label><input type="checkbox"/>이름</label>
-					<label><input type="checkbox"/>제목</label>
-					<label><input type="checkbox"/>내용</label>
+					<label><input name="type" type="checkbox" value="W"/>이름</label>
+					<label><input name="type" type="checkbox" value="T"/>제목</label>
+					<label><input name="type" type="checkbox" value="C"/>내용</label>
+					<input type="hidden" id="arrayParam" name="arrayParam"/>
 				</div>
 				
 				<div class="searchInput">
-					<input type="text"/>
-					<a href="#"><i class="fas fa-search"></i></a>
+					<input type="text" name="keyword"/>
+					<a id="searchBtn"><i class="fas fa-search"></i></a>
 				</div>
+			</form>
 			</div>
 			
 			<div class="cateList">
-				<c:forEach var="titleList" items="${cateTitleList}" varStatus="status" begin="0" end="5" >
-					<div class="cateRow">
-						<span class="cateType">${titleList.recipe_cate}</span>
-						<c:forEach var="cateDetailList" items="${cateDetailList}">
-							<c:if test="${cateDetailList.recipe_cate_parent eq status.count}">
-								<c:choose>
-									<c:when test="${cateDetailList.recipe_cate eq '전체' }">
-										<a class="allCate" href="#none">${cateDetailList.recipe_cate}</a>
-									</c:when>
-									<c:otherwise>
-										<a href="#none">${cateDetailList.recipe_cate}</a>
-									</c:otherwise>
-								</c:choose>
-							</c:if>
-						</c:forEach> 
-					</div>
-					
-				</c:forEach>
+					<c:forEach var="titleList" items="${cateTitleList}" varStatus="status" begin="0" end="5" >
+						<div class="cateRow">
+							<span class="cateType">${titleList.recipe_cate}</span>
+							<c:forEach var="cateDetailList" items="${cateDetailList}" varStatus="status1">
+								<c:if test="${cateDetailList.recipe_cate_parent eq status.count}">
+									<c:choose>
+										
+											<c:when test="${cateDetailList.recipe_cate eq '전체' }">
+											<div class="disInlineBlock">
+												<a class="allCate cateSearch" href="${contextPath}/community/communityRecipeMain.do?cateCode=${cateDetailList.recipe_cate_code}">${cateDetailList.recipe_cate}</a>
+												<input class="code" type="hidden" value="${cateDetailList.recipe_cate_code}"/>
+											</div>
+											</c:when>
+											<c:otherwise>
+											<div class="disInlineBlock">
+												<a href="${contextPath }/community/communityRecipeMain.do?cateCode=${cateDetailList.recipe_cate_code}" class="cateSearch">${cateDetailList.recipe_cate}</a>
+												<input class="code" type="hidden" value="${cateDetailList.recipe_cate_code}"/>
+												</div>
+											</c:otherwise>
+										
+									</c:choose>
+								</c:if>
+							</c:forEach> 
+						</div>
+					</c:forEach>
 			</div>
 				
 			<div class="writeBtn">
-				<a href="${contextPath}/community/communityRecipeWrite.do">글쓰기</a>
+				<a href="javascript:fn_articleForm('${isLogOn}','${contextPath}/login/login.do',
+				'${contextPath}/community/communityRecipeWrite.do')">글쓰기</a>
 			</div>
 			<div class="recipeList">
 				<ul>
@@ -73,7 +85,7 @@
 					<li>
 						<a href="${contextPath }/community/communityRecipeDetail.do?recipe_idx=${list.recipe_idx}">
 							<div class="recipeImg">
-								<img src="/recipetoyou/Resources/User/Img/Notice/market01.jpg">
+								<img src="/recipetoyou/Resources/Upload/${list.recipe_img}">
 							</div>
 							<div class="detail">
 								<span class="recipeTitle">${list.recipe_title}</span>
@@ -98,25 +110,76 @@
 			
 			<div class="page">
 				<ul>
-					<li><a href="#"><i class="fas fa-angle-double-left"></i></a></li>
-					<li><a href="#"><i class="fas fa-angle-left"></i></a></li>
-					<li><a href="#">1</a></li>
-					<li><a href="#">2</a></li>
-					<li><a href="#">3</a></li>
-					<li><a href="#"><i class="fas fa-angle-right"></i></a></li>
-					<li><a href="#"><i class="fas fa-angle-double-right"></i></a></li>
+					<c:if test="${pm.prev }">
+				 		<li><a href="${contextPath}/community/communityRecipeMain.do?page=${pm.startPage-1}">&laquo;</a></li>
+				 	</c:if>
+				 			<!-- 페이지블럭 -->
+					<c:forEach var="idx" begin="${pm.startPage}" end="${pm.endPage}">
+								<!-- 삼항연산자를 사용해서 class로 스타일적용  -->
+						<li ${pm.vo.page == idx? 'class=active':''}>
+						 	<a href="${contextPath}/community/communityRecipeMain.do?page=${idx}">${idx}</a>
+						</li>				
+					</c:forEach>
+				 			<!-- 다음next -->
+				 	<c:if test="${pm.next && pm.endPage > 0}">
+				 		<li><a href="${contextPath}/community/communityRecipeMain.do?page=${pm.endPage+1}">&raquo;</a></li>
+				 	</c:if>
 				</ul>
 			</div>
 		</div>
 	</div>
 	<script>
+	function fn_articleForm(isLogOn,login,recipeWrite) {
+		if (isLogOn != '' && isLogOn != 'false') {
+			location.href=recipeWrite;
+		} 
+		else {
+			alert("로그인 후 글쓰기가 가능합니다.");
+			location.href=login;
+		}
+	}
+	
 	$(document).ready(function(){
-		$(".cateRow a").click(function(){
-			/* $(this).css("background","grey"); */
+		var _type = "";
+		var _typeArr = [];
+		var i=0;
+		$("#searchBtn").click(function(){
+			var search = $(".searchSelect input:checkbox[name=type]").each(function(){
+				
+				if(this.checked){
+					_typeArr[i] = this.value;		
+				}
+				i = i+1;
+			});
+			_typeArr= _typeArr.filter(function(item) {
+				  return item !== null && item !== undefined && item !== '';
+				});
+			_type = _typeArr.join("");
+			
+			var frmSearch = document.frmSearch;
+			var type = $(".searchSelect input:checkbox[name=type]");
+			type = _type;
+			frmSearch.method = "post";
+			frmSearch.action = "${contextPath}/community/communityRecipeMain.do";
+			frmSearch.submit();
+
+			/* $.ajax({
+				type: "post",
+				async: true,
+				url: "http://localhost:8080/recipetoyou/community/communityRecipeMain.do",
+				dataType: "text",
+				data: {type: _type},
+				success: function(result) {
+					
+				},
+				error : function(data, textStatus) {			
+					alert("에러가 발생했습니다.")	
+				},
+				complete : function(data, textStatus) {			
+				}					
+			 }); */
 			
 		});
-			
-		
 	});
 	</script>
 </body>

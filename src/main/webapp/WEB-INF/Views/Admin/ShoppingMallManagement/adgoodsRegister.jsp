@@ -124,7 +124,7 @@
 									<div class="file_div">
 											<label for="fileItem" class="input-file-btn">이미지 찾기</label>
 																<!-- 여러 이미지 선택 허용 -->							
-											<input type="file" multiple="multiple" id="fileItem" name= 'uploadFile'>
+											<input type="file" multiple="multiple" id="fileItem" name= "uploadFile">
 											<div id="uploadArea">
 											<!-- <div class="preview"><img id="goodsImg" alt="" src="" width="300px" height="300px"></div>	 -->
 											<!-- <div id="result_card">
@@ -345,9 +345,11 @@
 
 		
 		//multiple 속성을 부여하여 사용자가 여러 개의 파일을 선택할 수 있도록함.
-		for(let i=0; i<fileList.length; i++){
-			formData.append("uploadFile", fileList[i]);
-		}	
+		//for(let i=0; i<fileList.length; i++){
+			//formData.append("uploadFile", fileList[i]);
+		//}
+		
+		formData.append("uploadFile", fileObj);
 			
 			$.ajax({
 				
@@ -405,7 +407,10 @@
 		
 		str += "<div id='result_card'>";
 		str += "<img src='${contextPath}/adgoods/getImageInfo.do?fileName=" + fileCallPath +"'>";
-		str += "<div class='imgDeleteBtn' data-file='" + fileCallPath + "'>x</div>";	
+		str += "<div class='imgDeleteBtn' data-file='" + fileCallPath + "'>x</div>";
+		str += "<input type='hidden' name='imageList[0].fileName' value='"+ obj.fileName +"'>";
+		str += "<input type='hidden' name='imageList[0].uuid' value='"+ obj.uuid +"'>";
+		str += "<input type='hidden' name='imageList[0].uploadPath' value='"+ obj.uploadPath +"'>";
 		str += "</div>";		
 		
 			uploadResult.append(str); 

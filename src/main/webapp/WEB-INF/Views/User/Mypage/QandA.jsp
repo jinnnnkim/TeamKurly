@@ -25,14 +25,15 @@
 <!-- 파비콘 링크 -->
 <link href="/recipetoyou/Resources/User/Img/Mypage2/KurlyIcon.png" rel="icon"
 	type="image/x-icon" />
+<script type="text/javascript" src="/recipetoyou/Resources/User/Js/Mypage/userQandA.js" charset="UTF-8"></script>
 <body>
+	<form action="" method="post" name="delForm">
 		<div class="content">
 			<div class="review_main">
 				<div class="head">
 					<h2 class="title">상품문의</h2>
 					<ul>
-						<li>· 상품에 대한 문의를 남기는 공간입니다. 해당 게시판의 성격과 다른 글은 사전동의 없이 담당
-							게시판으로 이동될 수 있습니다.</li>
+						<li>· 상품에 대한 문의를 남기는 공간입니다. 해당 게시판의 성격과 다른 글은 사전동의 없이 담당 게시판으로 이동될 수 있습니다.</li>
 						<li>· 배송관련, 주문(취소/교환/환불)관련 문의 및 요청사항은 마이컬리 내
 						<a href="${contextPath}/notice/noticeOneToOneQuestionDetail.do">1:1문의</a>에 남겨주세요.
 						</li>
@@ -41,6 +42,7 @@
 				<!-- head -->
 				<table class="QnA_main">
 					<tr>
+						<th class="no">번호</th>
 						<th class="title">제목</th>
 						<th class="date">작성일</th>
 						<th class="reply">답변상태</th>
@@ -50,6 +52,7 @@
 				<c:forEach var="qnaList" items="${qnaList}">
 				<table class="QnA_content">
 					<tr>
+						<td class="content_no">${qnaList.prod_inq_code}</td>
 						<td class="content_title" onclick="Open()">${qnaList.inq_title}</td>
 						<td class="content_date">${qnaList.inq_reg_date}</td>
 						<td class="content_reply">${qnaList.inq_status}</td>
@@ -57,7 +60,8 @@
 				</table>
 				<div id="content">
 					<span>${qnaList.inq_content}</span>
-					<input type="button" value="수정" id="edit">
+					<a href="" id="btn-edit" onclick="">수정</a>
+					<a href="${contextPath}/remove/QandA.do?prod_inq_code=${qnaList.prod_inq_code}" id="btn-remove" onclick="remove_QnA()">삭제</a>
 				</div>
 				</c:forEach>
 				<!-- QnA_content -->
@@ -74,17 +78,7 @@
 			<!-- review_main -->
 		</div>
 		<!-- content -->
-		
-	<script type="text/javascript">
-		function Open() {
-			if(document.getElementById('content').style.display === 'block') {
-				document.getElementById('content').style.display = 'none';
-		    } 
-			else {
-				document.getElementById('content').style.display = 'block';
-		    }
-		}
-	</script>
+	</form>
 </body>
 </html>
 
