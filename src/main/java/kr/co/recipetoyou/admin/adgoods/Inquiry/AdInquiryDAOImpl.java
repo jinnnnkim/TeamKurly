@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Repository;
 
 import kr.co.recipetoyou.util.PagingVO;
@@ -42,6 +43,20 @@ public class AdInquiryDAOImpl implements AdInquiryDAO{
 		System.out.println("prod_inq_code"+prod_inq_code);
 		
 		return sqlSession.selectOne(NAMESPACE+".getInquiryDetail", prod_inq_code);
+	}
+
+	//총 문의 수
+	@Override
+	public int inquiryCount(PagingVO vo) throws DataAccessException {
+		
+		return sqlSession.selectOne(NAMESPACE+".getInquiryAllCount");
+	}
+
+	//검색 결과 개수
+	@Override
+	public int inquiryAllCount(PagingVO vo) throws Exception {
+		
+		return sqlSession.selectOne(NAMESPACE+".getInquiryCount", vo);
 	}
 
 }

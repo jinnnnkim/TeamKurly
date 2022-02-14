@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import kr.co.recipetoyou.util.PageMaker;
 import kr.co.recipetoyou.util.PagingVO;
 
 @Controller("inquiryController")
@@ -36,7 +37,20 @@ public class AdInquiryControllerImpl implements AdInquiryController{
 		ModelAndView mav = new ModelAndView(viewName);
 		
 		List inquiryList = adInquiryService.listInquiry(vo);
-		mav.addObject("inquiryList", inquiryList);
+		
+		int cnt = adInquiryService.inquiryAllCount(vo);
+		int searchcnt = adInquiryService.inquiryCount(vo);
+		
+		if(!inquiryList.isEmpty()) {
+			mav.addObject("inquiryList", inquiryList);
+			mav.addObject("searchcnt", searchcnt);
+			mav.addObject("cnt", cnt);
+		}else {
+			mav.addObject("listCheck", "empty");
+		}
+		
+		//페이지 데이터
+		mav.addObject("pm", new PageMaker(vo, adInquiryService.inquiryAllCount(vo)));
 		
 		return mav;
 	}

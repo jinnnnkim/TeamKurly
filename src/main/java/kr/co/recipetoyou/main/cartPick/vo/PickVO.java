@@ -22,7 +22,18 @@ public class PickVO {
 	private String prod_img;
 	private int prod_price;
 	private int prod_discount;
+	
+	/* 상품 이미지 */
+	private List<AdgoodsImgVO> imageList;
+	
+	
 
+	public List<AdgoodsImgVO> getImageList() {
+		return imageList;
+	}
+	public void setImageList(List<AdgoodsImgVO> imageList) {
+		this.imageList = imageList;
+	}
 	public int getFav_flag_code() {
 		return fav_flag_code;
 	}

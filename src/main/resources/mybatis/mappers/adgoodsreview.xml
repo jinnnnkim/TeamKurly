@@ -29,9 +29,7 @@
 				from tb_prod_review
 				where
 		]]>
-			<if test="title != null"> inq_title like '%'||#{title}||'%' and </if>
-			<if test="user_id != null"> user_id '%'||#{user_id}||'%' and </if>
-			<if test="content != null"> inq_content like '%'||#{inq_content}||'%' and </if>
+			<if test="keyword != null"> ${searchOption} like '%'||#{keyword}||'%' and </if>
 		<![CDATA[
 			rownum <= #{page} * #{pageSize} 
 			)			
@@ -48,26 +46,14 @@
 	</select>
 	
 	<!-- 총 후기 수 -->
-	<select id="getReviewAllCount" resultType="int">
+	<select id="getReviewAllCount" resultType="int" parameterType="kr.co.recipetoyou.util.PagingVO">
 		select count(*) from tb_prod_review
-			<if test="title != null"> title like '%'||#{title}||'%'</if>
-			<if test="user_id != null"> user_id '%'||#{user_id}||'%'</if>
-			<if test="content != null"> content like '%'||#{inq_content}||'%'</if>
+			<if test="keyword != null"> ${searchOption} like '%'||#{keyword}||'%'</if>
 	</select>
 	
 	<!-- 검색어에 맞는 문의 수 구하기 -->
-	<select id="getReviewCount">
-		select count(prod_review_code) from tb_prod_review where
-			<choose>
-				<when test="title != null">
-					title like '%'||#{title}||'%'
-				</when>
-				<when test="user_id != null">
-					user_id like '%'||#{user_id}||'%'
-				</when>
-				<when test="content != null">
-					content like '%'||#{content}||'%'
-				</when>
-			</choose>
+	<select id="getReviewCount" resultType="int">
+		select count(prod_review_code) from tb_prod_review
+			<if test="keyword != null">where  ${searchOption} like '%'||#{keyword}||'%'</if>
 	</select>
 </mapper>

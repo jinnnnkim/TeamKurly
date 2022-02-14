@@ -127,6 +127,14 @@ public class MypageServiceImpl implements MypageService{
 		return mypageDAO.searchOrderList(ord_date);
 	}
 
+	//주문 취소
+	@Override
+	public int CancleOrders(int ord_code) throws DataAccessException {
+		return mypageDAO.CancleOrders(ord_code);
+	}
+
+	
+	
 	//상품후기 조회
 	@Override
 	public List<ReviewVO> listReviews() throws DataAccessException {
@@ -146,6 +154,7 @@ public class MypageServiceImpl implements MypageService{
 	public int removeQnA(int prod_inq_code) throws DataAccessException {
 		 return mypageDAO.removeQnA(prod_inq_code);
 	}
+
 
 	
 

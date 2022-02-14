@@ -77,17 +77,13 @@
 							<!-- price -->
 						</div>
 						<!-- subject -->
-						
-						<div class="button_two">	<!-- 쿼리스트링으로 넘어가는 값은 파라미터=값(파라미터 이름으로 적용) -->
-							<a href="#">
-								<button class="btn_review">후기완료</button>
-							</a>
-							<br/>
+					<!-- 	
+						<div class="button_two">	쿼리스트링으로 넘어가는 값은 파라미터=값(파라미터 이름으로 적용)
 							<button class="btn_add">
 								<i class="fas fa-shopping-cart"></i>담기
 							</button>
 						</div>
-						<!-- button_two -->
+						button_two -->
 					</div>
 					<!-- pick_add_list -->
 		
@@ -96,8 +92,10 @@
 				
 				<div class="order_cancle">
 					<div class="inner_cancle">
-						<button type="button" class="all_cart">상품 다시 담기</button>
-						<button type="button" class="all_cart_cancle">주문 취소</button>
+						<button type="button" class="all_cart"><i class="fas fa-shopping-cart"></i>상품 담기</button>
+						<a href="${contextPath}/orderCancle.do?ord_code=${myorderVO.ord_code}">
+							<button type="button" class="all_cart_cancle">주문 취소</button>
+						</a>
 					</div>
 					<p class="cancle_notice">주문취소는 ‘배송준비중’ 이전 상태일 경우에만 가능합니다.</p>
 				</div>
@@ -152,7 +150,7 @@ $(document).ready(function(){
 	
 });
 	
-	$(".btn_add").click(function () {
+	$(".all_cart").click(function () {
 		
 		var check = confirm("상품이 장바구니에 담겼습니다. 확인하시겠습니까?");
 		
@@ -160,6 +158,8 @@ $(document).ready(function(){
 			location.assign("cart.do");
 		}
 	});	
+	
+	
 </script>
 	
 </body>

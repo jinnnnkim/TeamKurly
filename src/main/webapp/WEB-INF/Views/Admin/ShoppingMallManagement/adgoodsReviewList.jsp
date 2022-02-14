@@ -17,7 +17,7 @@
 	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 </head>
 <body>	
-	<!-- 쇼핑몰관리 -> 상품후기 -> 상품후기목록페이지 -->
+	
 	<div class="wrap">
 		<div class="bar">상품후기목록</div>
 		<table align="center">
@@ -25,8 +25,11 @@
 				<tr>
 					<td align="left">
 						<div class="main-content">
-							<%-- <form>태그에 action기능 넣어야 됨. --%>
-							<form action="">
+							
+							<form action="${contextPath }/adgoods/adReviewList.do" method="post">
+							<input type="hidden" name="page" value="${pageMaker.vo.page}">
+							<input type="hidden" name="pageSize" value="${pageMaker.vo.pageSize}">
+							<input type="hidden" name="keyword" value="${pageMaker.vo.keyword }">
 								<table class="table table1 table_line" >
 									<tr>
 										<th>작성일자</th>
@@ -35,36 +38,39 @@
 									<tr>
 										<th>검색어</th>
 										<td style="text-align: left;">
-											<select name="sf">
-												<option value="title">제목</option>
-												<option value="content">내용</option>
-												<option value="content_name">상품명</option>
-												<option value="writer_name">문의자명</option>
-												<option value="writer_id">문의자아이디</option>
+										<div class="search_area">
+											<select name="searchOption">
+												<option value="title" <c:out value="${pageMaker.vo.searchOption == 'title'?'selected':''}"/>>
+												제목</option>
+												<option value="content" <c:out value="${pageMaker.vo.searchOption == 'content'?'selected':''}"/>>
+												내용</option>
+												<option value="user_id" <c:out value="${pageMaker.vo.searchOption == 'user_id'?'selected':''}"/>>
+												문의자 아이디</option>
 											</select>
-											<input type="text" name="sw" style="width: 500px"/>
+											<input type="text" name="keyword" style="width: 500px" value="${pm.vo.keyword}"/>
 										</td>
 									</tr>
 								</table>
 								<div class="btn-box">	<%-- 인라인 속성이기 떄문에 버튼을 가운데로 보내기위해 <div>태그로 감쌌다. --%>
-									<button type="submit" class="btn btn-sm btn-blue">검색</button>
+									<button type="submit" id="searchBtn" class="btn btn-sm btn-blue">검색</button>
 									<button type="reset" class="btn btn-sm" 
 									onclick="document.location.href='productReviewList.jsp'">처음으로</button>
+								</div>
 								</div>
 							</form>
 							<div class="list-tools">
 							<div class="list-action">
-								<%-- 버튼클릭시 삭제되는 기능(onclick)추가하기 --%>
+								
 								<button id="selectRemove" class="btn btn-red" type="button" onclick="">선택삭제</button>
 							</div>
 							<div class="summary">
 								검색된 후기 &nbsp;
-								<span class="f-bold f-red f-num">281</span>
-								개 &nbsp;
+								<span class="f-bold f-red f-num"></span>
+								${map.searchcnt }개 &nbsp;
 								<span class="split">|</span>
 								총 후기 &nbsp;
-								<span class="f-bold f-num">281</span>
-								개
+								<span class="f-bold f-num"></span>
+								${map.cnt }개
 								</div>
 							</div>
 							
@@ -89,7 +95,7 @@
 								<tbody>
 								<c:forEach var="review" items="${reviewList }">
 								<tr>
-									<td>281</td>
+									<td>${review.review_idx }</td>
 									<td><input class="chChoice" type="checkbox" /></td>
 									<td style="text-align: left;">
 										<div class="title_div_left">
@@ -108,6 +114,12 @@
 								</tbody>
 							</table>
 							
+							<c:if test="${listCheck == 'empty'}">
+						<div>
+							등록된 후기가 없습니다.
+						</div>
+					</c:if>
+							
 						</div>
 					</td>
 				</tr>
@@ -115,6 +127,14 @@
 			</tbody>
 		</table>	
 	</div>
+	
+	<form id="moveForm" action="${contextPath}/adgoods/adReviewList.do" method="get">
+			<input type="hidden" name="page" value="${pm.vo.page}">
+			<input type="hidden" name="pageSize" value="${pm.vo.pageSize}">
+			<input type="hidden" id="keyword" name="keyword" value="${pm.vo.keyword}">
+			<input type="hidden" id="searchOption" name="searchOption" value="${pm.vo.searchOption }">
+		</form>
+	
 	
 	<script type="text/javascript">
 		$(function () {
@@ -129,9 +149,36 @@
 		});
 		
 		$(document).ready(function() {
+			
 			$('#selectRemove').click(function(){
 				alert('삭제할 문의를 선택하세요.');
 			});
+			
+			
+			let moveForm = $("#moveForm");
+		
+			$("#searchBtn").on("click",function(e){
+				e.preventDefault();
+				
+				let searchOption = $(".search_area select").val();
+				let keyword = $(".search_area input[name='keyword']").val();
+				
+				if(!searchOption){
+					alert("검색 종류를 선택하세요.");
+					return false;
+				}
+				
+				if(!keyword){
+					alert("검색어를 입력하세요.");
+					return false;
+				}
+				
+				moveForm.find("input[name='searchOption']").val(searchOption);
+				moveForm.find("input[name='keyword']").val(keyword);
+				moveForm.find("input[name='page']").val(1);
+				moveForm.submit();
+			});
+			
 		});
 	
 	</script>

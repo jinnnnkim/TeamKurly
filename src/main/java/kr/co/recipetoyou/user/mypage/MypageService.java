@@ -40,6 +40,9 @@ public interface MypageService {
 	//주문내역 연도별 조회
 	public MyOrderVO searchOrderList(Date ord_date) throws Exception; 
 	
+	//주문 취소
+	public int CancleOrders(int ord_code) throws DataAccessException;
+	
 	//상품문의
 	public List<QnAVO> listQnA() throws DataAccessException;
 	
