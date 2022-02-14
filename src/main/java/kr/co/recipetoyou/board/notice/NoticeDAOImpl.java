@@ -31,11 +31,13 @@ public class NoticeDAOImpl implements NoticeDAO{
 
 	@Override
 	public int selectNoticeFrequencyCount(PagingVO vo) {
+		System.out.println(vo.toString());
 		return sqlSession.selectOne("mapper.notice.selectNoticeFrequencyCount",vo);
 	}
 
 	@Override
 	public List<NoticeVO> selectNoticeFrequencyList(PagingVO vo) {
+		System.out.println(vo.toString());
 		return sqlSession.selectList("mapper.notice.selectNoticeFrequencyList",vo);
 	}
 	

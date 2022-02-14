@@ -15,6 +15,15 @@
 		<result property="notice_hit" column="notice_hit"/>
 	</resultMap>
 	
+	<resultMap type="noticeFAQVO" id="noticeFAQResult">
+		<result property="faq_code" column="faq_code"/>
+		<result property="faq_title" column="faq_title"/>
+		<result property="faq_info" column="faq_info"/>
+		<result property="faq_cate_code" column="faq_cate_code"/>
+		<result property="faq_reg_date" column="faq_reg_date"/>
+		<result property="faq_reply" column="faq_reply"/>
+	</resultMap>
+	
 	<sql id="criteria">
        <choose>
            <when test='type == "T"'>
@@ -69,14 +78,28 @@
 	
 	<select id="selectNoticeFrequencyCount" resultType="int">
 		SELECT count(*)
+		
 		FROM TB_FAQ
+		
+		<if test="faq_cate_code != null and faq_cate_code != 0">
+			where faq_cate_code = #{faq_cate_code}
+		</if>
 	</select>	
 	
-	<select id="selectNoticeFrequencyList" resultMap="noticeResult">
+	<select id="selectNoticeFrequencyList" resultMap="noticeFAQResult">
 		<![CDATA[
-		SELECT * from
+		SELECT decode(faq_code,1, '배송/포장/상품',2,'선물하기'
+				,3,'주문/결제/대량주문',4,'취소/교환/환불',
+				5,'이벤트/쿠폰/적립금',6,'회원',7,'서비스이용') as faq_code,
+				faq_title, faq_info, faq_cate_code, faq_reg_date, faq_reply from
 				(SELECT rownum as rn, tn.* FROM 
-					(SELECT tn.* FROM TB_FAQ tn ORDER BY FAQ_REG_DATE DESC
+					(SELECT * FROM TB_FAQ tn 
+		]]>
+				<if test="faq_cate_code != null and faq_cate_code != 0">
+					where faq_cate_code = #{faq_cate_code}
+				</if>
+		<![CDATA[
+					ORDER BY FAQ_REG_DATE DESC
 					) 
 				tn )
 			where rn between #{rowStart} and #{rowEnd}
