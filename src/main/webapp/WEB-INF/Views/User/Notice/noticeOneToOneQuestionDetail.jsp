@@ -34,37 +34,39 @@
 		</div>
 
 		<div class="offerWriteTable">
+		<form name="frmOneToOne" enctype="multipart/form-data">
 			<table>
 				<tr class="offerTitle">
 					<th class="title">제목</th>
-					<td><select>
+					<td><select name="inq_title_code">
 							<option>선택해주세요.</option>
-							<option>배송지연/불만</option>
-							<option>레시피패스(무료배송)</option>
-							<option>반품문의</option>
-							<option>A/S문의</option>
-							<option>환불문의</option>
-							<option>주문결제문의</option>
-							<option>회원정보문의</option>
-							<option>취소문의</option>
-							<option>교환문의</option>
-							<option>상품정보문의</option>
-							<option>기타문의</option>
-					</select><br /> <input type="text" /></td>
+							<option value="1">배송지연/불만</option>
+							<option value="2">레시피패스(무료배송)</option>
+							<option value="3">반품문의</option>
+							<option value="4">A/S문의</option>
+							<option value="5">환불문의</option>
+							<option value="6">주문결제문의</option>
+							<option value="7">회원정보문의</option>
+							<option value="8">취소문의</option>
+							<option value="9">교환문의</option>
+							<option value="10">상품정보문의</option>
+							<option value="11">기타문의</option>
+					</select><br /> <input type="text" name="inq_title"/>
+					<input type="hidden" name="user_id"/></td>
 				</tr>
 				<tr>
 					<th>주문번호</th>
-					<td><input type="text" /><input type="button" value="주문조회" /></td>
+					<td><input type="text" name="ord_code" /><input type="button" value="주문조회" /></td>
 				</tr>
 				<tr>
 					<th>이메일</th>
-					<td><input type="text" placeholder="ezen@gmail.com" /><input
-						type="checkbox" /><span>답변수신을 이메일로 받겠습니다.</span></td>
+					<td><input type="text" name="user_mail" placeholder="ezen@gmail.com" />
+					<input class="ma" name="user_mail_send_agree" type="checkbox" /><span>답변수신을 이메일로 받겠습니다.</span></td>
 				</tr>
 				<tr>
 					<th>문자메시지</th>
-					<td><input type="text" placeholder="010-1234-2313" /><input
-						type="checkbox" /><span>답변수신을 문자메시지로 받겠습니다.</span></td>
+					<td><input type="text" name="user_phone" placeholder="010-1234-2313" />
+					<input class="pa" name="user_phone_send_agree" type="checkbox" /><span>답변수신을 문자메시지로 받겠습니다.</span></td>
 				</tr>
 
 				<tr>
@@ -94,7 +96,7 @@
 						<p class="txt">주문 완료 후 배송 방법(샛별 / 택배)은 변경이 불가능합니다.</p>
 						<p class="txt">배송일 및 배송시간 지정은 불가능합니다. (예약배송 포함)</p>
 						<p class="txt">※ 전화번호, 이메일, 주소, 계좌번호 등의 상세 개인정보가 문의 내용에 저장되지
-							않도록 주의해 주시기 바랍니다.</p> <textarea></textarea>
+							않도록 주의해 주시기 바랍니다.</p> <textarea name="inq_content"></textarea>
 					</td>
 				</tr>
 
@@ -102,53 +104,99 @@
 					<th>이미지</th>
 					<td>
 						<div class="offerImgDiv">
-							<span>1</span><input class="fileupload" type="file"> <input
-								id="fileUpBtn" class="fileuploadBtn" type="button"
-								value="업로드 추가" /><br />
+							<input name="inq_file" class="fileupload" type="file"> 
+							<input id="fileUpBtn" class="fileuploadBtn" type="button" value="업로드 추가" /><br />
 						</div>
+						<br/>
 						<div>
 							<p class="txt">-파일은 최대 5개 까지만 가능합니다.</p>
 						</div>
 					</td>
 				</tr>
 			</table>
+		</form>
 		</div>
 
 
 		<div class="writeBtn">
-			<a href="${contextPath }/notice/noticeOneToOneQuestion.do">저장</a>
+			<button type="submit" id="frmSubmit">저장</button>
 		</div>
 	</div>
 
 
 	<script>
-		var fileNo = 2;
-			$(document).ready(function() {
-				$('.QAList1').click(function() {
-					$('.QADetail1').fadeToggle();
-				});
-				
-				$('#fileUpBtn').click(function() {
-					if(fileNo <= 5){
-					var fileUploadHtml = ''
-						+'<span>'+fileNo+'</span><input class="fileupload" type="file">&nbsp;'
-						+'<input id="fileUp" class="fileuploadRemove'+fileNo+'" type="button" value="업로드 삭제"/><br/>';
-					$('.offerImg td .offerImgDiv').append(fileUploadHtml);
-					fileNo = fileNo +1;
-					}else {
-						alert('최대 5개까지만 추가가 가능합니다.');
-					}
-				});
-				
-				$('#fileUp').click(function() {
-					console.log('aa');
-				});
-				
-			});
-			
-			function QAdelte(){
-				alert('삭제되었습니다.');
+	var fileNo = 2;
+	
+	$('.QAList1').click(function() {
+		$('.QADetail1').fadeToggle();
+	});
+	
+	$('#fileUpBtn').click(function() {
+		if(fileNo <= 5){
+		var fileUploadHtml = '<div class="box">'
+			+'<input name="inq_file" class="fileupload" type="file">&nbsp;'
+			+'<input id="fileUp" class="fileuploadRemove '+fileNo+'" type="button" onclick="remove(this)" value="업로드 삭제"/><br/></div>';
+		$('.offerImg td .offerImgDiv').append(fileUploadHtml);
+		fileNo = fileNo +1;
+		}else {
+			alert('최대 5개까지만 추가가 가능합니다.');
+		}
+	});
+	
+
+
+	
+	
+	$("#frmSubmit").click(function(){
+		var inq_title_code = frmOneToOne.inq_title_code.value;
+		var ord_code = frmOneToOne.ord_code.value;
+		var user_mail = frmOneToOne.user_mail.value;
+		var user_mail_send_agree = frmOneToOne.user_mail_send_agree.value;
+		var user_phone = frmOneToOne.user_phone.value;
+		var user_phone_send_agree = frmOneToOne.user_phone_send_agree.value;
+		var inq_content = frmOneToOne.inq_content.value;
+		var user_id = frmOneToOne.user_id.value;
+		var inq_title = frmOneToOne.inq_title.value;
+		
+		if(inq_title_code == null || inq_title_code == ""){
+			alert("문의 종류를 선택해주세요.");
+		}else if(inq_title == null || inq_title == ""){
+			alert("제목을 입력해주세요.");
+		}else if (user_mail == null || user_mail == ""){
+			alert("메일을 입력해주세요.");
+		}else if(user_phone == null || user_phone == ""){
+			alert("핸드폰 번호를 입력해주세요.");
+		}else if(inq_content == null || inq_content == ""){
+			alert("문의 내용을 입력해주세요.");
+		}else{
+			var ma = $(".ma").is(':checked'); 
+			if(ma){
+				$(".ma").val(1);
 			}
+			var pa = $(".pa").is(':checked'); 
+			if(pa){
+				$(".pa").val(1);
+			}
+			frmOneToOne.method="post";
+			frmOneToOne.action="${contextPath}/notice/noticeOneToOneWrite.do";
+			frmOneToOne.submit();
+			
+		}
+	});
+	
+
+function remove(e){
+	console.log($(e).parent().attr("class"));
+	$(e).parent().remove();
+	if(fileNo > 2){
+		fileNo = fileNo - 1;
+	}
+}
+
+			
+function QAdelte(){
+	alert('삭제되었습니다.');
+}
 	</script>
 </body>
 </html>

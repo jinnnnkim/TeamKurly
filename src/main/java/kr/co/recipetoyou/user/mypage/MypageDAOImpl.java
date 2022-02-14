@@ -76,6 +76,7 @@ public class MypageDAOImpl implements MypageDAO{
 		
 		System.out.println("orderDetail DAO 호출");
 		return sqlSession.selectOne("mapper.member.orderDetailList", ord_code);
+		/* return (MyOrderVO) sqlSession.selectList("mapper.member.orderDetailList"); */
 	}
 	
 	//주문내역 연도별 검색
@@ -85,7 +86,13 @@ public class MypageDAOImpl implements MypageDAO{
 		return sqlSession.selectOne("mapper.member.searchOrderList", ord_date);
 	}
 
-	
+	//주문 취소
+	@Override
+	public int CancleOrders(int ord_code) throws DataAccessException {
+		int result = sqlSession.delete("mapper.member.CancleOrders",ord_code);
+		System.out.println("cancleDAO 주문 취소"+ord_code);
+		return result;
+	}
 
 	//상품문의 조회
 	@Override
@@ -131,6 +138,8 @@ public class MypageDAOImpl implements MypageDAO{
 		int result = sqlSession.delete("mapper.member.deleteAddress", addr_code);
 		return result;
 	}
+
+	
 
 	
 

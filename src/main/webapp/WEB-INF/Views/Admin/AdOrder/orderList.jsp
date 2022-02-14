@@ -17,11 +17,11 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>전체회원관리</title>
+	<title>전체주문관리</title>
 	<link rel=“stylesheet” href=“https://use.fontawesome.com/releases/v5.14.0/css/all.css”
      integrity=“sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc” crossorigin=“anonymous”>
  	<link href=“https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap” rel=“stylesheet”>
- 	<link href="/recipetoyou/Resources/Admin/Css/AdUser/aduserList.css" rel="stylesheet">
+ 	<link href="/recipetoyou/Resources/Admin/Css/AdUser/adorderList.css" rel="stylesheet">
 	<link href="/recipetoyou/Resources/Admin/Css/HomePageHeaderSide/reset.css" rel="stylesheet">
 	<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>	
 	<script type="text/javascript" src="/recipetoyou/Resources/Admin/Js/AdUser/adOrdList.js" charset="UTF-8"></script>
@@ -80,7 +80,7 @@
 			</table>
 			</div>
 		<div class="middle_titleBox">
-			총 ${cnt }명의 회원이 검색되었습니다.		
+			총 ${cnt }개의 주문 조회 되었습니다.		
 		</div>
 		
 		<div class="userList_wrap">

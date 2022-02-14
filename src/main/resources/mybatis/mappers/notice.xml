@@ -24,6 +24,24 @@
 		<result property="faq_reply" column="faq_reply"/>
 	</resultMap>
 	
+	<resultMap type="noticeINQVO" id="noticeINQVOResult">
+		<result property="inq_idx" column="rn"/>
+		<result property="rn" column="inq_idx"/>
+		<result property="inq_title_code" column="inq_title_code"/>
+		<result property="ord_code" column="ord_code"/>
+		<result property="user_mail" column="user_mail"/>
+		<result property="user_mail_send_agree" column="user_mail_send_agree"/>
+		<result property="user_phone" column="user_phone"/>
+		<result property="user_phone_send_agree" column="user_phone_send_agree"/>
+		<result property="inq_content" column="inq_content"/>
+		<result property="inq_image_file_no" column="inq_image_file_no"/>
+		<result property="inq_date" column="inq_date"/>
+		<result property="user_id" column="user_id"/>
+		<result property="inq_title" column="inq_title"/>
+	</resultMap>
+	
+	
+	
 	<sql id="criteria">
        <choose>
            <when test='type == "T"'>
@@ -88,7 +106,7 @@
 	
 	<select id="selectNoticeFrequencyList" resultMap="noticeFAQResult">
 		<![CDATA[
-		SELECT decode(faq_code,1, '배송/포장/상품',2,'선물하기'
+		SELECT decode(faq_code,1,'배송/포장/상품',2,'선물하기'
 				,3,'주문/결제/대량주문',4,'취소/교환/환불',
 				5,'이벤트/쿠폰/적립금',6,'회원',7,'서비스이용') as faq_code,
 				faq_title, faq_info, faq_cate_code, faq_reg_date, faq_reply from
@@ -100,6 +118,30 @@
 				</if>
 		<![CDATA[
 					ORDER BY FAQ_REG_DATE DESC
+					) 
+				tn )
+			where rn between #{rowStart} and #{rowEnd}
+		]]>
+	</select>		
+	
+	<select id="selectOneToOneCount" resultType="int">
+		SELECT count(*) 
+		from TB_ONETOONE_INQ 
+		where user_id = #{user_id}
+	</select>
+	
+	<select id="selectOneToOneList" resultMap="noticeINQVOResult">
+		<![CDATA[
+			SELECT rn, decode(inq_title_code,1,'배송/포장/상품',2,'선물하기'
+				,3,'주문/결제/대량주문',4,'취소/교환/환불',
+				5,'이벤트/쿠폰/적립금',6,'회원',7,'서비스이용',
+				8,'이벤트/쿠폰/적립금',9,'회원',10,'서비스이용',
+				11,'이벤트/쿠폰/적립금') as inq_title_code,
+				inq_title,user_id,inq_date,inq_content from
+				(SELECT rownum as rn, tn.* FROM 
+					(SELECT * FROM TB_ONETOONE_INQ tn 
+					where user_id = #{user_id}
+					ORDER BY inq_date DESC
 					) 
 				tn )
 			where rn between #{rowStart} and #{rowEnd}

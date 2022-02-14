@@ -475,7 +475,7 @@
 					data: {user_id: _userID},
 					success: function(result) {
 						console.log(result);
-						if (result!= 1) {
+						if (result != 1) {
 							alert("사용 가능한 아이디 입니다.");
 							$('#userIDChk').attr("value", "Y");
 						}else {

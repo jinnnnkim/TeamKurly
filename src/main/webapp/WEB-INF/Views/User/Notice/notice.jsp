@@ -58,6 +58,7 @@
 			</table>
 		</div>
 		<div class="page">
+			<c:if test="${cnt} != 0">
 				<ul>
 					<c:if test="${pm.prev }">
 				 		<li><a href="${contextPath}/community/communityRecipeMain.do?page=${pm.startPage-1}">&laquo;</a></li>
@@ -74,7 +75,8 @@
 				 		<li><a href="${contextPath}/community/communityRecipeMain.do?page=${pm.endPage+1}">&raquo;</a></li>
 				 	</c:if>
 				</ul>
-			</div>
+			</c:if>
+		</div>
 	</div>
 <script type="text/javascript">
 $(document).ready(function(){

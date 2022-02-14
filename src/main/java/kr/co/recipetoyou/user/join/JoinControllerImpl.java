@@ -50,6 +50,7 @@ public class JoinControllerImpl implements JoinController {
 			@RequestParam("user_id") String user_id,
 			HttpServletRequest request, HttpServletResponse response) throws Exception {
 		int result = joinService.idChk(user_id);
+		System.out.println("중복확인값:"+result);
 		return result;
 	}
 	

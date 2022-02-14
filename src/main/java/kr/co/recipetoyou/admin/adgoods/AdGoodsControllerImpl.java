@@ -142,31 +142,6 @@ public class AdGoodsControllerImpl implements AdGoodsController {
 		
 	}
 	
-	//상품 검색
-	@Override
-	@RequestMapping(value = "/adgoods/search.do")
-	public String searhGoods(PagingVO vo, Model model) throws Exception {
-		
-		List<AdGoodsVO> list = adGoodsService.listProduct(vo);
-		if(!list.isEmpty()) {
-			model.addAttribute("list", list);
-		}else {
-			model.addAttribute("listcheck", "empty");
-			return "/adgoods/search.do";
-		}
-		
-		model.addAttribute("pageMaker", new PageMaker(vo, adGoodsService.prodCount(vo)));
-		
-		String[] typeArr = vo.getType().split("");
-		
-		for(String s : typeArr) {
-			if(s.equals("G") || s.equals("C")) {
-				//model.addAttribute("filter_info", adGoodsService.g)
-			}
-		}
-		
-		return "/adgoods/search.do";
-	}
 	
 	//상품 상세 정보 조회
 	@Override

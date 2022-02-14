@@ -17,11 +17,11 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>전체회원관리</title>
+	<title>전체결제관리</title>
 	<link rel=“stylesheet” href=“https://use.fontawesome.com/releases/v5.14.0/css/all.css”
      integrity=“sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc” crossorigin=“anonymous”>
  	<link href=“https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap” rel=“stylesheet”>
- 	<link href="/recipetoyou/Resources/Admin/Css/AdUser/aduserList.css" rel="stylesheet">
+ 	<link href="/recipetoyou/Resources/Admin/Css/AdUser/adpaymentList.css" rel="stylesheet">
 	<link href="/recipetoyou/Resources/Admin/Css/HomePageHeaderSide/reset.css" rel="stylesheet">
 	<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>	
 	<script type="text/javascript" src="/recipetoyou/Resources/Admin/Js/AdUser/adOrdList.js" charset="UTF-8"></script>
@@ -35,7 +35,7 @@
 			<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right-square-fill" viewBox="0 0 16 16">
   			<path d="M0 14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2a2 2 0 0 0-2 2v12zm4.5-6.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5a.5.5 0 0 1 0-1z"/>
 			</svg>
-			주문관리
+			결제관리
 		</div>
 	<form action="#" method="post">
 		<div class="list_head">
@@ -80,7 +80,7 @@
 			</table>
 			</div>
 		<div class="middle_titleBox">
-			총 ${cnt }명의 회원이 검색되었습니다.		
+			총 ${cnt }개의 결제가 조회 되었습니다.		
 		</div>
 		
 		<div class="userList_wrap">
@@ -117,7 +117,7 @@
 					<td>${pay.prod_name }</td>
 					<td>${pay.pay_price }</td>
 					<td>${pay.pay_date }</td>
-					<td><button onclick="deleteMessage()"><a href="${contextPath}/adpayment/removePay.do?id=${pay.pay_code}">주문취소</a></button></td>
+					<td><button onclick="deleteMessage()"><a href="${contextPath}/adpayment/removePay.do?id=${pay.pay_code}">결제취소</a></button></td>
 				</tr>
 			</c:forEach>
 		</tbody>	
