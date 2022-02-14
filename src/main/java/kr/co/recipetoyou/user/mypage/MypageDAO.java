@@ -41,6 +41,9 @@ public interface MypageDAO {
 	//주문내역 연도별 조회
 	public MyOrderVO searchOrderList(Date ord_date) throws DataAccessException;
 	
+	//주문취소
+	public int CancleOrders (int ord_code) throws DataAccessException;
+	
 	//상품문의 조회
 	public List<QnAVO> selectAllQnAList() throws DataAccessException;
 	

@@ -39,6 +39,9 @@ public interface MypageController {
 	//주문내역 상세 정보 조회
 	public void orderDetail(@RequestParam("ord_code")int ord_code, Model model) throws Exception;
 	
+	//주문 취소
+	public ModelAndView orderCancle(@RequestParam("ord_code") int ord_code, HttpServletRequest request, HttpServletResponse response) throws Exception; 
+	
 	//주문내역 연도별 조회
 	public void searchOrderYear(Date ord_date, Model model) throws Exception; 
 	

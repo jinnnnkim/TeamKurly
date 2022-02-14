@@ -28,7 +28,8 @@ public class CartPickDAOImpl implements CartPickDAO {
 		List<PickVO> pickList = sqlSession.selectList("mapper.member.selectAllCartPickList");
 		return pickList;
 	}
-
+	
+	//찜목록 상품 삭제
 	@Override
 	public int deletePick(@RequestParam("prod_name") String prod_name) throws DataAccessException {
 		int result = sqlSession.delete("mapper.member.deletePick", prod_name);

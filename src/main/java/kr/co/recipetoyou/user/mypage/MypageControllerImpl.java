@@ -104,6 +104,18 @@ public class MypageControllerImpl implements MypageController{
 	  }
 	 
 
+	//주문 취소
+	@Override
+	@RequestMapping(value = "/orderCancle.do", method = RequestMethod.GET)
+	public ModelAndView orderCancle(int ord_code, HttpServletRequest request, HttpServletResponse response)
+			throws Exception {
+
+		request.setCharacterEncoding("utf-8");
+		mypageService.CancleOrders(ord_code);
+		ModelAndView mav = new ModelAndView("redirect:/orderList.do");
+		return mav;
+	}
+	
 	
 	
 	@RequestMapping(value = "/giftList.do", method = {RequestMethod.GET, RequestMethod.POST})
@@ -280,12 +292,14 @@ public class MypageControllerImpl implements MypageController{
         return mav;
 	}
 
-
+	//주문내역 조회
 	@Override
 	public void searchOrderYear(Date ord_date, Model model) throws Exception {
 		// TODO Auto-generated method stub
 		
 	}
+
+
 
 
 	

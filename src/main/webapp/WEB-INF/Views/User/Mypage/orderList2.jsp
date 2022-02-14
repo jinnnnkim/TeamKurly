@@ -138,8 +138,10 @@
 			async: true,
 			url: "http://localhost:8080/recipetoyou/searchOrderYear.do?ord_date="+year,
 			dataType: "text",
-			success: function(result) {
-				
+			success: function(data, textStatus) {
+				  $("#seach_year").val("<?=$ord_date?>");
+					 
+				 
 			},
 			error : function(data, textStatus) {			
 				alert("에러가 발생했습니다.")	
