@@ -72,6 +72,7 @@
 	
 	<!-- 상품문의 조회 -->
 	<resultMap type="QnAVO" id="qnaResult">
+		<result property="prod_name" column="prod_name"/>
 		<result property="prod_inq_code" column="prod_inq_code"/>
 		<result property="inq_title" column="inq_title"/>
 		<result property="inq_content" column="inq_content"/>
@@ -196,12 +197,20 @@
 	<!-- 배송지관리 조회 -->
 	<select id="selectAllAddressList" resultMap="addressResult">
 		<![CDATA[
-			SELECT TU.USER_NAME, TU.USER_PHONE, TUA.addr , TUA.DELIVERY_TYPE
+			SELECT TU.USER_NAME, TU.USER_PHONE, TUA.addr, TUA.DELIVERY_TYPE, TUA.ADDR_CODE
 			FROM TB_USER_ADDR tua JOIN TB_USERS tu 
 			ON TUA.USER_ID = TU.USER_ID
 		]]>
 	</select>	
 	
+	<!-- 배송지관리 삭제 -->
+	<delete id="deleteAddress" parameterType="string">
+		<![CDATA[
+			DELETE FROM ADDR_CODE
+			WHERE 
+			ADDR_CODE = #{ADDR_CODE}
+		]]>
+	</delete>
 
 	<!-- 주문내역 조회 -->
 	<select id="selectAllOrderList" resultMap="orderListResult">
@@ -242,7 +251,9 @@
 	<!-- 상품문의 조회 -->
 	<select id="selectAllQnAList" resultMap="qnaResult">
 		<![CDATA[
-			SELECT * FROM TB_PROD_INQ
+			SELECT TPI.PROD_INQ_CODE, TPI.INQ_TITLE, TPI.INQ_CONTENT, TPI.INQ_REG_DATE, TPI.INQ_STATUS, TP.PROD_NAME
+			FROM TB_PROD_INQ tpi JOIN TB_PROD tp 
+			ON TP.PROD_CODE = TPI.PROD_CODE
 		]]>
 	</select>
 	

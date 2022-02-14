@@ -48,10 +48,7 @@
     font-size: 14px;
     color: #333;
     line-height: 22px;
-    letter-spacing: -0.4px;
-    vertical-align: middle;
     text-align: center;
-    border-bottom: 1px solid #ddd;
 }
 
 .title_select {
@@ -74,7 +71,7 @@
 	width: 100px;
 }
 
-.title_modify {
+.title_delete {
 	width: 60px;
 }
 
@@ -103,7 +100,7 @@
 }
 
 .address {
-	width: 351px;
+	width: 413px;
 }
 
 .basic_address {
@@ -143,7 +140,18 @@
 	color: #5f0080;
 }
 
-.modify {
+#btn-remove {
+	width: 45px;
+	height: 27px;
+    font-size: 12px;
+    border: 1px solid #5f0080;
+    border-radius: 3px;
+    background-color: white;
+    color: #5f0080;
+	padding: 5px 10px;
+}
+
+/* .modify {
 	width: 60px;
 }
 
@@ -155,7 +163,7 @@
 .modify_pop {
 	
 }
-
+ */
 
 
 

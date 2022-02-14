@@ -4,8 +4,13 @@ import java.sql.Date;
 
 import org.springframework.stereotype.Component;
 
+import kr.co.recipetoyou.main.goods.GoodsVO;
+
 @Component("qnaVO")
 public class QnAVO {
+	
+	private GoodsVO goodsVO;
+	private String prod_name;
 
 	private int prod_inq_code;
 	private int prod_code;
@@ -63,6 +68,18 @@ public class QnAVO {
 	}
 	public void setInq_secret(int inq_secret) {
 		this.inq_secret = inq_secret;
+	}
+	public GoodsVO getGoodsVO() {
+		return goodsVO;
+	}
+	public void setGoodsVO(GoodsVO goodsVO) {
+		this.goodsVO = goodsVO;
+	}
+	public String getProd_name() {
+		return prod_name;
+	}
+	public void setProd_name(String prod_name) {
+		this.prod_name = prod_name;
 	}
 	
 	
