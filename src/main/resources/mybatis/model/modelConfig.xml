@@ -30,6 +30,7 @@
 		
 		<typeAlias type="kr.co.recipetoyou.admin.adfaq.AdFAQVO" alias="adFAQVO"/>
 		<typeAlias type="kr.co.recipetoyou.admin.adfaq.AdFAQCategoryVO" alias="adFAQCategoryVO"/>
+		<typeAlias type="kr.co.recipetoyou.admin.adfaq.AdNoticeVO" alias="adNoticeVO"/>
 		
 		<typeAlias type="kr.co.recipetoyou.admin.adorder.AdOrderVO" alias="adOrderVO"/>
 		<typeAlias type="kr.co.recipetoyou.admin.adpayment.AdPaymentVO" alias="adPaymentVO"/>

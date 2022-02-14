@@ -22,11 +22,11 @@
 	<div class="wrap">
 		<div class="header">
 		<h1>
-			<a href="${contextPath}/admin/adMain.do">관리자모드</a>
+			관리자모드
 		</h1>	
 			<c:choose>
 				<c:when test="${admin.adminId == null}">
-					<a href="${contextPath}/adLogin.do">관리자 로그인</a>
+					<a href="${contextPath}/admin/adLogin.do">관리자 로그인</a>
 				</c:when>
 				<c:otherwise>
 					${admin.adminName}님이 로그인중입니다.
@@ -36,19 +36,9 @@
 		
 			<div class="topBar">
 				<ul>
-					<li><a class="topLogo" href="${contextPath}/admin/adMain.do"><i class="fas fa-home"></i></a></li>
-					<li><a href="#">이용메뉴얼보기</a></li>
-					<li><a href="#">관리자모드</a></li>
-					<li><a href="#">홈페이지보기</a></li>
-					<li><a href="#">모바일웹보기</a></li>
-				</ul>
-			</div>
-			<div class="nav">
-				<ul>
-					<li><a href="${contextPath}/adgoods/listProduct.do">쇼핑몰관리</a></li>
-					<li><a href="orignSetting.jsp">기본환경설정</a></li>
+					<li><i class="fas fa-home"></i></li>
+					<li><a href="${contextPath}/adgoods/listProduct.do">상품관리</a></li>
 					<li><a href="${contextPath}/aduser/listadUsers.do">회원관리</a></li>
-					<li><a href="${contextPath}/aduserWithdraw/listadUsersWithdraw.do">탈퇴회원관리</a></li>
 					<li><a href="${contextPath}/adorder/listadOrd.do">주문관리</a></li>
 					<li><a href="${contextPath}/adpayment/listadPay.do">결제관리</a></li>
 					<li><a href="${contextPath}/adsend/listadSend.do">발송관리</a></li>
@@ -61,7 +51,7 @@
 			<button onclick="dropMenu_btn1()" class="sideMenu"><i class="fas fa-bars"> Menu</i></button>
 			<div class="sideBtn" id="drop_content1">	
 				<ul>
-					<div class="menu"><li onclick="dropMenu_btn2(); return false;">쇼핑몰관리</div>				
+					<div class="menu"><li class="bold" onclick="dropMenu_btn2(); return false;">쇼핑몰관리</div>				
 						<ul id="drop_content2">
 							<li>메인페이지</li>
 							<li><a href="${contextPath}/adgoods/listProduct.do">상품관리</a></li>
@@ -69,27 +59,23 @@
 							<li><a href="${contextPath}/adpayment/listadPay.do">결제관리</a></li>
 							<li><a href="${contextPath }/adgoods/inquiryList.do">상품문의</a></li>
 							<li><a href="${contextPath }/adgoods/adReviewList.do">상품후기</a></li>
+							<li><a href="${contextPath}/adrecipe/listadRecipe.do">레시피관리</a></li>
 						</ul>
 					</li>	
-						
-					<li class="menu"><a href="orignSetting.jsp">기본환경설정</a></li>
 
-					<div class="menu"><li class="menu" onclick="dropMenu_btn4(); return false;">전체회원관리</div>	
-						<div id="drop_content4">
+					<div class="menu"><li class="bold" onclick="dropMenu_btn3(); return false;">회원관리</div>	
+						<div id="drop_content3">
 						<ul>
 							<li><a href="${contextPath}/aduser/listadUsers.do">회원관리</a></li>
 							<li><a href="${contextPath}/aduserWithdraw/listadUsersWithdraw.do">탈퇴회원관리</a></li>
+							<li><a href="${contextPath}/adfaq/faqAdManagement.do">FAQ관리</a></li>
+							<li><a href="${contextPath}/adnotice/listadNotice.do">공지사항관리</a></li>
 						</ul>
 						</div>
 					</li>
-					
-					<li class="menu"><a href="boardMgm.jsp">게시물관리</a></li>
-					<li class="menu"><a href="formMgm.jsp">폼관리</a></li>
-					<li class="menu"><a href="${contextPath}/adfaq/faqAdManagement.do">FAQ관리</a></li>
-					<li class="menu"><a href="${contextPath}/adfaq/faqAdManagement.do">FAQ관리</a></li>
-					<li class="menu"><a href="${contextPath}/adrecipe/listadRecipe.do">레시피관리</a></li>
-					<div class="menu"><li onclick="dropMenu_btn5(); return false;">발송관리</div>
-						<div id="drop_content5">
+						
+					<div class="menu"><li class="bold" onclick="dropMenu_btn4(); return false;">발송관리</div>
+						<div id="drop_content4">
 						<ul>
 							<li><a href="${contextPath}/adsend/listadSend.do">회원sms발송</a></li>
 						</ul>

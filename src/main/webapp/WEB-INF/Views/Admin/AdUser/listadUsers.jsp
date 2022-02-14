@@ -42,39 +42,39 @@
 			<table align="center" id="tableGroup">
 				<tr>
 					<td>
-							<input type="checkbox">
-							<!-- 달력 js 구현되어있음 -->
-							<input type="text" id="datepicker1"> ~
-  							<input type="text" id="datepicker2">
-							<input class="btn_option" type="button" value="오늘날짜">
-							<input class="btn_option" type="button" value="최근1주일">
-							<input class="btn_option" type="button" value="최근15일">
-							<input class="btn_option" type="button" value="최근 1개월">
-							<input class="btn_option" type="button" value="최근2개월">
-							<input class="btn_option" type="button" value="최근3개월">
+						<input type="checkbox">
+						<!-- 달력 js 구현되어있음 -->
+						<input type="text" id="datepicker1"> ~
+  						<input type="text" id="datepicker2">
+						<input class="btn_option" type="button" value="오늘날짜">
+						<input class="btn_option" type="button" value="최근1주일">
+						<input class="btn_option" type="button" value="최근15일">
+						<input class="btn_option" type="button" value="최근 1개월">
+						<input class="btn_option" type="button" value="최근2개월">
+						<input class="btn_option" type="button" value="최근3개월">
 					</td>
 				</tr>
 				
 				<tr>
 					<td>
-							<select name="userGrade">
-								<option value="generalUser">회원등급</option>
-								<option value="Operator">운영자</option>
-								<option value="sub_Operator">일반(General)</option>
-								<option value="specialUser">프렌즈(Friends)</option>
-								<option value="superUser">호스트(Host)</option>
-								<option value="regularUser">쿡(Cook)</option>
-								<option value="assoUser">셰프(Chef)</option>
-							</select>
-							<select name="searchOption">
-								<option value="userId">아이디</option>
-								<option value="userName">이름</option>
-								<option value="userEmail">이메일</option>
-								<option value="phone">휴대전화</option>
-								<option value="addr">주소</option>
-							</select>
-							<input type="text" name="userSearch">
-							<input class="search_btn" type="button" value="검색">
+						<select name="userGrade">
+							<option value="generalUser">회원등급</option>
+							<option value="Operator">운영자</option>
+							<option value="sub_Operator">일반(General)</option>
+							<option value="specialUser">프렌즈(Friends)</option>
+							<option value="superUser">호스트(Host)</option>
+							<option value="regularUser">쿡(Cook)</option>
+							<option value="assoUser">셰프(Chef)</option>
+						</select>
+						<select name="searchOption">
+							<option value="userId">아이디</option>
+							<option value="userName">이름</option>
+							<option value="userEmail">이메일</option>
+							<option value="phone">휴대전화</option>
+							<option value="addr">주소</option>
+						</select>
+						<input type="text" name="userSearch">
+						<input class="search_btn" type="button" value="검색">
 					</td>
 				</tr>	
 			</table>

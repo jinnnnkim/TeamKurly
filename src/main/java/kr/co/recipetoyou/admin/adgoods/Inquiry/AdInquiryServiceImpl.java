@@ -29,4 +29,19 @@ public class AdInquiryServiceImpl implements AdInquiryService {
 		return adInquiryDAO.readInquiry(prod_inq_code);
 	}
 
+	//총 문의 수
+	@Override
+	public int inquiryAllCount(PagingVO vo) throws Exception {
+		
+		return adInquiryDAO.inquiryAllCount(vo);
+	}
+
+	
+	//검색 결과 개수
+	@Override
+	public int inquiryCount(PagingVO vo) throws Exception {
+		
+		return adInquiryDAO.inquiryCount(vo);
+	}
+
 }

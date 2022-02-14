@@ -40,9 +40,6 @@ public interface AdGoodsController {
 	//상품 등록 페이지로 이동
 	public ModelAndView moveRegister(Model model, HttpServletRequest request, HttpServletResponse response) throws Exception;
 	
-	//상품 검색
-	public String searhGoods(PagingVO vo, Model model)throws Exception;
-	
 	//상품 등록
 	public ModelAndView uploadGoodsRegister(AdGoodsVO agvo, RedirectAttributes rttr) throws Exception;
 	

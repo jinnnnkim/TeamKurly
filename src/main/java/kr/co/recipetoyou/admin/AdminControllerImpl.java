@@ -77,7 +77,7 @@ public class AdminControllerImpl implements AdminController{
 		}
 		else {
 			rAttr.addAttribute("result", "loginFailed");		//로그인 실패시 실패 메시지를 로그인창으로 전달함.
-			mav.setViewName("redirect:adlogin.do");	//로그인 실패시 다시 로그인창으로 리다이렉트함
+			mav.setViewName("redirect:/admin/adloginForm.do");	//로그인 실패시 다시 로그인창으로 리다이렉트함
 		}
 		return mav;
 	}
@@ -90,7 +90,7 @@ public class AdminControllerImpl implements AdminController{
 		session.removeAttribute("admin");
 		session.removeAttribute("isLogOn");
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName("adLogin.do");
+		mav.setViewName("admin/adLogin.do");
 		return mav;
 	}
 
