@@ -155,6 +155,20 @@ public class MypageControllerImpl implements MypageController{
 		return mav;
 	}
 	
+	@RequestMapping(value = "/addAddress.do", method = RequestMethod.GET)
+	public ModelAndView addAddress(HttpServletRequest request, HttpServletResponse response) throws Exception {
+	
+		String viewName = (String) request.getAttribute("viewName");
+
+		logger.info("info : "+ viewName); logger.debug("debug : "+ viewName);
+
+		System.out.println("addrlist Controller 호출"); 
+		List<UserAddrVO> addressList = mypageService.listAddress();
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("addressList", addressList);
+		return mav; 
+	}
+		
 	  
 	@Override
 	@RequestMapping(value = "/review.do", method = RequestMethod.GET)

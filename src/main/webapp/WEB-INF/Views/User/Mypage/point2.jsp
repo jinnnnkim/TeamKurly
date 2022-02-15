@@ -39,20 +39,20 @@
 			<!-- head -->
 			<div class="point_box">
 				<div class="point_view">
-					<div class="title_now">현재 적립금</div>
+					<div class="title_now">현재 적립금 : </div>
 					<div class="point_now">0원</div>
 				</div>
 				<!-- point_view -->
-				<div class="point_disappear">
+				<!-- <div class="point_disappear">
 					<div class="title_disappear">소멸예정 적립금</div>
 					<div class="won">0 원</div>
 				</div>
-				<!-- point_disappear -->
-			</div>
+				point_disappear
+			</div> -->
 			<!-- point_box -->
 			<table class="point_cate">
 				<tr>
-					<th class="cate_date">날짜</th>
+					<th class="cate_date">적립날짜</th>
 					<th class="cate_content">내용</th>
 					<th class="cate_valid">유효기간</th>
 					<th class="cate_price">금액</th>
