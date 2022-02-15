@@ -26,27 +26,50 @@
 		<result property="toYou_pass" column="toYou_pass"/>
 	</resultMap>
 	
+	<sql id="pagingVO">
+		<trim prefix="(" suffix=") AND " prefixOverrides="OR">
+			<foreach item='type' collection="typeArr">
+				<trim prefix="OR">
+					<choose>
+						<when test="type == 'user_id'.toString()">
+							user_id like '%'||#{keyword}||'%'
+						</when>
+						<when test="type == 'user_name'.toString()">
+							user_naem like '%'||#{keyword}||'%'
+						</when>
+					</choose>
+				</trim>
+			</foreach>
+		</trim>
+	</sql>
+	
 	<!-- 페이지정보를 10개씩 가져오기 -->
 	<select id="listPage" resultMap="aduserResult">
 		<![CDATA[
 			select * 
 			from tb_users
-			where rownum #{page} <= 10
+			where rownum #{page} <= 10 
 		]]>
 	</select> 
 
 	<!-- 페이지정보를 지정한 크기만큼 가져오기 -->
 	<select id="listPaging" resultMap="aduserResult">
 		<![CDATA[
-			select * from (select rownum AS rn, tb_users.* from tb_users)  where rn between #{rowStart} and #{rowEnd}
-		]]>
+			select * from (
+			select rownum AS rn, tb_users.* 
+			from tb_users
+			where rownum <= #{page} * #{pageSize} 
+    	]]>            
+            <if test="keyword != null"> and ${searchOption} like '%'||#{keyword}||'%'</if>
+    	<![CDATA[
+  			)
+  			where rn > (#{page} -1) * #{pageSize}
+    	]]>
 	</select>
 	
 	<!-- 총 회원 수 -->
-	<select id="userCount" resultType="int">
-		<![CDATA[
-			select count(*) from TB_USERS
-		]]>
+	<select id="userCount" resultType="int" >
+			select count(*) from TB_USERS  <if test="keyword != null">  ${searchOption} like '%'||#{keyword}||'%'</if>
 	</select>
 	
 	<!-- 회원정보 삭제  -->

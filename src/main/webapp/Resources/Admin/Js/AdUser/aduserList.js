@@ -2,6 +2,31 @@
  * 
  */
  
+$(document).ready(function() {
+	let moveForm = $("#moveForm");
+			
+	$("#searchBtn").on("click",function(e){
+		e.preventDefault();
+				
+		let searchOption = $(".search_area select").val();
+		let keyword = $(".search_area input[name='keyword']").val();
+				
+		if(!searchOption){
+			alert("검색 종류를 선택하세요.");
+			return false;
+		}
+				
+		if(!keyword){
+			alert("검색어를 입력하세요.");
+			return false;
+		}
+				
+		moveForm.find("input[name='searchOption']").val(searchOption);
+		moveForm.find("input[name='keyword']").val(keyword);
+		moveForm.find("input[name='page']").val(1);
+		moveForm.submit();
+	});	
+});
  /* 체크 박스 전체 선택과 전체 취소 */
 	
 $(function(){
