@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.fasterxml.jackson.core.JsonGenerationException;
 import com.fasterxml.jackson.databind.JsonMappingException;
+import com.thoughtworks.qdox.model.Member;
 
 import kr.co.recipetoyou.user.login.LoginDAO;
 import kr.co.recipetoyou.admin.adgoods.AdGoodsDAO;
@@ -30,6 +31,8 @@ public class CartPickServiceImpl implements CartPickService{
 	@Autowired
 	private AdGoodsDAO adGoodsDAO;
 	
+	
+	
 	@Override
 	public List<PickVO> listPicks () throws DataAccessException {
 	
@@ -48,9 +51,28 @@ public class CartPickServiceImpl implements CartPickService{
 	
 	
 	//마이페이지 - 찜하기 담기 클릭시 마이페이지 장바구니 이동
+	/*@Override
+	
+	 * public int addCart(PickVO pickVO) throws DataAccessException { return
+	 * cartPickDAO.insertCart(pickVO); }
+	 */
+	//마이페이지 장바구니 담기
 	@Override
-	public int addCart(PickVO pickVO) throws DataAccessException {
-		return cartPickDAO.insertCart(pickVO);
+	public int addCart(CartAddVO cartAddVO) throws DataAccessException {
+		System.out.println("장바구니 Service 호출");
+		return cartPickDAO.insertCart(cartAddVO);
+	}
+	
+	
+	@Override
+	public int removeCartPick(String id) throws DataAccessException {
+		return cartPickDAO.deleteCartPick(id);
+	}
+
+	@Override
+	public int addCartPick(CartAddVO cartAddVO) throws DataAccessException {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 	
 	//마이페이지 장바구니 목록 조회
@@ -89,11 +111,6 @@ public class CartPickServiceImpl implements CartPickService{
 		}
 	
 		
-	//장바구니 담기
-	@Override
-	public int addCartPick(CartAddVO cartAddVO) throws DataAccessException {
-		return cartPickDAO.insertCartAdd(cartAddVO);
-	}
 
 	//찜(좋아요) 담기
 	@Override
@@ -113,10 +130,9 @@ public class CartPickServiceImpl implements CartPickService{
 		return cartPickDAO.insertCartPick(cartPickVO);
 	}
 
-	@Override
-	public int removeCartPick(String id) throws DataAccessException {
-		return cartPickDAO.deleteCartPick(id);
-	}
+	
+
+	
 	
 	
 }

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html>
@@ -52,8 +53,18 @@
 								<span class="costPrice">${pickList.prod_price}원</span>
 							</div>
 							<!-- price -->
+							<form name="form1"  method="post" class="form1" action="${contextPath}/cart.do }">
+							<input type="hidden" name="productId" value="${pickList.prod_code} }">
+								<select name ="amount">
+									<c:forEach begin="1" end="10" var="i">
+										<option value = "${i}">${i}</option>
+									</c:forEach>
+								</select>&nbsp;개			
+						</form>
 						</div>
 						<!-- subject -->
+						
+			
 						<div class="button_two">	<!-- 쿼리스트링으로 넘어가는 값은 파라미터=값(파라미터 이름으로 적용) -->
 							<a href="${contextPath}/removePick.do?prod_name=${pickList.prod_name}">
 								<button class="btn_delete">삭제</button>
