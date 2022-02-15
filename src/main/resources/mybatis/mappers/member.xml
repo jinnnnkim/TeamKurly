@@ -51,6 +51,7 @@
 
 	<!-- 배송지관리 조회  사용자 Tb + 회원 주소 -->
 	<resultMap type="useraddrVO" id="addressResult">
+		<result property="addr_code" column="addr_code"/>
 		<result property="user_name" column="user_name"/>
 		<result property="user_phone" column="user_phone"/>
 		<result property="addr" column="addr"/>
@@ -206,7 +207,7 @@
 	<!-- 배송지관리 삭제 -->
 	<delete id="deleteAddress" parameterType="string">
 		<![CDATA[
-			DELETE FROM ADDR_CODE
+			DELETE FROM TB_USER_ADDR
 			WHERE 
 			ADDR_CODE = #{ADDR_CODE}
 		]]>
@@ -309,6 +310,19 @@
 		]]>
 	</select>
 	
+	<!-- 총 쿠폰 수 -->
+	<!-- <select id="couponCount" resultType="int">
+		<![CDATA[
+			select count(cp_code) from tb_coupon
+		]]>
+	</select> -->
+	
+	<!-- 총 포인트 -->
+	<!-- <select id="pointSum" resultType="int">
+		<![CDATA[
+			select sum(point) from tb_point;
+		]]>
+	</select> -->
 	
 	
 	

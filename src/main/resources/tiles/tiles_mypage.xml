@@ -22,8 +22,8 @@
 		<put-attribute name="mypageInfo" value="" />		
 	</definition>
 	
-	<definition name="mypageAddrlayout" template="/WEB-INF/Views/User/Mypage/addrModify.jsp">	
-		<put-attribute name="body" value="/WEB-INF/Views/User/Mypage/addrModify.jsp"/>
+	<definition name="mypageAddrlayout" template="/WEB-INF/Views/User/Mypage/addAddrForm.jsp">	
+		<put-attribute name="body" value="/WEB-INF/Views/User/Mypage/addAddrForm.jsp"/>
 	</definition>
 	
 	<definition name="orderList" extends="mypagelayout">
@@ -115,9 +115,9 @@
 		<put-attribute name="body" value="/WEB-INF/Views/User/Mypage/cart.jsp"/>
 	</definition>
 	
-	<definition name="addrModify" extends="mypageAddrlayout">
-		<put-attribute name="title" value="배송지 수정"/>
-		<put-attribute name="body" value="/WEB-INF/Views/User/Mypage/addrModify.jsp"/>
+	<definition name="addAddress" extends="mypageAddrlayout">
+		<put-attribute name="title" value="배송지 추가"/>
+		<put-attribute name="body" value="/WEB-INF/Views/User/Mypage/addAddrForm.jsp"/>
 	</definition>
 	
 </tiles-definitions>

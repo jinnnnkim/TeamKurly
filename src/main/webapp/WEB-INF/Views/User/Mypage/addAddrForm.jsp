@@ -6,12 +6,12 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>쿠폰</title>
+<title>새배송지 추가</title>
 <link rel="stylesheet"
 	href="/recipetoyou/Resources/User/Css/Mypage2/mypageInfo.css" type="text/css">
 <link href="/recipetoyou/Resources/User/Css/Mypage2/reset.css" rel="stylesheet"
 	type="text/css">
-<link href="/recipetoyou/Resources/User/Css/Mypage2/coupon.css" rel="stylesheet"
+<link href="/recipetoyou/Resources/User/Css/Mypage2/addAddrForm.css" rel="stylesheet"
 	type="text/css">
 <!-- fontawesome 링크 -->
 <link rel="stylesheet"
@@ -25,6 +25,8 @@
 <!-- 파비콘 링크 -->
 <link href="/recipetoyou/Resources/User/Img/Mypage2/KurlyIcon.png" rel="icon"
 	type="image/x-icon" />
+<script type="text/javascript" src="/recipetoyou/Resources/User/Js/Mypage/userAddress.js" charset="UTF-8"></script>
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 </head>
 <body>
 	<div class="addAddrPopup">
@@ -33,11 +35,12 @@
 			<p>오늘 주문하면 다음 날 바로 도착해요.(일요일 휴무)</p>
 		</div>
 		
-		<input type="text" id="jibunAddress" readonly="readonly"><button id="search">재검색</button><br>
-		<input type="text" id="namugiAddress" placeholder="   나머지 주소를 입력해주세요" readonly="readonly"><br>
-		<label id="basic_Address"><input type="checkbox">기본 배송지로 저장</label>
-		<br>
-		<input type="button" id="save" value="저장">
+		<form action="" class="addressForm">
+			<input type="text" name="zonecode" id="zonecode" readonly="readonly" placeholder="   우편번호"><a href="" onclick="addAddr()">우편번호검색</a><br>
+			<input type="text" name="jibunAddress" id="jibunAddress" readonly="readonly"><br>
+			<input type="text" name="namugiAddress" id="namugiAddress" placeholder="   나머지 주소를 입력해주세요"><br>
+			<button type="submit" id="save" value="저장">저장</button>
+		</form>
 	</div>
 </body>
 </html>
