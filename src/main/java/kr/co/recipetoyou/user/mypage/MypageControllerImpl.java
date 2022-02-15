@@ -81,7 +81,7 @@ public class MypageControllerImpl implements MypageController{
 	@RequestMapping(value = "/orderDetail.do", produces = "application/json", method = {RequestMethod.GET, RequestMethod.POST}) 
 	public void orderDetail(@RequestParam(value="ord_code", required = false) int ord_code, Model model) throws Exception {
 		
-		logger.info("클릭한 주문 코드 : "+ord_code);
+		logger.info("클릭한 주문 상품 이름 : "+ord_code);
 		
 		System.out.println("orderDetail Controller 호출");
 		//상품정보 출력
@@ -306,15 +306,6 @@ public class MypageControllerImpl implements MypageController{
 		// TODO Auto-generated method stub
 		
 	}
-
-
-
-<<<<<<< HEAD
-=======
-
->>>>>>> cfc0befb9980991cb4efbf0d93740029688d7964
-	
-
 
 
 

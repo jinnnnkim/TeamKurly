@@ -1,7 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %> 
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
+<%
+	request.setCharacterEncoding("UTF-8");
+%> 
 <link rel="stylesheet"
 	href="/recipetoyou/Resources/User/Css/Mypage2/mypageInfo.css">
 <div class="myPageTop">
@@ -10,8 +14,11 @@
 			<div class="grade_user">
 				<div class="grade_wrap">
 					<div class="grade_logo">일반</div>
-					<strong class="name">홍길동님</strong>
-
+					<c:choose>
+						<c:when test="${isLogOn == true && userVO != null}">
+							<strong class="name">${userVO.user_name}님</strong>
+						</c:when>
+					</c:choose>
 					<div class="grade_benefit">
 						<strong class="benefit">적립 0.5%</strong>
 					</div>

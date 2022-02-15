@@ -114,13 +114,22 @@ public class MypageDAOImpl implements MypageDAO{
 		
 	}
 
-	//이미지 정보 얻기
+	/*
+	 * //이미지 정보 얻기
+	 * 
+	 * @Override public List<AdgoodsImgVO> getGoodsImage(int prod_code) throws
+	 * JsonProcessingException {
+	 * 
+	 * return sqlSession.selectList("mapper.member.getImageList", prod_code);
+	 * 
+	 * }
+	 */
 	@Override
-	public List<AdgoodsImgVO> getGoodsImage(int prod_code) throws JsonProcessingException {
+	public List<AdgoodsImgVO> getGoodsImage(int ord_code) throws JsonProcessingException {
+		return sqlSession.selectList("mapper.member.getImageList", ord_code);
 		
-		return sqlSession.selectList("mapper.member.getImageList", prod_code);
+	}
 
-	}	
 
 
 	//상품문의 삭제
