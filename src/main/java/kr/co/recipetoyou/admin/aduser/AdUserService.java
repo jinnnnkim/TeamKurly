@@ -13,7 +13,7 @@ public interface AdUserService {
 	public List<AdUserVO> listUsers(PagingVO vo) throws Exception;
 			
 	//회원 수 조회
-	public int userCount() throws DataAccessException;
+	public int userCount(PagingVO vo) throws DataAccessException;
 			
 	//회원 상세 정보 조회
 	public AdUserVO getUserInfo(String id) throws DataAccessException;
