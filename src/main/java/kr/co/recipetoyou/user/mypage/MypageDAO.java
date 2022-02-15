@@ -4,6 +4,7 @@ import java.sql.Date;
 import java.util.List; 
 
 import org.springframework.dao.DataAccessException;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 
@@ -41,11 +42,14 @@ public interface MypageDAO {
 	//주문내역 연도별 조회
 	public MyOrderVO searchOrderList(Date ord_date) throws DataAccessException;
 	
+	//주문취소
+	public int CancleOrders (int ord_code) throws DataAccessException;
+	
 	//상품문의 조회
 	public List<QnAVO> selectAllQnAList() throws DataAccessException;
 	
 	//상품문의 삭제
-	public int removeQnA(int prod_inq_code) throws DataAccessException;
+	public int deleteQnA(@RequestParam("prod_inq_code") int prod_inq_code) throws DataAccessException;
 	
 	//상품후기 조회
 	public List<ReviewVO> selectAllReviewList() throws DataAccessException;
@@ -53,7 +57,9 @@ public interface MypageDAO {
 	public void updateUser(UserVO userVO) throws DataAccessException;
 	
 	//이미지 데이터 얻기
-	public List<AdgoodsImgVO> getGoodsImage(int prod_code) throws JsonProcessingException;
+	public List<AdgoodsImgVO> getGoodsImage(int ord_code) throws JsonProcessingException;
+	
+	public int deleteAddress(@RequestParam("addr_code") String addr_code) throws DataAccessException;
  
 
 }

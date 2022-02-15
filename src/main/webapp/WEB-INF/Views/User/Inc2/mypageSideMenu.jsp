@@ -20,7 +20,7 @@
 			<i class="fas fa-chevron-right"></i></a></li>
 		<li class="review" id="review"><a href="${contextPath}/review.do">상품 후기
 			<i class="fas fa-chevron-right"></i></a></li>
-		<li class="QandA"><a href="${contextPath}/QandA.do">상품 문의
+		<li class="QandA"><a href="${contextPath}/QnA.do">상품 문의
 			<i class="fas fa-chevron-right"></i></a></li>
 		<li class="point"><a href="${contextPath}/point.do">적립금
 			<i class="fas fa-chevron-right"></i></a></li>

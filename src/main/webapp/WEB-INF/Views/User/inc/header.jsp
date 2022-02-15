@@ -57,6 +57,7 @@
 					<div class="delivery">	<!-- 새벽 배송안내 이미지 -->
 						<a href="#"><img alt="delivery" src="/recipetoyou/Resources/User/Img/delivery.png"></a>	
 					</div>
+					
 					<div class="logo">
 						<a href="/View/User/mainPage.jsp"><img alt="logo" src="/recipetoyou//Resources/User/Img/logo.gif"></a>
 					</div>

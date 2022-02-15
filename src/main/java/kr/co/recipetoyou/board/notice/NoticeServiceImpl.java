@@ -38,4 +38,14 @@ public class NoticeServiceImpl implements NoticeService{
 		return noticeDAO.selectNoticeFrequencyList(vo);
 	}
 
+	@Override
+	public int noticeOneToOneCount(PagingVO vo) {
+		return noticeDAO.selectOneToOneCount(vo);
+	}
+
+	@Override
+	public List<NoticeINQVO> noticeOneToOneist(PagingVO vo) {
+		return noticeDAO.selectOneToOneList(vo);
+	}
+
 }

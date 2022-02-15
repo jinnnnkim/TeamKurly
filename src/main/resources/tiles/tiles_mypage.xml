@@ -65,10 +65,15 @@
 		<put-attribute name="title" value="마이페이지 - 장바구니추가"/>장바구니-> 장바구니추가로 변경했음 
 		<put-attribute name="body" value="/WEB-INF/Views/User/Mypage/pickListAdd2.jsp"/>	
 	</definition> -->
-	<definition name="QandA" extends="mypagelayout">
+	<definition name="QnA" extends="mypagelayout">
 		<put-attribute name="title" value="상품 문의"/>		
-		<put-attribute name="body" value="/WEB-INF/Views/User/Mypage/QandA.jsp"/>
+		<put-attribute name="body" value="/WEB-INF/Views/User/Mypage/QnA.jsp"/>
 	</definition>
+	
+	<!-- <definition name="modifyQnA" extends="mypagelayout">
+		<put-attribute name="title" value="상품 문의 수정"/>		
+		<put-attribute name="body" value="/WEB-INF/Views/User/Mypage/modifyQnA.jsp"/>
+	</definition> -->
 	
 	<definition name="point" extends="mypagelayout">
 		<put-attribute name="title" value="적립금"/>		
@@ -85,7 +90,7 @@
 		<put-attribute name="body" value="/WEB-INF/Views/User/Mypage/mypageUserInfoPwdCheck.jsp"/>
 	</definition>
 	
-	<definition name="/mypageUserInfo.do" extends="mypagelayout">
+	<definition name="mypageUserInfo.do" extends="mypagelayout">
 		<put-attribute name="title" value="개인 정보 수정"/>		
 		<put-attribute name="body" value="/WEB-INF/Views/User/Mypage/mypageUserInfo.jsp"/>
 	</definition>

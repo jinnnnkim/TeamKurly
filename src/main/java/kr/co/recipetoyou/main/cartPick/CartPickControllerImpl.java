@@ -77,6 +77,8 @@ public class CartPickControllerImpl implements CartPickController {
 	@RequestMapping(value = "/addCart.do", method = RequestMethod.GET)
 	public ModelAndView addCart(PickVO pickVO, HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
+		
+		request.setCharacterEncoding("utf-8");
 		int result = cartPickService.addCart(pickVO);
 		ModelAndView mav = new ModelAndView("redirect:/cart.do");
 		return mav;

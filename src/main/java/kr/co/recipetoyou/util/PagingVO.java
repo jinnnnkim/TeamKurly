@@ -177,14 +177,6 @@ public class PagingVO {
 			this.title = title;
 		}
 
-		public String getUser_id() {
-			return user_id;
-		}
-
-		public void setUser_id(String user_id) {
-			this.user_id = user_id;
-		}
-
 		public String getContent() {
 			return content;
 		}
@@ -216,6 +208,14 @@ public class PagingVO {
 
 		public void setFaq_cate_code(int faq_cate_code) {
 			this.faq_cate_code = faq_cate_code;
+		}
+		
+		public String getUser_id() {
+			return user_id;
+		}
+
+		public void setUser_id(String user_id) {
+			this.user_id = user_id;
 		}
 
 		//toString()

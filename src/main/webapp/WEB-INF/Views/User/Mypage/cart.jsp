@@ -56,7 +56,7 @@
 												<!-- 이미지 정보가 담기도록 함. -->
 						<div class="image_wrap" data-prod_code="${cartList.imageList[0].prod_code}" data-path="${cartList.imageList[0].uploadPath}"
 												data-uuid="${cartList.imageList[0].uuid}" data-filename="${cartList.imageList[0].fileName}">
-							<img>
+							<img style="height: 108px; width: 90px; padding: 10px;">
 
 						</div>
 							<div class="subject">
@@ -158,7 +158,29 @@
 		<!-- body -->
 		
 		
-	<script>
+	<script type="text/javascript">
+	//이미지 삽입
+	$(".image_wrap").each(function(i, obj){
+		
+		const bobj = $(obj);
+		if(bobj.data("prod_code")){
+			
+			const uploadPath = bobj.data("path");
+			const uuid = bobj.data("uuid");
+			const fileName = bobj.data("filename");
+			
+			const fileCallPath = encodeURIComponent(uploadPath + "/s_" + uuid + "_" + fileName);
+			
+			$(this).find("img").attr('src', '${contextPath}/adgoods/getImageInfo.do?fileName=' + fileCallPath);
+			
+			}else {
+				$(this).find("img").attr('src', '/recipetoyou/Resources/Admin/Img/SubgoodsImg/ready.jpg');
+			}
+	});
+
+	
+	
+	
 		$(document).ready(function() {
 			var prodAmount = $(".inp").val();
 			$('#basicPrice').text($("#itemPrice").text());
@@ -185,7 +207,7 @@
 				
 			});
 			
-			//계산
+		/* 	//계산
 			let itemPrice = 0;		 //1개 상품가격
 			let basicPrice = 0;		//상품 가격 누적
 			let totalPrice = 0;	    //상품가격 총 금액
@@ -197,34 +219,14 @@
 			}else if(basicPrice == 0) {
 					deliveryPrice = 0;
 			}else {
-				deliveryPrice =3000원;
+				deliveryPrice =3000;
 			}
 			
 			totalPrice = basicPrice +_deliveryPrice;
 			
-			
-			//이미지 삽입
-			$(".image_wrap").each(function(i, obj){
-				
-				const bobj = $(obj);
-				if(bobj.data("prod_code")){
-					
-					const uploadPath = bobj.data("path");
-					const uuid = bobj.data("uuid");
-					const fileName = bobj.data("filename");
-					
-					const fileCallPath = encodeURIComponent(uploadPath + "/s_" + uuid + "_" + fileName);
-					
-					$(this).find("img").attr('src', '${contextPath}/adgoods/getImageInfo.do?fileName=' + fileCallPath);
-					
-					}else {
-						$(this).find("img").attr('src', '/recipetoyou/Resources/Admin/Img/SubgoodsImg/ready.jpg');
-					}
-			});
+			 */
 		
-			
 
-		});
 		
 	function removeStr(doc, str){
 		doc = doc.replace(str,"");
@@ -286,7 +288,7 @@
 	}
 	
 	
-	
+	 
 	//배송지 변경_미완
 	 function daumPostcode() {
                new daum.Postcode({
@@ -307,12 +309,13 @@
                        document.getElementById('postcode').value = data.zonecode;
                        document.getElementById("roadAddress").value = roadAddr;
                    }
-               }).open();
+               })
+               .open();
            }
 	
 	
 	
-	</script>
+	 </script>
 </body>
 </html>
 

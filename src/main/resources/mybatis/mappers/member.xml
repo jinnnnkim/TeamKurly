@@ -72,6 +72,7 @@
 	
 	<!-- 상품문의 조회 -->
 	<resultMap type="QnAVO" id="qnaResult">
+		<result property="prod_name" column="prod_name"/>
 		<result property="prod_inq_code" column="prod_inq_code"/>
 		<result property="inq_title" column="inq_title"/>
 		<result property="inq_content" column="inq_content"/>
@@ -173,7 +174,7 @@
 	</select>
 
 	
-	
+	<!-- 장바구니 삭제 -->
 	<select id="deleteCart" parameterType="String">
 		<![CDATA[
 			DELETE FROM TB_PROD
@@ -196,33 +197,39 @@
 	<!-- 배송지관리 조회 -->
 	<select id="selectAllAddressList" resultMap="addressResult">
 		<![CDATA[
-			SELECT TU.USER_NAME, TU.USER_PHONE, TUA.addr , TUA.DELIVERY_TYPE
+			SELECT TU.USER_NAME, TU.USER_PHONE, TUA.addr, TUA.DELIVERY_TYPE, TUA.ADDR_CODE
 			FROM TB_USER_ADDR tua JOIN TB_USERS tu 
 			ON TUA.USER_ID = TU.USER_ID
 		]]>
 	</select>	
 	
+	<!-- 배송지관리 삭제 -->
+	<delete id="deleteAddress" parameterType="string">
+		<![CDATA[
+			DELETE FROM ADDR_CODE
+			WHERE 
+			ADDR_CODE = #{ADDR_CODE}
+		]]>
+	</delete>
 
 	<!-- 주문내역 조회 -->
 	<select id="selectAllOrderList" resultMap="orderListResult">
 		<![CDATA[
-			SELECT tp.PROD_NAME, tp.prod_code, to2.ORD_CODE, to2.STATUS, to2.PRICE, to2.ORD_DATE 
-			FROM  TB_ORDER to2, TB_PROD tp,TB_USERS tu 
+			SELECT tp.PROD_NAME, to2.ORD_CODE, to2.STATUS, to2.PRICE,  to2.ORD_DATE 
+			FROM  TB_ORDER to2, TB_PROD tp, TB_USERS tu 
 			WHERE tp.ORD_CODE = to2.ORD_CODE
 			AND to2.USER_ID = tu.USER_ID
-			AND tp.PROD_CODE = to2.PROD_CODE 
 		]]>
 	</select>
 
 	<!-- 주문내역 상세 조회 -->
 	<select id="orderDetailList" parameterType="int"  resultMap="orderListResult">
 		<![CDATA[
-			SELECT tp.PROD_NAME, tp.prod_code, tp.PROD_CONTENT, tp.PROD_DISCOUNT,
-					to2.ORD_CODE , to2.PRICE 
+			SELECT tp.PROD_NAME, tp.PROD_CONTENT, tp.PROD_DISCOUNT,
+			to2.ORD_CODE , to2.PRICE, to2.ORD_DATE 
 			FROM TB_PROD tp INNER JOIN TB_ORDER to2 
 			ON tp.ORD_CODE = to2.ORD_CODE 
 			WHERE tp.ORD_CODE = #{ord_code}
-			and tp.prod_code = to2.prod_code
 		]]>
 	</select>
 	
@@ -238,11 +245,27 @@
 		]]>
 	</select>
 	
+	<!-- 주문 취소  -->
+	<select id="CancleOrders" parameterType="int" resultMap="orderListResult">
+		<![CDATA[
+			DELETE 
+			FROM (
+				SELECT tp.PROD_NAME, tp.PROD_CONTENT, tp.PROD_DISCOUNT,
+						to2.ORD_CODE , to2.PRICE, to2.ORD_DATE 
+				FROM TB_PROD tp, TB_ORDER to2 
+				WHERE tp.ORD_CODE = to2.ORD_CODE 
+			)
+			WHERE ord_code = #{ord_code}
+		]]>
+	</select>
+	
 	
 	<!-- 상품문의 조회 -->
 	<select id="selectAllQnAList" resultMap="qnaResult">
 		<![CDATA[
-			SELECT * FROM TB_PROD_INQ
+			SELECT TPI.PROD_INQ_CODE, TPI.INQ_TITLE, TPI.INQ_CONTENT, TPI.INQ_REG_DATE, TPI.INQ_STATUS, TP.PROD_NAME
+			FROM TB_PROD_INQ tpi JOIN TB_PROD tp 
+			ON TP.PROD_CODE = TPI.PROD_CODE
 		]]>
 	</select>
 	

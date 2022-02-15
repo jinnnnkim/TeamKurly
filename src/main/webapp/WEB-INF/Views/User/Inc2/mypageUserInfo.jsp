@@ -1,5 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %> 
+<c:set var="contextPath" value="${pageContext.request.contextPath}" />  
+<%
+	request.setCharacterEncoding("UTF-8");
+%> 
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+</head>
+<body>
 <div class="myPageTop">
 			<div class="mypagetop_user">
 				<div class="inner_mypagetop">
@@ -8,7 +20,6 @@
 							<div class="grade_logo">
 								일반 </div>
 								<strong class="name">홍길동님</strong>
-							
 							<div class="grade_benefit">
 								<strong class="benefit">적립 0.5%</strong>
 							</div>
@@ -59,3 +70,5 @@
 			</div>
 			<!-- mypagetop_user -->
 		</div>
+</body>
+</html>

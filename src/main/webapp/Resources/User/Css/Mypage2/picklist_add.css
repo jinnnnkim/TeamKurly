@@ -45,6 +45,11 @@
 
 .subject {
 	width: 625px;
+<<<<<<< HEAD
+	margin-left: 10px;
+=======
+	margin-top: 10px;
+>>>>>>> cfc0befb9980991cb4efbf0d93740029688d7964
 }
 
 .discountRate {
@@ -69,7 +74,7 @@
     background-color: #fff;
     border: 1px solid #ddd;
     font-size: 13px;
-    margin-bottom: 10px;
+    margin-top: 22px;
   
 }
 
@@ -82,6 +87,7 @@
     font-size: 13px;
     color: #5f0080;
     line-height: 2;
+    margin-top: 22px;
 }
 
 button i {
@@ -178,4 +184,9 @@ button i {
 }
 .order_cancle {
 	padding-left: 220px;	
+}
+
+#thumbnail {
+	width: 46px;
+	height: 60px;
 }

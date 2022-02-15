@@ -68,12 +68,12 @@
 	</definition>
 	
 	
-	<definition name="/notice/noticeGoodsOfferDetail" extends="noticeLayout">
+	<definition name="notice/noticeGoodsOfferDetail" extends="noticeLayout">
 		<put-attribute name="title" value="상품제안 - 상세페이지"/>
 		<put-attribute name="body" value="/WEB-INF/Views/User/Notice/noticeGoodsOfferDetail.jsp"/>	
 	</definition>
 	
-	<definition name="/notice/noticeOneToOneQuestion" extends="noticeLayout">
+	<definition name="notice/noticeOneToOneQuestion" extends="noticeLayout">
 		<put-attribute name="title" value="1:1 문의"/>
 		<put-attribute name="body" value="/WEB-INF/Views/User/Notice/noticeOneToOneQuestion.jsp"/>	
 	</definition>

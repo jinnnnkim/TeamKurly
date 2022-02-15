@@ -14,6 +14,7 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.fasterxml.jackson.core.JsonGenerationException;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -127,6 +128,14 @@ public class MypageServiceImpl implements MypageService{
 		return mypageDAO.searchOrderList(ord_date);
 	}
 
+	//주문 취소
+	@Override
+	public int CancleOrders(int ord_code) throws DataAccessException {
+		return mypageDAO.CancleOrders(ord_code);
+	}
+
+	
+	
 	//상품후기 조회
 	@Override
 	public List<ReviewVO> listReviews() throws DataAccessException {
@@ -143,9 +152,17 @@ public class MypageServiceImpl implements MypageService{
 
 	//상품문의 삭제
 	@Override
-	public int removeQnA(int prod_inq_code) throws DataAccessException {
-		 return mypageDAO.removeQnA(prod_inq_code);
+	public int deleteQnA(@RequestParam("prod_inq_code") int prod_inq_code) throws DataAccessException {
+		return mypageDAO.deleteQnA(prod_inq_code);
 	}
+
+	//배송지삭제
+	@Override
+	public int deleteAddress(@RequestParam("addr_code") String addr_code) throws DataAccessException {
+		return mypageDAO.deleteAddress(addr_code);
+		
+	}
+
 
 	
 

@@ -42,47 +42,60 @@
 					<th class="writer">작성자</th>
 					<th class="writeDate">작성일</th>
 				</tr>
-
-				<tr class="QAList1">
-					<td>1</td>
-					<td>[문의선택]</td>
-					<td>배송받은 상품이 마음에 들지 않습니다.</td>
-					<td>market</td>
-					<td>2022-01-05</td>
-				</tr>
-				<tr class="QADetail1">
-					<td colspan="5">
-						<div>
-							<span> 배송을 받았는데 받은 상품이 마음에 들지 않습니다. 환불 절차를 좀 알려주세요. </span>
-							<div class="QABtn">
-								<button class="editBtn" type="button">수정</button>
-								<button class="deleteBtn" type="button" onclick="QAdelte()">삭제</button>
+				
+				<c:choose>
+				<c:when test="${cnt != 0}">
+				<c:forEach var="list" items="${noticeOneToOneList }">
+					<tr class="QAList1">
+						<td>${list.rn }</td>
+						<td>${list.inq_title_code }</td>
+						<td>${list.inq_title }</td>
+						<td>${list.user_id }</td>
+						<td>${list.inq_date}</td>
+					</tr>
+					
+					<tr class="QADetail1">
+						<td colspan="5">
+							<div>
+								<span>${list.inq_content}</span>
+								<div class="QABtn">
+									<button class="editBtn" type="button">수정</button>
+									<button class="deleteBtn" type="button" onclick="QAdelte()">삭제</button>
+								</div>
 							</div>
-						</div>
-					</td>
+						</td>
+					</tr>
+				</c:forEach>
+				</c:when>
+				<c:otherwise>
+				<tr class="noneQnA">
+					<td colspan="5">1:1문의 내역이 존재하지 않습니다.</td>
 				</tr>
-
-				<tr class="QAList">
-					<td>1</td>
-					<td>[문의선택]</td>
-					<td>배송받은 상품이 마음에 들지 않습니다.</td>
-					<td>market</td>
-					<td>2022-01-05</td>
-				</tr>
+				</c:otherwise>
+				</c:choose>
 
 
 			</table>
 		</div>
 		<div class="page">
-			<ul>
-				<li><a href="#"><i class="fas fa-angle-double-left"></i></a></li>
-				<li><a href="#"><i class="fas fa-angle-left"></i></a></li>
-				<li><a href="#">1</a></li>
-				<li><a href="#">2</a></li>
-				<li><a href="#">3</a></li>
-				<li><a href="#"><i class="fas fa-angle-right"></i></a></li>
-				<li><a href="#"><i class="fas fa-angle-double-right"></i></a></li>
-			</ul>
+			<c:if test="${cnt  != 0}">
+				<ul>
+					<c:if test="${pm.prev }">
+				 		<li><a href="${contextPath}/notice/noticeOneToOneQuestion.do?page=${pm.startPage-1}">&laquo;</a></li>
+				 	</c:if>
+				 			<!-- 페이지블럭 -->
+					<c:forEach var="idx" begin="${pm.startPage}" end="${pm.endPage}">
+								<!-- 삼항연산자를 사용해서 class로 스타일적용  -->
+						<li ${pm.vo.page == idx? 'class=active':''}>
+						 	<a href="${contextPath}/notice/noticeOneToOneQuestion.do?page=${idx}">${idx}</a>
+						</li>				
+					</c:forEach>
+				 			<!-- 다음next -->
+				 	<c:if test="${pm.next && pm.endPage > 0}">
+				 		<li><a href="${contextPath}/notice/noticeOneToOneQuestion.do?page=${pm.endPage+1}">&raquo;</a></li>
+				 	</c:if>
+				</ul>
+			</c:if>
 		</div>
 
 		<div class="writeBtn">

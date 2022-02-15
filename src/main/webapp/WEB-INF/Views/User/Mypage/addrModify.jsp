@@ -30,7 +30,6 @@
 <body>
 	<div class="addrModify">
 		<h2>배송지 수정</h2>
-		<span class="basic_address">기본 배송지</span>
 		<p class="address">주소</p>
 		<input type="text" placeholder="나머지 주소를 입력해주세요">
 		

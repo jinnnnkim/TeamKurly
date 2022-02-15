@@ -16,4 +16,8 @@ public interface NoticeDAO {
 
 	public List<NoticeVO> selectNoticeFrequencyList(PagingVO vo);
 
+	public int selectOneToOneCount(PagingVO vo);
+
+	public List<NoticeINQVO> selectOneToOneList(PagingVO vo);
+
 }
