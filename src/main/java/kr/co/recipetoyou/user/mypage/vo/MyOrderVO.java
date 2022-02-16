@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 
 import kr.co.recipetoyou.admin.adgoods.AdgoodsImgVO;
 import kr.co.recipetoyou.main.cartPick.vo.ProdVO;
+import kr.co.recipetoyou.user.UserVO;
 
 
 @Component("myorderVO")
@@ -15,8 +16,8 @@ public class MyOrderVO {
 	
 	private int ord_code;
 	private int prod_code;
-	private int quantity;
-	private int price;
+	private int quantity;	//수량
+	private int price;		//주문 총액
 	private int status;
 	private String user_id;
 	private Date ord_date;
@@ -25,11 +26,13 @@ public class MyOrderVO {
 	private ProdVO prodVO;
 	private String prod_name;
 	private String prod_discount;
+	private int prod_price;  //상품 가격
 	private String prod_content;
 	
 	
 	/* 상품 이미지 */
 	private List<AdgoodsImgVO> imageList;
+	
 
 	public int getOrd_code() {
 		return ord_code;
@@ -102,4 +105,18 @@ public class MyOrderVO {
 		this.imageList = imageList;
 	}
 
+	//상품 가격
+	public int getProd_price() {
+		return prod_price;
+	}
+	public void setProd_price(int prod_price) {
+		this.prod_price = prod_price;
+	}
+	
+	@Override
+	public String toString() {
+		return "MyOrderVO [ord_code="+ord_code+", prod_code="+prod_code+", quantity="+quantity+
+				", price="+price+", status"+status+",user_id="+user_id+", ord_date="+ord_date+
+				",prod_name="+prod_name+", prod_discount"+", prod_content="+prod_content+",prod_price="+prod_price+"]";
+	}
 }

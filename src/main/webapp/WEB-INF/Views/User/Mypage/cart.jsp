@@ -45,7 +45,13 @@
 						</label>
 					</div>
 					<!-- cart_select -->
-
+		
+		<!-- 장바구니 비어있는 경우 -->
+		<c:choose>
+			<c:when test="${map.count == 0 }">
+				장바구니가 비어있습니다.
+			</c:when>
+		</c:choose>
 				
 		<c:forEach var="cartList" items="${cartList}">	
 					<div class="cartlist">
@@ -63,10 +69,18 @@
 								<a href="#" class="subject_tit">${cartList.prod_name}</a> 
 								<span class="subject_in">${cartList.prod_content}</span>
 							</div>
+							
+							<div class="prodCount">
+								<input type="number" name="amount" value="${row.amount}">
+								<input type="hidden" name="productId" value="${row.prod_code}">
+								
+							
+							</div>
+							<!-- prodCount -->
 
-
+<!-- 
 							<div class="inner_option">
-								<!-- inner_option -->
+								inner_option
 								<button type="button" class="btn down">
 									<i class="fas fa-minus"></i>
 								</button>
@@ -75,9 +89,9 @@
 									<i class="fas fa-plus"></i>
 								</button>
 							</div>
-							<!-- inner_option  -,+ 구매수량 -->
+							inner_option  -,+ 구매수량
 								
-						
+						 -->
 
 							<div class="cancle">
 								<a href="${contextPath}/removeCart.do?prod_name=${cartList.prod_name}">
@@ -139,7 +153,9 @@
 					</div>
 				
 					<div class="orderBtn">
-						<button class="btn" action=${contextPath}/user/order.do">주문하기</button>
+					<a href="${contextPath}/order.do">
+						<button class="btn" >주문하기</button>
+					</a>	
 					</div>
 					
 			</c:forEach>
@@ -197,7 +213,7 @@
 				}
 				
 			});
-
+		
 			$(".up").click(function() {
 				console.log("up");
 				let aa1 = $(this).parent("div").find(".inp");
@@ -207,31 +223,14 @@
 				
 			});
 			
-		/* 	//계산
-			let itemPrice = 0;		 //1개 상품가격
-			let basicPrice = 0;		//상품 가격 누적
-			let totalPrice = 0;	    //상품가격 총 금액
-			let deliveryPrice = 0;	//배송금액
-			
-			
-			if(basicPrice >= 30000) {
-				deliveryPrice =0;
-			}else if(basicPrice == 0) {
-					deliveryPrice = 0;
-			}else {
-				deliveryPrice =3000;
-			}
-			
-			totalPrice = basicPrice +_deliveryPrice;
-			
-			 */
-		
+		});
 
 		
 	function removeStr(doc, str){
 		doc = doc.replace(str,"");
 		return doc;
 	}
+	
 	function addStr(doc,str){
 		doc = String(doc);
 		var length = doc.length;
@@ -284,7 +283,7 @@
 		  
 		  checkboxes.forEach((checkbox) => {
 		    checkbox.checked = selectAll.checked;
-		  })
+		  });
 	}
 	
 	
@@ -313,7 +312,7 @@
                .open();
            }
 	
-	
+		
 	
 	 </script>
 </body>

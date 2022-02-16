@@ -45,11 +45,9 @@
 
 .subject {
 	width: 625px;
-<<<<<<< HEAD
 	margin-left: 10px;
-=======
 	margin-top: 10px;
->>>>>>> cfc0befb9980991cb4efbf0d93740029688d7964
+
 }
 
 .discountRate {
@@ -189,4 +187,10 @@ button i {
 #thumbnail {
 	width: 46px;
 	height: 60px;
+}
+
+.form1 {
+	width: 90px;
+	margin-top: 20px; 
+	
 }

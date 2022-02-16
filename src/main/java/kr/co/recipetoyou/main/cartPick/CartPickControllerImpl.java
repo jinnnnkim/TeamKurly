@@ -4,11 +4,13 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -73,16 +75,42 @@ public class CartPickControllerImpl implements CartPickController {
 	}
 
 	//마이페이지 찜하기 페이지에서 담기 클릭 시 장바구니 페이지에 추가 담기 기능
+	/*
+	 * @Override
+	 * 
+	 * @RequestMapping(value = "/addCart.do", method = RequestMethod.GET) public
+	 * ModelAndView addCart(PickVO pickVO, HttpServletRequest request,
+	 * HttpServletResponse response) throws Exception {
+	 * 
+	 * request.setCharacterEncoding("utf-8"); int result =
+	 * cartPickService.addCart(pickVO); ModelAndView mav = new
+	 * ModelAndView("redirect:/cart.do"); return mav; }
+	 */
+	
 	@Override
 	@RequestMapping(value = "/addCart.do", method = RequestMethod.GET)
-	public ModelAndView addCart(PickVO pickVO, HttpServletRequest request, HttpServletResponse response)
+	public ModelAndView addCart(CartAddVO cartAddVO, HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
 		
 		request.setCharacterEncoding("utf-8");
-		int result = cartPickService.addCart(pickVO);
+		HttpSession session =request.getSession();
+		UserVO userVO = (UserVO)session.getAttribute("user");
+		
+		
+		int result = cartPickService.addCart(cartAddVO);
+		
 		ModelAndView mav = new ModelAndView("redirect:/cart.do");
 		return mav;
 	}
+
+	//수정
+	@Override
+	@RequestMapping(value = "/modifyCount.do", method = {RequestMethod.GET, RequestMethod.POST})
+	public int updateCount(CartAddVO cartAddVO) throws Exception {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 
 	//장바구니 목록 조회
 	@RequestMapping(value = "/cart.do", method = {RequestMethod.GET, RequestMethod.POST})
@@ -151,6 +179,7 @@ public class CartPickControllerImpl implements CartPickController {
 		return mav;		//ModelAndView 객체에 설정한 뷰이름을 타일즈 뷰리절버로 반환함.
 	}
 
+	//담기
 	@Override
 	@RequestMapping(value = "/cartPick/addCartPick.do", method = {RequestMethod.GET, RequestMethod.POST})
 	public ModelAndView addCartPick(CartPickVO__ cartPickVO, HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -159,7 +188,10 @@ public class CartPickControllerImpl implements CartPickController {
 		ModelAndView mav = new ModelAndView("redirect:/cartPick/listCartPicks.do");
 		return mav;
 	}
+	
+	
 
+	//삭제
 	@Override
 	@RequestMapping(value = "/cartPick/removeCartPick.do",  method = {RequestMethod.GET, RequestMethod.POST})
 	public ModelAndView removeCartPick(String id, HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -168,6 +200,7 @@ public class CartPickControllerImpl implements CartPickController {
 		ModelAndView mav = new ModelAndView("redirect:/cartPick/listCartPicks.do");
 		return mav;
 	}
+
 
 	
 
