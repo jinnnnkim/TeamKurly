@@ -7,6 +7,12 @@
 	request.setCharacterEncoding("utf-8");
 	response.setContentType("application/json");
 %>
+<c:if test="${admin.adminId == null }">
+	<script>
+		alert("관리자 로그인 후 이용이 가능합니다.");
+		location.href="${contextPath}/admin/adLogin.do";
+	</script>
+</c:if>
 <!DOCTYPE html>
 <html>
 <head>

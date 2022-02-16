@@ -1,21 +1,26 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <c:set var="contextPath" value="${pageContext.servletContext.contextPath }"/>
 <%
 	request.setCharacterEncoding("utf-8");
-%> 
+%>
+<c:if test="${admin.adminId == null }">
+	<script>
+		alert("ê´€ë¦¬ìž ë¡œê·¸ì¸ í›„ ì´ìš©ì´ ê°€ëŠ¥í•©ë‹ˆë‹¤.");
+		location.href="${contextPath}/admin/adLogin.do";
+	</script>
+</c:if>
 <!DOCTYPE html>
 <html>
 <head>
 	<meta charset="EUC-KR">
-	<title>È¸¿øÁ¤º¸¼öÁ¤</title>
+	<title>íšŒì›ì •ë³´ìˆ˜ì •</title>
 	<script src="https://kit.fontawesome.com/7d11552255.js" crossorigin="anonymous"></script>
-	<link rel=¡°stylesheet¡± href=¡°https://use.fontawesome.com/releases/v5.14.0/css/all.css¡±
-     integrity=¡°sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc¡± crossorigin=¡°anonymous¡±>
- 	<link href=¡°https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap¡± rel=¡°stylesheet¡±>
+	<link rel=â€œstylesheetâ€ href=â€œhttps://use.fontawesome.com/releases/v5.14.0/css/all.cssâ€
+     integrity=â€œsha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgcâ€ crossorigin=â€œanonymousâ€>
+ 	<link href=â€œhttps://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swapâ€ rel=â€œstylesheetâ€>
 	<link rel="stylesheet" href="/recipetoyou/Resources/Admin/Css/AdUser/moduserInfo.css">
 	<link rel="stylesheet" href="/recipetoyou/Resources/Admin/Css/HomePageHeaderSide/reset.css">
 	<script type="text/javascript" src="/recipetoyou/Resources/Admin/Js/AdUser/moduserInfo.js" charset="UTF-8"></script>
@@ -24,11 +29,11 @@
 <body>
 
 	<!-- 
-		È¸¿ø¸®½ºÆ® Áß ¼öÁ¤ ¹öÆ° Å¬¸¯½Ã ³Ñ¾î¿À´Â ÆäÀÌÁö
+		íšŒì›ë¦¬ìŠ¤íŠ¸ ì¤‘ ìˆ˜ì • ë²„íŠ¼ í´ë¦­ì‹œ ë„˜ì–´ì˜¤ëŠ” íŽ˜ì´ì§€
 	 -->
 	<div class="wrap">
 		<div class="mainTitle">
-			È¸¿ø±âº»Á¤º¸
+			íšŒì›ê¸°ë³¸ì •ë³´
 		</div>
 		
 		<form action="${contextPath}/aduser/userUpdate.do" method="post">
@@ -36,7 +41,7 @@
 			<table border="1">
 			<c:set var="user" />
 				<tr>
-					<td class="grayBg">¾ÆÀÌµð</td>
+					<td class="grayBg">ì•„ì´ë””</td>
 					<td class="whiteBg"><input id="text" type="text" value="${userVO.user_id}" readonly="readonly">
 					<input type="hidden" name="user_id" value="${userVO.user_id }">
 					</td>
@@ -46,9 +51,9 @@
 				<tr>
 					<td class="grayBg">
 					<i class="fas fa-check" id="checkIcon"></i>
-					ÀÌ¸§
+					ì´ë¦„
 					</td>
-					<td class="whiteBg"><input id="text" type="text" name="user_name" value="${userVO.user_name}"><div class="skyblueFont">+ÃÖ´ë50ÀÚ±îÁö ÀÔ·Â °¡´É</div>
+					<td class="whiteBg"><input id="text" type="text" name="user_name" value="${userVO.user_name}"><div class="skyblueFont">+ìµœëŒ€50ìžê¹Œì§€ ìž…ë ¥ ê°€ëŠ¥</div>
 					<%-- <input type="hidden" name="user_name" value="${userVO.user_name}"/> --%>
 					</td>
 					
@@ -57,7 +62,7 @@
 				<tr>
 					<td class="grayBg">
 					<i class="fas fa-check fa-xs" id="checkIcon"></i>
-					»ý³â¿ùÀÏ
+					ìƒë…„ì›”ì¼
 					</td>
 					<td class="whiteBg">
 					${userVO.user_birth}
@@ -69,35 +74,35 @@
 				<tr>
 					<td class="grayBg">
 					<i class="fas fa-check fa-xs" id="checkIcon"></i>
-					¼ºº°
+					ì„±ë³„
 					</td>
 					<td class="whiteBg">
 						${userVO.user_gender}
 						<%-- <c:out value="${userVO.user_gender}"/> --%>
-						<!-- <input type="radio">³²<input type="radio">¿© -->
+						<!-- <input type="radio">ë‚¨<input type="radio">ì—¬ -->
 					</td>
 				</tr>
 				
 				<tr>
-					<td class="grayBg">ºñ¹Ð¹øÈ£</td>
+					<td class="grayBg">ë¹„ë°€ë²ˆí˜¸</td>
 					<td class="whiteBg">
 					<input type="text" name="user_pw" value="${userVO.user_pw}">
 					<%-- <input type="hidden" name="user_pw" value="${userVO.user_pw }"> --%>
-					<div class="skyblueFont">+4~15ÀÚÀÇ ¿µ¹®ÀÚ,¼ýÀÚÁ¶ÇÕ</div>
-					<div class="redFont">(ºñ¹Ð¹øÈ£ º¯°æ½Ã¿¡¸¸ ÀÔ·ÂÇÏ½Ê½Ã¿À)</div>
+					<div class="skyblueFont">+4~15ìžì˜ ì˜ë¬¸ìž,ìˆ«ìžì¡°í•©</div>
+					<div class="redFont">(ë¹„ë°€ë²ˆí˜¸ ë³€ê²½ì‹œì—ë§Œ ìž…ë ¥í•˜ì‹­ì‹œì˜¤)</div>
 					</td>
 				</tr>
 			
 				
 				<tr>
-					<td class="grayBg"><i class="fas fa-check fa-xs" id="checkIcon"></i>È¸¿øµî±Þ</td>
+					<td class="grayBg"><i class="fas fa-check fa-xs" id="checkIcon"></i>íšŒì›ë“±ê¸‰</td>
 					<td class="whiteBg">
 					${userVO.user_grade}
 					</td>
 				</tr>
 				
 				<tr>
-					<td class="grayBg">ÀÌ¸ÞÀÏÁÖ¼Ò</td>
+					<td class="grayBg">ì´ë©”ì¼ì£¼ì†Œ</td>
 					<td class="whiteBg">
 					<input id="text" type="text" name="user_email" value="${userVO.user_email}">
 					<%-- <input type="hidden" name="user_email" value="${userVO.user_email}"> --%>
@@ -106,7 +111,7 @@
 				
 				
 				<tr>
-					<td class="grayBg"><i class="fas fa-check fa-xs" id="checkIcon"></i>ÈÞ´ëÀüÈ­</td>
+					<td class="grayBg"><i class="fas fa-check fa-xs" id="checkIcon"></i>íœ´ëŒ€ì „í™”</td>
 					<td class="whiteBg">
 					<input id="text" type="text" name="user_phone" value="${userVO.user_phone}"/>
 					<%-- <input type="hidden" name="user_phone" value="${userVO.user_phone}"> --%>
@@ -114,7 +119,7 @@
 				</tr>
 				
 				<tr>
-					<td class="grayBg"><i class="fas fa-check fa-xs" id="checkIcon"></i>ÁÖ¼Ò</td>
+					<td class="grayBg"><i class="fas fa-check fa-xs" id="checkIcon"></i>ì£¼ì†Œ</td>
 					<td class="whiteBg">
 					<input id="text" type="text" name="user_addr" value="${userVO.user_addr}">
 					<%-- <input type="hidden" name="user_addr" value="${userVO.user_addr}"><br> --%>
@@ -123,12 +128,12 @@
 			</table>
 			
 			<div class="title">
-				Á¤º¸¼ö½Å¼³Á¤
+				ì •ë³´ìˆ˜ì‹ ì„¤ì •
 			</div>
 			
 			<table>
 				<tr>
-					<td class="grayBg">´º½º·¹ÅÍ ¼ö½Å</td>
+					<td class="grayBg">ë‰´ìŠ¤ë ˆí„° ìˆ˜ì‹ </td>
 					<td class="whiteBg">
 					${userVO.email_agree}
 					<%-- <c:out value="${userVO.email_agree}"/> --%>
@@ -136,7 +141,7 @@
 				</tr>
 				
 				<tr>
-					<td class="grayBg">¹®ÀÚ¸Þ½ÃÁö ¼ö½Å</td>
+					<td class="grayBg">ë¬¸ìžë©”ì‹œì§€ ìˆ˜ì‹ </td>
 					<td class="whiteBg">
 					${userVO.sms_agree}
 					<%-- <c:out value="${userVO.sms_agree}"/> --%>
@@ -146,17 +151,17 @@
 			</table>
 			
 			<!-- <div class="title">
-				°ü¸®ÀÚ¸Þ¸ð
+				ê´€ë¦¬ìžë©”ëª¨
 			</div> -->
 			
 		
 		
-			<%-- <button type="button" class="saveBtn" onsubmit="return _onSubmit();"><a href="${contextPath}/user/userUpdate.do?user_id=${userVO.user_id}">¼öÁ¤</a></button> --%>
-			<input type="submit" class="saveBtn" value="¼öÁ¤">
+			<%-- <button type="button" class="saveBtn" onsubmit="return _onSubmit();"><a href="${contextPath}/user/userUpdate.do?user_id=${userVO.user_id}">ìˆ˜ì •</a></button> --%>
+			<input type="submit" class="saveBtn" value="ìˆ˜ì •">
 			</form>
 			
-			<!-- ¹öÆ° Å¬¸¯½Ã µÚ·Î°¡´Â js±¸ÇöµÇ¾îÀÖÀ½.  -->
-			<button type="button" class="backBtn" onclick="location.href='${contextPath}/user/listadUsers.do'">µÚ·Î°¡±â</button>
+			<!-- ë²„íŠ¼ í´ë¦­ì‹œ ë’¤ë¡œê°€ëŠ” jsêµ¬í˜„ë˜ì–´ìžˆìŒ.  -->
+			<button type="button" class="backBtn" onclick="location.href='${contextPath}/user/listadUsers.do'">ë’¤ë¡œê°€ê¸°</button>
 		</div>
 
 	</div>

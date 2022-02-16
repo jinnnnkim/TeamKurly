@@ -22,7 +22,7 @@
 	<div class="wrap">
 		<div class="header">
 		<h1>
-			관리자모드
+			<a href="${contextPath}/admin/adMainForm.do">관리자모드</a>
 		</h1>	
 			<c:choose>
 				<c:when test="${admin.adminId == null}">
@@ -36,7 +36,7 @@
 		
 			<div class="topBar">
 				<ul>
-					<li><i class="fas fa-home"></i></li>
+					<li><a href="${contextPath}/admin/adMainForm.do"><i class="fas fa-home"></i></a></li>
 					<li><a href="${contextPath}/adgoods/listProduct.do">상품관리</a></li>
 					<li><a href="${contextPath}/aduser/listadUsers.do">회원관리</a></li>
 					<li><a href="${contextPath}/adorder/listadOrd.do">주문관리</a></li>

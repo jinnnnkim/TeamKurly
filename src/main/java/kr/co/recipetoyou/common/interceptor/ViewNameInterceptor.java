@@ -13,6 +13,7 @@ public class ViewNameInterceptor extends HandlerInterceptorAdapter {
 		try {
 			String viewName = getViewName(request);		
 			request.setAttribute("viewName", viewName);	
+			System.out.println("ViewNameInterceptor"+viewName);
 		} catch (Exception e) {
 			System.out.println("getViewName() 오류");
 			e.printStackTrace();
