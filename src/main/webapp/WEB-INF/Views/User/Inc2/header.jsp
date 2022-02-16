@@ -219,7 +219,8 @@
 						<a href="#"><i class="fas fa-map-marker-alt"></i></a>
 					</div>
 					<div class="pick_set">	<!-- 찜한 상품보기 -->
-						<a href="#"><i class="far fa-heart"></i></a>
+						<a href="${contextPath}/picklist_add.do">
+							<i class="far fa-heart"></i></a>
 					</div>
 					<div class="cart_set">	<!-- 장바구니 -->
 						<a href="${contextPath}/cart.do"><i class="fas fa-shopping-cart"></i></a>

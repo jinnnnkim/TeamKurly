@@ -23,23 +23,29 @@ p {
 	font-size: 15px;
 	color: #999;
 }
+
+#zonecode {
+	width: 300px;
+    height: 40px;
+    margin-bottom: 10px;
+} 
 		
 #jibunAddress {
-	width: 340px;
+	width: 450px;
 	height: 40px;
 	border: 1px solid black;
 	border-radius: 3px;
 }
 		
-#search {
-	width: 100px;
-	height: 43px;
-	margin-left: 10px;
-	border: 1px solid #5f0080;
-	border-radius: 3px;
-	background-color: white;
-	color: #5f0080;
-	font-weight: 800;
+.addressForm a {
+	padding: 11px 20px;
+    margin-left: 10px;
+    border: 1px solid #5f0080;
+    border-radius: 3px;
+    background-color: white;
+    color: #5f0080;
+    font-weight: 800;
+    vertical-align: middle;
 }
 		
 #namugiAddress {
@@ -57,10 +63,19 @@ p {
 		
 #save {
 	width: 454px;
-	height: 40px;
+	height: 41px;
 	margin-top: 20px;
 	background-color: #5f0080;
 	color: #fff;
 	border: 1px solid #5f0080;
 	border-radius: 3px;
+	cursor: pointer;
 }
+
+
+
+
+
+
+
+

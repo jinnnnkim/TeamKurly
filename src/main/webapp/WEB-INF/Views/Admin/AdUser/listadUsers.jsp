@@ -9,7 +9,7 @@
 <c:if test="${admin.adminId == null }">
 	<script>
 		alert("관리자 로그인 후 이용이 가능합니다.");
-		location.href="${contextPath}/adLogin.do";
+		location.href="${contextPath}/admin/adLogin.do";
 	</script>
 </c:if>
 <!DOCTYPE html>
@@ -37,48 +37,29 @@
 			</svg>
 			전체회원관리
 		</div>
-	<form action="#" method="post">
+	<form method="post" action="${contextPath }/aduser/listadUsers.do">
+	<input type="hidden" name="page" value="${pm.vo.page}">
+	<input type="hidden" name="pageSize" value="${pm.vo.pageSize}">
+	<input type="hidden" name="keyword" value="${pm.vo.keyword }">
 		<div class="list_head">
 			<table align="center" id="tableGroup">
 				<tr>
 					<td>
-						<input type="checkbox">
-						<!-- 달력 js 구현되어있음 -->
-						<input type="text" id="datepicker1"> ~
-  						<input type="text" id="datepicker2">
-						<input class="btn_option" type="button" value="오늘날짜">
-						<input class="btn_option" type="button" value="최근1주일">
-						<input class="btn_option" type="button" value="최근15일">
-						<input class="btn_option" type="button" value="최근 1개월">
-						<input class="btn_option" type="button" value="최근2개월">
-						<input class="btn_option" type="button" value="최근3개월">
-					</td>
-				</tr>
-				
-				<tr>
-					<td>
-						<select name="userGrade">
-							<option value="generalUser">회원등급</option>
-							<option value="Operator">운영자</option>
-							<option value="sub_Operator">일반(General)</option>
-							<option value="specialUser">프렌즈(Friends)</option>
-							<option value="superUser">호스트(Host)</option>
-							<option value="regularUser">쿡(Cook)</option>
-							<option value="assoUser">셰프(Chef)</option>
-						</select>
-						<select name="searchOption">
-							<option value="userId">아이디</option>
-							<option value="userName">이름</option>
-							<option value="userEmail">이메일</option>
-							<option value="phone">휴대전화</option>
-							<option value="addr">주소</option>
-						</select>
-						<input type="text" name="userSearch">
-						<input class="search_btn" type="button" value="검색">
+						<div class="search_area">
+							<select name="searchOption">
+								<option value="user_id" <c:out value="${pageMaker.vo.searchOption eq 'user_id'?'selected':''}"/>>
+								아이디</option>
+								<option value="user_name" <c:out value="${pageMaker.vo.searchOption eq 'user_name'?'selected':''}"/>>
+								이름</option>
+							</select>
+							<input type="text" name="keyword" style="width: 100px" value="${pm.vo.keyword}"/>
+							<button type="submit" id="searchBtn" class="btn btn-sm btn-blue">검색</button>
+						</div>				
 					</td>
 				</tr>	
-			</table>
+			</table>	
 			</div>
+		</form>
 		<div class="middle_titleBox">
 			총 ${cnt }명의 회원이 검색되었습니다.		
 		</div>
@@ -88,12 +69,11 @@
 			<thead>
 				<tr align="center" class="table_title">
 					<td width="6%">
-					
 					<!-- 테이블 제목에 있는 체크박스 클릭시 전체선택되는 js구현되어있음 -->
 					<input type="checkbox" id="checkAll" name="chk">
-					
 					</td>
-					<td id="infoCol">기본정보</td>
+					<td id="infoCol">아이디</td>
+					<td id="nameCol">이름</td>
 					<td id="levelCol">등급</td>
 					<td id="cellCol">휴대전화</td>
 					<td id="smsCol">주소</td>
@@ -111,6 +91,7 @@
 					
 					<td><input type="checkbox" name="chk"></td>
 					<td><a href="${contextPath}/aduser/aduserInfo.do?id=${user.user_id}">${user.user_id }</a></td>
+					<td>${user.user_name }</td>
 					<td>${user.user_grade }</td>
 					<td>${user.user_phone}</td>
 					<td>${user.user_addr }</td>
@@ -130,14 +111,6 @@
 		<input type="button" value="전체선택" id="check_all">
 		<!-- 버튼클릭시 전체선택 해제되는 js구현되어있음 -->
 		<input type="button" value="전체해제" id="uncheck_all">
-		<select name="userUpgrade">
-			<option>회원등급변경</option>
-			<option>Lv.1 운영자</option>
-			<option>Lv.2 부운영자</option>
-			<option>Lv.3 특별회원</option>
-			<option>Lv.4 우수회원</option>
-			<option>Lv.5 정회원</option>
-		</select>
 		
 		<!-- 클릭시 alert창 띄우는 js 구현되어있음 -->
 		<button class="excelBtn" onclick="saveMessage()">엑셀파일로 저장</button><br><br><br>
@@ -165,8 +138,13 @@
 				 </ul>
 			</div>
 		</div> 
-		
-	</form>
+		<form id="moveForm" action="${contextPath}/aduser/listadUsers.do" method="get">
+			
+			<input type="hidden" name="page" value="${pm.vo.page}">
+			<input type="hidden" name="pageSize" value="${pm.vo.pageSize}">
+			<input type="hidden" id="keyword" name="keyword" value="${pm.vo.keyword}">
+			<input type="hidden" id="searchOption" name="searchOption" value="${pm.vo.searchOption }">
+		</form>
 
 </body>
 </html>

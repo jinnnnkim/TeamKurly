@@ -66,7 +66,8 @@ public interface MypageController {
 
 	//상품문의 수정
 	public ModelAndView modifyQnA(@RequestParam("prod_inq_code") int prod_inq_code, HttpServletRequest request, HttpServletResponse response) throws Exception;
-
+	
+	//배송지 삭제
 	public ModelAndView removeAddress(@RequestParam("addr_code") String addr_code, HttpServletRequest request, HttpServletResponse response) throws Exception;
 
 

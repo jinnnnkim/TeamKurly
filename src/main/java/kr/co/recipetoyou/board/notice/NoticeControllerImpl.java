@@ -185,8 +185,6 @@ public class NoticeControllerImpl implements NoticeController{
 		int cnt  = pm.getTotalCount();
 		
 		List<NoticeINQVO> noticeOneToOneList = noticeService.noticeOneToOneist(vo);
-		System.out.println(noticeOneToOneList.toString());
-		
 		
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("cnt",cnt);

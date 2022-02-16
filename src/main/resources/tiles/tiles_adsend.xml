@@ -5,11 +5,11 @@
        
 <tiles-definitions>
 	<!-- 메인화면 뷰이름 -->
-	<definition name="adminBaseLayout" template="/WEB-INF/Views/common/layout.jsp">
+	<definition name="adminBaseLayout" template="/WEB-INF/Views/Admin/Inc/layout.jsp">
 		<put-attribute name="title" value=""/>
-		<put-attribute name="header" value="/WEB-INF/Views/common/homePage.jsp"/>
+		<put-attribute name="header" value="/WEB-INF/Views/Admin/Inc/homePage.jsp"/>
 		<put-attribute name="body" value=""/>
-	</definition>		
+	</definition>			
 			
 	<!-- 발송내역목록  -->
 	<definition name="/adsend/listadSend" extends="adminBaseLayout">

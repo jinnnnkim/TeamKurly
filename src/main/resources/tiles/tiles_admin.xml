@@ -10,22 +10,14 @@
 		<put-attribute name="body" value=""/>
 	</definition>
 	
-	<definition name="adLogin" extends="adminBaseLayout">
+	<definition name="/admin/adLogin" extends="adminBaseLayout">
 		<put-attribute name="title" value="초기 로그인페이지"/>
 		<put-attribute name="body" value="/WEB-INF/Views/Admin/AdminLogin/homePageadminLogin.jsp"/>
 	</definition>	
 	
-	<definition name="admin/adMain" extends="adminBaseLayout">
+	<definition name="/admin/adMainForm" extends="adminBaseLayout">
 		<put-attribute name="title" value="메인페이지"/>
 		<put-attribute name="body" value="/WEB-INF/Views/Admin/AdminLogin/adminMain.jsp"/>
 	</definition>
-	
-	<!-- 관리자 로그인 페이지  -->
-	<definition name="admin/adloginForm" extends="adminBaseLayout">
-		<put-attribute name="title" value="로그인"/>
-		<put-attribute name="body" value="/WEB-INF/Views/Admin/AdminLogin/adloginForm.jsp"/>
-	</definition>	 
-	
-	
-	
+		 
 </tiles-definitions>       

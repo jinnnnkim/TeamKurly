@@ -24,8 +24,8 @@ public class AdUserServiceImpl implements AdUserService{
 
 	//회원 수 조회
 	@Override
-	public int userCount() throws DataAccessException {
-		return aduserDAO.userCount();
+	public int userCount(PagingVO vo) throws DataAccessException {
+		return aduserDAO.userCount(vo);
 	}
 		
 	//회원 상세 정보 조회

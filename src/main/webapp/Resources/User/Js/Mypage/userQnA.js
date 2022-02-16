@@ -16,11 +16,4 @@ function remove_QnA(){
 	}
 }
 
-function remove_Address(){
-	if(confirm("삭제 하시겠습니까?") == true){
-		document.delForm.submit();
-	}
-	else{
-		return;
-	}
-}
+
