@@ -40,8 +40,11 @@ public class AdminControllerImpl implements AdminController{
 	@Override
 	@RequestMapping(value = "/adLogin.do", method = RequestMethod.GET)
 	public ModelAndView main(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		System.out.println("adLogin");
+		
 		String viewName = (String)request.getAttribute("viewName");
 		ModelAndView mav = new ModelAndView();
+		System.out.println(viewName);
 		mav.setViewName(viewName);
 		return mav;
 	}
