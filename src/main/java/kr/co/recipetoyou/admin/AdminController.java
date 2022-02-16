@@ -27,7 +27,7 @@ public interface AdminController {
 			HttpServletRequest request, HttpServletResponse response) throws Exception;
 	
 	//관리자 로그아웃
-	public ModelAndView logout(HttpServletRequest request, HttpServletResponse response) throws Exception;
+	public String logout(HttpServletRequest request, HttpServletResponse response) throws Exception;
 	
 	
 

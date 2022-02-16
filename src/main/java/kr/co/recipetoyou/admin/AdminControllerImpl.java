@@ -38,7 +38,7 @@ public class AdminControllerImpl implements AdminController{
 	private AdminVO adminVO;
 	
 	@Override
-	@RequestMapping(value = "/adLogin.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/admin/adLogin.do", method = RequestMethod.GET)
 	public ModelAndView main(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		System.out.println("adLogin");
 		
@@ -75,12 +75,12 @@ public class AdminControllerImpl implements AdminController{
 			session.setAttribute("admin", adminVO);		//세션에 회원 정보를 저장함.
 			session.setAttribute("isLogOn", true);		//세션에 로그인 상태를 true로 설정함.
 			session.setAttribute("adminId", adminVO.getAdminId());
-			mav.setViewName("admin/adMain");
+			mav.setViewName("redirect:/admin/adMainForm.do");
 			//로그인 세션 유지를 위해 수정하였음 
 		}
 		else {
 			rAttr.addAttribute("result", "loginFailed");		//로그인 실패시 실패 메시지를 로그인창으로 전달함.
-			mav.setViewName("redirect:/admin/adloginForm.do");	//로그인 실패시 다시 로그인창으로 리다이렉트함
+			mav.setViewName("redirect:/admin/adLogin.do");	//로그인 실패시 다시 로그인창으로 리다이렉트함
 		}
 		return mav;
 	}
@@ -88,13 +88,11 @@ public class AdminControllerImpl implements AdminController{
 	//관리자 로그아웃
 	@Override
 	@RequestMapping(value = "/admin/logout.do", method = RequestMethod.GET)
-	public ModelAndView logout(HttpServletRequest request, HttpServletResponse response) throws Exception {
+	public String logout(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		HttpSession session= request.getSession();
 		session.removeAttribute("admin");
 		session.removeAttribute("isLogOn");
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName("admin/adLogin.do");
-		return mav;
+		return "redirect:/admin/adLogin.do";
 	}
 
 }
