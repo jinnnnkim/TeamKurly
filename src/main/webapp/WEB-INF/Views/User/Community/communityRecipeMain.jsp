@@ -37,7 +37,6 @@
 					<label><input name="type" type="checkbox" value="W"/>이름</label>
 					<label><input name="type" type="checkbox" value="T"/>제목</label>
 					<label><input name="type" type="checkbox" value="C"/>내용</label>
-					<input type="hidden" id="arrayParam" name="arrayParam"/>
 				</div>
 				
 				<div class="searchInput">
@@ -85,7 +84,7 @@
 					<li>
 						<a href="${contextPath }/community/communityRecipeDetail.do?recipe_idx=${list.recipe_idx}">
 							<div class="recipeImg">
-								<img src="/recipetoyou/Resources/Upload/${list.recipe_img}">
+								<img src="/recipetoyou/Resources/Upload/Recipe/${list.recipe_img}">
 							</div>
 							<div class="detail">
 								<span class="recipeTitle">${list.recipe_title}</span>

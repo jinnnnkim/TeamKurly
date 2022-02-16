@@ -102,7 +102,7 @@
              </if>
              
 			
-			<if test="cateCode != '' and cateCode != 0">
+			<if test="cateCode != '' and cateCode != 0 and keyword == null" >
 			<choose>
 				<when test="0 lt cateCode and cateCode lt 10">
 					, (SELECT DISTINCT b.* 
@@ -115,6 +115,7 @@
 				</otherwise>
 			</choose>
 			</if>
+			
 			<![CDATA[
 			
 			)

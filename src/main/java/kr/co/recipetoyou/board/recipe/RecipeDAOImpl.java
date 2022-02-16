@@ -23,7 +23,6 @@ public class RecipeDAOImpl implements RecipeDAO{
 		}
 		System.out.println("type:"+vo.getType());
 		List<RecipeVO> recipeList = sqlSession.selectList("mapper.recipe.selectRecipeList",vo);
-		System.out.println(recipeList);
 		return recipeList;
 	}
 
