@@ -4,6 +4,7 @@ import java.sql.Date;
 import java.util.List; 
 
 import org.springframework.dao.DataAccessException;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 
@@ -47,10 +48,12 @@ public interface MypageService {
 	public List<QnAVO> listQnA() throws DataAccessException;
 	
 	//상품문의 삭제
-	public int removeQnA(int prod_inq_code) throws DataAccessException;
+	public int deleteQnA(@RequestParam("prod_inq_code") int prod_inq_code) throws DataAccessException;
 	
 	//상품후기
 	public List<ReviewVO> listReviews() throws DataAccessException;
 
 	public void updateUser(UserVO userVO) throws DataAccessException;
+	
+	public int deleteAddress(@RequestParam("addr_code") String addr_code) throws DataAccessException;
 }

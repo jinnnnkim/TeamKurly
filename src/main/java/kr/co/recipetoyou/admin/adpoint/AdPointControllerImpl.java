@@ -63,16 +63,6 @@ public class AdPointControllerImpl implements AdPointController {
 		return mav;	
 	}
 	
-/*	
-	//chkValueArr
-	@RequestMapping(value = "/test_check", method = RequestMethod.POST)
-	@ResponserBody
-	public void testCheck(@RequestParam(value = "valueArrTest[]") List<String> valueArr) {
-	    // TODO
-	}
-
-
-*/
 
 	
 		

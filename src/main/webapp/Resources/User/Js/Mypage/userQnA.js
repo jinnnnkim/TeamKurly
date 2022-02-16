@@ -15,3 +15,5 @@ function remove_QnA(){
 		return;
 	}
 }
+
+

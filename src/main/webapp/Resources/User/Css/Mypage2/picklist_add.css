@@ -45,7 +45,9 @@
 
 .subject {
 	width: 625px;
+	margin-left: 10px;
 	margin-top: 10px;
+
 }
 
 .discountRate {
@@ -180,4 +182,15 @@ button i {
 }
 .order_cancle {
 	padding-left: 220px;	
+}
+
+#thumbnail {
+	width: 46px;
+	height: 60px;
+}
+
+.form1 {
+	width: 90px;
+	margin-top: 20px; 
+	
 }

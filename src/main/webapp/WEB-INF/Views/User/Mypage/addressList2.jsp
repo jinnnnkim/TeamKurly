@@ -25,6 +25,8 @@
 <!-- 파비콘 링크 -->
 <link href="/recipetoyou/Resources/User/Img/Mypage2/KurlyIcon.png" rel="icon"
 	type="image/x-icon" />
+<script type="text/javascript" src="/recipetoyou/Resources/User/Js/Mypage/userAddress.js" charset="UTF-8"></script>
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 </head>
 	<div class="content">
 		<div class="address_main">
@@ -32,17 +34,17 @@
 				<h2 class="title">
 					배송지 관리 <span class="subtitle">배송지에 따라 상품정보 및 배송유형이 달라질 수있습니다.</span>
 				</h2>
-				<a href="" class="address_search" onclick="addAddr()">+ 새배송지 추가</a>
+				<a href="" class="address_search" onclick="openPop()">+ 새배송지 추가</a>
 			</div>
 			<!-- head -->
 			<table class="head_cate">
 				<tr>
-					<th class="title_select">선택</th>
+					<!-- <th class="title_select">선택</th> -->
 					<th class="title_address">주소</th>
 					<th class="title_name">받으실 분</th>
 					<th class="title_phone">연락처</th>
 					<th class="title_delivery">배송유형</th>
-					<th class="title_modify">수정</th>
+					<th class="title_delete">삭제</th>
 				</tr>
 			
 			</table>
@@ -51,18 +53,19 @@
 		<c:forEach var="addressList" items="${addressList}">	
 			<table class="address_content">
 				<tr>
-					<td class="select_btn">
-						<input type="radio" name="select"></td>
+					<!-- <td class="select_btn">
+						<input type="radio" name="select"></td> -->
 					<td class="address">
-						<p class="basic_address">기본 배송지</p>
+						<!-- <p class="basic_address">기본 배송지</p> -->
 						<p class="detail_address">${addressList.addr}</p>
 					</td>
 					<td class="name">${addressList.user_name}</td>
 					<td class="phone">${addressList.user_phone}</td>
 					<td class="delivery_type"><p>${addressList.delivery_type}</p></td>
-					<td class="modify"><a href="" class="modify_pop" onclick="openPop()">
+					<td><a href="${contextPath}/removeAddress.do?addr_code=${addressList.addr_code}" id="btn-remove" onclick="remove_Address()">삭제</a></td>
+					<!-- <td class="modify"><a href="" class="modify_pop" onclick="openPop()">
 						<img src="/recipetoyou/Resources/User/Img/Mypage2/ico_modify_x2.png"></a> 
-					</td>
+					</td> -->
 				</tr>	
 			</table>
 		</c:forEach>
@@ -73,44 +76,7 @@
 	
 	
 	
-	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-	<script>
-
-		 function addAddr() {
-		        new daum.Postcode({
-		            oncomplete: function(data) {
-		                
-		                var addr = ''; 
-		                var extraAddr = ''; 
-
-		                if (data.userSelectedType === 'R') { 
-		                    addr = data.roadAddress;
-		                } 
-		                else { 
-		                    addr = data.jibunAddress;
-		                }
-
-		                if(data.userSelectedType === 'R'){
-		                	
-		                    document.getElementById("findAddr").value = extraAddr;
-
-		                } else {
-		                    document.getElementById("findAddr").value = '';
-		                }
-
-		                document.getElementById('zipcode').value = data.zonecode;
-		                document.getElementById("jibunAddress").value = addr;
-		                document.getElementById("roadAddress").value = addr;
-		                document.getElementById("namugiAddress").focus();
-		            }
-		        }).open();
-		    }
-		 
-		 function openPop() {
-			    window.open('addrModify.do', '배송지수정', 'width=600px, height=550px');
-			  }
-		
-	</script>
+	
 </body>
 </html>
 

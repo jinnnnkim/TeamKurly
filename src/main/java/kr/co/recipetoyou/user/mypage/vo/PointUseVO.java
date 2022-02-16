@@ -7,49 +7,22 @@ import org.springframework.stereotype.Component;
 @Component("pointuseVO")
 public class PointUseVO {
 	
-	private int point_details_code;
-	private Date accum_date;
-	private Date use_date;
-	private int use_flag;
-	private String point_content;
-	private PointVO pointVO;
-	private int point;
+	/*
+	 * private int point_details_code; private Date accum_date; private Date
+	 * use_date; private int use_flag; private String point_content; private PointVO
+	 * pointVO; private int point;
+	 */
 	
-	public int getPoint_details_code() {
-		return point_details_code;
+	private String point_code;
+	private int point;
+	private String ord_code;
+	private String pay_code;
+	
+	public String getPoint_code() {
+		return point_code;
 	}
-	public void setPoint_details_code(int point_details_code) {
-		this.point_details_code = point_details_code;
-	}
-	public Date getAccum_date() {
-		return accum_date;
-	}
-	public void setAccum_date(Date accum_date) {
-		this.accum_date = accum_date;
-	}
-	public Date getUse_date() {
-		return use_date;
-	}
-	public void setUse_date(Date use_date) {
-		this.use_date = use_date;
-	}
-	public int getUse_flag() {
-		return use_flag;
-	}
-	public void setUse_flag(int use_flag) {
-		this.use_flag = use_flag;
-	}
-	public String getPoint_content() {
-		return point_content;
-	}
-	public void setPoint_content(String point_content) {
-		this.point_content = point_content;
-	}
-	public PointVO getPointVO() {
-		return pointVO;
-	}
-	public void setPointVO(PointVO pointVO) {
-		this.pointVO = pointVO;
+	public void setPoint_code(String point_code) {
+		this.point_code = point_code;
 	}
 	public int getPoint() {
 		return point;
@@ -57,9 +30,19 @@ public class PointUseVO {
 	public void setPoint(int point) {
 		this.point = point;
 	}
+	public String getOrd_code() {
+		return ord_code;
+	}
+	public void setOrd_code(String ord_code) {
+		this.ord_code = ord_code;
+	}
+	public String getPay_code() {
+		return pay_code;
+	}
+	public void setPay_code(String pay_code) {
+		this.pay_code = pay_code;
+	}
 	
 	
-
-
 
 }

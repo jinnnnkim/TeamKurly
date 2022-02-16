@@ -50,7 +50,7 @@ public interface MypageController {
 	
 	
 	//상품문의 삭제 
-	public ModelAndView removeQnA(int prod_inq_code, HttpServletRequest	request, HttpServletResponse response) throws Exception;
+	public ModelAndView removeQnA(@RequestParam("prod_inq_code") int prod_inq_code, HttpServletRequest	request, HttpServletResponse response) throws Exception;
 	 
 	
 	//상품리뷰 조회
@@ -63,6 +63,12 @@ public interface MypageController {
 	public ModelAndView userInfoUpdate(UserVO userVO, HttpServletRequest request, HttpServletResponse response) throws Exception;
 
 	String searchOrderYear(int ord_date, Model model) throws Exception;
+
+	//상품문의 수정
+	public ModelAndView modifyQnA(@RequestParam("prod_inq_code") int prod_inq_code, HttpServletRequest request, HttpServletResponse response) throws Exception;
+	
+	//배송지 삭제
+	public ModelAndView removeAddress(@RequestParam("addr_code") String addr_code, HttpServletRequest request, HttpServletResponse response) throws Exception;
 
 
 

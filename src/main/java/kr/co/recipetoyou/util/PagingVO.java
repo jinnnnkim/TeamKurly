@@ -1,10 +1,5 @@
 package kr.co.recipetoyou.util;
 
-import java.util.Arrays;
-
-import kr.co.recipetoyou.admin.adgoods.Inquiry.AdInquiryVO;
-import kr.co.recipetoyou.util.PageMaker;
-
 public class PagingVO {
 	//페이지 정보, 페이지 크기 정보를 저장하는 객체
 		private int page;

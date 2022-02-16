@@ -39,7 +39,7 @@ public class AdUserDAOImpl implements AdUserDAO {
 	//회원 수 조회
 	//DB 테이블에 있는 모든 회원수 계산 후 리턴
 	@Override
-	public int userCount() throws DataAccessException {	
+	public int userCount(PagingVO vo) throws DataAccessException {	
 		return sqlSession.selectOne(NAMESPACE+".userCount");
 	}
 		

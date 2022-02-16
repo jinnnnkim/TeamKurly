@@ -81,7 +81,7 @@ public class MypageControllerImpl implements MypageController{
 	@RequestMapping(value = "/orderDetail.do", produces = "application/json", method = {RequestMethod.GET, RequestMethod.POST}) 
 	public void orderDetail(@RequestParam(value="ord_code", required = false) int ord_code, Model model) throws Exception {
 		
-		logger.info("클릭한 주문 코드 : "+ord_code);
+		logger.info("클릭한 주문 상품 이름 : "+ord_code);
 		
 		System.out.println("orderDetail Controller 호출");
 		//상품정보 출력
@@ -130,18 +130,45 @@ public class MypageControllerImpl implements MypageController{
 	//배송지 조회
 	@Override
 	@RequestMapping(value = "/addresslist.do", method = RequestMethod.GET)
-	  public ModelAndView listAddress(HttpServletRequest request, HttpServletResponse response) throws Exception {
-	  
-	  String viewName = (String) request.getAttribute("viewName");
-	  
-	  logger.info("info : "+ viewName); logger.debug("debug : "+ viewName);
-	  
-	  System.out.println("addrlist Controller 호출"); 
-	  List<UserAddrVO> addressList = mypageService.listAddress();
-	  ModelAndView mav = new ModelAndView();
-	  mav.addObject("addressList", addressList);
-	  return mav; 
-	  }
+	public ModelAndView listAddress(HttpServletRequest request, HttpServletResponse response) throws Exception {
+
+		String viewName = (String) request.getAttribute("viewName");
+
+		logger.info("info : "+ viewName); logger.debug("debug : "+ viewName);
+
+		System.out.println("addrlist Controller 호출"); 
+		List<UserAddrVO> addressList = mypageService.listAddress();
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("addressList", addressList);
+		return mav; 
+	}
+	
+	//배송지 삭제
+	@Override
+	@RequestMapping(value = "/removeAddress.do", method = RequestMethod.GET)
+	public ModelAndView removeAddress(@RequestParam("addr_code") String addr_code, HttpServletRequest request, HttpServletResponse response) throws Exception {
+
+		logger.info("addr_code: " + addr_code);
+		request.setCharacterEncoding("utf-8");
+		mypageService.deleteAddress(addr_code);
+		ModelAndView mav = new ModelAndView("redirect:addresslist.do");
+		return mav;
+	}
+	
+	@RequestMapping(value = "/addAddress.do", method = RequestMethod.GET)
+	public ModelAndView addAddress(HttpServletRequest request, HttpServletResponse response) throws Exception {
+	
+		String viewName = (String) request.getAttribute("viewName");
+
+		logger.info("info : "+ viewName); logger.debug("debug : "+ viewName);
+
+		System.out.println("addrlist Controller 호출"); 
+		List<UserAddrVO> addressList = mypageService.listAddress();
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("addressList", addressList);
+		return mav; 
+	}
+		
 	  
 	@Override
 	@RequestMapping(value = "/review.do", method = RequestMethod.GET)
@@ -158,7 +185,7 @@ public class MypageControllerImpl implements MypageController{
 		}
 
 	@Override
-	@RequestMapping(value = "/QandA.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/QnA.do", method = RequestMethod.GET)
 	public ModelAndView listQnA(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
 		
@@ -177,15 +204,26 @@ public class MypageControllerImpl implements MypageController{
 	
 	//상품문의 삭제
 	@Override
-	@RequestMapping(value = "/remove/QandA.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/removeQnA.do", method = RequestMethod.GET)
 	public ModelAndView removeQnA(@RequestParam("prod_inq_code") int prod_inq_code, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
 		logger.info("prod_inq_code: " + prod_inq_code);
 		request.setCharacterEncoding("utf-8");
-		mypageService.removeQnA(prod_inq_code);
-		ModelAndView mav = new ModelAndView("redirect:QandA.do");
+		mypageService.deleteQnA(prod_inq_code);
+		ModelAndView mav = new ModelAndView("redirect:QnA.do");
 		return mav;
 	
+	}
+	
+	//상품문의 수정
+	@Override
+	@RequestMapping(value = "/modifyQnA.do", method = RequestMethod.GET)
+	public ModelAndView modifyQnA(@RequestParam("prod_inq_code") int prod_inq_code, HttpServletRequest request, HttpServletResponse response) throws Exception {
+	
+		logger.info("prod_inq_code: " + prod_inq_code);
+		request.setCharacterEncoding("utf-8");
+		return null;
+		
 	}
 	
 	//포인트 조회
@@ -282,12 +320,6 @@ public class MypageControllerImpl implements MypageController{
 		// TODO Auto-generated method stub
 		
 	}
-
-
-
-
-	
-
 
 
 

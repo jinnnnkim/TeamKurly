@@ -227,4 +227,7 @@
 	font-size:13px;
 }
 
-
+.prodCount {
+	float: right;
+	margin: -20px -140px 0 0
+}

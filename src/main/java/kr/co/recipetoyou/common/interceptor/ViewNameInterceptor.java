@@ -21,7 +21,6 @@ public class ViewNameInterceptor extends HandlerInterceptorAdapter {
 		return true;
 	}
 	
-	
 	private String getViewName(HttpServletRequest request) throws Exception {
 		String contextPath = request.getContextPath();
 		

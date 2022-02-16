@@ -36,22 +36,17 @@
 .head_cate {
 	width: 815px;
     border-top: 2px solid #333;
-    border-bottom: 1px solid #dddfe1;
-    text-align: center;
+    border-bottom: 1px solid #333;
     font-size: 14px;
-    padding: 17px 0 20px;
-    line-height: 24px;
+    padding: 10px 0 10px;
+    margin-top: 62px;
 }
 
 .address_content tr td {
-	height: 90px;
     font-size: 14px;
     color: #333;
     line-height: 22px;
-    letter-spacing: -0.4px;
-    vertical-align: middle;
     text-align: center;
-    border-bottom: 1px solid #ddd;
 }
 
 .title_select {
@@ -74,36 +69,18 @@
 	width: 100px;
 }
 
-.title_modify {
+.title_delete {
 	width: 60px;
 }
 
 .address_content {
 	width: 815px;
+	height: 70px;
 	border-bottom: 1px solid #f4f4f4;
 }
 
-.select_icon {
-	position: relative;
-}
-
-.select_icon input {
-	width: 22px;
-	height: 22px;
-	opacity: 0%;
-}
-
-.select_icon img {
-	width: 24px;
-    height: 24px;
-    position: absolute;
-    left: 19px;
-    cursor: pointer;
-    
-}
-
 .address {
-	width: 351px;
+	width: 413px;
 }
 
 .basic_address {
@@ -119,10 +96,10 @@
 }
 
 .detail_address {
-    font-size: 16px;
+    font-size: 14px;
     color: #333;
     text-align: left;
-    margin-left: 25px;
+    margin-left: 20px;
     
 }
 
@@ -143,7 +120,18 @@
 	color: #5f0080;
 }
 
-.modify {
+#btn-remove {
+	width: 45px;
+	height: 27px;
+    font-size: 12px;
+    border: 1px solid #5f0080;
+    border-radius: 3px;
+    background-color: white;
+    color: #5f0080;
+	padding: 5px 10px;
+}
+
+/* .modify {
 	width: 60px;
 }
 
@@ -155,7 +143,7 @@
 .modify_pop {
 	
 }
-
+ */
 
 
 

@@ -38,15 +38,15 @@ public class AdUserControllerImpl implements AdUserController {
 	//글목록보기(PageMaker객체 사용)
 	//전체 회원 조회
 	@Override
-	@RequestMapping(value = "/aduser/listadUsers.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/aduser/listadUsers.do", method = {RequestMethod.GET, RequestMethod.POST})
 	public ModelAndView listPageGet(PagingVO vo, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String viewName = (String)request.getAttribute("viewName");
 	    PageMaker pm = new PageMaker();
 		pm.setVo(vo);
-	    pm.setTotalCount(aduserService.userCount()); 
+	    pm.setTotalCount(aduserService.userCount(vo)); 
 		logger.info("C: vo는 "+ vo);
 		logger.info("info 레벨 : viewName = "+viewName);  
-		int cnt = aduserService.userCount();  
+		int cnt = aduserService.userCount(vo);  
 		List<AdUserVO> userList = aduserService.listUsers(vo);
 	    ModelAndView mav = new ModelAndView(viewName);
 		mav.addObject("userList", userList);
