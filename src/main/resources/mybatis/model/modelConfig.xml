@@ -12,7 +12,7 @@
 	<typeAliases>
 	
 		<!-- admin -->
-		<typeAlias type="kr.co.recipetoyou.admin.AdminVO" alias="adminVO" />
+		<typeAlias type="kr.co.recipetoyou.admin.AdminVO" alias="adminVO"/>
 		
 		<typeAlias type="kr.co.recipetoyou.admin.aduser.AdUserVO" alias="adUserVO"/>
 		<typeAlias type="kr.co.recipetoyou.admin.aduser.aduserWithdraw.AdUserDrawVO" alias="adUserDrawVO"/>
