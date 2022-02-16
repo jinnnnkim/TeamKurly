@@ -26,7 +26,7 @@
 		<div class="recipeBox">
 			<div class="thumbnail">
 				
-				<img src="/recipetoyou/Resources/Upload/${recipeVO.recipe_img}"/>
+				<img src="/recipetoyou/Resources/Upload/Recipe/${recipeVO.recipe_img}"/>
 			</div>
 			<div class="userName">
 				<h3>${recipeVO.user_id }</h3>
