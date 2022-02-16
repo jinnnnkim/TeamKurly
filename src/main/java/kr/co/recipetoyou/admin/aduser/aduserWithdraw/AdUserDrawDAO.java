@@ -17,7 +17,7 @@ public interface AdUserDrawDAO {
 		public List<AdUserDrawVO> listPagingWithdraw(PagingVO vo) throws Exception;
 		
 		//탈퇴 회원 목록 회원 수 조회
-		public int userWithdrawCount() throws DataAccessException;
+		public int userWithdrawCount(PagingVO vo) throws DataAccessException;
 		
 		//탈퇴 회원 상세 정보 조회
 		public AdUserDrawVO readUserWithdraw(String id) throws DataAccessException;

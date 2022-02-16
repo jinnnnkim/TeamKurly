@@ -40,8 +40,8 @@ public class AdUserDrawDAOImpl implements AdUserDrawDAO{
 	//회원 수 조회
 	//DB 테이블에 있는 모든 회원수 계산 후 리턴
 	@Override
-	public int userWithdrawCount() throws DataAccessException {
-		return sqlSession.selectOne("mapper.userWithdraw.userWithdrawCount");
+	public int userWithdrawCount(PagingVO vo) throws DataAccessException {
+		return sqlSession.selectOne("mapper.userWithdraw.userWithdrawCount", vo);
 	}
 	
 	//회원 정보 삭제
