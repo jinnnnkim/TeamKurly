@@ -37,7 +37,6 @@
 					<label><input name="type" type="checkbox" value="W"/>이름</label>
 					<label><input name="type" type="checkbox" value="T"/>제목</label>
 					<label><input name="type" type="checkbox" value="C"/>내용</label>
-					<input type="hidden" id="arrayParam" name="arrayParam"/>
 				</div>
 				
 				<div class="searchInput">
