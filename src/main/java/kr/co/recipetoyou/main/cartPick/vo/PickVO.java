@@ -1,6 +1,6 @@
 package kr.co.recipetoyou.main.cartPick.vo;
 
-import java.util.List;
+import java.util.List; 
 
 import org.springframework.stereotype.Component;
 
@@ -26,8 +26,26 @@ public class PickVO {
 	/* 상품 이미지 */
 	private List<AdgoodsImgVO> imageList;
 	
+	public PickVO() {
+		// TODO Auto-generated constructor stub
+	}
 	
 
+	public PickVO(int fav_flag_code, int prod_code, String user_id, int fav_flag, ProdVO prodVO, String prod_name,
+			String prod_img, int prod_price, int prod_discount, List<AdgoodsImgVO> imageList) {
+		super();
+		this.fav_flag_code = fav_flag_code;
+		this.prod_code = prod_code;
+		this.user_id = user_id;
+		this.fav_flag = fav_flag;
+		this.prodVO = prodVO;
+		this.prod_name = prod_name;
+		this.prod_img = prod_img;
+		this.prod_price = prod_price;
+		this.prod_discount = prod_discount;
+		this.imageList = imageList;
+	}
+	
 	public List<AdgoodsImgVO> getImageList() {
 		return imageList;
 	}
