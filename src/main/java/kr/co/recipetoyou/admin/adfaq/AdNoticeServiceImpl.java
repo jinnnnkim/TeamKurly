@@ -24,8 +24,8 @@ public class AdNoticeServiceImpl implements AdNoticeService {
 
 	//레시피 게시글 수 조회
 	@Override
-	public int noticeCount() throws DataAccessException {
-		return dao.noticeCount();
+	public int noticeCount(PagingVO vo) throws DataAccessException {
+		return dao.noticeCount(vo);
 	}
 		
 	//레시피 게시글 상세 정보 조회

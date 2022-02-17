@@ -37,10 +37,7 @@
 			</svg>
 			주문관리
 		</div>
-	<form method="post" action="${contextPath }/adorder/listadOrd.do">
-	<input type="hidden" name="page" value="${pm.vo.page}">
-	<input type="hidden" name="pageSize" value="${pm.vo.pageSize}">
-	
+
 		<div class="list_head">
 			<table align="center" id="tableGroup">
 				<tr>
@@ -59,7 +56,7 @@
 				</tr>	
 			</table>	
 			</div>
-		</form>
+		
 		<div class="middle_titleBox">
 			총 ${cnt }개의 주문 조회 되었습니다.		
 		</div>
@@ -121,25 +118,26 @@
 				<ul class="pagination">
 				 			<!-- 이전prev -->
 				 	<c:if test="${pm.prev }">
-				 		<li><a href="listadOrd.do?page=${pm.startPage-1}">&laquo;</a></li>
+				 		<li><a href="${pm.startPage-1}">&laquo;</a></li>
 				 	</c:if>
 				 			<!-- 페이지블럭 -->
 					<c:forEach var="idx" begin="${pm.startPage}" end="${pm.endPage}">
 								<!-- 삼항연산자를 사용해서 class로 스타일적용  -->
 						<li ${pm.vo.page == idx? 'class=active':''}>
-						 	<a href="listadOrd.do?page=${idx}">${idx}</a>
+						 	<a href="${idx}">${idx}</a>
 						</li>				
 					</c:forEach>
 				 			<!-- 다음next -->
 				 	<c:if test="${pm.next && pm.endPage > 0}">
-				 		<li><a href="listadOrd.do?page=${pm.endPage+1}">&raquo;</a></li>
+				 		<li><a href="${pm.endPage+1}">&raquo;</a></li>
 				 	</c:if>
 				 </ul>
 			</div>
 		</div> 
-		<form id="moveForm" action="${contextPath}/adorder/listadOrd.do" method="get">		
+		<form id="moveForm" method="get">		
 			<input type="hidden" name="page" value="${pm.vo.page}">
 			<input type="hidden" name="pageSize" value="${pm.vo.pageSize}">
+			<input type="hidden" id="keyword" name="keyword" value="${pm.vo.keyword}">
 			<input type="hidden" id="searchOption" name="searchOption" value="${pm.vo.searchOption }">
 		</form>
 </body>

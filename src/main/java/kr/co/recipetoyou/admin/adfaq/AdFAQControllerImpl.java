@@ -56,10 +56,10 @@ public class AdFAQControllerImpl implements AdFAQController {
 		String viewName = (String)request.getAttribute("viewName");
 	    PageMaker pm = new PageMaker();
 		pm.setVo(vo);
-	    pm.setTotalCount(service.FAQListCount()); 
+	    pm.setTotalCount(service.FAQListCount(vo)); 
 		logger.info("C: vo는 "+ vo);
 		logger.info("info 레벨 : viewName = "+viewName);  
-		int cnt = service.FAQListCount();  
+		int cnt = service.FAQListCount(vo);  
 		List<AdFAQVO> FAQList = service.listFAQ(vo);
 	    ModelAndView mav = new ModelAndView(viewName);
 		mav.addObject("FAQList", FAQList);

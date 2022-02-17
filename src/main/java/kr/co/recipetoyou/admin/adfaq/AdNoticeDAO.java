@@ -13,7 +13,7 @@ public interface AdNoticeDAO {
 
 	List<AdNoticeVO> listNoticePaging(PagingVO vo) throws Exception;
 
-	int noticeCount() throws DataAccessException;
+	int noticeCount(PagingVO vo) throws DataAccessException;
 
 	int deleteNotice(String id) throws DataAccessException;
 

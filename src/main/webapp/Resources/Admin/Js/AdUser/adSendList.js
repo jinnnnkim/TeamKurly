@@ -1,6 +1,7 @@
 /**
  * 
  */
+ 
 $(document).ready(function() {
 	let moveForm = $("#moveForm");
 	
@@ -9,7 +10,7 @@ $(document).ready(function() {
 	$(".pagination a").on("click", function(e){
 		e.preventDefault();
 		moveForm.find("input[name='page']").val($(this).attr("href"));
-		moveForm.attr("action", "listadOrd.do");
+		moveForm.attr("action", "listadSend.do");
 		moveForm.submit();
 		
 	});		
@@ -35,7 +36,7 @@ $(document).ready(function() {
 		moveForm.find("input[name='page']").val(1);
 		moveForm.submit();
 	});	
-});  
+}); 
  /* 체크 박스 전체 선택과 전체 취소 */
 	
 $(function(){
@@ -87,10 +88,19 @@ window.onload = function(){
 
 /* 삭제 버튼 클릭시 메세지 띄우기 */
 function deleteMessage() {
-	if(confirm("선택하신 주문정보를 삭제하시겠습니까?") == true){
+	if(confirm("선택하신 회원을 삭제하시겠습니까?") == true){
 		document.form.submit();
 	}else{
 		return;
 	}
 }
 	
+/* 엑셀 저장하기 버튼 클릭시 메세지 띄우기 */
+function saveMessage() {
+	if(confirm("현재 목록을 엑셀파일로 저장하시겠습니까?") == true){
+		document.form.submit();
+	}else{
+		return;
+	}
+}
+

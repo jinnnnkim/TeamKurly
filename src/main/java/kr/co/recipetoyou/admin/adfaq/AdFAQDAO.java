@@ -13,7 +13,7 @@ public interface AdFAQDAO {
 
 	public List<AdFAQVO> FAQListPaging(PagingVO vo) throws Exception;
 
-	public int FAQListCount();
+	public int FAQListCount(PagingVO vo);
 
 	public int deleteFAQ(String id) throws DataAccessException;
 

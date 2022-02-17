@@ -11,7 +11,7 @@ public interface AdFAQService {
 
 	public List<AdFAQVO> listFAQ(PagingVO vo) throws Exception;
 
-	public int FAQListCount() throws DataAccessException;
+	public int FAQListCount(PagingVO vo) throws DataAccessException;
 
 	public AdFAQVO getFAQInfo(String id) throws DataAccessException;
 

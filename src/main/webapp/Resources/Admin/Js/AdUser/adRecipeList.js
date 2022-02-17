@@ -9,7 +9,7 @@ $(document).ready(function() {
 	$(".pagination a").on("click", function(e){
 		e.preventDefault();
 		moveForm.find("input[name='page']").val($(this).attr("href"));
-		moveForm.attr("action", "listadOrd.do");
+		moveForm.attr("action", "listadRecipe.do");
 		moveForm.submit();
 		
 	});		
@@ -35,7 +35,7 @@ $(document).ready(function() {
 		moveForm.find("input[name='page']").val(1);
 		moveForm.submit();
 	});	
-});  
+}); 
  /* 체크 박스 전체 선택과 전체 취소 */
 	
 $(function(){

@@ -70,15 +70,31 @@
 	<!-- 페이지정보를 지정한 크기만큼 가져오기 -->
 	<select id="sendListPaging" resultMap="sendResult">
 		<![CDATA[
-			select * from (select rownum AS rn, tb_send.* from tb_send)  where rn between #{rowStart} and #{rowEnd}
-		]]>
+			select * from 
+				(select rownum AS rn, ts.* from
+				(select ts.* from tb_send ts order by send_code DESC) ts
+		]]>            
+            <if test="keyword != null">
+            	<if test="searchOption == 'I'.toString()">where user_id like '%'||#{keyword}||'%'</if>
+            	<if test="searchOption == 'S'.toString()">where send_code like '%'||#{keyword}||'%'</if>
+            	<if test="searchOption == 'O'.toString()">where ord_code like '%'||#{keyword}||'%'</if>
+            	<if test="searchOption == 'P'.toString()">where pay_code like '%'||#{keyword}||'%'</if>
+             </if>
+    	<![CDATA[
+    		)
+  			where rn between #{rowStart} and #{rowEnd}
+    	]]>
 	</select>
 	
 	<!-- 총 회원 수 -->
 	<select id="sendListCount" resultType="int">
-		<![CDATA[
-			select count(*) from TB_send
-		]]>
+		select count(*) from tb_send
+			 <if test="keyword != null">
+            	<if test="searchOption == 'I'.toString()">where user_id like '%'||#{keyword}||'%'</if>
+            	<if test="searchOption == 'S'.toString()">where send_code like '%'||#{keyword}||'%'</if>
+            	<if test="searchOption == 'O'.toString()">where ord_code like '%'||#{keyword}||'%'</if>
+            	<if test="searchOption == 'P'.toString()">where pay_code like '%'||#{keyword}||'%'</if>
+             </if>
 	</select>
 	
 	<!-- 회원 상세 정보 조회 -->

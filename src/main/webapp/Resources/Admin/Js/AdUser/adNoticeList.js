@@ -9,7 +9,7 @@ $(document).ready(function() {
 	$(".pagination a").on("click", function(e){
 		e.preventDefault();
 		moveForm.find("input[name='page']").val($(this).attr("href"));
-		moveForm.attr("action", "listadOrd.do");
+		moveForm.attr("action", "listadNotice.do");
 		moveForm.submit();
 		
 	});		
