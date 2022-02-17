@@ -29,17 +29,20 @@
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 </head>
 <body>
+	
 	<div class="addAddrPopup">
 		<div class="popupTitle">
-			<div id="popupTitle1">배송타입 <span>지역입니다.</span></div>
+			<div class="popupTitle1">새배송지 추가</div>
 			<p>오늘 주문하면 다음 날 바로 도착해요.(일요일 휴무)</p>
 		</div>
 		
 		<form action="" class="addressForm">
-			<input type="text" name="zonecode" id="zonecode" readonly="readonly" placeholder="   우편번호"><a href="" onclick="addAddr()">우편번호검색</a><br>
-			<input type="text" name="jibunAddress" id="jibunAddress" readonly="readonly"><br>
-			<input type="text" name="namugiAddress" id="namugiAddress" placeholder="   나머지 주소를 입력해주세요"><br>
-			<button type="submit" id="save" value="저장">저장</button>
+			<input type="text" name="zonecode" class="zonecode" readonly="readonly" placeholder="   우편번호"><a href="" onclick="addAddr()">우편번호검색</a><br>
+			<input type="text" name="roadAddress" class="roadAddress" readonly="readonly"><br>
+			<input type="text" name="namugiAddress" class="namugiAddress" placeholder="   나머지 주소를 입력해주세요"><br>
+			<input type="text" name="addName" class="addName" placeholder="   받으실 분을 입력해주세요"><br>
+			<input type="text" name="addPhone" class="addPhone" placeholder="   연락처를 입력해주세요 ( - 을 반드시 포함해주세요)"><br>
+			<button type="submit" class="save" value="저장">저장</button>
 		</form>
 	</div>
 </body>
