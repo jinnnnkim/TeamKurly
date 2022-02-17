@@ -37,48 +37,28 @@
 			</svg>
 			탈퇴회원관리
 		</div>
-	<form action="#" method="post">
+	<form method="post" action="${contextPath }/aduserWithdraw/listadUsersWithdraw.do">
+	<input type="hidden" name="page" value="${pm.vo.page}">
+	<input type="hidden" name="pageSize" value="${pm.vo.pageSize}">
 		<div class="list_head">
 			<table align="center" id="tableGroup">
 				<tr>
 					<td>
-							<input type="checkbox">
-							<!-- 달력 js 구현되어있음 -->
-							<input type="text" id="datepicker1"> ~
-  							<input type="text" id="datepicker2">
-							<input class="btn_option" type="button" value="오늘날짜">
-							<input class="btn_option" type="button" value="최근1주일">
-							<input class="btn_option" type="button" value="최근15일">
-							<input class="btn_option" type="button" value="최근 1개월">
-							<input class="btn_option" type="button" value="최근2개월">
-							<input class="btn_option" type="button" value="최근3개월">
-					</td>
-				</tr>
-				
-				<tr>
-					<td>
-							<select name="userGrade">
-								<option value="generalUser">회원등급</option>
-								<option value="Operator">운영자</option>
-								<option value="sub_Operator">일반(General)</option>
-								<option value="specialUser">프렌즈(Friends)</option>
-								<option value="superUser">호스트(Host)</option>
-								<option value="regularUser">쿡(Cook)</option>
-								<option value="assoUser">셰프(Chef)</option>
-							</select>
+						<div class="search_area">
 							<select name="searchOption">
-								<option value="userId">아이디</option>
-								<option value="userName">이름</option>
-								<option value="userEmail">이메일</option>
-								<option value="phone">휴대전화</option>
-								<option value="addr">주소</option>
+								<option value="I" <c:out value="${pageMaker.vo.searchOption eq 'I'?'selected':''}"/>>
+								아이디</option>
+								<option value="N" <c:out value="${pageMaker.vo.searchOption eq 'N'?'selected':''}"/>>
+								이름</option>
 							</select>
-							<input type="text" name="userSearch">
-							<input class="search_btn" type="button" value="검색">
+							<input type="text" name="keyword" style="width: 100px" value="${pm.vo.keyword}"/>
+							<button type="submit" id="searchBtn" class="btn btn-sm btn-blue">검색</button>
+						</div>				
 					</td>
 				</tr>	
-			</table>
+			</table>	
 			</div>
+		</form>
 		<div class="middle_titleBox">
 			총 ${cnt }명의 회원이 검색되었습니다.		
 		</div>
@@ -163,8 +143,12 @@
 				 </ul>
 			</div>
 		</div> 
-		
-	</form>
+		<form id="moveForm" action="${contextPath}/aduserWithdraw/listadUsersWithdraw.do" method="get">		
+			<input type="hidden" name="page" value="${pm.vo.page}">
+			<input type="hidden" name="pageSize" value="${pm.vo.pageSize}">
+			<input type="hidden" id="keyword" name="keyword" value="${pm.vo.keyword}">
+			<input type="hidden" id="searchOption" name="searchOption" value="${pm.vo.searchOption }">
+		</form>
 
 </body>
 </html>

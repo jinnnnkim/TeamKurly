@@ -48,10 +48,10 @@ public class AdUserDrawControllerImpl implements AdUserDrawController{
 		String viewName = (String)request.getAttribute("viewName");
 		PageMaker pm = new PageMaker();
 		pm.setVo(vo);
-		pm.setTotalCount(adUserDrawService.userWithdrawCount()); 
+		pm.setTotalCount(adUserDrawService.userWithdrawCount(vo)); 
 		logger.info("withdrawPageGet vo는 "+ vo);
 		logger.info("withdrawPageGet info 레벨 : viewName = "+viewName);  
-		int cnt = adUserDrawService.userWithdrawCount();  
+		int cnt = adUserDrawService.userWithdrawCount(vo);  
 		List<AdUserDrawVO> userWithdrawList = adUserDrawService.listUsersWithdraw(vo);
 		ModelAndView mav = new ModelAndView(viewName);
 		mav.addObject("userWithdrawList", userWithdrawList);

@@ -40,16 +40,15 @@
 	<form method="post" action="${contextPath }/aduser/listadUsers.do">
 	<input type="hidden" name="page" value="${pm.vo.page}">
 	<input type="hidden" name="pageSize" value="${pm.vo.pageSize}">
-	<input type="hidden" name="keyword" value="${pm.vo.keyword }">
 		<div class="list_head">
 			<table align="center" id="tableGroup">
 				<tr>
 					<td>
 						<div class="search_area">
 							<select name="searchOption">
-								<option value="user_id" <c:out value="${pageMaker.vo.searchOption eq 'user_id'?'selected':''}"/>>
+								<option value="I" <c:out value="${pageMaker.vo.searchOption eq 'I'?'selected':''}"/>>
 								아이디</option>
-								<option value="user_name" <c:out value="${pageMaker.vo.searchOption eq 'user_name'?'selected':''}"/>>
+								<option value="N" <c:out value="${pageMaker.vo.searchOption eq 'N'?'selected':''}"/>>
 								이름</option>
 							</select>
 							<input type="text" name="keyword" style="width: 100px" value="${pm.vo.keyword}"/>

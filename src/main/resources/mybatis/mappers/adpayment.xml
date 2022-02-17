@@ -30,32 +30,52 @@
 	<!-- 페이지정보를 지정한 크기만큼 가져오기 -->
 	<select id="listPayPaging" resultMap="paymentResult">
 		<![CDATA[
-			select *
-			from ( select rownum AS rn, 
-					tpa.pay_code,
-					toa.user_id, 
-					tu.user_name, 
-					tu.user_phone, 
-					tu.user_addr,
-					tp.prod_name, 
-					tpa.pay_price,  
-					tpa.pay_date
-					from tb_payment tpa,
-						 tb_order toa, 
-						 tb_users tu, 
-						 tb_prod tp
-					where tpa.ord_code = toa.ord_code
-					and toa.user_id = tu.user_id
-					and tpa.ord_code = tp.ord_code)
+			select * from ( select rownum AS rn, tpa.* from
+						  ( select 
+							tpa.pay_code,
+							toa.user_id, 
+							tu.user_name, 
+							tu.user_phone, 
+							tu.user_addr,
+							tp.prod_name, 
+							tpa.pay_price,  
+							tpa.pay_date
+							from tb_payment tpa, tb_order toa, tb_users tu, tb_prod tp
+							where tpa.ord_code = toa.ord_code
+							and toa.user_id = tu.user_id
+							and tpa.ord_code = tp.ord_code) tpa
+		]]> 
+					<if test="keyword != null">
+		            	<if test="searchOption == 'I'.toString()">where user_id like '%'||#{keyword}||'%' </if>
+		            	<if test="searchOption == 'N'.toString()">where pay_code like '%'||#{keyword}||'%' </if>
+		             </if>
+		<![CDATA[
+					)
 			where rn between #{rowStart} and #{rowEnd}
 		]]>
 	</select>
 	
 	<!-- 총 주문 수 -->
 	<select id="payCount" resultType="int">
-		<![CDATA[
-			select count(*) from tb_payment
-		]]>
+		select count(*) from ( select rownum AS rn, tpa.* from
+						  ( select 
+							tpa.pay_code,
+							toa.user_id, 
+							tu.user_name, 
+							tu.user_phone, 
+							tu.user_addr,
+							tp.prod_name, 
+							tpa.pay_price,  
+							tpa.pay_date
+							from tb_payment tpa, tb_order toa, tb_users tu, tb_prod tp
+							where tpa.ord_code = toa.ord_code
+							and toa.user_id = tu.user_id
+							and tpa.ord_code = tp.ord_code) tpa
+			<if test="keyword != null">
+            	<if test="searchOption == 'I'.toString()">where user_id like '%'||#{keyword}||'%'</if>
+            	<if test="searchOption == 'N'.toString()">where pay_code like '%'||#{keyword}||'%'</if>
+             </if>
+             )
 	</select>
 	
 	<!-- 결제 취소  -->
