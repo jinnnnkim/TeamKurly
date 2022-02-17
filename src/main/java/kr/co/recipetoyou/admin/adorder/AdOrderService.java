@@ -10,7 +10,7 @@ public interface AdOrderService {
 
 	List<AdOrderVO> listOrdUsers(PagingVO vo) throws Exception;
 
-	int ordCount() throws DataAccessException;
+	int ordCount(PagingVO vo) throws DataAccessException;
 
 	AdOrderVO getOrdInfo(int id) throws DataAccessException;
 

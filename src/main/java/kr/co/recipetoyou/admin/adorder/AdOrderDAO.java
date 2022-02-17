@@ -11,7 +11,7 @@ public interface AdOrderDAO {
 
 	List<AdOrderVO> listOrdPaging(PagingVO vo) throws Exception;
 
-	int ordCount() throws DataAccessException;
+	int ordCount(PagingVO vo) throws DataAccessException;
 
 	int deleteOrd(int id) throws DataAccessException;
 

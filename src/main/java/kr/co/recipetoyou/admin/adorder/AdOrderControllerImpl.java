@@ -39,15 +39,16 @@ public class AdOrderControllerImpl implements AdOrderController {
 	//글목록보기(PageMaker객체 사용)
 	//전체 주문 조회
 	@Override
-	@RequestMapping(value = "/adorder/listadOrd.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/adorder/listadOrd.do", method = {RequestMethod.GET, RequestMethod.POST})
 	public ModelAndView listOrdPageGet(PagingVO vo, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String viewName = (String)request.getAttribute("viewName");
 	    PageMaker pm = new PageMaker();
 		pm.setVo(vo);
-	    pm.setTotalCount(service.ordCount()); 
+	    pm.setTotalCount(service.ordCount(vo)); 
+	    System.out.println("vo,sdf==============="+ vo.getKeyword());
 		logger.info("C: vo는 "+ vo);
 		logger.info("info 레벨 : viewName = "+viewName);  
-		int cnt = service.ordCount();  
+		int cnt = service.ordCount(vo);  
 		List<AdOrderVO> ordList = service.listOrdUsers(vo);
 	    ModelAndView mav = new ModelAndView(viewName);
 		mav.addObject("ordList", ordList);

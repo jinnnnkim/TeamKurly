@@ -40,7 +40,6 @@
 	<form method="post" action="${contextPath }/aduser/listadUsers.do">
 	<input type="hidden" name="page" value="${pm.vo.page}">
 	<input type="hidden" name="pageSize" value="${pm.vo.pageSize}">
-	<input type="hidden" name="keyword" value="${pm.vo.keyword }">
 		<div class="list_head">
 			<table align="center" id="tableGroup">
 				<tr>

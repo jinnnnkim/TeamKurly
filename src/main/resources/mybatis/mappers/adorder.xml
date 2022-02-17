@@ -39,7 +39,8 @@
 	<select id="listOrdPaging" resultMap="orderResult">
 		<![CDATA[
 			select *
-			from ( select rownum AS rn, 
+			from ( select rownum AS rn, toa.* from 
+				 ( select 
 					toa.ord_code,
 					toa.user_id, 
 					tu.user_name, 
@@ -50,20 +51,27 @@
 					toa.quantity, 
 					toa.price,  
 					toa.ord_date 
-					from tb_order toa, 
-						 tb_users tu, 
-						 tb_prod tp
+					from tb_order toa, tb_users tu, tb_prod tp
 					where toa.user_id = tu.user_id 
-					and toa.ord_code = tp.ord_code )
+					and toa.ord_code = tp.ord_code ) toa
+					]]> 
+					<if test="keyword != null">
+		            	<if test="searchOption == 'I'.toString()">where user_id like '%'||#{keyword}||'%' </if>
+		            	<if test="searchOption == 'N'.toString()">where ord_code like '%'||#{keyword}||'%' </if>
+		             </if>
+					<![CDATA[
+					)
 			where rn between #{rowStart} and #{rowEnd}
 		]]>
 	</select>
 	
 	<!-- 총 주문 수 -->
 	<select id="ordCount" resultType="int">
-		<![CDATA[
-			select count(*) from tb_order
-		]]>
+		select count(*) from tb_order
+			<if test="keyword != null">
+            	<if test="searchOption == 'I'.toString()">where user_id like '%'||#{keyword}||'%'</if>
+            	<if test="searchOption == 'N'.toString()">where ord_code like '%'||#{keyword}||'%'</if>
+             </if>
 	</select>
 	
 	<!-- 결제 취소  -->
