@@ -70,9 +70,12 @@
 								<button class="btn_delete">삭제</button>
 							</a>
 							<br/>
+							
+							<a href="${contextPath}/insertCart.do?prod_code=${pickList.prod_code}">
 							<button class="btn_add">
 								<i class="fas fa-shopping-cart"></i>담기
 							</button>
+							</a>
 						</div>
 						<!-- button_two -->
 					</div>

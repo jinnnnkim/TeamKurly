@@ -16,7 +16,7 @@
 					<div class="grade_logo">일반</div>
 					<c:choose>
 						<c:when test="${isLogOn == true && userVO != null}">
-							<strong class="name">${userVO.user_name}님</strong>
+							<strong class="name">${userVO.user_id}님</strong>
 						</c:when>
 					</c:choose>
 					<div class="grade_benefit">

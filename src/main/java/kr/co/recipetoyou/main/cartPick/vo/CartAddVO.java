@@ -5,60 +5,56 @@ import java.util.List;
 import org.springframework.stereotype.Component;
 
 import kr.co.recipetoyou.admin.adgoods.AdgoodsImgVO;
+import kr.co.recipetoyou.user.UserVO;
 
-/*
- create table tb_cart(
-    cart_code           varchar2(10)	NOT NULL 
-    ,prod_code          varchar2(10)	NOT NULL 
-    ,prod_quantity      varchar2(20)	NOT NULL 
-    ,user_id            varchar2(30)	NOT NULL 
-    ,primary key (cart_code)
-);
 
- */
 
 //장바구니 담기
 @Component("cartAddVO")
 public class CartAddVO {
 	
-	private String cart_code;
-	private String prod_code;
-	private String prod_quantity;
+	private int cart_code;
+	private int prod_code;
+	private int prod_quantity;
 	private String user_id;
 
+	//사용자 
+	private UserVO userVO;
+	
+	
 	public CartAddVO() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public CartAddVO(String cart_code, String prod_code, String prod_quantity, String user_id) {
-		super();
+	public CartAddVO(int cart_code, int prod_code, int prod_quantity, String user_id) {
+		//super();
 		this.cart_code = cart_code;
 		this.prod_code = prod_code;
 		this.prod_quantity = prod_quantity;
 		this.user_id = user_id;
 	}
 
-	public String getCart_code() {
+	public int getCart_code() {
 		return cart_code;
 	}
 
-	public void setCart_code(String cart_code) {
+	public void setCart_code(int cart_code) {
 		this.cart_code = cart_code;
 	}
 
-	public String getProd_code() {
+	public int getProd_code() {
 		return prod_code;
 	}
 
-	public void setProd_code(String prod_code) {
+	public void setProd_code(int prod_code) {
 		this.prod_code = prod_code;
 	}
 
-	public String getProd_quantity() {
+	public int getProd_quantity() {
 		return prod_quantity;
 	}
 
-	public void setProd_quantity(String prod_quantity) {
+	public void setProd_quantity(int prod_quantity) {
 		this.prod_quantity = prod_quantity;
 	}
 
@@ -69,5 +65,7 @@ public class CartAddVO {
 	public void setUser_id(String user_id) {
 		this.user_id = user_id;
 	}
+
+	
 
 }

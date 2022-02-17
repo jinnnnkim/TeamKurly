@@ -40,7 +40,8 @@
 			<div class="content">
 				<div class="cart_main">
 					<div class="cart_select">
-						<label> <input type="checkbox" name="checkItem" value="selectall" onclick="selectAll(this)"> 
+						<label> 
+							<input type="checkbox" name="checkItem" value="selectall" onclick="selectAll(this)"> 
 							<span>전체선택(1/1)</span>
 						</label>
 					</div>
@@ -51,11 +52,13 @@
 			<c:when test="${map.count == 0 }">
 				장바구니가 비어있습니다.
 			</c:when>
-		</c:choose>
+			<c:otherwise>
+		
 				
-		<c:forEach var="cartList" items="${cartList}">	
+		<c:forEach var="row" items="${map.cartList}" varStatus="i">	
 					<div class="cartlist">
-						<label class="inn_check"> <input type="checkbox" name="checkItem" >
+						<label class="inn_check"> 
+						<input type="checkbox" name="checkItem" >
 					</label>
 	
 						<div class="item">
@@ -71,11 +74,10 @@
 							</div>
 							
 							<div class="prodCount">
-								<input type="number" name="amount" value="${row.amount}">
-								<input type="hidden" name="productId" value="${row.prod_code}">
-								
-							
+								<input type="number" name="amount" value="${cartList.prod_quantity}">
+								<input type="hidden" name="productId" value="${cartList.prod_code}">
 							</div>
+							
 							<!-- prodCount -->
 
 <!-- 
@@ -102,7 +104,7 @@
 						
 							<div class="totalItem_prices">
 								 <span class="item_prices"><span id="itemPrice" class="num">
-								 <fmt:formatNumber value= "${cartList.prod_price}" pattern="###,###"/> 
+								 <fmt:formatNumber value= "${cartList.prod_price}" pattern="###,###,###"/> 
 								</span>원</span> 
 							</div>
 							<!-- totalItem_prices -->
@@ -140,12 +142,17 @@
 								<div class="deliveryPrice">
 									<span class="txt">배송비</span>
 									<span class="price"><span id="deliveryPrice" class="num">
-									 3,000</span>원</span>
+									 	${map.fee}
+									 </span>원</span>
 								</div>
 								<hr/>
 								<div class="prePayment">
 									<span class="txt">결제예정금액</span>
-									<span class="price"><span id="totalPrice" class="num">0</span>원</span> 
+									<span class="price">
+									<span id="totalPrice" class="num">
+										<fmt:formatNumber pattern="###,###,###" value="${map.allSum}"/>
+
+									</span>원</span> 
 								</div>
 								<div class="reserve">구매 시${cartList.prod_point }원 적립</div>
 							</div>
@@ -159,7 +166,9 @@
 					</div>
 					
 			</c:forEach>
-						
+		
+			</c:otherwise>
+		</c:choose>					
 					<div class="info">
 						<span>쿠폰/적립금은 주문서에서 사용 가능합니다</span><br /> <span>‘입금확인’ 상태일
 							때는 주문 내역 상세에서 직접 주문취소가 가능합니다.</span><br /> <span>‘입금확인’ 이후 상태에는
