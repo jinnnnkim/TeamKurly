@@ -24,8 +24,8 @@ public class AdOrderServiceImpl implements AdOrderService {
 
 	//주문 수 조회
 	@Override
-	public int ordCount() throws DataAccessException {
-		return dao.ordCount();
+	public int ordCount(PagingVO vo) throws DataAccessException {
+		return dao.ordCount(vo);
 	}
 		
 	//주문 상세 정보 조회

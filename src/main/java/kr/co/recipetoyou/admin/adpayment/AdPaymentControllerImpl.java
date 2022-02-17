@@ -38,15 +38,15 @@ public class AdPaymentControllerImpl implements AdPaymentController {
 	//글목록보기(PageMaker객체 사용)
 	//전체 주문 조회
 	@Override
-	@RequestMapping(value = "/adpayment/listadPay.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/adpayment/listadPay.do", method = {RequestMethod.GET, RequestMethod.POST})
 	public ModelAndView listPayPageGet(PagingVO vo, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String viewName = (String)request.getAttribute("viewName");
 	    PageMaker pm = new PageMaker();
 		pm.setVo(vo);
-	    pm.setTotalCount(service.payCount()); 
+	    pm.setTotalCount(service.payCount(vo)); 
 		logger.info("C: vo는 "+ vo);
 		logger.info("info 레벨 : viewName = "+viewName);  
-		int cnt = service.payCount();  
+		int cnt = service.payCount(vo);  
 		List<AdPaymentVO> payList = service.listPayUsers(vo);
 	    ModelAndView mav = new ModelAndView(viewName);
 		mav.addObject("payList", payList);

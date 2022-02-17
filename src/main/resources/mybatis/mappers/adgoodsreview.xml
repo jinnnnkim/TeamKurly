@@ -29,7 +29,10 @@
 				from tb_prod_review
 				where
 		]]>
-			<if test="keyword != null"> ${searchOption} like '%'||#{keyword}||'%' and </if>
+			<if test="keyword != null">
+				<if test="searchOption == 'title'.toString()"> title like '%'||#{keyword}||'%' and</if>
+				<if test="searchOption == 'user_id'.toString()"> user_id like '%'||#{keyword}||'%' and </if>
+			</if>
 		<![CDATA[
 			rownum <= #{page} * #{pageSize} 
 			)			
@@ -48,12 +51,18 @@
 	<!-- 총 후기 수 -->
 	<select id="getReviewAllCount" resultType="int" parameterType="kr.co.recipetoyou.util.PagingVO">
 		select count(*) from tb_prod_review
-			<if test="keyword != null"> ${searchOption} like '%'||#{keyword}||'%'</if>
+			<if test="keyword != null">
+				<if test="searchOption == 'title'.toString()"> where title like '%'||#{keyword}||'%'</if>
+				<if test="searchOption == 'user_id'.toString()"> where user_id like '%'||#{keyword}||'%'</if>
+			</if>
 	</select>
 	
 	<!-- 검색어에 맞는 문의 수 구하기 -->
 	<select id="getReviewCount" resultType="int">
 		select count(prod_review_code) from tb_prod_review
-			<if test="keyword != null">where  ${searchOption} like '%'||#{keyword}||'%'</if>
+			<if test="keyword != null">
+				<if test="searchOption == 'title'.toString()"> where title like '%'||#{keyword}||'%'</if>
+				<if test="searchOption == 'user_id'.toString()"> where user_id like '%'||#{keyword}||'%'</if>
+			</if>
 	</select>
 </mapper>

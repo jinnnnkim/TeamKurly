@@ -49,7 +49,7 @@ public class AdGoodsDAOImpl implements AdGoodsDAO{
 	public int goodsCount(PagingVO vo) throws DataAccessException {
 		
 	
-		return sqlSession.selectOne(NAMESPACE+".getGoodsCount");
+		return sqlSession.selectOne(NAMESPACE+".getGoodsCount", vo);
 	}
 
 	//상품 상세 페이지

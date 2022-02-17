@@ -26,6 +26,7 @@
 <!-- 파비콘 링크 -->
 <link href="/recipetoyou/Resources/User/Img/Mypage2/KurlyIcon.png" rel="icon"
 	type="image/x-icon" />
+<script type="text/javascript" src="/recipeToYou/Resources/User/Js/Mypage/userPoint.js" charset="UTF-8"></script>
 </head>
 <body>
 	<div class="content">
@@ -37,19 +38,7 @@
 				</h2>
 			</div>
 			<!-- head -->
-			<div class="point_box">
-				<div class="point_view">
-					<div class="title_now">현재 적립금 : </div>
-					<div class="point_now">0원</div>
-				</div>
-				<!-- point_view -->
-				<!-- <div class="point_disappear">
-					<div class="title_disappear">소멸예정 적립금</div>
-					<div class="won">0 원</div>
-				</div>
-				point_disappear
-			</div> -->
-			<!-- point_box -->
+			
 			<table class="point_cate">
 				<tr>
 					<th class="cate_date">적립날짜</th>
@@ -59,17 +48,27 @@
 				</tr>
 			</table>
 			<!-- point_cate -->
-			<c:forEach var="pointList" items="${pointList}">
-			<table class="point_main">
+			<c:set var = "total" value = "0" />
+			<c:forEach var="pointList" items="${pointList}" varStatus="status">
+			<table id="point_main">
 				<tr>
-					<td class="main_date">${pointList.accum_date}</td>
-					<td class="main_content">${pointList.point_content}</td>
-					<td class="main_vaild">${pointList.use_date}</td>
-					<td class="main_price">${pointList.point}원</td>
+					<td id="main_date">${pointList.accum_date}</td>
+					<td id="main_content">${pointList.point_content}</td>
+					<td id="main_vaild">${pointList.use_date}</td>
+					<td id="main_point">${pointList.point}원</td>
 				</tr>
+				<c:set var="total" value="${total + pointList.point}"/>
 			</table>
 			<!-- point_main -->
 			</c:forEach>
+			<div class="point_box">
+				<div class="point_view">
+					<div class="title_now">현재 적립금 : </div>
+					<div class="point_now"><c:out value="${total}"/> 원</div>
+				</div>
+				<!-- point_view -->
+			</div>
+			<!-- point_box -->
 		</div>
 		<!-- content -->
 	</div>

@@ -37,8 +37,8 @@ public class AdNoticeDAOImpl implements AdNoticeDAO {
 	//레시피 게시글 전체 수 조회
 	//DB 테이블에 있는 모든 회원의 주문 수 계산 후 리턴
 	@Override
-	public int noticeCount() throws DataAccessException {	
-		return sqlSession.selectOne("mapper.adnotice.noticeCount");
+	public int noticeCount(PagingVO vo) throws DataAccessException {	
+		return sqlSession.selectOne("mapper.adnotice.noticeCount", vo);
 	}
 
 	//레시피 게시글 삭제 

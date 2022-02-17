@@ -29,18 +29,28 @@
 	<select id="listRecipePaging" resultMap="recipeResult">
 		<![CDATA[
 			select *
-			from ( select rownum AS rn, 
-					tr.*
-					from tb_recipe tr)
-			where rn between #{rowStart} and #{rowEnd}
-		]]>
+			from ( select rownum AS rn, tr.* from
+				(select tr.* from tb_recipe tr order by recipe_idx DESC) tr
+		]]>            
+            <if test="keyword != null">
+            	<if test="searchOption == 'I'.toString()">where user_id like '%'||#{keyword}||'%'</if>
+            	<if test="searchOption == 'S'.toString()">where recipe_idx like '%'||#{keyword}||'%'</if>
+            	<if test="searchOption == 'O'.toString()">where recipe_title like '%'||#{keyword}||'%'</if>
+             </if>
+    	<![CDATA[
+    		)
+  			where rn between #{rowStart} and #{rowEnd}
+    	]]>
 	</select>
 	
 	<!-- 총 레시피 게시글 수 -->
 	<select id="recipeCount" resultType="int">
-		<![CDATA[
-			select count(*) from tb_recipe
-		]]>
+		select count(*) from tb_recipe
+			 <if test="keyword != null">
+            	<if test="searchOption == 'I'.toString()">where user_id like '%'||#{keyword}||'%'</if>
+            	<if test="searchOption == 'S'.toString()">where recipe_idx like '%'||#{keyword}||'%'</if>
+            	<if test="searchOption == 'O'.toString()">where recipe_title like '%'||#{keyword}||'%'</if>
+             </if>
 	</select>
 	
 	<!-- 레시피 게시글 삭제  -->

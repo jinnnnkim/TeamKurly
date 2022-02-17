@@ -12,7 +12,7 @@ public interface AdRecipeDAO {
 
 	List<AdRecipeVO> listRecipePaging(PagingVO vo) throws Exception;
 
-	int recipeCount() throws DataAccessException;
+	int recipeCount(PagingVO vo) throws DataAccessException;
 
 	int deleteRecipe(String id) throws DataAccessException;
 

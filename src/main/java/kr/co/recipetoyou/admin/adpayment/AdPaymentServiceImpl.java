@@ -23,8 +23,8 @@ public class AdPaymentServiceImpl implements AdPaymentService {
 
 	//주문 수 조회
 	@Override
-	public int payCount() throws DataAccessException {
-		return dao.payCount();
+	public int payCount(PagingVO vo) throws DataAccessException {
+		return dao.payCount(vo);
 	}
 		
 	//주문 상세 정보 조회

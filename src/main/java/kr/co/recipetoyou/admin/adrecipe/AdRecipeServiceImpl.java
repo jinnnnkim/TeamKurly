@@ -23,8 +23,8 @@ public class AdRecipeServiceImpl implements AdRecipeService {
 
 	//레시피 게시글 수 조회
 	@Override
-	public int recipeCount() throws DataAccessException {
-		return dao.recipeCount();
+	public int recipeCount(PagingVO vo) throws DataAccessException {
+		return dao.recipeCount(vo);
 	}
 		
 	//레시피 게시글 상세 정보 조회

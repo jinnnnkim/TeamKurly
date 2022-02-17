@@ -31,14 +31,13 @@
 				</div>
 				<!-- grade_wrap -->
 			</div>
-			<!-- grade_user -->
 			<div class="list_mypage">
 				<div class="list">
 					<a href="${contextPath}/point.do" onclick="" class="link_wrap">
 						<div class="link_title">적립금
 							<i class="fas fa-chevron-right"></i>
 						</div>
-							<p class="info">0 원 <!-- <span class="expire">소멸 예정 0 원</span> --></p>
+							<p class="info"> 원</p>
 					</a> 
 					<a href="${contextPath}/coupon.do" onclick="" class="link_wrap">
 						<div class="link_title">쿠폰

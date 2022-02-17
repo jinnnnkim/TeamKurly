@@ -10,7 +10,7 @@ public interface AdRecipeService {
 
 	List<AdRecipeVO> listRecipe(PagingVO vo) throws Exception;
 
-	int recipeCount() throws DataAccessException;
+	int recipeCount(PagingVO vo) throws DataAccessException;
 
 	AdRecipeVO getRecipeInfo(String id) throws DataAccessException;
 

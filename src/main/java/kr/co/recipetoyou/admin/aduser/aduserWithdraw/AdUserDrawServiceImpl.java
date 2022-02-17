@@ -26,8 +26,8 @@ public class AdUserDrawServiceImpl implements AdUserDrawService{
 
 	//탈퇴 회원 정보 회원 수 조회
 	@Override
-	public int userWithdrawCount() throws DataAccessException {
-		return adUserDrawDAO.userWithdrawCount();
+	public int userWithdrawCount(PagingVO vo) throws DataAccessException {
+		return adUserDrawDAO.userWithdrawCount(vo);
 	}	 
 	
 	//회원 상세 정보 조회

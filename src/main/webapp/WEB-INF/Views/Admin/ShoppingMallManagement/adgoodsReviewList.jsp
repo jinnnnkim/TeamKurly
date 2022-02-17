@@ -48,8 +48,7 @@
 											<select name="searchOption">
 												<option value="title" <c:out value="${pageMaker.vo.searchOption == 'title'?'selected':''}"/>>
 												제목</option>
-												<option value="content" <c:out value="${pageMaker.vo.searchOption == 'content'?'selected':''}"/>>
-												내용</option>
+							
 												<option value="user_id" <c:out value="${pageMaker.vo.searchOption == 'user_id'?'selected':''}"/>>
 												문의자 아이디</option>
 											</select>
@@ -72,11 +71,11 @@
 							<div class="summary">
 								검색된 후기 &nbsp;
 								<span class="f-bold f-red f-num"></span>
-								${map.searchcnt }개 &nbsp;
+								${searchcnt }개 &nbsp;
 								<span class="split">|</span>
 								총 후기 &nbsp;
 								<span class="f-bold f-num"></span>
-								${map.cnt }개
+								${cnt }개
 								</div>
 							</div>
 							

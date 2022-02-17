@@ -37,8 +37,8 @@ public class AdPaymentDAOImpl implements AdPaymentDAO {
 	//결제 전체 수 조회
 	//DB 테이블에 있는 모든 회원의 주문 수 계산 후 리턴
 	@Override
-	public int payCount() throws DataAccessException {	
-		return sqlSession.selectOne("mapper.adpayment.payCount");
+	public int payCount(PagingVO vo) throws DataAccessException {	
+		return sqlSession.selectOne("mapper.adpayment.payCount", vo);
 	}
 
 	//결제 취소
