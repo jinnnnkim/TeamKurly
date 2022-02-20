@@ -391,7 +391,7 @@
 			
 			uploadArea.html(str);
 		});	
-	});
+	//});
 	
 
 		

@@ -1,5 +1,7 @@
 package kr.co.recipetoyou.main.goods;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -36,5 +38,53 @@ public class GoodsControllerImpl implements GoodsController{
 		}
 		return mav;
 	}
+
+	@Override
+	public List<CommentVO> commentList(HttpServletRequest request, HttpServletResponse response, CommentVO commentvo)
+			throws Exception {
+		
+		List<CommentVO> commentVO = goodsService.commentList(commentvo);
+		
+		return null;
+	}
+
+	@Override
+	public CommentVO getNext(HttpServletRequest request, HttpServletResponse response, CommentVO commentvo)
+			throws Exception {
+		
+		CommentVO commentVO = goodsService.commentUpdate(commentvo);
+		
+		return commentVO;
+	}
+
+	@Override
+	public CommentVO commentWrite(HttpServletRequest request, HttpServletResponse response, CommentVO commentvo)
+			throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public CommentVO commentView(HttpServletRequest request, HttpServletResponse response, CommentVO commentvo)
+			throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public CommentVO commentDelete(HttpServletRequest request, HttpServletResponse response, CommentVO commentvo)
+			throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public CommentVO commentUpdate(HttpServletRequest request, HttpServletResponse response, CommentVO commentvo)
+			throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	
 
 }

@@ -24,6 +24,19 @@
 		<result property="prod_caution" column="prod_caution"/>
 		<result property="prod_quantity" column="prod_quantity"/>
 		<result property="prod_reg_date" column="prod_reg_date"/>
+		
+	</resultMap>
+	
+	<resultMap type="commentVO" id="commentResult">
+		<result property="comment_code" column="comment_code"/>
+		<result property="prod_code" column="prod_code"/>
+		<result property="subcomm_code" column="subcomm_code"/>
+		<result property="title" column="title"/>
+		<result property="comment_idx" column="comment_idx"/>
+		<result property="comm_category" column="comm_category"/>
+		<result property="user_id" column="user_id"/>
+		<result property="content" column="content"/>
+		<result property="bbsID" column="bbsID"/>
 	</resultMap>
 
 	<select id="selectProdCode" resultMap="goodsResult" parameterType="int">
@@ -32,6 +45,100 @@
 			where prod_code=#{prod_code} 	
 		]]>
 	</select>
+	
+	<!-- 문의&후기 목록 -->
+	<select id="commentList" parameterType="commentVO">
+		select*
+		from tb_prod_comment
+		where comm_category = #{comm_category}
+		and comment_idx = #{comment_idx}
+		order by comment_code asc, subcomm_code asc
+	</select>
+	
+	<!-- 총 개수 -->
+	<select id="commentTotal" parameterType="commentVO" resultType="int">
+    
+    	select count(*)
+    	from tb_prod_comment
+    	WHERE 	comm_category = #{comm_category}
+    	AND		comment_idx = #{comment_idx}
+    	
+    </select>
+    
+    
+    <select id="getNext" parameterType="commentVO" resultType="commentVO">
+    	
+    	SELECT comment_code
+    	FROM tb_prod_comment
+    	ORDER BY comment_code DESC
+    
+    </select>
+       
+    <select id="subGetNext" parameterType="commentVO" resultType="commentVO">
+    	
+    	SELECT subcomm_code
+    	FROM tb_prod_comment
+    	WHERE comment_code = #{comment_code}
+    	ORDER BY subcomm_code DESC
+    
+    </select>
+    
+    <!-- 문의&후기 작성 -->   
+    <insert id="commentWrite" parameterType="commentVO">
+		
+		INSERT
+		INTO tb_prod_comment
+		VALUES
+		(
+			#{comment_code},		
+			#{subcomm_code},
+			#{comment_idx},
+			#{comm_category},
+			#{user_id},
+			#{content}
+		) 
+  
+    </insert>
+    
+    <!-- 상세 조회 -->
+    <select id="commentView" parameterType="commentVO" resultType="commentVO">
+    
+    	SELECT *
+    	FROM tb_prod_comment
+        WHERE 	comment_code = #{comment_code}    
+        AND		subcomm_code = #{subcomm_code}	
+    
+    </select>
+    
+    <!-- 후기 작성 조건 충족 여부 -->
+    <select id="UserReview" parameterType="commentVO">
+		select count(*)
+		from tb_order
+		where user_id = #{user_id}
+		and prod_code = #{prod_code}
+	</select>
+    
+    <!-- 문의&후기 삭제 -->
+    <delete id="commentDelete" parameterType="commentVO">
+    
+    	DELETE
+    	FROM tb_prod_comment
+    	WHERE 	comment_code = #{comment_code}
+    	AND		subcomm_code = #{subcomm_code}
+    
+    </delete>
+    
+    <!-- 문의&후기 수정 -->
+    <update id="commentUpdate" parameterType="commentVO">
+    
+    	UPDATE tb_prod_comment
+    	SET content = #{content}
+		WHERE 	comment_code = #{comment_code}
+		AND		subcomm_code = #{subcomm_code}
+    
+    </update>
+	
+	
 
 </mapper>  
 
