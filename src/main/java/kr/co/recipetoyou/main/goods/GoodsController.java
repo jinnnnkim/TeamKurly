@@ -5,8 +5,11 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+
+import kr.co.recipetoyou.util.PagingVO;
 
 public interface GoodsController {
 	
@@ -16,7 +19,10 @@ public interface GoodsController {
 	//상품 문의&후기 목록
 	public List<CommentVO> commentList(HttpServletRequest request, HttpServletResponse response, CommentVO commentvo) throws Exception;
 	
-	//페이징
+	public ModelAndView listPageGet(PagingVO vo, HttpServletRequest request, HttpServletResponse response) throws Exception;
+	
+	//상품 상세 조회
+	public void getGoodsDetail(int prod_code, Model model, PagingVO vo)throws Exception;
 	
 	//상품 문의&후기 번호
 	public CommentVO getNext (HttpServletRequest request, HttpServletResponse response, CommentVO commentvo) throws Exception;

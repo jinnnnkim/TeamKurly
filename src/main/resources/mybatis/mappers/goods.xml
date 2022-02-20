@@ -36,14 +36,40 @@
 		<result property="comm_category" column="comm_category"/>
 		<result property="user_id" column="user_id"/>
 		<result property="content" column="content"/>
-		<result property="bbsID" column="bbsID"/>
 	</resultMap>
-
-	<select id="selectProdCode" resultMap="goodsResult" parameterType="int">
+	
+	<resultMap type="adGoodsImgVO" id="goodsImgResult">
+		<result property="fileName" column="fileName"/>
+		<result property="prod_code" column="prod_code"/>
+		<result property="uploadPath" column="uploadPath"/>
+		<result property="uuid" column="uuid"/>
+	</resultMap>
+	
+	<select id="selectGoodsList" resultMap="goodsResult">
 		<![CDATA[
+				select prod_name, prod_price, prod_code
+				from tb_prod
+		]]>
+	</select>
+	
+	<!-- 이미지 정보 얻기 -->
+	<select id="goodsImageList" resultMap="goodsImgResult">
+		<![CDATA[
+		select * from tb_adgoods_Img where prod_code = #{prod_code}
+		]]>
+	</select>
+
+	<select id="selectProdCode" resultMap="goodsResult">
+		<!-- <![CDATA[
 			select * from TB_PROD
 			where prod_code=#{prod_code} 	
-		]]>
+		]]> -->
+		 <![CDATA[
+		 select prod_code, prod_name, (select cateName FROM TB_PROD_CATE WHERE TB_PROD_CATE.CATECODE = tb_prod.CATECODE) cateName,
+				prod_content, prod_price, prod_discount, prod_sell_unit, prod_delivery_type,
+				prod_wrap_type, prod_info, prod_allergy, prod_vaild_date, prod_from, prod_caution, stock_quantity
+		from tb_prod where prod_code = #{prod_code}
+		 ]]>
 	</select>
 	
 	<!-- 문의&후기 목록 -->

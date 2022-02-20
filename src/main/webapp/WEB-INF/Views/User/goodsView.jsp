@@ -4,9 +4,12 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <c:set var="articlesList" value="${articlesMap.articlesList }"/><%--page넘버와 섹션이 적용된 페이지 글 --%>
+
 <%
 request.setCharacterEncoding("UTF-8");
 %>
+
+
 
 <!DOCTYPE html>
 <html>
@@ -120,11 +123,12 @@ request.setCharacterEncoding("UTF-8");
 
 				<div class="goods_name">
 					<!-- goods_name -->
-					<span class="share"> <img alt="share"
-						src="/recipetoyou/Resources/User/Img/share.png">
-					</span> <strong class="name">[잇츠베러] 어스밀 렌틸라구 두부면 파스타</strong><br> <span
-						class="short_desc">식물성 재료로 완성한 라구 파스타</span> <span class="dc">
-						<span class="dc_price">${goodsVO.prod_code} ${goodsVO.prod_code}5,900 <span class="won">원</span></span>
+					<span class="share"> 
+					<div id="uploadArea">
+					</div>
+					</span> <strong class="name">${goodsVO.prod_name}</strong><br> <span
+						class="short_desc">${goodsVO.prod_content }</span> <span class="dc">
+						<span class="dc_price">="${goodsVO.prod_price }<span class="won">원</span></span>
 					</span>
 					<!-- dc -->
 					<br> <span class="not_login">로그인 후, 적립혜택이 제공됩니다.</span>
@@ -137,7 +141,7 @@ request.setCharacterEncoding("UTF-8");
 							<!-- inn_goods_info -->
 							<dl class="list fst">
 								<dt class="tit">판매단위</dt>
-								<dd class="desc">1팩</dd>
+								<dd class="desc">${goodsVO.prod_sell_unit}</dd>
 							</dl>
 							<dl class="list">
 								<dt class="tit">중량/용량</dt>
@@ -145,20 +149,18 @@ request.setCharacterEncoding("UTF-8");
 							</dl>
 							<dl class="list">
 								<dt class="tit">배송구분</dt>
-								<dd class="desc">샛별배송/택배배송</dd>
+								<dd class="desc">${goodsVO.prod_delivery_type}</dd>
 							</dl>
 							<dl class="list">
 								<dt class="tit">포장타입</dt>
 								<dd class="desc">
-									냉동/스티로품 <strong class="emph">택배배송은 에코포장이 스티롬품으로 대체됩니다.</strong>
+									${goodsVO.prod_wrap_type} <strong class="emph">택배배송은 에코포장이 스티롬품으로 대체됩니다.</strong>
 								</dd>
 							</dl>
 							<dl class="list">
 								<dt class="tit">알레르기정보</dt>
 								<dd class="desc">
-									- 대두,토마토 함유<br> - 이 제품은 밀, 소고기, 닭고기, 돼지고기, 우유, 메밀, 땅콩,
-									복숭아, 호두, 잣, 오징어, 고등어, 게, 새우, 조개류(굴, 바지락, 모시조개, 가리비, 홍합, 전복 등),
-									알류(계란, 메추리알), 아황산류를 사용한 제품과 같은 제조시설에서 제조하고 있습니다.
+									${goodsVO.prod_allergy}
 								</dd>
 							</dl>
 						</div>
@@ -205,7 +207,7 @@ request.setCharacterEncoding("UTF-8");
 							</button>
 							<div class="button_wrap">
 								<button type="button" class="wrap_btn"  onclick="fn_cart()">장바구니 담기</button> <!-- 장바구니 버튼  -->
-								<span>${goodsVO.PROD_CODE}</span>
+								<span>${goodsVO.prod_code}</span>
 							</div>
 							<!-- button_wrap -->
 						</div>

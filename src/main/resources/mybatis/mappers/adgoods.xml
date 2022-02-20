@@ -47,7 +47,7 @@
 	</select>
 	
 	<!-- 페이지정보를 지정한 크기만큼 가져오기 -->
-	<select id="getGoodsList" resultMap="adgoodsResult">
+	<select id="getadGoodsList" resultMap="adgoodsResult">
 		<![CDATA[
 			select * from (
 				select rownum AS rn, prod_name, prod_price, prod_code, cateCode,
