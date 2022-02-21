@@ -45,7 +45,7 @@
 			from tb_users
 			where rownum <= #{page} * #{pageSize} 
     	]]>            
-            <if test="keyword != null"> and ${searchOption} like '%'||#{keyword}||'%'</if>
+            <if test="keyword != null"> and #{searchOption} like '%'||#{keyword}||'%'</if>
     	<![CDATA[
   			)
   			where rn > (#{page} -1) * #{pageSize}
@@ -54,7 +54,11 @@
 	
 	<!-- 총 회원 수 -->
 	<select id="userCount" resultType="int" >
-			select count(*) from TB_USERS  <if test="keyword != null">  ${searchOption} like '%'||#{keyword}||'%'</if>
+			select count(*) from TB_USERS
+			<if test="keyword != null">
+				where user_id like '%' || #{keyword} ||'%'
+			</if>
+			
 	</select>
 	
 	<!-- 회원정보 삭제  -->

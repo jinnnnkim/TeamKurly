@@ -47,9 +47,9 @@
 					<td>
 						<div class="search_area">
 							<select name="searchOption">
-								<option value="user_id" <c:out value="${pageMaker.vo.searchOption eq 'user_id'?'selected':''}"/>>
+								<option value="user_id" ><c:out value="${pageMaker.vo.searchOption eq 'user_id'?'selected':''}"/>
 								아이디</option>
-								<option value="user_name" <c:out value="${pageMaker.vo.searchOption eq 'user_name'?'selected':''}"/>>
+								<option value="user_name"><c:out value="${pageMaker.vo.searchOption eq 'user_name'?'selected':''}"/>
 								이름</option>
 							</select>
 							<input type="text" name="keyword" style="width: 100px" value="${pm.vo.keyword}"/>
