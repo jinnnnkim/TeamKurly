@@ -102,6 +102,7 @@ public class CartPickServiceImpl implements CartPickService{
 			
 		});
 		
+		System.out.println("listCarts Service 호출");
 		
 		return cartList;
 	}

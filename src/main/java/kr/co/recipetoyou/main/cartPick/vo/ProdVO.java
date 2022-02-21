@@ -42,9 +42,24 @@ public class ProdVO {
 	private String addr;
 	private String delivery_type;
 	
+	//장바구니 CartAddVO
+	private CartAddVO cartAddVO;
+	private int cart_code;
 	
 	
 	
+	public CartAddVO getCartAddVO() {
+		return cartAddVO;
+	}
+	public void setCartAddVO(CartAddVO cartAddVO) {
+		this.cartAddVO = cartAddVO;
+	}
+	public int getCart_code() {
+		return cart_code;
+	}
+	public void setCart_code(int cart_code) {
+		this.cart_code = cart_code;
+	}
 	public int getProd_code() {
 		return prod_code;
 	}

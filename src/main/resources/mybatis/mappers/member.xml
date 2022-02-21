@@ -139,8 +139,9 @@
 	<select id="selectAllCartPickList" resultMap="cartPickResult">
 		<![CDATA[
 			SELECT tf.USER_ID , tp.PROD_NAME , tp.PROD_CODE , tp.PROD_PRICE, tp.PROD_DISCOUNT 
-			FROM TB_FAV tf JOIN TB_PROD tp
-			ON tf.PROD_CODE = tp.PROD_CODE
+			FROM TB_FAV tf, TB_PROD tp , TB_USERS tu 
+			WHERE tf.PROD_CODE = tp.PROD_CODE
+			AND tf.USER_ID = tu.USER_ID 
 		]]>
 	</select>
 	

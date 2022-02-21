@@ -55,7 +55,7 @@
 			<c:otherwise>
 		
 				
-		<c:forEach var="row" items="${map.cartList}" varStatus="i">	
+		<c:forEach var="cartList" items="${map.cartList}" varStatus="i">	
 					<div class="cartlist">
 						<label class="inn_check"> 
 						<input type="checkbox" name="checkItem" >
@@ -74,7 +74,7 @@
 							</div>
 							
 							<div class="prodCount">
-								<input type="number" name="amount" value="${cartList.prod_quantity}">
+								<input type="number" style="width: : 40px" name="amount" value="${cartList.prod_quantity}" min="1">
 								<input type="hidden" name="productId" value="${cartList.prod_code}">
 							</div>
 							
@@ -154,7 +154,7 @@
 
 									</span>원</span> 
 								</div>
-								<div class="reserve">구매 시${cartList.prod_point }원 적립</div>
+								<div class="reserve">구매 시${cartList.prod_point}원 적립</div>
 							</div>
 						</div>
 					</div>

@@ -57,7 +57,8 @@ public class CartPickDAOImpl implements CartPickDAO {
 	
 	@Override
 	public List<ProdVO> selectAllCartList(String user_id) throws DataAccessException {
-		return sqlSession.selectList("mapper.member.selectAllCartList", "user_id");
+		System.out.println("listCarts DAO 호출");
+		return sqlSession.selectList("mapper.member.selectAllCartList", user_id);
 	}
 
 	

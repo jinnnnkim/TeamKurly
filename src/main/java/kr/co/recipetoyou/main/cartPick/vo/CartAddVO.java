@@ -18,8 +18,6 @@ public class CartAddVO {
 	private int prod_quantity;
 	private String user_id;
 
-	//사용자 
-	private UserVO userVO;
 	
 	
 	public CartAddVO() {
