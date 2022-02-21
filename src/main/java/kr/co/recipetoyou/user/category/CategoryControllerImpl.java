@@ -67,7 +67,7 @@ public class CategoryControllerImpl {
 		return mav;
 	}
 	
-	@RequestMapping(value="/user/newGoodsPage.do",method=RequestMethod.GET)
+	@RequestMapping(value="",method=RequestMethod.GET)
 	public ModelAndView newGoodsPage(HttpServletRequest request, HttpServletResponse response) throws Exception{
 		
 		ModelAndView mav = new ModelAndView();

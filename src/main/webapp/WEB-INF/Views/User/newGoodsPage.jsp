@@ -50,22 +50,28 @@
 		<div class="list_goods">
 			<!-- list_goods -->
 			<div class="inner_listgoods">
+				<c:forEach var="goods" items="${goodsList }">
 				<ul class="glists">
-					<li><a href="${contextPath}/prodDetail.do?prod_code=2">
-					<img alt="두부면 파스타" src="/recipetoyou/Resources/User/Img/Meal/paster1.jpg"></a>
+					<li class="image">
+					<div class="image_wrap" data-prod_code="${goods.imageList[0].prod_code}" data-path="${goods.imageList[0].uploadPath}"
+												data-uuid="${goods.imageList[0].uuid}" data-filename="${goods.imageList[0].fileName}">
+					<a href="${contextPath}/goods/goodsInfo.do?prod_code=${goods.prod_code}">
+					<img>
+					</a>
+					</div>
 						<div class="group_btn">
 						<%-- ${} --%>
 							<!-- 장바구니 아이콘 -->
 							<i class="fas fa-cart-arrow-down"></i>
 						</div>
 						<div class="item">
-							<a class="info"> <span class="name">[잇츠베러] 어스밀 렌틸라구
-									두부면 파스타</span><br> <span class="cost">5,900원</span><br> <span
-								class="mean">식물성 재료로 완성한 라구 파스타</span><br>
+							<a class="info"> <span class="name">
+									${goods.prod_name }</span><br> <span class="cost">${goods.prod_price }</span><br> <span
+								class="mean">${goods.prod_content }</span><br>
 							</a>
 						</div></li>
 
-					<li><a href="${contextPath}/prodDetail.do"><img alt="바질 파스타"
+					<%-- <li><a href="${contextPath}/prodDetail.do"><img alt="바질 파스타"
 							src="/recipetoyou/Resources/User/Img/Meal/paster2.jpg"></a>
 						<div class="group_btn">
 							<!-- 장바구니 아이콘 -->
@@ -134,9 +140,15 @@
 							</span>
 							</a>
 						</div></li>
-
+ --%>
 				</ul>
+				</c:forEach>
 			</div>
+			<c:if test="${listCheck == 'empty'}">
+						<div>
+							등록된 상품이 없습니다.
+						</div>
+					</c:if>
 		</div>
 		<!-- list_goods -->
 
@@ -156,5 +168,35 @@
 			</ul>
 		</div>
 	</div>
+	<script type="text/javascript">
+	$(document).ready(function(){
+		
+		//검색 타입 selected
+		/* const selectedType = '<c:out value="${pm.vo.type}"/>';
+		if(selectedType != ""){
+			$("select[name='type']").val(selectedType).attr("selected", "selected");
+		} */
+											
+		//이미지 삽입
+		$(".image_wrap").each(function(i, obj){
+			
+			const bobj = $(obj);
+			if(bobj.data("prod_code")){
+				
+				const uploadPath = bobj.data("path");
+				const uuid = bobj.data("uuid");
+				const fileName = bobj.data("filename");
+				
+				const fileCallPath = encodeURIComponent(uploadPath + "/s_" + uuid + "_" + fileName);
+				
+				$(this).find("img").attr('src', '${contextPath}/adgoods/getImageInfo.do?fileName=' + fileCallPath);
+				
+				}else {
+					$(this).find("img").attr('src', '/recipetoyou/Resources/Admin/Img/SubgoodsImg/ready.jpg');
+				}
+		});	
+		
+		});
+	</script>
 </body>
 </html>

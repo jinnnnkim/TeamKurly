@@ -1,6 +1,7 @@
 package kr.co.recipetoyou.board.notice;
 
 import java.util.List;
+import java.util.Map;
 
 import kr.co.recipetoyou.util.PagingVO;
 
@@ -19,5 +20,9 @@ public interface NoticeDAO {
 	public int selectOneToOneCount(PagingVO vo);
 
 	public List<NoticeINQVO> selectOneToOneList(PagingVO vo);
+
+	public int insertInq(Map articleMap);
+
+	public void insertNewFile(Map articleMap);
 
 }

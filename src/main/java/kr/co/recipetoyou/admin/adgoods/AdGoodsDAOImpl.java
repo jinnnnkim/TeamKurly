@@ -39,7 +39,7 @@ public class AdGoodsDAOImpl implements AdGoodsDAO{
 	@Override
 	public List<AdGoodsVO> listPaging(PagingVO vo) throws Exception {
 		
-		return sqlSession.selectList(NAMESPACE+".getGoodsList", vo);
+		return sqlSession.selectList(NAMESPACE+".getadGoodsList", vo);
 	}
 	
 	

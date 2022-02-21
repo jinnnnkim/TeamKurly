@@ -15,7 +15,7 @@ public interface AdUserController {
 public ModelAndView listPageGet(PagingVO vo, HttpServletRequest request, HttpServletResponse response) throws Exception;
 	
 	//전체 회원목록 조회 및 페이징 처리
-	public void listUsersGET(PagingVO vo, Model model) throws Exception;
+	//public void listUsersGET(PagingVO vo, Model model) throws Exception;
 	
 	//회원 상세 정보 조회
 	public ModelAndView getUserInfo(@RequestParam(value="id") String id, HttpServletRequest request, HttpServletResponse response) throws Exception;

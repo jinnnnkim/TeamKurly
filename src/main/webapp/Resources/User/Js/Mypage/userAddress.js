@@ -46,17 +46,18 @@ function addAddr() {
                     }
                     
                 
-                	document.getElementById("addr").value = extraAddr;
+                	addr += extraAddr;
                 
 					} 
                 	else {
-                    	document.getElementById("addr").value = '';
+                    	addr += ' ';
                 	}
                 
-                	document.getElementById('zonecode').value = data.zonecode;
-                	document.getElementById("roadAddress").value = addr;
+                	$("#zonecode").val(data.zonecode);
+                	$("#roadAddress").val(addr);
                 
-                	document.getElementById("namugiAddress").focus();
+                	$("#namugiAddress").attr("readonly",false);
+                	$("#namugiAddress").focus();
  
                 
  
@@ -64,8 +65,10 @@ function addAddr() {
 		}).open();  
      }
 	
-	
 
+
+
+	
 
 
 

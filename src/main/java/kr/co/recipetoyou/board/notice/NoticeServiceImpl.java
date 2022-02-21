@@ -1,6 +1,7 @@
 package kr.co.recipetoyou.board.notice;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -46,6 +47,14 @@ public class NoticeServiceImpl implements NoticeService{
 	@Override
 	public List<NoticeINQVO> noticeOneToOneist(PagingVO vo) {
 		return noticeDAO.selectOneToOneList(vo);
+	}
+
+	@Override
+	public int addInq(Map articleMap) {
+		int inq_idx = noticeDAO.insertInq(articleMap);
+		articleMap.put("inq_idx", inq_idx);
+		noticeDAO.insertNewFile(articleMap);
+		return inq_idx;
 	}
 
 }

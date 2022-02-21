@@ -65,6 +65,7 @@
 		<typeAlias type="kr.co.recipetoyou.main.goods.PaymentVO" alias="paymentVO"/>
 		<typeAlias type="kr.co.recipetoyou.main.order.OrderVO" alias="orderVO"/>
 		<typeAlias type="kr.co.recipetoyou.util.PagingVO" alias="pagingVO"/>
+		<typeAlias type="kr.co.recipetoyou.main.goods.CommentVO" alias="commentVO"/>
 		
 		<typeAlias type="kr.co.recipetoyou.board.recipe.RecipeVO" alias="recipeVO"/>
 		<typeAlias type="kr.co.recipetoyou.board.recipe.RecipeCateVO" alias="recipeCateVO"/>

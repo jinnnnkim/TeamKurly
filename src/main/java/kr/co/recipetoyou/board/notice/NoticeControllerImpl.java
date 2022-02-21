@@ -11,13 +11,15 @@ import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletRequestWrapper;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.io.FileUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -35,7 +37,7 @@ import kr.co.recipetoyou.util.PagingVO;
 @Controller("noticeController")
 public class NoticeControllerImpl implements NoticeController{
 	
-	private static String ARTICLE_IMAGE_REPO ="C:/git_workTeam/src/main/webapp/Resources/Upload/OneToOne";
+	private static String ARTICLE_IMAGE_REPO ="C:/wordspace_git/src/main/webapp/Resources/Upload/OneToOne";
 	
 	private static final Logger logger = LoggerFactory.getLogger("NoticeControllerImpl.class");
 	
@@ -44,6 +46,9 @@ public class NoticeControllerImpl implements NoticeController{
 	
 	@Autowired
 	private NoticeVO noticeVO;
+	
+	@Autowired
+	private NoticeINQFiileVO noticeINQFiileVO;
 
 	@Override
 	@RequestMapping(value="/notice/notice.do", method= {RequestMethod.GET,RequestMethod.POST})
@@ -228,9 +233,61 @@ public class NoticeControllerImpl implements NoticeController{
 		String id = userVO.getUser_id();
 		articleMap.put("id", id);
 		
-		List<String> fileList = upload(multipartRequest);
+		List<String> fileList = multiUpload(multipartRequest);
+		List<NoticeINQFiileVO> imgFileList = new ArrayList<NoticeINQFiileVO>();
+		
+		if(fileList != null && fileList.size() != 0) {
+			for(String fileName : fileList) {
+				NoticeINQFiileVO fileVO = new NoticeINQFiileVO();
+				fileVO.setInq_file_name(fileName);
+				imgFileList.add(fileVO);
+			}
+			articleMap.put("imgFileList", imgFileList);
+		}
 
+		HttpHeaders responseHeaders = new HttpHeaders(); 
+		responseHeaders.add("Content-Type", "text/html; charset=utf-8");
+		
+		String message;
 		ResponseEntity resEnt = null;
+		
+		try {
+			//서비스 호출
+			int inq_idx = noticeService.addInq(articleMap);
+			
+			if (imgFileList != null && imgFileList.size() != 0) {
+				for (NoticeINQFiileVO imageVO : imgFileList) {
+					imageFileName = imageVO.getInq_file_name();
+					File srcFile = new File(ARTICLE_IMAGE_REPO +"\\"+ "temp" +"\\"+ imageFileName);
+					File destFile = new File(ARTICLE_IMAGE_REPO +"\\"+ inq_idx);
+					FileUtils.moveFileToDirectory(srcFile, destFile, true);
+				}
+			}
+			
+			message = "<script>";
+			message += " alert('새글을 추가했습니다.');" ;
+			message += " location.href='"+multipartRequest.getContextPath()+"/board/listArticles.do';";
+			message += "</script>";
+			resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.CREATED);
+			
+		} 
+		catch (Exception e) {
+			if (imgFileList != null && imgFileList.size() != 0) {
+				for (NoticeINQFiileVO imageVO : imgFileList) {
+					imageFileName = imageVO.getInq_file_name();
+					File srcFile = new File(ARTICLE_IMAGE_REPO +"\\"+ "temp" +"\\"+ imageFileName);
+					srcFile.delete();
+				}
+			}
+			
+			message = "<script>";
+			message += " alert('오류가 발생했습니다. 다시 시도해 주세요.');" ;
+			message += " location.href='"+multipartRequest.getContextPath()+"/board/articleForm.do';";
+			message += "</script>";
+			resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.CREATED);			
+						
+			e.printStackTrace();
+		}
 		
 		return resEnt;
 	}
@@ -256,6 +313,29 @@ public class NoticeControllerImpl implements NoticeController{
 		}
 		return fileList;
 	}
+	
+	private List<String> multiUpload(MultipartHttpServletRequest multipartRequest) throws ServletException, IOException {
+		List<String> fileList = new ArrayList<>();
+		Iterator<String> fileNames = multipartRequest.getFileNames();
+		while (fileNames.hasNext()) {
+			String fileName = fileNames.next();
+			MultipartFile mFile = multipartRequest.getFile(fileName);
+			String originalFilename = mFile.getOriginalFilename();
+			
+			if (originalFilename != "" && originalFilename != null) {
+				fileList.add(originalFilename);
+				File file = new File(ARTICLE_IMAGE_REPO +"\\"+ fileName);
+				if(mFile.getSize() != 0) {		// File Null Check
+					if (!file.exists() ) {		// 경로상에 존재하지 않는다면
+						file.getParentFile().mkdirs();	//경로에 해당하는 디렉토리들을 생성
+						mFile.transferTo(new File(ARTICLE_IMAGE_REPO +"\\"+ "temp" +"\\"+ originalFilename));  //임시로
+					}															// 저장한 MultipartFile을 실제 파일로 전송
+				}
+			}
+		}
+		return fileList;
+	}
+	
 	
 	
 
