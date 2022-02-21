@@ -30,8 +30,6 @@ public interface CartPickDAO{
 	//장바구니 상품수량 수정
 	public void updateCount(CartAddVO cartAddVO) throws DataAccessException;
 	
-	
-	
 	//장바구니 목록 조회
 	/* public List<ProdVO> selectAllCartList() throws DataAccessException; */
 	public List<ProdVO> selectAllCartList(String user_id) throws DataAccessException;
