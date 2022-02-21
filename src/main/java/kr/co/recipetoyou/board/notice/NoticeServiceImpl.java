@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 
 import kr.co.recipetoyou.util.PagingVO;
 
-@Service("service")
+@Service("noticeService")
 public class NoticeServiceImpl implements NoticeService{
 	
 	@Autowired
@@ -50,11 +50,10 @@ public class NoticeServiceImpl implements NoticeService{
 	}
 
 	@Override
-	public int addInq(Map articleMap) {
-		int inq_idx = noticeDAO.insertInq(articleMap);
-		articleMap.put("inq_idx", inq_idx);
-		noticeDAO.insertNewFile(articleMap);
-		return inq_idx;
+	public void addOnoToOneINQ(NoticeINQVO noticeINQ) {
+		noticeDAO.insertINQ(noticeINQ);
+		
 	}
+
 
 }

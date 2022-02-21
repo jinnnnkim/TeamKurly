@@ -76,7 +76,7 @@ public class AdGoodsControllerImpl implements AdGoodsController {
 	@ResponseBody
 	public ModelAndView listPageGet(PagingVO vo, HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
-		
+		request.getServletContext();
 		ObjectMapper objm = new ObjectMapper();
 		String viewName = (String)request.getAttribute("viewName");
 		ModelAndView mav = new ModelAndView(viewName);
