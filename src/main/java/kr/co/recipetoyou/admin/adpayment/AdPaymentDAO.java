@@ -12,7 +12,7 @@ public interface AdPaymentDAO {
 
 	List<AdPaymentVO> listPayPaging(PagingVO vo) throws Exception;
 
-	int payCount() throws DataAccessException;
+	int payCount(PagingVO vo) throws DataAccessException;
 
 	int deletePay(int id) throws DataAccessException;
 

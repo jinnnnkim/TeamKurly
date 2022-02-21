@@ -498,7 +498,7 @@
 			$unit.val($(this).val());
 			$unit.prop("readonly",true);
 		}
-	})
+	});
 	
 </script> 
 	

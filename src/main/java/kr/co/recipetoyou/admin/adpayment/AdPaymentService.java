@@ -10,7 +10,7 @@ public interface AdPaymentService {
 
 	List<AdPaymentVO> listPayUsers(PagingVO vo) throws Exception;
 
-	int payCount() throws DataAccessException;
+	int payCount(PagingVO vo) throws DataAccessException;
 
 	AdPaymentVO getPayInfo(int id) throws DataAccessException;
 

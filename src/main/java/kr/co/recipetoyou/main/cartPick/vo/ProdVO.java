@@ -42,6 +42,9 @@ public class ProdVO {
 	private String addr;
 	private String delivery_type;
 	
+	
+	
+	
 	public int getProd_code() {
 		return prod_code;
 	}

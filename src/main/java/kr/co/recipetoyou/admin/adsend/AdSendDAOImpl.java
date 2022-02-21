@@ -39,8 +39,8 @@ public class AdSendDAOImpl implements AdSendDAO {
 	//회원 수 조회
 	//DB 테이블에 있는 모든 회원수 계산 후 리턴
 	@Override
-	public int sendListCount() throws DataAccessException {	
-		return sqlSession.selectOne("mapper.adsend.sendListCount");
+	public int sendListCount(PagingVO vo) throws DataAccessException {	
+		return sqlSession.selectOne("mapper.adsend.sendListCount", vo);
 	}	
 	
 	//회원 상세 정보 조회

@@ -28,8 +28,8 @@ public class AdFAQServiceImpl implements AdFAQService {
 
 	//FAQ목록 수 조회
 	@Override
-	public int FAQListCount() throws DataAccessException {
-		return dao.FAQListCount();
+	public int FAQListCount(PagingVO vo) throws DataAccessException {
+		return dao.FAQListCount(vo);
 	}
 
 	//FAQ 상세 정보 조회

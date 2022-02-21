@@ -43,10 +43,10 @@ public class AdNoticeControllerImpl implements AdNoticeController {
 		String viewName = (String)request.getAttribute("viewName");
 	    PageMaker pm = new PageMaker();
 		pm.setVo(vo);
-	    pm.setTotalCount(service.noticeCount()); 
+	    pm.setTotalCount(service.noticeCount(vo)); 
 		logger.info("C: vo는 "+ vo);
 		logger.info("info 레벨 : viewName = "+viewName);  
-		int cnt = service.noticeCount();  
+		int cnt = service.noticeCount(vo);  
 		List<AdNoticeVO> noticeList = service.listNotice(vo);
 	    ModelAndView mav = new ModelAndView(viewName);
 		mav.addObject("noticeList", noticeList);

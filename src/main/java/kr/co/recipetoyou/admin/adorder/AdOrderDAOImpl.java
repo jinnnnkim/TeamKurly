@@ -36,8 +36,8 @@ public class AdOrderDAOImpl implements AdOrderDAO {
 	//주문 전체 수 조회
 	//DB 테이블에 있는 모든 회원의 주문 수 계산 후 리턴
 	@Override
-	public int ordCount() throws DataAccessException {	
-		return sqlSession.selectOne("mapper.adorder.ordCount");
+	public int ordCount(PagingVO vo) throws DataAccessException {	
+		return sqlSession.selectOne("mapper.adorder.ordCount", vo);
 	}
 
 	//결제 취소

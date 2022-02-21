@@ -230,7 +230,7 @@
 
 <script>
 	$(document).ready(function (){
-	    $('#catagoryMenu .menu1').mouseenter(function(){
+	     $('#catagoryMenu .menu1').mouseenter(function(){
 	        $('#allCate ul').css('display','block');
 	        $('.sul').css('display','block');
 	        $('.sul').css('z-index','300');
@@ -456,7 +456,7 @@
 	    }); 
 	    $('#allCate').mouseleave(function() {
 	        $('#allCate ul').css('display','none');
-	    }); 
+	    });  
 	});
 </script>
 

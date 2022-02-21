@@ -4,7 +4,17 @@
  
 $(document).ready(function() {
 	let moveForm = $("#moveForm");
-			
+	
+	
+	
+	$(".pagination a").on("click", function(e){
+		e.preventDefault();
+		moveForm.find("input[name='page']").val($(this).attr("href"));
+		moveForm.attr("action", "listadUsers.do");
+		moveForm.submit();
+		
+	});		
+	
 	$("#searchBtn").on("click",function(e){
 		e.preventDefault();
 				
@@ -26,7 +36,7 @@ $(document).ready(function() {
 		moveForm.find("input[name='page']").val(1);
 		moveForm.submit();
 	});	
-});
+}); 
  /* 체크 박스 전체 선택과 전체 취소 */
 	
 $(function(){

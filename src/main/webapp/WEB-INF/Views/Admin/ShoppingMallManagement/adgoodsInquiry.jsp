@@ -65,11 +65,10 @@
 											<td colspan="3" style="text-align: left;">
 											<div class="search_area">
 												<select name="searchOption">
-												<option value="title" <c:out value="${pageMaker.vo.searchOption == 'title'?'selected':''}"/>>
+												<option value="inq_title" <c:out value="${pageMaker.vo.searchOption == 'inq_title'?'selected':''}"/>>
 												제목</option>
-												<option value="content" <c:out value="${pageMaker.vo.searchOption == 'content'?'selected':''}"/>>
-												내용</option>
-												<option value="user_id" <c:out value="${pageMaker.vo.searchOption == 'user_id'?'selected':''}"/>>
+							
+												<option value="id" <c:out value="${pageMaker.vo.searchOption == 'id'?'selected':''}"/>>
 												문의자 아이디</option>
 											</select>
 												<input type="text" name="keyword" style="width: 500px" value="${pm.vo.keyword}"/>
@@ -93,12 +92,12 @@
 							</div>
 							<div class="summary">
 								검색된 후기&nbsp;
-								<span class="f-bold f-red f-num">281</span>
-								개&nbsp;
+								<span class="f-bold f-red f-num"></span>
+								${searchcnt }개 &nbsp;
 								<span class="split">|</span>
 								총 후기&nbsp;
-								<span class="f-bold f-num">281</span>
-								개
+								<span class="f-bold f-num"></span>
+								${cnt }개
 							</div>
 						</div>
 						

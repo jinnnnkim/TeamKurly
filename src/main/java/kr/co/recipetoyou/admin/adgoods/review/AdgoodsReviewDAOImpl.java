@@ -47,7 +47,7 @@ public class AdgoodsReviewDAOImpl implements AdgoodsReviewDAO {
 	@Override
 	public int reviewCount(PagingVO vo) throws DataAccessException {
 		
-		return sqlSession.selectOne(NAMESPACE+".getReviewAllCount");
+		return sqlSession.selectOne(NAMESPACE+".getReviewAllCount", vo);
 	}
 
 	//검색 결과 개수

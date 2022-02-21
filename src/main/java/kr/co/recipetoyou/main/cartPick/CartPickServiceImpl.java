@@ -1,7 +1,8 @@
 package kr.co.recipetoyou.main.cartPick;
 
-import java.io.IOException;
+import java.io.IOException; 
 import java.util.List;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
@@ -11,9 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.fasterxml.jackson.core.JsonGenerationException;
 import com.fasterxml.jackson.databind.JsonMappingException;
-import com.thoughtworks.qdox.model.Member;
 
-import kr.co.recipetoyou.user.login.LoginDAO;
 import kr.co.recipetoyou.admin.adgoods.AdGoodsDAO;
 import kr.co.recipetoyou.admin.adgoods.AdgoodsImgVO;
 import kr.co.recipetoyou.main.cartPick.vo.CartAddVO;
@@ -41,44 +40,48 @@ public class CartPickServiceImpl implements CartPickService{
 		return pickList;
 		
 	}
-
+	//찜목록 삭제
 	@Override
 	public int removePick(String prod_name) throws DataAccessException {
-		System.out.println("service 호출");
+		System.out.println("Pick delete service 호출");
 		return cartPickDAO.deletePick(prod_name);
 		
 	}
 	
-	
 	//마이페이지 - 찜하기 담기 클릭시 마이페이지 장바구니 이동
-	/*@Override
-	
-	 * public int addCart(PickVO pickVO) throws DataAccessException { return
-	 * cartPickDAO.insertCart(pickVO); }
-	 */
-	//마이페이지 장바구니 담기
 	@Override
-	public int addCart(CartAddVO cartAddVO) throws DataAccessException {
-		System.out.println("장바구니 Service 호출");
-		return cartPickDAO.insertCart(cartAddVO);
-	}
-	
-	
-	@Override
-	public int removeCartPick(String id) throws DataAccessException {
-		return cartPickDAO.deleteCartPick(id);
+	public void insertCart(CartAddVO cartAddVO) throws DataAccessException {
+		System.out.println("insertCart Service 호출");
+		cartPickDAO.insertCart(cartAddVO);	
 	}
 
 	@Override
-	public int addCartPick(CartAddVO cartAddVO) throws DataAccessException {
-		// TODO Auto-generated method stub
-		return 0;
+	public void modifyCart(CartAddVO cartAddVO) throws Exception {
+		cartPickDAO.modifyCart(cartAddVO);
+		
 	}
+
+	@Override
+	public int sumMoney(String user_id) throws DataAccessException {
+		return cartPickDAO.sumMoney(user_id);
+	}
+
+	@Override
+	public int commCart(int prod_code, String user_id) throws DataAccessException {
+		return cartPickDAO.commCart(prod_code, user_id);
+	}
+
+	@Override
+	public void updateCart(CartAddVO cartAddVO) throws DataAccessException {
+		cartPickDAO.updateCount(cartAddVO);	
+	}
+
+	
 	
 	//마이페이지 장바구니 목록 조회
 	@Override
-	public List<ProdVO> listCarts() throws Exception {
-		List<ProdVO> cartList = cartPickDAO.selectAllCartList();
+	public List<ProdVO> listCarts(String user_id) throws Exception {
+		List<ProdVO> cartList = cartPickDAO.selectAllCartList(user_id);
 		
 		cartList.forEach(agvo->{
 			
@@ -111,6 +114,26 @@ public class CartPickServiceImpl implements CartPickService{
 		}
 	
 		
+		
+		
+				
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	@Override
+	public int removeCartPick(String id) throws DataAccessException {
+		return cartPickDAO.deleteCartPick(id);
+	}
+	
+		
+		
+		
 
 	//찜(좋아요) 담기
 	@Override
@@ -128,6 +151,11 @@ public class CartPickServiceImpl implements CartPickService{
 	@Override
 	public int addCartPick(CartPickVO__ cartPickVO) throws DataAccessException {
 		return cartPickDAO.insertCartPick(cartPickVO);
+	}
+	@Override
+	public int addCartPick(CartAddVO cartAddVO) throws DataAccessException {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 	

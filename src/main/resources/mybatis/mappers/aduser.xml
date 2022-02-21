@@ -40,25 +40,31 @@
 	<!-- 페이지정보를 지정한 크기만큼 가져오기 -->
 	<select id="listPaging" resultMap="aduserResult">
 		<![CDATA[
-			select * from (
-			select rownum AS rn, tb_users.* 
-			from tb_users
-			where rownum <= #{page} * #{pageSize} 
+			select * from 
+			(select rownum as rn, tu.* from 
+			(select tu.* FROM tb_users tu  ORDER BY user_id DESC) tu
     	]]>            
-            <if test="keyword != null"> and #{searchOption} like '%'||#{keyword}||'%'</if>
+
+            <if test="keyword != null">
+            	<if test="searchOption == 'I'.toString()">where user_id like '%'||#{keyword}||'%'</if>
+            	<if test="searchOption == 'N'.toString()">where user_name like '%'||#{keyword}||'%'</if>
+             </if>
+
     	<![CDATA[
-  			)
-  			where rn > (#{page} -1) * #{pageSize}
+    		)
+  			where rn between #{rowStart} and #{rowEnd}
     	]]>
 	</select>
 	
 	<!-- 총 회원 수 -->
 	<select id="userCount" resultType="int" >
-			select count(*) from TB_USERS
-			<if test="keyword != null">
-				where user_id like '%' || #{keyword} ||'%'
-			</if>
-			
+
+			select count(*) from TB_USERS 
+			 <if test="keyword != null">
+            	<if test="searchOption == 'I'.toString()">where user_id like '%'||#{keyword}||'%'</if>
+            	<if test="searchOption == 'N'.toString()">where user_name like '%'||#{keyword}||'%'</if>
+             </if>
+
 	</select>
 	
 	<!-- 회원정보 삭제  -->

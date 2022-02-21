@@ -31,7 +31,10 @@
 				from tb_prod_inq
 				where
 		]]>
-			<if test="keyword != null"> ${searchOption} like '%'||#{keyword}||'%' and</if>
+			<if test="keyword != null">
+				<if test="searchOption == 'inq_title'.toString()"> inq_title like '%'||#{keyword}||'%' and</if>
+				<if test="searchOption == 'id'.toString()"> user_id like '%'||#{keyword}||'%' and </if>
+			</if>
 		<![CDATA[
 			rownum <= #{page} * #{pageSize} 
 			)			
@@ -50,12 +53,18 @@
 	<!-- 총 문의 수 -->
 	<select id="getInquiryAllCount" resultType="int" parameterType="kr.co.recipetoyou.util.PagingVO">
 		select count(*) from tb_prod_inq
-			<if test="keyword != null"> ${searchOption} like '%'||#{keyword}||'%'</if>
+			<if test="keyword != null">
+				<if test="searchOption == 'inq_title'.toString()"> where inq_title like '%'||#{keyword}||'%'</if>
+				<if test="searchOption == 'id'.toString()"> where user_id like '%'||#{keyword}||'%'</if>
+			</if>
 	</select>
 	
 	<!-- 검색어에 맞는 문의 수 구하기 -->
 	<select id="getInquiryCount" resultType="int">
 		select count(prod_inq_code) from tb_prod_inq
-			<if test="keyword != null">where ${searchOption} like '%'||#{keyword}||'%'</if>
+			<if test="keyword != null">
+				<if test="searchOption == 'inq_title'.toString()"> where inq_title like '%'||#{keyword}||'%'</if>
+				<if test="searchOption == 'id'.toString()"> where user_id like '%'||#{keyword}||'%'</if>
+			</if>
 	</select>
 </mapper>

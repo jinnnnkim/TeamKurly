@@ -41,15 +41,27 @@
 	<!-- 페이지정보를 지정한 크기만큼 가져오기 -->
 	<select id="listPagingWithdraw" resultMap="userWithdrawResult">
 		<![CDATA[
-			select * from (select rownum AS rn, tb_userswithdraw.* from TB_USERSWITHDRAW)  where rn between #{rowStart} and #{rowEnd}
-		]]>
+			select * from 
+			(select rownum as rn, tu.* from 
+			(select tu.* FROM tb_userswithdraw tu  ORDER BY user_id DESC) tu
+    	]]>            
+            <if test="keyword != null">
+            	<if test="searchOption == 'I'.toString()">where user_id like '%'||#{keyword}||'%'</if>
+            	<if test="searchOption == 'N'.toString()">where user_name like '%'||#{keyword}||'%'</if>
+             </if>
+    	<![CDATA[
+    		)
+  			where rn between #{rowStart} and #{rowEnd}
+    	]]>
 	</select>
 
 	<!-- 총 회원 수 -->
 	<select id="userWithdrawCount" resultType="int">
-		<![CDATA[
-			select count(*) from TB_USERSWITHDRAW
-		]]>
+		select count(*) from TB_USERSWITHDRAW
+			<if test="keyword != null">
+            	<if test="searchOption == 'I'.toString()">where user_id like '%'||#{keyword}||'%'</if>
+            	<if test="searchOption == 'N'.toString()">where user_name like '%'||#{keyword}||'%'</if>
+             </if>
 	</select>
 	
 	<!-- 회원정보 삭제  -->

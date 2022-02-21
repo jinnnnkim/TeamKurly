@@ -49,7 +49,7 @@ public class AdInquiryDAOImpl implements AdInquiryDAO{
 	@Override
 	public int inquiryCount(PagingVO vo) throws DataAccessException {
 		
-		return sqlSession.selectOne(NAMESPACE+".getInquiryAllCount");
+		return sqlSession.selectOne(NAMESPACE+".getInquiryAllCount", vo);
 	}
 
 	//검색 결과 개수

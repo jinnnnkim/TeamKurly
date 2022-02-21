@@ -8,13 +8,13 @@
 	text-align: center;
 }
 		
-#popupTitle1 {
+.popupTitle1 {
 	color: #257cd8;
 	font-size: 22px;
 	font-weight: 600;
 }
 		
-#title1 span {
+.popupTitle1 span {
 	font-size: 22px;
 	color: black;
 }
@@ -30,7 +30,7 @@ p {
     margin-bottom: 10px;
 } 
 		
-#jibunAddress {
+#roadAddress {
 	width: 450px;
 	height: 40px;
 	border: 1px solid black;
@@ -52,16 +52,28 @@ p {
 	width: 450px;
 	height: 40px;
 	margin-top: 10px;
-	margin-bottom: 20px;
+	margin-bottom: 10px;
+	border: 1px solid black;
+	border-radius: 3px;
+}
+
+#addName {
+	width: 450px;
+	height: 40px;
+	margin-bottom: 10px;
+	border: 1px solid black;
+	border-radius: 3px;
+}
+
+#addPhone {
+	width: 450px;
+	height: 40px;
+	margin-bottom: 10px;
 	border: 1px solid black;
 	border-radius: 3px;
 }
 		
-#basic_Address {
-	margin-right: 303px;
-}
-		
-#save {
+.save {
 	width: 454px;
 	height: 41px;
 	margin-top: 20px;

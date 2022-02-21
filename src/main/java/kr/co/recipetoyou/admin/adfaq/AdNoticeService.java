@@ -10,7 +10,7 @@ public interface AdNoticeService {
 
 	List<AdNoticeVO> listNotice(PagingVO vo) throws Exception;
 
-	int noticeCount() throws DataAccessException;
+	int noticeCount(PagingVO vo) throws DataAccessException;
 
 	AdNoticeVO getNoticeInfo(String id) throws DataAccessException;
 
