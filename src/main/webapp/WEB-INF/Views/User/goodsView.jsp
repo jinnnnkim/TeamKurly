@@ -20,8 +20,7 @@ response.setContentType("application/json");
 <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
 <script type="text/javascript" src="/recipetoyou/Resources/Common/slick/slick.min.js"></script>
 
-	
-	<script type="text/javascript">
+<script type="text/javascript">
 		function fn_pick() {
 			$.ajax({
 				type: "post",
@@ -130,6 +129,7 @@ response.setContentType("application/json");
 					<span class="share"> 
 					<div id="uploadArea">
 					</div>
+
 					</span> <strong class="name">${goodsDetailInfo.prod_name}</strong><br><br> 
 						<span class="dc_price">${goodsDetailInfo.prod_price}</span><span class="won">원</span>
 					</span>
@@ -168,7 +168,11 @@ response.setContentType("application/json");
 							</dl>
 						</div>
 						<!-- inn_goods_info  상품 정보 -->
-
+						
+						<form action="#" method="post" id="idCheckSet">
+							<input type="text" name="user_id" hidden="hidden" value="${user_id }">
+							<input type="text" name="prod_code" hidden="hidden" value="${goodsVO.prod_code }">
+						</form>
 
 						<div class="cartPut">
 							<!-- cartPut -->
@@ -267,6 +271,7 @@ response.setContentType("application/json");
 						<i class="fas fa-angle-right"></i>
 					</button>
 				<!-- how_goods 페이징 기능.js -->
+
 				<script type="text/javascript">
 					// 숫자 타입에서 쓸 수 있도록 format() 함수 추가
 					Number.prototype.format = function(){
@@ -311,6 +316,7 @@ response.setContentType("application/json");
 
 				<div class="goods-view-wrap">
 					<!-- 상품 상세보기 -->
+
 					<div class="goods-view-inn">
 						<ul class="goods-view-lists">
 							<li class="gview-list-inn"><a href="#prodDetail"
@@ -322,9 +328,9 @@ response.setContentType("application/json");
 							<li class="gview-list-inn"><a href="#QandATable"
 								class="gview_tab_anchor scroll_move">문의</a></li>
 						</ul>
-						<!-- goods-view-lists -->
+						goods-view-lists
 					</div>
-					<!-- goods-view-inn -->
+					goods-view-inn
 
 					<div class="goods-view-inn_content_wrap">
 						<div id="prodDetail" class="goods-view-inn_content">
@@ -334,7 +340,7 @@ response.setContentType("application/json");
 									<img alt="pic">
 								</div>
 							</div>
-							<!-- pic -->
+							pic
 							<div class="context_tit">
 								${goodsDetailInfo.prod_content }
 								<!-- <h4>
@@ -347,11 +353,11 @@ response.setContentType("application/json");
 									만든 라구소스를 흠뻑 입혀 완성한 렌틸라구 파스타를 준비했어요. 두부와 렌틸콩의 식감이 살아 있어 풍성하고
 									다채로운 맛을 자랑한답니다. 가볍고 속 편한 식사를 찾고 계셨다면, 잇츠베러를 선택해 보세요.</p> -->
 							</div>
-							<!-- context_tit -->
+							context_tit
 						</div>
-						<!-- goods-view-inn_content -->
+						goods-view-inn_content
 					</div>
-					<!-- goods-view-inn_content_wrap -->
+					goods-view-inn_content_wrap -->
 
 
 					<!-- <div class="check_point">
@@ -384,6 +390,7 @@ response.setContentType("application/json");
 					</div>
 					pick -->
 
+
 					<div class="goods_tips">
 						<span>Recipe To You's Tip</span>
 						<div class="tip_box">
@@ -396,18 +403,17 @@ response.setContentType("application/json");
 									<strong class="sub_tit_tip">보관법</strong> -18℃ 이하에서 냉동 보관하세요.
 								</p>
 							</div>
-							<!-- tip_tit -->
+							tip_tit
 						</div>
-						<!-- tip_box -->
+						tip_box
 					</div>
-					<!-- tips -->
+					tips
 
 					<!-- <div id="goods_pic">
 						<img alt=""
 							src="/recipetoyou/Resources/User/Img/SaleGoods/pick_2.jpg">
 					</div> -->
 					<!-- goods_pic -->
-
 
 					<table width="100%" border="0" cellpading="0" cellspacing="1"
 						class="extra-info">
@@ -463,22 +469,22 @@ response.setContentType("application/json");
 									<div class="why_icon">
 										<i class="fas fa-clipboard-list"></i>
 									</div>
-									<!-- why_icon -->
+									why_icon
 									<div class="why_info">
 										<span class="title">깐깐한 상품위원회</span> <span class="tit_story">
 											나와 내 가족이 먹고 쓸 상품을 고르는<br> 마음으로 매주 상품을 직접 먹어보고,<br>
 											경험해보고 성분, 맛, 안정성 등 다각도의<br> 기준을 통과한 상품만을 판매합니다.
 										</span>
 									</div>
-									<!-- why_info -->
+									why_info
 								</div>
-								<!-- col -->
+								col
 
 								<div class="col">
 									<div class="why_icon">
 										<i class="fas fa-shipping-fast"></i>
 									</div>
-									<!-- why_icon -->
+									why_icon
 									<div class="why_info">
 										<span class="title">신선한 풀콜드체인 배송</span> <span
 											class="tit_story"> 온라인 업계 최초로 산지에서 문 앞까지<br>상온,
@@ -486,15 +492,15 @@ response.setContentType("application/json");
 											상품을 신선하게 전해드립니다.
 										</span>
 									</div>
-									<!-- why_info -->
+									why_info
 								</div>
-								<!-- col -->
+								col
 
 								<div class="col">
 									<div class="why_icon">
 										<i class="fas fa-globe-americas"></i>
 									</div>
-									<!-- why_icon -->
+									why_icon
 									<div class="why_info">
 										<span class="title">환경을 생각하는 지속 가능한 유통</span> <span
 											class="tit_story"> 친환경 포장재부터 생산자가 상품에만<br>집중할 수
@@ -502,15 +508,15 @@ response.setContentType("application/json");
 											커뮤니티, 직원)이<br>더 나아질 수 있도록 노력합니다.
 										</span>
 									</div>
-									<!-- why_info -->
+									why_info
 								</div>
-								<!-- col -->
+								col
 							</div>
-							<!--whykurly_txt_area  -->
+							whykurly_txt_area 
 						</div>
-						<!-- whykurly -->
+						whykurly
 					</div>
-					<!-- whykurly_wrap -->
+					whykurly_wrap
 
 
 					<div class="happy_center_wrap">
@@ -518,7 +524,7 @@ response.setContentType("application/json");
 							<span class="happy_tit">고객행복센터</span> <span class="sub_qus">궁금하신
 								점이나 서비스 이용에 불편한 점이 있으신가요?</span> <span class="sub_ans">문제가 되는
 								부분을 사진으로 찍어 아래 중 편하신 방법으로 접수해 주시면 빠르게 도와드리겠습니다.</span>
-						</div>
+						</div> -->
 						<!-- happy -->
 
 						<ul class="happy_list_u">
@@ -614,13 +620,14 @@ response.setContentType("application/json");
 							<th class="writeDate">작성일</th>
 							<th class="hit">조회</th>
 						</tr>
-
+						
+						<c:forEach var="rvl" items="${reviewList }">
 						<tr class="reviewList1">
 							<td>공지</td>
 							<td class="titleCont"><a href="#none">금주의 Best 후기 안내</a></td>
-							<td>Recipe</td>
-							<td>2022-01-04</td>
-							<td>15</td>
+							<td>${rvl.title }</td>
+							<td>${rvl.user_id }</td>
+							<td>${rvl.reg_date }</td>
 						</tr>
 						<tr class="reviewDetailList1">
 							<td colspan="5">
@@ -633,7 +640,7 @@ response.setContentType("application/json");
 								</div>
 							</td>
 						</tr>
-
+					</c:forEach>
 					</table>
 					<div class="writeBtn">
 						<a href="${contextPath}/reviewWrite.do">후기작성</a>
@@ -652,7 +659,7 @@ response.setContentType("application/json");
 					</ul>
 				</div>
 				<%--review end --%>
-
+				
 				<%--QnA --%>
 				<div id="QandATable" class="QandATable">
 					<div>
@@ -668,15 +675,28 @@ response.setContentType("application/json");
 							<th class="writeDate">작성일</th>
 							<th class="reply">답변상태</th>
 						</tr>
-
+						
+						<c:forEach var="fl" items="${inqList }">
 						<tr class="QandAList1">
-							<td>판매 일시 중단 제품입니다.</td>
-							<td class="titleCont">recipetoyou</td>
-							<td>2022-01-04</td>
-							<td>-</td>
+							<td class="titleCont">${fl.inq_title }</td>
+							<td>${fl.user_id }</td>
+							<td><fmt:parseDate value="${fl.inq_reg_date}" var="reg_date" pattern="yy-MM-dd"/>
+							<fmt:formatDate value="${reg_date}" pattern="yy-MM-dd"/></td>
+							<c:choose>
+							<c:when test="${fl.emp_no eq 1 }">
+								<!-- 관리자 번호는 1번이므로 관리자가 배치되었다면 답변이 완료된 상태 -->
+								<td>답변 완료</td>
+							</c:when>
+							<c:when test="${fl.emp_no eq 0 }">
+								<!-- 관리자 번호는 1번이므로 관리자가 배치되지 않았다면 답변 대기 상태 -->
+								<td>답변 대기</td>
+							</c:when>
+							</c:choose>
 						</tr>
+						
 						<tr class="QandADetailList1">
-							<td colspan="5">
+						
+							<!-- <td colspan="5">
 								<div>
 									<span> 환경을 생각해주세요. </span>
 									<div class="echoBtn">
@@ -684,13 +704,46 @@ response.setContentType("application/json");
 										<button class="deleteBtn" type="button" onclick="QAdelte()">삭제</button>
 									</div>
 								</div>
-							</td>
+							</td> -->
+							
 						</tr>
+						<div id="collapseq${fl.faq_no}" class="collapse" data-parent="#accordion">
+							<div class="card-body">
+								<div class="q-table-page">
+									<!-- 메뉴 눌렀을 때 페이지 -->
+									<div class="q-table-page-proname">[${goodsVO.item_category}] ${iteminfo.item_name}</div>
+									<ul class="q-table-page-ul">
+										<li class="q-table-page-item">${fl.content}</li>
+									</ul>
+									<div class="q-table-page-anwser">
+										<!-- 메뉴 눌렀을 때 페이지 -->
+									<c:if test="${fl.emp_no eq 1}"> <!-- 답변이 완료된 상태라면 답변도 함께 짝지어 출력 -->
+										<ul class="q-table-page-titleNstate">
+											<li class="q-table-page-item-title">답변 : re:${fl.title}</li>
+											<li class="q-table-page-item-state">답변 완료</li>
+										</ul>
+										<ul class="q-table-page-ul">
+											<li class="q-table-page-item">${fl.ans_content}</li>
+										</ul>
+										
+						</c:if>
+									</div>
+								</div>
+							</div>
+						</div>
+						</c:forEach>			
 					</table>
+					<div class="write-faq">
+						
+					</div>
+					<div >
+					<button id="writeBtn">문의하기</button>
+					</div>
 					<div class="writeBtn">
 						<a id="show">문의하기</a>
 					</div>
 					<%--QnA End--%>
+					
 					
 					<%--문의하기 팝업 --%>
 					<div class="background">
@@ -709,17 +762,23 @@ response.setContentType("application/json");
 											class="prodSub">맛있는 소고기 200g</span>
 									</div>
 								</div>
+								
 								<div class="QnAWrap">
-									<form>
+									<form name="qnaFrm" id="qnaFrm" method="post">
 										<table class="QnAWrite">
 											<tr class="QnAWriteTitle">
 												<th>제목</th>
-												<td><input type="text" placeholder="제목을 입력해주세요." /></td>
+												<td>
+												<input type="text" name="inq_title" id="inq_title" placeholder="제목을 입력해주세요." />
+												<input type="text" hidden="hidden" name="user_id" id="user_id" class="qinput q_inputUserno" value="${user_id }">
+												<input type="text" hidden="hidden" name="prod_code" class="qinput q_inputItemno" value="${goodsVO.prod_code}">"
+												</td>
 											</tr>
 											<tr class="content">
 												<th>내용</th>
 												<td><textarea
-														placeholder="자세한 후기는 다른 고객의 구매에 많은 도움이 되며,&#13;&#10;일반식품의 효능이나 효과 등에 오해의 소지가 있는 내용을 작성 시 검토 후 비공개 조치될 수 있습니다.&#13;&#10;반품/환불 문의는 1:1문의로 가능합니다."></textarea>
+														placeholder="자세한 후기는 다른 고객의 구매에 많은 도움이 되며,&#13;&#10;일반식품의 효능이나 효과 등에 오해의 소지가 있는 내용을 작성 시 검토 후 비공개 조치될 수 있습니다.&#13;&#10;반품/환불 문의는 1:1문의로 가능합니다."
+														name="inq_content" id="inq_content"></textarea>
 												</td>
 											</tr>
 											<tr class="scret">
@@ -730,7 +789,7 @@ response.setContentType("application/json");
 										
 										<div class="popWriteBtn">
 											<button class="cancel" type="reset">취소</button>
-											<button class="reg" type="submit">등록</button>
+											<button class="writeBtn" id="write">등록</button>
 										</div>
 									</form>
 								</div>
@@ -832,7 +891,7 @@ response.setContentType("application/json");
 
       document.querySelector("#show").addEventListener("click", show);
       document.querySelector("#close").addEventListener("click", close);
-    
+
       //숫자 (,) 적용 
    		// 숫자 타입에서 쓸 수 있도록 format() 함수 추가
 		Number.prototype.format = function(){

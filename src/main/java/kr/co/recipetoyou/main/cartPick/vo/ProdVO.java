@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.stereotype.Component;
 
 import kr.co.recipetoyou.admin.adgoods.AdgoodsImgVO;
+import kr.co.recipetoyou.user.UserVO;
 import kr.co.recipetoyou.user.mypage.vo.UserAddrVO;
 
 
@@ -32,33 +33,101 @@ public class ProdVO {
 	private Date prod_reg_date;
 	private Date prod_vaild_date;
 	
+	private String user_id;
+	private String addr;
+	private String delivery_type;
+	
 	/* 상품 이미지 */
 	private List<AdgoodsImgVO> imageList;
 	
 
 	//사용자 주소 테이블
 	private UserAddrVO useraddrVO;
-	private String user_id;
-	private String addr;
-	private String delivery_type;
 	
 	//장바구니 CartAddVO
 	private CartAddVO cartAddVO;
-	private int cart_code;
 	
+	private UserVO userVO;
 	
+	public ProdVO() {
+		// TODO Auto-generated constructor stub
+	}	
+		
 	
+
+	
+
+	public ProdVO(int prod_code, String catecode, String prod_name, String prod_content, int prod_price,
+			int prod_discount, int prod_sell_unit, int prod_delivery_type, int prod_wrap_type, String prod_info,
+			String prod_allergy, String prod_from, String prod_caution, int prod_quantity, String prod_point,
+			Date prod_reg_date, Date prod_vaild_date, String user_id, String addr, String delivery_type,
+			List<AdgoodsImgVO> imageList, UserAddrVO useraddrVO, CartAddVO cartAddVO, UserVO userVO) {
+		super();
+		this.prod_code = prod_code;
+		this.catecode = catecode;
+		this.prod_name = prod_name;
+		this.prod_content = prod_content;
+		this.prod_price = prod_price;
+		this.prod_discount = prod_discount;
+		this.prod_sell_unit = prod_sell_unit;
+		this.prod_delivery_type = prod_delivery_type;
+		this.prod_wrap_type = prod_wrap_type;
+		this.prod_info = prod_info;
+		this.prod_allergy = prod_allergy;
+		this.prod_from = prod_from;
+		this.prod_caution = prod_caution;
+		this.prod_quantity = prod_quantity;
+		this.prod_point = prod_point;
+		this.prod_reg_date = prod_reg_date;
+		this.prod_vaild_date = prod_vaild_date;
+		this.user_id = user_id;
+		this.addr = addr;
+		this.delivery_type = delivery_type;
+		this.imageList = imageList;
+		this.useraddrVO = useraddrVO;
+		this.cartAddVO = cartAddVO;
+		this.userVO = userVO;
+	}
+
+
+
+	public UserVO getUserVO() {
+		return userVO;
+	}
+
+	public void setUserVO(UserVO userVO) {
+		this.userVO = userVO;
+	}
+
+	public String getDelivery_type() {
+		return delivery_type;
+	}
+
+	public void setDelivery_type(String delivery_type) {
+		this.delivery_type = delivery_type;
+	}
+
+	public String getAddr() {
+		return addr;
+	}
+
+	public void setAddr(String addr) {
+		this.addr = addr;
+	}
+
+	public String getUser_id() {
+		return user_id;
+	}
+
+	public void setUser_id(String user_id) {
+		this.user_id = user_id;
+	}
+
 	public CartAddVO getCartAddVO() {
 		return cartAddVO;
 	}
 	public void setCartAddVO(CartAddVO cartAddVO) {
 		this.cartAddVO = cartAddVO;
-	}
-	public int getCart_code() {
-		return cart_code;
-	}
-	public void setCart_code(int cart_code) {
-		this.cart_code = cart_code;
 	}
 	public int getProd_code() {
 		return prod_code;
@@ -174,24 +243,7 @@ public class ProdVO {
 	public void setUseraddrVO(UserAddrVO useraddrVO) {
 		this.useraddrVO = useraddrVO;
 	}
-	public String getUser_id() {
-		return user_id;
-	}
-	public void setUser_id(String user_id) {
-		this.user_id = user_id;
-	}
-	public String getAddr() {
-		return addr;
-	}
-	public void setAddr(String addr) {
-		this.addr = addr;
-	}
-	public String getDelivery_type() {
-		return delivery_type;
-	}
-	public void setDelivery_type(String delivery_type) {
-		this.delivery_type = delivery_type;
-	}
+	
 	
 	
 

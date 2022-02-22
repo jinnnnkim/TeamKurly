@@ -19,6 +19,7 @@ import kr.co.recipetoyou.main.cartPick.vo.CartAddVO;
 import kr.co.recipetoyou.main.cartPick.vo.FavVO;
 import kr.co.recipetoyou.main.cartPick.vo.PickVO;
 import kr.co.recipetoyou.main.cartPick.vo.ProdVO;
+import kr.co.recipetoyou.user.mypage.vo.UserAddrVO;
 
 @Service("cartPickService")
 @Transactional(propagation = Propagation.REQUIRED)
@@ -96,7 +97,6 @@ public class CartPickServiceImpl implements CartPickService{
 					int prod_code = agvo.getProd_code();
 					List<AdgoodsImgVO> imageList  = adGoodsDAO.getGoodsImage(prod_code);
 					agvo.setImageList(imageList);
-					System.out.println(imageList);
 				
 			} catch (JsonGenerationException e) {
 				// TODO Auto-generated catch block
@@ -108,8 +108,6 @@ public class CartPickServiceImpl implements CartPickService{
 			}
 			
 		});
-		
-		System.out.println("listCarts Service 호출");
 		
 		return cartList;
 	}
@@ -164,6 +162,10 @@ public class CartPickServiceImpl implements CartPickService{
 	public int addCartPick(CartAddVO cartAddVO) throws DataAccessException {
 		// TODO Auto-generated method stub
 		return 0;
+	}
+	@Override
+	public UserAddrVO getAddr(String user_id) {
+		return cartPickDAO.selectAddr(user_id);
 	}
 
 	

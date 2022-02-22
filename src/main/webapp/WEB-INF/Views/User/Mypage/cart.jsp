@@ -42,7 +42,7 @@
 				<div class="cart_select">
 					<label> 
 						<input type="checkbox" name="checkItem" value="selectall" onclick="selectAll(this)"> 
-						<span>전체선택(1/1)</span>
+						<span>전체선택(1/<span class="checkboxLength">1</span>)</span>
 					</label>
 				</div>
 				<!-- cart_select -->
@@ -73,26 +73,22 @@
 								</div>
 										
 								<div class="prodCount">
-									<input type="number" style="width: : 40px" name="amount" value="${cartList.prod_quantity}" min="1">
 									<input type="hidden" name="productId" value="${cartList.prod_code}">
+									<input class="cart_code" type="hidden" name="cart_code" value="${cartList.cartAddVO.cart_code}">
 								</div>
 										
 							<!-- prodCount -->
 					
-							<!-- 		
+									
 								<div class="inner_option">
-									inner_option
 									<button type="button" class="btn down">
 										<i class="fas fa-minus"></i>
 									</button>
-									<input type="number" readonly="readonly" class="inp" value="1">
+									<input type="number" readonly="readonly" name="amount" class="inp" value="1">
 									<button type="button" class="btn up">
 										<i class="fas fa-plus"></i>
 									</button>
 								</div>
-								inner_option  -,+ 구매수량
-									
-							 -->
 					
 								<div class="cancle">
 									<a href="${contextPath}/removeCart.do?prod_name=${cartList.prod_name}">
@@ -101,9 +97,7 @@
 								</div>
 								
 								<div class="totalItem_prices">
-									 <span class="item_prices"><span id="itemPrice" class="num">
-									 <fmt:formatNumber value= "${cartList.prod_price}" pattern="###,###,###"/> 
-									</span>원</span> 
+									 <span class="item_prices"><span id="itemPrice" class="num">${cartList.prod_price}</span>원</span> 
 								</div>
 								<!-- totalItem_prices -->
 							</div>
@@ -118,8 +112,8 @@
 				<div class="bills">
 					<div class="billsInfo">
 						<div class="deliverTitle">배송지</div>
-						<div class="address">주소</div>
-						<div class="deliveryType">배송타입</div>
+						<div class="address">${addrList.addr }</div>
+						<div class="deliveryType">${addrList.delivery_type }</div>
 						<div class="changeBtn">
 							<button class="changeAddress" onclick="daumPostcode()">배송지 변경</button>
 						</div>
@@ -127,28 +121,21 @@
 							<div class="TotalPrice">
 								<div class="prodPrice">
 									<span class="txt">상품금액</span>
-									<span class="price"><span id="basicPrice" class="num">
-									 <fmt:formatNumber value= "1000" pattern="###,###"/> 
-									</span>원</span>
+									<span class="price"><span id="basicPrice" class="num">0</span>원</span>
 								</div>
 								<div class="prodDiscount">
 									<span class="txt">상품할인금액</span>
-									<span class="price"><span id="discountPrice" class="num">3000</span>원</span>
+									<span class="price"><span id="discountPrice" class="num">0</span>원</span>
 								</div>
 								<div class="deliveryPrice">
 									<span class="txt">배송비</span>
-									<span class="price"><span id="deliveryPrice" class="num">
-									 	1000
-									 </span>원</span>
+									<span class="price"><span id="deliveryPrice" class="num">0</span>원</span>
 								</div>
 								<hr/>
 								<div class="prePayment">
 									<span class="txt">결제예정금액</span>
 									<span class="price">
-									<span id="totalPrice" class="num">
-										<fmt:formatNumber pattern="###,###,###" value="1000"/>
-		
-									</span>원</span> 
+									<span id="totalPrice" class="num">0</span>원</span> 
 								</div>
 								<div class="reserve">구매 시1000원 적립</div>
 							</div>
@@ -156,9 +143,7 @@
 					</div>
 				
 					<div class="orderBtn">
-						<a href="${contextPath}/order.do">
-							<button class="btn" >주문하기</button>
-						</a>	
+						<button id="order" class="btn" >주문하기</button>
 					</div>
 						
 							
@@ -199,13 +184,15 @@
 	
 	
 		$(document).ready(function() {
+			
+			var basicPrice = $("#basicPrice").text();
+			
+			var aa = $(this).parent().parent().find(".inner_option").find(".inp").val();
+			
 			var prodAmount = $(".inp").val();
-			$('#basicPrice').text($("#itemPrice").text());
-			$('.totalPrice').text($("#itemPrice").text());
 			$(".down").click(function() {
-				console.log("down");
-				let aa1 = $(this).parent("div").find(".inp");
-				let aa = $(this).parent("div").find(".inp").val();
+				var aa1 = $(this).parent("div").find(".inp");
+				var aa = $(this).parent("div").find(".inp").val();
 				if (aa > 1) {
 					aa = parseInt(aa) - 1;
 					aa1.val(aa);
@@ -213,19 +200,112 @@
 					alert('구매수량은 1개 이상이여야 합니다.');
 				}
 				
+				var flag = $(this).parent().parent().parent().find(".inn_check").find("input:checkbox[name=checkItem]").is(":checked");
+				if(flag){
+					var price = $(this).parent().parent().find(".totalItem_prices").find(".item_prices").find("#itemPrice").text();
+					var basicPrice = $("#basicPrice").text();
+					basicPrice = basicPrice.replace(/,/g,"");
+					result = parseInt(basicPrice) - parseInt(price);
+					$("#basicPrice").text(addStr(result,","));
+				}
+				
 			});
 		
 			$(".up").click(function() {
-				console.log("up");
-				let aa1 = $(this).parent("div").find(".inp");
-				let aa = $(this).parent("div").find(".inp").val();
+			    aa1 = $(this).parent("div").find(".inp");
+				var aa = $(this).parent("div").find(".inp").val();
 				aa = parseInt(aa) + 1;
 				aa1.val(aa);
+				var flag = $(this).parent().parent().parent().find(".inn_check").find("input:checkbox[name=checkItem]").is(":checked");
+				
+				if(flag){
+					var price = $(this).parent().parent().find(".totalItem_prices").find(".item_prices").find("#itemPrice").text();
+					var basicPrice = $("#basicPrice").text();
+					basicPrice = basicPrice.replace(/,/g,"");
+					result = parseInt(basicPrice) +  parseInt(price);;
+					$("#basicPrice").text(addStr(result,","));
+				}
+				
 				
 			});
 			
+			$(".checkboxLength").text($("input:checkbox[name=checkItem]").length-1);
+			
+			$("input:checkbox[name=checkItem]").change(function(){
+				var aa = $(this).parent().parent().find(".inner_option").find(".inp").val();
+				
+				var flag = $(this).is(":checked");
+				if(flag){
+					var price = $(this).parent().parent().find(".item").find(".totalItem_prices").find(".item_prices").find("#itemPrice").text();
+					price.trim();
+					price.replace(/,/g,"");
+					price = parseInt(aa) * parseInt(price);
+					var prePrice = $("#basicPrice").text();
+					prePrice = removeStr(prePrice,",");
+					var result = parseInt(price) + parseInt(prePrice);
+					var temp = parseInt(basicPrice);
+					
+					temp = temp + result;
+					$("#basicPrice").text(addStr(temp,","));
+					
+					
+				}else{
+					var price = $(this).parent().parent().find(".item").find(".totalItem_prices").find(".item_prices").find("#itemPrice").text();
+					price.trim();
+					price.replace(/,/g,"");
+					price = parseInt(aa) * parseInt(price);
+					
+					var prePrice = $("#basicPrice").text();
+					prePrice = removeStr(prePrice,",");
+					var result = parseInt(prePrice) - parseInt(price) ;
+					var temp = parseInt(basicPrice);
+					temp = temp + result;
+					if(temp < 0 ){
+						temp= 0;
+					}
+					$("#basicPrice").text(addStr(temp,","));
+				}
+				
+			});
+			
+			
+			
 		});
+		
+		$("#order").click(function(){
+			var resultCodeArr =[];
+			var resultQuantityArr = [];
+			var i=0;
+			$("input:checkbox[name='checkItem']").each(function(){
+				if($(this).is(":checked") == true) {
+					//resultCodeArr[i] =
+					//resultQuantityArr[i] = 
+					var _quantity  = $(this).parent().parent().find(".inner_option").find(".inp").val();
+					var _cart_code = $(this).parent().parent().find(".item").find(".prodCount").find(".cart_code").val();
+					resultCodeArr[i] = _cart_code;
+					resultQuantityArr[i] = _quantity;
+					i = i+1;
+				}
+			});
+			$.ajax({
+				type: "post",
+				async: true,
+				url: "http://localhost:8080/recipetoyou/order/orderRegist.do",
+				dataType: "text",
+				data: {'cart_code' : resultCodeArr,'quantity':resultQuantityArr},
+				success: function(result) {
+					alert("상품을 주문내역에 담았습니다.");
+					location.href="${contextPath}/order/order.do";
+				},
+				error:function(request, status, error){
 
+					alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+
+				},
+				complete : function(data, textStatus) {			
+				}					
+			 });
+		});
 		
 	function removeStr(doc, str){
 		doc = doc.replace(str,"");

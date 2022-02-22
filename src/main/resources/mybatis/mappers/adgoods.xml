@@ -241,6 +241,4 @@
 		update tb_prod
 			set stock_quantity = quantity - #{quantity}
 	</update>
-	
-	
 </mapper>

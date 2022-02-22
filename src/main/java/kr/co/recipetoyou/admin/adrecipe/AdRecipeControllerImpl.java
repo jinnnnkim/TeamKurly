@@ -75,7 +75,6 @@ public class AdRecipeControllerImpl implements AdRecipeController {
 		mav.addObject("adRecipeVO", service.getRecipeInfo(id));
 		return mav;
 	}
-
 	//레시피 게시글 삭제  
 	@Override
 	@RequestMapping(value = "/adrecipe/removeRecipe.do", method = RequestMethod.GET)

@@ -50,8 +50,7 @@ public class AdgoodsReviewControllerImpl implements AdgoodsReviewController{
 			mav.addObject("searchcnt", searchcnt);
 		
 		}else {
-			mav.addObject("listCheck", "empty");
-			
+			mav.addObject("listCheck", "empty");	
 		}
 		
 		//페이지 데이터
@@ -66,14 +65,12 @@ public class AdgoodsReviewControllerImpl implements AdgoodsReviewController{
 	public void listReview(PagingVO vo, Model model) throws Exception {
 		
 		model.addAttribute("ListReview", adgoodsReviewService.listReview(vo));
-		
 	}
 
 	//상품 후기 상세 조회
 	@Override
 	@RequestMapping(value = "/adgoods/adReviewDetail.do", method = {RequestMethod.GET, RequestMethod.POST})
 	public void getReviewDetail(int prod_review_code, Model model, PagingVO vo) throws Exception {
-		
 		model.addAttribute("vo", vo);
 		
 		//후기 정보

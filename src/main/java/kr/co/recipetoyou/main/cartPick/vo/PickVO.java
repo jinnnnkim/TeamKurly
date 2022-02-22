@@ -14,6 +14,7 @@ public class PickVO {
 	private int prod_code;
 	private String user_id;
 	private int fav_flag;
+	private CartAddVO cartAddVO;
 	
 	//prodVO 테이블이랑 조인해서 조회
 	private ProdVO prodVO;
@@ -46,6 +47,35 @@ public class PickVO {
 		this.imageList = imageList;
 	}
 	
+	
+	
+	public PickVO(int fav_flag_code, int prod_code, String user_id, int fav_flag, CartAddVO cartAddVO, ProdVO prodVO,
+			String prod_name, String prod_img, int prod_price, int prod_discount, List<AdgoodsImgVO> imageList) {
+		super();
+		this.fav_flag_code = fav_flag_code;
+		this.prod_code = prod_code;
+		this.user_id = user_id;
+		this.fav_flag = fav_flag;
+		this.cartAddVO = cartAddVO;
+		this.prodVO = prodVO;
+		this.prod_name = prod_name;
+		this.prod_img = prod_img;
+		this.prod_price = prod_price;
+		this.prod_discount = prod_discount;
+		this.imageList = imageList;
+	}
+
+
+	public CartAddVO getCartAddVO() {
+		return cartAddVO;
+	}
+
+
+	public void setCartAddVO(CartAddVO cartAddVO) {
+		this.cartAddVO = cartAddVO;
+	}
+
+
 	public List<AdgoodsImgVO> getImageList() {
 		return imageList;
 	}
@@ -101,6 +131,16 @@ public class PickVO {
 	public void setProd_discount(int prod_discount) {
 		this.prod_discount = prod_discount;
 	}
+
+
+	@Override
+	public String toString() {
+		return "PickVO [fav_flag_code=" + fav_flag_code + ", prod_code=" + prod_code + ", user_id=" + user_id
+				+ ", fav_flag=" + fav_flag + ", cartAddVO=" + cartAddVO + ", prodVO=" + prodVO + ", prod_name="
+				+ prod_name + ", prod_img=" + prod_img + ", prod_price=" + prod_price + ", prod_discount="
+				+ prod_discount + ", imageList=" + imageList + "]";
+	}
+	
 	
 	
 	

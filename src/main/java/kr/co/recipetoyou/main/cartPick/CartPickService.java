@@ -9,6 +9,7 @@ import kr.co.recipetoyou.main.cartPick.vo.CartAddVO;
 import kr.co.recipetoyou.main.cartPick.vo.FavVO;
 import kr.co.recipetoyou.main.cartPick.vo.PickVO;
 import kr.co.recipetoyou.main.cartPick.vo.ProdVO;
+import kr.co.recipetoyou.user.mypage.vo.UserAddrVO;
 
 public interface CartPickService {
 
@@ -57,6 +58,7 @@ public interface CartPickService {
 	public List<CartPickVO__> listCartPicks() throws DataAccessException;
 	public int addCartPick(CartPickVO__ cartPickVO) throws DataAccessException;
 	public int removeCartPick(String id) throws DataAccessException;
+	public UserAddrVO getAddr(String user_id);
 
 }
 
