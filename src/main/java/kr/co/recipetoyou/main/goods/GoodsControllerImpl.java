@@ -51,7 +51,7 @@ public class GoodsControllerImpl implements GoodsController{
 	
 
 	@Override
-	@RequestMapping(value="/user/newGoodsPage.do", method = {RequestMethod.GET, RequestMethod.POST})
+	//@RequestMapping(value="/user/newGoodsPage.do", method = {RequestMethod.GET, RequestMethod.POST})
 	@ResponseBody
 	public ModelAndView listPageGet(PagingVO vo, HttpServletRequest request, HttpServletResponse response)
 			throws Exception {

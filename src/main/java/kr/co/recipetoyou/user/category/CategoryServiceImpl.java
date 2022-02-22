@@ -14,6 +14,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 
 import kr.co.recipetoyou.admin.adgoods.AdgoodsImgVO;
+import kr.co.recipetoyou.util.PagingVO;
 
 
 @Service("categoryService")
@@ -83,7 +84,15 @@ private static final Logger logger = LoggerFactory.getLogger("CategoryServiceImp
 		List<CategoryVO> goodsDetail = dao.goodsDetail();
 		return goodsDetail;
 	}
-	
-	
-	
+
+	@Override
+	public int cateCount(PagingVO vo) throws DataAccessException {
+		return dao.cateCount(vo);
+	}
+
+	@Override
+	public List<CategoryVO> listGoods(PagingVO vo) throws DataAccessException {
+		List<CategoryVO> listGoods = dao.listGoods(vo);
+		return listGoods;
+	}	
 }

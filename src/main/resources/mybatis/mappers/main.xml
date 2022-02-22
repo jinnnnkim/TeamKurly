@@ -62,4 +62,16 @@
 			select * from tb_prod 
 		]]>
 	</select>
+	
+	<select id="listGoods" resultMap="mainResult">
+		<![CDATA[
+			select * from 
+			(select rownum as rn, tp.* FROM tb_prod tp) tp
+  			where rn between #{rowStart} and #{rowEnd} 
+    	]]>
+	</select>
+
+	<select id="cateCount" resultType="int" >
+			select count(*) from TB_prod
+	</select>
 </mapper>

@@ -23,6 +23,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import kr.co.recipetoyou.admin.adgoods.AdgoodsImgVO;
+import kr.co.recipetoyou.util.PageMaker;
+import kr.co.recipetoyou.util.PagingVO;
 
 
 @Controller("categoryController")
@@ -130,11 +132,18 @@ public class CategoryControllerImpl implements CategoryController{
 		return mav;
 	}
 	
-	@RequestMapping(value="",method=RequestMethod.GET)
-	public ModelAndView newGoodsPage(HttpServletRequest request, HttpServletResponse response) throws Exception{
-		
+	@RequestMapping(value="/user/newGoodsPage.do",method={RequestMethod.GET, RequestMethod.POST})
+	public ModelAndView newGoodsPage(PagingVO vo, HttpServletRequest request, HttpServletResponse response) throws Exception{
+		String viewName = (String)request.getAttribute("viewName");
+		PageMaker pm = new PageMaker();
+		pm.setVo(vo);
+		pm.setTotalCount(service.cateCount(vo));
+		List<CategoryVO> listGoods = service.listGoods(vo);
 		ModelAndView mav = new ModelAndView();
-		
+		int cnt = service.cateCount(vo); 
+		mav.addObject("listGoods", listGoods);
+		mav.addObject("cnt", cnt);
+		mav.addObject("pm",pm);	
 		return mav;
 	}
 	
