@@ -25,7 +25,6 @@ public class AdminInterceptor extends HandlerInterceptorAdapter{
 			return true;
 		}
 	}
-	
 	//요청 처리 후
 	@Override
 	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
@@ -35,3 +34,4 @@ public class AdminInterceptor extends HandlerInterceptorAdapter{
 	}
 
 }
+

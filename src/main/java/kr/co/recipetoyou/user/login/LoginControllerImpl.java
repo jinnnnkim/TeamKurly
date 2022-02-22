@@ -25,26 +25,27 @@ public class LoginControllerImpl implements LoginController {
 	
 	@RequestMapping(value="/login/login.do", method = {RequestMethod.GET, RequestMethod.POST})
 	public ModelAndView login(@ModelAttribute("userVO") UserVO userVO,
-			HttpServletRequest request, HttpServletResponse response) throws Exception{
-		
-		ModelAndView mav = new ModelAndView();	
-		
-		return mav;
+		HttpServletRequest request, HttpServletResponse response) throws Exception{
+			ModelAndView mav = new ModelAndView();	
+			return mav;
 	}
-	
 	@RequestMapping(value="/login/loginProcess.do", method = {RequestMethod.GET, RequestMethod.POST})
 	public ModelAndView loginProcess(@ModelAttribute("userVO") UserVO userVO, RedirectAttributes rAttr,
 			HttpServletRequest request, HttpServletResponse response) throws Exception{
 		
 		ModelAndView mav = new ModelAndView();
-	
+
+		String viewName = (String) request.getAttribute("viewName");
+		
 		userVO = loginService.login(userVO);
 		
 		if (userVO != null) {
 			HttpSession session = request.getSession();
 			session.setAttribute("userVO", userVO);		//세션에 회원 정보를 저장함.
 			session.setAttribute("isLogOn", true);
+			session.setAttribute("user_id", userVO.getUser_id());
 			mav.setViewName("redirect:/main.do");
+			//mav.setViewName(viewName);
 			
 			String action = (String) session.getAttribute("action");		
 			session.removeAttribute("action");
@@ -53,8 +54,6 @@ public class LoginControllerImpl implements LoginController {
 			rAttr.addAttribute("result", "loginFailed");
 			mav.setViewName("redirect:/login/login.do");
 		}
-		
-		
 		return mav;
 	}
 	
@@ -67,9 +66,7 @@ public class LoginControllerImpl implements LoginController {
 		
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("redirect:/login/login.do");
-		
-		return mav;
-		
+		return mav;	
 	}
 	
 	

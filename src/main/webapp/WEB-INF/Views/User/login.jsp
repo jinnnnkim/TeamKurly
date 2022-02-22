@@ -22,8 +22,6 @@
 			</script>
 		</c:when>
 	</c:choose> 
-	
-	
 </head>
 <body>
 		
@@ -51,7 +49,6 @@
 		</div>
 	</div>
 	</form>
-	
 	<script type="text/javascript">
 		function fn_sendUser() {
 			var frmLogin = document.frmLogin
@@ -71,6 +68,5 @@
 			}
 		}
 	</script> 
-	
 </body>
 </html>

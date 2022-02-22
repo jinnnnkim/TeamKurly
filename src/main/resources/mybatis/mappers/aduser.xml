@@ -64,7 +64,6 @@
             	<if test="searchOption == 'I'.toString()">where user_id like '%'||#{keyword}||'%'</if>
             	<if test="searchOption == 'N'.toString()">where user_name like '%'||#{keyword}||'%'</if>
              </if>
-
 	</select>
 	
 	<!-- 회원정보 삭제  -->

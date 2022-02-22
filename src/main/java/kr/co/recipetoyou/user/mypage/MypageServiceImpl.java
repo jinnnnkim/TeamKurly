@@ -22,6 +22,7 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 
 import kr.co.recipetoyou.admin.adgoods.AdGoodsDAO;
 import kr.co.recipetoyou.admin.adgoods.AdgoodsImgVO;
+import kr.co.recipetoyou.main.goods.ReviewVO;
 import kr.co.recipetoyou.user.UserVO;
 import kr.co.recipetoyou.user.mypage.vo.CouponVO;
 import kr.co.recipetoyou.user.mypage.vo.MyOrderVO;
@@ -29,7 +30,6 @@ import kr.co.recipetoyou.user.mypage.vo.PointVO;
 
 import kr.co.recipetoyou.user.mypage.vo.UserAddrVO;
 import kr.co.recipetoyou.user.mypage.vo.QnAVO;
-import kr.co.recipetoyou.user.mypage.vo.ReviewVO;
 
 
 @Service("mypageService")

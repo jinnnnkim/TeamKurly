@@ -70,7 +70,7 @@
 		<put-attribute name="body" value="/WEB-INF/Views/User/saleGoodsPage.jsp"/>	
 	</definition>
 	
-	<definition name="goods/goodsInfo" extends="mainLayout">
+	<definition name="/user/goodsView" extends="mainLayout">
 		<put-attribute name="title" value="상품상세 페이지"/>
 		<put-attribute name="body" value="/WEB-INF/Views/User/goodsView.jsp"/>	
 	</definition>

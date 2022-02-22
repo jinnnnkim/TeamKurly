@@ -23,10 +23,17 @@
 <!-- 파비콘 링크 -->
 <link href="/recipetoyou/Resources/User/Img/Mypage2/KurlyIcon.png" rel="icon"
 	type="image/x-icon" />
-<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script src="/recipetoyou/Resources/Common/ckeditor/ckeditor.js"></script>
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+
+<!-- datepicker 적용 -->
+	
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+	<script src="//code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>
 </head>
 <body>
-		
+		<form action="${contextPath}/goods/insertReview.do" id="reviewFrm" method="post">
 		<div class="content">
 		
 			<div class="review_main">
@@ -43,24 +50,22 @@
 						</div> -->
 						<div class="reviewWriteWrap">
 
-						<c:if test="${comCategory==1 }">
 							<td colspan="4">
 								소중한 후기를 남겨주세요.
 							</td>
-						</c:if>
-						<c:if test="${comCategory==2 }">
+
 							<td colspan="4">
 								궁금하신 게 있다면 언제든지 물어봐주세요^^
 							</td>
-						</c:if>
-							<form action="" id="reviewForm" name="reviewForm" enctype="multipart/form-data" method="post" onsubmit="return false;">
 								<table class="reviewWrite">
 									<tr class="reviewWriteTitle">
 										<th>
 											제목
 										</th>
 										<td>
-											<input type="text" placeholder="제목을 입력해주세요."/>
+											<input name="title" id="title" type="text" placeholder="제목을 입력해주세요."/>
+												<input type="text" hidden="hidden" name="user_id" id="user_id" class="qinput q_inputUserno" value="${user_id }">
+												<input type="text" hidden="hidden" name="prod_code" class="qinput q_inputItemno" value="${goodsVO.prod_code}">"
 										</td>
 									</tr>
 									<tr class="userId">
@@ -68,12 +73,7 @@
 											사용자 아이디
 										</th>
 										<td>
-											${userId }
-										</td>
-									</tr>
-									<tr class="prodImg" colspan="2">
-										<td>
-											<input type="file" id="fileName" name="fileName">
+											${userVO.user_id }
 										</td>
 									</tr>
 									<tr class="content">
@@ -81,327 +81,79 @@
 											후기작성
 										</th>
 										<td>
-											<textarea placeholder="자세한 후기는 다른 고객의 구매에 많은 도움이 되며,&#13;&#10;일반식품의 효능이나 효과 등에 오해의 소지가 있는 내용을 작성 시 검토 후 비공개 조치될 수 있습니다.&#13;&#10;반품/환불 문의는 1:1문의로 가능합니다."></textarea>
+											<textarea placeholder="자세한 후기는 다른 고객의 구매에 많은 도움이 되며,&#13;&#10;일반식품의 효능이나 효과 등에 오해의 소지가 있는 내용을 작성 시 검토 후 비공개 조치될 수 있습니다.&#13;&#10;반품/환불 문의는 1:1문의로 가능합니다."
+											id="content" name="content"
+											></textarea>
 										</td>
 									</tr>
-									<c:if test="${comCategory==1 }">
+
 									<div class="writeBtn">
-									<button type="button" onclick="javascript:UserReview();">글쓰기</button>
+									<button type="button" id="write" class="writeBtn">글쓰기</button>
 									</div>
-									</c:if>
-								
-									<c:if test="${comCategory==2 }">
-									<div class="writeBtn">
-									<button type="button" onclick="javascript:UserInquiry();">글쓰기</button>
-									</div>
-									</c:if>
+
 								</table>
 							</form>
 						</div>
+		
 			</div>
 			<!-- review_main -->
 		</div>
 		<!-- content -->
 		
 		<script type="text/javascript">
-			function CommentList(){
-				var commentNum = $("#commentNum").val();
-				if(comment_idx != 0 && comm_category != 0){
-					$.ajax({
-						url : "/commentList",
-						data : $("#comment_idx").serialize()+"&"+$("#comm_category")+"&"+$("#commentNum").serialize(),
-						dataType : "JSON",
-						cache : false,
-						async : true,
-						type : "POST",
-						success : function(obj){
-							CommentListCallback(obj);
-						},
-						error : function(xhr, status, error){}
-					});
-				}else{
-					alert("오류가 발생했습니다.\n 관리자에게 문의하세요.");
-				}
+		
+		/* CKEditor5 적용 */
+		var ckeditor_config = {
+			resize_enaleb : false,
+			enterMode : CKEDITOR.ENTER_BR,
+			shiftEnterMode : CKEDITOR.ENTER_P,
+			filebrowserUploadUrl : "${contextPath}/goods/ckimageUpload.do"
 			}
-			
-			function CommentListCallback(obj){
-				
-				var num = $("commentNum").val();
-				var NowUserID = $("#userID").val();
-				var isAdmin = $("#isAdmin").val();
-				var comCategory = $("#comm_category").val();
-				
-				var list = obj;
-				var listLen = obj.length;
-				var str = "";
-				
-				if(listLen > 0){
-					for(var a=0; a<listLen; a++){
-						var comment_code = list[a].comment_code;
-						var comment_idx = list[a].comment_idx;
-						var userID = list[a].userID;
-						var content = list[a].content;
-						var subcomm_code = list[a].subcomm_code;
-						var comm_category = list[a].comm_category;
-						
-						var filePath = "";
-						
-						//답글은 작성자 본인 or 관리자 이외에는 비밀글로 보이도록 설정
-						if(comm_category != 2 || NowUserID == userID || isAdmin == 1 || (a>0 && comment_code == list[a-1].comment_code && NowUserID == list[a-1].userID)){
-							//답글이 아닐 경우
-							if(subcomm_code == 0){
-								str += "<div class=\"container\">";
-								str += "<table>";
-								str += "<tr>";
-								str += "<td align=\"left\">"+userID+님의 ";
-								
-								if(comCategory ==1){
-									str += "후기입니다."
-								}else{
-									str += "질문입니다."
-								}
-								
-								str += "</td><td colspan=2></td>";
-								str += "<td colspan=2 align=\"right\">";
-								
-								if(NowUserID == userID){
-									str += "<button type=\"button\" onclick=\"javascript:nwindow("+comment_idx+","+comment_code+","+subcomm_code+",'"+userID+"');\">수정</button>";
-						            str += "&emsp;<button type=\"button\" onclick=\"javascript:CommentDelete("+comment_idx+","+subcomm_code+");\">삭제</button>";
-						            }
-						            
-						            if(isManager == 1){
-							            str += "&emsp;<button type=\"button\" onclick=\"subWindow("+comment_idx+","+comment_code+","+comm_category+")\">답글</button>";
-						            }
-						            str += "</td>";
-						            str += "</tr>";
-						            str += "<tr>";
-						            str += "<td colspan=5 align=\"left\">";
-						            str += "<img src=\""+filePath+"\" onerror=\"this.style.display='none'\" width=\"200\" height=\"200\" alt=\"\" /><br><br>"+content+"<br><br></td>";
-						            str += "</tr>";
-						            str += "</table>";
-						            str += "</div>";
-						            str += "</div>";
-								}
-							
-								//답글일 경우
-								 else{
-						        	str = str.slice(0,str.length-20);
-						            str += "<tr>";
-						            str += "<td bgcolor=\"white\"  colspan=4 align=\"left\">└─&emsp;"+content+"</td>"
-					            	str += "<td bgcolor=\"white\" align=\"right\">";
-						            
-						            //관리자
-						            if(isManager == 1){
-							            str += "<button type=\"button\" onclick=\"javascript:nwindow("+comment_idx+","+comment_code+","+subcomm_code+",'"+userID+"');\">수정</button>";
-							            str += "&emsp;<button type=\"button\" onclick=\"javascript:CommentDelete("+comment_code+","+subcomm_code+");\">삭제</button>";
-						            }        
-						            
-						            str += "</td>";
-						            str += "</tr>";			      
-						            str += "</table>";
-						            str += "</div>";
-						            str += "</div>";
-						        }else{
-						        	//비밀Q&A
-						            if(subcomm_code == 0){
-						            	str += "<div class=\"container\">";
-							            str += "<div class=\"row\">";
-							            str += "<table  class=\"table\" style=\"text-align:center; border: 1px solid #dddddd\">";
-							            str += "<tr>";
-							            str += "<td colspan=6 align=\"left\">비밀글 입니다♥</td>"
-						           
-						            }else{
-							        	str = str.slice(0,str.length-20);
-							        	str += "<tr><td colspan=6 align=\"left\">└─&emsp;비밀글 입니다♥</td>"
-						            }
-						        
-						            str += "</tr>";			      
-						            str += "</table>";
-						            str += "</div>";
-						            str += "</div>";
-							}
-						}
-						
-					}else{
-						return;
-					}
-					
-					$("#tcomment").html(str);
-				}
-			}
-			
-			//게시글 삭제
-			function commentDelete(){
-				var yn = confirm("게시글을 삭제하시겠습니까?");
-				if(yn){
-					$.ajax({
-						url : "/commDelete",
-						data : $("#commentForm").serialize(),
-						dataType : "JSON",
-						cache : false,
-						async : true,
-						type : "POST",
-						success : function(obj){
-							DeleteCallback(obj);
-						},
-						error : function(xhr, status, error){}
-					});
-				}
-			}
-			
-			function DeleteCallback(obj){
-				if(obj != null){
-					var result = obj.result;
-					
-					if(result == "SUCCESS"){
-						alert("게시글이 삭제되었습니다.");
-					}else{
-						alert("게시글 삭제를 실패하였습니다.");
-						return;
-					}
-				}
-			}
-			
-			//상품을 구매한 사람만 후기 작성 가능
-			function UserReview(){
-				$.ajax({
-					url : "/UserReview",
-					data    : $("#userID").serialize()+"&"+$("#comment_idx").serialize(),
-			          dataType: "JSON",
-			          cache   : false,
-			          async   : true,
-			          type    : "POST",    
-			          success : function(count) {
-			        	  if(count == 0){
-			        		  alert("상품을 구매, 배송완료되신분만 후기작성이 가능합니다.");
-			        		  return;
-			        	  }
-			        	  CommentWrite();
-			          },           
-			          error     : function(xhr, status, error) {
-			          	alert("상품을 구매, 배송완료되신분만 후기작성이 가능합니다.");
-			          	return;
-			          }
-				});
-			}
-			
-			//문의 작성
-			function UserInquiry()(){
-				  
-				var yn = confirm("문의를 등록하시겠습니까?");        
-			       
-				if(yn){
-					
-					var userID = $("#userID").val();
-					var comCategory = $("#comm_category").val();
-						
-					var content = $("#content").val();   
+			CKEDITOR.replace("content", ckeditor_config);
+		
+		 $(document).ready(function(){
+		    	
+	    	  $("#write").on("click",function(e){	//작성하기 버튼
+	    		  e.preventDefault();
+	    		  fn_insertReview();
+	    	  });
+	    	  
+	    	  /*$("#update").on("click",function(e){ //수정하기 버튼
+	    		  e.preventDefault();
+	    		  fn_updateReview();
+	    	  });*/
+	    	  
+	      });
+		
 
-					if (userID == ""){            
-						alert("로그인을 해주세요.");
-						$("#userID").focus();
-						return;
-					}
-			        
-			  		 if (content == ""){            
-			 	        alert("내용을 입력해주세요.");
-			 	        $("#content").focus();
-			 	        return;
-			 	    }
-			  		
-			       	var form = $('#commentForm')[0];
-			       	var data = new FormData(form);
-			       	
-			       	if($('#fileName').val()==""){
-			       		data.delete('fileName');
-			       	}
+			
+	      function fn_insertReview(){	//후기 작성 유효성 체크
+	    	  //var comSubmit = new ComSubmit("reviewFrm");	//객체 생성
+	    	  //comSubmit.setUrl("${contextPath}/goods/insertReview.do'/>");	//url 설정
+	    	  
+	    	  var newForm = document.createElement('reviewFrm');
+	    	  newForm.name='reviewFrm';
+	    	  newForm.method='post';
+	    	  newForm.action='${contextPath}/goods/insertReview.do';
+	    	  
+	    	  //제목 필요
+	    	  if(!$("#title").val()){
+	    		  alert("제목을 입력해주세요.");
+	    		  $("#inq_title").focus();
+	    		  return false;
+	    	  }
+	    	  
+	    	  //내용 필요
+	    	  if(CKEDITOR.instances.content.getData()==''||CKEDITOR.instances.content.getData().length==0){
+	    		  alert("내용을 입력해주세요.");
+	    		  $("#content").focus();
+	    		  return false;
+	    	  }
+	    	  
+	    	  $("#reviewFrm").submit();
+	    	  
+	      }
 
-			       	data.append("comment_idx",$("#comment_idx").val());
-			       	data.append("comm_category",comCategory);
-			       	data.append("userID",userID);
-			       	
-			       	$.ajax({    
-			               type    : "POST",    
-			               enctype: "multpart/form-data",
-			               url     : "/InquiryWrite",
-			               data    : data,
-			               cache   : false,
-			               processData: false,
-			               contentType: false,
-			               success : function(obj) {
-			            	   InquiryWriteCallback(obj);                
-			               },           
-			               error     : function(xhr, status, error) {}
-			               
-			       	});
-				}
-			}
-
-			//댓글 작성 함수
-			function InquiryWriteCallback(obj){
-				
-				var comment_idx = $("#comment_idx").val();
-				var comCategory = $("#comm_category").val();
-				var comment_code = $("#comment_code").val();
-			   
-				if(obj != null){        
-			       
-					var result = obj.result;
-			       
-					if(result == "SUCCESS"){                
-						alert("댓글 등록을 성공하였습니다.");                
-						location.href = "/comment/commentView?comment_idx="+encodeURI(comment_idx)+"&comm_category="+comCategory+"&comment_code="+encodeURI(comment_code);
-					} else {                
-						alert("댓글 등록을 실패하였습니다.");    
-						return;
-					}
-				}
-			}
-				 
-			//댓글 삭제
-			function CommentDelete(comment_idx,subcomm_code){
-				
-				var comment_idx = $("#comment_idx").val();		   
-				var yn = confirm("댓글을 삭제하시겠습니까?");        
-				       
-				if(yn){
-				           
-					$.ajax({    
-				               
-						url     : "/comment/CommentDelete",
-						data    : "comment_code="+#comment_code+"&comment_idx="+comment_idx+"&subcomm_code="+subcomm_code,
-						dataType: "JSON",
-						cache   : false,
-						async   : true,
-						type    : "POST",    
-						success : function(obj) {
-							CommentDeleteCallback(obj);                
-						},           
-						error     : function(xhr, status, error) {}
-						
-					});
-				}        
-			}
-				   
-			function CommentDeleteCallback(obj){
-				
-				var comment_idx = $("#comment_idx").val();
-				var comCategory = $("#comCategory").val();
-				var comment_code = $("#comment_code").val();
-				
-				if(obj != null){        
-					
-					var result = obj.result;
-					
-					if(result == "SUCCESS"){                
-						alert("댓글 삭제를 성공하였습니다.");                
-						location.href = "/comment/commentView?comment_idx="+encodeURI(comment_idx)+"&comm_category="+comCategory+"&comment_code="+encodeURI(comment_code);
-					} else {                
-						alert("댓글 삭제를 실패하였습니다.");    
-						return;
-					}
-				}
-			}
 		</script>
 
 </body>
