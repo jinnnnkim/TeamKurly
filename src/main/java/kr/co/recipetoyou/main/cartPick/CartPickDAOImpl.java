@@ -26,9 +26,9 @@ public class CartPickDAOImpl implements CartPickDAO {
 
 	//찜하기 조회
 	@Override
-	public List<PickVO> selectAllCartPickList() throws DataAccessException {
+	public List<PickVO> selectAllCartPickList(String user_id) throws DataAccessException {
 		
-		List<PickVO> pickList = sqlSession.selectList("mapper.member.selectAllCartPickList");
+		List<PickVO> pickList = sqlSession.selectList("mapper.member.selectAllCartPickList",user_id);
 		return pickList;
 	}
 	
@@ -57,7 +57,8 @@ public class CartPickDAOImpl implements CartPickDAO {
 	
 	@Override
 	public List<ProdVO> selectAllCartList(String user_id) throws DataAccessException {
-		return sqlSession.selectList("mapper.member.selectAllCartList", "user_id");
+		System.out.println("listCarts DAO 호출");
+		return sqlSession.selectList("mapper.member.selectAllCartList", user_id);
 	}
 
 	
@@ -86,21 +87,16 @@ public class CartPickDAOImpl implements CartPickDAO {
 	
 	//6. 장바구니 동일한 상품 레코드 확인
 	@Override
-	public int commCart(int prod_code, String user_id) throws DataAccessException {
-		Map<String, Object> map = new HashMap<>();
-		map.put("prod_code", prod_code);
-		map.put("user_id","user_id");
-		System.out.println("prod_code"+prod_code);
-		System.out.println("user_id"+user_id);
-		System.out.println("map"+sqlSession.selectOne("mapper.member.commCart", map));
-		return sqlSession.selectOne("mapper.member.commCart", map);
+	public int selectCart(String user_id) throws DataAccessException {
+		return sqlSession.selectOne("mapper.cartPick.selectCart", user_id);
 		
 	}
 	
 	//7. 장바구니 수량 변경
 	@Override
 	public void updateCount(CartAddVO cartAddVO) throws DataAccessException {
-			sqlSession.update("mapper.member.updateCount", cartAddVO);
+		System.out.println("CARTADD:"+cartAddVO.toString());
+		sqlSession.update("mapper.member.updateCart", cartAddVO);
 			
 	}
 	
@@ -153,6 +149,11 @@ public class CartPickDAOImpl implements CartPickDAO {
 	public int insertCartAdd(CartAddVO cartAddVO) throws DataAccessException {
 		// TODO Auto-generated method stub
 		return 0;
+	}
+
+	@Override
+	public int selectCheckCartProd(int prod_code) {
+		return sqlSession.selectOne("mapper.cartPick.selectCheckCartProd", prod_code);
 	}
 
 	

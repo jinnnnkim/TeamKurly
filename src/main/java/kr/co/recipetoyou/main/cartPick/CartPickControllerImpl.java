@@ -59,39 +59,9 @@ public class CartPickControllerImpl implements CartPickController {
 
 		logger.info("info : "+viewName);
 		logger.debug("debug : "+viewName);
-
-		List<PickVO> pickList = cartPickService.listPicks();
-		ModelAndView mav = new ModelAndView();		
-		mav.addObject("pickList", pickList);	//view에 전달할 객체 생성
-
-		return mav;
-	}
-
-	//찜 목록 삭제하기
-	@Override
-	@RequestMapping(value = "/removePick.do", method = RequestMethod.GET)
-	public ModelAndView removePick(@RequestParam(value="prod_name", required = false) String prod_name, HttpServletRequest request, HttpServletResponse response)
-			throws Exception {
-		System.out.println("controller 호출");
-		request.setCharacterEncoding("utf-8");
-		cartPickService.removePick(prod_name);
-		ModelAndView mav = new ModelAndView("redirect:/picklist_add.do");
-		return mav;
-	}
-
-	//마이페이지 찜하기 페이지에서 담기 클릭 시 장바구니 페이지에 추가 담기 기능
-	@Override
-	@RequestMapping(value = "/insertCart.do",method = {RequestMethod.GET, RequestMethod.POST})
-	public String insertCart(@ModelAttribute CartAddVO cartAddVO, HttpSession session) throws Exception {
-			
 		
-		String viewName = (String) session.getAttribute("viewName");
-
-		logger.info("info : "+viewName);
-		logger.debug("debug : "+viewName);
-		
-		
-		/* String user_id = (String) session.getAttribute("user_id"); */
+		//아이디 세션불러오기
+		HttpSession session = request.getSession();
 		UserVO userVO = (UserVO) session.getAttribute("userVO");
 		String user_id = "";
 		if(userVO != null) {
@@ -103,24 +73,52 @@ public class CartPickControllerImpl implements CartPickController {
 			}
 		}
 		
-		
-		
-		
-		
+		cartAddVO.setUser_id(user_id);
+
+		List<PickVO> pickList = cartPickService.listPicks(user_id);
+		ModelAndView mav = new ModelAndView();		
+		System.out.println(pickList);
+		mav.addObject("pickList", pickList);	//view에 전달할 객체 생성
+
+		return mav;
+	}
+
+	//찜 목록 삭제하기
+	@Override
+	@RequestMapping(value = "/removePick.do", method = RequestMethod.GET)
+	public ModelAndView removePick(@RequestParam(value="prod_name", required = false) String prod_name, HttpServletRequest request, HttpServletResponse response)
+			throws Exception {
+		System.out.println("removePick controller 호출");
+		request.setCharacterEncoding("utf-8");
+		cartPickService.removePick(prod_name);
+		ModelAndView mav = new ModelAndView("redirect:/picklist_add.do");
+		return mav;
+	}
+
+	//마이페이지 찜하기 페이지에서 담기 클릭 시 장바구니 페이지에 추가 담기 기능
+	@Override
+	@RequestMapping(value="/insertCart.do", method = {RequestMethod.GET, RequestMethod.POST})
+	public String insertCart(@ModelAttribute CartAddVO cartAddVO, HttpSession session) throws Exception {
+					
+		//아이디 세션불러오기
+		UserVO userVO = (UserVO) session.getAttribute("userVO");
+		String user_id = "";
+		if(userVO != null) {
+			if(userVO.getUser_id() == null || userVO.getUser_id() == "") {
+				user_id = "";
+			}else {
+				user_id = userVO.getUser_id();
+			}
+		}
 		
 		cartAddVO.setUser_id(user_id);
 			
-		System.out.println("insert Controller 호출");
-		
-		//장바구니에 기존 상품있는지 점검
-		int count = cartPickService.commCart(cartAddVO.getProd_code(), user_id);
-		// 삼항연산자 사용했으나 오류 떠서 조건문 사용
-		/*
-		 * count == 0 ? cartPickService.updateCart(cartAddVO) : cartPickService.insertCart(cartAddVO);
-		 */
+		//장바구니에 상품있는지 점검
+		int count = cartPickService.commCart(user_id, cartAddVO.getProd_code());
 		if(count == 0) {
 			cartPickService.insertCart(cartAddVO);
 		}else {
+			System.out.println("수량:"+cartAddVO.getProd_quantity());
 			cartPickService.updateCart(cartAddVO);
 		}
 			return "redirect:/cart.do";
@@ -167,23 +165,37 @@ public class CartPickControllerImpl implements CartPickController {
 	@Override
 	@RequestMapping(value = "/cart.do", method = {RequestMethod.GET, RequestMethod.POST})
 	public ModelAndView list(HttpSession session, ModelAndView mav) throws Exception {
-		String user_id = (String)session.getAttribute("user_id");
-		Map<String, Object> map = new HashMap<String, Object>();
 		
-		/* List<ProdVO> cartList = cartPickService.listCarts(user_id); */
-		   List<ProdVO> cartList = cartPickService.listCarts(user_id);
+		//아이디 세션불러오기
+		UserVO userVO = (UserVO) session.getAttribute("userVO");
+		String user_id = "";
+		if(userVO != null) {
+			if(userVO.getUser_id() == null || userVO.getUser_id() == "") {
+				user_id = "";
+			}else {
+				System.out.println("write user_id:"+userVO.getUser_id());
+				user_id = userVO.getUser_id();
+			}
+		}
+		
+		System.out.println("listCarts Controller 호출");
+		
+	   Map<String, Object> map = new HashMap<>();
+		
+	   List<ProdVO> cartList = cartPickService.listCarts(user_id);
 	   int sumMoney = cartPickService.sumMoney(user_id);
 	   //장바구니ㅣ 전체 금액에 따라 배송비 구분
-	   //배송료 (3만원이상 무료, 미만 3000원)
+	   //배송료 (3만원이상 무료, 미만 3000원) - 삼항연산자 사용
 	   int fee = sumMoney >= 30000 ? 0: 3000;
 	   
-	   map.put("list", cartList);
-	   map.put("count", cartList.size());
-	   map.put("sumMoney", sumMoney);
-	   map.put("fee", fee);
-	   map.put("allSum", sumMoney+fee);
-	   mav.setViewName("cart");
-	   mav.addObject("map", map);
+	   map.put("list", cartList);			//장바구니 정보 cartList에 저장
+	   map.put("count", cartList.size());	//장바구니 상품 유무
+	   map.put("sumMoney", sumMoney);		//상품 총합
+	   map.put("fee", fee);					//배송금액
+	   map.put("allSum", sumMoney+fee);		//장바구니 총합
+	   mav.setViewName("cart");				//cart.do
+	   mav.addObject("cartList", cartList);
+	   mav.addObject("map", map);			//map에 저장
 	  			
 	   return mav;
 	}

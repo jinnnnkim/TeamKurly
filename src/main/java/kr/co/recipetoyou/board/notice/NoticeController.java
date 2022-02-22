@@ -20,5 +20,6 @@ public interface NoticeController {
 	public ModelAndView noticeGoodsOfferDetail(HttpServletRequest request, HttpServletResponse response) throws Exception;
 	public ModelAndView noticeOneToOneQuestion(PagingVO vo ,HttpServletRequest request, HttpServletResponse response) throws Exception;
 	public ModelAndView noticeOneToOneQuestionDetail(HttpServletRequest request, HttpServletResponse response) throws Exception;
-
+	public String noticeOneToOneWrite(NoticeINQVO noticeINQ ,HttpServletRequest request, HttpServletResponse response)
+			throws Exception;
 }

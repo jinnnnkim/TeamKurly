@@ -2,11 +2,12 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<c:set var="contextPath" value="${pageContext.request.contextPath}" />
+<c:set var="contextPath" value="${pageContext.servletContext.contextPath}" />
 <c:set var="articlesList" value="${articlesMap.articlesList }"/><%--page넘버와 섹션이 적용된 페이지 글 --%>
 
 <%
 request.setCharacterEncoding("UTF-8");
+response.setContentType("application/json");
 %>
 
 
@@ -20,6 +21,11 @@ request.setCharacterEncoding("UTF-8");
 <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.4.1.js"></script>	
 	
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>	
+<script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+<script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+<script type="text/javascript" src="/recipetoyou/Resources/Common/slick/slick.min.js"></script>
+
 	<script type="text/javascript">
 		function fn_pick() {
 			$.ajax({
@@ -119,9 +125,9 @@ request.setCharacterEncoding("UTF-8");
 		<div class="section_view">
 			<div class="inner_view">
 				<!-- inner_view - 상품 이미지를 감싼 태그  -->
-				<div class="goods_info_name">
-					<img alt="두부면 파스타"
-						src="/recipetoyou/Resources/User/Img/Meal/paster1.jpg">
+				<div class="image_wrap" data-prod_code="${goodsDetailInfo.imageList[0].prod_code}" data-path="${goods.imageList[0].uploadPath}"
+					data-uuid="${goodsDetailInfo.imageList[0].uuid}" data-filename="${goodsDetailInfo.imageList[0].fileName}">
+					<img>
 				</div>
 
 				<div class="goods_name">
@@ -129,9 +135,15 @@ request.setCharacterEncoding("UTF-8");
 					<span class="share"> 
 					<div id="uploadArea">
 					</div>
+<<<<<<< HEAD
 					</span> <strong class="name">${goodsVO.prod_name}</strong><br> <span
 						class="short_desc"></span> <span class="dc">
 						<span class="dc_price">="${goodsVO.prod_price }<span class="won">원</span></span>
+=======
+					</span> <strong class="name">${goodsDetailInfo.prod_name}</strong><br> <span
+						class="short_desc">${goodsDetailInfo.prod_content }</span> <span class="dc">
+						<span class="dc_price">${goodsDetailInfo.prod_price }<span class="won">원</span></span>
+>>>>>>> db0168a96f373465a3a188a7126d5e5691a1e45e
 					</span>
 					<!-- dc -->
 					<br> <span class="not_login">로그인 후, 적립혜택이 제공됩니다.</span>
@@ -144,26 +156,26 @@ request.setCharacterEncoding("UTF-8");
 							<!-- inn_goods_info -->
 							<dl class="list fst">
 								<dt class="tit">판매단위</dt>
-								<dd class="desc">${goodsVO.prod_sell_unit}</dd>
+								<dd class="desc">${goodsDetailInfo.prod_sell_unit}</dd>
 							</dl>
 							<dl class="list">
 								<dt class="tit">중량/용량</dt>
-								<dd class="desc">240g</dd>
+								<dd class="desc">테이블 기입 필요</dd>
 							</dl>
 							<dl class="list">
 								<dt class="tit">배송구분</dt>
-								<dd class="desc">${goodsVO.prod_delivery_type}</dd>
+								<dd class="desc">${goodsDetailInfo.prod_delivery_type}</dd>
 							</dl>
 							<dl class="list">
 								<dt class="tit">포장타입</dt>
 								<dd class="desc">
-									${goodsVO.prod_wrap_type} <strong class="emph">택배배송은 에코포장이 스티롬품으로 대체됩니다.</strong>
+									${goodsDetailInfo.prod_wrap_type} <strong class="emph">택배배송은 에코포장이 스티롬품으로 대체됩니다.</strong>
 								</dd>
 							</dl>
 							<dl class="list">
 								<dt class="tit">알레르기정보</dt>
 								<dd class="desc">
-									${goodsVO.prod_allergy}
+									${goodsDetailInfo.prod_allergy}
 								</dd>
 							</dl>
 						</div>
@@ -197,14 +209,13 @@ request.setCharacterEncoding("UTF-8");
 						<div class="total">
 							<!-- total  -->
 							<span class="count_price">총 상품금액 :</span> <span class="sum">
-								<span class="sum_num">5,900</span> <span class="sum_won">원</span>
+								<span class="sum_num">${goodsDetailInfo.prod_price }</span> <span class="sum_won">원</span>
 							</span>
 							<p class="txt_point">
 								<span class="point">적립</span> <span class="not_login">로그인
 									후, 적립혜택 제공</span>
 							</p>
 						</div>
-						<!-- total 총 상품 구매 금액 -->
 
 
 						<div class="pick_cart">
@@ -214,7 +225,7 @@ request.setCharacterEncoding("UTF-8");
 							</button>
 							<div class="button_wrap">
 								<button type="button" class="wrap_btn"  onclick="fn_cart()">장바구니 담기</button> <!-- 장바구니 버튼  -->
-								<span>${goodsVO.prod_code}</span>
+								<%-- <span>${goodsDetailInfo.prod_code}</span> --%>
 							</div>
 							<!-- button_wrap -->
 						</div>
@@ -222,8 +233,10 @@ request.setCharacterEncoding("UTF-8");
 
 					</div>
 					<!-- goods_info -->
+					
 				</div>
 				<!-- goods_name -->
+				
 			</div>
 			<!-- inner_view -->
 
@@ -239,81 +252,47 @@ request.setCharacterEncoding("UTF-8");
 
 				<div class="inn_goods_add_product">
 					<!-- 관련 상품 추천 -->
-					<button class="btn_move_left">
-						<i class="fas fa-angle-left"></i>
-					</button>
-					<ul class="goods_add_product_list">
-						<li class="goods_add_product_item">
-							<div class="add_product_item_inn_wrap">
-								<a href="#"><img alt="item_img"
-									src="/recipetoyou/Resources/User/Img/Meal/paster2.jpg"></a>
-								<div class="add_product_item_inn">
-									<p class="add_product_item_inn_cost">[잇츠베러] 어스밀 바질페스토 두부면
-										파스타</p>
-									<br>
-									<p>5,900원</p>
-								</div>
-								<!-- add_product_item_inn -->
-							</div> <!-- add_product_item_inn_wrap -->
-						</li>
+				
+					<c:forEach var="goods" items="${goodsInfo}" >
+						<ul class="goods_add_product_list">
+							<li class="goods_add_product_item">
+								<div class="add_product_item_inn_wrap">
+									<div class="image_wrap" data-prod_code="${goods.imageList[0].prod_code}" data-path="${goods.imageList[0].uploadPath}"
+												data-uuid="${goods.imageList[0].uuid}" data-filename="${goods.imageList[0].fileName}">
+										<a href="${contextPath}/user/goodsView.do?prod_code=${goods.prod_code}"><img></a>								
+									</div>
+									<div class="add_product_item_inn">
+										<p>
+											<span class="name">${goods.prod_name}</span>	
+											<span id="goodsCost" class="goodsCost">${goods.prod_price}</span>원
+										</p>
+									</div>
+									<!-- add_product_item_inn -->
+								</div> <!-- add_product_item_inn_wrap -->
+							</li>
+						</ul>
+					</c:forEach>
+				
+					<div class="arrowSlider">
+						<span class="btn_move_left" id="aro1_prev"><i class="fas fa-angle-left"></i></span> 
+						<span class="btn_move_right" id="aro1_next"><i class="fas fa-angle-right"></i></span>
+					</div>
 
-						<li class="goods_add_product_item">
-							<div class="add_product_item_inn_wrap">
-								<a href="#"><img alt="item_img"
-									src="/recipetoyou/Resources/User/Img/Meal/meal4.jpg"></a>
-								<div class="add_product_item_inn">
-									<p class="add_product_item_inn_cost">[아임웰] 굿밸런스 라이트밀 볶음밥 2종
-										(4개입)</p>
-									<br>
-									<p>10,400원</p>
-								</div>
-								<!-- add_product_item_inn -->
-							</div> <!-- add_product_item_inn_wrap -->
-						</li>
-
-						<li class="goods_add_product_item">
-							<div class="add_product_item_inn_wrap">
-								<a href="#"><img alt="item_img"
-									src="/recipetoyou/Resources/User/Img/Meal/meal5.jpg"></a>
-								<div class="add_product_item_inn">
-									<p class="add_product_item_inn_cost">[아임웰] 곤약잡곡 닭가슴살 잡채 볶음밥
-										(4개입)</p>
-									<br>
-									<p>10,400원</p>
-								</div>
-								<!-- add_product_item_inn -->
-							</div> <!-- add_product_item_inn_wrap -->
-						</li>
-
-						<li class="goods_add_product_item">
-							<div class="add_product_item_inn_wrap">
-								<a href="#"><img alt="item_img"
-									src="/recipetoyou/Resources/User/Img/Meal/meal6.jpg"></a>
-								<div class="add_product_item_inn">
-									<p class="add_product_item_inn_cost">[마이비밀] 진선미 떡볶이 오리지널맛</p>
-									<br>
-									<p>5,500원</p>
-								</div>
-								<!-- add_product_item_inn -->
-							</div> <!-- add_product_item_inn_wrap -->
-						</li>
-
-						<li class="goods_add_product_item">
-							<div class="add_product_item_inn_wrap">
-								<a href="#"><img alt="item_img"
-									src="/recipetoyou/Resources/User/Img/Meal/meal7.jpg"></a>
-								<div class="add_product_item_inn">
-									<p class="add_product_item_inn_cost">[마이비밀] 진선미 떡볶이 짜장맛</p>
-									<br>
-									<p>5,500원</p>
-								</div>
-								<!-- add_product_item_inn -->
-							</div> <!-- add_product_item_inn_wrap -->
-						</li>
-					</ul>
-					<button class="btn_move_right">
-						<i class="fas fa-angle-right"></i>
-					</button>
+				<!-- how_goods 페이징 기능.js -->
+					<script type="text/javascript">
+											$('.inn_goods_add_product').slick({
+												slidesToShow : 4,
+												slidesToScroll : 1,
+												dots : false,
+												arrows : true,
+												infinite : true,
+												autoplay : false,
+												speed : 500,
+												prevArrow : $('#aro1_prev'),
+												nextArrow : $('#aro1_next'),
+												autoplaySpeed : 3000
+											});
+					</script>
 				</div>
 				<!-- inn_goods_add_product 관련 상품 추천 wrap-->
 				
@@ -891,6 +870,7 @@ request.setCharacterEncoding("UTF-8");
 
       document.querySelector("#show").addEventListener("click", show);
       document.querySelector("#close").addEventListener("click", close);
+<<<<<<< HEAD
       
       /* CKEditor5 적용 */
 		var ckeditor_config = {
@@ -978,6 +958,61 @@ request.setCharacterEncoding("UTF-8");
     				$("form#faqWriterform").submit();
     			});
       		});*/
+=======
+    
+      //숫자 (,) 적용 
+   		// 숫자 타입에서 쓸 수 있도록 format() 함수 추가
+		Number.prototype.format = function(){
+		    if(this==0) return 0;
+>>>>>>> db0168a96f373465a3a188a7126d5e5691a1e45e
 
+		    var reg = /(^[+-]?\d+)(\d{3})/;
+		    var n = (this + '');
+
+		    while (reg.test(n)) n = n.replace(reg, '$1' + ',' + '$2');
+
+		    return n;
+		};
+
+		// 문자열 타입에서 쓸 수 있도록 format() 함수 추가
+		String.prototype.format = function(){
+		    var num = parseFloat(this);
+		    if( isNaN(num) ) return "0";
+
+		    return num.format();
+		};
+		
+		jQuery('.dc_price').text(function() {
+		    jQuery(this).text(
+		        jQuery(this).text().format()
+		    );
+		});
+		
+		jQuery('.sum_num').text(function() {
+		    jQuery(this).text(
+		        jQuery(this).text().format()
+		    );
+		});
+		
+		$(document).ready(function(){						
+			//이미지 삽입
+			$(".image_wrap").each(function(i, obj){
+				
+				const bobj = $(obj);
+				if(bobj.data("prod_code")){
+					
+					const uploadPath = bobj.data("path");
+					const uuid = bobj.data("uuid");
+					const fileName = bobj.data("filename");
+					
+					const fileCallPath = encodeURIComponent(uploadPath + "/s_" + uuid + "_" + fileName);
+					
+					$(this).find("img").attr('src', '${contextPath}/user/getImageInfo.do?fileName='+fileCallPath);
+					
+				} else {
+					$(this).find("img").attr('src', '/recipetoyou/Resources/Admin/Img/SubgoodsImg/ready.jpg');
+				}
+			});	
+		}); 
 	</script>
 </body>

@@ -18,8 +18,6 @@ public class CartAddVO {
 	private int prod_quantity;
 	private String user_id;
 
-	//사용자 
-	private UserVO userVO;
 	
 	
 	public CartAddVO() {
@@ -66,6 +64,12 @@ public class CartAddVO {
 		this.user_id = user_id;
 	}
 
+	@Override
+	public String toString() {
+		return "CartAddVO [cart_code=" + cart_code + ", prod_code=" + prod_code + ", prod_quantity=" + prod_quantity
+				+ ", user_id=" + user_id + "]";
+	}
+	
 	
 
 }

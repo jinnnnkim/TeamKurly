@@ -25,18 +25,16 @@ public class LoginControllerImpl implements LoginController {
 	
 	@RequestMapping(value="/login/login.do", method = {RequestMethod.GET, RequestMethod.POST})
 	public ModelAndView login(@ModelAttribute("userVO") UserVO userVO,
-			HttpServletRequest request, HttpServletResponse response) throws Exception{
-		
-		ModelAndView mav = new ModelAndView();	
-		
-		return mav;
+		HttpServletRequest request, HttpServletResponse response) throws Exception{
+			ModelAndView mav = new ModelAndView();	
+			return mav;
 	}
-	
 	@RequestMapping(value="/login/loginProcess.do", method = {RequestMethod.GET, RequestMethod.POST})
 	public ModelAndView loginProcess(@ModelAttribute("userVO") UserVO userVO, RedirectAttributes rAttr,
 			HttpServletRequest request, HttpServletResponse response) throws Exception{
 		
 		ModelAndView mav = new ModelAndView();
+
 		String viewName = (String) request.getAttribute("viewName");
 		
 		userVO = loginService.login(userVO);
@@ -56,8 +54,6 @@ public class LoginControllerImpl implements LoginController {
 			rAttr.addAttribute("result", "loginFailed");
 			mav.setViewName("redirect:/login/login.do");
 		}
-		
-		
 		return mav;
 	}
 	
@@ -70,9 +66,7 @@ public class LoginControllerImpl implements LoginController {
 		
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("redirect:/login/login.do");
-		
-		return mav;
-		
+		return mav;	
 	}
 	
 	

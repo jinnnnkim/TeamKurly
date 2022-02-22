@@ -11,13 +11,15 @@ import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletRequestWrapper;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.io.FileUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -35,7 +37,7 @@ import kr.co.recipetoyou.util.PagingVO;
 @Controller("noticeController")
 public class NoticeControllerImpl implements NoticeController{
 	
-	private static String ARTICLE_IMAGE_REPO ="C:/git_workTeam/src/main/webapp/Resources/Upload/OneToOne";
+	private static String ARTICLE_IMAGE_REPO ="C:/wordspace_git/src/main/webapp/Resources/Upload/OneToOne";
 	
 	private static final Logger logger = LoggerFactory.getLogger("NoticeControllerImpl.class");
 	
@@ -198,65 +200,27 @@ public class NoticeControllerImpl implements NoticeController{
 	@RequestMapping(value="/notice/noticeOneToOneQuestionDetail.do", method= {RequestMethod.GET,RequestMethod.POST})
 	public ModelAndView noticeOneToOneQuestionDetail(HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
-		String viewName = (String) request.getAttribute("viewName");
-		logger.info(viewName);
+		
+		
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName(viewName);
+		
 		
 		return mav;
 	}
 	
-	@RequestMapping(value="/notice/noticeOneToOneWrite.do", method = RequestMethod.POST)
-	@ResponseBody
-	public ResponseEntity noticeOneToOneWrite(MultipartHttpServletRequest multipartRequest, HttpServletResponse response)
+	
+	@Override
+	@RequestMapping(value="/notice/noticeOneToOneWrite.do", method= {RequestMethod.GET,RequestMethod.POST})
+	public String noticeOneToOneWrite(NoticeINQVO noticeINQ ,HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
-		multipartRequest.setCharacterEncoding("utf-8");
 		
-		String imageFileName = null;
-		
-		Map articleMap = new HashMap();
-		Enumeration enun = multipartRequest.getParameterNames();
-		while (enun.hasMoreElements()) {
-			String name = (String) enun.nextElement();
-			String value = multipartRequest.getParameter(name);
-			articleMap.put(name, value);
-			System.out.println("name:"+name+"  "+"value:"+value);
-		}
-		// 로그인 시 세션에 저장된 회원정보에서 아이디(글쓴이)를 가져와서 map에 저장함
-		HttpSession session = multipartRequest.getSession();
+		HttpSession session = request.getSession();
 		UserVO userVO = (UserVO) session.getAttribute("userVO");
-		String id = userVO.getUser_id();
-		articleMap.put("id", id);
+		noticeINQ.setUser_id(userVO.getUser_id());
 		
-		List<String> fileList = upload(multipartRequest);
-
-		ResponseEntity resEnt = null;
+		noticeService.addOnoToOneINQ(noticeINQ);
 		
-		return resEnt;
+		return "redirect:/notice/noticeOneToOneQuestion.do";
 	}
-	
-	private List<String> upload(MultipartHttpServletRequest multipartRequest) throws ServletException, IOException {
-		List<String> fileList = new ArrayList<>();
-		Iterator<String> fileNames = multipartRequest.getFileNames();
-		while (fileNames.hasNext()) {
-			String fileName = fileNames.next();
-			MultipartFile mFile = multipartRequest.getFile(fileName);
-			String originalFilename = mFile.getOriginalFilename();
-			
-			if (originalFilename != "" && originalFilename != null) {
-				fileList.add(originalFilename);
-				File file = new File(ARTICLE_IMAGE_REPO +"\\"+ fileName);
-				if(mFile.getSize() != 0) {		// File Null Check
-					if (!file.exists() ) {		// 경로상에 존재하지 않는다면
-						file.getParentFile().mkdirs();	//경로에 해당하는 디렉토리들을 생성
-						mFile.transferTo(new File(ARTICLE_IMAGE_REPO +"\\"+ "temp" +"\\"+ originalFilename));  //임시로
-					}															// 저장한 MultipartFile을 실제 파일로 전송
-				}
-			}
-		}
-		return fileList;
-	}
-	
-	
 
 }

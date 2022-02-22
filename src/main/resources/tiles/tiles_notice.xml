@@ -43,7 +43,6 @@
 		<put-attribute name="body" value="/WEB-INF/Views/User/Notice/noticeDetail.jsp"/>	
 	</definition>
 	
-	
 	<definition name="/notice/noticeEchoWrapFeedback" extends="noticeLayout">
 		<put-attribute name="title" value="에코포장피드백"/>
 		<put-attribute name="body" value="/WEB-INF/Views/User/Notice/noticeEchoWrapFeedback.jsp"/>	
@@ -79,6 +78,11 @@
 	</definition>
 	
 	<definition name="/notice/noticeOneToOneQuestionDetail" extends="noticeLayout">
+		<put-attribute name="title" value="1:1 문의 - 상세페이지"/>
+		<put-attribute name="body" value="/WEB-INF/Views/User/Notice/noticeOneToOneQuestionDetail.jsp"/>	
+	</definition>
+	
+	<definition name="notice/noticeOneToOneQuestionDetail" extends="noticeLayout">
 		<put-attribute name="title" value="1:1 문의 - 상세페이지"/>
 		<put-attribute name="body" value="/WEB-INF/Views/User/Notice/noticeOneToOneQuestionDetail.jsp"/>	
 	</definition>

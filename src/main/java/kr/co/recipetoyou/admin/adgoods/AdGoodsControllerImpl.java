@@ -63,7 +63,7 @@ public class AdGoodsControllerImpl implements AdGoodsController {
 	
 	private static final Logger logger = LoggerFactory.getLogger("ProductControllerImpl.class");
 	
-	private static final String UPLOAD_DIR = "C:\\git-recipetoyou\\RecipeToYou\\src\\main\\webapp\\Resources\\Admin\\Img\\AdgoodsImg\\";
+	private static final String UPLOAD_DIR = "C:\\Users\\jin\\Documents\\TeamKurly_3v\\src\\main\\webapp\\Resources\\Admin\\Img\\AdgoodsImg\\";
 	
 	@Autowired
 	AdGoodsService adGoodsService;
@@ -76,7 +76,7 @@ public class AdGoodsControllerImpl implements AdGoodsController {
 	@ResponseBody
 	public ModelAndView listPageGet(PagingVO vo, HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
-		
+		request.getServletContext();
 		ObjectMapper objm = new ObjectMapper();
 		String viewName = (String)request.getAttribute("viewName");
 		ModelAndView mav = new ModelAndView(viewName);
@@ -202,7 +202,6 @@ public class AdGoodsControllerImpl implements AdGoodsController {
 		
 		//상품 등록 후 상품 목록 페이지로 리다이렉트
 		ModelAndView mav = new ModelAndView("redirect:/adgoods/listProduct.do");
-		
 		return mav;
 	}
 	
@@ -214,7 +213,7 @@ public class AdGoodsControllerImpl implements AdGoodsController {
 	 * 4.ResponseEntity를 통해서 뷰(view)로 상태 코드가 200인 List 객체 전송
 	 * 5.뷰(view)에서 ajax를 통해 요청 시 JSON 타입의 데이터를 요청						//, consumes = MediaType.APPLICATION_JSON_VALUE
 	 */
-	@Override																									//서버에서 뷰로 변환하는 데이터 인코딩
+	@Override																				      //서버에서 뷰로 변환하는 데이터 인코딩
 	@RequestMapping(value = "/adgoods/uploadAction.do", produces = "application/json")
 	@ResponseBody
 	public ResponseEntity<List<AdgoodsImgVO>> uploadAction(@RequestParam MultipartFile[] uploadFile) throws Exception {
@@ -240,7 +239,7 @@ public class AdGoodsControllerImpl implements AdGoodsController {
 				List<AdgoodsImgVO> list = null;
 				return new ResponseEntity<List<AdgoodsImgVO>>(list, HttpStatus.BAD_REQUEST);		
 			}
-		}//for
+		}
 		
 		/*너무 많은 파일이 한 곳에 모여있지 않도록 날짜 폴더 경로 생성*/
 		//날짜 경로 문자열 얻기
@@ -444,7 +443,6 @@ public class AdGoodsControllerImpl implements AdGoodsController {
 			String fileName = upload.getOriginalFilename(); 
 			byte[] bytes = upload.getBytes(); 
 			String ckUploadPath = UPLOAD_DIR+ uid + "_" + fileName;
-			System.out.println("path:"+ckUploadPath);
 			File folder = new File(UPLOAD_DIR); 
 			if(!folder.exists()){ 
 				try{ folder.mkdirs(); 
@@ -460,7 +458,6 @@ public class AdGoodsControllerImpl implements AdGoodsController {
 			String fileUrl = "/recipetoyou/adgoods/ckimageSubmit.do?uid=" + uid + "&fileName=" + fileName;
 			printWriter.println("{\"filename\" : \""+fileName+"\", \"uploaded\" : 1, \"url\":\""+fileUrl+"\"}"); 
 			printWriter.flush(); 
-			System.out.println("upload complete");
 		}catch(IOException e){
 			e.printStackTrace();
 		} finally { 

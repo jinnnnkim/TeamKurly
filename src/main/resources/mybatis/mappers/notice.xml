@@ -25,8 +25,8 @@
 	</resultMap>
 	
 	<resultMap type="noticeINQVO" id="noticeINQVOResult">
-		<result property="inq_idx" column="rn"/>
-		<result property="rn" column="inq_idx"/>
+		<result property="inq_idx" column="inq_idx"/>
+		<result property="rn" column="rn"/>
 		<result property="inq_title_code" column="inq_title_code"/>
 		<result property="ord_code" column="ord_code"/>
 		<result property="user_mail" column="user_mail"/>
@@ -34,7 +34,6 @@
 		<result property="user_phone" column="user_phone"/>
 		<result property="user_phone_send_agree" column="user_phone_send_agree"/>
 		<result property="inq_content" column="inq_content"/>
-		<result property="inq_image_file_no" column="inq_image_file_no"/>
 		<result property="inq_date" column="inq_date"/>
 		<result property="user_id" column="user_id"/>
 		<result property="inq_title" column="inq_title"/>
@@ -154,4 +153,13 @@
 		WHERE notice_idx = #{notice_idx}
 	</select>	
     
+    <insert id="insertINQ" parameterType="noticeINQVO">
+    	INSERT INTO ADMIN.TB_ONETOONE_INQ
+		(INQ_IDX, INQ_TITLE_CODE, ORD_CODE, USER_MAIL, USER_MAIL_SEND_AGREE, 
+		USER_PHONE, USER_PHONE_SEND_AGREE, INQ_CONTENT, INQ_DATE, USER_ID, INQ_TITLE)
+		VALUES(TB_ONETOONE_INQ_SEQ.nextval, #{inq_title_code} , 0, #{user_mail}, 
+		#{user_mail_send_agree} , #{user_phone}, #{user_phone_send_agree}, 
+		#{inq_content}, SYSDATE , #{user_id}, #{inq_title})
+    	
+    </insert>
 </mapper>  

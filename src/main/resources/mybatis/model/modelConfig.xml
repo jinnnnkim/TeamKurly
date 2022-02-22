@@ -81,5 +81,9 @@
 		<typeAlias type="kr.co.recipetoyou.board.notice.NoticeFAQVO" alias="noticeFAQVO"/>
 		<typeAlias type="kr.co.recipetoyou.board.notice.NoticeINQVO" alias="noticeINQVO"/>
 
+		<!-- 메인페이지 -->
+		<typeAlias type="kr.co.recipetoyou.user.category.CategoryVO" alias="categoryVO"/>
+		
+
 	</typeAliases>
 </configuration> 

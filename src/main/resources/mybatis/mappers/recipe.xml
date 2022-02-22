@@ -128,6 +128,35 @@
  
     <select id="recipeCount" resultType="int">
     	SELECT count(*) FROM TB_RECIPE
+    	<if test="keyword != null">
+			where
+                <choose>
+          <when test='type == "T"'>
+              recipe_title like '%'||#{keyword}||'%' 
+          </when>
+          <when test='type == "C"'>
+             recipe_content like '%'||#{keyword}||'%' 
+          </when>
+          <when test='type == "W"'>
+              user_id like '%'||#{keyword}||'%' 
+          </when>
+          <when test='type == "TC"'>
+              recipe_title like '%'||#{keyword}||'%' or recipe_content like '%'||#{keyword}||'%' 
+          </when>
+          <when test='type == "WT"'>
+              recipe_title like '%'||#{keyword}||'%' or user_id like '%'||#{keyword}||'%' 
+          </when>
+          <when test='type == "CW"'>
+              recipe_content like '%'||#{keyword}||'%' or user_id like '%'||#{keyword}||'%'
+          </when>
+          <when test='type == "TCW" || type== null'>
+              recipe_title like '%'||#{keyword}||'%' or
+              recipe_content like '%'||#{keyword}||'%' or
+              user_id like '%'||#{keyword}||'%' 
+          </when>
+          
+    			</choose>
+          </if>
     	<if test="cateCode  != null and cateCode != 0">
     		where recipe_cate_code = #{cateCode}
     	</if>

@@ -13,7 +13,7 @@ import kr.co.recipetoyou.main.cartPick.vo.ProdVO;
 public interface CartPickService {
 
 	//찜 목록 조회
-	public List<PickVO> listPicks () throws DataAccessException;
+	public List<PickVO> listPicks (String user_id) throws DataAccessException;
 	//찜 목록 삭제
 	public int removePick(String prod_name) throws DataAccessException;
 	//마이페이지 장바구니에 담기 
@@ -23,7 +23,7 @@ public interface CartPickService {
 	//장바구니 총합
 	public int sumMoney(String user_id) throws DataAccessException;
 	//동일 상품 확인
-	public int commCart(int prod_code, String user_id) throws DataAccessException;
+	public int commCart(String user_id,int prod_code) throws DataAccessException;
 	//수량 수정
 	public void updateCart(CartAddVO cartAddVO) throws DataAccessException;
 	

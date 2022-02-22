@@ -165,7 +165,6 @@
 			</table>
 			<div class="form_footer">
 				<button type="submit" onclick="fn_sendUser()">가입하기</button>
-				<button type="submit" onclick="return fn_sendUser()">가입하기</button>
 			</div>
 		</div>
 	</div>
@@ -257,9 +256,7 @@
 			}	
 		});
 		
-	});
-	
-		
+	});		
 </script>
 
 <script type="text/javascript">
