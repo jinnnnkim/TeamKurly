@@ -76,7 +76,7 @@ public class AdGoodsControllerImpl implements AdGoodsController {
 	@ResponseBody
 	public ModelAndView listPageGet(PagingVO vo, HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
-		
+		request.getServletContext();
 		ObjectMapper objm = new ObjectMapper();
 		String viewName = (String)request.getAttribute("viewName");
 		ModelAndView mav = new ModelAndView(viewName);
@@ -444,7 +444,6 @@ public class AdGoodsControllerImpl implements AdGoodsController {
 			String fileName = upload.getOriginalFilename(); 
 			byte[] bytes = upload.getBytes(); 
 			String ckUploadPath = UPLOAD_DIR+ uid + "_" + fileName;
-			System.out.println("path:"+ckUploadPath);
 			File folder = new File(UPLOAD_DIR); 
 			if(!folder.exists()){ 
 				try{ folder.mkdirs(); 
@@ -460,7 +459,6 @@ public class AdGoodsControllerImpl implements AdGoodsController {
 			String fileUrl = "/recipetoyou/adgoods/ckimageSubmit.do?uid=" + uid + "&fileName=" + fileName;
 			printWriter.println("{\"filename\" : \""+fileName+"\", \"uploaded\" : 1, \"url\":\""+fileUrl+"\"}"); 
 			printWriter.flush(); 
-			System.out.println("upload complete");
 		}catch(IOException e){
 			e.printStackTrace();
 		} finally { 

@@ -52,25 +52,9 @@ public class NoticeDAOImpl implements NoticeDAO{
 	}
 
 	@Override
-	public int insertInq(Map articleMap) {
-		sqlSession.insert("mapper.notice.insertInq", articleMap);
-		return 0;
+	public void insertINQ(NoticeINQVO noticeINQ) {
+		System.out.println(noticeINQ.toString());
+		sqlSession.insert("mapper.notice.insertINQ",noticeINQ);
 	}
 
-	@Override
-	public void insertNewFile(Map articleMap) {
-		List<NoticeINQFiileVO> list = (ArrayList)articleMap.get("imgFileList");
-		
-		int inq_idx = (Integer)articleMap.get("inq_idx");
-		
-		
-		if (list != null && list.size() != 0) {
-			for (NoticeINQFiileVO imageVO : list) {
-				imageVO.setInq_file_idx(inq_idx);
-			}
-			
-			sqlSession.insert("mapper.notice.insertNewFile", list);
-		}
-	}
-	
 }

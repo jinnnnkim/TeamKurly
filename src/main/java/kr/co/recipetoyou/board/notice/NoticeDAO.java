@@ -21,8 +21,7 @@ public interface NoticeDAO {
 
 	public List<NoticeINQVO> selectOneToOneList(PagingVO vo);
 
-	public int insertInq(Map articleMap);
+	public void insertINQ(NoticeINQVO noticeINQ);
 
-	public void insertNewFile(Map articleMap);
 
 }

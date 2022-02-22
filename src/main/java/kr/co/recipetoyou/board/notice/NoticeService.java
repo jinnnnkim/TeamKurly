@@ -21,6 +21,7 @@ public interface NoticeService {
 
 	public List<NoticeINQVO> noticeOneToOneist(PagingVO vo);
 
-	public int addInq(Map articleMap);
+	public void addOnoToOneINQ(NoticeINQVO noticeINQ);
+
 
 }

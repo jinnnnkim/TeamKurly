@@ -47,20 +47,20 @@
 				<c:when test="${cnt != 0}">
 				<c:forEach var="list" items="${noticeOneToOneList }">
 					<tr class="QAList1">
-						<td>${list.rn }</td>
+						<td class="rn">${list.rn }</td>
 						<td>${list.inq_title_code }</td>
 						<td>${list.inq_title }</td>
 						<td>${list.user_id }</td>
 						<td>${list.inq_date}</td>
 					</tr>
 					
-					<tr class="QADetail1">
+					<tr class="QADetail1" id="${list.rn }">
 						<td colspan="5">
 							<div>
 								<span>${list.inq_content}</span>
 								<div class="QABtn">
 									<button class="editBtn" type="button">수정</button>
-									<button class="deleteBtn" type="button" onclick="QAdelte()">삭제</button>
+									<button class="deleteBtn" type="button" onclick="QAdelte('${list.inq_idx}'">삭제</button>
 								</div>
 							</div>
 						</td>
@@ -107,12 +107,13 @@
 	<script>
 			$(document).ready(function() {
 				$('.QAList1').click(function() {
-					$('.QADetail1').fadeToggle();
+					var temp = $(this).children(".rn").text();
+					$('#'+temp).fadeToggle();
 				});
 			});
 			
-			function QAdelte(){
-				alert('삭제되었습니다.');
+			function QAdelte(idx){
+				
 			}
 	</script>
 </body>
