@@ -25,7 +25,6 @@ public class JoinControllerImpl implements JoinController {
 	@RequestMapping(value="/join/regist.do",  method =  {RequestMethod.GET, RequestMethod.POST})
 	public ModelAndView regist(@ModelAttribute("userVO") UserVO userVO,
 			HttpServletRequest request, HttpServletResponse response) throws Exception{
-		
 		ModelAndView mav = new ModelAndView();		
 		return mav;
 		
@@ -34,13 +33,10 @@ public class JoinControllerImpl implements JoinController {
 	@RequestMapping(value="/join/joinProcess.do", method = {RequestMethod.GET, RequestMethod.POST})
 	public ModelAndView registProcess(@ModelAttribute("userVO") UserVO userVO,
 			HttpServletRequest request, HttpServletResponse response) throws Exception{
-		
-		
 		request.setCharacterEncoding("utf-8");
 		int result = joinService.addUser(userVO); 	//정상적 inset하면 정수 1을 리턴
 		
 		ModelAndView mav = new ModelAndView("redirect:/login/login.do");
-		
 		return mav;
 	}		
 		 
@@ -68,5 +64,5 @@ public class JoinControllerImpl implements JoinController {
 		joinService.certifiedPhoneNumber(userPhoneNumber,randomNumber); 
 		return Integer.toString(randomNumber); 
 	}
-
 }
+
