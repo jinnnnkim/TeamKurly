@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mapper.main">	<!-- product.xml의 네임스페이스 지정 -->
+
+	<resultMap type="categoryVO" id="mainResult">
+		<result property="prod_code" column="prod_code"/>
+		<result property="cateCode" column="cateCode"/>
+		<result property="prod_name" column="prod_name"/>
+		<result property="prod_content" column="prod_content"/>
+		<result property="prod_price" column="prod_price"/>
+		<result property="prod_discount" column="prod_discount"/>
+		<result property="prod_sell_unit" column="prod_sell_unit"/>
+		<result property="prod_delivery_type" column="prod_delivery_type"/>
+		<result property="prod_wrap_type" column="prod_wrap_type"/>
+		<result property="prod_info" column="prod_info"/>
+		<result property="prod_allergy" column="prod_allergy"/>
+		<result property="prod_vaild_date" column="prod_vaild_date"/>
+		<result property="prod_from" column="prod_from"/>
+		<result property="prod_caution" column="prod_caution"/>
+		<result property="stock_quantity" column="stock_quantity"/>
+		<result property="prod_reg_date" column="prod_reg_date"/>
+		<result property="quantity" column="quantity"/>
+	</resultMap>
+
+	<resultMap type="adGoodsImgVO" id="goodsImgListResult">
+		<result property="fileName" column="fileName"/>
+		<result property="prod_code" column="prod_code"/>
+		<result property="uploadPath" column="uploadPath"/>
+		<result property="uuid" column="uuid"/>
+	</resultMap>
+	
+	<select id="goodsInfo" resultMap="mainResult">
+		<![CDATA[
+			select * from tb_prod order by prod_price DESC
+		]]>
+	</select>
+	
+	<!-- 이미지 정보 얻기 -->
+	<select id="getGoodsImageList" resultMap="goodsImgListResult">
+		<![CDATA[
+		select tbai.filename, tbai.prod_code, tbai.uuid, tbai.uploadpath from tb_adgoods_Img tbai where prod_code = #{prod_code}
+		]]>
+	</select>
+	
+	<select id="bargain" resultMap="mainResult">
+		<![CDATA[
+			select * from tb_prod 
+			where prod_price < 10000
+			order by prod_price DESC
+		]]>
+	</select>
+	
+	<select id="goodsDetailInfo" resultMap="mainResult">
+		<![CDATA[
+			select * from tb_prod where prod_code = #{prod_code}
+		]]>
+	</select>
+</mapper>

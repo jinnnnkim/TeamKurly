@@ -30,100 +30,96 @@
     
 </head>
 <body>
-		<div class="body">
-			<div class="title">
-				<h2>장바구니</h2>
-			</div>
-			<!-- title -->
-		
-		
-			<div class="content">
-				<div class="cart_main">
-					<div class="cart_select">
-						<label> 
-							<input type="checkbox" name="checkItem" value="selectall" onclick="selectAll(this)"> 
-							<span>전체선택(1/1)</span>
-						</label>
-					</div>
-					<!-- cart_select -->
-		
-		<!-- 장바구니 비어있는 경우 -->
-		<c:choose>
-			<c:when test="${map.count == 0 }">
-				장바구니가 비어있습니다.
-			</c:when>
-			<c:otherwise>
-		
-				
-		<c:forEach var="cartList" items="${map.cartList}" varStatus="i">	
-					<div class="cartlist">
-						<label class="inn_check"> 
-						<input type="checkbox" name="checkItem" >
-					</label>
+	<div class="body">
+		<div class="title">
+			<h2>장바구니</h2>
+		</div>
+		<!-- title -->
+
 	
-						<div class="item">
-												<!-- 이미지 정보가 담기도록 함. -->
-						<div class="image_wrap" data-prod_code="${cartList.imageList[0].prod_code}" data-path="${cartList.imageList[0].uploadPath}"
-												data-uuid="${cartList.imageList[0].uuid}" data-filename="${cartList.imageList[0].fileName}">
-							<img style="height: 108px; width: 90px; padding: 10px;">
-
-						</div>
-							<div class="subject">
-								<a href="#" class="subject_tit">${cartList.prod_name}</a> 
-								<span class="subject_in">${cartList.prod_content}</span>
-							</div>
-							
-							<div class="prodCount">
-								<input type="number" style="width: : 40px" name="amount" value="${cartList.prod_quantity}" min="1">
-								<input type="hidden" name="productId" value="${cartList.prod_code}">
-							</div>
-							
-							<!-- prodCount -->
-
-<!-- 
-							<div class="inner_option">
-								inner_option
-								<button type="button" class="btn down">
-									<i class="fas fa-minus"></i>
-								</button>
-								<input type="number" readonly="readonly" class="inp" value="1">
-								<button type="button" class="btn up">
-									<i class="fas fa-plus"></i>
-								</button>
-							</div>
-							inner_option  -,+ 구매수량
-								
-						 -->
-
-							<div class="cancle">
-								<a href="${contextPath}/removeCart.do?prod_name=${cartList.prod_name}">
-									<i class="fas fa-window-close"></i>
-								</a>
-							</div>
-						
-						
-							<div class="totalItem_prices">
-								 <span class="item_prices"><span id="itemPrice" class="num">
-								 <fmt:formatNumber value= "${cartList.prod_price}" pattern="###,###,###"/> 
-								</span>원</span> 
-							</div>
-							<!-- totalItem_prices -->
-
-						</div>
-						<!-- item -->	
-					
-					</div>
-					<!-- cartlist -->
-					</c:forEach>		
+		<div class="content">
+			<div class="cart_main">
+				<div class="cart_select">
+					<label> 
+						<input type="checkbox" name="checkItem" value="selectall" onclick="selectAll(this)"> 
+						<span>전체선택(1/1)</span>
+					</label>
 				</div>
-				
-			
-		<c:forEach var="cartList" items="${cartList}">	
+				<!-- cart_select -->
+	
+			<!-- 장바구니 비어있는 경우 -->
+			<c:choose>
+				<c:when test="${map.count == 0 }">
+					장바구니가 비어있습니다.
+				</c:when>
+				<c:otherwise>
+		
+		
+					<c:forEach var="cartList" items="${cartList}" varStatus="i">	
+							<div class="cartlist">
+								<label class="inn_check"> 
+									<input type="checkbox" name="checkItem" >
+								</label>
+					
+							<div class="item">
+								<!-- 이미지 정보가 담기도록 함. -->
+								<div class="image_wrap" data-prod_code="${cartList.imageList[0].prod_code}" data-path="${cartList.imageList[0].uploadPath}"
+									data-uuid="${cartList.imageList[0].uuid}" data-filename="${cartList.imageList[0].fileName}">
+									<img style="height: 108px; width: 90px; padding: 10px;">
+								</div>
+								<div class="subject">
+									<a href="#" class="subject_tit">${cartList.prod_name}</a> 
+									<span class="subject_in">${cartList.prod_content}</span>
+								</div>
+										
+								<div class="prodCount">
+									<input type="number" style="width: : 40px" name="amount" value="${cartList.prod_quantity}" min="1">
+									<input type="hidden" name="productId" value="${cartList.prod_code}">
+								</div>
+										
+							<!-- prodCount -->
+					
+							<!-- 		
+								<div class="inner_option">
+									inner_option
+									<button type="button" class="btn down">
+										<i class="fas fa-minus"></i>
+									</button>
+									<input type="number" readonly="readonly" class="inp" value="1">
+									<button type="button" class="btn up">
+										<i class="fas fa-plus"></i>
+									</button>
+								</div>
+								inner_option  -,+ 구매수량
+									
+							 -->
+					
+								<div class="cancle">
+									<a href="${contextPath}/removeCart.do?prod_name=${cartList.prod_name}">
+										<i class="fas fa-window-close"></i>
+									</a>
+								</div>
+								
+								<div class="totalItem_prices">
+									 <span class="item_prices"><span id="itemPrice" class="num">
+									 <fmt:formatNumber value= "${cartList.prod_price}" pattern="###,###,###"/> 
+									</span>원</span> 
+								</div>
+								<!-- totalItem_prices -->
+							</div>
+							<!-- item -->	
+						</div>
+							<!-- cartlist -->
+							
+					</c:forEach>
+				</c:otherwise>
+			</c:choose>	
+			</div>
 				<div class="bills">
 					<div class="billsInfo">
 						<div class="deliverTitle">배송지</div>
-						<div class="address">${cartList.addr }</div>
-						<div class="deliveryType">${cartList.delivery_type }</div>
+						<div class="address">주소</div>
+						<div class="deliveryType">배송타입</div>
 						<div class="changeBtn">
 							<button class="changeAddress" onclick="daumPostcode()">배송지 변경</button>
 						</div>
@@ -132,17 +128,17 @@
 								<div class="prodPrice">
 									<span class="txt">상품금액</span>
 									<span class="price"><span id="basicPrice" class="num">
-									 <fmt:formatNumber value= "${cartList.prod_price}" pattern="###,###"/> 
+									 <fmt:formatNumber value= "1000" pattern="###,###"/> 
 									</span>원</span>
 								</div>
 								<div class="prodDiscount">
 									<span class="txt">상품할인금액</span>
-									<span class="price"><span id="discountPrice" class="num">${cartList.prod_discount }</span>원</span>
+									<span class="price"><span id="discountPrice" class="num">3000</span>원</span>
 								</div>
 								<div class="deliveryPrice">
 									<span class="txt">배송비</span>
 									<span class="price"><span id="deliveryPrice" class="num">
-									 	${map.fee}
+									 	1000
 									 </span>원</span>
 								</div>
 								<hr/>
@@ -150,39 +146,35 @@
 									<span class="txt">결제예정금액</span>
 									<span class="price">
 									<span id="totalPrice" class="num">
-										<fmt:formatNumber pattern="###,###,###" value="${map.allSum}"/>
-
+										<fmt:formatNumber pattern="###,###,###" value="1000"/>
+		
 									</span>원</span> 
 								</div>
-								<div class="reserve">구매 시${cartList.prod_point}원 적립</div>
+								<div class="reserve">구매 시1000원 적립</div>
 							</div>
 						</div>
 					</div>
 				
 					<div class="orderBtn">
-					<a href="${contextPath}/order.do">
-						<button class="btn" >주문하기</button>
-					</a>	
+						<a href="${contextPath}/order.do">
+							<button class="btn" >주문하기</button>
+						</a>	
 					</div>
-					
-			</c:forEach>
-		
-			</c:otherwise>
-		</c:choose>					
+						
+							
 					<div class="info">
 						<span>쿠폰/적립금은 주문서에서 사용 가능합니다</span><br /> <span>‘입금확인’ 상태일
 							때는 주문 내역 상세에서 직접 주문취소가 가능합니다.</span><br /> <span>‘입금확인’ 이후 상태에는
 							고객센터로 문의해주세요.</span>
 					</div>
-
 				</div>
-				<!-- content -->
 			</div>
-			<!-- cart_main -->
+			<!-- content -->
 		</div>
-		<!-- body -->
-		
-		
+		<!-- cart_main -->
+	<!-- body -->
+	
+	
 	<script type="text/javascript">
 	//이미지 삽입
 	$(".image_wrap").each(function(i, obj){

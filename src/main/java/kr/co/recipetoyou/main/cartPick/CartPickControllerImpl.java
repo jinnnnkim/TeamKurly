@@ -75,8 +75,9 @@ public class CartPickControllerImpl implements CartPickController {
 		
 		cartAddVO.setUser_id(user_id);
 
-		List<PickVO> pickList = cartPickService.listPicks();
+		List<PickVO> pickList = cartPickService.listPicks(user_id);
 		ModelAndView mav = new ModelAndView();		
+		System.out.println(pickList);
 		mav.addObject("pickList", pickList);	//view에 전달할 객체 생성
 
 		return mav;
@@ -96,14 +97,9 @@ public class CartPickControllerImpl implements CartPickController {
 
 	//마이페이지 찜하기 페이지에서 담기 클릭 시 장바구니 페이지에 추가 담기 기능
 	@Override
-	@RequestMapping(value = "/insertCart.do",method = {RequestMethod.GET, RequestMethod.POST})
+	@RequestMapping(value="/insertCart.do", method = {RequestMethod.GET, RequestMethod.POST})
 	public String insertCart(@ModelAttribute CartAddVO cartAddVO, HttpSession session) throws Exception {
 					
-		String viewName = (String) session.getAttribute("viewName");
-
-		logger.info("info : "+viewName);
-		logger.debug("debug : "+viewName);
-		
 		//아이디 세션불러오기
 		UserVO userVO = (UserVO) session.getAttribute("userVO");
 		String user_id = "";
@@ -111,20 +107,18 @@ public class CartPickControllerImpl implements CartPickController {
 			if(userVO.getUser_id() == null || userVO.getUser_id() == "") {
 				user_id = "";
 			}else {
-				System.out.println("write user_id:"+userVO.getUser_id());
 				user_id = userVO.getUser_id();
 			}
 		}
 		
 		cartAddVO.setUser_id(user_id);
 			
-		System.out.println("insert Controller 호출");
-		
-		//장바구니에 기존 상품있는지 점검
-		int count = cartPickService.commCart(cartAddVO.getProd_code(), user_id);
+		//장바구니에 상품있는지 점검
+		int count = cartPickService.commCart(user_id, cartAddVO.getProd_code());
 		if(count == 0) {
 			cartPickService.insertCart(cartAddVO);
 		}else {
+			System.out.println("수량:"+cartAddVO.getProd_quantity());
 			cartPickService.updateCart(cartAddVO);
 		}
 			return "redirect:/cart.do";
@@ -172,11 +166,6 @@ public class CartPickControllerImpl implements CartPickController {
 	@RequestMapping(value = "/cart.do", method = {RequestMethod.GET, RequestMethod.POST})
 	public ModelAndView list(HttpSession session, ModelAndView mav) throws Exception {
 		
-		String viewName = (String) session.getAttribute("viewName");
-
-		logger.info("info : "+viewName);
-		logger.debug("debug : "+viewName);
-		
 		//아이디 세션불러오기
 		UserVO userVO = (UserVO) session.getAttribute("userVO");
 		String user_id = "";
@@ -191,8 +180,7 @@ public class CartPickControllerImpl implements CartPickController {
 		
 		System.out.println("listCarts Controller 호출");
 		
-		Map<String, Object> map = new HashMap<>();
-		
+	   Map<String, Object> map = new HashMap<>();
 		
 	   List<ProdVO> cartList = cartPickService.listCarts(user_id);
 	   int sumMoney = cartPickService.sumMoney(user_id);
@@ -206,6 +194,7 @@ public class CartPickControllerImpl implements CartPickController {
 	   map.put("fee", fee);					//배송금액
 	   map.put("allSum", sumMoney+fee);		//장바구니 총합
 	   mav.setViewName("cart");				//cart.do
+	   mav.addObject("cartList", cartList);
 	   mav.addObject("map", map);			//map에 저장
 	  			
 	   return mav;
