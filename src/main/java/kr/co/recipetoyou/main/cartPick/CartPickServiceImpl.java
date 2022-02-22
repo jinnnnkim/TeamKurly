@@ -33,9 +33,9 @@ public class CartPickServiceImpl implements CartPickService{
 	
 	
 	@Override
-	public List<PickVO> listPicks () throws DataAccessException {
+	public List<PickVO> listPicks (String user_id) throws DataAccessException {
 	
-		List<PickVO> pickList = cartPickDAO.selectAllCartPickList();
+		List<PickVO> pickList = cartPickDAO.selectAllCartPickList(user_id);
 		
 		return pickList;
 		
@@ -67,8 +67,15 @@ public class CartPickServiceImpl implements CartPickService{
 	}
 
 	@Override
-	public int commCart(int prod_code, String user_id) throws DataAccessException {
-		return cartPickDAO.commCart(prod_code, user_id);
+	public int commCart(String user_id, int prod_code) throws DataAccessException {
+		int result = cartPickDAO.selectCart(user_id);
+		
+		if(result==1) {
+			return cartPickDAO.selectCheckCartProd(prod_code);
+		}else {
+			return 0;
+		}
+		
 	}
 
 	@Override

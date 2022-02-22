@@ -77,9 +77,6 @@ public class AdGoodsDAOImpl implements AdGoodsDAO{
 	@Override
 	public int countSearch(PagingVO vo) throws Exception {
 		
-		System.out.println(vo.getKeyword());
-		System.out.println(vo.getCateCode());
-		
 		return sqlSession.selectOne(NAMESPACE+".getSearchCount", vo);
 	}
 	
@@ -111,7 +108,6 @@ public class AdGoodsDAOImpl implements AdGoodsDAO{
 	@Override
 	public int goodsModify(AdGoodsVO agvo) throws Exception {
 		
-		System.out.println(agvo.toString());
 	
 		return sqlSession.update(NAMESPACE+".goodsModify", agvo);
 	}
@@ -127,7 +123,6 @@ public class AdGoodsDAOImpl implements AdGoodsDAO{
 	@Override
 	public void removeImage(int prod_code) throws Exception {
 		
-		System.out.println("prod_codeeeeeeeeeeeee"+prod_code);
 		
 		sqlSession.delete(NAMESPACE+".removeImageAll",prod_code);
 		
