@@ -23,6 +23,7 @@
 <!-- 파비콘 링크 -->
 <link href="/recipetoyou/Resources/User/Img/Mypage2/KurlyIcon.png" rel="icon"
 	type="image/x-icon" />
+<script type="text/javascript" src="/recipetoyou/Resources/User/Js/Mypage/userInfo.js" charset="UTF-8"></script>
 </head>
 <body>
 	<div class="main">
@@ -31,15 +32,15 @@
 				<h2 class="title">개인 정보 수정</h2>
 			</div>
 			<!-- head -->
-			<c:if test="${user != null}">
+			<%-- <c:if test="${user != null}"> --%>
 			<table class="myInfoMain">
 				<tr>
 					<th>아이디</th>
-					<td><input type="text" value="${user.user_id}"></td>
+					<td><input type="text" value="" readonly="readonly"></td>
 				</tr>
 				<tr>
 					<th>현재 비밀번호</th>
-					<td><input type="text" value="${user.user_pw}"></td>
+					<td><input type="text" value=""></td>
 				</tr>
 				<tr>
 					<th>새 비밀번호</th>
@@ -51,16 +52,16 @@
 				</tr>
 				<tr>
 					<th>이름</th>
-					<td><input type="text" value="${user.user_name}"></td>
+					<td><input type="text" value=""></td>
 				</tr>
 				<tr class="email">
 					<th>이메일</th>
-					<td><input type="text" value="${user.user_email}"> <a href="" onclick="">중복확인</a>
+					<td><input type="text" value=""> <a href="" id="emailChk" onclick="fn_emailChk()">중복확인</a>
 					</td>
 				</tr>
 				<tr class="phone">
 					<th>휴대폰</th>
-					<td><input type="text" value="${user.user_phone}"> <a href="" onclick="">다른번호 인증</a></td>
+					<td><input type="text" value=""> <a href="" onclick="">다른번호 인증</a></td>
 				</tr>
 				<tr>
 					<th>성별</th>
@@ -104,7 +105,7 @@
 				<a href="">탈퇴하기</a>
 				<button type="submit">회원정보수정</button>
 			</div>
-			</c:if>
+			<%-- </c:if> --%>
 			<!-- form_footer -->
 		</div>
 		<!-- content -->

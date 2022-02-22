@@ -39,33 +39,23 @@
 			<!-- head -->
 			<table class="head_cate">
 				<tr>
-					<!-- <th class="title_select">선택</th> -->
 					<th class="title_address">주소</th>
 					<th class="title_name">받으실 분</th>
 					<th class="title_phone">연락처</th>
 					<th class="title_delivery">배송유형</th>
 					<th class="title_delete">삭제</th>
 				</tr>
-			
 			</table>
-		
-		
 		<c:forEach var="addressList" items="${addressList}">	
 			<table class="address_content">
 				<tr>
-					<!-- <td class="select_btn">
-						<input type="radio" name="select"></td> -->
 					<td class="address">
-						<!-- <p class="basic_address">기본 배송지</p> -->
 						<p class="detail_address">${addressList.addr}</p>
 					</td>
 					<td class="name">${addressList.user_name}</td>
 					<td class="phone">${addressList.user_phone}</td>
 					<td class="delivery_type"><p>${addressList.delivery_type}</p></td>
 					<td><a href="${contextPath}/removeAddress.do?addr_code=${addressList.addr_code}" id="btn-remove" onclick="remove_Address()">삭제</a></td>
-					<!-- <td class="modify"><a href="" class="modify_pop" onclick="openPop()">
-						<img src="/recipetoyou/Resources/User/Img/Mypage2/ico_modify_x2.png"></a> 
-					</td> -->
 				</tr>	
 			</table>
 		</c:forEach>

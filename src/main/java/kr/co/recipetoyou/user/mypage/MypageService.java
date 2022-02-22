@@ -53,7 +53,13 @@ public interface MypageService {
 	//상품후기
 	public List<ReviewVO> listReviews() throws DataAccessException;
 
-	public void updateUser(UserVO userVO) throws DataAccessException;
+	/*
+	 * //회원정보수정 public void updateUser(UserVO userVO) throws DataAccessException;
+	 */
 	
+	//배송지삭제
 	public int deleteAddress(@RequestParam("addr_code") String addr_code) throws DataAccessException;
+	
+	//이메일 중복체크
+	public int emailChk(UserVO userVO) throws DataAccessException;
 }

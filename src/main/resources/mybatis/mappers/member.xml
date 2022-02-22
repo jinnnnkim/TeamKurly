@@ -459,4 +459,10 @@
 		WHERE tua.USER_ID = #{user_id}
 	</select>
 	
+	<!-- 이메일 중복체크 -->
+	<select id="emailChk" resultType="int">
+		SELECT COUNT(*) TB_USERS tu 
+		WHERE USER_EMAIL = #{USER_EMAIL}
+	</select>
+	
 </mapper>  
