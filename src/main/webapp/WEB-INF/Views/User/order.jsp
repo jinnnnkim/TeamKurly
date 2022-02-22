@@ -36,7 +36,10 @@
 		<div class="orderList">
 			<h2>주문상품</h2>
 			<div class="box">
-				<h4>[남향푸드또띠아] 핫 치킨 브리또 주문합니다.</h4>
+			<c:forEach var="list" items="${orderList}">
+				<h4>${list.prodVO.prod_name} 주문합니다.</h4>
+				<input type="hidden" name="price" value="${list.totalPrice }"/>
+			</c:forEach>
 			</div>
 		</div>
 		<div class="orderInfo">
@@ -45,15 +48,15 @@
 				<table class="orderTable">
 					<tr>
 						<th>보내는분</th>
-						<td>홍길동</td>
+						<td>${user.user_name}</td>
 					</tr>
 					<tr>
 						<th>휴대폰</th>
-						<td>010-0000-0000</td>
+						<td>${user.user_phone}</td>
 					</tr>
 					<tr>
 						<th>이메일</th>
-						<td>cccc@gmail.com<br />이메일을 통해 주문처리과정을 보내드립니다.<br />변경은
+						<td>${user.user_email}<br />이메일을 통해 주문처리과정을 보내드립니다.<br />변경은
 							개인정보 수정에서 가능합니다.
 						</td>
 					</tr>
@@ -67,8 +70,8 @@
 					<tr>
 						<th>배송지</th>
 						<td class="txtBox"><span class="basicAddress">기본배송지</span><br />
-							<span class="address">서울 강남구 서초대로 이젠아이티</span><br /> <span
-							class="deliMethod">샛별배송</span></td>
+							<span class="address">${userAddr.addr }</span><br /> <span
+							class="deliMethod">${userAddr.delivery_type }</span></td>
 					</tr>
 					<tr>
 						<th>상세정보</th>
@@ -173,15 +176,15 @@
 					<table>
 						<tr>
 							<th>주문금액</th>
-							<td class="payPrice">28,000원</td>
+							<td><span class="payPrice">28,000</span>원</td>
 						</tr>
 						<tr class="sub">
 							<th>ㄴ 상품금액</th>
-							<td><span>31,900</span>원</td>
+							<td><span>0</span>원</td>
 						</tr>
 						<tr class="sub">
 							<th>ㄴ 할인금액</th>
-							<td>-<span>3,850</span>원
+							<td>-<span>0</span>원
 							</td>
 						</tr>
 						<tr>
@@ -196,9 +199,9 @@
 							<th>적립금사용</th>
 							<td><span>0</span>원</td>
 						</tr>
-						<tr class="totalPayment">
+						<tr>
 							<th>최종결제금액</th>
-							<td><span>28,050</span>원</td>
+							<td><span class="totalPayment">28,050</span>원</td>
 						</tr>
 					</table>
 				</div>
@@ -245,7 +248,7 @@
 			function payment(data) {
 				
 				var _name = $('.box h4').text();
-				var _price = $('.totalPayment td span').text();
+				var _price = $('.totalPayment').text();
 				_price = removeStr(_price,",");
 				
 			    IMP.init('imp38939005');
@@ -289,6 +292,18 @@
 				doc = doc.replace(str,"");
 				return doc;
 			}
+			
+			var price = 0;
+			
+			$("input:hidden[name='price']").each(function(){
+				
+				var _temp = $(this).val();
+				price = price + parseInt(_temp);
+				$(".payPrice").text(price);
+				$(".totalPayment").text(price);
+			});
+			
+			
 			
 		});
 	</script>

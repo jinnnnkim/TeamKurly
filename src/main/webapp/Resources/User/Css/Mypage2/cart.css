@@ -68,8 +68,9 @@
 
 .subject {
 	display: flex;
-	flex-direction: column;
-	margin: -100px 0 0 150px; 
+    flex-direction: column;
+    width: 200px;
+    margin: -100px 0px 15px 150px;
 }
 
 .subject_tit {
@@ -97,7 +98,7 @@
 	border: 1px solid #dddfe1;
 	border-radius: 3px;
 	padding: 3px;
-	margin: -30px -205px 0 0;
+	margin: 0px 10px 0 -125px;
 	
 }
 
@@ -229,5 +230,5 @@
 
 .prodCount {
 	float: right;
-	margin: -20px -140px 0 0
+    margin: 0px 75px 0 -125px;
 }

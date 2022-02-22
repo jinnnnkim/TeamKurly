@@ -152,6 +152,10 @@
 		]]>
 	</select>
 	
+	<select id="selectAddr" resultMap = "addressResult">
+		select * from TB_USER_ADDR where user_id = #{user_id}
+	</select>
+	
 	<!--  
 	<select id="selectAllCartPickList" resultMap="CartPickResult"> order by cart_code desc
 		<![CDATA[
