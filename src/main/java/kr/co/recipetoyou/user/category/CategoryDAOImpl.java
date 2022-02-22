@@ -45,7 +45,12 @@ public class CategoryDAOImpl implements CategoryDAO {
 	
 	@Override
 	public CategoryVO goodsDetailInfo(int prod_code) throws DataAccessException{
-		return sqlSession.selectOne(NAMESPACE+".goodsDetailInfo", prod_code);
-		
+		return sqlSession.selectOne(NAMESPACE+".goodsDetailInfo", prod_code);	
+	}
+
+	@Override
+	public List<CategoryVO> goodsDetail() throws DataAccessException {
+		List<CategoryVO> goodsDetail = sqlSession.selectList(NAMESPACE+".goodsDetail");
+		return goodsDetail;
 	}
 }

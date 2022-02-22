@@ -20,4 +20,6 @@ public interface CategoryDAO {
 
 	CategoryVO goodsDetailInfo(int prod_code) throws DataAccessException;
 
+	List<CategoryVO> goodsDetail() throws DataAccessException;
+
 }

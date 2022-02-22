@@ -56,4 +56,10 @@
 			select * from tb_prod where prod_code = #{prod_code}
 		]]>
 	</select>
+	
+	<select id="goodsDetail" resultMap="mainResult">
+		<![CDATA[
+			select * from tb_prod 
+		]]>
+	</select>
 </mapper>

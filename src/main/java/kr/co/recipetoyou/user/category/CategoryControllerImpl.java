@@ -103,12 +103,12 @@ public class CategoryControllerImpl implements CategoryController{
 	public ModelAndView goodsView(int prod_code, HttpServletRequest request, HttpServletResponse response) throws Exception{
 		String viewName = (String) request.getAttribute("viewName");
 		CategoryVO goodsDetailInfo = service.goodsDetailInfo(prod_code);
-		List<CategoryVO> goodsInfo = service.goodsInfoList();
+		List<CategoryVO> goodsDetail = service.goodsDetailList();
 		logger.info(viewName);
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName(viewName);
 		mav.addObject("goodsDetailInfo", goodsDetailInfo);
-		mav.addObject("goodsInfo", goodsInfo);
+		mav.addObject("goodsDetail", goodsDetail);
 		return mav;
 	}
 	

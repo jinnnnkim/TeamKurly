@@ -72,7 +72,7 @@
 }
 
 .inner_listgoods {
-	display: flex;
+	display: inline-block;
 }
 
 .glists li {
@@ -86,7 +86,7 @@
 
 ul.glists {
 	width:1080px;
-	margin:0 auto 20px auto;
+	margin:0 auto 0 auto;
 	padding-left:60px;
 }
 
@@ -174,12 +174,12 @@ span.mean {
 	line-height: 22px;
 } 
 
-.pagediv ul {
+.page ul {
 	display: flex;
 	justify-content: center;
 }
 
-.pagediv ul li {
+.page ul li {
 	width:30px;
 	height:30px;
 	border:1px solid #ddd;
@@ -188,10 +188,12 @@ span.mean {
 	margin-left:-1px;
 }
 
-.pagediv ul li:hover{
+.page ul li:hover{
 	background:#fafafa;
 	transition:0.3s;
 }
+
+
 
 /* saleGoodPage */
 

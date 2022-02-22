@@ -4,23 +4,23 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <c:set var="contextPath" value="${pageContext.servletContext.contextPath}" />
 <c:set var="articlesList" value="${articlesMap.articlesList }"/><%--page넘버와 섹션이 적용된 페이지 글 --%>
-
 <%
 request.setCharacterEncoding("UTF-8");
 response.setContentType("application/json");
 %>
-
-
-
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Recipe to You :: 내일의 장보기, 레시피투유</title>
-<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>	
+<link rel="stylesheet" type="text/css" href="/recipetoyou/Resources/Common/slick/slick.css" />
+<link rel="stylesheet" type="text/css" href="/recipetoyou/Resources/Common/slick/slick-theme.css" />
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
 <script type="text/javascript" src="/recipetoyou/Resources/Common/slick/slick.min.js"></script>
+
+	
 	<script type="text/javascript">
 		function fn_pick() {
 			$.ajax({
@@ -130,9 +130,8 @@ response.setContentType("application/json");
 					<span class="share"> 
 					<div id="uploadArea">
 					</div>
-					</span> <strong class="name">${goodsDetailInfo.prod_name}</strong><br> <span
-						class="short_desc">${goodsDetailInfo.prod_content }</span> <span class="dc">
-						<span class="dc_price">${goodsDetailInfo.prod_price }<span class="won">원</span></span>
+					</span> <strong class="name">${goodsDetailInfo.prod_name}</strong><br><br> 
+						<span class="dc_price">${goodsDetailInfo.prod_price}</span><span class="won">원</span>
 					</span>
 					<!-- dc -->
 					<br> <span class="not_login">로그인 후, 적립혜택이 제공됩니다.</span>
@@ -233,12 +232,16 @@ response.setContentType("application/json");
 					<!-- goods-add-product-sub -->
 				</div>
 				<!-- goods_add_product -->
-
-
+				
+				
+				<button class="btn_move_left" id="aro1_prev">
+					<i class="fas fa-angle-left"></i>
+				</button>	
+					
 				<div class="inn_goods_add_product">
 					<!-- 관련 상품 추천 -->
 				
-					<c:forEach var="goods" items="${goodsInfo}" >
+					<c:forEach var="goods" items="${goodsDetail}">
 						<ul class="goods_add_product_list">
 							<li class="goods_add_product_item">
 								<div class="add_product_item_inn_wrap">
@@ -247,39 +250,64 @@ response.setContentType("application/json");
 										<a href="${contextPath}/user/goodsView.do?prod_code=${goods.prod_code}"><img></a>								
 									</div>
 									<div class="add_product_item_inn">
-										<p>
-											<span class="name">${goods.prod_name}</span>	
-											<span id="goodsCost" class="goodsCost">${goods.prod_price}</span>원
-										</p>
+										<p class="add_product_item_inn_cost">${goods.prod_name}</p>	
+										<p id="goodsCost" class="goodsCost">${goods.prod_price}원</p>
 									</div>
+							
 									<!-- add_product_item_inn -->
 								</div> <!-- add_product_item_inn_wrap -->
 							</li>
 						</ul>
 					</c:forEach>
-				
-					<div class="arrowSlider">
-						<span class="btn_move_left" id="aro1_prev"><i class="fas fa-angle-left"></i></span> 
-						<span class="btn_move_right" id="aro1_next"><i class="fas fa-angle-right"></i></span>
-					</div>
-
-				<!-- how_goods 페이징 기능.js -->
-					<script type="text/javascript">
-											$('.inn_goods_add_product').slick({
-												slidesToShow : 4,
-												slidesToScroll : 1,
-												dots : false,
-												arrows : true,
-												infinite : true,
-												autoplay : false,
-												speed : 500,
-												prevArrow : $('#aro1_prev'),
-												nextArrow : $('#aro1_next'),
-												autoplaySpeed : 3000
-											});
-					</script>
+					<!-- inn_goods_add_product 관련 상품 추천 wrap-->
+						
 				</div>
-				<!-- inn_goods_add_product 관련 상품 추천 wrap-->
+				
+				<button class="btn_move_right" id="aro1_next">
+						<i class="fas fa-angle-right"></i>
+					</button>
+				<!-- how_goods 페이징 기능.js -->
+				<script type="text/javascript">
+					// 숫자 타입에서 쓸 수 있도록 format() 함수 추가
+					Number.prototype.format = function(){
+					    if(this==0) return 0;
+
+					    var reg = /(^[+-]?\d+)(\d{3})/;
+					    var n = (this + '');
+
+					    while (reg.test(n)) n = n.replace(reg, '$1' + ',' + '$2');
+
+					    return n;
+					};
+
+					// 문자열 타입에서 쓸 수 있도록 format() 함수 추가
+					String.prototype.format = function(){
+					    var num = parseFloat(this);
+					    if( isNaN(num) ) return "0";
+
+					    return num.format();
+					};
+					
+					jQuery('.goodsCost').text(function() {
+					    jQuery(this).text(
+					        jQuery(this).text().format()
+					    );
+					});
+					
+					$('.inn_goods_add_product').slick({
+						slidesToShow : 4,
+						slidesToScroll : 1,
+						dots : false,
+						arrows : true,
+						infinite : true,
+						autoplay : false,
+						speed : 500,
+						prevArrow : $('#aro1_prev'),
+						nextArrow : $('#aro1_next'),
+						autoplaySpeed : 3000
+					});
+				</script>
+				
 
 				<div class="goods-view-wrap">
 					<!-- 상품 상세보기 -->
@@ -301,12 +329,15 @@ response.setContentType("application/json");
 					<div class="goods-view-inn_content_wrap">
 						<div id="prodDetail" class="goods-view-inn_content">
 							<div class="pic">
-								<img alt="pic"
-									src="/recipetoyou/Resources/User/Img/SaleGoods/view-inn_content_1.jpg">
+								<div class="image_wrap" data-prod_code="${goodsDetailInfo.imageList[0].prod_code}" data-path="${goods.imageList[0].uploadPath}"
+									data-uuid="${goodsDetailInfo.imageList[0].uuid}" data-filename="${goodsDetailInfo.imageList[0].fileName}">
+									<img alt="pic">
+								</div>
 							</div>
 							<!-- pic -->
 							<div class="context_tit">
-								<h4>
+								${goodsDetailInfo.prod_content }
+								<!-- <h4>
 									<small>식물성 재료로 완성한 라구 파스타</small> [잇츠베러] 어스밀<br> 렌틸라구 두부면
 									파스타
 								</h4>
@@ -314,7 +345,7 @@ response.setContentType("application/json");
 									두부면 파스타가 무척 마음에 드실 거예요. 유기농 콩으로 두부면을 제면하고 소스와 토핑은 모두 식물성 재료를
 									사용해 질 좋은 단백질과 식이섬유를 간편하게 챙길 수 있거든요. 이번에는 고소한 두부면에 토마토 소스와 렌틸콩으로
 									만든 라구소스를 흠뻑 입혀 완성한 렌틸라구 파스타를 준비했어요. 두부와 렌틸콩의 식감이 살아 있어 풍성하고
-									다채로운 맛을 자랑한답니다. 가볍고 속 편한 식사를 찾고 계셨다면, 잇츠베러를 선택해 보세요.</p>
+									다채로운 맛을 자랑한답니다. 가볍고 속 편한 식사를 찾고 계셨다면, 잇츠베러를 선택해 보세요.</p> -->
 							</div>
 							<!-- context_tit -->
 						</div>
@@ -323,14 +354,14 @@ response.setContentType("application/json");
 					<!-- goods-view-inn_content_wrap -->
 
 
-					<div class="check_point">
+					<!-- <div class="check_point">
 						<h3>
 							<span>Recipe To You's Check Point</span>
 						</h3>
 						<img alt="check_point_img"
 							src="/recipetoyou/Resources/User/Img/SaleGoods/check_point.jpg">
 					</div>
-					<!-- check_point -->
+					check_point
 
 					<div class="pick">
 						<h3>
@@ -347,11 +378,11 @@ response.setContentType("application/json");
 								<img alt="pic"
 									src="/recipetoyou/Resources/User/Img/SaleGoods/pick_1.jpg">
 							</div>
-							<!-- pic2 -->
+							pic2
 						</div>
-						<!-- context_tit -->
+						context_tit
 					</div>
-					<!-- pick -->
+					pick -->
 
 					<div class="goods_tips">
 						<span>Recipe To You's Tip</span>
@@ -371,10 +402,10 @@ response.setContentType("application/json");
 					</div>
 					<!-- tips -->
 
-					<div id="goods_pic">
+					<!-- <div id="goods_pic">
 						<img alt=""
 							src="/recipetoyou/Resources/User/Img/SaleGoods/pick_2.jpg">
-					</div>
+					</div> -->
 					<!-- goods_pic -->
 
 

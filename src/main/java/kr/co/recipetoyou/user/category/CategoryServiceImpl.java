@@ -77,5 +77,13 @@ private static final Logger logger = LoggerFactory.getLogger("CategoryServiceImp
 	public CategoryVO goodsDetailInfo(int prod_code) throws DataAccessException{
 		return dao.goodsDetailInfo(prod_code);
 	}
+
+	@Override
+	public List<CategoryVO> goodsDetailList() throws DataAccessException {
+		List<CategoryVO> goodsDetail = dao.goodsDetail();
+		return goodsDetail;
+	}
+	
+	
 	
 }

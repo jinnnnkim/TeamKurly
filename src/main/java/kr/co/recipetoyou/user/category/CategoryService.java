@@ -20,4 +20,6 @@ public interface CategoryService {
 
 	CategoryVO goodsDetailInfo(int prod_code) throws DataAccessException;
 
+	List<CategoryVO> goodsDetailList() throws DataAccessException;
+
 }
