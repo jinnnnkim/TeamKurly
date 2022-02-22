@@ -59,7 +59,7 @@
 						<a href="#"><img alt="delivery" src="/recipetoyou/Resources/User/Img/delivery.png"></a>	
 					</div>
 					<div class="logo">
-						<a href="${contextPath}/main.do"><img alt="logo" src="/recipetoyou//Resources/User/Img/logo.gif"></a>
+						<a href="${contextPath}/main.do"><img alt="logo" src="/recipetoyou/Resources/User/Img/RecipeToYou_logo_1.png"></a>
 					</div>
 				
 		
