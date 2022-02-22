@@ -8,6 +8,7 @@ import kr.co.recipetoyou.main.cartPick.vo.CartAddVO;
 import kr.co.recipetoyou.main.cartPick.vo.FavVO;
 import kr.co.recipetoyou.main.cartPick.vo.PickVO;
 import kr.co.recipetoyou.main.cartPick.vo.ProdVO;
+import kr.co.recipetoyou.user.mypage.vo.UserAddrVO;
 
 public interface CartPickDAO{
 	//조회
@@ -49,5 +50,6 @@ public interface CartPickDAO{
 	
 	public List<CartPickVO__> selectAllCartPickList__() throws DataAccessException;
 	public int selectCheckCartProd(int prod_code);
+	public UserAddrVO selectAddr(String user_id);
 	
 }

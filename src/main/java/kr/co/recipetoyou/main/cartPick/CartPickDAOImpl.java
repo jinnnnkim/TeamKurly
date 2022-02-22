@@ -16,6 +16,7 @@ import kr.co.recipetoyou.main.cartPick.vo.CartAddVO;
 import kr.co.recipetoyou.main.cartPick.vo.FavVO;
 import kr.co.recipetoyou.main.cartPick.vo.PickVO;
 import kr.co.recipetoyou.main.cartPick.vo.ProdVO;
+import kr.co.recipetoyou.user.mypage.vo.UserAddrVO;
 
 
 @Repository("cartPickDAO")
@@ -29,6 +30,7 @@ public class CartPickDAOImpl implements CartPickDAO {
 	public List<PickVO> selectAllCartPickList(String user_id) throws DataAccessException {
 		
 		List<PickVO> pickList = sqlSession.selectList("mapper.member.selectAllCartPickList",user_id);
+		System.out.println("select:"+pickList.toString());
 		return pickList;
 	}
 	
@@ -154,6 +156,12 @@ public class CartPickDAOImpl implements CartPickDAO {
 	@Override
 	public int selectCheckCartProd(int prod_code) {
 		return sqlSession.selectOne("mapper.cartPick.selectCheckCartProd", prod_code);
+	}
+
+	@Override
+	public UserAddrVO selectAddr(String user_id) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("mapper.cartPick.selectAddr",user_id);
 	}
 
 	
