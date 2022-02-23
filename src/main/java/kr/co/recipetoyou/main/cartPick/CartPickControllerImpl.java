@@ -25,6 +25,7 @@ import kr.co.recipetoyou.main.cartPick.vo.FavVO;
 import kr.co.recipetoyou.main.cartPick.vo.PickVO;
 import kr.co.recipetoyou.main.cartPick.vo.ProdVO;
 import kr.co.recipetoyou.user.UserVO;
+import kr.co.recipetoyou.user.mypage.vo.UserAddrVO;
 
 
 @Controller("cartpickController")
@@ -182,6 +183,7 @@ public class CartPickControllerImpl implements CartPickController {
 	   Map<String, Object> map = new HashMap<>();
 		
 	   List<ProdVO> cartList = cartPickService.listCarts(user_id);
+	   UserAddrVO addr = cartPickService.getAddr(user_id);
 	   int sumMoney = cartPickService.sumMoney(user_id);
 	   //장바구니ㅣ 전체 금액에 따라 배송비 구분
 	   //배송료 (3만원이상 무료, 미만 3000원) - 삼항연산자 사용
@@ -194,6 +196,7 @@ public class CartPickControllerImpl implements CartPickController {
 	   map.put("allSum", sumMoney+fee);		//장바구니 총합
 	   mav.setViewName("cart");				//cart.do
 	   mav.addObject("cartList", cartList);
+	   mav.addObject("addrList", addr);
 	   mav.addObject("map", map);			//map에 저장
 	  			
 	   return mav;

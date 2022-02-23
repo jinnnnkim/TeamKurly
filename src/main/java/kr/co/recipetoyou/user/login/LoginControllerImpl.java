@@ -34,13 +34,18 @@ public class LoginControllerImpl implements LoginController {
 			HttpServletRequest request, HttpServletResponse response) throws Exception{
 		
 		ModelAndView mav = new ModelAndView();
+
+		String viewName = (String) request.getAttribute("viewName");
+		
 		userVO = loginService.login(userVO);
 		
 		if (userVO != null) {
 			HttpSession session = request.getSession();
 			session.setAttribute("userVO", userVO);		//세션에 회원 정보를 저장함.
 			session.setAttribute("isLogOn", true);
+			session.setAttribute("user_id", userVO.getUser_id());
 			mav.setViewName("redirect:/main.do");
+			//mav.setViewName(viewName);
 			
 			String action = (String) session.getAttribute("action");		
 			session.removeAttribute("action");

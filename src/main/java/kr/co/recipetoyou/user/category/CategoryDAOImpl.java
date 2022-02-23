@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 import com.fasterxml.jackson.core.JsonProcessingException;
 
 import kr.co.recipetoyou.admin.adgoods.AdgoodsImgVO;
+import kr.co.recipetoyou.util.PagingVO;
 
 @Repository("categoryDAO")
 public class CategoryDAOImpl implements CategoryDAO {
@@ -45,7 +46,23 @@ public class CategoryDAOImpl implements CategoryDAO {
 	
 	@Override
 	public CategoryVO goodsDetailInfo(int prod_code) throws DataAccessException{
-		return sqlSession.selectOne(NAMESPACE+".goodsDetailInfo", prod_code);
-		
+		return sqlSession.selectOne(NAMESPACE+".goodsDetailInfo", prod_code);	
+	}
+
+	@Override
+	public List<CategoryVO> goodsDetail() throws DataAccessException {
+		List<CategoryVO> goodsDetail = sqlSession.selectList(NAMESPACE+".goodsDetail");
+		return goodsDetail;
+	}
+
+	@Override
+	public int cateCount(PagingVO vo) throws DataAccessException {
+		return sqlSession.selectOne(NAMESPACE+".cateCount", vo);
+	}
+
+	@Override
+	public List<CategoryVO> listGoods(PagingVO vo) throws DataAccessException {
+		 List<CategoryVO> listGoods = sqlSession.selectList(NAMESPACE+".listGoods", vo);
+		 return listGoods;
 	}
 }

@@ -48,6 +48,10 @@
 		<result property="prod_price" column="prod_price"/>
 		<result property="prod_discount" column="prod_discount"/>
 		<result property="prod_point" column="prod_point"/>
+		<collection property="userVO" resultMap="userResult"/>
+		<collection property="useraddrVO" resultMap="addressResult"/>
+		<collection property="cartAddVO" resultMap="cartInResult"/>
+		
 	</resultMap>
 
 
@@ -129,6 +133,19 @@
 		<result property="user_id" column="user_id"/>
 	</resultMap>
 	
+		<!-- 주문 OrderVO -->
+	<resultMap type="orderVO" id="orderResult">
+		<result property="ord_code" column="ord_code"/>
+		<result property="user_id" column="user_id"/>
+		<result property="ord_date" column="ord_date"/>
+		<result property="prod_code" column="prod_code"/>
+		<result property="quantity" column="quantity"/>
+		<result property="price" column="price"/>
+		<result property="status" column="status"/>
+		<result property="totalPrice" column="totalPrice"/>
+		<collection property="prodVO" resultMap="cartListResult"/>
+	</resultMap>
+	
 	
 	
 	
@@ -138,7 +155,7 @@
 	<!-- 찜하기 목록 조회 -->
 	<select id="selectAllCartPickList" resultMap="cartPickResult">
 		<![CDATA[
-			SELECT tf.fav_flag_code, tf.USER_ID , tp.PROD_NAME , tp.PROD_CODE , tp.PROD_PRICE, tp.PROD_DISCOUNT 
+			SELECT tf.USER_ID , tp.PROD_NAME , tp.PROD_CODE , tp.PROD_PRICE, tp.PROD_DISCOUNT 
 			FROM TB_FAV tf, TB_PROD tp , TB_USERS tu 
 			WHERE tf.PROD_CODE = tp.PROD_CODE
 			AND tf.USER_ID = tu.USER_ID 
@@ -182,11 +199,12 @@
 	<!-- 장바구니 목록 조회 -->
 	<select id="selectAllCartList" resultMap="cartListResult">
 		<![CDATA[
-			SELECT tp.PROD_NAME , tp.PROD_CONTENT,  tp.PROD_PRICE, tp.PROD_DISCOUNT, tp.PROD_POINT, 
-			tua.USER_ID, tua.ADDR, tua.DELIVERY_TYPE 
-			FROM TB_PROD tp, TB_CART tc, TB_USER_ADDR tua 
+			SELECT *
+			FROM TB_CART tc , TB_FAV tf , TB_USER_ADDR tua , TB_PROD tp 
 			WHERE tp.PROD_CODE = tc.PROD_CODE 
-			and  tc.USER_ID =tua.USER_ID   
+			AND tc.USER_ID = tua.USER_ID 
+			AND tf.USER_ID = tc.USER_ID   
+			AND tc.USER_ID = #{user_id}
 		]]>
 	</select>
 
@@ -389,13 +407,62 @@
 	</select> -->
 	
 	
+	<!-- 주문 -->
+	<select id="selectProdPrice" resultMap="orderResult">
+		SELECT DISTINCT tc.USER_ID , tp.PROD_CODE, tc.PROD_QUANTITY quantity , tc.PROD_QUANTITY * tp.PROD_PRICE AS price
+		FROM TB_CART tc , TB_PROD tp , TB_ORDER to2 
+		WHERE tc.PROD_CODE  = tp.PROD_CODE
+		AND tc.CART_CODE = #{cart_code}
+	</select>
+
+	<select id="selectOrdCheck" resultType="int">
+		SELECT DISTINCT count(*)
+		FROM TB_ORDER to2 
+		WHERE to2.USER_ID = #{user_id}
+		AND to2.PROD_CODE = #{prod_code}
+		and to2.status = 1
+	</select>
 	
+	<insert id="insertOrder" parameterType="orderVO">
+		INSERT INTO ADMIN.TB_ORDER
+		(ORD_CODE, USER_ID, ORD_DATE, PROD_CODE, QUANTITY, PRICE, STATUS)
+		VALUES
+		(TB_ORDER_ORD_SEQ.nextval, #{user_id}, sysdate, #{prod_code}, #{quantity}, #{price}, 1)
+	</insert>
 	
+	<update id="updateOrder" parameterType="orderVO">
+		UPDATE ADMIN.TB_ORDER
+			SET  ORD_DATE=sysdate,
+					PROD_CODE=#{prod_code}, 
+					QUANTITY= #{quantity}, 
+					PRICE=#{price}, 
+					STATUS=1
+			WHERE USER_ID=#{user_id}
+	</update>
 	
+	<select id="selectOrdList" resultMap="orderResult">
+		SELECT to2.*, to2.PRICE * to2.QUANTITY as totalPrice, tp.*
+		FROM TB_ORDER to2, TB_PROD tp 
+		WHERE to2.PROD_CODE = tp.PROD_CODE
+		and to2.user_id = #{user_id}
+	</select>
 	
+	<select id="selectUserInfo" resultMap="userResult">
+		SELECT *
+		FROM TB_USERS tu
+		WHERE tu.USER_ID = #{user_id}
+	</select>
 	
+	<select id="selectUserAddr" resultMap="addressResult">
+		SELECT *
+		FROM TB_USER_ADDR tua
+		WHERE tua.USER_ID = #{user_id}
+	</select>
 	
-	
-	
+	<!-- 이메일 중복체크 -->
+	<select id="emailChk" resultType="int">
+		SELECT COUNT(*) TB_USERS tu 
+		WHERE USER_EMAIL = #{USER_EMAIL}
+	</select>
 	
 </mapper>  
