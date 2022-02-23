@@ -105,7 +105,6 @@ public class MypageServiceImpl implements MypageService{
 			
 		});
 		
-		
 		return orderList;
 		
 	}
@@ -117,7 +116,6 @@ public class MypageServiceImpl implements MypageService{
 		
 		MyOrderVO orderVO = mypageDAO.orderDetailList(ord_code);
 		orderVO.setImageList(mypageDAO.getGoodsImage(ord_code));
-		
 		return orderVO;
 	}
 

@@ -62,10 +62,7 @@
 					<td class="name">${addressList.user_name}</td>
 					<td class="phone">${addressList.user_phone}</td>
 					<td class="delivery_type"><p>${addressList.delivery_type}</p></td>
-					<td><a href="${contextPath}/removeAddress.do?addr_code=${addressList.addr_code}" id="btn-remove" onclick="remove_Address()">삭제</a></td>
-					<!-- <td class="modify"><a href="" class="modify_pop" onclick="openPop()">
-						<img src="/recipetoyou/Resources/User/Img/Mypage2/ico_modify_x2.png"></a> 
-					</td> -->
+					<td><a href="${contextPath}/removeAddress.do?addr_code=${addressList.addr_code}" id="btn-remove" onclick="remove_Address()">삭제</a></td>	
 				</tr>	
 			</table>
 		</c:forEach>
