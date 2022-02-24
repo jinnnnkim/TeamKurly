@@ -308,6 +308,7 @@
 			$(".image_wrap").each(function(i, obj){
 				
 				const bobj = $(obj);
+				console.log(bobj.attr("class"));
 				if(bobj.data("prod_code")){
 					
 					const uploadPath = bobj.data("path");
