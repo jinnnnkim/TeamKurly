@@ -87,6 +87,11 @@
 		<put-attribute name="body" value="/WEB-INF/Views/User/Notice/noticeOneToOneQuestionDetail.jsp"/>	
 	</definition>
 	
+	<definition name="/notice/deliverNotice.do" extends="noticeLayout">
+		<put-attribute name="title" value="배달 문의"/>
+		<put-attribute name="body" value="/WEB-INF/Views/User/Notice/deliverNotice.jsp"/>	
+	</definition>
+	
 	<definition name="community/communityRecipeMain" extends="communityLayout">
 		<put-attribute name="title" value="커뮤니티 - 레시피"/>
 		<put-attribute name="body" value="/WEB-INF/Views/User/Community/communityRecipeMain.jsp"/>	
@@ -106,6 +111,8 @@
 		<put-attribute name="title" value="레시피 - 상세페이지"/>
 		<put-attribute name="body" value="/WEB-INF/Views/User/Community/communityRecipeModify.jsp"/>	
 	</definition>
+	
+	
 	
 	
 </tiles-definitions>       
