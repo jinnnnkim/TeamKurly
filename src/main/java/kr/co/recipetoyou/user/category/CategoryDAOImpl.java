@@ -38,21 +38,28 @@ public class CategoryDAOImpl implements CategoryDAO {
 	}
 		
 	//상품 정보
-	@Override
-	public CategoryVO getGoodsInfo(int prod_code) throws JsonProcessingException {	
-		return sqlSession.selectOne(NAMESPACE+".getGoodsInfo", prod_code);
-	}	
-
+	/*
+	 * @Override public CategoryVO getGoodsInfo(int prod_code) throws
+	 * JsonProcessingException { return
+	 * sqlSession.selectOne(NAMESPACE+".getGoodsInfo", prod_code); }
+	 */
+	
+	  @Override public CategoryVO getGoodsInfo(int prod_code) throws
+	  JsonProcessingException { return
+	  sqlSession.selectOne(NAMESPACE+".getGoodsInfo", prod_code); }
+	 
 	@Override
 	public List<CategoryVO> bargain() throws DataAccessException {
 		List<CategoryVO> bargainList = sqlSession.selectList(NAMESPACE+".bargain");
 		return bargainList;
 	}
 	
-	@Override
-	public CategoryVO goodsDetailInfo(int prod_code) throws DataAccessException{
-		return sqlSession.selectOne(NAMESPACE+".goodsDetailInfo", prod_code);	
-	}
+	
+	  @Override public CategoryVO goodsDetailInfo(int prod_code) throws DataAccessException{
+		  return sqlSession.selectOne(NAMESPACE+".goodsDetailInfo", prod_code);
+		  
+	  }
+	 
 
 	@Override
 	public List<CategoryVO> goodsDetail() throws DataAccessException {
@@ -75,12 +82,12 @@ public class CategoryDAOImpl implements CategoryDAO {
 	public List<AdgoodsImgVO> getGoodsDetailList(int prod_code) throws JsonProcessingException {
 		return sqlSession.selectList(NAMESPACE+".getGoodsDetailList", prod_code);
 	}
-	
+
 	@Override
 	public AdgoodsImgVO getGoodsDetailImage(int prod_code) throws JsonProcessingException {
 		return sqlSession.selectOne(NAMESPACE+".getGoodsDetailImage", prod_code);
 	}
-	
+
 	@Override
 	public List<AdgoodsImgVO> getNewGoodsList(int prod_code) throws JsonProcessingException {
 		return sqlSession.selectList(NAMESPACE+".getNewGoodsList", prod_code);

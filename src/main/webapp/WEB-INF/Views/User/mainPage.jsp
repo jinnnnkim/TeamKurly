@@ -73,9 +73,12 @@
 							
 							<div class="image_wrap" data-prod_code="${goods.imageList[0].prod_code}" data-path="${goods.imageList[0].uploadPath}"
 												data-uuid="${goods.imageList[0].uuid}" data-filename="${goods.imageList[0].fileName}">
+
+									<a href="${contextPath}/user/goodsView.do?prod_code=${goods.prod_code}">
 								<a href="${contextPath}/user/goodsView.do?prod_code=${goods.prod_code}">
+
 									<img>
-								</a>
+									</a>
 							</div>
 							<p>
 								<span class="name">${goods.prod_name}</span>
@@ -308,6 +311,7 @@
 			$(".image_wrap").each(function(i, obj){
 				
 				const bobj = $(obj);
+				console.log(bobj.attr("class"));
 				if(bobj.data("prod_code")){
 					
 					const uploadPath = bobj.data("path");

@@ -27,7 +27,9 @@ public interface CategoryDAO {
 
 	List<CategoryVO> listGoods(PagingVO vo) throws DataAccessException;
 
+
 	List<AdgoodsImgVO> getBargainImage(int prod_code) throws JsonProcessingException;
+
 
 	AdgoodsImgVO getGoodsDetailImage(int prod_code) throws JsonProcessingException;
 

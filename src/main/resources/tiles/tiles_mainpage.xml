@@ -55,7 +55,7 @@
 		<put-attribute name="body" value="/WEB-INF/Views/User/kf365Test.jsp"/>	
 	</definition>
 	
-	<definition name="user/newGoodsPage" extends="mainLayout">
+	<definition name="/user/newGoodsPage" extends="mainLayout">
 		<put-attribute name="title" value="신상품"/>
 		<put-attribute name="body" value="/WEB-INF/Views/User/newGoodsPage.jsp"/>	
 	</definition>
