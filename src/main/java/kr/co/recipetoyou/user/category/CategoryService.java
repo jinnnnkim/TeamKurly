@@ -7,6 +7,7 @@ import org.springframework.dao.DataAccessException;
 import com.fasterxml.jackson.core.JsonProcessingException;
 
 import kr.co.recipetoyou.admin.adgoods.AdgoodsImgVO;
+import kr.co.recipetoyou.util.PagingVO;
 
 public interface CategoryService {
 
@@ -19,5 +20,15 @@ public interface CategoryService {
 	CategoryVO getGoodsInfo(int prod_code) throws JsonProcessingException;
 
 	CategoryVO goodsDetailInfo(int prod_code) throws DataAccessException;
+
+	List<CategoryVO> goodsDetailList() throws DataAccessException;
+
+	int cateCount(PagingVO vo) throws DataAccessException;
+
+	List<CategoryVO> listGoods(PagingVO vo) throws DataAccessException;
+	
+	AdgoodsImgVO getGoodsDetailImage(int prod_code) throws DataAccessException, JsonProcessingException;
+
+
 
 }

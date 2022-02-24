@@ -208,7 +208,6 @@
 					result = parseInt(basicPrice) - parseInt(price);
 					$("#basicPrice").text(addStr(result,","));
 				}
-				
 			});
 		
 			$(".up").click(function() {
@@ -225,8 +224,6 @@
 					result = parseInt(basicPrice) +  parseInt(price);;
 					$("#basicPrice").text(addStr(result,","));
 				}
-				
-				
 			});
 			
 			$(".checkboxLength").text($("input:checkbox[name=checkItem]").length-1);
@@ -266,10 +263,7 @@
 					$("#basicPrice").text(addStr(temp,","));
 				}
 				
-			});
-			
-			
-			
+			});	
 		});
 		
 		$("#order").click(function(){

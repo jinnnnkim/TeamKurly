@@ -54,12 +54,13 @@ public interface MypageDAO {
 	//상품후기 조회
 	public List<ReviewVO> selectAllReviewList() throws DataAccessException;
 	
-	public void updateUser(UserVO userVO) throws DataAccessException;
+	/* public void updateUser(UserVO userVO) throws DataAccessException; */
 	
 	//이미지 데이터 얻기
 	public List<AdgoodsImgVO> getGoodsImage(int ord_code) throws JsonProcessingException;
 	
 	public int deleteAddress(@RequestParam("addr_code") String addr_code) throws DataAccessException;
  
-
+	public int emailChk(UserVO userVO) throws DataAccessException;
+	
 }
