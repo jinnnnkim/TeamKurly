@@ -41,9 +41,9 @@ public class CategoryControllerImpl implements CategoryController{
 	 */
 
 
-	//private static final String UPLOAD_DIR = "C:/Users/jin/Documents/TeamKurly_3v/src/main/webapp/Resources/Admin/Img/AdgoodsImg/";
+	private static final String UPLOAD_DIR = "C:/Users/jin/Documents/TeamKurly_3v/src/main/webapp/Resources/Admin/Img/AdgoodsImg/";
 
-
+	//private static final String UPLOAD_DIR = "C:\\wordspace_git\\src\\main\\webapp\\Resources\\Admin\\Img\\AdgoodsImg\\";
 
 	@Autowired
 	private CategoryService service;
@@ -162,7 +162,9 @@ public class CategoryControllerImpl implements CategoryController{
 		
 		if(!listGoods.isEmpty()) {
 			mav.addObject("goodsList", listGoods);
-			mav.addObject("listGoods", listGoods);
+			int i=0;
+			
+			//mav.addObject("listGoods", listGoods);
 			mav.addObject("cnt", cnt);
 		}else {
 			mav.addObject("listCheck", "empty");

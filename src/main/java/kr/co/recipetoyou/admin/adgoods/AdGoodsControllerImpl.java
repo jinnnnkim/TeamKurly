@@ -68,6 +68,7 @@ public class AdGoodsControllerImpl implements AdGoodsController {
 	 */
 	
 	private static final String UPLOAD_DIR = "C:\\Users\\jin\\Documents\\TeamKurly_3v\\src\\main\\webapp\\Resources\\Admin\\Img\\AdgoodsImg\\";
+	//private static final String UPLOAD_DIR = "C:\\wordspace_git\\src\\main\\webapp\\Resources\\Admin\\Img\\AdgoodsImg\\";
 	@Autowired
 	AdGoodsService adGoodsService;
 	

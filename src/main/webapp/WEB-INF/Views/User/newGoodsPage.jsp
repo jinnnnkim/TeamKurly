@@ -51,12 +51,14 @@
 			<!-- list_goods -->
 			<div class="inner_listgoods">
 				<c:forEach var="goods" items="${goodsList}">
+				
 					<ul class="glists">
 						<li class="image">
 							<div class="image_wrap" data-prod_code="${goods.imageList[0].prod_code}" data-path="${goods.imageList[0].uploadPath}"
 														data-uuid="${goods.imageList[0].uuid}" data-filename="${goods.imageList[0].fileName}">
 								<a href="${contextPath}/user/goodsView.do?prod_code=${goods.prod_code}">
-							<img>
+								
+							<img src="/recipetoyou/Resources/Admin/Img/AdgoodsImg/${goods.imageList[0].uploadPath}/s_${goods.imageList[0].uuid}_${goods.imageList[0].fileName}">
 							</a>
 							</div>
 							<div class="group_btn">
@@ -114,19 +116,20 @@
 		$(".image_wrap").each(function(i, obj){
 			
 			const bobj = $(obj);
-			if(bobj.data("prod_code")){
+				if(bobj.data("prod_code")){
 				
 				const uploadPath = bobj.data("path");
 				const uuid = bobj.data("uuid");
 				const fileName = bobj.data("filename");
 				
 				const fileCallPath = encodeURIComponent(uploadPath + "/s_" + uuid + "_" + fileName);
+				console.log("fileCallPath:" + fileCallPath);
 				
-				$(this).find("img").attr('src', '${contextPath}/user/newGoodsPage.do?fileName=' + fileCallPath);
+				//$(this).find("img").attr('src', '${contextPath}/user/newGoodsPage.do?fileName=' + fileCallPath);
 				
 				}else {
 					$(this).find("img").attr('src', '/recipetoyou/Resources/Admin/Img/SubgoodsImg/ready.jpg');
-				}
+				} 
 		});	
 		
 		});
