@@ -63,34 +63,8 @@
         select tbai.filename, tbai.prod_code, tbai.uuid, tbai.uploadpath from tb_adgoods_Img tbai where prod_code = #{prod_code}
         ]]>
     </select>
-    
-    <!-- 이미지 정보 얻기 -->
-    <select id="getNewGoodsList" resultMap="goodsImgListResult">
-        <![CDATA[
-        select tbai.filename, tbai.prod_code, tbai.uuid, tbai.uploadpath from tb_adgoods_Img tbai where prod_code = #{prod_code}
-        ]]>
-    </select>
+   
 	
-	<!-- 이미지 정보 얻기 -->
-	<select id="getBargainList" resultMap="goodsImgListResult">
-		<![CDATA[
-		select tbai.filename, tbai.prod_code, tbai.uuid, tbai.uploadpath from tb_adgoods_Img tbai where prod_code = #{prod_code}
-		]]>
-	</select>
-	
-	<!-- 이미지 정보 얻기 -->
-	<select id="getGoodsDetailList" resultMap="goodsImgListResult">
-		<![CDATA[
-		select tbai.filename, tbai.prod_code, tbai.uuid, tbai.uploadpath from tb_adgoods_Img tbai where prod_code = #{prod_code}
-		]]>
-	</select>
-	
-	<!-- 이미지 정보 얻기 -->
-	<select id="getGoodsDetailImage" resultMap="goodsImgListResult">
-		<![CDATA[
-		select tbai.filename, tbai.prod_code, tbai.uuid, tbai.uploadpath from tb_adgoods_Img tbai where prod_code = #{prod_code}
-		]]>
-	</select>
 	
 	<!-- 이미지 정보 얻기 -->
 	<select id="getNewGoodsList" resultMap="goodsImgListResult">
