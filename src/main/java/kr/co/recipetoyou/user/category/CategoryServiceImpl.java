@@ -71,17 +71,55 @@ private static final Logger logger = LoggerFactory.getLogger("CategoryServiceImp
 	public List<CategoryVO> bargainList() throws DataAccessException{
 		
 		List<CategoryVO> bargain = dao.bargain();
+		
+		bargain.forEach(agvo->{
+			
+			try {
+				int prod_code = agvo.getProd_code();
+				List<AdgoodsImgVO> imageList  = dao.getGoodsInfoImage(prod_code);
+				agvo.setImageList(imageList);
+				
+			} catch (JsonGenerationException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}catch (JsonMappingException e) {
+				// TODO: handle exception
+			}catch (IOException e) {
+				// TODO: handle exception
+			}
+		});
+		
 		return bargain;
 	}
 	
-	@Override
-	public CategoryVO goodsDetailInfo(int prod_code) throws DataAccessException{
-		return dao.goodsDetailInfo(prod_code);
+	
+	 @Override public CategoryVO goodsDetailInfo(int prod_code) throws DataAccessException{
+		 
+		  return dao.goodsDetailInfo(prod_code);
 	}
+	 
 
 	@Override
 	public List<CategoryVO> goodsDetailList() throws DataAccessException {
 		List<CategoryVO> goodsDetail = dao.goodsDetail();
+		
+			goodsDetail.forEach(agvo->{
+			
+			try {
+				int prod_code = agvo.getProd_code();
+				List<AdgoodsImgVO> imageList  = dao.getGoodsInfoImage(prod_code);
+				agvo.setImageList(imageList);
+				
+			} catch (JsonGenerationException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}catch (JsonMappingException e) {
+				// TODO: handle exception
+			}catch (IOException e) {
+				// TODO: handle exception
+			}
+		});
+		
 		return goodsDetail;
 	}
 
@@ -93,6 +131,29 @@ private static final Logger logger = LoggerFactory.getLogger("CategoryServiceImp
 	@Override
 	public List<CategoryVO> listGoods(PagingVO vo) throws DataAccessException {
 		List<CategoryVO> listGoods = dao.listGoods(vo);
+		
+			listGoods.forEach(agvo->{
+			
+			try {
+				int prod_code = agvo.getProd_code();
+				List<AdgoodsImgVO> imageList  = dao.getGoodsInfoImage(prod_code);
+				agvo.setImageList(imageList);
+				
+			} catch (JsonGenerationException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}catch (JsonMappingException e) {
+				// TODO: handle exception
+			}catch (IOException e) {
+				// TODO: handle exception
+			}
+		});
+		
 		return listGoods;
+	}
+
+	@Override
+	public AdgoodsImgVO getGoodsDetailImage(int prod_code) throws DataAccessException, JsonProcessingException {
+		return dao.getGoodsDetailImage(prod_code);
 	}	
 }

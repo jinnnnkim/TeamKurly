@@ -13,7 +13,6 @@ public class ReviewVO {
 	
 	private int prod_review_code;
 	private int prod_code;
-	private int review_idx;
 	private String title;
 	private Date reg_date;
 	private String content;
@@ -21,7 +20,7 @@ public class ReviewVO {
 	private String review_img;
 	private String user_id;
 	
-	private int order_code;
+
 	
 	
 	
@@ -49,12 +48,6 @@ public class ReviewVO {
 	public void setProd_code(int prod_code) {
 		this.prod_code = prod_code;
 	}
-	public int getReview_idx() {
-		return review_idx;
-	}
-	public void setReview_idx(int review_idx) {
-		this.review_idx = review_idx;
-	}
 	public String getTitle() {
 		return title;
 	}
@@ -78,13 +71,6 @@ public class ReviewVO {
 	}
 	public void setUser_id(String user_id) {
 		this.user_id = user_id;
-	}
-	
-	public int getOrder_code() {
-		return order_code;
-	}
-	public void setOrder_code(int order_code) {
-		this.order_code = order_code;
 	}
 	
 	public String getReview_img() {

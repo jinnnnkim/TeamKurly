@@ -5,7 +5,6 @@
 	<resultMap type="reviewVO" id="reviewResult">
 		<result property="prod_review_code" column="prod_review_code"/>
 		<result property="prod_code" column="prod_code"/>
-		<result property="review_idx" column="review_idx"/>
 		<result property="title" column="title"/>
 		<result property="reg_date" column="reg_date"/>
 		<result property="content" column="content"/>
@@ -94,8 +93,8 @@
 	
 	<!-- 후기 작성 -->
 	<insert id="insertReview" parameterType="reviewVO">
-		insert into tb_prod_review(review_idx, user_id, title, content, reg_date)
-		values(prodreview_seq.nextval, #{user_id}, #{title}, #{content}, sysdate)
+		insert into tb_prod_review(prod_review_code, prod_code, user_id, title, content, reg_date)
+		values(prodreview_seq.nextval, #{prod_code} ,#{user_id}, #{title}, #{content}, sysdate)
 	</insert>
 	
 	<!-- 후기 작성 전 구매했는지 아이디로 체크 -->

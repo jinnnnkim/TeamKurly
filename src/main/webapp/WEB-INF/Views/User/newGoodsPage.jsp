@@ -50,7 +50,7 @@
 		<div class="list_goods">
 			<!-- list_goods -->
 			<div class="inner_listgoods">
-				<c:forEach var="goods" items="${listGoods}">
+				<c:forEach var="goods" items="${goodsList}">
 					<ul class="glists">
 						<li class="image">
 							<div class="image_wrap" data-prod_code="${goods.imageList[0].prod_code}" data-path="${goods.imageList[0].uploadPath}"
