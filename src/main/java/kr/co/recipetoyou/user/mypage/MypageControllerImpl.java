@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -253,14 +254,11 @@ public class MypageControllerImpl implements MypageController{
 		return mav;
 	}
 	
-	@Override
+	
 	@RequestMapping(value = "/mypageUserInfo.do", method = RequestMethod.GET)
-	public ModelAndView userInfoUpdate(@ModelAttribute UserVO userVO, HttpServletRequest request, HttpServletResponse response) throws Exception {
-		logger.info("mypageUserInfoUpdate 호출");
+	public ModelAndView mypageUserInfo(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
-		mypageService.updateUser(userVO);
-		ModelAndView mav = new ModelAndView("redirect:mypageUserInfo.do");
-		
+		ModelAndView mav = new ModelAndView();	
 		return mav;
 	}
 	
@@ -321,7 +319,13 @@ public class MypageControllerImpl implements MypageController{
 		
 	}
 
-
+	
+	@ResponseBody
+	@RequestMapping(value="/emailChk.do", method = RequestMethod.POST)
+	public int emailChk(UserVO userVO, HttpServletRequest request, HttpServletResponse response) throws Exception {
+	  int result = mypageService.emailChk(userVO);
+	  return result;
+	}
 
 	
 

@@ -324,8 +324,9 @@ response.setContentType("application/json");
 							<li class="gview-list-inn"><a href="#QandATable"
 								class="gview_tab_anchor scroll_move">문의</a></li>
 						</ul>
+
 					</div>
-					
+
 
 					<div class="goods-view-inn_content_wrap">
 						<div id="prodDetail" class="goods-view-inn_content">
@@ -333,55 +334,17 @@ response.setContentType("application/json");
 								<img alt="상세보기" src="${contextPath}/Resources/Admin/Img/AdgoodsImg/${agi.uploadPath}/s_${agi.uuid }_${agi.fileName}">	
 
 							</div>
-						
+
 							<div class="context_tit">
 								${goodsDetailInfo.prod_content }
-								<!-- <h4>
-									<small>식물성 재료로 완성한 라구 파스타</small> [잇츠베러] 어스밀<br> 렌틸라구 두부면
-									파스타
-								</h4>
-								<p class="words">다채로운 두부 요리를 시도 중인 분이라면, 지금 소개하는 잇츠베러 어스밀
-									두부면 파스타가 무척 마음에 드실 거예요. 유기농 콩으로 두부면을 제면하고 소스와 토핑은 모두 식물성 재료를
-									사용해 질 좋은 단백질과 식이섬유를 간편하게 챙길 수 있거든요. 이번에는 고소한 두부면에 토마토 소스와 렌틸콩으로
-									만든 라구소스를 흠뻑 입혀 완성한 렌틸라구 파스타를 준비했어요. 두부와 렌틸콩의 식감이 살아 있어 풍성하고
-									다채로운 맛을 자랑한답니다. 가볍고 속 편한 식사를 찾고 계셨다면, 잇츠베러를 선택해 보세요.</p> -->
 							</div>
+
 							
 						</div>
 					
 					</div>
 				
 
-
-					<!-- <div class="check_point">
-						<h3>
-							<span>Recipe To You's Check Point</span>
-						</h3>
-						<img alt="check_point_img"
-							src="/recipetoyou/Resources/User/Img/SaleGoods/check_point.jpg">
-					</div>
-					check_point
-
-					<div class="pick">
-						<h3>
-							<span>Recipe To You's Pick</span>
-						</h3>
-						<div class="context_tit">
-							<p class="words">
-								<strong class="sub_tit"> <span class="option_tit">어스밀
-										렌틸라구 두부면 파스타</span>
-								</strong> <b>중량</b> : 1팩(240g)<br> <b>특징 </b> : 두부면에 새콤한 토마토소스와 고소한
-								렌틸콩을 사용해 만든 라구 소스 파스타입니다.<br>
-							</p>
-							<div class="pic2">
-								<img alt="pic"
-									src="/recipetoyou/Resources/User/Img/SaleGoods/pick_1.jpg">
-							</div>
-							pic2
-						</div>
-						context_tit
-					</div>
-					pick -->
 
 
 					<div class="goods_tips">
@@ -396,11 +359,12 @@ response.setContentType("application/json");
 									<strong class="sub_tit_tip">보관법</strong> -18℃ 이하에서 냉동 보관하세요.
 								</p>
 							</div>
+
 							
 						</div>
 						
 					</div>
-					
+
 
 					<!-- <div id="goods_pic">
 						<img alt=""
@@ -462,7 +426,7 @@ response.setContentType("application/json");
 									<div class="why_icon">
 										<i class="fas fa-clipboard-list"></i>
 									</div>
-								
+
 									<div class="why_info">
 										<span class="title">깐깐한 상품위원회</span> <span class="tit_story">
 											나와 내 가족이 먹고 쓸 상품을 고르는<br> 마음으로 매주 상품을 직접 먹어보고,<br>
@@ -473,11 +437,12 @@ response.setContentType("application/json");
 								</div>
 								
 
+
 								<div class="col">
 									<div class="why_icon">
 										<i class="fas fa-shipping-fast"></i>
 									</div>
-								
+									
 									<div class="why_info">
 										<span class="title">신선한 풀콜드체인 배송</span> <span
 											class="tit_story"> 온라인 업계 최초로 산지에서 문 앞까지<br>상온,
@@ -487,13 +452,13 @@ response.setContentType("application/json");
 									</div>
 								
 								</div>
-							
+
 
 								<div class="col">
 									<div class="why_icon">
 										<i class="fas fa-globe-americas"></i>
 									</div>
-								
+
 									<div class="why_info">
 										<span class="title">환경을 생각하는 지속 가능한 유통</span> <span
 											class="tit_story"> 친환경 포장재부터 생산자가 상품에만<br>집중할 수
@@ -501,12 +466,14 @@ response.setContentType("application/json");
 											커뮤니티, 직원)이<br>더 나아질 수 있도록 노력합니다.
 										</span>
 									</div>
+
 									
 								</div>
 							
 							</div>
 						</div>
 					</div>
+
 
 
 					<div class="happy_center_wrap">
