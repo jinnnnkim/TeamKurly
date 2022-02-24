@@ -64,8 +64,7 @@
 										</th>
 										<td>
 											<input name="title" id="title" type="text" placeholder="제목을 입력해주세요."/>
-												<input type="text" hidden="hidden" name="user_id" id="user_id" class="qinput q_inputUserno" value="${user_id }">
-												<input type="text" hidden="hidden" name="prod_code" class="qinput q_inputItemno" value="${goodsVO.prod_code}">"
+												<input type="text" hidden="hidden" name="prod_code" value="${prod_code}">"
 										</td>
 									</tr>
 									<tr class="userId">
@@ -123,36 +122,38 @@
 	    		  fn_updateReview();
 	    	  });*/
 	    	  
+	    	  function fn_insertReview(){	//후기 작성 유효성 체크
+		    	  //var comSubmit = new ComSubmit("reviewFrm");	//객체 생성
+		    	  //comSubmit.setUrl("${contextPath}/goods/insertReview.do'/>");	//url 설정
+		    	  
+		    	  var newForm = document.createElement('reviewFrm');
+		    	  newForm.name='reviewFrm';
+		    	  newForm.method='post';
+		    	  newForm.action='${contextPath}/goods/insertReview.do';
+		    	  
+		    	  //제목 필요
+		    	  if(!$("#title").val()){
+		    		  alert("제목을 입력해주세요.");
+		    		  $("#title").focus();
+		    		  return false;
+		    	  }
+		    	  
+		    	  //내용 필요
+		    	  if(CKEDITOR.instances.content.getData()==''||CKEDITOR.instances.content.getData().length==0){
+		    		  alert("내용을 입력해주세요.");
+		    		  $("#content").focus();
+		    		  return false;
+		    	  }
+		    	  
+		    	  $("#reviewFrm").submit();
+		    	  
+		      }
+	    	  
 	      });
 		
 
 			
-	      function fn_insertReview(){	//후기 작성 유효성 체크
-	    	  //var comSubmit = new ComSubmit("reviewFrm");	//객체 생성
-	    	  //comSubmit.setUrl("${contextPath}/goods/insertReview.do'/>");	//url 설정
-	    	  
-	    	  var newForm = document.createElement('reviewFrm');
-	    	  newForm.name='reviewFrm';
-	    	  newForm.method='post';
-	    	  newForm.action='${contextPath}/goods/insertReview.do';
-	    	  
-	    	  //제목 필요
-	    	  if(!$("#title").val()){
-	    		  alert("제목을 입력해주세요.");
-	    		  $("#inq_title").focus();
-	    		  return false;
-	    	  }
-	    	  
-	    	  //내용 필요
-	    	  if(CKEDITOR.instances.content.getData()==''||CKEDITOR.instances.content.getData().length==0){
-	    		  alert("내용을 입력해주세요.");
-	    		  $("#content").focus();
-	    		  return false;
-	    	  }
-	    	  
-	    	  $("#reviewFrm").submit();
-	    	  
-	      }
+	     
 
 		</script>
 

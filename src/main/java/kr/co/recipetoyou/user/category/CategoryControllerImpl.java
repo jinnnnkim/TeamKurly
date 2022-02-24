@@ -32,7 +32,15 @@ public class CategoryControllerImpl implements CategoryController{
 	
 	private static final Logger logger = LoggerFactory.getLogger("CategoryControllerImpl.class");
 	
+
+	//private static final String UPLOAD_DIR = "/Users/kimbyeongmin/Desktop/workspace_gitclone/src/main/webapp/Resources/User/Img/AdgoodsImg/";
+	
+	private static final String UPLOAD_DIR = "C:\\git-recipetoyouuuu\\RecipeToYou\\src\\main\\webapp\\Resources\\Admin\\Img\\AdgoodsImg\\";
+
+
 	private static final String UPLOAD_DIR = "C:/Users/jin/Documents/TeamKurly_3v/src/main/webapp/Resources/Admin/Img/AdgoodsImg/";
+
+
 
 	@Autowired
 	private CategoryService service;
@@ -105,12 +113,16 @@ public class CategoryControllerImpl implements CategoryController{
 	public ModelAndView goodsView(int prod_code, HttpServletRequest request, HttpServletResponse response) throws Exception{
 		String viewName = (String) request.getAttribute("viewName");
 		CategoryVO goodsDetailInfo = service.goodsDetailInfo(prod_code);
+		AdgoodsImgVO agi = service.getGoodsDetailImage(prod_code);
 		List<CategoryVO> goodsDetail = service.goodsDetailList();
 		logger.info(viewName);
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName(viewName);
 		mav.addObject("goodsDetailInfo", goodsDetailInfo);
 		mav.addObject("goodsDetail", goodsDetail);
+		mav.addObject("goodsInfo", service.getGoodsInfo(prod_code));
+
+		mav.addObject("agi", agi);
 		return mav;
 	}
 	
@@ -134,16 +146,27 @@ public class CategoryControllerImpl implements CategoryController{
 	
 	@RequestMapping(value="/user/newGoodsPage.do",method={RequestMethod.GET, RequestMethod.POST})
 	public ModelAndView newGoodsPage(PagingVO vo, HttpServletRequest request, HttpServletResponse response) throws Exception{
+		
 		String viewName = (String)request.getAttribute("viewName");
-		PageMaker pm = new PageMaker();
-		pm.setVo(vo);
-		pm.setTotalCount(service.cateCount(vo));
-		List<CategoryVO> listGoods = service.listGoods(vo);
-		ModelAndView mav = new ModelAndView();
+		ModelAndView mav = new ModelAndView(viewName);
+		
+		//PageMaker pm = new PageMaker();
+		//pm.setVo(vo);
+		//pm.setTotalCount(service.cateCount(vo));
+		List listGoods = service.listGoods(vo);
+		
 		int cnt = service.cateCount(vo); 
-		mav.addObject("listGoods", listGoods);
-		mav.addObject("cnt", cnt);
-		mav.addObject("pm",pm);	
+		
+		if(!listGoods.isEmpty()) {
+			mav.addObject("goodsList", listGoods);
+			mav.addObject("listGoods", listGoods);
+			mav.addObject("cnt", cnt);
+		}else {
+			mav.addObject("listCheck", "empty");
+		}
+		
+		mav.addObject("pm", new PageMaker(vo, service.cateCount(vo)));
+		
 		return mav;
 	}
 	

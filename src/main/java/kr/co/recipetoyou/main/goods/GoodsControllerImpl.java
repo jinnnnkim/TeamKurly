@@ -41,7 +41,7 @@ public class GoodsControllerImpl implements GoodsController{
 	
 	private static final Logger logger = LoggerFactory.getLogger("GoodsControllerImpl.class");
 	
-	private static final String UPLOAD_DIR = "C:\\git-recipetoyou\\RecipeToYou\\src\\main\\webapp\\Resources\\Admin\\Img\\AdgoodsImg\\";
+	private static final String UPLOAD_DIR = "C:\\git-recipetoyouuu\\RecipeToYou\\src\\main\\webapp\\Resources\\Admin\\Img\\AdgoodsImg\\";
 
 	@Autowired
 	GoodsService goodsService;
@@ -49,7 +49,6 @@ public class GoodsControllerImpl implements GoodsController{
 	@Autowired
 	InqReviewService inqReviewService;
 	
-
 	@Override
 	//@RequestMapping(value="/user/newGoodsPage.do", method = {RequestMethod.GET, RequestMethod.POST})
 	@ResponseBody
@@ -146,13 +145,14 @@ public class GoodsControllerImpl implements GoodsController{
 
 
 	@Override
-	@RequestMapping(value = "/goods/insertReview.do", method = {RequestMethod.POST, RequestMethod.GET})
-	@ResponseBody
+	@RequestMapping(value = "/goods/insertReview.do", method = RequestMethod.POST)
 	public ModelAndView insertReview(ReviewVO vo, HttpServletRequest request) throws Exception {
 		
-		inqReviewService.insertReview(vo);
-		
 		ModelAndView mav = new ModelAndView("redirect:/goods/goodsInfo.do");
+		
+		inqReviewService.insertReview(vo);
+		mav.addObject("prod_code", vo.getProd_code());
+		
 		
 		return mav;
 	}
