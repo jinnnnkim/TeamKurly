@@ -61,7 +61,7 @@
 			</div>
 	
 		<div class="middle_titleBox">
-			총 ${cnt }명의 레시피가 검색되었습니다.		
+			총 ${cnt }개의 레시피가 검색되었습니다.		
 		</div>
 		
 		<div class="userList_wrap">
