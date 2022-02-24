@@ -29,4 +29,6 @@ public interface CategoryService {
 	
 	AdgoodsImgVO getGoodsDetailImage(int prod_code) throws DataAccessException, JsonProcessingException;
 
+
+
 }
