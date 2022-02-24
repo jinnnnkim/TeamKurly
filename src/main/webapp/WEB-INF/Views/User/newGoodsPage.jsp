@@ -32,7 +32,7 @@
 			<!-- 상품 리스트  -->
 			<div class="lists">
 				<p class="count">
-					<span class="inner_counts">총${cnt}개</span>
+					<span class="inner_counts">총 ${cnt}개</span>
 				</p>
 				<ul>
 					<li class="price_asc"><a href="#">높은가격순</a></li>
@@ -66,8 +66,7 @@
 							</div>
 							<div class="item">
 								<a class="info"> <span class="name">
-										${goods.prod_name }</span><br> <span class="cost">${goods.prod_price }</span><br> <span
-									class="mean">${goods.prod_content }</span><br>
+										${goods.prod_name }</span><br> <span class="cost">${goods.prod_price }</span><br> <br>
 								</a>
 							</div>
 						</li>
@@ -123,7 +122,7 @@
 				
 				const fileCallPath = encodeURIComponent(uploadPath + "/s_" + uuid + "_" + fileName);
 				
-				$(this).find("img").attr('src', '${contextPath}/adgoods/getImageInfo.do?fileName=' + fileCallPath);
+				$(this).find("img").attr('src', '${contextPath}/user/newGoodsPage.do?fileName=' + fileCallPath);
 				
 				}else {
 					$(this).find("img").attr('src', '/recipetoyou/Resources/Admin/Img/SubgoodsImg/ready.jpg');

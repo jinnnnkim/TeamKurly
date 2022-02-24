@@ -73,7 +73,7 @@
 							
 							<div class="image_wrap" data-prod_code="${goods.imageList[0].prod_code}" data-path="${goods.imageList[0].uploadPath}"
 												data-uuid="${goods.imageList[0].uuid}" data-filename="${goods.imageList[0].fileName}">
-								<a href="${contextPath}/goodsView.do?prod_code=${goods.prod_code}">
+								<a href="${contextPath}/user/goodsView.do?prod_code=${goods.prod_code}">
 									<img>
 								</a>
 							</div>

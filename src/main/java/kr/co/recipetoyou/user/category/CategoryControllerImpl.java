@@ -32,7 +32,7 @@ public class CategoryControllerImpl implements CategoryController{
 	
 	private static final Logger logger = LoggerFactory.getLogger("CategoryControllerImpl.class");
 	
-	private static final String UPLOAD_DIR = "/Users/kimbyeongmin/Desktop/workspace_gitclone/src/main/webapp/Resources/User/Img/AdgoodsImg/";
+	private static final String UPLOAD_DIR = "/Users/kimbyeongmin/Desktop/workspace_gitclone/src/main/webapp/Resources/Admin/Img/AdgoodsImg/";
 
 	@Autowired
 	private CategoryService service;
@@ -105,12 +105,14 @@ public class CategoryControllerImpl implements CategoryController{
 	public ModelAndView goodsView(int prod_code, HttpServletRequest request, HttpServletResponse response) throws Exception{
 		String viewName = (String) request.getAttribute("viewName");
 		CategoryVO goodsDetailInfo = service.goodsDetailInfo(prod_code);
+		AdgoodsImgVO agi = service.getGoodsDetailImage(prod_code);
 		List<CategoryVO> goodsDetail = service.goodsDetailList();
 		logger.info(viewName);
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName(viewName);
 		mav.addObject("goodsDetailInfo", goodsDetailInfo);
 		mav.addObject("goodsDetail", goodsDetail);
+		mav.addObject("agi", agi);
 		return mav;
 	}
 	

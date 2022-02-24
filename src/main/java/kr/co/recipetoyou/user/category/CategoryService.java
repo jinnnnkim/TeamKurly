@@ -27,4 +27,7 @@ public interface CategoryService {
 
 	List<CategoryVO> listGoods(PagingVO vo) throws DataAccessException;
 
+	AdgoodsImgVO getGoodsDetailImage(int prod_code) throws DataAccessException, JsonProcessingException;
+
+
 }
