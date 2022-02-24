@@ -33,8 +33,6 @@ public class CategoryControllerImpl implements CategoryController{
 	private static final Logger logger = LoggerFactory.getLogger("CategoryControllerImpl.class");
 	
 
-	//private static final String UPLOAD_DIR = "/Users/kimbyeongmin/Desktop/workspace_gitclone/src/main/webapp/Resources/User/Img/AdgoodsImg/";
-	
 	/*
 	 * private static final String UPLOAD_DIR =
 	 * "C:\\git-recipetoyouuuu\\RecipeToYou\\src\\main\\webapp\\Resources\\Admin\\Img\\AdgoodsImg\\";
@@ -42,6 +40,7 @@ public class CategoryControllerImpl implements CategoryController{
 
 
 	private static final String UPLOAD_DIR = "C:/Users/jin/Documents/TeamKurly_3v/src/main/webapp/Resources/Admin/Img/AdgoodsImg/";
+
 
 	//private static final String UPLOAD_DIR = "C:\\wordspace_git\\src\\main\\webapp\\Resources\\Admin\\Img\\AdgoodsImg\\";
 
