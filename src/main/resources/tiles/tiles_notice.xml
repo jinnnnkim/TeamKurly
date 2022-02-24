@@ -87,7 +87,7 @@
 		<put-attribute name="body" value="/WEB-INF/Views/User/Notice/noticeOneToOneQuestionDetail.jsp"/>	
 	</definition>
 	
-	<definition name="/notice/deliverNotice.do" extends="noticeLayout">
+	<definition name="/notice/deliverNotice" extends="noticeLayout">
 		<put-attribute name="title" value="배달 문의"/>
 		<put-attribute name="body" value="/WEB-INF/Views/User/Notice/deliverNotice.jsp"/>	
 	</definition>
