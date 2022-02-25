@@ -46,6 +46,7 @@ import kr.co.recipetoyou.util.PagingVO;
 @Controller("recipeContoller")
 public class RecipeContollerImpl implements RecipeController{
 
+	//
 	private static String ARTICLE_IMAGE_REPO ="C:/git_workTeam/src/main/webapp/Resources/Upload/Recipe/";
 
 	private static final Logger logger = LoggerFactory.getLogger("RecipeContollerImpl.class");
