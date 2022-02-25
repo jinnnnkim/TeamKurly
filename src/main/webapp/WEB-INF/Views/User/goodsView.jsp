@@ -167,7 +167,7 @@ response.setContentType("application/json");
 						
 						<form action="#" method="post" id="idCheckSet">
 							<input type="text" name="user_id" hidden="hidden" value="${user_id }">
-							<input type="text" id="prod_code" name="prod_code" hidden="hidden" value="${goodsVO.prod_code }">
+							
 						</form>
 
 						<div class="cartPut">
@@ -600,7 +600,9 @@ response.setContentType("application/json");
 					</c:forEach>
 					</table>
 					<div class="writeBtn">
-						<button class="reviewBtn" type="button" id="reviewFrm">후기작성</button>
+					<form action="" id="reviewFrm">
+						<button class="reviewBtn" type="submit" id="reviewBtn">후기작성</button>
+					</form>	
 					</div>
 				</div>
 
@@ -723,11 +725,13 @@ response.setContentType("application/json");
 									<form name="qnaFrm" id="qnaFrm" method="post">
 										<table class="QnAWrite">
 											<tr class="QnAWriteTitle">
-												<th>제목</th>
+												<th>제목
+												<input type="hidden" name="prod_code" class="qinput q_inputItemno" value="${param.prod_code}">
+												</th>
 												<td>
 												<input type="text" name="inq_title" id="inq_title" placeholder="제목을 입력해주세요." />
 												<input type="text" hidden="hidden" name="user_id" id="user_id" class="qinput q_inputUserno" value="${user_id }">
-												<input type="text" hidden="hidden" name="prod_code" class="qinput q_inputItemno" value="${goodsVO.prod_code}">"
+												
 												</td>
 											</tr>
 											<tr class="content">
@@ -744,8 +748,10 @@ response.setContentType("application/json");
 										
 										
 										<div class="popWriteBtn">
+										
 											<button class="cancel" type="reset">취소</button>
 											<button class="writeBtn" id="write">등록</button>
+										
 										</div>
 									</form>
 								</div>
@@ -838,7 +844,7 @@ response.setContentType("application/json");
 	
 	//후기 작성 페이지로 이동
 		
-		if(user_id != null){
+/* 		if(user_id != null){
 			
 			//var comSubmit = new ComSubmit();
 			var prod_code = $("#prod_code").val();
@@ -853,9 +859,38 @@ response.setContentType("application/json");
 		}else{
 			alert("로그인 후 이용해주세요.");
 			location.href="${contextPath}/login/login.do";
-		}
+		} */
 	
+	$("#reviewBtn").on("click",function(){
+		  var reviewFrm = document.querySelector('#reviewFrm');
+	  	  //newForm.name='reviewFrm';
+	  	  reviewFrm.method='get';
+	  	  reviewFrm.action='${contextPath}/goods/moveReview.do';
+	  	  $("#reviewFrm").submit();
+	}); 	  
 		
+	$("#write").on("click",function(){
+		  var qnaFrm = document.querySelector('#qnaFrm');
+	  	  //newForm.name='reviewFrm';
+	  	  qnaFrm.method='post';
+	  	  qnaFrm.action='${contextPath}/goods/insertInquiry.do';
+	  	  
+		  //제목 필요
+    	  if(!$("#inq_title").val()){
+    		  alert("제목을 입력해주세요.");
+    		  $("#inq_title").focus();
+    		  return false;
+    	  }
+    	  
+    	  //내용 필요
+    	  if(CKEDITOR.instances.content.getData()==''||CKEDITOR.instances.content.getData().length==0){
+    		  alert("내용을 입력해주세요.");
+    		  $("#inq_content").focus();
+    		  return false;
+    	  }
+	  	  
+	  	  $("#qnaFrm").submit();
+	}); 
 	
 	//문의하기 팝업
 	 function show() {

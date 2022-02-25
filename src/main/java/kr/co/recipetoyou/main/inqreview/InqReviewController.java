@@ -16,13 +16,13 @@ import org.springframework.web.servlet.ModelAndView;
 public interface InqReviewController {
 	
 	//문의 작성
-	public ModelAndView insertInquiry(InquiryVO vo, HttpServletRequest request)throws Exception;
+	public ModelAndView insertInquiry(@RequestParam(value = "prod_code")int prod_code,InquiryVO vo, HttpServletRequest request)throws Exception;
 	
 	//후기 작성 페이지로 이동
-	public ModelAndView moveReviewForm(ReviewVO vo, HttpServletRequest request) throws Exception;
+	public ModelAndView moveReviewForm(@RequestParam(value = "prod_code")int prod_code,ReviewVO vo, HttpServletRequest request) throws Exception;
 	
 	//후기 작성
-	public ModelAndView insertReview(ReviewVO vo, HttpServletRequest request)throws Exception;
+	public ModelAndView insertReview(@RequestParam(value = "prod_code")int prod_code,ReviewVO vo, HttpServletRequest request)throws Exception;
 	
 	public void readReview(int prod_review_code, ReviewVO vo, Model model)throws Exception;
 	
