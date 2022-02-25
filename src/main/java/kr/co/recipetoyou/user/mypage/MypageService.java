@@ -59,7 +59,12 @@ public interface MypageService {
 	
 	//배송지삭제
 	public int deleteAddress(@RequestParam("addr_code") String addr_code) throws DataAccessException;
+
+	//개인정보수정
+	public void userInfoUpdate(UserVO userVO) throws DataAccessException;
 	
 	//이메일 중복체크
 	public int emailChk(UserVO userVO) throws DataAccessException;
+	
+	
 }

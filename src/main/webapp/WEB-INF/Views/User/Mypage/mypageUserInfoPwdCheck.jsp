@@ -33,17 +33,17 @@
 			</h2>
 		</div>
 		<!-- head -->
+		<form action="${contextPath}/mypageUserInfoProcess.do" class="form_footer" method="post">
 		<table class="myInfoMain">
 			<tr>
 				<th>아이디</th>
-				<td><input type="text" id="id"></td>
+				<td><input type="text" id="id" name="user_id"></td>
 			</tr>
 			<tr>
 				<th>비밀번호</th>
-				<td><input type="password" id="pwd"></td>
+				<td><input type="password" id="pwd" name="user_pw"></td>
 			</tr>
 		</table>
-		<form action="${contextPath}/mypageUserInfo.do" class="form_footer">
 			<button type="submit" id="confirm">확인</button>
 		</form>
 	</div>

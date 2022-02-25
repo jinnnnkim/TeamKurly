@@ -1,6 +1,7 @@
 package kr.co.recipetoyou.user.category;
 
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -21,7 +22,6 @@ import kr.co.recipetoyou.util.PagingVO;
 public class CategoryServiceImpl implements CategoryService {
 
 private static final Logger logger = LoggerFactory.getLogger("CategoryServiceImpl.class");
-	
 	@Autowired
 	private CategoryDAO dao;
 
@@ -147,7 +147,7 @@ private static final Logger logger = LoggerFactory.getLogger("CategoryServiceImp
 	@Override
 	public List<CategoryVO> listGoods(PagingVO vo) throws DataAccessException {
 		List<CategoryVO> listGoods = dao.listGoods(vo);
-
+		
 		
 			listGoods.forEach(agvo->{
 			
@@ -155,7 +155,6 @@ private static final Logger logger = LoggerFactory.getLogger("CategoryServiceImp
 			try {
 				int prod_code = agvo.getProd_code();
 				List<AdgoodsImgVO> imageList  = dao.getNewGoodsList(prod_code);
-
 				agvo.setImageList(imageList);
 				
 			} catch (JsonGenerationException e) {
@@ -168,10 +167,10 @@ private static final Logger logger = LoggerFactory.getLogger("CategoryServiceImp
 			}
 
 		});
-		
-
-
+	
 		return listGoods;
+		
+	
 	}
 	
 }

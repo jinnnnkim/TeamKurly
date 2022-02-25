@@ -1,19 +1,23 @@
 package kr.co.recipetoyou.user.mypage;
 
+import java.io.PrintWriter;
 import java.sql.Date;
 import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest; 
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.commons.collections.map.HashedMap;
+import org.json.simple.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -22,6 +26,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.fasterxml.jackson.annotation.JacksonInject.Value;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import kr.co.recipetoyou.main.inqreview.ReviewVO;
@@ -255,12 +260,7 @@ public class MypageControllerImpl implements MypageController{
 	}
 	
 	
-	@RequestMapping(value = "/mypageUserInfo.do", method = RequestMethod.GET)
-	public ModelAndView mypageUserInfo(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		
-		ModelAndView mav = new ModelAndView();	
-		return mav;
-	}
+	
 	
 	@RequestMapping(value = "/noticeOneToOneQuestionDetail.do", method = RequestMethod.GET)
 	public ModelAndView noticeOneToOneQuestionDetail(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -320,14 +320,68 @@ public class MypageControllerImpl implements MypageController{
 	}
 
 	
-	@ResponseBody
-	@RequestMapping(value="/emailChk.do", method = RequestMethod.POST)
-	public int emailChk(UserVO userVO, HttpServletRequest request, HttpServletResponse response) throws Exception {
-	  int result = mypageService.emailChk(userVO);
-	  return result;
+	/*
+	 * @ResponseBody
+	 * 
+	 * @RequestMapping(value="/emailChk.do", method = RequestMethod.POST) public int
+	 * emailChk(UserVO userVO, HttpServletRequest request, HttpServletResponse
+	 * response) throws Exception { int result = mypageService.emailChk(userVO);
+	 * return result; }
+	 */
+	
+	//회원정보수정뷰
+	@Override
+	@RequestMapping(value="/mypageUserInfoProcess.do", method=RequestMethod.POST)
+	public String mypageUserInfoProcess(UserVO userVO, HttpServletRequest request, HttpServletResponse response) throws Exception {
+		
+		System.out.println("userVO" + userVO.getUser_id());
+		System.out.println("userVO" + userVO.getUser_pw());
+		return "redirect:/mypageUserInfo.do";
+	}
+	
+	
+	@RequestMapping(value="/mypageUserInfo.do", method=RequestMethod.GET)
+	public ModelAndView mypageUserInfo(UserVO userVO, HttpServletRequest request, HttpServletResponse response) throws Exception {
+		
+		ModelAndView mav = new ModelAndView();
+		
+		return mav;
+	}
+			
+	//회원정보수정로직
+	@Override
+	@RequestMapping(value="/mypageUserinfoUpdate.do", method=RequestMethod.POST)
+	public String userInfoUpdate(HttpServletRequest request, HttpSession session, UserVO userVO, Model model, RedirectAttributes rttr) throws Exception{
+		mypageService.userInfoUpdate(userVO); 
+		session.invalidate();
+		rttr.addFlashAttribute("msg", "정보 수정이 완료되었습니다.");
+		return"redirect:/mypageUserInfoPwdCheck.do";
 	}
 
-	
+	//이메일 유효성 체크
+	@Override
+	@ResponseBody
+	@RequestMapping(value="/emailChk.do",method=RequestMethod.POST)
+	public String emailChk(@RequestBody String filterJSON, HttpServletResponse response, Model model) throws Exception {
+		JSONObject resMap = new JSONObject();
+		try {
+			ObjectMapper mapper = new ObjectMapper();
+			UserVO userVO = (UserVO) mapper.readValue(filterJSON, new TypeReference<UserVO>(){});
+			
+			int emailChk = mypageService.emailChk(userVO);
+			resMap.put("res", "ok");
+			resMap.put("emailChk", emailChk);
+		}
+		catch(Exception e) {
+			System.out.println(e.toString());
+			resMap.put("res","error");
+		}
+		response.setContentType("text/html: charset=UTF-8");
+		PrintWriter out = response.getWriter();
+		out.print(resMap);
+		
+		return null;
+	}
 
 	
 

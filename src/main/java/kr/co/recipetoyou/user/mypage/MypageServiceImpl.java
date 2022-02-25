@@ -162,12 +162,20 @@ public class MypageServiceImpl implements MypageService{
 		
 	}
 
+	//개인정보수정
+	@Override
+	public void userInfoUpdate(UserVO userVO) throws DataAccessException {
+		mypageDAO.userInfoUpdate(userVO);
+		
+	}
+
 	//이메일 중복체크
 	@Override
 	public int emailChk(UserVO userVO) throws DataAccessException {
 		int result = mypageDAO.emailChk(userVO);
 		return result;
 	}
+
 
 
 	
