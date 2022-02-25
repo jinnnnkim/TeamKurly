@@ -26,8 +26,8 @@
 	<div class="wrap">
 		<div class="main">
 			<div class="title">
-				<h2>컬리의 추천레시피</h2>
-				<span>컬리의 새로운 소식들과 유용한 레시피를 한 곳에서 확인하세요.</span>
+				<h2>레시피 투 유의 추천 레시피</h2>
+				<span>레시피 투 유의 새로운 소식들과 유용한 레시피를 한 곳에서 확인하세요.</span>
 			</div>
 			
 			<div class="searchBar">

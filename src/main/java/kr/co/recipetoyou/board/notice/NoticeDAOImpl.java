@@ -1,6 +1,8 @@
 package kr.co.recipetoyou.board.notice;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,5 +50,11 @@ public class NoticeDAOImpl implements NoticeDAO{
 	public List<NoticeINQVO> selectOneToOneList(PagingVO vo) {
 		return sqlSession.selectList("mapper.notice.selectOneToOneList", vo);
 	}
-	
+
+	@Override
+	public void insertINQ(NoticeINQVO noticeINQ) {
+		System.out.println(noticeINQ.toString());
+		sqlSession.insert("mapper.notice.insertINQ",noticeINQ);
+	}
+
 }

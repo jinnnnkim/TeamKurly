@@ -22,6 +22,7 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 
 import kr.co.recipetoyou.admin.adgoods.AdGoodsDAO;
 import kr.co.recipetoyou.admin.adgoods.AdgoodsImgVO;
+import kr.co.recipetoyou.main.goods.ReviewVO;
 import kr.co.recipetoyou.user.UserVO;
 import kr.co.recipetoyou.user.mypage.vo.CouponVO;
 import kr.co.recipetoyou.user.mypage.vo.MyOrderVO;
@@ -29,7 +30,6 @@ import kr.co.recipetoyou.user.mypage.vo.PointVO;
 
 import kr.co.recipetoyou.user.mypage.vo.UserAddrVO;
 import kr.co.recipetoyou.user.mypage.vo.QnAVO;
-import kr.co.recipetoyou.user.mypage.vo.ReviewVO;
 
 
 @Service("mypageService")
@@ -105,7 +105,6 @@ public class MypageServiceImpl implements MypageService{
 			
 		});
 		
-		
 		return orderList;
 		
 	}
@@ -117,7 +116,6 @@ public class MypageServiceImpl implements MypageService{
 		
 		MyOrderVO orderVO = mypageDAO.orderDetailList(ord_code);
 		orderVO.setImageList(mypageDAO.getGoodsImage(ord_code));
-		
 		return orderVO;
 	}
 
@@ -143,11 +141,12 @@ public class MypageServiceImpl implements MypageService{
 		return reviewList;
 	}
 
-	@Override
-	public void updateUser(UserVO userVO) throws DataAccessException {
-		mypageDAO.updateUser(userVO);
-		
-	}
+	/*
+	 * @Override public void updateUser(UserVO userVO) throws DataAccessException {
+	 * mypageDAO.updateUser(userVO);
+	 * 
+	 * }
+	 */
 
 
 	//상품문의 삭제
@@ -161,6 +160,13 @@ public class MypageServiceImpl implements MypageService{
 	public int deleteAddress(@RequestParam("addr_code") String addr_code) throws DataAccessException {
 		return mypageDAO.deleteAddress(addr_code);
 		
+	}
+
+	//이메일 중복체크
+	@Override
+	public int emailChk(UserVO userVO) throws DataAccessException {
+		int result = mypageDAO.emailChk(userVO);
+		return result;
 	}
 
 

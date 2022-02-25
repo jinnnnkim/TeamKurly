@@ -50,15 +50,15 @@ public class AdSendControllerImpl implements AdSendController {
 	//발송내역목록보기(PageMaker객체 사용)
 	//전체 발송내역 조회
 	@Override
-	@RequestMapping(value = "/adsend/listadSend.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/adsend/listadSend.do", method = {RequestMethod.GET, RequestMethod.POST})
 	public ModelAndView sendlistPageGet(PagingVO vo, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String viewName = (String)request.getAttribute("viewName");
 	    PageMaker pm = new PageMaker();
 		pm.setVo(vo);
-	    pm.setTotalCount(sendService.sendListCount()); 
+	    pm.setTotalCount(sendService.sendListCount(vo)); 
 		logger.info("C: vo는 "+ vo);
 		logger.info("info 레벨 : viewName = "+viewName);  
-		int cnt = sendService.sendListCount();  
+		int cnt = sendService.sendListCount(vo);  
 		List<AdSendVO> sendList = sendService.listSend(vo);
 	    ModelAndView mav = new ModelAndView(viewName);
 		mav.addObject("sendList", sendList);

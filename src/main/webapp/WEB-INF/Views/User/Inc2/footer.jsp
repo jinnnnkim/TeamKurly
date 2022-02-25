@@ -51,8 +51,8 @@
 				<div class="footerRight">
 					<div class="companyInfo">
 						<ul>
-							<li><a href="#">컬리소개</a></li>
-							<li><a href="#">컬리소개영상</a></li>
+							<li><a href="#">레시피 소개</a></li>
+							<li><a href="#">레시피 소개영상</a></li>
 							<li><a href="#">인재채용</a></li>
 							<li><a href="#">이용약관</a></li>
 							<li><a href="#">개인정보처리방침</a></li>
@@ -60,16 +60,16 @@
 						</ul>
 					</div>
 					<div class="companyDetail">
-						법인명 (상호):클론코딩 컬리 <span class="bar">I</span> 사업자증록번호 000-00-0000 <a
+						법인명 (상호):클론코딩 레시피투유 <span class="bar">I</span> 사업자증록번호 000-00-0000 <a
 							href="#">사업자정보 확인</a><br /> 통신판매업 : 제 2022-서울서초-00000 호 <span
 							class="bar">I</span> 개인정보보호책임자 : OOO<br /> 주소 : 서울특별시 강남구 이젠 10,
 						11층(서초구) <span class="bar">I</span> 대표이사 : 이젠이<br /> 입점문의:<a
-							href="#">입점문의하기</a><span class="bar">I</span> 제휴문의 : <a href="#">business@kurlycorp.com</a>
-						채용문의:<a href="#">recruit@kurlycorp.com</a><br /> 팩스: 000 - 0000 -
-						0000 <span class="bar">I</span> 이메일:<a href="#">help@kurlycorp.com</a><br />
-						대량주문 문의 :<a href="#">kurlygift@kurlycorp.com</a>
+							href="#">입점문의하기</a><span class="bar">I</span> 제휴문의 : <a href="#">business@recipecorp.com</a>
+						채용문의:<a href="#">recruit@recipecorp.com</a><br /> 팩스: 000 - 0000 -
+						0000 <span class="bar">I</span> 이메일:<a href="#">help@recipecorp.com</a><br />
+						대량주문 문의 :<a href="#"recipegift@kurlycorp.com></a>
 					</div>
-					<div class="copyRight">© KURLY CORP. ALL RIGHTS RESERVED</div>
+					<div class="copyRight">© RECIPE CORP. ALL RIGHTS RESERVED</div>
 					<div class="social">
 						<ul>
 							<li><a href="#"><img

@@ -6,42 +6,31 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 import kr.co.recipetoyou.user.UserVO;
 
-public class CartInterceptor implements HandlerInterceptor  {
+public class CartInterceptor extends HandlerInterceptorAdapter  {
 
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
-		
+		//세션 객체 생성
 		HttpSession session = request.getSession();
 		
-		UserVO userVO = (UserVO)session.getAttribute("User");
-		
-		if(userVO == null) {
-			response.sendRedirect("/main.do");
+		if(session.getAttribute("user_id")== null) {
+			//로그인 페이지로 이동
+			response.sendRedirect(request.getContextPath()+"/login/login.do");
 			return false;
 		}else {
 			return true;
 		}
+		
 	}
 
 	@Override
 	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
 			ModelAndView modelAndView) throws Exception {
-		// TODO Auto-generated method stub
-		
+		super.postHandle(request, response, handler, modelAndView);
 	}
-
-	@Override
-	public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex)
-			throws Exception {
-		// TODO Auto-generated method stub
-		
-	}
-
-	
-
-	
 }

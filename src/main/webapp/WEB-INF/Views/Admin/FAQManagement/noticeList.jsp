@@ -24,7 +24,7 @@
  	<link href="/recipetoyou/Resources/Admin/Css/FAQManagement/noticeList.css" rel="stylesheet">
 	<link href="/recipetoyou/Resources/Admin/Css/HomePageHeaderSide/reset.css" rel="stylesheet">
 	<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>	
-	<script type="text/javascript" src="/recipetoyou/Resources/Admin/Js/AdUser/adOrdList.js" charset="UTF-8"></script>
+	<script type="text/javascript" src="/recipetoyou/Resources/Admin/Js/AdUser/adNoticeList.js" charset="UTF-8"></script>
 	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 	<link rel="stylesheet" href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css">
@@ -37,47 +37,23 @@
 			</svg>
 			공지사항 관리
 		</div>
-	<form action="#" method="post">
-		<div class="list_head">
+	<div class="list_head">
 			<table align="center" id="tableGroup">
 				<tr>
 					<td>
-						<input type="checkbox">
-						<!-- 달력 js 구현되어있음 -->
-						<input type="text" id="datepicker1"> ~
-  						<input type="text" id="datepicker2">
-						<input class="btn_option" type="button" value="오늘날짜">
-						<input class="btn_option" type="button" value="최근1주일">
-						<input class="btn_option" type="button" value="최근15일">
-						<input class="btn_option" type="button" value="최근 1개월">
-						<input class="btn_option" type="button" value="최근2개월">
-						<input class="btn_option" type="button" value="최근3개월">
-					</td>
-				</tr>
-				
-				<tr>
-					<td>
-						<select name="userGrade">
-							<option value="generalUser">회원등급</option>
-							<option value="Operator">운영자</option>
-							<option value="sub_Operator">일반(General)</option>
-							<option value="specialUser">프렌즈(Friends)</option>
-							<option value="superUser">호스트(Host)</option>
-							<option value="regularUser">쿡(Cook)</option>
-							<option value="assoUser">셰프(Chef)</option>
-						</select>
-						<select name="searchOption">
-							<option value="userId">아이디</option>
-							<option value="userName">이름</option>
-							<option value="userEmail">이메일</option>
-							<option value="phone">휴대전화</option>
-							<option value="addr">주소</option>
-						</select>
-						<input type="text" name="search">
-						<input class="search_btn" type="button" value="검색">
+						<div class="search_area">
+							<select name="searchOption">
+								<option value="I" <c:out value="${pageMaker.vo.searchOption eq 'I'?'selected':''}"/>>
+								제목</option>
+								<option value="S" <c:out value="${pageMaker.vo.searchOption eq 'S'?'selected':''}"/>>
+								내용</option>
+							</select>
+							<input type="text" name="keyword" style="width: 100px" value="${pm.vo.keyword}"/>
+							<button type="submit" id="searchBtn" class="btn btn-sm btn-blue">검색</button>
+						</div>				
 					</td>
 				</tr>	
-			</table>
+			</table>	
 			</div>
 		<div class="middle_titleBox">
 			총 ${cnt }개의 공지사항이 조회 되었습니다.		
@@ -132,22 +108,27 @@
 				<ul class="pagination">
 				 			<!-- 이전prev -->
 				 	<c:if test="${pm.prev }">
-				 		<li><a href="listadNotice.do?page=${pm.startPage-1}">&laquo;</a></li>
+				 		<li><a href="${pm.startPage-1}">&laquo;</a></li>
 				 	</c:if>
 				 			<!-- 페이지블럭 -->
 					<c:forEach var="idx" begin="${pm.startPage}" end="${pm.endPage}">
 								<!-- 삼항연산자를 사용해서 class로 스타일적용  -->
 						<li ${pm.vo.page == idx? 'class=active':''}>
-						 	<a href="listadNotice.do?page=${idx}">${idx}</a>
+						 	<a href="${idx}">${idx}</a>
 						</li>				
 					</c:forEach>
 				 			<!-- 다음next -->
 				 	<c:if test="${pm.next && pm.endPage > 0}">
-				 		<li><a href="listadNotice.do?page=${pm.endPage+1}">&raquo;</a></li>
+				 		<li><a href="${pm.endPage+1}">&raquo;</a></li>
 				 	</c:if>
 				 </ul>
 			</div>
 		</div> 
-	</form>
+		<form id="moveForm" method="get">		
+			<input type="hidden" name="page" value="${pm.vo.page}">
+			<input type="hidden" name="pageSize" value="${pm.vo.pageSize}">
+			<input type="hidden" id="keyword" name="keyword" value="${pm.vo.keyword}">
+			<input type="hidden" id="searchOption" name="searchOption" value="${pm.vo.searchOption }">
+		</form>
 </body>
 </html>

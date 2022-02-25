@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 
+import kr.co.recipetoyou.main.goods.ReviewVO;
 import kr.co.recipetoyou.user.UserVO;
 import kr.co.recipetoyou.user.mypage.vo.CouponVO;
 import kr.co.recipetoyou.user.mypage.vo.MyOrderVO;
@@ -16,7 +17,6 @@ import kr.co.recipetoyou.user.mypage.vo.PointVO;
 import kr.co.recipetoyou.user.mypage.vo.UserAddrVO;
 
 import kr.co.recipetoyou.user.mypage.vo.QnAVO;
-import kr.co.recipetoyou.user.mypage.vo.ReviewVO;
 
 
 public interface MypageService {
@@ -53,7 +53,13 @@ public interface MypageService {
 	//상품후기
 	public List<ReviewVO> listReviews() throws DataAccessException;
 
-	public void updateUser(UserVO userVO) throws DataAccessException;
+	/*
+	 * //회원정보수정 public void updateUser(UserVO userVO) throws DataAccessException;
+	 */
 	
+	//배송지삭제
 	public int deleteAddress(@RequestParam("addr_code") String addr_code) throws DataAccessException;
+	
+	//이메일 중복체크
+	public int emailChk(UserVO userVO) throws DataAccessException;
 }

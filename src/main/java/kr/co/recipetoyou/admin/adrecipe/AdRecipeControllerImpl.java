@@ -37,15 +37,15 @@ public class AdRecipeControllerImpl implements AdRecipeController {
 	//글목록보기(PageMaker객체 사용)
 	//전체 레시피 게시글 조회
 	@Override
-	@RequestMapping(value = "/adrecipe/listadRecipe.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/adrecipe/listadRecipe.do", method = {RequestMethod.GET, RequestMethod.POST})
 	public ModelAndView lisRecipePageGet(PagingVO vo, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String viewName = (String)request.getAttribute("viewName");
-	    PageMaker pm = new PageMaker();
+		int cnt = service.recipeCount(vo);  
+		PageMaker pm = new PageMaker(vo, cnt);
 		pm.setVo(vo);
-	    pm.setTotalCount(service.recipeCount()); 
+	    pm.setTotalCount(service.recipeCount(vo)); 
 		logger.info("C: vo는 "+ vo);
 		logger.info("info 레벨 : viewName = "+viewName);  
-		int cnt = service.recipeCount();  
 		List<AdRecipeVO> recipeList = service.listRecipe(vo);
 	    ModelAndView mav = new ModelAndView(viewName);
 		mav.addObject("recipeList", recipeList);
@@ -75,7 +75,6 @@ public class AdRecipeControllerImpl implements AdRecipeController {
 		mav.addObject("adRecipeVO", service.getRecipeInfo(id));
 		return mav;
 	}
-
 	//레시피 게시글 삭제  
 	@Override
 	@RequestMapping(value = "/adrecipe/removeRecipe.do", method = RequestMethod.GET)

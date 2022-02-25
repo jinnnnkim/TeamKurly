@@ -26,8 +26,8 @@ public class AdSendServiceImpl implements AdSendService {
 
 	//발송내역 수 조회
 	@Override
-	public int sendListCount() throws DataAccessException {
-		return sendDAO.sendListCount();
+	public int sendListCount(PagingVO vo) throws DataAccessException {
+		return sendDAO.sendListCount(vo);
 	}
 		
 	//회원 상세 정보 조회

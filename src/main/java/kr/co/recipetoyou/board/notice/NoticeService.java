@@ -1,6 +1,7 @@
 package kr.co.recipetoyou.board.notice;
 
 import java.util.List;
+import java.util.Map;
 
 import kr.co.recipetoyou.util.PagingVO;
 
@@ -19,5 +20,8 @@ public interface NoticeService {
 	public int noticeOneToOneCount(PagingVO vo);
 
 	public List<NoticeINQVO> noticeOneToOneist(PagingVO vo);
+
+	public void addOnoToOneINQ(NoticeINQVO noticeINQ);
+
 
 }

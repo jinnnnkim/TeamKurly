@@ -55,7 +55,7 @@
 		<put-attribute name="body" value="/WEB-INF/Views/User/kf365Test.jsp"/>	
 	</definition>
 	
-	<definition name="user/newGoodsPage" extends="mainLayout">
+	<definition name="/user/newGoodsPage" extends="mainLayout">
 		<put-attribute name="title" value="신상품"/>
 		<put-attribute name="body" value="/WEB-INF/Views/User/newGoodsPage.jsp"/>	
 	</definition>
@@ -70,12 +70,12 @@
 		<put-attribute name="body" value="/WEB-INF/Views/User/saleGoodsPage.jsp"/>	
 	</definition>
 	
-	<definition name="prodDetail" extends="mainLayout">
+	<definition name="/user/goodsView" extends="mainLayout">
 		<put-attribute name="title" value="상품상세 페이지"/>
 		<put-attribute name="body" value="/WEB-INF/Views/User/goodsView.jsp"/>	
 	</definition>
 	
-	<definition name="order" extends="mainLayout">
+	<definition name="order/order" extends="mainLayout">
 		<put-attribute name="title" value="주문페이지"/>
 		<put-attribute name="body" value="/WEB-INF/Views/User/order.jsp"/>	
 	</definition>

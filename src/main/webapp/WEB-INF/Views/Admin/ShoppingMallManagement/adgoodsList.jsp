@@ -345,9 +345,9 @@
 				
 				$(this).find("img").attr('src', '${contextPath}/adgoods/getImageInfo.do?fileName=' + fileCallPath);
 				
-				}else {
+			}else {
 					$(this).find("img").attr('src', '/recipetoyou/Resources/Admin/Img/SubgoodsImg/ready.jpg');
-				}
+			}
 		});	
 		
 		});

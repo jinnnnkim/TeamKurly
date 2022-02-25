@@ -47,7 +47,7 @@
 	</select>
 	
 	<!-- 페이지정보를 지정한 크기만큼 가져오기 -->
-	<select id="getGoodsList" resultMap="adgoodsResult">
+	<select id="getadGoodsList" resultMap="adgoodsResult">
 		<![CDATA[
 			select * from (
 				select rownum AS rn, prod_name, prod_price, prod_code, cateCode,
@@ -57,10 +57,17 @@
 				
 		]]>
 			<!-- 상품명, 카테고리로 검색 -->
-			<if test="keyword != null">prod_name like '%'||#{keyword}||'%' and </if>
-			
-			<if test="cateCode != null and cateCode != '100000'">cateCode like '%'||#{cateCode}||'%' and </if>
-			
+			<choose>
+					<when test ="keyword != null and cateCode lt '5000'">
+						prod_name like '%'||#{keyword}||'%' and cateCode like '%'||#{cateCode}||'%' and
+					</when>
+					<when test="keyword != null">
+						prod_name like '%'||#{keyword}||'%' and
+					</when>
+					<when test="cateCode != null and cateCode != '100000'">
+						cateCode like '%'||#{cateCode}||'%' and 
+					</when>
+				</choose>
 		<![CDATA[	
 			rownum <= #{page} * #{pageSize} 
 			)			
@@ -70,9 +77,20 @@
 	
 	<!-- 총 상품 수 -->
 	<select id="getGoodsCount" parameterType="kr.co.recipetoyou.util.PagingVO" resultType="int">
-			select count(*) from TB_PROD
-				<if test="keyword != null">prod_name like '%'||#{keyword}||'%'</if>
-				<if test="cateCode != null and cateCode != '100000'">cateCode like '%'||#{cateCode}||'%' </if>
+			select count(*) from TB_PROD where
+				<!-- <if test="keyword != null">prod_name like '%'||#{keyword}||'%' </if>
+				<if test="cateCode != null and cateCode != '100000'">cateCode like '%'||#{cateCode}||'%' </if> -->
+				<choose>
+					<when test ="keyword != null and cateCode lt '5000'">
+						prod_name like '%'||#{keyword}||'%' and cateCode like '%'||#{cateCode}||'%'
+					</when>
+					<when test="keyword != null">
+						prod_name like '%'||#{keyword}||'%'
+					</when>
+					<when test="cateCode != null and cateCode != '100000'">
+						cateCode like '%'||#{cateCode}||'%' 
+					</when>
+				</choose>
 	</select>
 	
 	<!-- 상품 상세 정보-->
@@ -223,6 +241,4 @@
 		update tb_prod
 			set stock_quantity = quantity - #{quantity}
 	</update>
-	
-	
 </mapper>

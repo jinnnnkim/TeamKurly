@@ -37,18 +37,18 @@
 			</svg>
 			전체회원관리
 		</div>
-	<form method="post" action="${contextPath }/aduser/listadUsers.do">
-	<input type="hidden" name="page" value="${pm.vo.page}">
-	<input type="hidden" name="pageSize" value="${pm.vo.pageSize}">
+
 		<div class="list_head">
 			<table align="center" id="tableGroup">
 				<tr>
 					<td>
 						<div class="search_area">
 							<select name="searchOption">
+
 								<option value="I" <c:out value="${pageMaker.vo.searchOption eq 'I'?'selected':''}"/>>
 								아이디</option>
 								<option value="N" <c:out value="${pageMaker.vo.searchOption eq 'N'?'selected':''}"/>>
+
 								이름</option>
 							</select>
 							<input type="text" name="keyword" style="width: 100px" value="${pm.vo.keyword}"/>
@@ -58,7 +58,7 @@
 				</tr>	
 			</table>	
 			</div>
-		</form>
+	
 		<div class="middle_titleBox">
 			총 ${cnt }명의 회원이 검색되었습니다.		
 		</div>
@@ -111,8 +111,7 @@
 		<!-- 버튼클릭시 전체선택 해제되는 js구현되어있음 -->
 		<input type="button" value="전체해제" id="uncheck_all">
 		
-		<!-- 클릭시 alert창 띄우는 js 구현되어있음 -->
-		<button class="excelBtn" onclick="saveMessage()">엑셀파일로 저장</button><br><br><br>
+		
 
 		</div>
 		
@@ -121,23 +120,23 @@
 				<ul class="pagination">
 				 			<!-- 이전prev -->
 				 	<c:if test="${pm.prev }">
-				 		<li><a href="listadUsers.do?page=${pm.startPage-1}">&laquo;</a></li>
+				 		<li><a href="${pm.startPage-1}">&laquo;</a></li>
 				 	</c:if>
 				 			<!-- 페이지블럭 -->
 					<c:forEach var="idx" begin="${pm.startPage}" end="${pm.endPage}">
 								<!-- 삼항연산자를 사용해서 class로 스타일적용  -->
 						<li ${pm.vo.page == idx? 'class=active':''}>
-						 	<a href="listadUsers.do?page=${idx}">${idx}</a>
+						 	<a href="${idx}">${idx}</a>
 						</li>				
 					</c:forEach>
 				 			<!-- 다음next -->
 				 	<c:if test="${pm.next && pm.endPage > 0}">
-				 		<li><a href="listadUsers.do?page=${pm.endPage+1}">&raquo;</a></li>
+				 		<li><a href="${pm.endPage+1}">&raquo;</a></li>
 				 	</c:if>
 				 </ul>
 			</div>
 		</div> 
-		<form id="moveForm" action="${contextPath}/aduser/listadUsers.do" method="get">
+		<form id="moveForm"  method="get">
 			
 			<input type="hidden" name="page" value="${pm.vo.page}">
 			<input type="hidden" name="pageSize" value="${pm.vo.pageSize}">

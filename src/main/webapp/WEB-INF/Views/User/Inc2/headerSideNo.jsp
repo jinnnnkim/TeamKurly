@@ -59,7 +59,7 @@
 						<a href="#"><img alt="delivery" src="/recipetoyou/Resources/User/Img/delivery.png"></a>	
 					</div>
 					<div class="logo">
-						<a href="${contextPath}/main.do"><img alt="logo" src="/recipetoyou//Resources/User/Img/logo.gif"></a>
+						<a href="${contextPath}/main.do"><img alt="logo" src="/recipetoyou/Resources/User/Img/RecipeToYou_logo_1.png"></a>
 					</div>
 				
 		
@@ -230,7 +230,7 @@
 
 <script>
 	$(document).ready(function (){
-	    $('#catagoryMenu .menu1').mouseenter(function(){
+	     $('#catagoryMenu .menu1').mouseenter(function(){
 	        $('#allCate ul').css('display','block');
 	        $('.sul').css('display','block');
 	        $('.sul').css('z-index','300');
@@ -456,7 +456,7 @@
 	    }); 
 	    $('#allCate').mouseleave(function() {
 	        $('#allCate ul').css('display','none');
-	    }); 
+	    });  
 	});
 </script>
 

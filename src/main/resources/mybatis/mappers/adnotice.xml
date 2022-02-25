@@ -28,18 +28,26 @@
 	<select id="listNoticePaging" resultMap="noticeResult">
 		<![CDATA[
 			select *
-			from ( select rownum AS rn, 
-					nt.*
-					from tb_notice nt)
-			where rn between #{rowStart} and #{rowEnd}
-		]]>
+			from ( select rownum AS rn, nt.* from
+				 ( select nt.* from tb_notice nt order by notice_idx DESC) nt
+			]]>            
+            <if test="keyword != null">
+            	<if test="searchOption == 'I'.toString()">where notice_title like '%'||#{keyword}||'%'</if>
+            	<if test="searchOption == 'S'.toString()">where notice_content like '%'||#{keyword}||'%'</if>
+             </if>
+    	<![CDATA[
+    		)
+  			where rn between #{rowStart} and #{rowEnd}
+    	]]>
 	</select>
 	
 	<!-- 총 레시피 게시글 수 -->
 	<select id="noticeCount" resultType="int">
-		<![CDATA[
 			select count(*) from tb_notice
-		]]>
+			 <if test="keyword != null">
+            	<if test="searchOption == 'I'.toString()">where notice_title like '%'||#{keyword}||'%'</if>
+            	<if test="searchOption == 'S'.toString()">where notice_content like '%'||#{keyword}||'%'</if>
+             </if>
 	</select>
 	
 	<!-- 레시피 게시글 삭제  -->

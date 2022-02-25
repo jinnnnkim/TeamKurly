@@ -38,8 +38,8 @@ public class AdFAQDAOImpl implements AdFAQDAO{
 
 	//FAQ 정보 수 조회
 	@Override
-	public int FAQListCount() {
-		return sqlSession.selectOne("mapper.adfaq.FAQListCount");
+	public int FAQListCount(PagingVO vo) {
+		return sqlSession.selectOne("mapper.adfaq.FAQListCount", vo);
 	}
 
 	//FAQ 정보 삭제

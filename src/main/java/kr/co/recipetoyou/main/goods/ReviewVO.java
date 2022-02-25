@@ -1,10 +1,8 @@
-package kr.co.recipetoyou.user.mypage.vo;
+package kr.co.recipetoyou.main.goods;
 
 import java.sql.Date;
 
 import org.springframework.stereotype.Component;
-
-import kr.co.recipetoyou.main.goods.GoodsVO;
 
 @Component("reviewVO")
 public class ReviewVO {
@@ -15,14 +13,15 @@ public class ReviewVO {
 	
 	private int prod_review_code;
 	private int prod_code;
-	private int review_idx;
 	private String title;
 	private Date reg_date;
 	private String content;
-	private int good;
-	private int inquire;
-	private String attach_img;
+	
+	private String review_img;
 	private String user_id;
+	
+
+	
 	
 	
 	public GoodsVO getGoodsVO() {
@@ -49,12 +48,6 @@ public class ReviewVO {
 	public void setProd_code(int prod_code) {
 		this.prod_code = prod_code;
 	}
-	public int getReview_idx() {
-		return review_idx;
-	}
-	public void setReview_idx(int review_idx) {
-		this.review_idx = review_idx;
-	}
 	public String getTitle() {
 		return title;
 	}
@@ -73,24 +66,6 @@ public class ReviewVO {
 	public void setContent(String content) {
 		this.content = content;
 	}
-	public int getGood() {
-		return good;
-	}
-	public void setGood(int good) {
-		this.good = good;
-	}
-	public int getInquire() {
-		return inquire;
-	}
-	public void setInquire(int inquire) {
-		this.inquire = inquire;
-	}
-	public String getAttach_img() {
-		return attach_img;
-	}
-	public void setAttach_img(String attach_img) {
-		this.attach_img = attach_img;
-	}
 	public String getUser_id() {
 		return user_id;
 	}
@@ -98,5 +73,10 @@ public class ReviewVO {
 		this.user_id = user_id;
 	}
 	
-	
+	public String getReview_img() {
+		return review_img;
+	}
+	public void setReview_img(String review_img) {
+		this.review_img = review_img;
+	}
 }

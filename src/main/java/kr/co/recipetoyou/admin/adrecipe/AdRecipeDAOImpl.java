@@ -37,8 +37,8 @@ public class AdRecipeDAOImpl implements AdRecipeDAO {
 	//레시피 게시글 전체 수 조회
 	//DB 테이블에 있는 모든 회원의 주문 수 계산 후 리턴
 	@Override
-	public int recipeCount() throws DataAccessException {	
-		return sqlSession.selectOne("mapper.adrecipe.recipeCount");
+	public int recipeCount(PagingVO vo) throws DataAccessException {	
+		return sqlSession.selectOne("mapper.adrecipe.recipeCount", vo);
 	}
 
 	//레시피 게시글 삭제 

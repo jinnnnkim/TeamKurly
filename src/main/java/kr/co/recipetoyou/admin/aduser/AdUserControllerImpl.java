@@ -28,12 +28,15 @@ public class AdUserControllerImpl implements AdUserController {
 	private AdUserService aduserService;
 	
 	//페이징처리한 글목록
-	@Override
-	@RequestMapping(value = "/aduser/listUsers.do", method = RequestMethod.GET)
-	public void listUsersGET(PagingVO vo, Model model) throws Exception{
-		logger.info("C: listVO 겟 호출" + vo);
-		model.addAttribute("ListUsers", aduserService.listUsers(vo));
-	}
+	/*
+	 * @Override
+	 * 
+	 * @RequestMapping(value = "/aduser/listUsers.do", method = RequestMethod.GET)
+	 * public void listUsersGET(PagingVO vo, Model model) throws Exception{
+	 * 
+	 * System.out.println("void가 호출딘다."); logger.info("C: listVO 겟 호출" + vo);
+	 * model.addAttribute("ListUsers", aduserService.listUsers(vo)); }
+	 */
 		
 	//글목록보기(PageMaker객체 사용)
 	//전체 회원 조회
@@ -41,12 +44,15 @@ public class AdUserControllerImpl implements AdUserController {
 	@RequestMapping(value = "/aduser/listadUsers.do", method = {RequestMethod.GET, RequestMethod.POST})
 	public ModelAndView listPageGet(PagingVO vo, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String viewName = (String)request.getAttribute("viewName");
+		System.out.println("================search:"+vo.getSearchOption());
+		System.out.println("================keyword:"+vo.getKeyword());
 	    PageMaker pm = new PageMaker();
 		pm.setVo(vo);
 	    pm.setTotalCount(aduserService.userCount(vo)); 
 		logger.info("C: vo는 "+ vo);
 		logger.info("info 레벨 : viewName = "+viewName);  
 		int cnt = aduserService.userCount(vo);  
+	
 		List<AdUserVO> userList = aduserService.listUsers(vo);
 	    ModelAndView mav = new ModelAndView(viewName);
 		mav.addObject("userList", userList);

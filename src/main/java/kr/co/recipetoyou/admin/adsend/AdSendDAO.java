@@ -15,7 +15,7 @@ public interface AdSendDAO {
 	
 	public List<AdSendVO> sendListPaging(PagingVO vo) throws Exception;
 
-	public int sendListCount() throws DataAccessException;
+	public int sendListCount(PagingVO vo) throws DataAccessException;
 
 	public AdUserVO readUserSend(String id) throws DataAccessException;
 

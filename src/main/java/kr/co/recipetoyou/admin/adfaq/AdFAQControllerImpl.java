@@ -56,10 +56,10 @@ public class AdFAQControllerImpl implements AdFAQController {
 		String viewName = (String)request.getAttribute("viewName");
 	    PageMaker pm = new PageMaker();
 		pm.setVo(vo);
-	    pm.setTotalCount(service.FAQListCount()); 
+	    pm.setTotalCount(service.FAQListCount(vo)); 
 		logger.info("C: vo는 "+ vo);
 		logger.info("info 레벨 : viewName = "+viewName);  
-		int cnt = service.FAQListCount();  
+		int cnt = service.FAQListCount(vo);  
 		List<AdFAQVO> FAQList = service.listFAQ(vo);
 	    ModelAndView mav = new ModelAndView(viewName);
 		mav.addObject("FAQList", FAQList);
@@ -103,7 +103,6 @@ public class AdFAQControllerImpl implements AdFAQController {
 		rttr.addFlashAttribute("modify_result", result);
 		return mav;	
 	}
-
 	//FAQ 정보 삭제
 	@Override
 	@RequestMapping(value = "/adfaq/removeFAQ.do", method = RequestMethod.GET)
@@ -113,7 +112,6 @@ public class AdFAQControllerImpl implements AdFAQController {
 		ModelAndView mav = new ModelAndView("redirect:faqAdManagement.do");
 		return mav;
 	}
-	
 	//FAQ 카테고리 검색
 	@Override
 	@RequestMapping(value = "/adfaq/FAQCategory.do", method = RequestMethod.GET)
@@ -137,8 +135,7 @@ public class AdFAQControllerImpl implements AdFAQController {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName(viewName);
 		return mav;	
-	}
-	
+	}	
 	//FAQ 등록
 	@Override
 	@RequestMapping(value = "/adfaq/FAQInsert.do", method = RequestMethod.POST)
@@ -151,8 +148,5 @@ public class AdFAQControllerImpl implements AdFAQController {
 	    //게시물을 저장한 후에 게시물 목록페이지로 다시 이동함
 	    ModelAndView mav = new ModelAndView( "redirect:faqAdManagement.do");
 	    return mav;
-	   
-	
 	}
-	
 }

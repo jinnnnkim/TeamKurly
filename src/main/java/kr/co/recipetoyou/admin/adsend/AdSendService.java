@@ -13,7 +13,7 @@ public interface AdSendService {
 
 	public List<AdSendVO> listSend(PagingVO vo) throws Exception;
 
-	public int sendListCount() throws DataAccessException;
+	public int sendListCount(PagingVO vo) throws DataAccessException;
 
 	public AdUserVO getSendUserInfo(String id) throws DataAccessException;
 

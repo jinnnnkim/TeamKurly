@@ -2,19 +2,25 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<c:set var="contextPath" value="${pageContext.request.contextPath}" />
+<c:set var="contextPath" value="${pageContext.servletContext.contextPath}" />
 <c:set var="articlesList" value="${articlesMap.articlesList }"/><%--page넘버와 섹션이 적용된 페이지 글 --%>
 <%
 request.setCharacterEncoding("UTF-8");
+response.setContentType("application/json");
 %>
-
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Recipe to You :: 내일의 장보기, 레시피투유</title>
+<link rel="stylesheet" type="text/css" href="/recipetoyou/Resources/Common/slick/slick.css" />
+<link rel="stylesheet" type="text/css" href="/recipetoyou/Resources/Common/slick/slick-theme.css" />
 <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
-	<script type="text/javascript">
+<script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+<script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+<script type="text/javascript" src="/recipetoyou/Resources/Common/slick/slick.min.js"></script>
+
+<script type="text/javascript">
 		function fn_pick() {
 			$.ajax({
 				type: "post",
@@ -112,19 +118,16 @@ request.setCharacterEncoding("UTF-8");
 	<div id="main">
 		<div class="section_view">
 			<div class="inner_view">
-				<!-- inner_view - 상품 이미지를 감싼 태그  -->
-				<div class="goods_info_name">
-					<img alt="두부면 파스타"
-						src="/recipetoyou/Resources/User/Img/Meal/paster1.jpg">
-				</div>
+			<img alt="상세보기" src="${contextPath}/Resources/Admin/Img/AdgoodsImg/${agi.uploadPath}/s_${agi.uuid }_${agi.fileName}">
 
 				<div class="goods_name">
 					<!-- goods_name -->
-					<span class="share"> <img alt="share"
-						src="/recipetoyou/Resources/User/Img/share.png">
-					</span> <strong class="name">[잇츠베러] 어스밀 렌틸라구 두부면 파스타</strong><br> <span
-						class="short_desc">식물성 재료로 완성한 라구 파스타</span> <span class="dc">
-						<span class="dc_price">${goodsVO.prod_code} ${goodsVO.prod_code}5,900 <span class="won">원</span></span>
+					<span class="share"> 
+					<div id="uploadArea">
+					</div>
+
+					</span> <strong class="name">${goodsDetailInfo.prod_name}</strong><br><br> 
+						<span class="dc_price">${goodsDetailInfo.prod_price}</span><span class="won">원</span>
 					</span>
 					<!-- dc -->
 					<br> <span class="not_login">로그인 후, 적립혜택이 제공됩니다.</span>
@@ -137,33 +140,35 @@ request.setCharacterEncoding("UTF-8");
 							<!-- inn_goods_info -->
 							<dl class="list fst">
 								<dt class="tit">판매단위</dt>
-								<dd class="desc">1팩</dd>
+								<dd class="desc">${goodsDetailInfo.prod_sell_unit}</dd>
 							</dl>
 							<dl class="list">
 								<dt class="tit">중량/용량</dt>
-								<dd class="desc">240g</dd>
+								<dd class="desc">테이블 기입 필요</dd>
 							</dl>
 							<dl class="list">
 								<dt class="tit">배송구분</dt>
-								<dd class="desc">샛별배송/택배배송</dd>
+								<dd class="desc">${goodsDetailInfo.prod_delivery_type}</dd>
 							</dl>
 							<dl class="list">
 								<dt class="tit">포장타입</dt>
 								<dd class="desc">
-									냉동/스티로품 <strong class="emph">택배배송은 에코포장이 스티롬품으로 대체됩니다.</strong>
+									${goodsDetailInfo.prod_wrap_type} <strong class="emph">택배배송은 에코포장이 스티롬품으로 대체됩니다.</strong>
 								</dd>
 							</dl>
 							<dl class="list">
 								<dt class="tit">알레르기정보</dt>
 								<dd class="desc">
-									- 대두,토마토 함유<br> - 이 제품은 밀, 소고기, 닭고기, 돼지고기, 우유, 메밀, 땅콩,
-									복숭아, 호두, 잣, 오징어, 고등어, 게, 새우, 조개류(굴, 바지락, 모시조개, 가리비, 홍합, 전복 등),
-									알류(계란, 메추리알), 아황산류를 사용한 제품과 같은 제조시설에서 제조하고 있습니다.
+									${goodsDetailInfo.prod_allergy}
 								</dd>
 							</dl>
 						</div>
 						<!-- inn_goods_info  상품 정보 -->
-
+						
+						<form action="#" method="post" id="idCheckSet">
+							<input type="text" name="user_id" hidden="hidden" value="${user_id }">
+							<input type="text" name="prod_code" hidden="hidden" value="${goodsVO.prod_code }">
+						</form>
 
 						<div class="cartPut">
 							<!-- cartPut -->
@@ -188,14 +193,13 @@ request.setCharacterEncoding("UTF-8");
 						<div class="total">
 							<!-- total  -->
 							<span class="count_price">총 상품금액 :</span> <span class="sum">
-								<span class="sum_num">5,900</span> <span class="sum_won">원</span>
+								<span class="sum_num">${goodsDetailInfo.prod_price }</span> <span class="sum_won">원</span>
 							</span>
 							<p class="txt_point">
 								<span class="point">적립</span> <span class="not_login">로그인
 									후, 적립혜택 제공</span>
 							</p>
 						</div>
-						<!-- total 총 상품 구매 금액 -->
 
 
 						<div class="pick_cart">
@@ -205,7 +209,7 @@ request.setCharacterEncoding("UTF-8");
 							</button>
 							<div class="button_wrap">
 								<button type="button" class="wrap_btn"  onclick="fn_cart()">장바구니 담기</button> <!-- 장바구니 버튼  -->
-								<span>${goodsVO.PROD_CODE}</span>
+								<%-- <span>${goodsDetailInfo.prod_code}</span> --%>
 							</div>
 							<!-- button_wrap -->
 						</div>
@@ -213,8 +217,10 @@ request.setCharacterEncoding("UTF-8");
 
 					</div>
 					<!-- goods_info -->
+					
 				</div>
 				<!-- goods_name -->
+				
 			</div>
 			<!-- inner_view -->
 
@@ -226,90 +232,87 @@ request.setCharacterEncoding("UTF-8");
 					<!-- goods-add-product-sub -->
 				</div>
 				<!-- goods_add_product -->
-
-
+				
+				
+				<button class="btn_move_left" id="aro1_prev">
+					<i class="fas fa-angle-left"></i>
+				</button>	
+					
 				<div class="inn_goods_add_product">
 					<!-- 관련 상품 추천 -->
-					<button class="btn_move_left">
-						<i class="fas fa-angle-left"></i>
-					</button>
-					<ul class="goods_add_product_list">
-						<li class="goods_add_product_item">
-							<div class="add_product_item_inn_wrap">
-								<a href="#"><img alt="item_img"
-									src="/recipetoyou/Resources/User/Img/Meal/paster2.jpg"></a>
-								<div class="add_product_item_inn">
-									<p class="add_product_item_inn_cost">[잇츠베러] 어스밀 바질페스토 두부면
-										파스타</p>
-									<br>
-									<p>5,900원</p>
-								</div>
-								<!-- add_product_item_inn -->
-							</div> <!-- add_product_item_inn_wrap -->
-						</li>
-
-						<li class="goods_add_product_item">
-							<div class="add_product_item_inn_wrap">
-								<a href="#"><img alt="item_img"
-									src="/recipetoyou/Resources/User/Img/Meal/meal4.jpg"></a>
-								<div class="add_product_item_inn">
-									<p class="add_product_item_inn_cost">[아임웰] 굿밸런스 라이트밀 볶음밥 2종
-										(4개입)</p>
-									<br>
-									<p>10,400원</p>
-								</div>
-								<!-- add_product_item_inn -->
-							</div> <!-- add_product_item_inn_wrap -->
-						</li>
-
-						<li class="goods_add_product_item">
-							<div class="add_product_item_inn_wrap">
-								<a href="#"><img alt="item_img"
-									src="/recipetoyou/Resources/User/Img/Meal/meal5.jpg"></a>
-								<div class="add_product_item_inn">
-									<p class="add_product_item_inn_cost">[아임웰] 곤약잡곡 닭가슴살 잡채 볶음밥
-										(4개입)</p>
-									<br>
-									<p>10,400원</p>
-								</div>
-								<!-- add_product_item_inn -->
-							</div> <!-- add_product_item_inn_wrap -->
-						</li>
-
-						<li class="goods_add_product_item">
-							<div class="add_product_item_inn_wrap">
-								<a href="#"><img alt="item_img"
-									src="/recipetoyou/Resources/User/Img/Meal/meal6.jpg"></a>
-								<div class="add_product_item_inn">
-									<p class="add_product_item_inn_cost">[마이비밀] 진선미 떡볶이 오리지널맛</p>
-									<br>
-									<p>5,500원</p>
-								</div>
-								<!-- add_product_item_inn -->
-							</div> <!-- add_product_item_inn_wrap -->
-						</li>
-
-						<li class="goods_add_product_item">
-							<div class="add_product_item_inn_wrap">
-								<a href="#"><img alt="item_img"
-									src="/recipetoyou/Resources/User/Img/Meal/meal7.jpg"></a>
-								<div class="add_product_item_inn">
-									<p class="add_product_item_inn_cost">[마이비밀] 진선미 떡볶이 짜장맛</p>
-									<br>
-									<p>5,500원</p>
-								</div>
-								<!-- add_product_item_inn -->
-							</div> <!-- add_product_item_inn_wrap -->
-						</li>
-					</ul>
-					<button class="btn_move_right">
+				
+					<c:forEach var="goods" items="${goodsDetail}">
+						<ul class="goods_add_product_list">
+							<li class="goods_add_product_item">
+								<div class="add_product_item_inn_wrap">
+									<div class="image_wrap" data-prod_code="${goods.imageList[0].prod_code}" data-path="${goods.imageList[0].uploadPath}"
+												data-uuid="${goods.imageList[0].uuid}" data-filename="${goods.imageList[0].fileName}">
+										<a href="${contextPath}/user/goodsView.do?prod_code=${goods.prod_code}"><img></a>								
+									</div>
+									<div class="add_product_item_inn">
+										<p class="add_product_item_inn_cost">${goods.prod_name}</p>	
+										<p id="goodsCost" class="goodsCost">${goods.prod_price}원</p>
+									</div>
+							
+									<!-- add_product_item_inn -->
+								</div> <!-- add_product_item_inn_wrap -->
+							</li>
+						</ul>
+					</c:forEach>
+					<!-- inn_goods_add_product 관련 상품 추천 wrap-->
+						
+				</div>
+				
+				<button class="btn_move_right" id="aro1_next">
 						<i class="fas fa-angle-right"></i>
 					</button>
-				</div>
-				<!-- inn_goods_add_product 관련 상품 추천 wrap-->
+				<!-- how_goods 페이징 기능.js -->
+
+				<script type="text/javascript">
+					// 숫자 타입에서 쓸 수 있도록 format() 함수 추가
+					Number.prototype.format = function(){
+					    if(this==0) return 0;
+
+					    var reg = /(^[+-]?\d+)(\d{3})/;
+					    var n = (this + '');
+
+					    while (reg.test(n)) n = n.replace(reg, '$1' + ',' + '$2');
+
+					    return n;
+					};
+
+					// 문자열 타입에서 쓸 수 있도록 format() 함수 추가
+					String.prototype.format = function(){
+					    var num = parseFloat(this);
+					    if( isNaN(num) ) return "0";
+
+					    return num.format();
+					};
+					
+					jQuery('.goodsCost').text(function() {
+					    jQuery(this).text(
+					        jQuery(this).text().format()
+					    );
+					});
+					
+					$('.inn_goods_add_product').slick({
+						slidesToShow : 4,
+						slidesToScroll : 1,
+						dots : false,
+						arrows : true,
+						infinite : true,
+						autoplay : false,
+						speed : 500,
+						prevArrow : $('#aro1_prev'),
+						nextArrow : $('#aro1_next'),
+						autoplaySpeed : 3000
+					});
+				</script>
+				
 
 				<div class="goods-view-wrap">
 					<!-- 상품 상세보기 -->
+
 					<div class="goods-view-inn">
 						<ul class="goods-view-lists">
 							<li class="gview-list-inn"><a href="#prodDetail"
@@ -321,64 +324,28 @@ request.setCharacterEncoding("UTF-8");
 							<li class="gview-list-inn"><a href="#QandATable"
 								class="gview_tab_anchor scroll_move">문의</a></li>
 						</ul>
-						<!-- goods-view-lists -->
+
 					</div>
-					<!-- goods-view-inn -->
+
 
 					<div class="goods-view-inn_content_wrap">
 						<div id="prodDetail" class="goods-view-inn_content">
 							<div class="pic">
-								<img alt="pic"
-									src="/recipetoyou/Resources/User/Img/SaleGoods/view-inn_content_1.jpg">
+								<img alt="상세보기" src="${contextPath}/Resources/Admin/Img/AdgoodsImg/${agi.uploadPath}/s_${agi.uuid }_${agi.fileName}">	
+
 							</div>
-							<!-- pic -->
+
 							<div class="context_tit">
-								<h4>
-									<small>식물성 재료로 완성한 라구 파스타</small> [잇츠베러] 어스밀<br> 렌틸라구 두부면
-									파스타
-								</h4>
-								<p class="words">다채로운 두부 요리를 시도 중인 분이라면, 지금 소개하는 잇츠베러 어스밀
-									두부면 파스타가 무척 마음에 드실 거예요. 유기농 콩으로 두부면을 제면하고 소스와 토핑은 모두 식물성 재료를
-									사용해 질 좋은 단백질과 식이섬유를 간편하게 챙길 수 있거든요. 이번에는 고소한 두부면에 토마토 소스와 렌틸콩으로
-									만든 라구소스를 흠뻑 입혀 완성한 렌틸라구 파스타를 준비했어요. 두부와 렌틸콩의 식감이 살아 있어 풍성하고
-									다채로운 맛을 자랑한답니다. 가볍고 속 편한 식사를 찾고 계셨다면, 잇츠베러를 선택해 보세요.</p>
+								${goodsDetailInfo.prod_content }
 							</div>
-							<!-- context_tit -->
+
+							
 						</div>
-						<!-- goods-view-inn_content -->
+					
 					</div>
-					<!-- goods-view-inn_content_wrap -->
+				
 
 
-					<div class="check_point">
-						<h3>
-							<span>Recipe To You's Check Point</span>
-						</h3>
-						<img alt="check_point_img"
-							src="/recipetoyou/Resources/User/Img/SaleGoods/check_point.jpg">
-					</div>
-					<!-- check_point -->
-
-					<div class="pick">
-						<h3>
-							<span>Recipe To You's Pick</span>
-						</h3>
-						<div class="context_tit">
-							<p class="words">
-								<strong class="sub_tit"> <span class="option_tit">어스밀
-										렌틸라구 두부면 파스타</span>
-								</strong> <b>중량</b> : 1팩(240g)<br> <b>특징 </b> : 두부면에 새콤한 토마토소스와 고소한
-								렌틸콩을 사용해 만든 라구 소스 파스타입니다.<br>
-							</p>
-							<div class="pic2">
-								<img alt="pic"
-									src="/recipetoyou/Resources/User/Img/SaleGoods/pick_1.jpg">
-							</div>
-							<!-- pic2 -->
-						</div>
-						<!-- context_tit -->
-					</div>
-					<!-- pick -->
 
 					<div class="goods_tips">
 						<span>Recipe To You's Tip</span>
@@ -392,18 +359,18 @@ request.setCharacterEncoding("UTF-8");
 									<strong class="sub_tit_tip">보관법</strong> -18℃ 이하에서 냉동 보관하세요.
 								</p>
 							</div>
-							<!-- tip_tit -->
-						</div>
-						<!-- tip_box -->
-					</div>
-					<!-- tips -->
 
-					<div id="goods_pic">
+							
+						</div>
+						
+					</div>
+
+
+					<!-- <div id="goods_pic">
 						<img alt=""
 							src="/recipetoyou/Resources/User/Img/SaleGoods/pick_2.jpg">
-					</div>
+					</div> -->
 					<!-- goods_pic -->
-
 
 					<table width="100%" border="0" cellpading="0" cellspacing="1"
 						class="extra-info">
@@ -459,22 +426,23 @@ request.setCharacterEncoding("UTF-8");
 									<div class="why_icon">
 										<i class="fas fa-clipboard-list"></i>
 									</div>
-									<!-- why_icon -->
+
 									<div class="why_info">
 										<span class="title">깐깐한 상품위원회</span> <span class="tit_story">
 											나와 내 가족이 먹고 쓸 상품을 고르는<br> 마음으로 매주 상품을 직접 먹어보고,<br>
 											경험해보고 성분, 맛, 안정성 등 다각도의<br> 기준을 통과한 상품만을 판매합니다.
 										</span>
 									</div>
-									<!-- why_info -->
+								
 								</div>
-								<!-- col -->
+								
+
 
 								<div class="col">
 									<div class="why_icon">
 										<i class="fas fa-shipping-fast"></i>
 									</div>
-									<!-- why_icon -->
+									
 									<div class="why_info">
 										<span class="title">신선한 풀콜드체인 배송</span> <span
 											class="tit_story"> 온라인 업계 최초로 산지에서 문 앞까지<br>상온,
@@ -482,15 +450,15 @@ request.setCharacterEncoding("UTF-8");
 											상품을 신선하게 전해드립니다.
 										</span>
 									</div>
-									<!-- why_info -->
+								
 								</div>
-								<!-- col -->
+
 
 								<div class="col">
 									<div class="why_icon">
 										<i class="fas fa-globe-americas"></i>
 									</div>
-									<!-- why_icon -->
+
 									<div class="why_info">
 										<span class="title">환경을 생각하는 지속 가능한 유통</span> <span
 											class="tit_story"> 친환경 포장재부터 생산자가 상품에만<br>집중할 수
@@ -498,15 +466,14 @@ request.setCharacterEncoding("UTF-8");
 											커뮤니티, 직원)이<br>더 나아질 수 있도록 노력합니다.
 										</span>
 									</div>
-									<!-- why_info -->
+
+									
 								</div>
-								<!-- col -->
+							
 							</div>
-							<!--whykurly_txt_area  -->
 						</div>
-						<!-- whykurly -->
 					</div>
-					<!-- whykurly_wrap -->
+
 
 
 					<div class="happy_center_wrap">
@@ -514,7 +481,7 @@ request.setCharacterEncoding("UTF-8");
 							<span class="happy_tit">고객행복센터</span> <span class="sub_qus">궁금하신
 								점이나 서비스 이용에 불편한 점이 있으신가요?</span> <span class="sub_ans">문제가 되는
 								부분을 사진으로 찍어 아래 중 편하신 방법으로 접수해 주시면 빠르게 도와드리겠습니다.</span>
-						</div>
+						</div> 
 						<!-- happy -->
 
 						<ul class="happy_list_u">
@@ -610,13 +577,14 @@ request.setCharacterEncoding("UTF-8");
 							<th class="writeDate">작성일</th>
 							<th class="hit">조회</th>
 						</tr>
-
+						
+						<c:forEach var="rvl" items="${reviewList }">
 						<tr class="reviewList1">
 							<td>공지</td>
 							<td class="titleCont"><a href="#none">금주의 Best 후기 안내</a></td>
-							<td>Recipe</td>
-							<td>2022-01-04</td>
-							<td>15</td>
+							<td>${rvl.title }</td>
+							<td>${rvl.user_id }</td>
+							<td>${rvl.reg_date }</td>
 						</tr>
 						<tr class="reviewDetailList1">
 							<td colspan="5">
@@ -629,7 +597,7 @@ request.setCharacterEncoding("UTF-8");
 								</div>
 							</td>
 						</tr>
-
+					</c:forEach>
 					</table>
 					<div class="writeBtn">
 						<a href="${contextPath}/reviewWrite.do">후기작성</a>
@@ -648,7 +616,7 @@ request.setCharacterEncoding("UTF-8");
 					</ul>
 				</div>
 				<%--review end --%>
-
+				
 				<%--QnA --%>
 				<div id="QandATable" class="QandATable">
 					<div>
@@ -664,15 +632,28 @@ request.setCharacterEncoding("UTF-8");
 							<th class="writeDate">작성일</th>
 							<th class="reply">답변상태</th>
 						</tr>
-
+						
+						<c:forEach var="fl" items="${inqList }">
 						<tr class="QandAList1">
-							<td>판매 일시 중단 제품입니다.</td>
-							<td class="titleCont">recipetoyou</td>
-							<td>2022-01-04</td>
-							<td>-</td>
+							<td class="titleCont">${fl.inq_title }</td>
+							<td>${fl.user_id }</td>
+							<td><fmt:parseDate value="${fl.inq_reg_date}" var="reg_date" pattern="yy-MM-dd"/>
+							<fmt:formatDate value="${reg_date}" pattern="yy-MM-dd"/></td>
+							<c:choose>
+							<c:when test="${fl.emp_no eq 1 }">
+								<!-- 관리자 번호는 1번이므로 관리자가 배치되었다면 답변이 완료된 상태 -->
+								<td>답변 완료</td>
+							</c:when>
+							<c:when test="${fl.emp_no eq 0 }">
+								<!-- 관리자 번호는 1번이므로 관리자가 배치되지 않았다면 답변 대기 상태 -->
+								<td>답변 대기</td>
+							</c:when>
+							</c:choose>
 						</tr>
+						
 						<tr class="QandADetailList1">
-							<td colspan="5">
+						
+							<!-- <td colspan="5">
 								<div>
 									<span> 환경을 생각해주세요. </span>
 									<div class="echoBtn">
@@ -680,13 +661,46 @@ request.setCharacterEncoding("UTF-8");
 										<button class="deleteBtn" type="button" onclick="QAdelte()">삭제</button>
 									</div>
 								</div>
-							</td>
+							</td> -->
+							
 						</tr>
+						<div id="collapseq${fl.faq_no}" class="collapse" data-parent="#accordion">
+							<div class="card-body">
+								<div class="q-table-page">
+									<!-- 메뉴 눌렀을 때 페이지 -->
+									<div class="q-table-page-proname">[${goodsVO.item_category}] ${iteminfo.item_name}</div>
+									<ul class="q-table-page-ul">
+										<li class="q-table-page-item">${fl.content}</li>
+									</ul>
+									<div class="q-table-page-anwser">
+										<!-- 메뉴 눌렀을 때 페이지 -->
+									<c:if test="${fl.emp_no eq 1}"> <!-- 답변이 완료된 상태라면 답변도 함께 짝지어 출력 -->
+										<ul class="q-table-page-titleNstate">
+											<li class="q-table-page-item-title">답변 : re:${fl.title}</li>
+											<li class="q-table-page-item-state">답변 완료</li>
+										</ul>
+										<ul class="q-table-page-ul">
+											<li class="q-table-page-item">${fl.ans_content}</li>
+										</ul>
+										
+						</c:if>
+									</div>
+								</div>
+							</div>
+						</div>
+						</c:forEach>			
 					</table>
+					<div class="write-faq">
+						
+					</div>
+					<div >
+					<button id="writeBtn">문의하기</button>
+					</div>
 					<div class="writeBtn">
 						<a id="show">문의하기</a>
 					</div>
 					<%--QnA End--%>
+					
 					
 					<%--문의하기 팝업 --%>
 					<div class="background">
@@ -705,17 +719,23 @@ request.setCharacterEncoding("UTF-8");
 											class="prodSub">맛있는 소고기 200g</span>
 									</div>
 								</div>
+								
 								<div class="QnAWrap">
-									<form>
+									<form name="qnaFrm" id="qnaFrm" method="post">
 										<table class="QnAWrite">
 											<tr class="QnAWriteTitle">
 												<th>제목</th>
-												<td><input type="text" placeholder="제목을 입력해주세요." /></td>
+												<td>
+												<input type="text" name="inq_title" id="inq_title" placeholder="제목을 입력해주세요." />
+												<input type="text" hidden="hidden" name="user_id" id="user_id" class="qinput q_inputUserno" value="${user_id }">
+												<input type="text" hidden="hidden" name="prod_code" class="qinput q_inputItemno" value="${goodsVO.prod_code}">"
+												</td>
 											</tr>
 											<tr class="content">
 												<th>내용</th>
 												<td><textarea
-														placeholder="자세한 후기는 다른 고객의 구매에 많은 도움이 되며,&#13;&#10;일반식품의 효능이나 효과 등에 오해의 소지가 있는 내용을 작성 시 검토 후 비공개 조치될 수 있습니다.&#13;&#10;반품/환불 문의는 1:1문의로 가능합니다."></textarea>
+														placeholder="자세한 후기는 다른 고객의 구매에 많은 도움이 되며,&#13;&#10;일반식품의 효능이나 효과 등에 오해의 소지가 있는 내용을 작성 시 검토 후 비공개 조치될 수 있습니다.&#13;&#10;반품/환불 문의는 1:1문의로 가능합니다."
+														name="inq_content" id="inq_content"></textarea>
 												</td>
 											</tr>
 											<tr class="scret">
@@ -726,7 +746,7 @@ request.setCharacterEncoding("UTF-8");
 										
 										<div class="popWriteBtn">
 											<button class="cancel" type="reset">취소</button>
-											<button class="reg" type="submit">등록</button>
+											<button class="writeBtn" id="write">등록</button>
 										</div>
 									</form>
 								</div>
@@ -828,7 +848,59 @@ request.setCharacterEncoding("UTF-8");
 
       document.querySelector("#show").addEventListener("click", show);
       document.querySelector("#close").addEventListener("click", close);
-      
 
+      //숫자 (,) 적용 
+   		// 숫자 타입에서 쓸 수 있도록 format() 함수 추가
+		Number.prototype.format = function(){
+		    if(this==0) return 0;
+
+		    var reg = /(^[+-]?\d+)(\d{3})/;
+		    var n = (this + '');
+
+		    while (reg.test(n)) n = n.replace(reg, '$1' + ',' + '$2');
+
+		    return n;
+		};
+
+		// 문자열 타입에서 쓸 수 있도록 format() 함수 추가
+		String.prototype.format = function(){
+		    var num = parseFloat(this);
+		    if( isNaN(num) ) return "0";
+
+		    return num.format();
+		};
+		
+		jQuery('.dc_price').text(function() {
+		    jQuery(this).text(
+		        jQuery(this).text().format()
+		    );
+		});
+		
+		jQuery('.sum_num').text(function() {
+		    jQuery(this).text(
+		        jQuery(this).text().format()
+		    );
+		});
+		
+		$(document).ready(function(){						
+			//이미지 삽입
+			$(".image_wrap").each(function(i, obj){
+				
+				const bobj = $(obj);
+				if(bobj.data("prod_code")){
+					
+					const uploadPath = bobj.data("path");
+					const uuid = bobj.data("uuid");
+					const fileName = bobj.data("filename");
+					
+					const fileCallPath = encodeURIComponent(uploadPath + "/s_" + uuid + "_" + fileName);
+					
+					$(this).find("img").attr('src', '${contextPath}/user/getImageInfo.do?fileName='+fileCallPath);
+					
+				} else {
+					$(this).find("img").attr('src', '/recipetoyou/Resources/Admin/Img/SubgoodsImg/ready.jpg');
+				}
+			});	
+		}); 
 	</script>
 </body>

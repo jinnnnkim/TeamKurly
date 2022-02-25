@@ -1,5 +1,6 @@
 package kr.co.recipetoyou.main.goods;
 import java.sql.Date;
+import java.util.List;
 
 /*
  create table tb_prod(
@@ -24,6 +25,8 @@ import java.sql.Date;
  */
 import org.springframework.stereotype.Repository;
 
+import kr.co.recipetoyou.admin.adgoods.AdgoodsImgVO;
+
 @Repository("goodsVO")
 public class GoodsVO {
 	
@@ -44,8 +47,9 @@ public class GoodsVO {
 	private String prod_caution;
 	private int prod_quantity;
 	private Date prod_reg_date;
-	
-	
+	private List<AdgoodsImgVO> imageList;
+
+
 	public GoodsVO() {
 		// TODO Auto-generated constructor stub
 	}
@@ -234,6 +238,14 @@ public class GoodsVO {
 		this.prod_reg_date = prod_reg_date;
 	}
 	
+	public List<AdgoodsImgVO> getImageList() {
+		return imageList;
+	}
+
+
+	public void setImageList(List<AdgoodsImgVO> imageList) {
+		this.imageList = imageList;
+	}
 	
 	
 

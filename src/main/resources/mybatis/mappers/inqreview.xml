@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.inqreview">
+
+	<resultMap type="reviewVO" id="reviewResult">
+		<result property="prod_review_code" column="prod_review_code"/>
+		<result property="prod_code" column="prod_code"/>
+		<result property="title" column="title"/>
+		<result property="reg_date" column="reg_date"/>
+		<result property="content" column="content"/>
+		<result property="user_id" column="user_id"/>
+		<result property="review_img" column="review_img"/>
+	</resultMap>
+	
+	<resultMap type="inquiryVO" id="inqResult">
+		<result property="prod_inq_code" column="prod_inq_code"/>
+		<result property="prod_code" column="prod_code"/>
+		<result property="user_id" column="user_id"/>
+		<result property="inq_title" column="inq_title"/>
+		<result property="inq_content" column="inq_content"/>
+		<result property="inq_reg_date" column="inq_reg_date"/>
+		<result property="emp_no" column="emp_no"/>
+		<result property="ans_content" column="ans_content"/>
+		<result property="ans_date" column="ans_date"/>
+	</resultMap>
+	
+	<resultMap type="inqAnswerVO" id="inqansResult">
+		<result property="prod_inq_code" column="prod_inq_code"/>
+		<result property="emp_no" column="emp_no"/>
+		<result property="ans_content" column="ans_content"/>
+		<result property="ans_date" column="ans_date"/>
+	</resultMap>
+	
+	<resultMap type="userVO" id="userResult">		
+		<result property="user_id" column="user_id" />
+	</resultMap>
+	
+
+	
+	<!-- 문의 -->
+	
+		<!-- 페이지 정보를 10개씩 가져오기 -->
+	<select id="listinqPage" resultMap="inqResult">
+		<![CDATA[
+			select * 
+			from tb_prod_inq
+			where rownum #{page} <= 10
+		]]>
+	</select>
+	
+	<select id="getInqSequence" resultType="Integer">
+		select prodinq_seq.nextval from dual
+	</select>
+	
+	<!-- 문의 목록 -->
+	<select id="getInquiryList" resultType="inquiryVO" parameterType="int">
+		SELECT * FROM TB_USERS tu ,
+		(SELECT B.prod_inq_code, B.prod_code, B.user_id, B.inq_title, B.inq_content, B.inq_reg_date, ta.emp_no, ta.ans_content, ta.ans_date
+		FROM tb_inq_answer ta RIGHT OUTER JOIN (SELECT * FROM TB_PROD_INQ WHERE prod_code=#{prod_code})B ON ta.prod_inq_code = B.prod_inq_code) I WHERE  tu.USER_ID =I.user_id
+	</select>
+	
+	<!-- 문의 등록 -->
+	<insert id="insertInquiry" parameterType="inquiryVO">
+		<![CDATA[
+		insert into tb_prod_inq(prod_inq_code, prod_code, user_id, inq_title, inq_content, inq_reg_date)
+		values (prodinq_seq.nextval ,#{prod_code} ,#{user_id} ,#{inq_title} ,#{inq_content} , sysdate)
+		]]>
+	</insert>
+	
+	<!-- 후기 -->
+	
+		<!-- 페이지 정보를 10개씩 가져오기 -->
+	<select id="listrevPage" resultMap="reviewResult">
+		<![CDATA[
+			select * 
+			from tb_prod_review
+			where rownum #{page} <= 10
+		]]>
+	</select>
+	
+	<select id="getRevSequence" resultType="Integer">
+		select prodreview_seq.nextval from dual
+	</select>
+	
+	<!-- 후기 목록 -->
+	<select id="getReviewList" resultType="reviewVO" parameterType="int">
+		SELECT tpr.REVIEW_IDX , tpr.order_code, tpr.TITLE , tpr.CONTENT , tpr.REG_DATE , o.user_id
+		FROM TB_PROD_REVIEW tpr ,
+		(SELECT * FROM TB_USERS tu2, 
+		(SELECT to1.order_code, to2.user_id FROM TB_ORDER to2, (SELECT order_code, prod_code FROM TB_ORDER WHERE prod_code=#{prod_code})to1 WHERE to2.ORD_CODE = to1.order_code)
+		tu1 WHERE tu2.USER_ID=tu1.user_id)O WHERE tpr.order_code=O.order_code
+	</select>
+	
+	<!-- 후기 작성 -->
+	<insert id="insertReview" parameterType="reviewVO">
+		insert into tb_prod_review(prod_review_code, prod_code, user_id, title, content, reg_date)
+		values(prodreview_seq.nextval, #{prod_code} ,#{user_id}, #{title}, #{content}, sysdate)
+	</insert>
+	
+	<!-- 후기 작성 전 구매했는지 아이디로 체크 -->
+	<select id="checkOrderUser" parameterType="hashMap" resultType="int">
+		SELECT COUNT(*)
+		FROM TB_ORDER to2 , TB_USERS tu 
+		WHERE tu.USER_ID =to2.USER_ID  AND to2.PROD_CODE = #{prod_code} AND tu.USER_ID =#{user_id}
+	</select>
+</mapper>
