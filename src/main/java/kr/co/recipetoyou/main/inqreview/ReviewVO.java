@@ -1,8 +1,10 @@
-package kr.co.recipetoyou.main.goods;
+package kr.co.recipetoyou.main.inqreview;
 
 import java.sql.Date;
 
 import org.springframework.stereotype.Component;
+
+import kr.co.recipetoyou.main.goods.GoodsVO;
 
 @Component("reviewVO")
 public class ReviewVO {

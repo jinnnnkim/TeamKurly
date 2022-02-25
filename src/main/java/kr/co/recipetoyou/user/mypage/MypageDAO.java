@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.fasterxml.jackson.core.JsonProcessingException;
 
 import kr.co.recipetoyou.admin.adgoods.AdgoodsImgVO;
-import kr.co.recipetoyou.main.goods.ReviewVO;
+import kr.co.recipetoyou.main.inqreview.ReviewVO;
 import kr.co.recipetoyou.user.UserVO;
 import kr.co.recipetoyou.user.mypage.vo.CouponVO;
 import kr.co.recipetoyou.user.mypage.vo.MyOrderVO;

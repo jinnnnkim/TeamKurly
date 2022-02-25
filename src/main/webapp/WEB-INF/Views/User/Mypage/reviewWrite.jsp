@@ -87,6 +87,7 @@
 									</tr>
 
 									<div class="writeBtn">
+								
 									<button type="button" id="write" class="writeBtn">글쓰기</button>
 									</div>
 

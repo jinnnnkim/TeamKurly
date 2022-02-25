@@ -15,9 +15,9 @@ response.setContentType("application/json");
 <title>Recipe to You :: 내일의 장보기, 레시피투유</title>
 <link rel="stylesheet" type="text/css" href="/recipetoyou/Resources/Common/slick/slick.css" />
 <link rel="stylesheet" type="text/css" href="/recipetoyou/Resources/Common/slick/slick-theme.css" />
-<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script type="text/javascript" src="/recipetoyou/Resources/Common/slick/slick.min.js"></script>
 
 <script type="text/javascript">
@@ -167,7 +167,7 @@ response.setContentType("application/json");
 						
 						<form action="#" method="post" id="idCheckSet">
 							<input type="text" name="user_id" hidden="hidden" value="${user_id }">
-							<input type="text" name="prod_code" hidden="hidden" value="${goodsVO.prod_code }">
+							<input type="text" id="prod_code" name="prod_code" hidden="hidden" value="${goodsVO.prod_code }">
 						</form>
 
 						<div class="cartPut">
@@ -600,7 +600,7 @@ response.setContentType("application/json");
 					</c:forEach>
 					</table>
 					<div class="writeBtn">
-						<a href="${contextPath}/reviewWrite.do">후기작성</a>
+						<button class="reviewBtn" type="button" id="reviewFrm">후기작성</button>
 					</div>
 				</div>
 
@@ -694,7 +694,6 @@ response.setContentType("application/json");
 						
 					</div>
 					<div >
-					<button id="writeBtn">문의하기</button>
 					</div>
 					<div class="writeBtn">
 						<a id="show">문의하기</a>
@@ -837,6 +836,27 @@ response.setContentType("application/json");
 	    
 	});
 	
+	//후기 작성 페이지로 이동
+		
+		if(user_id != null){
+			
+			//var comSubmit = new ComSubmit();
+			var prod_code = $("#prod_code").val();
+			$("#reviewFrm").on("click",function(){
+				location.href="${contextPath}/goods/moveReview.do";
+			});
+			
+			$("#write").on("click",function(){
+				location.href="${contextPath}/goods/insertInquiry.do";
+			});
+			
+		}else{
+			alert("로그인 후 이용해주세요.");
+			location.href="${contextPath}/login/login.do";
+		}
+	
+		
+	
 	//문의하기 팝업
 	 function show() {
         document.querySelector(".background").className = "background show";
@@ -902,5 +922,6 @@ response.setContentType("application/json");
 				}
 			});	
 		}); 
+	
 	</script>
 </body>

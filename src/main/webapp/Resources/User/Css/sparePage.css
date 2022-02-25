@@ -1028,13 +1028,13 @@ span.sub_inn_in {
   }
 }
 
-.reviewTable button,
+/* .reviewTable button,
 .QandATable button{
 	width:75px;
 	height:30px;
 	border:1px solid #5f0080;
 	background:white;
-}
+} */
 
 .writeBtn{
 	text-align:right;
@@ -1051,6 +1051,18 @@ span.sub_inn_in {
 	background:#795b8f;
 	border:1px solid #5f0080;
 }
+
+.reviewBtn{
+	width:100px;
+	height:32px;
+	display:inline-block;
+	text-align:center;
+	line-height:32px;
+	color:white;
+	background:#795b8f;
+	border:1px solid #5f0080;
+	font-size: 16px;
+} 
 
 .background {
   position: fixed;
