@@ -456,13 +456,17 @@
 	<select id="selectUserAddr" resultMap="addressResult">
 		SELECT *
 		FROM TB_USER_ADDR tua
-		WHERE tua.USER_ID = #{user_id}
+		WHERE tua.user_id = #{user_id}
 	</select>
 	
+	<update id="userInfoUpdate" parameterType="userVO">
+		update TB_USERS set user_name = #{user_name}, user_email = #{user_email}, user_phone = #{user_phone} where user_id = #{user_id}
+	</update>
+
 	<!-- 이메일 중복체크 -->
-	<select id="emailChk" resultType="int">
+	<select id="emailChk" parameterType="userVO" resultType="int">
 		SELECT COUNT(*) TB_USERS tu 
-		WHERE USER_EMAIL = #{USER_EMAIL}
+		WHERE user_email = #{user_email}
 	</select>
 	
 </mapper>  

@@ -32,43 +32,46 @@
 				<h2 class="title">개인 정보 수정</h2>
 			</div>
 			<!-- head -->
-			<%-- <c:if test="${user != null}"> --%>
+			<form id="infoView" action="/mypageUserinfoUpdate.do" method="POST" class="form-signup form-user panel-body"  autocomplete="off">
+			<input type="hidden" id="user_name_yn" name="user_name_yn" value="N"/>
 			<table class="myInfoMain">
+				
 				<tr>
 					<th>아이디</th>
-					<td><input type="text" value="" readonly="readonly"></td>
+					
+					<td><input type="text" value="${userVO.user_id}" id="id" name="id" readonly="readonly"></td>
 				</tr>
 				<tr>
 					<th>현재 비밀번호</th>
-					<td><input type="text" value=""></td>
+					<td><input type="text" value="" id="now_pwd" name="now_pwd"></td>
 				</tr>
 				<tr>
 					<th>새 비밀번호</th>
-					<td><input type="text" value=""></td>
+					<td><input type="text" value="" id="new_pwd" name="new_pwd"></td>
 				</tr>
 				<tr>
 					<th>새 비밀번호 확인</th>
-					<td><input type="text" value=""></td>
+					<td><input type="text" value="" id="new_pwdChk" name="new_pwdChk"></td>
 				</tr>
 				<tr>
 					<th>이름</th>
-					<td><input type="text" value=""></td>
+					<td><input type="text" value="" id="name" name="name"></td>
 				</tr>
 				<tr class="email">
 					<th>이메일</th>
-					<td><input type="text" value=""> <a href="" id="emailChk" onclick="fn_emailChk()">중복확인</a>
+					<td><input type="text" value="" id="email" name="email"> <a href="" id="emailChk" name="emailChk" onclick="duplicate()">중복확인</a>
 					</td>
 				</tr>
 				<tr class="phone">
 					<th>휴대폰</th>
-					<td><input type="text" value=""> <a href="" onclick="">다른번호 인증</a></td>
+					<td><input type="text" value="" id="phone" name="phone"> <a href="" id="phoneChk" name="phoneChk" onclick="">다른번호 인증</a></td>
 				</tr>
 				<tr>
 					<th>성별</th>
 					<td>
-						<label><input type="radio" name="gender">남자	</label>
-						<label><input type="radio" name="gender">여자</label>
-						<label><input type="radio" name="gender">선택안함</label>
+						<label><input type="radio" id="gender" name="gender">남자	</label>
+						<label><input type="radio" id="gender" name="gender">여자</label>
+						<label><input type="radio" id="gender" name="gender">선택안함</label>
 					</td>
 				</tr>
 				<tr>
@@ -103,9 +106,9 @@
 			</table>
 			<div class="form_footer">
 				<a href="">탈퇴하기</a>
-				<button type="submit">회원정보수정</button>
+				<button type="submit" id="infoSubmit" name="infoSubmit" onclick="fnSubmit()">회원정보수정</button>
 			</div>
-			<%-- </c:if> --%>
+			</form>
 			<!-- form_footer -->
 		</div>
 		<!-- content -->

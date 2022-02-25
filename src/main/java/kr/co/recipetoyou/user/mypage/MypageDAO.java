@@ -60,7 +60,10 @@ public interface MypageDAO {
 	public List<AdgoodsImgVO> getGoodsImage(int ord_code) throws JsonProcessingException;
 	
 	public int deleteAddress(@RequestParam("addr_code") String addr_code) throws DataAccessException;
- 
-	public int emailChk(UserVO userVO) throws DataAccessException;
 	
+	//개인정보 수정
+	public void userInfoUpdate(UserVO userVO) throws DataAccessException;
+	
+	//이메일 중복체크
+	public int emailChk(UserVO userVO) throws DataAccessException;
 }
