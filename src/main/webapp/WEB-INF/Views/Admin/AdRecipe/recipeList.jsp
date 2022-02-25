@@ -61,7 +61,7 @@
 			</div>
 	
 		<div class="middle_titleBox">
-			총 ${cnt }명의 회원이 검색되었습니다.		
+			총 ${cnt }개의 레시피가 검색되었습니다.		
 		</div>
 		
 		<div class="userList_wrap">
@@ -92,7 +92,7 @@
 					<td>${recipe.recipe_title }</td>
 					<td>${recipe.recipe_reg_date }</td>
 					<td>${recipe.user_id }</td>
-					<td><button onclick="deleteMessage()"><a href="${contextPath}/adrecipe/removeRecipe.do?id=${recipe.recipe_idx}">주문취소</a></button></td>
+					<td><button onclick="deleteMessage()"><a href="${contextPath}/adrecipe/removeRecipe.do?id=${recipe.recipe_idx}">레시피 삭제</a></button></td>
 				</tr>
 			</c:forEach>
 		</tbody>	

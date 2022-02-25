@@ -118,11 +118,7 @@ response.setContentType("application/json");
 	<div id="main">
 		<div class="section_view">
 			<div class="inner_view">
-				<!-- inner_view - 상품 이미지를 감싼 태그  -->
-				<div class="image_wrap" data-prod_code="${goodsDetailInfo.imageList[0].prod_code}" data-path="${goods.imageList[0].uploadPath}"
-					data-uuid="${goodsDetailInfo.imageList[0].uuid}" data-filename="${goodsDetailInfo.imageList[0].fileName}">
-					<img>
-				</div>
+			<img alt="상세보기" src="${contextPath}/Resources/Admin/Img/AdgoodsImg/${agi.uploadPath}/s_${agi.uuid }_${agi.fileName}">
 
 				<div class="goods_name">
 					<!-- goods_name -->
@@ -328,67 +324,27 @@ response.setContentType("application/json");
 							<li class="gview-list-inn"><a href="#QandATable"
 								class="gview_tab_anchor scroll_move">문의</a></li>
 						</ul>
-						goods-view-lists
+
 					</div>
-					goods-view-inn
+
 
 					<div class="goods-view-inn_content_wrap">
 						<div id="prodDetail" class="goods-view-inn_content">
 							<div class="pic">
-								<div class="image_wrap" data-prod_code="${goodsDetailInfo.imageList[0].prod_code}" data-path="${goods.imageList[0].uploadPath}"
-									data-uuid="${goodsDetailInfo.imageList[0].uuid}" data-filename="${goodsDetailInfo.imageList[0].fileName}">
-									<img alt="pic">
-								</div>
+								<img alt="상세보기" src="${contextPath}/Resources/Admin/Img/AdgoodsImg/${agi.uploadPath}/s_${agi.uuid }_${agi.fileName}">	
+
 							</div>
-							pic
+
 							<div class="context_tit">
 								${goodsDetailInfo.prod_content }
-								<!-- <h4>
-									<small>식물성 재료로 완성한 라구 파스타</small> [잇츠베러] 어스밀<br> 렌틸라구 두부면
-									파스타
-								</h4>
-								<p class="words">다채로운 두부 요리를 시도 중인 분이라면, 지금 소개하는 잇츠베러 어스밀
-									두부면 파스타가 무척 마음에 드실 거예요. 유기농 콩으로 두부면을 제면하고 소스와 토핑은 모두 식물성 재료를
-									사용해 질 좋은 단백질과 식이섬유를 간편하게 챙길 수 있거든요. 이번에는 고소한 두부면에 토마토 소스와 렌틸콩으로
-									만든 라구소스를 흠뻑 입혀 완성한 렌틸라구 파스타를 준비했어요. 두부와 렌틸콩의 식감이 살아 있어 풍성하고
-									다채로운 맛을 자랑한답니다. 가볍고 속 편한 식사를 찾고 계셨다면, 잇츠베러를 선택해 보세요.</p> -->
 							</div>
-							context_tit
+
+							
 						</div>
-						goods-view-inn_content
+					
 					</div>
-					goods-view-inn_content_wrap -->
+				
 
-
-					<!-- <div class="check_point">
-						<h3>
-							<span>Recipe To You's Check Point</span>
-						</h3>
-						<img alt="check_point_img"
-							src="/recipetoyou/Resources/User/Img/SaleGoods/check_point.jpg">
-					</div>
-					check_point
-
-					<div class="pick">
-						<h3>
-							<span>Recipe To You's Pick</span>
-						</h3>
-						<div class="context_tit">
-							<p class="words">
-								<strong class="sub_tit"> <span class="option_tit">어스밀
-										렌틸라구 두부면 파스타</span>
-								</strong> <b>중량</b> : 1팩(240g)<br> <b>특징 </b> : 두부면에 새콤한 토마토소스와 고소한
-								렌틸콩을 사용해 만든 라구 소스 파스타입니다.<br>
-							</p>
-							<div class="pic2">
-								<img alt="pic"
-									src="/recipetoyou/Resources/User/Img/SaleGoods/pick_1.jpg">
-							</div>
-							pic2
-						</div>
-						context_tit
-					</div>
-					pick -->
 
 
 					<div class="goods_tips">
@@ -403,11 +359,12 @@ response.setContentType("application/json");
 									<strong class="sub_tit_tip">보관법</strong> -18℃ 이하에서 냉동 보관하세요.
 								</p>
 							</div>
-							tip_tit
+
+							
 						</div>
-						tip_box
+						
 					</div>
-					tips
+
 
 					<!-- <div id="goods_pic">
 						<img alt=""
@@ -469,22 +426,23 @@ response.setContentType("application/json");
 									<div class="why_icon">
 										<i class="fas fa-clipboard-list"></i>
 									</div>
-									why_icon
+
 									<div class="why_info">
 										<span class="title">깐깐한 상품위원회</span> <span class="tit_story">
 											나와 내 가족이 먹고 쓸 상품을 고르는<br> 마음으로 매주 상품을 직접 먹어보고,<br>
 											경험해보고 성분, 맛, 안정성 등 다각도의<br> 기준을 통과한 상품만을 판매합니다.
 										</span>
 									</div>
-									why_info
+								
 								</div>
-								col
+								
+
 
 								<div class="col">
 									<div class="why_icon">
 										<i class="fas fa-shipping-fast"></i>
 									</div>
-									why_icon
+									
 									<div class="why_info">
 										<span class="title">신선한 풀콜드체인 배송</span> <span
 											class="tit_story"> 온라인 업계 최초로 산지에서 문 앞까지<br>상온,
@@ -492,15 +450,15 @@ response.setContentType("application/json");
 											상품을 신선하게 전해드립니다.
 										</span>
 									</div>
-									why_info
+								
 								</div>
-								col
+
 
 								<div class="col">
 									<div class="why_icon">
 										<i class="fas fa-globe-americas"></i>
 									</div>
-									why_icon
+
 									<div class="why_info">
 										<span class="title">환경을 생각하는 지속 가능한 유통</span> <span
 											class="tit_story"> 친환경 포장재부터 생산자가 상품에만<br>집중할 수
@@ -508,15 +466,14 @@ response.setContentType("application/json");
 											커뮤니티, 직원)이<br>더 나아질 수 있도록 노력합니다.
 										</span>
 									</div>
-									why_info
+
+									
 								</div>
-								col
+							
 							</div>
-							whykurly_txt_area 
 						</div>
-						whykurly
 					</div>
-					whykurly_wrap
+
 
 
 					<div class="happy_center_wrap">
@@ -524,7 +481,7 @@ response.setContentType("application/json");
 							<span class="happy_tit">고객행복센터</span> <span class="sub_qus">궁금하신
 								점이나 서비스 이용에 불편한 점이 있으신가요?</span> <span class="sub_ans">문제가 되는
 								부분을 사진으로 찍어 아래 중 편하신 방법으로 접수해 주시면 빠르게 도와드리겠습니다.</span>
-						</div> -->
+						</div> 
 						<!-- happy -->
 
 						<ul class="happy_list_u">

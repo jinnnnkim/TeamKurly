@@ -73,9 +73,12 @@
 							
 							<div class="image_wrap" data-prod_code="${goods.imageList[0].prod_code}" data-path="${goods.imageList[0].uploadPath}"
 												data-uuid="${goods.imageList[0].uuid}" data-filename="${goods.imageList[0].fileName}">
-								<a href="${contextPath}/goodsView.do?prod_code=${goods.prod_code}">
+
+									<a href="${contextPath}/user/goodsView.do?prod_code=${goods.prod_code}">
+								<a href="${contextPath}/user/goodsView.do?prod_code=${goods.prod_code}">
+
 									<img>
-								</a>
+									</a>
 							</div>
 							<p>
 								<span class="name">${goods.prod_name}</span>
@@ -291,7 +294,7 @@
 				<div class="move">
 					<div class="move_comu">
 						<span class="review_more2">더 많은 후기가 궁금하다면?</span><br>
-						 <a	href="${contextPath }/recipetoyou/community/communityRecipeMain.do"><span>커뮤니티 바로가기</span></a>
+						 <a	href="${contextPath }/community/communityRecipeMain.do"><span>커뮤니티 바로가기</span></a>
 					</div>
 				</div>
 				<!-- move-->
@@ -308,6 +311,7 @@
 			$(".image_wrap").each(function(i, obj){
 				
 				const bobj = $(obj);
+				console.log(bobj.attr("class"));
 				if(bobj.data("prod_code")){
 					
 					const uploadPath = bobj.data("path");

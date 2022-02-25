@@ -223,4 +223,11 @@ public class NoticeControllerImpl implements NoticeController{
 		return "redirect:/notice/noticeOneToOneQuestion.do";
 	}
 
+	@Override
+	@RequestMapping(value="/notice/deliverNotice.do", method = {RequestMethod.GET, RequestMethod.POST})
+	public ModelAndView deliverNotice(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		ModelAndView mav = new ModelAndView();
+		return mav;
+	}
+
 }

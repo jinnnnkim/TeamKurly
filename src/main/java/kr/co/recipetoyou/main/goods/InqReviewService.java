@@ -3,6 +3,8 @@ package kr.co.recipetoyou.main.goods;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import kr.co.recipetoyou.util.PagingVO;
 
 public interface InqReviewService {
