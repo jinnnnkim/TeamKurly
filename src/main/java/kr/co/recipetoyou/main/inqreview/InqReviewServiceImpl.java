@@ -65,6 +65,18 @@ public class InqReviewServiceImpl implements InqReviewService{
 		return 0;
 	}
 
+	@Override
+	public int qnaCount(PagingVO vo) throws Exception {
+		
+		return inqReviewDAO.qnaCount(vo);
+	}
+
+	@Override
+	public int reviewCount(PagingVO vo) throws Exception {
+		
+		return inqReviewDAO.reviewCount(vo);
+	}
+
 
 
 

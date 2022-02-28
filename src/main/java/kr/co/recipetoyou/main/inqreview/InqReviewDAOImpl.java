@@ -80,6 +80,18 @@ public class InqReviewDAOImpl implements InqReviewDAO{
 		return sqlSession.selectOne(NAMESPACE+".checkOrderUser");
 	}
 
+	@Override
+	public int qnaCount(PagingVO vo) throws Exception {
+		
+		return sqlSession.selectOne(NAMESPACE+".getQnaCount", vo);
+	}
+
+	@Override
+	public int reviewCount(PagingVO vo) throws Exception {
+		
+		return sqlSession.selectOne(NAMESPACE+".getReviewCount", vo);
+	}
+
 	
 
 }

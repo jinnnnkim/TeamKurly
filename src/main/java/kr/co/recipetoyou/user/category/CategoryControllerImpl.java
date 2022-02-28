@@ -23,6 +23,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import kr.co.recipetoyou.admin.adgoods.AdgoodsImgVO;
+import kr.co.recipetoyou.main.inqreview.InqReviewService;
+import kr.co.recipetoyou.main.inqreview.InquiryVO;
+import kr.co.recipetoyou.main.inqreview.ReviewVO;
 import kr.co.recipetoyou.util.PageMaker;
 import kr.co.recipetoyou.util.PagingVO;
 
@@ -49,6 +52,9 @@ public class CategoryControllerImpl implements CategoryController{
 	
 	@Autowired
 	private CategoryVO categoryVO;
+	
+	@Autowired
+	private InqReviewService inqReviewService;
 	
 	
 	@Override
@@ -112,7 +118,7 @@ public class CategoryControllerImpl implements CategoryController{
 	
 	@Override
 	@RequestMapping(value="/user/goodsView.do",method=RequestMethod.GET)
-	public ModelAndView goodsView(int prod_code, HttpServletRequest request, HttpServletResponse response) throws Exception{
+	public ModelAndView goodsView(PagingVO vo, int prod_code, HttpServletRequest request, HttpServletResponse response) throws Exception{
 		String viewName = (String) request.getAttribute("viewName");
 		CategoryVO goodsDetailInfo = service.goodsDetailInfo(prod_code);
 		
@@ -120,12 +126,43 @@ public class CategoryControllerImpl implements CategoryController{
 		List<CategoryVO> goodsDetail = service.goodsDetailList();
 		logger.info(viewName);
 		ModelAndView mav = new ModelAndView();
+		
+		//문의 목록
+		List<InquiryVO> qnaList = inqReviewService.getInquiryList(vo, prod_code);
+		int qnacnt = inqReviewService.qnaCount(vo);
+		
+		mav.addObject("qnaList", qnaList);
+		
+		if(qnaList.size()>0) {
+			mav.addObject("cnt", qnacnt);
+		}else {
+			mav.addObject("qnacnt", 0);
+		}
+		
+		//후기 목록
+		List<ReviewVO> reviewList = inqReviewService.getReviewList(vo, prod_code);
+		int reviewcnt = inqReviewService.reviewCount(vo);
+		
+		mav.addObject("reviewList", reviewList);
+		
+		if(reviewList.size()>0) {
+			mav.addObject("reviewcnt", reviewcnt);
+		}else {
+			mav.addObject("reviewcnt", 0);
+		}
+		
+		//상품 정보
 		mav.setViewName(viewName);
 		mav.addObject("goodsDetailInfo", goodsDetailInfo);
 		mav.addObject("goodsDetail", goodsDetail);
 		mav.addObject("goodsInfo", service.getGoodsInfo(prod_code));
-		
 		mav.addObject("agi", agi);
+		
+		//문의 페이지 데이터
+		mav.addObject("qnapm", new PageMaker(vo, inqReviewService.qnaCount(vo)));
+		//후기 페이지 데이터
+		mav.addObject("reviewpm", new PageMaker(vo, inqReviewService.reviewCount(vo)));
+		
 		return mav;
 	}
 	
