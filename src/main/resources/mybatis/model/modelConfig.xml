@@ -65,9 +65,9 @@
 		<typeAlias type="kr.co.recipetoyou.main.goods.PaymentVO" alias="paymentVO"/>
 		<typeAlias type="kr.co.recipetoyou.main.order.OrderVO" alias="orderVO"/>
 		<typeAlias type="kr.co.recipetoyou.util.PagingVO" alias="pagingVO"/>
-		<typeAlias type="kr.co.recipetoyou.main.goods.ReviewVO" alias="reviewVO"/>
-		<typeAlias type="kr.co.recipetoyou.main.goods.InquiryVO" alias="inquiryVO"/>
-		<typeAlias type="kr.co.recipetoyou.main.goods.InqAnswerVO" alias="inqAnswerVO"/>
+		<typeAlias type="kr.co.recipetoyou.main.inqreview.ReviewVO" alias="reviewVO"/>
+		<typeAlias type="kr.co.recipetoyou.main.inqreview.InquiryVO" alias="inquiryVO"/>
+		<typeAlias type="kr.co.recipetoyou.main.inqreview.InqAnswerVO" alias="inqAnswerVO"/>
 		
 		
 		<typeAlias type="kr.co.recipetoyou.board.recipe.RecipeVO" alias="recipeVO"/>

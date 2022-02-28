@@ -13,6 +13,8 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
+import kr.co.recipetoyou.main.inqreview.InquiryVO;
+import kr.co.recipetoyou.main.inqreview.ReviewVO;
 import kr.co.recipetoyou.util.PagingVO;
 
 public interface GoodsController {
@@ -30,15 +32,5 @@ public interface GoodsController {
 	
 	//public List<ReviewVO> insertInquiry(int prod_code, String job, ReviewVO vo)throws Exception;
 	
-	public ModelAndView insertInquiry(InquiryVO vo, HttpServletRequest request)throws Exception;
 	
-	public ModelAndView insertReview(ReviewVO vo, HttpServletRequest request)throws Exception;
-	
-	
-	//ck에디터 이미지 업로드
-	public void qnaUpload(HttpServletRequest request, HttpServletResponse response, MultipartHttpServletRequest multiFile , @RequestParam MultipartFile upload) throws Exception;
-	
-	//ck이미지 전송
-	public void ckedSubmit(@RequestParam(value="uid") String uid , @RequestParam(value="fileName") String fileName 
-			, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException;
 }

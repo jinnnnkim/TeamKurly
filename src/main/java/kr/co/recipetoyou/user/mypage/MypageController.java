@@ -4,6 +4,7 @@ import java.sql.Date;
 
 import javax.servlet.http.HttpServletRequest;  
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -72,8 +73,18 @@ public interface MypageController {
 	//배송지 삭제
 	public ModelAndView removeAddress(@RequestParam("addr_code") String addr_code, HttpServletRequest request, HttpServletResponse response) throws Exception;
 
+	public String emailChk(String filterJSON, HttpServletResponse response, Model model) throws Exception;
+
+	public String userInfoUpdate(HttpServletRequest request, HttpSession session, UserVO userVO, Model model,RedirectAttributes rttr) throws Exception;
+
+	public ModelAndView mypageUserInfo(UserVO userVO, HttpServletRequest request, HttpServletResponse response) throws Exception;
+
+	String mypageUserInfoProcess(UserVO userVO, HttpServletRequest request, HttpServletResponse response)
+			throws Exception;
 
 
+
+	
 	
 	
 	

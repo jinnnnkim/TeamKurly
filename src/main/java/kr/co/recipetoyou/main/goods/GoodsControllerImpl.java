@@ -31,6 +31,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import kr.co.recipetoyou.main.inqreview.InqReviewService;
+import kr.co.recipetoyou.main.inqreview.InquiryVO;
+import kr.co.recipetoyou.main.inqreview.ReviewVO;
 import kr.co.recipetoyou.user.UserVO;
 import kr.co.recipetoyou.util.PageMaker;
 import kr.co.recipetoyou.util.PagingVO;
@@ -131,116 +134,6 @@ public class GoodsControllerImpl implements GoodsController{
 	 */
 
 
-	@Override
-	@RequestMapping(value = "/goods/insertInquiry.do", method = {RequestMethod.POST, RequestMethod.GET})
-	public ModelAndView insertInquiry(InquiryVO vo, HttpServletRequest request) throws Exception {
-		
-		
-		inqReviewService.insertInquiry(vo);
-		
-		ModelAndView mav = new ModelAndView("redirect:/goods/goodsInfo.do");
-		
-		return mav;
-	}
 
-
-	@Override
-	@RequestMapping(value = "/goods/insertReview.do", method = RequestMethod.POST)
-	public ModelAndView insertReview(ReviewVO vo, HttpServletRequest request) throws Exception {
-		
-		ModelAndView mav = new ModelAndView("redirect:/goods/goodsInfo.do");
-		
-		inqReviewService.insertReview(vo);
-		mav.addObject("prod_code", vo.getProd_code());
-		
-		
-		return mav;
-	}
-
-
-	@Override
-	@RequestMapping(value="/goods/ckimageUpload.do", method = RequestMethod.POST) 
-	public void qnaUpload(HttpServletRequest request, HttpServletResponse response,
-			MultipartHttpServletRequest multiFile, MultipartFile upload) throws Exception {
-		
-		UUID uid = UUID.randomUUID(); 
-		OutputStream out = null; 
-		PrintWriter printWriter = null; 
-		response.setCharacterEncoding("utf-8");
-		response.setContentType("text/html;charset=utf-8"); 
-		try{ 
-			String fileName = upload.getOriginalFilename(); 
-			byte[] bytes = upload.getBytes(); 
-			String ckUploadPath = UPLOAD_DIR+ uid + "_" + fileName;
-			System.out.println("path:"+ckUploadPath);
-			File folder = new File(UPLOAD_DIR); 
-			if(!folder.exists()){ 
-				try{ folder.mkdirs(); 
-				}catch(Exception e){ 
-					e.getStackTrace(); 
-				} 
-			} 
-			out = new FileOutputStream(new File(ckUploadPath)); 
-			out.write(bytes); 
-			out.flush(); 
-			String callback = request.getParameter("CKEditorFuncNum"); 
-			printWriter = response.getWriter(); 
-			String fileUrl = "/recipetoyou/goods/ckimageSubmit.do?uid=" + uid + "&fileName=" + fileName;
-			printWriter.println("{\"filename\" : \""+fileName+"\", \"uploaded\" : 1, \"url\":\""+fileUrl+"\"}"); 
-			printWriter.flush(); 
-			System.out.println("upload complete");
-		}catch(IOException e){
-			e.printStackTrace();
-		} finally { 
-			try {
-				if(out != null) { 
-					out.close(); 
-				} 
-				if(printWriter != null) { 
-					printWriter.close(); 
-				} 
-			} catch(IOException e) { 
-				e.printStackTrace(); 
-			} 
-		}return; 
-		
-	}
-
-	
-	@Override
-	@RequestMapping(value="/goods/ckimageSubmit.do")
-	public void ckedSubmit(String uid, String fileName, HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		
-		String sDirPath = UPLOAD_DIR + uid + "_" + fileName; 
-		File imgFile = new File(sDirPath); 
-		if(imgFile.isFile()){ 
-			byte[] buf = new byte[1024]; 
-			int readByte = 0; 
-			int length = 0;
-			byte[] imgBuf = null; 
-			FileInputStream fileInputStream = null; 
-			ByteArrayOutputStream outputStream = null; 
-			ServletOutputStream out = null; 
-			try{ 
-				fileInputStream = new FileInputStream(imgFile); 
-				outputStream = new ByteArrayOutputStream(); 
-				out = response.getOutputStream();
-				while((readByte = fileInputStream.read(buf)) != -1){ 
-					outputStream.write(buf, 0, readByte); 
-				} 
-				imgBuf = outputStream.toByteArray(); 
-				length = imgBuf.length; out.write(imgBuf, 0, length); 
-				out.flush(); 
-			}catch(IOException e){ 
-				e.printStackTrace();
-			}finally { 
-				outputStream.close(); 
-				fileInputStream.close(); 
-				out.close(); 
-			}
-		}
-
-	}
 		
 }

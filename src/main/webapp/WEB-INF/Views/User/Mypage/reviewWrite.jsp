@@ -34,6 +34,7 @@
 </head>
 <body>
 		<form action="${contextPath}/goods/insertReview.do" id="reviewFrm" method="post">
+		<input type="hidden" id="prod_code" name="prod_code" value="${param.prod_code }">
 		<div class="content">
 		
 			<div class="review_main">
@@ -87,6 +88,7 @@
 									</tr>
 
 									<div class="writeBtn">
+								
 									<button type="button" id="write" class="writeBtn">글쓰기</button>
 									</div>
 

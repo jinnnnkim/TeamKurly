@@ -40,9 +40,10 @@ public class CategoryControllerImpl implements CategoryController{
 
 
 	//private static final String UPLOAD_DIR = "C:/Users/jin/Documents/TeamKurly_3v/src/main/webapp/Resources/Admin/Img/AdgoodsImg/";
-	private static final String UPLOAD_DIR = "C:/git_workTeam/src/main/webapp/Resources/Admin/Img/AdgoodsImg/";
 
-	//private static final String UPLOAD_DIR = "C:\\wordspace_git\\src\\main\\webapp\\Resources\\Admin\\Img\\AdgoodsImg\\";
+	//private static final String UPLOAD_DIR = "C:/git_workTeam/src/main/webapp/Resources/Admin/Img/AdgoodsImg/";
+
+	private static final String UPLOAD_DIR = "C:\\wordspace_git\\src\\main\\webapp\\Resources\\Admin\\Img\\AdgoodsImg\\";
 
 	@Autowired
 	private CategoryService service;
@@ -115,6 +116,7 @@ public class CategoryControllerImpl implements CategoryController{
 	public ModelAndView goodsView(int prod_code, HttpServletRequest request, HttpServletResponse response) throws Exception{
 		String viewName = (String) request.getAttribute("viewName");
 		CategoryVO goodsDetailInfo = service.goodsDetailInfo(prod_code);
+		
 		AdgoodsImgVO agi = service.getGoodsDetailImage(prod_code);
 		List<CategoryVO> goodsDetail = service.goodsDetailList();
 		logger.info(viewName);
@@ -123,7 +125,7 @@ public class CategoryControllerImpl implements CategoryController{
 		mav.addObject("goodsDetailInfo", goodsDetailInfo);
 		mav.addObject("goodsDetail", goodsDetail);
 		mav.addObject("goodsInfo", service.getGoodsInfo(prod_code));
-
+		
 		mav.addObject("agi", agi);
 		return mav;
 	}

@@ -75,6 +75,11 @@
 		<put-attribute name="body" value="/WEB-INF/Views/User/goodsView.jsp"/>	
 	</definition>
 	
+	<definition name="/goods/moveReview" extends="mainLayout">
+		<put-attribute name="title" value="상품 후기 작성"/>
+		<put-attribute name="body" value="/WEB-INF/Views/User/Mypage/reviewWrite.jsp"/>	
+	</definition>
+	
 	<definition name="order/order" extends="mainLayout">
 		<put-attribute name="title" value="주문페이지"/>
 		<put-attribute name="body" value="/WEB-INF/Views/User/order.jsp"/>	
