@@ -44,6 +44,7 @@ public class CategoryControllerImpl implements CategoryController{
 
 	//private static final String UPLOAD_DIR = "C:/Users/jin/Documents/TeamKurly_3v/src/main/webapp/Resources/Admin/Img/AdgoodsImg/";
 
+	//private static final String UPLOAD_DIR = "C:/git_workTeam/src/main/webapp/Resources/Admin/Img/AdgoodsImg/";
 
 	private static final String UPLOAD_DIR = "C:\\wordspace_git\\src\\main\\webapp\\Resources\\Admin\\Img\\AdgoodsImg\\";
 
