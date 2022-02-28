@@ -97,6 +97,12 @@
 		values(prodreview_seq.nextval, #{prod_code} ,#{user_id}, #{title}, #{content}, sysdate)
 	</insert>
 	
+	<!-- 후기 조회 -->
+	<select id="reviewDetail" resultMap="reviewResult">
+		select * from tb_prod_review
+		where prod_review_code = #{prod_review_code}
+	</select>
+	
 	<!-- 후기 작성 전 구매했는지 아이디로 체크 -->
 	<select id="checkOrderUser" parameterType="hashMap" resultType="int">
 		SELECT COUNT(*)

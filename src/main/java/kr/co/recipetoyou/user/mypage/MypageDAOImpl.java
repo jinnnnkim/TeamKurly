@@ -1,7 +1,9 @@
 package kr.co.recipetoyou.user.mypage;
 
 import java.sql.Date;
-import java.util.List; 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.fasterxml.jackson.core.JsonProcessingException;
 
 import kr.co.recipetoyou.admin.adgoods.AdgoodsImgVO;
-import kr.co.recipetoyou.main.goods.ReviewVO;
+import kr.co.recipetoyou.main.inqreview.ReviewVO;
 import kr.co.recipetoyou.user.UserVO;
 import kr.co.recipetoyou.user.mypage.vo.CouponVO;
 import kr.co.recipetoyou.user.mypage.vo.MyOrderVO;
@@ -151,6 +153,18 @@ public class MypageDAOImpl implements MypageDAO{
 		int result = sqlSession.delete("mapper.member.deleteAddress", addr_code);
 		return result;
 	}
+	
+	//개인정보수정
+	@Override
+	public void userInfoUpdate(UserVO userVO) throws DataAccessException {
+		Map<String,Object> map = new HashMap<String, Object>();
+		map.put("user_name", userVO.getUser_name());
+		map.put("user_email", userVO.getUser_email());
+		map.put("user_phone", userVO.getUser_phone());
+		
+		sqlSession.update("mapper.member.userInfoUpdate", map);
+	}
+	
 
 	//이메일 중복체크
 	@Override
@@ -158,6 +172,7 @@ public class MypageDAOImpl implements MypageDAO{
 		int result = sqlSession.selectOne("mapper.member.emailChk", userVO);
 		return result;
 	}
+
 
 	
 

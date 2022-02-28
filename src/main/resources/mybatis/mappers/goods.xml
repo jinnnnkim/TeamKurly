@@ -4,7 +4,7 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
 <mapper namespace="mapper.goods">					
-	<resultMap type="goodsVO" id="goodsResult">		<!-- SQL문 실행한 후 반환되는 레코드들을 typeAlias 태그에서 지정한 userVO 빈에 저장함 -->
+	<resultMap type="goodsVO" id="goodsResult">		<!-- SQL문 실행한 후 반환되는 레코드들을 typeAlias 태그에서 지정한 goodsVO 빈에 저장함 -->
 		<result property="prod_code" column="prod_code" />
 		<result property="prodcatecode" column="prodcatecode"/>
 		<result property="prod_name" column="prod_name"/>
