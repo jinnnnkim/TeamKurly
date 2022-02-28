@@ -650,7 +650,7 @@ response.setContentType("application/json");
 							<th class="reply">답변상태</th>
 						</tr>
 						
-						<c:forEach var="qna" items="${qnaList }">
+						<c:forEach var="qna" items="${inquiryList}">
 						<tr class="QandAList1">
 							<td>${qna.prod_inq_code }</td>
 							<c:choose>
@@ -671,7 +671,7 @@ response.setContentType("application/json");
 								<c:when test="${qna.inq_level eq 1 }">
 								<td>답변 완료</td>
 								</c:when>
-							<c:when test="${qna.emp_no ne 1 }">
+							<c:when test="${qna.inq_level ne 1 }">
 								<td>답변 대기</td>
 							</c:when>
 							</c:choose>
@@ -752,10 +752,11 @@ response.setContentType("application/json");
 								
 								<div class="QnAWrap">
 									<form name="qnaFrm" id="qnaFrm" method="post">
+									<input type="hidden" name="prod_code" class="qinput q_inputItemno" value="${param.prod_code}">
 										<table class="QnAWrite">
 											<tr class="QnAWriteTitle">
 												<th>제목
-												<input type="hidden" name="prod_code" class="qinput q_inputItemno" value="${param.prod_code}">
+						
 												</th>
 												<td>
 												<input type="text" name="inq_title" id="inq_title" placeholder="제목을 입력해주세요." />
@@ -905,7 +906,7 @@ response.setContentType("application/json");
 			location.href="${contextPath}/login/login.do";
 		} */
 	
-		if(userVO.user_id != null){
+		
 			
 			$("#reviewBtn").on("click",function(){
 			  var reviewFrm = document.querySelector('#reviewFrm');
@@ -915,10 +916,10 @@ response.setContentType("application/json");
 		  	  $("#reviewFrm").submit();
 			});
 		  	  
-		 }else{
-			alert("로그인 후 이용해 주세요.");
-			location.href="${contextPath}/login/login.do";
-		} 
+		 //}else{
+			//alert("로그인 후 이용해 주세요.");
+			//location.href="${contextPath}/login/login.do";
+		//} 
 		 	 
 		
 		
@@ -943,7 +944,6 @@ response.setContentType("application/json");
 	    	  }
 	  	  
 	  	  	$("#qnaFrm").submit(); 
-	  	  	
 			
 	}); 
 	

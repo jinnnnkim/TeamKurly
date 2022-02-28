@@ -129,12 +129,12 @@ public class CategoryControllerImpl implements CategoryController{
 		ModelAndView mav = new ModelAndView();
 		
 		//문의 목록
-		List<InquiryVO> qnaList = inqReviewService.getInquiryList(vo);
+		List<InquiryVO> inquiryList = inqReviewService.getInquiryList(vo);
 		int qnacnt = inqReviewService.qnaCount(vo);
 		
-		mav.addObject("qnaList", qnaList);
+		mav.addObject("inquiryList", inquiryList);
 		
-		if(!qnaList.isEmpty()) {
+		if(!inquiryList.isEmpty()) {
 			mav.addObject("cnt", qnacnt);
 		}else {
 			mav.addObject("listCheck", "empty");
