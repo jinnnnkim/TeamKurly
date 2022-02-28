@@ -597,9 +597,15 @@ response.setContentType("application/json");
 						</tr> -->
 					</c:forEach>
 					</table>
+					<c:if test="${listCheck == 'empty'}">
+						<div>
+							등록된 후기가 없습니다.
+						</div>
+					</c:if>
 					<div class="writeBtn">
 					<form action="" id="reviewFrm">
 						<button class="reviewBtn" type="submit" id="reviewBtn">후기작성</button>
+						<input type="hidden" name="prod_code" class="qinput q_inputItemno" value="${param.prod_code}">
 					</form>	
 					</div>
 				</div>
@@ -647,18 +653,28 @@ response.setContentType("application/json");
 						<c:forEach var="qna" items="${qnaList }">
 						<tr class="QandAList1">
 							<td>${qna.prod_inq_code }</td>
-							<td class="titleCont">${qna.inq_title }</td>
+							<c:choose>
+								<c:when test="${qna.inq_secret eq 0}">
+									<td class="titleCont">${qna.inq_title }</td>
+								</c:when>
+							</c:choose>
+							<c:choose>
+								<c:when test="${qna.inq_secret eq 1 }">
+									<td class="titleCont">비밀글입니다.</td>
+								</c:when>
+							</c:choose>
+							
 							<td>${qna.user_id }</td>
 							<td><fmt:parseDate value="${qna.inq_reg_date}" var="reg_date" pattern="yy-MM-dd"/>
 							<fmt:formatDate value="${reg_date}" pattern="yy-MM-dd"/></td>
-							<%-- <c:choose> --%>
-							<%-- <c:when test="${qna.emp_no eq 1 }"> --%>
+							<c:choose>
+								<c:when test="${qna.inq_level eq 1 }">
 								<td>답변 완료</td>
-							<%-- </c:when>
-							<c:when test="${qna.emp_no eq 0 }">
+								</c:when>
+							<c:when test="${qna.emp_no ne 1 }">
 								<td>답변 대기</td>
 							</c:when>
-							</c:choose> --%>
+							</c:choose>
 						</tr>
 						
 						<tr class="QandADetailList1">
@@ -700,6 +716,11 @@ response.setContentType("application/json");
 						</div> --%>
 						</c:forEach>			
 					</table>
+					<c:if test="${listCheck == 'empty'}">
+						<div>
+							등록된 문의가 없습니다.
+						</div>
+					</c:if>
 					<div class="write-faq">
 						
 					</div>
@@ -721,11 +742,11 @@ response.setContentType("application/json");
 								</div>
 								<div class="prod">
 									<div class="img">
-										<img src="/recipetoyou/Resources/User/Img/goods6.jpg" />
+										<img alt="상세보기" src="${contextPath}/Resources/Admin/Img/AdgoodsImg/${agi.uploadPath}/s_${agi.uuid }_${agi.fileName}">
 									</div>
 									<div class="prodInfo">
-										<span class="prodTitle">소고기 200g</span><br /> <span
-											class="prodSub">맛있는 소고기 200g</span>
+										<span class="prodTitle">${goodsDetailInfo.prod_name }</span><br />
+										<!-- <span class="prodSub">맛있는 소고기 200g</span> -->
 									</div>
 								</div>
 								
@@ -750,7 +771,12 @@ response.setContentType("application/json");
 												</td>
 											</tr>
 											<tr class="scret">
-												<th colspan="2"><label><input type="checkbox">&nbsp;비밀글로 문의하기</label></th>
+												<th colspan="2">
+													<label>
+														<input type="radio" name="inq_secret" id="inq_secret" value="0">&nbsp;공개글로 문의하기
+														<input type="radio" name="inq_secret" id="inq_secret" value="1" checked="checked">&nbsp;비밀글로 문의하기
+													</label>
+												</th>
 											</tr>
 										</table>
 										
@@ -879,35 +905,46 @@ response.setContentType("application/json");
 			location.href="${contextPath}/login/login.do";
 		} */
 	
-	$("#reviewBtn").on("click",function(){
-		  var reviewFrm = document.querySelector('#reviewFrm');
-	  	  //newForm.name='reviewFrm';
-	  	  reviewFrm.method='get';
-	  	  reviewFrm.action='${contextPath}/goods/moveReview.do';
-	  	  $("#reviewFrm").submit();
-	}); 	  
+		if(userVO.user_id != null){
+			
+			$("#reviewBtn").on("click",function(){
+			  var reviewFrm = document.querySelector('#reviewFrm');
+		  	  //newForm.name='reviewFrm';
+		  	  reviewFrm.method='get';
+		  	  reviewFrm.action='${contextPath}/goods/moveReview.do';
+		  	  $("#reviewFrm").submit();
+			});
+		  	  
+		 }else{
+			alert("로그인 후 이용해 주세요.");
+			location.href="${contextPath}/login/login.do";
+		} 
+		 	 
 		
-	$("#write").on("click",function(){
-		  var qnaFrm = document.querySelector('#qnaFrm');
-	  	  //newForm.name='reviewFrm';
-	  	  qnaFrm.method='post';
-	  	  qnaFrm.action='${contextPath}/goods/insertInquiry.do';
-	  	  
-		  //제목 필요
-    	  if(!$("#inq_title").val()){
-    		  alert("제목을 입력해주세요.");
-    		  $("#inq_title").focus();
-    		  return false;
-    	  }
+		
+		$("#write").on("click",function(){
+			  var qnaFrm = document.querySelector('#qnaFrm');
+		  	  //newForm.name='reviewFrm';
+		  	  qnaFrm.method='post';
+		  	  qnaFrm.action='${contextPath}/goods/insertInquiry.do';
+		  	  
+			  //제목 필요
+	    	  if(!$("#inq_title").val()){
+	    		  alert("제목을 입력해주세요.");
+	    		  $("#inq_title").focus();
+	    		  return false;
+	    	  }
     	  
-    	  //내용 필요
-    	  if(CKEDITOR.instances.content.getData()==''||CKEDITOR.instances.content.getData().length==0){
-    		  alert("내용을 입력해주세요.");
-    		  $("#inq_content").focus();
-    		  return false;
-    	  }
+	    	  //내용 필요
+	    	  if(CKEDITOR.instances.content.getData()==''||CKEDITOR.instances.content.getData().length==0){
+	    		  alert("내용을 입력해주세요.");
+	    		  $("#inq_content").focus();
+	    		  return false;
+	    	  }
 	  	  
-	  	  $("#qnaFrm").submit();
+	  	  	$("#qnaFrm").submit(); 
+	  	  	
+			
 	}); 
 	
 	//문의하기 팝업

@@ -36,17 +36,17 @@ public class CategoryControllerImpl implements CategoryController{
 	private static final Logger logger = LoggerFactory.getLogger("CategoryControllerImpl.class");
 	
 
-	/*
-	 * private static final String UPLOAD_DIR =
-	 * "C:\\git-recipetoyouuuu\\RecipeToYou\\src\\main\\webapp\\Resources\\Admin\\Img\\AdgoodsImg\\";
-	 */
+	
+	  private static final String UPLOAD_DIR =
+	  "C:\\git-recipetoyouuuu\\RecipeToYou\\src\\main\\webapp\\Resources\\Admin\\Img\\AdgoodsImg\\";
+	 
 
 
 	//private static final String UPLOAD_DIR = "C:/Users/jin/Documents/TeamKurly_3v/src/main/webapp/Resources/Admin/Img/AdgoodsImg/";
 
 	//private static final String UPLOAD_DIR = "C:/git_workTeam/src/main/webapp/Resources/Admin/Img/AdgoodsImg/";
 
-	private static final String UPLOAD_DIR = "C:\\wordspace_git\\src\\main\\webapp\\Resources\\Admin\\Img\\AdgoodsImg\\";
+	//private static final String UPLOAD_DIR = "C:\\wordspace_git\\src\\main\\webapp\\Resources\\Admin\\Img\\AdgoodsImg\\";
 
 	@Autowired
 	private CategoryService service;
@@ -129,27 +129,27 @@ public class CategoryControllerImpl implements CategoryController{
 		ModelAndView mav = new ModelAndView();
 		
 		//문의 목록
-		List<InquiryVO> qnaList = inqReviewService.getInquiryList(vo, prod_code);
+		List<InquiryVO> qnaList = inqReviewService.getInquiryList(vo);
 		int qnacnt = inqReviewService.qnaCount(vo);
 		
 		mav.addObject("qnaList", qnaList);
 		
-		if(qnaList.size()>0) {
+		if(!qnaList.isEmpty()) {
 			mav.addObject("cnt", qnacnt);
 		}else {
-			mav.addObject("qnacnt", 0);
+			mav.addObject("listCheck", "empty");
 		}
 		
 		//후기 목록
-		List<ReviewVO> reviewList = inqReviewService.getReviewList(vo, prod_code);
+		List<ReviewVO> reviewList = inqReviewService.getReviewList(vo);
 		int reviewcnt = inqReviewService.reviewCount(vo);
 		
 		mav.addObject("reviewList", reviewList);
 		
-		if(reviewList.size()>0) {
+		if(!reviewList.isEmpty()) {
 			mav.addObject("reviewcnt", reviewcnt);
 		}else {
-			mav.addObject("reviewcnt", 0);
+			mav.addObject("listCheck", "empty");
 		}
 		
 		//상품 정보
