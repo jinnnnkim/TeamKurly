@@ -6,7 +6,6 @@ public class AdgoodsReviewVO {
 	
 	private int prod_review_code;
 	private int prod_code;
-	private int review_idx;
 	private String title;
 	private Date reg_date;
 	private String content;
@@ -18,12 +17,11 @@ public class AdgoodsReviewVO {
 	
 	
 
-	public AdgoodsReviewVO(int prod_review_code, int prod_code, int review_idx, String title, Date reg_date,
+	public AdgoodsReviewVO(int prod_review_code, int prod_code, String title, Date reg_date,
 			String content, String user_id) {
 		super();
 		this.prod_review_code = prod_review_code;
 		this.prod_code = prod_code;
-		this.review_idx = review_idx;
 		this.title = title;
 		this.reg_date = reg_date;
 		this.content = content;
@@ -48,13 +46,6 @@ public class AdgoodsReviewVO {
 		this.prod_code = prod_code;
 	}
 
-	public int getReview_idx() {
-		return review_idx;
-	}
-
-	public void setReview_idx(int review_idx) {
-		this.review_idx = review_idx;
-	}
 
 	public String getTitle() {
 		return title;

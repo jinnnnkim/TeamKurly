@@ -20,7 +20,7 @@
 		<result property="inq_content" column="inq_content"/>
 		<result property="inq_reg_date" column="inq_reg_date"/>
 		<result property="inq_secret" column="inq_secret"/>
-		<result property="int_level" column="int_level"/>
+		<result property="inq_level" column="int_level"/>
 	</resultMap>
 	
 	<resultMap type="inqAnswerVO" id="inqansResult">
@@ -59,7 +59,7 @@
 		FROM tb_inq_answer ta RIGHT OUTER JOIN (SELECT * FROM TB_PROD_INQ WHERE prod_code=#{prod_code})B ON ta.prod_inq_code = B.prod_inq_code) I WHERE  tu.USER_ID =I.user_id
 	</select> -->
 	
-	<select id="getInquiryList" resultType="inquiryVO">
+	<select id="getInquiryList" resultMap="inqResult">
 		<![CDATA[
 		select * from(
 			select rownum AS rn, prod_code, prod_inq_code, inq_title, user_id, inq_reg_date, inq_secret, inq_level
@@ -107,7 +107,7 @@
 		tu1 WHERE tu2.USER_ID=tu1.user_id)O WHERE tpr.order_code=O.order_code
 	</select> -->
 	
-	<select id="getReviewList" resultType="reviewVO">
+	<select id="getReviewList" resultMap="reviewResult">
 		<![CDATA[
 		select * from(
 			select rownum AS rn, prod_code, prod_review_code, title, user_id, reg_date
