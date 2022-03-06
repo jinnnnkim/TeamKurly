@@ -70,7 +70,7 @@ public class AdFAQControllerImpl implements AdFAQController {
 	
 	//FAQ 상세 정보 조회
 	@Override
-	@RequestMapping(value = {"/adfaq/faqInfoManagement.do", "/adfaq/modFAQInfo.do"}, produces = "application/json", method = RequestMethod.GET)
+	@RequestMapping(value = {"/adfaq/faqInfoManagement.do"}, produces = "application/json", method = RequestMethod.GET)
 	public void getFAQInfo(int id, Model model, PagingVO vo) throws Exception {
 		logger.info("클릭한 code:"+id);
 		
@@ -81,23 +81,23 @@ public class AdFAQControllerImpl implements AdFAQController {
 	}
 	
 	//FAQ 정보 수정 페이지로 이동
-//	@Override
-//	@RequestMapping(value = "/adfaq/modFAQInfo.do", method = RequestMethod.GET)
-//	public ModelAndView updateFAQInfo(@RequestParam(value="id") String id, HttpServletRequest request, HttpServletResponse response) throws Exception {	
-//		logger.info("FAQ : "+id);
-//		String viewName = (String)request.getAttribute("viewName");
-//		ModelAndView mav = new ModelAndView();
-//		mav.setViewName(viewName);	
-//		mav.addObject("adFAQVO", service.getFAQInfo(id));
-//		return mav;
-//	}
+	@Override
+	@RequestMapping(value = "/adfaq/modFAQInfo.do", method = RequestMethod.GET)
+	public ModelAndView updateFAQInfo(@RequestParam(value="id") String id, HttpServletRequest request, HttpServletResponse response) throws Exception {	
+		logger.info("FAQ : "+id);
+		String viewName = (String)request.getAttribute("viewName");
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName(viewName);	
+		mav.addObject("adFAQVO", service.getFAQInfo(id));
+		return mav;
+	}
 	
 	//FAQ 정보 수정 완료
 	@Override
 	@RequestMapping(value = "/adfaq/FAQUpdate.do", method = {RequestMethod.GET, RequestMethod.POST})
 	public ModelAndView updateFAQAction(@ModelAttribute AdFAQVO vo, RedirectAttributes rttr,  HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String viewName = (String)request.getAttribute("viewName");
-		ModelAndView mav = new ModelAndView(viewName);
+		ModelAndView mav = new ModelAndView("redirect:faqAdManagement.do"); //이동은 되지만 수정이 안됨 내일 다
 		System.out.println("update 통과 확인");
 		int result = service.updateFAQInfo(vo);
 		rttr.addFlashAttribute("modify_result", result);

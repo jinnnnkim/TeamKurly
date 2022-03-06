@@ -1,4 +1,4 @@
-package kr.co.recipetoyou.main.goods;
+package kr.co.recipetoyou.main.inqreview;
 
 import java.util.List;
 import java.util.Map;
@@ -17,11 +17,6 @@ public class InqReviewDAOImpl implements InqReviewDAO{
 	
 	private static final String NAMESPACE = "mapper.inqreview";
 
-	@Override
-	public int getInqSequence() throws Exception {
-		
-		return sqlSession.selectOne(NAMESPACE+".getInqSequence");
-	}
 
 	@Override
 	public List<InquiryVO> inqlistPaging(int page) throws Exception {
@@ -48,12 +43,6 @@ public class InqReviewDAOImpl implements InqReviewDAO{
 		sqlSession.insert(NAMESPACE+".insertInquiry", vo);
 		
 	}
-
-	@Override
-	public int getRevSequence() throws Exception {
-		
-		return sqlSession.selectOne(NAMESPACE+".getRevSequence");
-	}
 	
 	@Override
 	public List<ReviewVO> getReviewList(PagingVO vo) throws Exception {
@@ -79,11 +68,30 @@ public class InqReviewDAOImpl implements InqReviewDAO{
 		
 		sqlSession.insert(NAMESPACE+".insertReview", vo);
 	}
+	
+	@Override
+	public ReviewVO getReviewDetail(int prod_review_code) throws Exception {
+		return sqlSession.selectOne(NAMESPACE+".getReviewDetail", prod_review_code);
+	}
 
 	@Override
 	public int checkOrderUser(Map<String, Object> map) throws Exception {
 		
 		return sqlSession.selectOne(NAMESPACE+".checkOrderUser");
 	}
+
+	@Override
+	public int qnaCount(PagingVO vo) throws Exception {
+		
+		return sqlSession.selectOne(NAMESPACE+".getQnaCount", vo);
+	}
+
+	@Override
+	public int reviewCount(PagingVO vo) throws Exception {
+		
+		return sqlSession.selectOne(NAMESPACE+".getReviewCount", vo);
+	}
+
+	
 
 }

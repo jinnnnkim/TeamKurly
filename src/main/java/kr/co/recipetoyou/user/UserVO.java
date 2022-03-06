@@ -30,6 +30,10 @@ import kr.co.recipetoyou.main.goods.GoodsVO;
 public class UserVO {
 	
 	private String user_id;
+	
+
+
+
 	private String user_pw;
 	private String user_name;
 	private String user_email;
@@ -52,6 +56,11 @@ public class UserVO {
 		// TODO Auto-generated constructor stub
 	}
 	
+	public UserVO(String user_id, String user_pw) {
+		super();
+		this.user_id = user_id;
+		this.user_pw = user_pw;
+	}
 	
 
 	public UserVO(String user_id, String user_pw, String user_name, String user_email, String user_phone,

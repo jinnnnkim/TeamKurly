@@ -1028,13 +1028,13 @@ span.sub_inn_in {
   }
 }
 
-.reviewTable button,
+/* .reviewTable button,
 .QandATable button{
 	width:75px;
 	height:30px;
 	border:1px solid #5f0080;
 	background:white;
-}
+} */
 
 .writeBtn{
 	text-align:right;
@@ -1051,6 +1051,18 @@ span.sub_inn_in {
 	background:#795b8f;
 	border:1px solid #5f0080;
 }
+
+.reviewBtn{
+	width:100px;
+	height:32px;
+	display:inline-block;
+	text-align:center;
+	line-height:32px;
+	color:white;
+	background:#795b8f;
+	border:1px solid #5f0080;
+	font-size: 16px;
+} 
 
 .background {
   position: fixed;
@@ -1212,4 +1224,36 @@ span.sub_inn_in {
 
 .off{
 	color: #5f0081;
+}
+
+.page_wrap{
+	text-align: center;
+	margin-top: 20px;
+}
+
+.pagination{
+    list-style : none;
+    display: inline-block;
+    margin: 10px 0 0 10px;      
+}
+
+ .pagination li{
+    float: left;
+    font-size: 15px;
+    margin-left: 10px;
+    padding: 3px;
+    font-weight: 50;
+ }
+
+.next, .prev{
+	border: 1px solid #ccc;
+	padding: 0 10px;
+}
+
+.pageBtn a:link {color: black;}
+.pageBtn_btn a:visited {color: black;}
+.pageBtn_btn a:active {color: black;}
+.pageBtn_btn a:hover {color: black;}
+.next a, .prev a {
+    color: #ccc;
 }

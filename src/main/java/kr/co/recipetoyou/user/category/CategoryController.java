@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.servlet.ModelAndView;
 
 import kr.co.recipetoyou.admin.adgoods.AdgoodsImgVO;
+import kr.co.recipetoyou.util.PagingVO;
 
 public interface CategoryController {
 
@@ -18,7 +19,7 @@ public interface CategoryController {
 
 	ResponseEntity<List<AdgoodsImgVO>> getGoodsImageList(int prod_code) throws Exception;
 
-	ModelAndView goodsView(int prod_code, HttpServletRequest request, HttpServletResponse response) throws Exception;
+	ModelAndView goodsView(PagingVO vo, int prod_code, HttpServletRequest request, HttpServletResponse response) throws Exception;
 
 
 }

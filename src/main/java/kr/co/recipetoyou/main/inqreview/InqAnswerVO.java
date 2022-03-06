@@ -1,4 +1,4 @@
-package kr.co.recipetoyou.main.goods;
+package kr.co.recipetoyou.main.inqreview;
 
 import java.sql.Date;
 

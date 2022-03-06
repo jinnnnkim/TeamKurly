@@ -1,4 +1,4 @@
-package kr.co.recipetoyou.main.goods;
+package kr.co.recipetoyou.main.inqreview;
 
 import java.util.List;
 import java.util.Map;
@@ -19,14 +19,9 @@ public class InqReviewServiceImpl implements InqReviewService{
 	@Autowired
 	private InqReviewDAO inqReviewDAO;
 
-	@Override
-	public int getInqSequence() throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
-	}
 
 	@Override
-	public List<InquiryVO> getInquiryList(PagingVO vo, int prod_code) throws Exception {
+	public List<InquiryVO> getInquiryList(PagingVO vo) throws Exception {
 		
 		List<InquiryVO> inquiryList = inqReviewDAO.getInquiryList(vo);
 		
@@ -40,14 +35,9 @@ public class InqReviewServiceImpl implements InqReviewService{
 		
 	}
 
-	@Override
-	public int getRevSequence() throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
-	}
 
 	@Override
-	public List<ReviewVO> getReviewList(PagingVO vo, int prod_code) throws Exception {
+	public List<ReviewVO> getReviewList(PagingVO vo) throws Exception {
 		
 		List<ReviewVO> reviewList = inqReviewDAO.getReviewList(vo);
 		
@@ -61,7 +51,12 @@ public class InqReviewServiceImpl implements InqReviewService{
 		//리뷰 등록 쿼리 실행
 		inqReviewDAO.insertReview(vo);	//리뷰 등록
 
+	}
+	
+	@Override
+	public ReviewVO getReviewDetail(int prod_review_code) throws Exception {
 		
+		return inqReviewDAO.getReviewDetail(prod_review_code);
 	}
 
 	@Override
@@ -69,6 +64,20 @@ public class InqReviewServiceImpl implements InqReviewService{
 		// TODO Auto-generated method stub
 		return 0;
 	}
+
+	@Override
+	public int qnaCount(PagingVO vo) throws Exception {
+		
+		return inqReviewDAO.qnaCount(vo);
+	}
+
+	@Override
+	public int reviewCount(PagingVO vo) throws Exception {
+		
+		return inqReviewDAO.reviewCount(vo);
+	}
+
+
 
 
 }

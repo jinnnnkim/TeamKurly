@@ -15,9 +15,9 @@ response.setContentType("application/json");
 <title>Recipe to You :: 내일의 장보기, 레시피투유</title>
 <link rel="stylesheet" type="text/css" href="/recipetoyou/Resources/Common/slick/slick.css" />
 <link rel="stylesheet" type="text/css" href="/recipetoyou/Resources/Common/slick/slick-theme.css" />
-<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script type="text/javascript" src="/recipetoyou/Resources/Common/slick/slick.min.js"></script>
 
 <script type="text/javascript">
@@ -167,7 +167,7 @@ response.setContentType("application/json");
 						
 						<form action="#" method="post" id="idCheckSet">
 							<input type="text" name="user_id" hidden="hidden" value="${user_id }">
-							<input type="text" name="prod_code" hidden="hidden" value="${goodsVO.prod_code }">
+							
 						</form>
 
 						<div class="cartPut">
@@ -575,18 +575,16 @@ response.setContentType("application/json");
 							<th class="title">제목</th>
 							<th class="writer">작성자</th>
 							<th class="writeDate">작성일</th>
-							<th class="hit">조회</th>
 						</tr>
 						
-						<c:forEach var="rvl" items="${reviewList }">
+						<c:forEach var="rvl" items="${reviewList}">
 						<tr class="reviewList1">
-							<td>공지</td>
-							<td class="titleCont"><a href="#none">금주의 Best 후기 안내</a></td>
+							<td>${rvl.prod_review_code}</td>
 							<td>${rvl.title }</td>
 							<td>${rvl.user_id }</td>
 							<td>${rvl.reg_date }</td>
 						</tr>
-						<tr class="reviewDetailList1">
+						<!-- <tr class="reviewDetailList1">
 							<td colspan="5">
 								<div>
 									<span> 금주의 best 후기입니다. </span>
@@ -596,25 +594,43 @@ response.setContentType("application/json");
 									</div>
 								</div>
 							</td>
-						</tr>
+						</tr> -->
 					</c:forEach>
 					</table>
+					<c:if test="${listCheck == 'empty'}">
+						<div>
+							등록된 후기가 없습니다.
+						</div>
+					</c:if>
 					<div class="writeBtn">
-						<a href="${contextPath}/reviewWrite.do">후기작성</a>
+					<form action="" id="reviewFrm">
+						<button class="reviewBtn" type="submit" id="reviewBtn">후기작성</button>
+						<input type="hidden" name="prod_code" class="qinput q_inputItemno" value="${param.prod_code}">
+					</form>	
 					</div>
 				</div>
 
-				<div class="page">
-					<ul>
-						<li><a href="#"><i class="fas fa-angle-double-left"></i></a></li>
-						<li><a href="#"><i class="fas fa-angle-left"></i></a></li>
-						<li><a href="#">1</a></li>
-						<li><a href="#">2</a></li>
-						<li><a href="#">3</a></li>
-						<li><a href="#"><i class="fas fa-angle-right"></i></a></li>
-						<li><a href="#"><i class="fas fa-angle-double-right"></i></a></li>
-					</ul>
-				</div>
+				<div class="page_wrap">
+				<ul class="pagination">
+				 			<!-- 이전prev -->
+				 	<c:if test="${reviewpm.prev }">
+				 		<li class="pageBtn prev">
+				 			<a href="goodsView.do?page=${reviewpm.startPage-1}">이전</a>
+				 		</li>
+				 	</c:if>
+				 			<!-- 페이지블럭 -->
+					<c:forEach var="idx" begin="${reviewpm.startPage}" end="${reviewpm.endPage}">
+								<!-- 삼항연산자를 사용해서 class로 스타일적용  -->
+						<li ${reviewpm.vo.page == idx? 'class=active':''}>
+						 	<a href="goodsView.do?page=${idx}">${idx}</a>
+						</li>				
+					</c:forEach>
+				 			<!-- 다음next -->
+				 	<c:if test="${reviewpm.next && reviewpm.endPage > 0}">
+				 		<li class="pageBtn next"><a href="goodsView.do?page=${reviewpm.endPage+1}">다음</a></li>
+				 	</c:if>
+				 </ul>
+			</div>
 				<%--review end --%>
 				
 				<%--QnA --%>
@@ -627,25 +643,35 @@ response.setContentType("application/json");
 					</div>
 					<table>
 						<tr class="th">
+							<th class="num">번호</th>
 							<th class="title">제목</th>
 							<th class="writer">작성자</th>
 							<th class="writeDate">작성일</th>
 							<th class="reply">답변상태</th>
 						</tr>
 						
-						<c:forEach var="fl" items="${inqList }">
+						<c:forEach var="qna" items="${inquiryList}">
 						<tr class="QandAList1">
-							<td class="titleCont">${fl.inq_title }</td>
-							<td>${fl.user_id }</td>
-							<td><fmt:parseDate value="${fl.inq_reg_date}" var="reg_date" pattern="yy-MM-dd"/>
+							<td>${qna.prod_inq_code }</td>
+							<c:choose>
+								<c:when test="${qna.inq_secret eq 0}">
+									<td class="titleCont">${qna.inq_title }</td>
+								</c:when>
+							</c:choose>
+							<c:choose>
+								<c:when test="${qna.inq_secret eq 1 }">
+									<td class="titleCont">비밀글입니다.</td>
+								</c:when>
+							</c:choose>
+							
+							<td>${qna.user_id }</td>
+							<td><fmt:parseDate value="${qna.inq_reg_date}" var="reg_date" pattern="yy-MM-dd"/>
 							<fmt:formatDate value="${reg_date}" pattern="yy-MM-dd"/></td>
 							<c:choose>
-							<c:when test="${fl.emp_no eq 1 }">
-								<!-- 관리자 번호는 1번이므로 관리자가 배치되었다면 답변이 완료된 상태 -->
+								<c:when test="${qna.inq_level eq 1 }">
 								<td>답변 완료</td>
-							</c:when>
-							<c:when test="${fl.emp_no eq 0 }">
-								<!-- 관리자 번호는 1번이므로 관리자가 배치되지 않았다면 답변 대기 상태 -->
+								</c:when>
+							<c:when test="${qna.inq_level ne 1 }">
 								<td>답변 대기</td>
 							</c:when>
 							</c:choose>
@@ -664,7 +690,7 @@ response.setContentType("application/json");
 							</td> -->
 							
 						</tr>
-						<div id="collapseq${fl.faq_no}" class="collapse" data-parent="#accordion">
+						<%-- <div id="collapseq${fl.faq_no}" class="collapse" data-parent="#accordion">
 							<div class="card-body">
 								<div class="q-table-page">
 									<!-- 메뉴 눌렀을 때 페이지 -->
@@ -687,14 +713,18 @@ response.setContentType("application/json");
 									</div>
 								</div>
 							</div>
-						</div>
+						</div> --%>
 						</c:forEach>			
 					</table>
+					<c:if test="${listCheck == 'empty'}">
+						<div>
+							등록된 문의가 없습니다.
+						</div>
+					</c:if>
 					<div class="write-faq">
 						
 					</div>
 					<div >
-					<button id="writeBtn">문의하기</button>
 					</div>
 					<div class="writeBtn">
 						<a id="show">문의하기</a>
@@ -712,23 +742,26 @@ response.setContentType("application/json");
 								</div>
 								<div class="prod">
 									<div class="img">
-										<img src="/recipetoyou/Resources/User/Img/goods6.jpg" />
+										<img alt="상세보기" src="${contextPath}/Resources/Admin/Img/AdgoodsImg/${agi.uploadPath}/s_${agi.uuid }_${agi.fileName}">
 									</div>
 									<div class="prodInfo">
-										<span class="prodTitle">소고기 200g</span><br /> <span
-											class="prodSub">맛있는 소고기 200g</span>
+										<span class="prodTitle">${goodsDetailInfo.prod_name }</span><br />
+										<!-- <span class="prodSub">맛있는 소고기 200g</span> -->
 									</div>
 								</div>
 								
 								<div class="QnAWrap">
 									<form name="qnaFrm" id="qnaFrm" method="post">
+									<input type="hidden" name="prod_code" class="qinput q_inputItemno" value="${param.prod_code}">
 										<table class="QnAWrite">
 											<tr class="QnAWriteTitle">
-												<th>제목</th>
+												<th>제목
+						
+												</th>
 												<td>
 												<input type="text" name="inq_title" id="inq_title" placeholder="제목을 입력해주세요." />
 												<input type="text" hidden="hidden" name="user_id" id="user_id" class="qinput q_inputUserno" value="${user_id }">
-												<input type="text" hidden="hidden" name="prod_code" class="qinput q_inputItemno" value="${goodsVO.prod_code}">"
+												
 												</td>
 											</tr>
 											<tr class="content">
@@ -739,14 +772,21 @@ response.setContentType("application/json");
 												</td>
 											</tr>
 											<tr class="scret">
-												<th colspan="2"><label><input type="checkbox">&nbsp;비밀글로 문의하기</label></th>
+												<th colspan="2">
+													<label>
+														<input type="radio" name="inq_secret" id="inq_secret" value="0">&nbsp;공개글로 문의하기
+														<input type="radio" name="inq_secret" id="inq_secret" value="1" checked="checked">&nbsp;비밀글로 문의하기
+													</label>
+												</th>
 											</tr>
 										</table>
 										
 										
 										<div class="popWriteBtn">
+										
 											<button class="cancel" type="reset">취소</button>
 											<button class="writeBtn" id="write">등록</button>
+										
 										</div>
 									</form>
 								</div>
@@ -757,17 +797,27 @@ response.setContentType("application/json");
 					<%--문의하기 팝업 끝 --%>
 				</div>
 
-				<div class="page">
-					<ul>
-						<li><a href="#"><i class="fas fa-angle-double-left"></i></a></li>
-						<li><a href="#"><i class="fas fa-angle-left"></i></a></li>
-						<li><a href="#">1</a></li>
-						<li><a href="#">2</a></li>
-						<li><a href="#">3</a></li>
-						<li><a href="#"><i class="fas fa-angle-right"></i></a></li>
-						<li><a href="#"><i class="fas fa-angle-double-right"></i></a></li>
-					</ul>
-				</div>
+				<div class="page_wrap">
+				<ul class="pagination">
+				 			<!-- 이전prev -->
+				 	<c:if test="${qnapm.prev }">
+				 		<li class="pageBtn prev">
+				 			<a href="goodsView.do?page=${qnapm.startPage-1}">이전</a>
+				 		</li>
+				 	</c:if>
+				 			<!-- 페이지블럭 -->
+					<c:forEach var="idx" begin="${reviewpm.startPage}" end="${qnapm.endPage}">
+								<!-- 삼항연산자를 사용해서 class로 스타일적용  -->
+						<li ${qnapm.vo.page == idx? 'class=active':''}>
+						 	<a href="goodsView.do?page=${idx}">${idx}</a>
+						</li>				
+					</c:forEach>
+				 			<!-- 다음next -->
+				 	<c:if test="${reviewpm.next && reviewpm.endPage > 0}">
+				 		<li class="pageBtn next"><a href="goodsView.do?page=${qnapm.endPage+1}">다음</a></li>
+				 	</c:if>
+				 </ul>
+			</div>
 			</div>
 			<!-- product_review_wrap -->
 
@@ -837,6 +887,66 @@ response.setContentType("application/json");
 	    
 	});
 	
+	//후기 작성 페이지로 이동
+		
+/* 		if(user_id != null){
+			
+			//var comSubmit = new ComSubmit();
+			var prod_code = $("#prod_code").val();
+			$("#reviewFrm").on("click",function(){
+				location.href="${contextPath}/goods/moveReview.do";
+			});
+			
+			$("#write").on("click",function(){
+				location.href="${contextPath}/goods/insertInquiry.do";
+			});
+			
+		}else{
+			alert("로그인 후 이용해주세요.");
+			location.href="${contextPath}/login/login.do";
+		} */
+	
+		
+			
+			$("#reviewBtn").on("click",function(){
+			  var reviewFrm = document.querySelector('#reviewFrm');
+		  	  //newForm.name='reviewFrm';
+		  	  reviewFrm.method='get';
+		  	  reviewFrm.action='${contextPath}/goods/moveReview.do';
+		  	  $("#reviewFrm").submit();
+			});
+		  	  
+		 //}else{
+			//alert("로그인 후 이용해 주세요.");
+			//location.href="${contextPath}/login/login.do";
+		//} 
+		 	 
+		
+		
+		$("#write").on("click",function(){
+			  var qnaFrm = document.querySelector('#qnaFrm');
+		  	  //newForm.name='reviewFrm';
+		  	  qnaFrm.method='post';
+		  	  qnaFrm.action='${contextPath}/goods/insertInquiry.do';
+		  	  
+			  //제목 필요
+	    	  if(!$("#inq_title").val()){
+	    		  alert("제목을 입력해주세요.");
+	    		  $("#inq_title").focus();
+	    		  return false;
+	    	  }
+    	  
+	    	  //내용 필요
+	    	  if(CKEDITOR.instances.content.getData()==''||CKEDITOR.instances.content.getData().length==0){
+	    		  alert("내용을 입력해주세요.");
+	    		  $("#inq_content").focus();
+	    		  return false;
+	    	  }
+	  	  
+	  	  	$("#qnaFrm").submit(); 
+			
+	}); 
+	
 	//문의하기 팝업
 	 function show() {
         document.querySelector(".background").className = "background show";
@@ -902,5 +1012,6 @@ response.setContentType("application/json");
 				}
 			});	
 		}); 
+	
 	</script>
 </body>
