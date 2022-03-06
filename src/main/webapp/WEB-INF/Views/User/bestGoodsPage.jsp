@@ -30,7 +30,7 @@
 			<!-- 상품 리스트  -->
 			<div class="lists">
 				<p class="count">
-					<span class="inner_counts">총 개</span>
+					<span class="inner_counts">총 ${cnt}개</span>
 				</p>
 				<ul>
 					<li class="price_asc"><a href="#">높은가격순</a></li>
