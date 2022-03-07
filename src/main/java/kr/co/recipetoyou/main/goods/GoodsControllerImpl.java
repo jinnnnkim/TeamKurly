@@ -92,47 +92,6 @@ public class GoodsControllerImpl implements GoodsController{
 	  	}
 	 
 	
-	//상품 상세 조회
-	@Override
-	@RequestMapping(value="/goods/goodsInfo.do", produces = "application/json", method = {RequestMethod.GET, RequestMethod.POST})
-	public void getGoodsDetail(HttpServletRequest request, int prod_code, Model model, PagingVO vo, String job, InquiryVO ivo, ReviewVO rvo) throws Exception {
-		
-		HttpSession session = request.getSession();
-		UserVO userVO = (UserVO) session.getAttribute("userVO");
-		ivo.setUser_id(userVO.getUser_id());
-		
-		//상품 코드에 따라 해당 상품 정보 출력
-		model.addAttribute("goodsVO", goodsService.goodsDetail(prod_code));
-		//상품 코드에 따라 해당 상품 후기 출력
-		model.addAttribute("reviewList", inqReviewService.getInquiryList(vo, prod_code));
-		//상품 코드에 따라 해당 상품 문의 출력
-		model.addAttribute("inqList", inqReviewService.getInquiryList(vo, prod_code));
-		
-	}
-
-
-	/*
-	 * @Override public List<InquiryVO> insertInquiry(int prod_code, String job,
-	 * InquiryVO vo) throws Exception {
-	 * 
-	 * if(job.equals("newFaq")) {
-	 * vo.setProd_inq_code(inqReviewDAO.getInqSequence()); }
-	 * inqReviewDAO.insertInquiry(vo);
-	 * 
-	 * return inqReviewDAO.getInquiryList(prod_code); }
-	 * 
-	 * 
-	 * @Override public List<ReviewVO> insertInquiry(int prod_code, String job,
-	 * ReviewVO vo) throws Exception {
-	 * 
-	 * if(job.equals("newReview")) {
-	 * vo.setReview_idx(inqReviewDAO.getRevSequence()); }
-	 * 
-	 * inqReviewDAO.insertReview(vo);
-	 * 
-	 * return inqReviewDAO.getReviewList(prod_code); }
-	 */
-
 
 
 		

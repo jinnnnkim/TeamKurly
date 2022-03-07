@@ -22,7 +22,7 @@
 		<typeAlias type="kr.co.recipetoyou.admin.adgoods.stock.AdGoodsStockVO" alias="adGoodsStockVO"/>
 		<typeAlias type="kr.co.recipetoyou.admin.adgoods.AdgoodsImgVO" alias="adGoodsImgVO"/>
 		<typeAlias type="kr.co.recipetoyou.admin.adgoods.Inquiry.AdInquiryVO" alias="adInquiryVO"/>
-		<typeAlias type="kr.co.recipetoyou.admin.adgoods.review.AdgoodsReviewVO" alias="adGoodsReviewVO"/>
+		<typeAlias type="kr.co.recipetoyou.admin.adgoods.Inquiry.AdReviewVO" alias="adReviewVO"/>
 		
 		<typeAlias type="kr.co.recipetoyou.admin.adsend.AdSendVO" alias="adSendVO"/>
 		<typeAlias type="kr.co.recipetoyou.admin.adsend.ademail.AdEmailVO" alias="adEmailVO"/>

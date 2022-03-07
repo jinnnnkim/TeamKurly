@@ -89,7 +89,7 @@
 										<%-- 라이브러리 받아와서 추가해야 됨 -> 추가했는데 안됨 다시 수정 필요!! --%>
 											<div class="preparedPage">
 												<p>준비중 페이지</p>
-												<textarea name="content3" id="prepared" rows="10" cols="100" ></textarea>
+												<textarea name="inq_an" id="prepared" rows="10" cols="100" ></textarea>
 												<script>
 											        ClassicEditor
 											            .create( document.querySelector('#prepared'))
