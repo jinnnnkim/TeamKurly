@@ -17,10 +17,6 @@ public interface AdFAQDAO {
 
 	public int deleteFAQ(String id) throws DataAccessException;
 
-	public AdFAQVO readFAQ(String id) throws DataAccessException;
-
-	public int updateFAQ(AdFAQVO vo) throws DataAccessException;
-
 	public List<AdFAQCategoryVO> cateFAQList() throws DataAccessException;
 
 	public List<AdFAQVO> listFAQSearch(AdFAQCategoryVO option) throws Exception ;
