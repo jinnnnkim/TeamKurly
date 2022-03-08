@@ -79,30 +79,6 @@ public class AdOrderControllerImpl implements AdOrderController {
 		return mav;
 	}
 
-	//주문 정보 수정 페이지로 이동
-//	@Override
-//	@RequestMapping(value = "/adorder/modOrdIngInfo.do", method = RequestMethod.GET)
-//	public ModelAndView updateOrdInfo(@RequestParam(value="id") int id, HttpServletRequest request, HttpServletResponse response) throws Exception {	
-//		logger.info("클릭한 id : "+id);
-//		String viewName = (String)request.getAttribute("viewName");
-//		ModelAndView mav = new ModelAndView();
-//		mav.setViewName(viewName);	
-//		mav.addObject("adOrdIngVO", service.getOrdIngInfo(id));
-//		return mav;
-//	}
-		
-	//주문 정보 수정 완료
-//	@Override
-//	@RequestMapping(value = "/adorder/ordIngUpdate.do", method = {RequestMethod.GET, RequestMethod.POST})
-//	public ModelAndView updateAction(@ModelAttribute AdOrderVO vo, HttpServletRequest request, HttpServletResponse response) throws Exception {
-//		System.out.println("controller 주문코드:"+vo.getOrd_code());
-//		request.setCharacterEncoding("utf-8");
-//		service.updateOrdInfo(vo);
-//		System.out.println("update 통과 확인");
-//		ModelAndView mav = new ModelAndView("redirect:listadOrd.do");
-//		return mav;	
-//	}
-
 	//결제취소 
 	@Override
 	@RequestMapping(value = "/adorder/removeOrd.do", method = RequestMethod.GET)

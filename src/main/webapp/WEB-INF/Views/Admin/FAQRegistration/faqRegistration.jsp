@@ -30,7 +30,7 @@
 <body>
 	<div class="wrap">
 		<div class="main-content">
-			<form action="${contextPath}/adfaq/FAQInsert.do" method="POST" autocomplete="off">
+			<form action="${contextPath}/adfaq/FAQInsert.do" method="POST">
 				<table class="subtitle" align="center">
 					<p>
 						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right-square-fill" viewBox="0 0 16 16">
@@ -40,14 +40,7 @@
 					</p>
 					<tr>
 						<th>FAQ분류</th>
-						<td>
-							<select class="faq_cate_code" name="faq_cate_code">
-								<option value="">-분류선택-</option>
-							</select> 
-							<span> 
-								"+분류설정은"<a href="#">[FAQ관리 환경설정> 카테고리설정]</a>"에서 가능합니다."
-							</span>
-						</td>
+						<td><input type="text" id="faq_cate_code" name="faq_cate_code"/></td>
 					</tr>
 					<tr>
 						<th>질문</th>
@@ -61,7 +54,6 @@
 							<script type="text/javascript">
 								CKEDITOR.replace('faq_info');
 							</script>
-							
 						</td>
 					</tr>
 				</table>
@@ -70,56 +62,5 @@
 			</form>
 		</div>	
 	</div>
-	<!-- 카테고리 설정 문제 및 인서트 문제, 수정문제 있음  -->
-	<script type="text/javascript">
-		/* 카테고리 */
-		let cateFAQList = JSON.parse('${cateFAQList}');
-		
-		let cateArray = new Array();
-		let cateObj = new Object();
-		// 분류 셀렉트박스 삽입 데이터 준비
-		for(let i=0; i<cateFAQList.length; i++){
-			if(cateFAQList[i].level == "1"){
-				
-			cateObj = new Object();
-			cateObj.faq_cate_code = cateFAQList[i].faq_cate_code;
-			cateObj.cateName = cateFAQList[i].cateName;
-			cateArray.push(cateObj);
-			}
-		}
-		// 분류 셀렉트박스에 데이터 삽입
-		let cateSelect = $("select.faq_cate_code");
-	
-		for(let i=0; i<cateArray.length; i++){
-			cateSelect.append("<option value='"+cateArray[i].faq_cate_code+"'>" + cateArray[i].cateName + "</option>");
-		}
-		
-		
-		$(document).on("select.faq_cate_code", function(){
-			
-			// 분류 셀렉트박스 삽입 데이터 준비
-			for(let i=0; i<cateFAQList.length; i++){
-				if(cateFAQList[i].level == "1"){
-					
-				cateObj = new Object();
-				cateObj.faq_cate_code = cateFAQList[i].faq_cate_code;
-				cateObj.cateName = cateFAQList[i].cateName;
-				cateArray.push(cateObj);
-				}
-			}
-			
-			// 분류 셀렉트박스에 데이터 삽입
-			let cateSelect = $("select.faq_cate_code");
-			
-			$("option:selected", this).each(function(){
-				
-				let selectVal = $(this).val();	//현재 선택한 faq_cate_code 값 저장
-				
-				for(let i=0; i<cateArray.length; i++){
-					cateSelect.append("<option value='"+cateArray[i].faq_cate_code+"'>" + cateArray[i].cateName + "</option>");
-				}
-			});
-		});
-	</script>
 </body>
 </html>

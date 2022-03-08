@@ -15,27 +15,11 @@ public interface AdFAQController {
 
 	public ModelAndView listFAQManagement(PagingVO vo, HttpServletRequest request, HttpServletResponse response) throws Exception;
 
-	public void getFAQInfo(int id, Model model, PagingVO vo) throws Exception;
-
-	public ModelAndView updateFAQAction(AdFAQVO vo, RedirectAttributes rttr, HttpServletRequest request,
-			HttpServletResponse response) throws Exception;
-
 	public ModelAndView removeFAQ(String id, HttpServletRequest request, HttpServletResponse response) throws Exception;
 
-	public ModelAndView FAQRegister(AdFAQVO vo, RedirectAttributes rttr) throws Exception;
+	public ModelAndView FAQRegister(AdFAQVO vo, HttpServletRequest request, HttpServletResponse response) throws Exception;
 
 	public void FAQListCategory(Model model) throws Exception;
 
 	public ModelAndView moveRegister(Model model, HttpServletRequest request, HttpServletResponse response) throws Exception;
-
-	ModelAndView updateFAQInfo(String id, HttpServletRequest request, HttpServletResponse response) throws Exception;
-
-	
-
-	
-
-	
-
-	
-
 }
