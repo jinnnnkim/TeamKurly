@@ -37,33 +37,27 @@
 			</svg>
 			FAQ 관리
 		</div>
-	<form action="#" method="post">
-		<div class="list_head">
+	<div class="list_head">
 			<table align="center" id="tableGroup">
 				<tr>
 					<td>
-						<select name="selectChar">
-							<option value="1">-분류선택-</option>
-							<option value="2">회원</option>
-							<option value="3">상품</option>
-							<option value="4">주문/결제/대량주문</option>
-							<option value="5">취소/교환/환불</option>
-							<option value="6">서비스이용</option>
-							<option value="7">배송/포장</option>
-							<option value="8">이벤트/쿠폰/적립금</option>
-						</select>
-						<select name="selectChar">
-							<option value="1">질문</option>
-							<option value="2">답변</option>
-						</select>
-						<input type="text" name="userSearch">
-						<input class="search_btn" type="button" value="검색">
+						<div class="search_area">
+							<select name="searchOption">
+								<option value="I" <c:out value="${pageMaker.vo.searchOption eq 'I'?'selected':''}"/>>
+								제목</option>
+								<option value="N" <c:out value="${pageMaker.vo.searchOption eq 'N'?'selected':''}"/>>
+								정보</option>
+							</select>
+							<input type="text" name="keyword" style="width: 100px" value="${pm.vo.keyword}"/>
+							<button type="submit" id="searchBtn" class="btn btn-sm btn-blue">검색</button>
+							<button><a href="${contextPath}/adfaq/faqAdManagement.do">초기화</a></button>
+						</div>				
 					</td>
 				</tr>	
-			</table>
+			</table>	
 			</div>
 		<div class="middle_titleBox">
-			총 ${cnt }개의 자주 묻는 질문이 검색되었습니다.		
+			총 ${cnt}개의 자주 묻는 질문이 검색되었습니다.		
 		</div>
 		
 		<div class="userList_wrap">
@@ -71,17 +65,14 @@
 			<thead>
 				<tr align="center" class="table_title">
 					<td width="6%">
-					
 					<!-- 테이블 제목에 있는 체크박스 클릭시 전체선택되는 js구현되어있음 -->
 					<input type="checkbox" id="checkAll" name="chk">
-					
 					</td>
 					<td>FAQ code</td>
 					<td>분류</td>
 					<td>제목</td>
 					<td>정보</td>
 					<td>등록일</td>
-					<td>수정</td>
 					<td>삭제</td>
 				</tr>
 			</thead>	
@@ -95,7 +86,6 @@
 						<td>${faq.faq_title}</td>
 						<td>${faq.faq_info}</td>
 						<td>${faq.faq_reg_date}</td>
-						<td><button type="button"><a href="${contextPath}/adfaq/modFAQInfo.do?id=${faq.faq_code}">수정</a></button></td>
 						<td><button onclick="deleteMessage()"><a href="${contextPath}/adfaq/removeFAQ.do?id=${faq.faq_code}">삭제</a></button></td>
 					</tr>
 				</c:forEach> 
@@ -108,10 +98,8 @@
 		<input type="button" value="전체선택" id="check_all">
 		<!-- 버튼클릭시 전체선택 해제되는 js구현되어있음 -->
 		<input type="button" value="전체해제" id="uncheck_all">
-		
 		<!-- 클릭시 alert창 띄우는 js 구현되어있음 -->
 		<button class="excelBtn" onclick="regiMessage()"><a href="${contextPath}/adfaq/moveRegister.do?id=${faq.faq_code}">FAQ 등록</a></button><br><br><br>
-
 		</div>
 		
 		<div class="box-footer">
@@ -136,6 +124,11 @@
 			</div>
 		</div> 
 		
+	<form id="moveForm" method="get">		
+		<input type="hidden" name="page" value="${pm.vo.page}">
+		<input type="hidden" name="pageSize" value="${pm.vo.pageSize}">
+		<input type="hidden" id="keyword" name="keyword" value="${pm.vo.keyword}">
+		<input type="hidden" id="searchOption" name="searchOption" value="${pm.vo.searchOption }">
 	</form>
 
 </body>

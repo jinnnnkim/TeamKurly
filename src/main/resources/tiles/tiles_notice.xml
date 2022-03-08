@@ -7,7 +7,7 @@
 
 	<definition name="noticeLayout" template="/WEB-INF/Views/User/Inc2/noticeLayout.jsp">
 		<put-attribute name="title" value=""/>
-		<put-attribute name="header" value="/WEB-INF/Views/User/Inc2/headerSideNo.jsp"/>
+		<put-attribute name="header" value="/WEB-INF/Views/User/Inc2/header.jsp"/>
 		<put-attribute name="side" value="/WEB-INF/Views/User/Inc2/noticeSideMenu.jsp"/>			
 		<put-attribute name="body" value=""/>
 		<put-attribute name="footer" value="/WEB-INF/Views/User/Inc2/footer.jsp"/>		
@@ -87,7 +87,7 @@
 		<put-attribute name="body" value="/WEB-INF/Views/User/Notice/noticeOneToOneQuestionDetail.jsp"/>	
 	</definition>
 	
-	<definition name="/notice/deliverNotice" extends="noticeLayout">
+	<definition name="notice/deliverNotice" extends="noticeLayout">
 		<put-attribute name="title" value="배달 문의"/>
 		<put-attribute name="body" value="/WEB-INF/Views/User/Notice/deliverNotice.jsp"/>	
 	</definition>

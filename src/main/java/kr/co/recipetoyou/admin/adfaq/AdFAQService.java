@@ -13,11 +13,7 @@ public interface AdFAQService {
 
 	public int FAQListCount(PagingVO vo) throws DataAccessException;
 
-	public AdFAQVO getFAQInfo(String id) throws DataAccessException;
-
 	public int removeFAQ(String id) throws DataAccessException;
-
-	public int updateFAQInfo(AdFAQVO vo) throws DataAccessException;
 
 	public List<AdFAQCategoryVO> cateFAQList() throws Exception;
 

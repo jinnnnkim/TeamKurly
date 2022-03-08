@@ -55,7 +55,7 @@
 						</ul>
 					</div>
 				
-					<div class="delivery">	<!-- 새벽 배송안내 이미지 -->
+					<div class="delivery">	<!-- 새벽 배송안내 이미지!! -->
 						<a href="${contextPath}/notice/deliverNotice.do"><img alt="delivery" src="/recipetoyou/Resources/User/Img/delivery.png"></a>	
 					</div>
 					<div class="logo">

@@ -34,30 +34,29 @@
 	<select id="FAQListPaging" resultMap="FAQResult">
 		<![CDATA[
 			select * 
-			from (
-				select rownum AS rn, fa.faq_code, fc.faq_cate, fa.faq_title, 
+			from (select rownum AS rn, fa.* from
+				(select fa.faq_code, fc.faq_cate, fa.faq_title, 
 					   fa.faq_info, fa.faq_reg_date 
 				from tb_faq fa, tb_faq_cate fc 
-				where fa.faq_cate_code = fc.faq_cate_code
+				where fa.faq_cate_code = fc.faq_cate_code) fa 
+				]]> 
+					<if test="keyword != null">
+		            	<if test="searchOption == 'I'.toString()">where faq_title like '%'||#{keyword}||'%' </if>
+		            	<if test="searchOption == 'N'.toString()">where faq_info like '%'||#{keyword}||'%' </if>
+		             </if>
+				<![CDATA[
 				) 
 			where rn between #{rowStart} and #{rowEnd}
 		]]>
 		
 	</select>
-<!-- 		<![CDATA[
-			select * 
-			from (
-				select rownum AS rn, 
-						tb_faq.* 
-						from tb_faq
-				) 
-			where rn between #{rowStart} and #{rowEnd}
-		]]> -->
-	<!-- 총 FAQ 수 -->
+
 	<select id="FAQListCount" resultType="int">
-		<![CDATA[
 			select count(*) from TB_faq
-		]]>
+			<if test="keyword != null">
+            	<if test="searchOption == 'I'.toString()">where faq_title like '%'||#{keyword}||'%'</if>
+            	<if test="searchOption == 'N'.toString()">where faq_info like '%'||#{keyword}||'%'</if>
+             </if>
 	</select>
 	
 	<!-- FAQ 정보 삭제  -->
@@ -78,22 +77,12 @@
 			where fa.faq_cate_code = #{faq_cate_code} 
 		]]>
 	</select>
-	
-	<!-- FAQ 정보 수정 --> 
-	<update id="updateFAQ" parameterType="adFAQVO">
-		<![CDATA[
-			update tb_faq set 
-			faq_title = #{faq_title},			
-			faq_info = #{faq_info}
-			where faq_code = #{faq_code}
-		]]>
-	</update> 
 
 	<!-- 상품 등록 -->
 	<insert id="registerFAQ" >
 		<![CDATA[
 			insert into tb_faq (faq_code, faq_title, faq_info, faq_cate_code, faq_reg_date) 
-			values (faq_seq.nextval, '#{faq_title}', '#{faq_info}', #{faq_cate_code}, sysdate)
+			values (faq2_seq.nextval, #{faq_title}, #{faq_info}, #{faq_cate_code}, sysdate)
 		]]>
 	</insert> 
 	

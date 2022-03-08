@@ -13,6 +13,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import kr.co.recipetoyou.user.UserVO;
 import kr.co.recipetoyou.util.PageMaker;
 import kr.co.recipetoyou.util.PagingVO;
 
@@ -20,6 +21,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -68,41 +70,8 @@ public class AdFAQControllerImpl implements AdFAQController {
 		return mav;
 	}
 	
-	//FAQ 상세 정보 조회
-	@Override
-	@RequestMapping(value = {"/adfaq/faqInfoManagement.do"}, produces = "application/json", method = RequestMethod.GET)
-	public void getFAQInfo(int id, Model model, PagingVO vo) throws Exception {
-		logger.info("클릭한 code:"+id);
-		
-		ObjectMapper objm = new ObjectMapper();
-		
-		model.addAttribute("cateFAQList", objm.writeValueAsString(service.cateFAQList()));
-		model.addAttribute("vo", vo);
-	}
 	
-	//FAQ 정보 수정 페이지로 이동
-	@Override
-	@RequestMapping(value = "/adfaq/modFAQInfo.do", method = RequestMethod.GET)
-	public ModelAndView updateFAQInfo(@RequestParam(value="id") String id, HttpServletRequest request, HttpServletResponse response) throws Exception {	
-		logger.info("FAQ : "+id);
-		String viewName = (String)request.getAttribute("viewName");
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName(viewName);	
-		mav.addObject("adFAQVO", service.getFAQInfo(id));
-		return mav;
-	}
-	
-	//FAQ 정보 수정 완료
-	@Override
-	@RequestMapping(value = "/adfaq/FAQUpdate.do", method = {RequestMethod.GET, RequestMethod.POST})
-	public ModelAndView updateFAQAction(@ModelAttribute AdFAQVO vo, RedirectAttributes rttr,  HttpServletRequest request, HttpServletResponse response) throws Exception {
-		String viewName = (String)request.getAttribute("viewName");
-		ModelAndView mav = new ModelAndView("redirect:faqAdManagement.do"); //이동은 되지만 수정이 안됨 내일 다
-		System.out.println("update 통과 확인");
-		int result = service.updateFAQInfo(vo);
-		rttr.addFlashAttribute("modify_result", result);
-		return mav;	
-	}
+
 	//FAQ 정보 삭제
 	@Override
 	@RequestMapping(value = "/adfaq/removeFAQ.do", method = RequestMethod.GET)
@@ -139,12 +108,11 @@ public class AdFAQControllerImpl implements AdFAQController {
 	//FAQ 등록
 	@Override
 	@RequestMapping(value = "/adfaq/FAQInsert.do", method = RequestMethod.POST)
-	public ModelAndView FAQRegister(AdFAQVO vo, RedirectAttributes rttr) throws Exception {
-		logger.info("FAQRegisterPost......"+vo);
+	public ModelAndView FAQRegister(AdFAQVO vo, HttpServletRequest request, HttpServletResponse response) throws Exception {
 	        
 	    //레코드를 저장함
-	    service.register(vo);
-	    rttr.addFlashAttribute("FAQResult",vo.getFaq_title());
+		HttpSession session = request.getSession();		
+		service.register(vo);
 	    //게시물을 저장한 후에 게시물 목록페이지로 다시 이동함
 	    ModelAndView mav = new ModelAndView( "redirect:faqAdManagement.do");
 	    return mav;
