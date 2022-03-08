@@ -118,21 +118,76 @@
 	</select> -->
 
 	
-	<select id="listGoods" resultMap="mainResult">
+	<select id="listNewGoods" resultMap="mainResult">
 		<![CDATA[
 			select * from 
 			(select rownum as rn, prod_name, prod_price, prod_code
-			from tb_prod
-			where
+			FROM tb_prod 
+			ORDER by PROD_REG_DATE DESC)
 		]]>
 		<![CDATA[	
-			rownum <= #{page} * #{pageSize}
-			)
-	 		where rn between #{rowStart} and #{rowEnd} 
+			where rn < 10
+	 		ORDER BY rn 
+	   	]]>
+	</select>
+	
+	<select id="listBestGoods" resultMap="mainResult">
+		<![CDATA[
+			select * from 
+			(select rownum as rn, prod_name, prod_price, prod_code
+			FROM tb_prod 
+			where PROD_SELL_UNIT > 0 and rownum <= #{page} * #{pageSize} 
+			ORDER by PROD_SELL_UNIT DESC)
+		]]>
+		<![CDATA[	
+			where rn > (#{page}-1) * #{pageSize} AND rn <= #{page} * #{pageSize}
+	 		ORDER BY rn
+	   	]]>
+	</select>
+	
+	<select id="listSaleGoods" resultMap="mainResult">
+		<![CDATA[
+			select * from 
+			(select rownum as rn, prod_name, prod_price, prod_code
+			FROM tb_prod 
+			where PROD_DISCOUNT > 0 and rownum <= #{page} * #{pageSize} 
+			ORDER by PROD_DISCOUNT DESC)
+		]]>
+		<![CDATA[	
+			where rn > (#{page}-1) * #{pageSize} AND rn <= #{page} * #{pageSize}
+	 		ORDER BY rn 
 	   	]]>
 	</select>
 
-	<select id="cateCount" resultType="int" >
-			select count(*) from TB_prod
+	<select id="cateNewCount" resultType="int" >
+		<![CDATA[
+			select count(*) from 
+			(select rownum as rn, prod_name, prod_price, prod_code
+			FROM tb_prod 
+			ORDER by PROD_REG_DATE DESC)
+			where rn < 10
+	 		   	]]>
+	</select>
+	
+		<select id="cateBestCount" resultType="int" >
+		<![CDATA[
+			select count(*) from 
+			(select rownum as rn, prod_name, prod_price, prod_code
+			FROM tb_prod 
+			where prod_sell_unit > 0
+			ORDER by prod_sell_unit DESC)
+			where rn < 10
+	 		   	]]>
+	</select>
+	
+		<select id="cateSaleCount" resultType="int" >
+		<![CDATA[
+			select count(*) from 
+			(select rownum as rn, prod_name, prod_price, prod_code
+			FROM tb_prod 
+			where prod_discount > 0
+			ORDER by prod_discount DESC)
+			where rn < 10
+	 		   	]]>
 	</select>
 </mapper>

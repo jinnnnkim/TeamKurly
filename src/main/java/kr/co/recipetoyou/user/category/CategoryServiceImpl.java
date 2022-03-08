@@ -140,13 +140,14 @@ private static final Logger logger = LoggerFactory.getLogger("CategoryServiceImp
 	}
 
 	@Override
-	public int cateCount(PagingVO vo) throws DataAccessException {
-		return dao.cateCount(vo);
+	public int cateCount(PagingVO vo, int type) throws DataAccessException {
+		return dao.cateCount(vo,type);
 	}
 
 	@Override
-	public List<CategoryVO> listGoods(PagingVO vo) throws DataAccessException {
-		List<CategoryVO> listGoods = dao.listGoods(vo);
+	public List<CategoryVO> listGoods(PagingVO vo, int type) throws DataAccessException {
+		
+		List<CategoryVO> listGoods = dao.listGoods(vo, type);
 		
 		
 			listGoods.forEach(agvo->{

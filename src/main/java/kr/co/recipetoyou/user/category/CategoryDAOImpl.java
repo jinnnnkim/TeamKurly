@@ -68,14 +68,42 @@ public class CategoryDAOImpl implements CategoryDAO {
 	}
 
 	@Override
-	public int cateCount(PagingVO vo) throws DataAccessException {
-		return sqlSession.selectOne(NAMESPACE+".cateCount", vo);
+	public int cateCount(PagingVO vo, int type) throws DataAccessException {
+		int result = 0;
+		switch(type) {
+		case 1:
+			result = sqlSession.selectOne(NAMESPACE+".cateNewCount", vo);
+			 break;
+		case 2:
+			result = sqlSession.selectOne(NAMESPACE+".cateBestCount", vo);
+			break;
+		case 3:
+			result = sqlSession.selectOne(NAMESPACE+".cateSaleCount", vo);
+			break;
+		default:
+			break;
+		}
+		return result;
 	}
 
 	@Override
-	public List<CategoryVO> listGoods(PagingVO vo) throws DataAccessException {
-		 List<CategoryVO> listGoods = sqlSession.selectList(NAMESPACE+".listGoods", vo);
-		 return listGoods;
+	public List<CategoryVO> listGoods(PagingVO vo, int type) throws DataAccessException {
+		List<CategoryVO> listGoods = null;
+		switch(type) {
+		case 1:
+			 listGoods = sqlSession.selectList(NAMESPACE+".listNewGoods", vo);
+			 break;
+		case 2:
+			listGoods = sqlSession.selectList(NAMESPACE+".listBestGoods", vo);
+			break;
+		case 3:
+			listGoods = sqlSession.selectList(NAMESPACE+".listSaleGoods", vo);
+			break;
+		default:
+			break;
+		}
+		return listGoods;
+		 
 	}
 
 	@Override
