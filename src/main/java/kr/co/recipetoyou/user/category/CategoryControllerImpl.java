@@ -109,13 +109,7 @@ public class CategoryControllerImpl implements CategoryController{
 		return mav;
 	}
 	
-	@RequestMapping(value="/user/bestGoodsPage.do",method=RequestMethod.GET)
-	public ModelAndView bestGoodsPage(HttpServletRequest request, HttpServletResponse response) throws Exception{
-		
-		ModelAndView mav = new ModelAndView();
-		
-		return mav;
-	}
+	
 	
 	@Override
 	@RequestMapping(value="/user/goodsView.do",method=RequestMethod.GET)
@@ -185,18 +179,26 @@ public class CategoryControllerImpl implements CategoryController{
 		return mav;
 	}
 	
+	@RequestMapping(value="/user/saleEventPage.do",method=RequestMethod.GET)
+	public ModelAndView saleEventPage(HttpServletRequest request, HttpServletResponse response) throws Exception{
+		
+		ModelAndView mav = new ModelAndView();
+		
+		return mav;
+	}
+	
 	@RequestMapping(value="/user/newGoodsPage.do",method={RequestMethod.GET, RequestMethod.POST})
 	public ModelAndView newGoodsPage(PagingVO vo, HttpServletRequest request, HttpServletResponse response) throws Exception{
-		
+		int type= 1;
 		String viewName = (String)request.getAttribute("viewName");
 		ModelAndView mav = new ModelAndView(viewName);
 		
 		//PageMaker pm = new PageMaker();
 		//pm.setVo(vo);
 		//pm.setTotalCount(service.cateCount(vo));
-		List listGoods = service.listGoods(vo);
+		List listGoods = service.listGoods(vo,type);
 		
-		int cnt = service.cateCount(vo); 
+		int cnt = service.cateCount(vo,type); 
 		
 		if(!listGoods.isEmpty()) {
 			mav.addObject("goodsList", listGoods);
@@ -208,23 +210,65 @@ public class CategoryControllerImpl implements CategoryController{
 			mav.addObject("listCheck", "empty");
 		}
 		
-		mav.addObject("pm", new PageMaker(vo, service.cateCount(vo)));
+		mav.addObject("pm", new PageMaker(vo, service.cateCount(vo,type)));
 		
 		return mav;
 	}
 	
-	@RequestMapping(value="/user/saleEventPage.do",method=RequestMethod.GET)
-	public ModelAndView saleEventPage(HttpServletRequest request, HttpServletResponse response) throws Exception{
+	@RequestMapping(value="/user/bestGoodsPage.do",method=RequestMethod.GET)
+	public ModelAndView bestGoodsPage(PagingVO vo, HttpServletRequest request, HttpServletResponse response) throws Exception{
+		int type=2;
+		String viewName = (String)request.getAttribute("viewName");
+		ModelAndView mav = new ModelAndView(viewName);
 		
-		ModelAndView mav = new ModelAndView();
+		//PageMaker pm = new PageMaker();
+		//pm.setVo(vo);
+		//pm.setTotalCount(service.cateCount(vo));
+		List listGoods = service.listGoods(vo,type);
+		
+		int cnt = service.cateCount(vo,type); 
+		
+		if(!listGoods.isEmpty()) {
+			mav.addObject("goodsList", listGoods);
+			int i=0;
+			
+			//mav.addObject("listGoods", listGoods);
+			mav.addObject("cnt", cnt);
+		}else {
+			mav.addObject("listCheck", "empty");
+		}
+		
+		mav.addObject("pm", new PageMaker(vo, service.cateCount(vo,type)));
 		
 		return mav;
 	}
+	
+
 	
 	@RequestMapping(value="/user/saleGoodsPage.do",method=RequestMethod.GET)
-	public ModelAndView saleGoodsPage(HttpServletRequest request, HttpServletResponse response) throws Exception{
+	public ModelAndView saleGoodsPage(PagingVO vo, HttpServletRequest request, HttpServletResponse response) throws Exception{
+		int type=3;
+		String viewName = (String)request.getAttribute("viewName");
+		ModelAndView mav = new ModelAndView(viewName);
 		
-		ModelAndView mav = new ModelAndView();
+		//PageMaker pm = new PageMaker();
+		//pm.setVo(vo);
+		//pm.setTotalCount(service.cateCount(vo));
+		List listGoods = service.listGoods(vo,type);
+		
+		int cnt = service.cateCount(vo,type); 
+		
+		if(!listGoods.isEmpty()) {
+			mav.addObject("goodsList", listGoods);
+			int i=0;
+			
+			//mav.addObject("listGoods", listGoods);
+			mav.addObject("cnt", cnt);
+		}else {
+			mav.addObject("listCheck", "empty");
+		}
+		
+		mav.addObject("pm", new PageMaker(vo, service.cateCount(vo,type)));
 		
 		return mav;
 	}

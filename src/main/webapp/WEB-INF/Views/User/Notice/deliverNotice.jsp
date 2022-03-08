@@ -13,19 +13,20 @@ request.setCharacterEncoding("UTF-8");
 <head>
 <meta charset="UTF-8">
 <title>Recipe to You :: 내일의 장보기, 레시피 투 유</title>
-<link href="/ezen/Resources/User/Img/KurlyIcon.png" rel="icon"
+<!-- //recipetoyou/Resources/User/Css -->
+<link href="/recipetoyou/Resources/User/Img/KurlyIcon.png" rel="icon"
 	type="image/x-icon" />
+<!-- <link rel="stylesheet" type="text/css"
+	href="/recipetoyou/Resources/User/Css/reset.css" /> -->
 <link rel="stylesheet" type="text/css"
-	href="/ezen/Resources/User/Css/reset.css" />
-<link rel="stylesheet" type="text/css"
-	href="/ezen/Resources/User/Css/notice.css" />	
+	href="/recipetoyou/Resources/User/Css/notice/notice.css" />	
 <!-- slick 링크 연결 -->
 <link rel="stylesheet" type="text/css" href="slick/slick.css" />
 <link rel="stylesheet" type="text/css" href="slick/slick-theme.css" />
 <!-- JQuery -->	
 <script type="text/javascript"
 						src="//code.jquery.com/jquery-1.11.0.min.js"></script>
-<script src="/ezen/Resources/User/Js/address.js"></script>						
+<script src="/recipetoyou/Resources/User/Js/address.js"></script>						
 
 </head>
 <body>
@@ -74,13 +75,13 @@ request.setCharacterEncoding("UTF-8");
 			<!-- main 공지사항 테이블 헤드 부분-->
 			
 			<div class="img_noticeview">
-				<img alt="신선함을 문앞까지" src="/ezen/Resources\User\Img\deliver_notice\deliver_1.jpg">
-				<img alt="샛별배송" src="/ezen/Resources\User\Img\deliver_notice\deliver_2.jpg" class="deliver_img_in">
-				<img alt="한눈에 보기" src="/ezen/Resources\User\Img\deliver_notice\deliver_3.jpg" class="deliver_img_in">
-				<img alt="주 7일 샛별배송" src="/ezen/Resources\User\Img\deliver_notice\deliver_4.jpg" class="deliver_img_in">
+				<img alt="신선함을 문앞까지" src="/recipetoyou/Resources/User/Img/Notice/deliver_1.jpg">
+				<img alt="샛별배송" src="/recipetoyou/Resources/User/Img/Notice/deliver_2.jpg" class="deliver_img_in">
+				<img alt="한눈에 보기" src="/recipetoyou/Resources/User/Img/Notice/deliver_3.jpg" class="deliver_img_in">
+				<img alt="주 7일 샛별배송" src="/recipetoyou/Resources/User/Img/Notice/deliver_4.jpg" class="deliver_img_in">
 				
 				<a href="#">
-					<img alt="배송지역 검색" src="/ezen/Resources\User\Img\deliver_notice\deliver_5.jpg"  class="deliver_img_search">
+					<img alt="배송지역 검색" src="/recipetoyou/Resources/User/Img/Notice/deliver_5.jpg"  class="deliver_img_search">
 				</a>
 			
 			
@@ -99,14 +100,14 @@ request.setCharacterEncoding("UTF-8");
 				
 				
 				
-				<img alt="주 6일 샛별 배송" src="/ezen/Resources\User\Img\deliver_notice\deliver_6.jpg" class="deliver_img_in">
-				<img alt="배송 이미지 하단" src="/ezen/Resources\User\Img\deliver_notice\deliver_7.jpg" class="deliver_img_bottom">
+				<img alt="주 6일 샛별 배송" src="/recipetoyou/Resources/User/Img/Notice/deliver_6.jpg" class="deliver_img_in">
+				<img alt="배송 이미지 하단" src="/recipetoyou/Resources/User/Img/Notice/deliver_7.jpg" class="deliver_img_bottom">
 			</div>
 			<!-- img_noticeview -->
 			
 			<div class="list_btn_wrap">
 				<div class="list_btn">
-					<a href="notice.jsp">
+					<a href="${contextPath}/notice/notice.do"><!-- notice.jsp -->
 						<button type="button" class="list_click">목록</button>
 					</a>
 				</div>

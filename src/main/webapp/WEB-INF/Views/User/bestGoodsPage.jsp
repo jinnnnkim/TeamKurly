@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -43,118 +44,94 @@
 			</div>
 		</div>
 
-		<div class="list_goods">
+			<div class="list_goods">
 			<!-- list_goods -->
 			<div class="inner_listgoods">
-				<ul class="glists">
-					<li><a href="goodsView.jsp"><img alt="두부면 파스타"
-							src="/recipetoyou/Resources/User/Img/Meal/paster1.jpg"></a>
-						<div class="group_btn">
-							<!-- 장바구니 아이콘 -->
-							<i class="fas fa-cart-arrow-down"></i>
-						</div>
-						<div class="item">
-							<a class="info"> <span class="name">[잇츠베러] 어스밀 렌틸라구
-									두부면 파스타</span><br> <span class="cost">5,900원</span><br> <span
-								class="mean">식물성 재료로 완성한 라구 파스타</span><br>
+				<c:forEach var="goods" items="${goodsList}">
+				
+					<ul class="glists">
+						<li class="image">
+							<div class="image_wrap" data-prod_code="${goods.imageList[0].prod_code}" data-path="${goods.imageList[0].uploadPath}"
+														data-uuid="${goods.imageList[0].uuid}" data-filename="${goods.imageList[0].fileName}">
+								<a href="${contextPath}/user/goodsView.do?prod_code=${goods.prod_code}">
+								
+							<img src="/recipetoyou/Resources/Admin/Img/AdgoodsImg/${goods.imageList[0].uploadPath}/s_${goods.imageList[0].uuid}_${goods.imageList[0].fileName}">
 							</a>
-						</div>
-					</li>
-
-					<li><a href="#"><img alt="바질 파스타"
-							src="/recipetoyou/Resources/User/Img/Meal/paster2.jpg"></a>
-						<div class="group_btn">
-							<!-- 장바구니 아이콘 -->
-							<i class="fas fa-cart-arrow-down"></i>
-						</div>
-						<div class="item">
-							<a class="info"> <span class="name">[잇츠베러] 어스밀 바질페스토
-									두부면 파스타</span><br> <span class="cost">5,900원</span><br> <span
-								class="mean">바질의 풍미를 입은 두부면 파스타</span><br>
-							</a>
-						</div>
-					</li>
-
-					<li><a href="#"><img alt="양송이 파스타"
-							src="/recipetoyou/Resources/User/Img/Meal/paster3.jpg"></a>
-						<div class="group_btn">
-							<!-- 장바구니 아이콘 -->
-							<i class="fas fa-cart-arrow-down"></i>
-						</div>
-						<div class="item">
-							<a class="info"> <span class="name">[잇츠베러] 어스밀 양송이 투움바
-									두부면 파스타</span><br> <span class="cost">5,900원</span><br> <span
-								class="mean">두부면으로 완성한 매콤 크림 파스타</span><br>
-							</a>
-						</div>
-					</li>
-
-					<li><a href="#"><img alt="유부 채소말이"
-							src="/recipetoyou/Resources/User/Img/Meal/meal.jpg"></a>
-						<div class="group_btn">
-							<!-- 장바구니 아이콘 -->
-							<i class="fas fa-cart-arrow-down"></i>
-						</div>
-						<div class="item">
-							<a class="info"> <span class="name">[미자언니네] 유부 채소말이</span><br>
-								<span class="cost">7,900원</span><br> <span class="mean">한입에
-									맛보는 고소하고 신선한 맛</span><br>
-							</a>
-						</div>
-					</li>
-
-
-					<li><a href="#"><img alt="유뷰주머니&어묵탕 키트"
-							src="/recipetoyou/Resources/User/Img/Meal/meal3.jpg"></a>
-						<div class="group_btn">
-							<!-- 장바구니 아이콘 -->
-							<i class="fas fa-cart-arrow-down"></i>
-						</div>
-						<div class="item">
-							<a class="info"> <span class="name">[미자언니네] 사골 떡만두전골
-									키트</span><br> <span class="percent_price">7%</span> <span
-								class="price">13,857원</span> <span class="original">14,900원</span><br>
-								<span class="mean">쫄깃한 떡과 담백한 만두의 조화</span><br> <span
-								class="tag"> <span class="only">Recipe to You Only</span>
-									<span class="limit_count">한정수량</span>
-							</span>
-							</a>
-						</div>
-					</li>
-
-					<li><a href="#"><img alt="카프리노 디 라떼 생치즈"
-							src="/recipetoyou/Resources/User/Img/Meal/meal2.jpg"></a>
-						<div class="group_btn">
-							<!-- 장바구니 아이콘 -->
-							<i class="fas fa-cart-arrow-down"></i>
-						</div>
-						<div class="item">
-							<a class="info"> <span class="name">[논노난니] 카프리노 디 라떼
-									생치즈</span><br> <span class="cost">4,900원</span><br> <span
-								class="mean">우유의 신선한 풍미 가득</span><br> <span class="tag">
-									<span class="limit_count">한정수량</span>
-							</span>
-							</a>
-						</div>
-					</li>
-				</ul>
+							</div>
+							<div class="group_btn">
+							<%-- ${} --%>
+								<!-- 장바구니 아이콘 -->
+								<i class="fas fa-cart-arrow-down"></i>
+							</div>
+							<div class="item">
+								<a class="info"> <span class="name">
+										${goods.prod_name }</span><br> <span class="cost">${goods.prod_price }</span><br> <br>
+								</a>
+							</div>
+						</li>
+					</ul>
+				</c:forEach>
 			</div>
+			<c:if test="${listCheck == 'empty'}">
+				<div>
+					등록된 상품이 없습니다.
+				</div>
+			</c:if>
 		</div>
 		<!-- list_goods -->
-		<div class="pagediv">
-			<!-- pagediv -->
-			<ul>
-				<li><a href="#"><i class="fas fa-angle-double-left"></i></a></li>
-				<li><a href="#"><i class="fas fa-angle-left"></i></a></li>
-				<li><a href="#">1</a></li>
-				<li><a href="#">2</a></li>
-				<li><a href="#">3</a></li>
-				<li><a href="#">4</a></li>
-				<li><a href="#">5</a></li>
-				<li><a href="#"><i class="fas fa-angle-double-right"></i></a></li>
-				<li><a href="#"><i class="fas fa-angle-right"></i></a></li>
-			</ul>
-		</div>
+
+
+		<div class="page">
+				<ul>
+				<c:if test="${pm != null and pm.endPage != 1}">
+					<c:if test="${pm.prev }">
+				 		<li><a href="${contextPath}/user/newGoodsPage.do?page=${pm.startPage-1}">&laquo;</a></li>
+				 	</c:if>
+				 			<!-- 페이지블럭 -->
+					<c:forEach var="idx" begin="${pm.startPage}" end="${pm.endPage}">
+								<!-- 삼항연산자를 사용해서 class로 스타일적용  -->
+						<li ${pm.vo.page == idx? 'class=active':''}>
+						 	<a href="${contextPath}/user/newGoodsPage.do?page=${idx}">${idx}</a>
+						</li>				
+					</c:forEach>
+				 			<!-- 다음next -->
+				 	<c:if test="${pm.next && pm.endPage > 0}">
+				 		<li><a href="${contextPath}/user/newGoodsPage.do?page=${pm.endPage+1}">&raquo;</a></li>
+				 	</c:if>
+				 	</c:if>
+				</ul>
+			</div>
 	</div>
+	<script type="text/javascript">
+	$(document).ready(function(){
+		
+		//검색 타입 selected
+		/* const selectedType = '<c:out value="${pm.vo.type}"/>';
+		if(selectedType != ""){
+			$("select[name='type']").val(selectedType).attr("selected", "selected");
+		} */
+											
+		//이미지 삽입
+		$(".image_wrap").each(function(i, obj){
+			
+			const bobj = $(obj);
+				if(bobj.data("prod_code")){
+				
+				const uploadPath = bobj.data("path");
+				const uuid = bobj.data("uuid");
+				const fileName = bobj.data("filename");
+				
+				const fileCallPath = encodeURIComponent(uploadPath + "/s_" + uuid + "_" + fileName);
+				console.log("fileCallPath:" + fileCallPath);
+				
+				//$(this).find("img").attr('src', '${contextPath}/user/newGoodsPage.do?fileName=' + fileCallPath);
+				
+				}else {
+					$(this).find("img").attr('src', '/recipetoyou/Resources/Admin/Img/SubgoodsImg/ready.jpg');
+				} 
+		});	
+		
+		});
+	</script>
 </body>
 </html>

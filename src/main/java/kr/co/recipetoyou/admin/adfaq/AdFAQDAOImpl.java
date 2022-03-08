@@ -48,18 +48,6 @@ public class AdFAQDAOImpl implements AdFAQDAO{
 		int result = sqlSession.delete("mapper.adfaq.deleteFAQ", id);
 		return result;
 	}
-	
-	//FAQ 상세 정보 조회
-	@Override
-	public AdFAQVO readFAQ(String id) throws DataAccessException {
-		return sqlSession.selectOne("mapper.adfaq.readFAQ", id);
-	}
-		
-	//FAQ 정보 수정
-	@Override
-	public int updateFAQ(AdFAQVO vo) throws DataAccessException {
-		return sqlSession.update("mapper.adfaq.updateFAQ", vo);
-	}
 
 	//카테고리
 	@Override
