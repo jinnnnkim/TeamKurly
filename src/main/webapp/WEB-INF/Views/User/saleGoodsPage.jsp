@@ -1,8 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
-<c:set var="contextPath" value="${pageContext.servletContext.contextPath}" />
-
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="contextPath" value="${pageContext.request.contextPath}" /> 
 
@@ -23,12 +21,6 @@
 		<!-- body -->
 
 		<div class="saleBanner">
-			<a href="{contextPath}/User/saleEventPage.do">
-			<img alt="sales" src="">
-			</a>
-
-		<div class="saleBanner">
-		<!-- /View/User/saleEventPage.jsp -->
 			<a href="${contextPath }/user/saleEventPage.do">
 			<img alt="sales" src="/recipetoyou/Resources/User/Img/saleMain.jpg"></a>
 		</div>
@@ -153,23 +145,22 @@
 		</div>
 		<!-- list_goods -->
 
-		<div class="pagediv">
-			<!-- pagediv -->
+		<div class="page">
 			<ul>
-				<li><a href="#"><i class="fas fa-angle-double-left"></i></a></li>
-				<li><a href="#"><i class="fas fa-angle-left"></i></a></li>
-				<li><a href="#">1</a></li>
-				<li><a href="#">2</a></li>
-				<li><a href="#">3</a></li>
-				<li><a href="#">4</a></li>
-				<li><a href="#">5</a></li>
-				<li><a href="#">6</a></li>
-				<li><a href="#">7</a></li>
-				<li><a href="#">8</a></li>
-				<li><a href="#">9</a></li>
-				<li><a href="#">10</a></li>
-				<li><a href="#"><i class="fas fa-angle-double-right"></i></a></li>
-				<li><a href="#"><i class="fas fa-angle-right"></i></a></li>
+				<c:if test="${pm.prev }">
+			 		<li><a href="${contextPath}/user/newGoodsPage.do?page=${pm.startPage-1}">&laquo;</a></li>
+			 	</c:if>
+			 			<!-- 페이지블럭 -->
+				<c:forEach var="idx" begin="${pm.startPage}" end="${pm.endPage}">
+							<!-- 삼항연산자를 사용해서 class로 스타일적용  -->
+					<li ${pm.vo.page == idx? 'class=active':''}>
+					 	<a href="${contextPath}/user/newGoodsPage.do?page=${idx}">${idx}</a>
+					</li>				
+				</c:forEach>
+			 			<!-- 다음next -->
+			 	<c:if test="${pm.next && pm.endPage > 0}">
+			 		<li><a href="${contextPath}/user/newGoodsPage.do?page=${pm.endPage+1}">&raquo;</a></li>
+			 	</c:if>
 			</ul>
 		</div>
 	</div>
