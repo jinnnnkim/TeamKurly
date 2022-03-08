@@ -1,5 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+
+<c:set var="contextPath" value="${pageContext.servletContext.contextPath}" />
+
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="contextPath" value="${pageContext.request.contextPath}" /> 
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,10 +21,18 @@
 <body>
 	<div class="body" id="content">
 		<!-- body -->
+
 		<div class="saleBanner">
-			<a href="/View/User/saleEventPage.jsp"><img alt="sales"
-				src="/recipetoyou/Resources/User/Img/saleMain.jpg"></a>
+			<a href="{contextPath}/User/saleEventPage.do">
+			<img alt="sales" src="">
+			</a>
+
+		<div class="saleBanner">
+		<!-- /View/User/saleEventPage.jsp -->
+			<a href="${contextPath }/user/saleEventPage.do">
+			<img alt="sales" src="/recipetoyou/Resources/User/Img/saleMain.jpg"></a>
 		</div>
+		
 		<div class="body_inn">
 			<!-- body_inn -->
 			<div class="top_menu">

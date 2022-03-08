@@ -28,6 +28,8 @@ public interface AdFAQController {
 
 	public ModelAndView moveRegister(Model model, HttpServletRequest request, HttpServletResponse response) throws Exception;
 
+	ModelAndView updateFAQInfo(String id, HttpServletRequest request, HttpServletResponse response) throws Exception;
+
 	
 
 	

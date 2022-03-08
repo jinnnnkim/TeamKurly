@@ -21,7 +21,7 @@ public class InqReviewServiceImpl implements InqReviewService{
 
 
 	@Override
-	public List<InquiryVO> getInquiryList(PagingVO vo, int prod_code) throws Exception {
+	public List<InquiryVO> getInquiryList(PagingVO vo) throws Exception {
 		
 		List<InquiryVO> inquiryList = inqReviewDAO.getInquiryList(vo);
 		
@@ -37,7 +37,7 @@ public class InqReviewServiceImpl implements InqReviewService{
 
 
 	@Override
-	public List<ReviewVO> getReviewList(PagingVO vo, int prod_code) throws Exception {
+	public List<ReviewVO> getReviewList(PagingVO vo) throws Exception {
 		
 		List<ReviewVO> reviewList = inqReviewDAO.getReviewList(vo);
 		
@@ -63,6 +63,18 @@ public class InqReviewServiceImpl implements InqReviewService{
 	public int checkOrderUser(Map<String, Object> map) throws Exception {
 		// TODO Auto-generated method stub
 		return 0;
+	}
+
+	@Override
+	public int qnaCount(PagingVO vo) throws Exception {
+		
+		return inqReviewDAO.qnaCount(vo);
+	}
+
+	@Override
+	public int reviewCount(PagingVO vo) throws Exception {
+		
+		return inqReviewDAO.reviewCount(vo);
 	}
 
 

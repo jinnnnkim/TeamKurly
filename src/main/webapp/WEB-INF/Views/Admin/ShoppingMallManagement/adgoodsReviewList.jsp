@@ -100,7 +100,7 @@
 								<tbody>
 								<c:forEach var="review" items="${reviewList }">
 								<tr>
-									<td>${review.review_idx }</td>
+									<td>${review.prod_review_code }</td>
 									<td><input class="chChoice" type="checkbox" /></td>
 									<td style="text-align: left;">
 										<div class="title_div_left">
