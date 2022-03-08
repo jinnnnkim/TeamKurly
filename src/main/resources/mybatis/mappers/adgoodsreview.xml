@@ -2,14 +2,14 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="mapper.adgoodsreview">
 
-	<resultMap type="adGoodsReviewVO" id="adReviewResult">
+	<resultMap type="reviewVO" id="adReviewResult">
 		<result property="prod_review_code" column="prod_review_code"/>
 		<result property="prod_code" column="prod_code"/>
-		<result property="review_idx" column="review_idx"/>
 		<result property="title" column="title"/>
 		<result property="reg_date" column="reg_date"/>
 		<result property="content" column="content"/>
 		<result property="user_id" column="user_id"/>
+		<result property="review_img" column="review_img"/>
 	</resultMap>
 	
 	<!-- 페이지 정보를 10개씩 가져오기 -->
@@ -25,7 +25,7 @@
 	<select id="getReviewList" resultMap="adReviewResult">
 		<![CDATA[
 			select * from(
-				select rownum AS rn, review_idx, title, user_id, reg_date
+				select rownum AS rn, prod_review_code, title, user_id, reg_date
 				from tb_prod_review
 				where
 		]]>

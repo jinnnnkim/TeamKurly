@@ -20,12 +20,12 @@ import kr.co.recipetoyou.util.PagingVO;
 
 @Controller("inquiryController")
 @EnableAspectJAutoProxy
-public class AdInquiryControllerImpl implements AdInquiryController{
+public class AdInqReviewControllerImpl implements AdInqReviewController{
 	
 	private static final Logger logger = LoggerFactory.getLogger("InquiryControllerImpl.class");
 	
 	@Autowired
-	AdInquiryService adInquiryService;
+	AdInqReviewService adInquiryService;
 
 	//상품 문의 목록
 	@Override
@@ -77,5 +77,40 @@ public class AdInquiryControllerImpl implements AdInquiryController{
 		model.addAttribute("inquiry", adInquiryService.adInquiryDetail(prod_inq_code));
 		
 	}
+	
+	@Override
+	@RequestMapping(value = "/adgoods/updateProdQna.do", method = RequestMethod.POST)
+	public ModelAndView updateProdQna(AdInquiryVO vo, HttpServletRequest request) throws Exception {
+		
+		ModelAndView mav = new ModelAndView("redirect:/adgoods/adgoodsInfo.do");
+		adInquiryService.updateProdQna(vo);
+		
+		mav.addObject("prod_inq_code", vo.getProd_code());
+		
+		return mav;
+	}
+	
+	////////////////////////////////////////////////
+
+	@Override
+	public ModelAndView listReviewGet(PagingVO vo, HttpServletRequest request, HttpServletResponse response)
+			throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void listReview(PagingVO vo, Model model) throws Exception {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void getReviewDetail(int prod_review_code, Model model, PagingVO vo) throws Exception {
+		// TODO Auto-generated method stub
+		
+	}
+
+	
 
 }

@@ -2,6 +2,9 @@ package kr.co.recipetoyou.main.inqreview;
 
 import java.sql.Date;
 
+import org.springframework.stereotype.Component;
+
+@Component("inquiryVO")
 public class InquiryVO {
 	
 	private int prod_inq_code;
@@ -10,10 +13,8 @@ public class InquiryVO {
 	private String inq_title;
 	private String inq_content;
 	private Date inq_reg_date;
-	
-	private int emp_no;
-	private String ans_content;
-	private Date ans_date;
+	private int inq_secret;	//비밀글 여부
+	private int inq_level;	//답변 완료 여부
 	
 	public InquiryVO() {
 		// TODO Auto-generated constructor stub
@@ -30,9 +31,6 @@ public class InquiryVO {
 		this.inq_title = inq_title;
 		this.inq_content = inq_content;
 		this.inq_reg_date = inq_reg_date;
-		this.emp_no = emp_no;
-		this.ans_content = ans_content;
-		this.ans_date = ans_date;
 	}
 
 
@@ -73,24 +71,29 @@ public class InquiryVO {
 	public void setInq_reg_date(Date inq_reg_date) {
 		this.inq_reg_date = inq_reg_date;
 	}
-	public int getEmp_no() {
-		return emp_no;
+
+	public int getInq_secret() {
+		return inq_secret;
 	}
-	public void setEmp_no(int emp_no) {
-		this.emp_no = emp_no;
+
+
+
+	public void setInq_secret(int inq_secret) {
+		this.inq_secret = inq_secret;
 	}
-	public String getAns_content() {
-		return ans_content;
+
+
+
+	public int getInq_level() {
+		return inq_level;
 	}
-	public void setAns_content(String ans_content) {
-		this.ans_content = ans_content;
+
+
+
+	public void setInq_level(int inq_level) {
+		this.inq_level = inq_level;
 	}
-	public Date getAns_date() {
-		return ans_date;
-	}
-	public void setAns_date(Date ans_date) {
-		this.ans_date = ans_date;
-	}
+
 	
 	
 

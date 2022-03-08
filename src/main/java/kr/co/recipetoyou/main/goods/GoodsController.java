@@ -25,12 +25,5 @@ public interface GoodsController {
 	
 	public ModelAndView listPageGet(PagingVO vo, HttpServletRequest request, HttpServletResponse response) throws Exception;
 	
-	//상품 상세 조회
-	public void getGoodsDetail(HttpServletRequest request, int prod_code, Model model, PagingVO vo, String job, InquiryVO ivo, ReviewVO rvo)throws Exception;
-	
-	//public List<InquiryVO> insertInquiry(int prod_code, String job, InquiryVO vo)throws Exception;
-	
-	//public List<ReviewVO> insertInquiry(int prod_code, String job, ReviewVO vo)throws Exception;
-	
 	
 }

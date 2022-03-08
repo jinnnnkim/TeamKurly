@@ -33,135 +33,114 @@
 </head>
 <body>
 	<div class="wrap">
-	<div class="bar">상품목록</div>
-	<div class="sub-menu">
-		<ul>	<!-- css 수정 필요함. 왼쪽으로 이동해야 됨. -->
-		<li><a href="${contextPath}/adgoods/moveRegister.do">상품등록</a></li>
-		<li><a href="${contextPath}/adgoods/listProduct.do" class="selected">상품목록</a></li>
-		</ul>
-	</div>
+		<div class="bar">상품목록</div>
+		<div class="sub-menu">
+			<ul>	<!-- css 수정 필요함. 왼쪽으로 이동해야 됨. -->
+			<li><a href="${contextPath}/adgoods/moveRegister.do">상품등록</a></li>
+			<li><a href="${contextPath}/adgoods/listProduct.do" class="selected">상품목록</a></li>
+			</ul>
+		</div>
 	
 	<%-- <form id="searchForm" action="${contextPath}/product/listCategory.do" method="post"> --%>
-	<form id="searchForm" method="get"  enctype="multipart/form-data">
-	<input type="hidden" name="page" value="${pageMaker.vo.page}">
-	<input type="hidden" name="pageSize" value="${pageMaker.vo.pageSize}">
-	<input type="hidden" value="${pageMaker.vo.keyword }">
-	<input type="hidden" name="cateCode" value="${pageMaker.vo.cateCode}">
+		<form id="searchForm" method="get"  enctype="multipart/form-data">
+			<input type="hidden" name="page" value="${pageMaker.vo.page}">
+			<input type="hidden" name="pageSize" value="${pageMaker.vo.pageSize}">
+			<input type="hidden" value="${pageMaker.vo.keyword }">
+			<input type="hidden" name="cateCode" value="${pageMaker.vo.cateCode}">
 	
-		<div class="main-content">
-						<table class="table table1 table_line">
-						<colgroup>
+			<div class="main-content">
+				<table class="table table1 table_line">
+					<colgroup>
 						<col width="120px">
 						<col>
-						</colgroup>
-						<tbody>
-							<tr>
+					</colgroup>
+					<tbody>
+						<tr>
 							<th>판매상태</th>
 							<td style="text-align: left;"><!-- radio기능 넣어야 됨 -->
 								<label class="lbl">
-								<input type="radio" name="sale_status" value="all" checked/>전체
+									<input type="radio" name="sale_status" value="all" checked/>전체
 								</label>
 								<label class="lbl">
-								<input type="radio" name="sale_status" value="on"/>판매중
+									<input type="radio" name="sale_status" value="on"/>판매중
 								</label>
 								<label class="lbl">
-								<input type="radio" name="sale_status" value="soldout" />품절
+									<input type="radio" name="sale_status" value="soldout" />품절
 								</label>
 							</td>
-							</tr>
+						</tr>
 							
-							<tr>
+						<tr>
 							<th>상품분류</th>
-							<td style="text-align: left;">
-								
+							<td style="text-align: left;">	
 								<label>1차 분류</label>
 								<select class="category1" id="category1">
 									<option selected="selected" value="none">선택</option>
 								</select>
-								
 								<label>2차 분류</label>
 								<select class="category2" id="category2">
 									<option selected="selected" value="none" name="cateCode" value="${pm.vo.cateCode}">선택</option>
 								</select>
-
 							</td>
-							</tr>
-							
-							<tr>
-								<th>상품명</th>
-								<td style="text-align: left;">
-									<input type="text" id="keywordInput" name="keyword" style="width: 95%" value="${pm.vo.keyword}"/>
-								</td>
-							</tr>
-						</tbody>
-						</table>
+						</tr>
 					
-						<div class="btn-box">	
-							<button type="submit" id="searchBtn" class="btn btn-sm btn-blue">검색</button>
-							<button type="button" class="btn btn-sm" onclick="document.location.href='productList.jsp'">처음으로</button>
-	
-						</div>
-	</div>
-	</form>	
-	</div>
-	
-	<div class="list-tools">
-						<div class="list-action">
-							선택된 상품을
-							<select id="batch_sale">
-							<option value>::일괄처리::</option>
-							<option value="sale_status_on">정상판매</option>
-							<option value="sale_status_pause">판매중지</option>
-							<option value="sale_status_soldout">품절</option>
-							<option value="remove_all">상품삭제</option>
-							</select>
-												<!-- 처리 클릭시 나타나는 기능 -> onclick기능 넣기! -->
-							<button id="goodsList_batch" type="button" class="btn btn-green" onclick="">처리</button>
-							<span>|</span>		<!-- 순서변경 클릭시 나타나는 기능 -> onclick기능 넣기! -->
-							<button id="goodsListPopup" type="button" class="btn btn-green" onclick="">순서변경</button>
-						</div>
-						<div class="summary">
-							검색된 상품
-							<span class="f-bold f-red f-num"></span>
-							${searchcnt }개
-							<span>|</span>
-							총 등록상품
-							<span class="f-bold f-num"></span>
-							${cnt }개
-						</div>
-					</div>
-					<table class="table table1 list_top table_line table-center">
-						<colgroup>
-							<col width="60px">
-							<col>
-							<col width="100px">
-						</colgroup>
-						<thead>
-							<tr>
-							<th>
-							<!-- 체크박스 기능 넣기 -->
-							<input id="checkboxAllChoice" type="checkbox"/>
-							</th>
-							<th>상품정보</th>
-							<th>판매상태</th>
-							</tr>
-						</thead>
-						<tbody>
-							<c:forEach var="prod" items="${prodList}">
-							<tr>
-							<td>
-								<input class="chChoice" type="checkbox" value="294"/>
+						<tr>
+							<th>상품명</th>
+							<td style="text-align: left;">
+								<input type="text" id="keywordInput" name="keyword" style="width: 70%" value="${pm.vo.keyword}"/>
+								<button type="submit" id="searchBtn" class="btn btn-sm btn-blue">검색</button>
+								<button type="button" class="btn btn-sm"><a href="${contextPath}/adgoods/listProduct.do">처음으로</a></button>
 							</td>
-							<td class="image" style="text-align: left; padding: 5px">
-								<div style="float: left; width: 60px">
-		
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</form>	
+	</div>
+	
+		<div class="list-tools">
+			<div class="summary">
+				검색된 상품
+				<span class="f-bold f-red f-num"></span>
+				${searchcnt }개
+				<span>|</span>
+				총 등록상품
+				<span class="f-bold f-num"></span>
+				${cnt }개
+			</div>
+		</div>
+	<div>
+		<table class="table table1 list_top table_line table-center">
+			<colgroup>
+				<col width="60px">
+				<col>
+				<col width="100px">
+			</colgroup>
+			<thead>
+				<tr>
+					<th>
+					<!-- 체크박스 기능 넣기 -->
+					<input id="checkboxAllChoice" type="checkbox"/>
+					</th>
+					<th>상품정보</th>
+					<th>판매상태</th>
+				</tr>
+			</thead>
+			<tbody>
+				<c:forEach var="prod" items="${prodList}">
+					<tr>
+						<td>
+							<input class="chChoice" type="checkbox" value="294"/>
+						</td>
+						<td class="image" style="text-align: left; padding: 5px">
+							<div style="float: left; width: 60px">
+			
 								<div class="image_wrap" data-prod_code="${prod.imageList[0].prod_code}" data-path="${prod.imageList[0].uploadPath}"
-												data-uuid="${prod.imageList[0].uuid}" data-filename="${prod.imageList[0].fileName}">
-									<img>
-								
+													data-uuid="${prod.imageList[0].uuid}" data-filename="${prod.imageList[0].fileName}">
+										<img>
 								</div>
-								</div>		
-								<div style="margin-left: 110px">
+							</div>		
+							<div style="margin-left: 110px">
 								<div style="line-height: 28px">
 									<a href="${contextPath}/adgoods/adgoodsInfo.do?prod_code=${prod.prod_code}">
 									<%-- <a class="move" href="<c:out value="${goodsVO.prod_code}"/>"> --%>
@@ -189,31 +168,31 @@
 								<div class="div_style2">
 									<span class="sky_b">${prod.prod_price }</span>
 								</div>
-								</div>
-							</td>
-							<td>
-								<c:choose>
-									<c:when test="${prod.stock_quantity != 0}">
-										<span class="lable label-xs lable-blue">판매중</span>
-									</c:when>
-									<c:otherwise>
-										<span class="lable label-xs lable-blue">품절</span>
-									</c:otherwise>
-								</c:choose>
-								
-							</td>
-							</tr>
-							</c:forEach>
-						</tbody>
-					</table>
-					<c:if test="${listCheck == 'empty'}">
-						<div>
-							등록된 상품이 없습니다.
-						</div>
-					</c:if>
+							</div>
+						</td>
+						<td>
+							<c:choose>
+								<c:when test="${prod.stock_quantity != 0}">
+									<span class="lable label-xs lable-blue">판매중</span>
+								</c:when>
+								<c:otherwise>
+									<span class="lable label-xs lable-blue">품절</span>
+								</c:otherwise>
+							</c:choose>	
+						</td>
+					</tr>
+				</c:forEach>
+			</tbody>
+		</table>
+	</div>
+	<c:if test="${listCheck == 'empty'}">
+		<div>
+			등록된 상품이 없습니다.
+		</div>
+	</c:if>
 					
-					<div class="box-footer">
-			<div class="page_wrap">
+	<div class="box-footer">
+		<div class="page_wrap">
 				<ul class="pagination">
 				 			<!-- 이전prev -->
 				 	<c:if test="${pm.prev }">

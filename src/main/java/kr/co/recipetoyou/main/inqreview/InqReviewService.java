@@ -10,12 +10,15 @@ import kr.co.recipetoyou.util.PagingVO;
 public interface InqReviewService {
 
 	
-	public List<InquiryVO> getInquiryList(PagingVO vo, int prod_code)throws Exception;
+	public List<InquiryVO> getInquiryList(PagingVO vo)throws Exception;
 	
 	public void insertInquiry(InquiryVO vo)throws Exception;
 	
+	public int qnaCount(PagingVO vo) throws Exception;
 	
-	public List<ReviewVO> getReviewList(PagingVO vo, int prod_code) throws Exception;
+	public List<ReviewVO> getReviewList(PagingVO vo) throws Exception;
+	
+	public int reviewCount(PagingVO vo)throws Exception;
 	
 	public void insertReview(ReviewVO vo)throws Exception;
 	

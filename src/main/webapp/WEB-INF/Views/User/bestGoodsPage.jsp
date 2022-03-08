@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -30,7 +31,7 @@
 			<!-- 상품 리스트  -->
 			<div class="lists">
 				<p class="count">
-					<span class="inner_counts">총 개</span>
+					<span class="inner_counts">총 ${cnt}개</span>
 				</p>
 				<ul>
 					<li class="price_asc"><a href="#">높은가격순</a></li>
@@ -141,18 +142,22 @@
 			</div>
 		</div>
 		<!-- list_goods -->
-		<div class="pagediv">
-			<!-- pagediv -->
+		<div class="page">
 			<ul>
-				<li><a href="#"><i class="fas fa-angle-double-left"></i></a></li>
-				<li><a href="#"><i class="fas fa-angle-left"></i></a></li>
-				<li><a href="#">1</a></li>
-				<li><a href="#">2</a></li>
-				<li><a href="#">3</a></li>
-				<li><a href="#">4</a></li>
-				<li><a href="#">5</a></li>
-				<li><a href="#"><i class="fas fa-angle-double-right"></i></a></li>
-				<li><a href="#"><i class="fas fa-angle-right"></i></a></li>
+				<c:if test="${pm.prev }">
+			 		<li><a href="${contextPath}/user/newGoodsPage.do?page=${pm.startPage-1}">&laquo;</a></li>
+			 	</c:if>
+			 			<!-- 페이지블럭 -->
+				<c:forEach var="idx" begin="${pm.startPage}" end="${pm.endPage}">
+							<!-- 삼항연산자를 사용해서 class로 스타일적용  -->
+					<li ${pm.vo.page == idx? 'class=active':''}>
+					 	<a href="${contextPath}/user/newGoodsPage.do?page=${idx}">${idx}</a>
+					</li>				
+				</c:forEach>
+			 			<!-- 다음next -->
+			 	<c:if test="${pm.next && pm.endPage > 0}">
+			 		<li><a href="${contextPath}/user/newGoodsPage.do?page=${pm.endPage+1}">&raquo;</a></li>
+			 	</c:if>
 			</ul>
 		</div>
 	</div>
