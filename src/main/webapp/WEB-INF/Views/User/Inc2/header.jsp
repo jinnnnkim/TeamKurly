@@ -90,12 +90,6 @@
 						
 						<div id="allCate">
 							<ul id="cateMain">
-								
-							</ul>
-						</div>
-						
-						<div id="allCate">
-							<ul id="cateMain">
 								<li id="sul"><img class="cateImg" src="/recipetoyou/Resources/User/Img/Cate/gift.png"/>설 선물세트</li>
 								<li id="vegetables"><img class="cateImg" src="/recipetoyou/Resources/User/Img/Cate/carrot.png"/>채소</li>
 								<li id="fruit"><img class="cateImg" src="/recipetoyou/Resources/User/Img/Cate/apple.png"/>과일ㆍ견과ㆍ쌀</li>
