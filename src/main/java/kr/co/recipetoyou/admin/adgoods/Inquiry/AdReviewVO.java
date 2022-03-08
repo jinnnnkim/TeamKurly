@@ -9,35 +9,17 @@ import kr.co.recipetoyou.main.goods.GoodsVO;
 @Component("adreviewVO")
 public class AdReviewVO {
 
-	//GoodsVO 상품명
-	private GoodsVO goodsVO;
-	private String prod_name;
-	
 	private int prod_review_code;
 	private int prod_code;
 	private String title;
 	private Date reg_date;
 	private String content;
-	
-	private String review_img;
 	private String user_id;
 	
-
+	public AdReviewVO() {
+		// TODO Auto-generated constructor stub
+	}
 	
-	
-	
-	public GoodsVO getGoodsVO() {
-		return goodsVO;
-	}
-	public void setGoodsVO(GoodsVO goodsVO) {
-		this.goodsVO = goodsVO;
-	}
-	public String getProd_name() {
-		return prod_name;
-	}
-	public void setProd_name(String prod_name) {
-		this.prod_name = prod_name;
-	}
 	public int getProd_review_code() {
 		return prod_review_code;
 	}
@@ -75,10 +57,5 @@ public class AdReviewVO {
 		this.user_id = user_id;
 	}
 	
-	public String getReview_img() {
-		return review_img;
-	}
-	public void setReview_img(String review_img) {
-		this.review_img = review_img;
-	}
+
 }

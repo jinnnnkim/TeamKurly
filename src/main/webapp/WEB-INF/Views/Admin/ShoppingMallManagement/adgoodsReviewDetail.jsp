@@ -48,42 +48,19 @@
 										<th>작성일시</th>
 										<td>${review.reg_date }</td>
 									</tr>
-									<tr>
-										<th>연관상품</th>
-										<td colspan="3">
-											<div style="float: left;">
-												<img class="img-style" src="../../../Resources/Admin/Img/ShoppingMallManagement/scale.png"/>
-											</div>
-											<div class="img-info">
-												<div>체중계</div>
-												<div>17,320원</div>
-											</div>
-										</td>
-									</tr>
-									<tr>
 										<th>후기제목</th>
 										<td colspan="3">${review.title }</td>
 									</tr>
 									<tr>
 										<th>후기내용</th>
 										<td colspan="3">
-											<div class="img-diary">
-												<img class="img-style2" src="../../../Resources/Admin/Img/ShoppingMallManagement/background.png" />
-											</div>
 											${review.content }
-										</td>
-									</tr>
-									<tr>
-										<th>평점</th>
-										<td colspan="3">
-											<img src="../../../Resources/Admin/Img/ShoppingMallManagement/yellow-star.jpg" width="13" height="13"/>
 										</td>
 									</tr>
 								</tbody>
 							</table>
 							<div class="btn-box">
-								<%-- 버튼 클릭시 상품후기목록으로 이동하는 기능 넣어야 됨 --%>
-								<button id="moveBtn" class="btn btn-lg">목록</button>
+								<button id="moveBtn" class="btn btn-lg"><a href="${contextPath }/adgoods/inquiryList.do">목록</a></button>
 							</div>
 						</div>
 					</td>

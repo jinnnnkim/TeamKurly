@@ -49,9 +49,11 @@ public class AdInqReviewServiceImpl implements AdInqReviewService {
 
 	//문의 답변
 	@Override
-	public void updateProdQna(AdInquiryVO vo) throws Exception {
+	public int updateProdQna(AdInquiryVO vo) throws Exception {
 		
-		adInquiryDAO.updateProdQna(vo);
+		int result = adInquiryDAO.updateProdQna(vo);
+		
+		return result;
 		
 	}
 
@@ -78,8 +80,8 @@ public class AdInqReviewServiceImpl implements AdInqReviewService {
 
 	@Override
 	public AdReviewVO adReviewDetail(int prod_review_code) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return adInqReviewDAO.getReviewDetail(prod_review_code);
 	}
 
 }

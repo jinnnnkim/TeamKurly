@@ -105,10 +105,6 @@
 									<td style="text-align: left;">
 										<div class="title_div_left">
 											
-											<a href="productRegister.jsp" class="helper-col">체중계</a> 
-										</div>
-										<div class="title_div_left">
-											
 											<a href="${contextPath}/adgoods/adReviewDetail.do?prod_review_code=${review.prod_review_code }">${review.title }</a>
 										</div>
 									</td>
@@ -185,6 +181,13 @@
 			});
 			
 		});
+		
+		/* 수정 성공 이벤트 */
+		let qna_result = '${qna_result}';
+		
+		if(qna_result == 1){
+			alert("답변 등록 완료");
+		}
 	
 	</script>
 	

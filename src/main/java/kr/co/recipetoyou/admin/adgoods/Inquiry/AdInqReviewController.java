@@ -4,7 +4,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import kr.co.recipetoyou.util.PagingVO;
 
@@ -20,7 +22,7 @@ public interface AdInqReviewController {
 	public void getInquiryDetail(int prod_inq_code, Model model, PagingVO vo) throws Exception;
 	
 	//문의 답변
-	public ModelAndView updateProdQna(AdInquiryVO vo, HttpServletRequest request)throws Exception;
+	public ModelAndView updateProdQna(@RequestParam(value = "prod_inq_code") int prod_inq_code, AdInquiryVO vo, RedirectAttributes rttr, HttpServletRequest request, HttpServletResponse respons)throws Exception;
 	
 	/////////////////////////////////
 	

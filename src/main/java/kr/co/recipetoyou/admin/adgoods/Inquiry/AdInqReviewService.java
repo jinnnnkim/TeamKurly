@@ -19,7 +19,7 @@ public interface AdInqReviewService {
 	public int inquiryCount(PagingVO vo) throws Exception;
 	
 	//문의 답변
-	public void updateProdQna(AdInquiryVO vo)throws Exception;
+	public int updateProdQna(AdInquiryVO vo)throws Exception;
 	
 	//////////////////////////////////////////////////////
 	

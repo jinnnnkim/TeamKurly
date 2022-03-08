@@ -107,35 +107,6 @@ public class AdGoodsControllerImpl implements AdGoodsController {
 		//페이지 데이터
 		mav.addObject("pm", new PageMaker(vo, adGoodsService.prodCount(vo)));
 		
-		
-		/*
-		 * PageMaker pm = new PageMaker(); pm.setVo(vo);
-		 * pm.setTotalCount(adGoodsService.prodCount(vo));
-		 * 
-		 * 
-		 * 
-		 */
-		
-		
-	
-		//목록 처리
-		
-		/*
-		 * ObjectMapper objm = new ObjectMapper();
-		 * 
-		 * List list = adGoodsService.cateList();
-		 * 
-		 * String cateList = objm.writeValueAsString(list);
-		 * 
-		 * mav.addObject("cateList", cateList);
-		 * 
-		 * mav.addObject("prodList", prodList); 
-		 * mav.addObject("pm", pm);
-		 * 
-		 * PageMaker pageMake = new PageMaker(vo, cnt); mav.addObject("pageMaker",
-		 * pageMake);
-		 */
-		
 		return mav;
 	}
 	

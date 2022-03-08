@@ -36,6 +36,12 @@
 					<td align="left">
 						<div class="main-content">
 							<div class="sub-title">| 문의상세</div>
+							
+							<form action="${contextPath}/adgoods/updateProdQna.do" method="post" id="inqForm">
+							<input type="hidden" id="prod_inq_code" name="prod_inq_code" value="${inquiry.prod_inq_code }">
+							<input type="hidden" id="prod_code" name="prod_code" value="${inquiry.prod_code }">
+							<input type="hidden" id="inq_level" name="inq_level" value="${inquiry.inq_level }">
+							
 							<table class="table table1 line_top table_line">
 								<colgroup>
 									<col width="120px">
@@ -46,25 +52,22 @@
 								<tbody>
 									<tr>
 										<th>작성자</th>
-										<td>${inquiry.user_id }</td>
+										<td><input type="text" value="${inquiry.user_id }" name="user_id"></td>
 										<th>작성일시</th>
-										<td>${inquiry.inq_reg_date }</td>
-									</tr>
-									<tr>
-										<th>연관상품</th>
-										<td colspan="3">체중계</td>
+										<td><input type="text" value="${inquiry.inq_reg_date }" name="inq_reg_date"></td>
 									</tr>
 									<tr>
 										<th>문의제목</th>
-										<td colspan="3">${inquiry.inq_title }</td>
+										<td colspan="3"><input type="text" value="${inquiry.inq_title }" name="inq_title"></td>
 									</tr>
 									<tr>
 										<th>문의내용</th>
-										<td colspan="3">${inquiry.inq_content }</td>
+										<td colspan="3"><textarea name="inq_content" id="inq_content">${inquiry.inq_content }</textarea></td>
 									</tr>
 								</tbody>
 							</table>
 							<div class="sub-title" style="margin-top: 20px">| 답변하기</div>
+							
 							<table class="table table1 line_top table_line">
 								<colgroup>
 									<col width="120px">
@@ -72,24 +75,12 @@
 								</colgroup>
 								<tbody>
 									<tr>
-										<th>답변상태</th>
-										<td>
-											<label class="lbl">
-												<!-- radio기능 넣어야 됨 -->
-												<input type="radio" name="reply_status" value="wait" checked/>답변대기
-											</label>
-											<label class="lbl">
-												<input type="radio" name="reply_status" value="done"/>답변완료
-											</label>
-										</td>
-									</tr>
-									<tr>
 										<th>답변내용</th>
 										<td style="padding: 5px">
-										<%-- 라이브러리 받아와서 추가해야 됨 -> 추가했는데 안됨 다시 수정 필요!! --%>
+										
 											<div class="preparedPage">
 												<p>준비중 페이지</p>
-												<textarea name="inq_an" id="prepared" rows="10" cols="100" ></textarea>
+												<textarea name="inq_an" id="prepared" rows="10" cols="100" >${inquiry.inq_an }</textarea>
 												<script>
 											        ClassicEditor
 											            .create( document.querySelector('#prepared'))
@@ -105,11 +96,11 @@
 									</tr>
 								</tbody>
 							</table>
+							</form>
 							
 							<div class="btn-box">
 								<!-- 답변저장버튼 클릭시 나타나는 기능 넣기!! -->
-								<button class="btn btn-lg btn-blue" onclick="">답변저장</button>
-								<button class="btn btn-lg" onclick="document.location.href='productInquirylist.jsp'">목록</button>
+								<button class="btn btn-lg btn-blue" id="saveBtn">답변저장</button>
 							</div>
 						</div>
 					</td>
@@ -117,5 +108,11 @@
 			</tbody>
 		</table>
 	</div>
+	
+	<script type="text/javascript">
+		$("#saveBtn").on("click", function(e){
+			$("#inqForm").submit();
+		})
+	</script>
 </body>
 </html>

@@ -48,7 +48,7 @@
 											<td style="text-align: left;"><input type="date" /> ~ <input type="date" /></td>
 											<th>답변여부</th>
 											<td style="text-align: left;">
-												<!-- checked 기능 넣기! -->
+												
 												<label class="lbl">
 													<input type="radio" name="reply_status" value="all" checked/>전체
 												</label>
@@ -127,12 +127,16 @@
 								<td>${inquiry.prod_inq_code}</td>
 								<td><input class="chChoice" type="checkbox" value="286"/></td>
 								<td>
-									<span class="lable">답변대기</span>
+									<c:choose>
+										<c:when test="${inquiry.inq_level eq 1 }">
+										<span class="lable">답변 완료</span>
+										</c:when>
+									<c:when test="${inquiry.inq_level ne 1 }">
+										<span class="lable">답변 대기</span>
+									</c:when>
+									</c:choose>				
 								</td>
 								<td style="text-align: left">
-									<div> <%-- href : 상품등록 페이지로 이동 --%>
-										<a href="productRegister.jsp" class="helper-col">체중계</a>
-									</div>
 									<a href="${contextPath }/adgoods/adInquiryDetail.do?prod_inq_code=${inquiry.prod_inq_code}">${inquiry.inq_title}</a>
 								</td>
 								<td>${inquiry.user_id}</td>
