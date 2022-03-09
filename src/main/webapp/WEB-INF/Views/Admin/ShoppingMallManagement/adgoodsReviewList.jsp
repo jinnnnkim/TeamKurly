@@ -69,9 +69,6 @@
 								<button id="selectRemove" class="btn btn-red" type="button" onclick="">선택삭제</button>
 							</div>
 							<div class="summary">
-								검색된 후기 &nbsp;
-								<span class="f-bold f-red f-num"></span>
-								${searchcnt }개 &nbsp;
 								<span class="split">|</span>
 								총 후기 &nbsp;
 								<span class="f-bold f-num"></span>
@@ -126,9 +123,32 @@
 				</tr>
 			
 			</tbody>
-		</table>	
+		</table>
+		<div class="box-footer">
+			<div class="page_wrap">
+				<ul class="pagination">
+				 			<!-- 이전prev -->
+				 	<c:if test="${pm.prev }">
+				 		<li class="pageBtn prev"><a href="adReviewList.do?page=${pm.startPage-1}">이전</a></li>
+				 	</c:if>
+				 			<!-- 페이지블럭 -->
+					<c:forEach var="idx" begin="${pm.startPage}" end="${pm.endPage}">
+								<!-- 삼항연산자를 사용해서 class로 스타일적용  -->
+						<li ${pm.vo.page == idx? 'class=active':''}>
+						 	<a href="adReviewList.do?page=${idx}">${idx}</a>
+						</li>				
+					</c:forEach>
+				 			<!-- 다음next -->
+				 	<c:if test="${pm.next && pm.endPage > 0}">
+				 		<li class="pageBtn next"><a href="adReviewList.do?page=${pm.endPage+1}">다음</a></li>
+				 	</c:if>
+				 </ul>
+			</div>
+		</div> 
 	</div>
 	
+	
+		
 	<form id="moveForm" action="${contextPath}/adgoods/adReviewList.do" method="get">
 			<input type="hidden" name="page" value="${pm.vo.page}">
 			<input type="hidden" name="pageSize" value="${pm.vo.pageSize}">
