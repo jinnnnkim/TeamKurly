@@ -201,10 +201,7 @@ public class NoticeControllerImpl implements NoticeController{
 	public ModelAndView noticeOneToOneQuestionDetail(HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
 		
-		
 		ModelAndView mav = new ModelAndView();
-		
-		
 		return mav;
 	}
 	
