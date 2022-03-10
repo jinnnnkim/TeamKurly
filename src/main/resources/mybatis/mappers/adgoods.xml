@@ -115,21 +115,9 @@
 		WHERE tp.PROD_CODE = #{prod_code}
 		]]>
 	</select>
-	
-	<!-- 상품 상세 정보 -->
-	<!-- <select id="getadGoodsInfo" resultMap="adgoodsResult">
-		SELECT PROD_CODE ,PROD_NAME ,PROD_CONTENT ,PROD_PRICE ,PROD_DISCOUNT ,
-			PROD_SELL_UNIT ,PROD_DELIVERY_TYPE ,PROD_WRAP_TYPE ,PROD_INFO , PROD_ALLERGY ,PROD_VAILD_DATE ,
-			PROD_FROM ,PROD_CAUTION ,CATECODE ,stock_quantity
-		from tb_prod	
-			where prod_code = #{prod_code}
-	</select> -->
-	
+
 	<!-- 상품 등록 -->
 	<insert id="register">
-<!-- 		<selectKey resultType="int" keyProperty="prod_code" order="BEFORE">
-			select prodcode_seq.nextval from dual
-		</selectKey> -->
 			insert into tb_prod(prod_code, cateCode, prod_name, prod_content, prod_price, prod_discount, prod_sell_unit, prod_delivery_type,
 								prod_wrap_type, prod_info, prod_allergy, prod_vaild_date, prod_from, prod_caution,stock_quantity)
 			values (prodcode_seq.nextval, #{cateCode}, #{prod_name}, #{prod_content},#{prod_price}, #{prod_discount}, #{prod_sell_unit}, #{prod_delivery_type},
@@ -198,21 +186,6 @@
 		delete from tb_adgoods_Img where prod_code = #{prod_code}
 	</delete>
 	
-	<!-- 상품 검색 -->
-	<!-- <sql id="search">
-			select from TB_PROD
-			where prod_name like '%' || #{keyword} || '%'
-	</sql> -->
-	
-	<!-- 검색어에 맞는 상품 수 구하기 -->
-<!-- 	<select id="countSearch" resultType="int">
-		select count(prod_code)
-		from tb_prod
-			<include refid="search"></include>
-		<![CDATA[
-			and prod_code > 0
-		]]>	
-	</select> -->
 	<!-- 검색어에 맞는 상품 수 구하기 -->
 	<select id="getSearchCount" resultType="int">
 			select count(prod_code) from TB_PROD where 

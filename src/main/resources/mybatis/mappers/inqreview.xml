@@ -45,12 +45,6 @@
 	</select>
 	
 	<!-- 문의 목록 -->
-<!-- 	<select id="getInquiryList" resultType="inquiryVO" parameterType="int">
-		SELECT * FROM TB_USERS tu ,
-		(SELECT B.prod_inq_code, B.prod_code, B.user_id, B.inq_title, B.inq_content, B.inq_reg_date, ta.emp_no, ta.ans_content, ta.ans_date
-		FROM tb_inq_answer ta RIGHT OUTER JOIN (SELECT * FROM TB_PROD_INQ WHERE prod_code=#{prod_code})B ON ta.prod_inq_code = B.prod_inq_code) I WHERE  tu.USER_ID =I.user_id
-	</select> -->
-	
 	<select id="getInquiryList" resultMap="inqResult">
 		<![CDATA[
 		select * from(
@@ -91,14 +85,6 @@
 	</select>
 	
 	<!-- 후기 목록 -->
-	<!-- <select id="getReviewList" resultType="reviewVO" parameterType="int">
-		SELECT tpr.REVIEW_IDX , tpr.order_code, tpr.TITLE , tpr.CONTENT , tpr.REG_DATE , o.user_id
-		FROM TB_PROD_REVIEW tpr ,
-		(SELECT * FROM TB_USERS tu2, 
-		(SELECT to1.order_code, to2.user_id FROM TB_ORDER to2, (SELECT order_code, prod_code FROM TB_ORDER WHERE prod_code=#{prod_code})to1 WHERE to2.ORD_CODE = to1.order_code)
-		tu1 WHERE tu2.USER_ID=tu1.user_id)O WHERE tpr.order_code=O.order_code
-	</select> -->
-	
 	<select id="getReviewList" resultMap="reviewResult">
 		<![CDATA[
 		select * from(
