@@ -33,11 +33,12 @@ public class MypageDAOImpl implements MypageDAO{
 	
 	//조회
 	@Override
-	public List<CouponVO> selectAllCouponList() throws DataAccessException {
+	public List<CouponVO> selectAllCouponList(String user_id) throws DataAccessException {
 			
-		List<CouponVO> couponList = sqlSession.selectList("mapper.member.selectAllCouponList");
+		List<CouponVO> couponList = sqlSession.selectList("mapper.member.selectAllCouponList", user_id);
 		return couponList;
 	}
+	
 
 	//등록
 	@Override
@@ -172,6 +173,14 @@ public class MypageDAOImpl implements MypageDAO{
 		int result = sqlSession.selectOne("mapper.member.emailChk", userVO);
 		return result;
 	}
+
+	@Override
+	public int selectCouponCount(String user_id) {
+		int result = sqlSession.selectOne("mapper.member.couponCount", user_id);
+		return result;
+	}
+
+	
 
 
 	

@@ -20,6 +20,7 @@
 	
 	<!-- 쿠폰 조회 -->
 	<resultMap type="couponVO" id="couponResult">
+		<result property="user_id" column="user_id"/>
 		<result property="cp_name" column="cp_name"/>
 		<result property="cp_content" column="cp_content"/>
 		<result property="cp_function" column="cp_function"/>
@@ -175,23 +176,12 @@
 	
 	
 	<!-- 쿠폰 조회하기 -->
-	<select id="selectAllCouponList" resultMap="couponResult">
+	<select id="selectAllCouponList" resultMap="couponResult"  parameterType="String">
 		<![CDATA[
 			SELECT tc.CP_NAME, tc.CP_CONTENT, tc.CP_FUNCTION, tc.CP_PRICE, tc.CP_END_DATE, tcu.CP_PAYMENT_DETAILS 
 			FROM TB_COUPON tc JOIN TB_COUPON_USE tcu 
-			ON tc.CP_CODE  = tcu.CP_CODE
-		]]>
-	</select>
-	
-	
-	<!-- 쿠폰 등록하기 미완.... -->
-	<select id="insertCoupon" parameterType="String">
-		<![CDATA[
-			INSERT INTO TB_COUPON (CP_CODE, CP_NAME, CP_USE_DATE, CP_END_DATE,
-									 USER_ID, PAY_CODE, ORD_CODE, CP_FUNCTION, CP_PRICE, CP_ID, CP_PAYMENT_DETAILS) 
-			values(#{CP_CODE}, #{CP_NAME}, #{CP_USE_DATE}, #{CP_END_DATE}, #{USER_ID},
-									 #{PAY_CODE}, #{ORD_CODE}, #{CP_FUNCTION}, #{CP_PRICE}, #{CP_ID}, #{CP_PAYMENT_DETAILS}) 
-								 
+			ON tc.CP_CODE  = tcu.CP_CODE 
+			WHERE tc.USER_ID = #{user_id}
 		]]>
 	</select>
 		
@@ -393,11 +383,15 @@
 	</select>
 	
 	<!-- 총 쿠폰 수 -->
-	<!-- <select id="couponCount" resultType="int">
+	<select id="couponCount" resultType="int" parameterType="String">
 		<![CDATA[
-			select count(cp_code) from tb_coupon
+			SELECT COUNT(tcu.CP_PAYMENT_DETAILS ) 
+			FROM TB_COUPON tc JOIN TB_COUPON_USE tcu 
+			ON tc.CP_CODE  = tcu.CP_CODE 
+			WHERE tc.USER_ID = #{user_id}
+			AND tcu.CP_PAYMENT_DETAILS ='미사용'
 		]]>
-	</select> -->
+	</select>
 	
 	<!-- 총 포인트 -->
 	<!-- <select id="pointSum" resultType="int">

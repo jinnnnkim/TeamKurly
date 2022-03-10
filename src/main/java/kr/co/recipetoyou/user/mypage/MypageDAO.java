@@ -23,7 +23,8 @@ import kr.co.recipetoyou.user.mypage.vo.QnAVO;
 public interface MypageDAO {
 	
 	//쿠폰 조회
-	public List<CouponVO> selectAllCouponList() throws DataAccessException;
+	public List<CouponVO> selectAllCouponList(String user_id) throws DataAccessException;
+	
 	//쿠폰 등록
 	public int insertCoupon(CouponVO couponVO) throws DataAccessException;
 	
@@ -66,4 +67,7 @@ public interface MypageDAO {
 	
 	//이메일 중복체크
 	public int emailChk(UserVO userVO) throws DataAccessException;
+	public int selectCouponCount(String user_id);
+	
+	
 }

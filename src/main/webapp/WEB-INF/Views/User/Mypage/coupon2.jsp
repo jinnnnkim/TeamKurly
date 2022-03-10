@@ -33,20 +33,10 @@
 				<h2 class="title">쿠폰</h2>
 			</div>
 			<!-- head -->
-			<div class="couponInfo">
-				<input type="text" class="couponNum" placeholder="쿠폰을 입력해주세요">
-				<form name="couponForm" class="addCouponF"  method="post" action="${contextPath}/addCoupon.do"> 
-					<button type="submit" class="addCoupon" onclick="location.href=''">쿠폰 등록</button>
-				</form>	
-				<p class="noticeInfo">쿠폰에 하이픈("-")이 포함되어 있을 경우 하이픈("-")을 반드시 입력해주세요.</p>
-			</div>
-			<!-- coupon_info -->
-			
 			
 			
 			<div class="notice">
 				<div class="noticeMain">· 쿠폰은 적용 가능한 상품이 따로 적용되어 있는 경우 해당 상품 구매 시에만 사용이 가능합니다.</div>
-				<div class="couponAmount">사용가능쿠폰: 0장</div>
 			</div>
 			<!-- notice -->
 			<table class="couponCate">
@@ -60,7 +50,9 @@
 			</table>
 			<!-- couponCate -->
 
-			<c:forEach var="couponList" items="${couponList}">
+			<!-- coupon -->
+			<c:set var = "total" value = "0" />
+			<c:forEach var="couponList" items="${couponList}" varStatus="status">
 				<table class="couponList">
 					<tr>
 						<th class="couponName">
@@ -75,11 +67,21 @@
 						<th class="couponVaild">${couponList.cp_end_date}</th>
 						<th class="couponCheck">${couponList.cp_payment_details}</th>
 					</tr>
+					
+						
 				</table>
 				<!-- couponList -->
 			</c:forEach>
-			
-	
+			<div class="coupon_box">
+				<div class="coupon_view">
+					<div class="title_now">사용가능쿠폰 : </div>
+					<div class="coupon_now">
+								<c:out value="${result}"/>장
+					</div>
+				</div>
+				<!-- coupon_view -->
+			</div>
+			<!-- coupon_box -->
 			
 		</div>
 		<!-- content -->

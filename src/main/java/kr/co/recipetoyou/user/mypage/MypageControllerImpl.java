@@ -280,28 +280,34 @@ public class MypageControllerImpl implements MypageController{
 		
 		String viewName = (String) request.getAttribute("viewName");
 		
+		//아이디 세션불러오기
+		HttpSession session = request.getSession();
+		UserVO userVO = (UserVO) session.getAttribute("userVO");
+		String user_id = "";
+		if(userVO != null) {
+			if(userVO.getUser_id() == null || userVO.getUser_id() == "") {
+				user_id = "";
+			}else {
+				System.out.println("write user_id:"+userVO.getUser_id());
+				user_id = userVO.getUser_id();
+			}
+		}
+		
+		int result = mypageService.getCouponCount(user_id);
+		List<CouponVO> couponList = mypageService.listCoupons(user_id);
+		
 		logger.info("info : "+ viewName);
 		logger.debug("debug : "+ viewName);
 	
 		
-		List<CouponVO> couponList = mypageService.listCoupons();
+		
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("couponList", couponList);
-	
+		mav.addObject("result",result);
+		
 		return mav;
 	}
 		
-	//쿠폰 등록하기
-	@Override
-	@RequestMapping(value = "/addCoupon.do", method = {RequestMethod.POST, RequestMethod.GET})
-	public ModelAndView addCoupons(CouponVO couponVO, HttpServletRequest request, HttpServletResponse response) 
-			throws Exception {
-		
-		request.setCharacterEncoding("utf-8");
-		int result = mypageService.addCoupon(couponVO);
-		ModelAndView mav = new ModelAndView("redirect:/coupon.do");
-		return mav;
-	}
 	
 	@Override
 	@RequestMapping(value = "/addrModify.do", method = RequestMethod.GET)
@@ -358,6 +364,7 @@ public class MypageControllerImpl implements MypageController{
 		return"redirect:/mypageUserInfoPwdCheck.do";
 	}
 
+	
 	//이메일 유효성 체크
 	@Override
 	@ResponseBody
@@ -382,6 +389,7 @@ public class MypageControllerImpl implements MypageController{
 		
 		return null;
 	}
+
 
 	
 

@@ -42,21 +42,15 @@ public class MypageServiceImpl implements MypageService{
 	@Autowired
 	private AdGoodsDAO adGoodsDAO;
 	
-	//쿠폰
+	//쿠폰 조회
 	@Override
-	public List<CouponVO> listCoupons() throws DataAccessException {
-	
-		List<CouponVO> couponList = mypageDAO.selectAllCouponList();
+	public List<CouponVO> listCoupons(String user_id) throws DataAccessException {
+		List<CouponVO> couponList = mypageDAO.selectAllCouponList(user_id);
 		return couponList;
-	}
+		}
 
-	//쿠폰등록
-	@Override
-	public int addCoupon(CouponVO couponVO) throws DataAccessException {
-		return mypageDAO.insertCoupon(couponVO);
-	}
 
-	//포인트
+	//포인트 조회
 	@Override
 	public List<PointVO> listPoints() throws DataAccessException {
 		List<PointVO> pointList = mypageDAO.selectAllPointList();
@@ -176,6 +170,14 @@ public class MypageServiceImpl implements MypageService{
 		return result;
 	}
 
+	//쿠폰 카운트
+	@Override
+	public int getCouponCount(String user_id) {
+		int result = mypageDAO.selectCouponCount(user_id);
+		return result;
+	}
+
+	
 
 
 	
