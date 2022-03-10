@@ -10,7 +10,6 @@
 		<result property="reg_date" column="reg_date"/>
 		<result property="content" column="content"/>
 		<result property="user_id" column="user_id"/>
-		<result property="review_img" column="review_img"/>
 	</resultMap>
 	
 	<resultMap type="adInquiryVO" id="adinqResult">
@@ -20,9 +19,13 @@
 		<result property="inq_title" column="inq_title"/>
 		<result property="inq_content" column="inq_content"/>
 		<result property="inq_reg_date" column="inq_reg_date"/>
-		<result property="inq_secret" column="inq_secret"/>
 		<result property="inq_level" column="int_level"/>
 		<result property="inq_an" column="inq_an"/>
+	</resultMap>
+	
+	<resultMap type="adGoodsVO" id="adgoodsResult">
+		<result property="prod_code" column="prod_code"/>
+		<result property="prod_name" column="prod_name"/>
 	</resultMap>
 	
 	<!-- 문의 -->
@@ -64,10 +67,18 @@
 	<select id="getadInquiryList" resultMap="adinqResult">
 		<![CDATA[
 		select * from(
-			select rownum AS rn, prod_code, prod_inq_code, inq_title, user_id, inq_reg_date, inq_secret, inq_level
+			select rownum AS rn, prod_code, prod_inq_code, inq_title, user_id, inq_reg_date, inq_level
 			from tb_prod_inq
 			where
 		]]>	
+			<choose>
+				<when test="keyword != null and searchOption == 'inq_title'.toString()">
+					inq_title like '%'||#{keyword}||'%' and
+				</when>
+				<when test="keyword != null and searchOption == 'id'.toString()">
+					user_id like '%'||#{keyword}||'%' and
+				</when>
+			</choose>
 		<![CDATA[
 			rownum <= #{page} * #{pageSize}
 			)
@@ -79,7 +90,7 @@
 	<select id="getadInquiryDetail" resultMap="adinqResult">
 		<![CDATA[
 			select * from tb_prod_inq
-			where prod_inq_code = #{prod_inq_code}
+			WHERE prod_inq_code = #{prod_inq_code}
 		]]>
 	</select>
 	
@@ -125,6 +136,14 @@
 			from tb_prod_review
 			where
 		]]>	
+			<choose>
+				<when test="keyword != null and searchOption == 'title'.toString()">
+					title like '%'||#{keyword}||'%' and
+				</when>
+				<when test="keyword != null and searchOption == 'id'.toString()">
+					user_id like '%'||#{keyword}||'%' and
+				</when>
+			</choose>
 		<![CDATA[
 			rownum <= #{page} * #{pageSize}
 			)
@@ -150,9 +169,9 @@
 	
 	<!-- 검색어에 맞는 문의 수 구하기 -->
 	<select id="getReviewCount" resultType="int">
-		select count(prod_inq_code) from tb_prod_review
+		select count(prod_review_code) from tb_prod_review
 			<if test="keyword != null">
-				<if test="searchOption == 'title'.toString()"> where inq_title like '%'||#{keyword}||'%'</if>
+				<if test="searchOption == 'title'.toString()"> where title like '%'||#{keyword}||'%'</if>
 				<if test="searchOption == 'id'.toString()"> where user_id like '%'||#{keyword}||'%'</if>
 			</if>
 	</select>

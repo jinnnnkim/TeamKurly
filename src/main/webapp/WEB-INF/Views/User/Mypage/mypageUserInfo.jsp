@@ -53,7 +53,7 @@
 					<th>새 비밀번호 확인</th>
 					<td><input type="text" value="" id="new_pwdChk" name="new_pwdChk"></td>
 				</tr>
-				<tr>
+				<!-- <tr>
 					<th>이름</th>
 					<td><input type="text" value="" id="name" name="name"></td>
 				</tr>
@@ -102,7 +102,7 @@
 						<td><input type="checkbox" name="sms"> <span>SMS</span>
 							<input type="checkbox" name="email"> <span>이메일</span>
 						</td>
-				</tr>
+				</tr> -->
 			</table>
 			<div class="form_footer">
 				<a href="">탈퇴하기</a>

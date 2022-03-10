@@ -249,9 +249,6 @@
 	
 	/* 카테고리 */
 	let cateList = JSON.parse('${cateList}');
-	
-	
-
 	let cate1Array = new Array();
 	let cate1Obj = new Object();
 

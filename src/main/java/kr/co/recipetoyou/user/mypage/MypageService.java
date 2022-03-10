@@ -22,18 +22,19 @@ import kr.co.recipetoyou.user.mypage.vo.QnAVO;
 public interface MypageService {
 
 	//쿠폰
-	public List<CouponVO> listCoupons () throws DataAccessException;
-	//쿠폰등록
-	public int addCoupon(CouponVO couponVO) throws DataAccessException;
+	public List<CouponVO> listCoupons(String user_id) throws DataAccessException;
+	
+	//쿠폰 카운트
+	public int getCouponCount(String user_id);
 
 	//포인트
-	public List<PointVO> listPoints() throws DataAccessException;
+	public List<PointVO> listPoints(String user_id) throws DataAccessException;
 	
 	//배송지관리 
 	public List<UserAddrVO> listAddress() throws DataAccessException;
 	
 	//주문내역 조회
-	public List<MyOrderVO> listOrders() throws DataAccessException;
+	public List<MyOrderVO> listOrders(String user_id) throws DataAccessException;
 
 	//주문 상세 페이지
 	public MyOrderVO orderDetail(int ord_code) throws Exception;
@@ -61,10 +62,11 @@ public interface MypageService {
 	public int deleteAddress(@RequestParam("addr_code") String addr_code) throws DataAccessException;
 
 	//개인정보수정
-	public void userInfoUpdate(UserVO userVO) throws DataAccessException;
+	public void userUpdate(UserVO userVO) throws DataAccessException;
 	
 	//이메일 중복체크
 	public int emailChk(UserVO userVO) throws DataAccessException;
+	
 	
 	
 }

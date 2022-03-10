@@ -30,12 +30,14 @@ public class InqReviewDAOImpl implements InqReviewDAO{
 		return sqlSession.selectList(NAMESPACE+".listinqPage", page);
 	}
 	
+	//문의 목록
 	@Override
 	public List<InquiryVO> getInquiryList(PagingVO vo) throws Exception {
 		
 		return sqlSession.selectList(NAMESPACE+".getInquiryList", vo);
 	}
 
+	//문의 작성
 	@Override
 	public void insertInquiry(InquiryVO vo) throws Exception {
 		
@@ -44,6 +46,7 @@ public class InqReviewDAOImpl implements InqReviewDAO{
 		
 	}
 	
+	//후기 목록
 	@Override
 	public List<ReviewVO> getReviewList(PagingVO vo) throws Exception {
 		
@@ -63,6 +66,7 @@ public class InqReviewDAOImpl implements InqReviewDAO{
 	
 	}
 
+	//후기 작성
 	@Override
 	public void insertReview(ReviewVO vo) throws Exception {
 		

@@ -17,7 +17,7 @@ public interface AdInqReviewDAO {
 	public List<AdInquiryVO> listPaging(PagingVO vo) throws Exception;
 	
 	//문의 상세 내용 조회
-	public AdInquiryVO readInquiry(int prod_inq_code) throws Exception;
+	public AdInquiryVO readInquiry(int prod_code) throws Exception;
 	
 	//전체 후기 수 조회
 	//DB 테이블에 있는 모든 후기 수 계산 후 리턴
@@ -27,7 +27,7 @@ public interface AdInqReviewDAO {
 	public int inquiryCount(PagingVO vo) throws Exception;
 	
 	//문의 답변
-	public void updateProdQna(AdInquiryVO vo)throws Exception;
+	public int updateProdQna(AdInquiryVO vo)throws Exception;
 	
 	//후기 페이징
 	public List<AdReviewVO> revlistPaging(int page) throws Exception;
@@ -42,7 +42,7 @@ public interface AdInqReviewDAO {
 	public int reviewCount(PagingVO vo)throws Exception;
 	
 	//후기 조회
-	public ReviewVO getReviewDetail(int prod_review_code)throws Exception;
+	public AdReviewVO getReviewDetail(int prod_review_code)throws Exception;
 	
 	
 

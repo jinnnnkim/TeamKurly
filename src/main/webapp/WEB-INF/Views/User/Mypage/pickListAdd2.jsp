@@ -33,7 +33,7 @@
 		<div class="pickadd_main">
 			<div class="head">
 				<h2 class="title">
-					찜한 상품() <span class="subtitle">찜한 상품은 최대 200개까지 저장됩니다.</span>
+					찜한 상품
 				</h2>
 			</div>
 			<!-- head -->

@@ -66,9 +66,6 @@
 									<span class="review_date"><span>${reviewList.reg_date}</span> 작성</span>
 								</div>
 								<div class="prod">
-									<div class="img">
-										<img src="/recipetoyou/Resources/User/Img/goods6.jpg" />
-									</div>
 									<div class="prodInfo">
 										<span class="prodSub">${reviewList.content}</span>
 									</div>
@@ -103,6 +100,7 @@
 				$('.review_after_no').css("display","table-row");
 			});
 		});
+		
 	</script>
 </body>
 </html>

@@ -41,7 +41,7 @@ public class AdInqReviewDAOImpl implements AdInqReviewDAO{
 	@Override
 	public AdInquiryVO readInquiry(int prod_inq_code) throws Exception {
 		
-		System.out.println("prod_inq_code"+prod_inq_code);
+		System.out.println("prod_code"+prod_inq_code);
 		
 		return sqlSession.selectOne(NAMESPACE+".getadInquiryDetail", prod_inq_code);
 	}
@@ -62,9 +62,9 @@ public class AdInqReviewDAOImpl implements AdInqReviewDAO{
 	
 	//문의 답변 수정
 	@Override
-	public void updateProdQna(AdInquiryVO vo) throws Exception {
+	public int updateProdQna(AdInquiryVO vo) throws Exception {
 		
-		sqlSession.update(NAMESPACE+".updateAdQna", vo);
+		return sqlSession.update(NAMESPACE+".updateProdQna", vo);
 		
 	}
 	
@@ -106,7 +106,7 @@ public class AdInqReviewDAOImpl implements AdInqReviewDAO{
 
 	//후기 상세 조회
 	@Override
-	public ReviewVO getReviewDetail(int prod_review_code) throws Exception {
+	public AdReviewVO getReviewDetail(int prod_review_code) throws Exception {
 		
 		return sqlSession.selectOne(NAMESPACE+".adreviewDetail", prod_review_code);
 	}

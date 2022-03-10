@@ -64,7 +64,7 @@
 			<div class="point_box">
 				<div class="point_view">
 					<div class="title_now">현재 적립금 : </div>
-					<div class="point_now"><c:out value="${total}"/> 원</div>
+					<div class="point_now"><c:out value="${total}"/>원</div>
 				</div>
 				<!-- point_view -->
 			</div>

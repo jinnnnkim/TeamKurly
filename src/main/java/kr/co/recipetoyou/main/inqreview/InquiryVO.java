@@ -4,6 +4,8 @@ import java.sql.Date;
 
 import org.springframework.stereotype.Component;
 
+import kr.co.recipetoyou.main.goods.GoodsVO;
+
 @Component("inquiryVO")
 public class InquiryVO {
 	
@@ -15,6 +17,10 @@ public class InquiryVO {
 	private Date inq_reg_date;
 	private int inq_secret;	//비밀글 여부
 	private int inq_level;	//답변 완료 여부
+	
+	private GoodsVO goodsVO;
+	private String prod_name;
+	
 	
 	public InquiryVO() {
 		// TODO Auto-generated constructor stub
@@ -94,7 +100,27 @@ public class InquiryVO {
 		this.inq_level = inq_level;
 	}
 
-	
+	public GoodsVO getGoodsVO() {
+		return goodsVO;
+	}
+
+
+
+	public void setGoodsVO(GoodsVO goodsVO) {
+		this.goodsVO = goodsVO;
+	}
+
+
+
+	public String getProd_name() {
+		return prod_name;
+	}
+
+
+
+	public void setProd_name(String prod_name) {
+		this.prod_name = prod_name;
+	}
 	
 
 

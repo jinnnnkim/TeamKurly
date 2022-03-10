@@ -63,14 +63,14 @@ public class AdGoodsControllerImpl implements AdGoodsController {
 	
 	private static final Logger logger = LoggerFactory.getLogger("ProductControllerImpl.class");
 	
-	/*
-	 * private static final String UPLOAD_DIR = "C:\\git-recipetoyouuuu\\RecipeToYou\\src\\main\\webapp\\Resources\\Admin\\Img\\AdgoodsImg\\";
-	 */
+	
+	  private static final String UPLOAD_DIR = "C:\\git-recipetoyouuuu\\RecipeToYou\\src\\main\\webapp\\Resources\\Admin\\Img\\AdgoodsImg\\";
+	 
 	
 
 	//private static final String UPLOAD_DIR = "C:/Users/jin/Documents/TeamKurly_3v/src/main/webapp/Resources/Admin/Img/AdgoodsImg/";
 
-	private static final String UPLOAD_DIR = "C:\\git_workTeam\\src\\main\\webapp\\Resources\\Admin\\Img\\AdgoodsImg\\";
+	//private static final String UPLOAD_DIR = "C:\\git_workTeam\\src\\main\\webapp\\Resources\\Admin\\Img\\AdgoodsImg\\";
 	//private static final String UPLOAD_DIR = "C:\\wordspace_git\\src\\main\\webapp\\Resources\\Admin\\Img\\AdgoodsImg\\";
 
 	@Autowired
@@ -106,35 +106,6 @@ public class AdGoodsControllerImpl implements AdGoodsController {
 		
 		//페이지 데이터
 		mav.addObject("pm", new PageMaker(vo, adGoodsService.prodCount(vo)));
-		
-		
-		/*
-		 * PageMaker pm = new PageMaker(); pm.setVo(vo);
-		 * pm.setTotalCount(adGoodsService.prodCount(vo));
-		 * 
-		 * 
-		 * 
-		 */
-		
-		
-	
-		//목록 처리
-		
-		/*
-		 * ObjectMapper objm = new ObjectMapper();
-		 * 
-		 * List list = adGoodsService.cateList();
-		 * 
-		 * String cateList = objm.writeValueAsString(list);
-		 * 
-		 * mav.addObject("cateList", cateList);
-		 * 
-		 * mav.addObject("prodList", prodList); 
-		 * mav.addObject("pm", pm);
-		 * 
-		 * PageMaker pageMake = new PageMaker(vo, cnt); mav.addObject("pageMaker",
-		 * pageMake);
-		 */
 		
 		return mav;
 	}

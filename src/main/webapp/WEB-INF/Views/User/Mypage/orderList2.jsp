@@ -29,8 +29,8 @@
 
 </head>
 <body>
-	<div class="content">
-		<div class="order_main">
+ 	<div class="content">
+		 <div class="order_main">
 			<div class="head">
 				<h2 class="title">
 					주문 내역 <span class="subtitle">지난 3년간의 주문 내역 조회가 가능합니다</span>
@@ -41,7 +41,7 @@
 					<option value='2021'>2021</option>
 					<option value='2020'>2020</option>
 				</select>
-			</div>
+			</div> 
 			
 		<!-- head -->
 		<c:forEach var="orderList" items="${orderList }">
@@ -129,34 +129,6 @@
 				$(this).find("img").attr('src', '/recipetoyou/Resources/Admin/Img/SubgoodsImg/ready.jpg');
 			}
 	});
-	
-	//연도별 주문 조회
-	$("#seach_year").change(function(){
-		var year = this.value;
-		$.ajax({
-			type: "get",
-			async: true,
-			url: "http://localhost:8080/recipetoyou/searchOrderYear.do?ord_date="+year,
-			dataType: "text",
-			success: function(data, textStatus) {
-				  $("#seach_year").val("<?=$ord_date?>");
-					 
-				 
-			},
-			error : function(data, textStatus) {			
-				alert("에러가 발생했습니다.")	
-			},
-			complete : function(data, textStatus) {			
-			}	
-		});
-	});	
-});
-	
-	
-	
-	
-		
-	
 	</script>
 	
 	
