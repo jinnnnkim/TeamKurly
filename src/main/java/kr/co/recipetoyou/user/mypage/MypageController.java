@@ -64,27 +64,20 @@ public interface MypageController {
 	//이메일 중복성 체크
 	public String emailChk(String filterJSON, HttpServletResponse response, Model model) throws Exception;
 
-	/*
-	 * //회원 정보 수정 //public String userInfoUpdate(HttpServletRequest request,
-	 * HttpSession session, UserVO userVO, Model model,RedirectAttributes rttr)
-	 * throws Exception; public void userInfoUpdate(UserVO userVO) throws Exception;
-	 */
+	
+	  //회원 정보 수정 
+	//-  public String userInfoUpdate(HttpServletRequest request, HttpSession session, UserVO userVO, Model model,RedirectAttributes rttr) throws Exception; 
+	 
 
-	public ModelAndView mypageUserInfo(UserVO userVO, HttpServletRequest request, HttpServletResponse response) throws Exception;
+	  public ModelAndView mypageUserInfo(UserVO userVO, HttpServletRequest request, HttpServletResponse response) throws Exception;
 
-	String mypageUserInfoProcess(UserVO userVO, HttpServletRequest request, HttpServletResponse response)
+	  String mypageUserInfoProcess(UserVO userVO, HttpServletRequest request, HttpServletResponse response)
 			throws Exception;
 
-
-	/*
-	 * //회원정보 수정 public ModelAndView userInfoUpdate(UserVO userVO,
-	 * HttpServletRequest request, HttpServletResponse response) throws Exception;
-	 */
-
- 
-	//비밀번호 수정
-	public String userUpdate(HttpSession session, UserVO userVO,  RedirectAttributes arr)throws Exception;
-	
+      //예진-회원정보수정
+	  public String modify(HttpSession session, UserVO userVO, RedirectAttributes ra) throws Exception;
+	  //탈퇴
+	  public ModelAndView removeUser(@RequestParam("user_id")String user_id, HttpServletRequest request, HttpServletResponse response) throws Exception;
 	
 	
 }

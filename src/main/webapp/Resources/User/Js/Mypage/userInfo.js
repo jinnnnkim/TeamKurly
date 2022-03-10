@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
  
 
@@ -7,7 +7,7 @@ $(documenct).ready(function(){
 	
 });
 
- function duplicate(){
+function duplicate(){
 		var email=$("#email").val();
 
 		var submitObj = new Object();
@@ -68,4 +68,7 @@ function fnSubmit(){
 			 
 			return false;
 			}
+			
+			
+			
 }

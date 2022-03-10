@@ -1,24 +1,4 @@
 package kr.co.recipetoyou.user;
-/*
- 	  user_id             varchar2(30)	NOT NULL 
-    ,user_pw            varchar2(30)	NOT NULL	
-    ,user_name          varchar2(30)	NOT NULL 
-    ,user_email         varchar2(100)	NOT NULL 
-    ,user_phone         varchar2(20)	NOT NULL 
-    ,user_addr          varchar2(500)	NOT NULL 
-    ,user_gender        int				NOT NULL 
-    ,user_birth         varchar2(30)	NOT NULL 
-    ,recommendId        varchar2(30)
-    ,join_event         varchar2(100)
-    ,info_agree         int
-    ,sms_agree          int
-    ,email_agree        int
-    ,join_date          DATE			DEFAULT		sysdate 
-    ,user_grade         int
-    ,user_point         int
-    ,cp_code            int
-    ,toYou_pass         varchar2(10)
- */
 
 import java.sql.Date;
 
@@ -30,10 +10,6 @@ import kr.co.recipetoyou.main.goods.GoodsVO;
 public class UserVO {
 	
 	private String user_id;
-	
-
-
-
 	private String user_pw;
 	private String user_name;
 	private String user_email;

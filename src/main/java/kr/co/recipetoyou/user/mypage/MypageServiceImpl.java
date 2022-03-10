@@ -159,8 +159,8 @@ public class MypageServiceImpl implements MypageService{
 
 	//개인정보수정
 	/*
-	 * @Override public int userInfoUpdate(UserVO userVO) throws DataAccessException
-	 * { return mypageDAO.userInfoUpdate(userVO);
+	 * @Override public void userInfoUpdate(UserVO userVO) throws
+	 * DataAccessException{ mypageDAO.userInfoUpdate(userVO);
 	 * 
 	 * }
 	 */
@@ -187,15 +187,30 @@ public class MypageServiceImpl implements MypageService{
 		return result;
 	}
 
-
-	//비번 수정
+	//예진
 	@Override
-	public void userUpdate(UserVO userVO) throws DataAccessException {
-		mypageDAO.userUpdate(userVO);
+	public void pwUpdate(UserVO userVO) throws DataAccessException {
+		mypageDAO.pwUpdate(userVO);
 		
 	}
 
+	//탈퇴
+	@Override
+	public int withdrawUser(@RequestParam("user_id") String user_id) throws DataAccessException {
+		return mypageDAO.WithdrawUser(user_id);
+	}
 
+
+
+	/*
+	 * //비번 수정
+	 * 
+	 * @Override public void userUpdate(UserVO userVO) throws DataAccessException {
+	 * mypageDAO.userUpdate(userVO);
+	 * 
+	 * }
+	 * 
+	 */
 	
 
 	

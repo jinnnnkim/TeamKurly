@@ -5,6 +5,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.mail.Session;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
@@ -152,6 +154,7 @@ public class MypageDAOImpl implements MypageDAO{
 		return result;
 	}
 	
+	
 	//개인정보수정
 	/*
 	 * @Override public void userInfoUpdate(UserVO userVO) throws
@@ -171,12 +174,15 @@ public class MypageDAOImpl implements MypageDAO{
 		return result;
 	}
 
+	
+
 	//비번 수정
-	@Override
-	public void userUpdate(UserVO userVO) throws DataAccessException {
-		sqlSession.update("mapper.member.updateUser",userVO);
-		
-	}
+	/*
+	 * @Override public void userUpdate(UserVO userVO) throws DataAccessException {
+	 * sqlSession.update("mapper.member.updateUser",userVO);
+	 * 
+	 * }
+	 */
 
 	/*
 	 * @Override public void userInfoUpdate(UserVO userVO) throws
@@ -186,6 +192,19 @@ public class MypageDAOImpl implements MypageDAO{
 	 * }
 	 */
 
+	//예진
+	@Override
+	public void pwUpdate(UserVO userVO) throws DataAccessException {
+		sqlSession.update("mapper.member.updateUser",userVO);
+		
+	}
+
+	//탈퇴
+	@Override
+	public int WithdrawUser(@RequestParam("user_id")String user_id) throws DataAccessException {
+		int result = sqlSession.delete("mapper.member.withdrawUser", user_id);
+		return result;
+	}
 
 	
 

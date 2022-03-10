@@ -32,7 +32,8 @@
 				<h2 class="title">개인 정보 수정</h2>
 			</div>
 			<!-- head -->
-			<form id="infoView" action="/mypageUserinfoUpdate.do" method="POST" class="form-signup form-user panel-body"  autocomplete="off">
+			<!-- <form id="infoView" action="/mypageUserinfoUpdate.do" method="POST" class="form-signup form-user panel-body"  autocomplete="off"> -->
+			<form id="infoView" action="UserUpdate.do" method="POST" class="form-signup form-user panel-body"  autocomplete="off">
 			<input type="hidden" id="user_name_yn" name="user_name_yn" value="N"/>
 			<table class="myInfoMain">
 				
@@ -41,19 +42,19 @@
 					
 					<td><input type="text" value="${userVO.user_id}" id="id" name="id" readonly="readonly"></td>
 				</tr>
-				<tr>
+				<!-- <tr>
 					<th>현재 비밀번호</th>
-					<td><input type="text" value="" id="now_pwd" name="now_pwd"></td>
-				</tr>
+					<td><input type="password" value="" id="now_pwd" name="now_pwd"></td>
+				</tr> -->
 				<tr>
 					<th>새 비밀번호</th>
-					<td><input type="text" value="" id="new_pwd" name="new_pwd"></td>
+					<td><input type="password" value="" id="new_pwd" name="new_pwd"></td>
 				</tr>
-				<tr>
+				<!--<tr>
 					<th>새 비밀번호 확인</th>
-					<td><input type="text" value="" id="new_pwdChk" name="new_pwdChk"></td>
+					<td><input type="password" value="" id="new_pwdChk" name="new_pwdChk"></td>
 				</tr>
-				<!-- <tr>
+				 <tr>
 					<th>이름</th>
 					<td><input type="text" value="" id="name" name="name"></td>
 				</tr>
@@ -105,8 +106,10 @@
 				</tr> -->
 			</table>
 			<div class="form_footer">
-				<a href="">탈퇴하기</a>
-				<button type="submit" id="infoSubmit" name="infoSubmit" onclick="fnSubmit()">회원정보수정</button>
+				<a href="${contextPath}/withdrawUser.do?user_id=${userVO.user_id}" class="fnWithdraw">
+					탈퇴하기
+				</a>
+				<button type="submit" id="infoSubmit" name="infoSubmit" onclick="fnUpdate()">회원정보수정</button>
 			</div>
 			</form>
 			<!-- form_footer -->
@@ -114,6 +117,21 @@
 		<!-- content -->
 	</div>
 	<!-- main -->
+	<script type="text/javascript">
+		$(".fnUpdate").click(function () {
+		var check = confirm("수정이 완료되었습니다.");
+		if(check) {
+			var form1 = document.alert("수정이 완료되었습니다.")
+			form1.submit();
+		}else{
+			return false;
+		}
+	});
+		
+	$(".fnWithdraw").click(function(){
+		alert("탈퇴가 완료되었습니다.");
+	})	
+		</script>
 </body>
 </html>
 
