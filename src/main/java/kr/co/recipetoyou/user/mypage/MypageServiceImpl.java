@@ -42,26 +42,21 @@ public class MypageServiceImpl implements MypageService{
 	@Autowired
 	private AdGoodsDAO adGoodsDAO;
 	
-	//쿠폰
+	//쿠폰 조회
 	@Override
-	public List<CouponVO> listCoupons() throws DataAccessException {
-	
-		List<CouponVO> couponList = mypageDAO.selectAllCouponList();
+	public List<CouponVO> listCoupons(String user_id) throws DataAccessException {
+		List<CouponVO> couponList = mypageDAO.selectAllCouponList(user_id);
 		return couponList;
-	}
+		}
 
-	//쿠폰등록
-	@Override
-	public int addCoupon(CouponVO couponVO) throws DataAccessException {
-		return mypageDAO.insertCoupon(couponVO);
-	}
 
-	//포인트
+	//포인트 조회
 	@Override
-	public List<PointVO> listPoints() throws DataAccessException {
-		List<PointVO> pointList = mypageDAO.selectAllPointList();
+	public List<PointVO> listPoints(String user_id) throws DataAccessException {
+		List<PointVO> pointList = mypageDAO.selectAllPointList(user_id);
 		return pointList;
 	}
+
 	
 	 //배송지관리
 	 @Override 
@@ -82,8 +77,8 @@ public class MypageServiceImpl implements MypageService{
 
 	 //주문내역 조회
 	@Override
-	public List<MyOrderVO> listOrders() throws DataAccessException {
-		List<MyOrderVO> orderList = mypageDAO.selectAllOrderList();
+	public List<MyOrderVO> listOrders(String user_id) throws DataAccessException {
+		List<MyOrderVO> orderList = mypageDAO.selectAllOrderList(user_id);
 		
 		
 		orderList.forEach(order->{
@@ -163,12 +158,21 @@ public class MypageServiceImpl implements MypageService{
 	}
 
 	//개인정보수정
-	@Override
-	public void userInfoUpdate(UserVO userVO) throws DataAccessException {
-		mypageDAO.userInfoUpdate(userVO);
-		
-	}
-
+	/*
+	 * @Override public int userInfoUpdate(UserVO userVO) throws DataAccessException
+	 * { return mypageDAO.userInfoUpdate(userVO);
+	 * 
+	 * }
+	 */
+	
+	/*
+	 * @Override public int userInfoUpdate(UserVO userVO) throws DataAccessException
+	 * {
+	 * 
+	 * return mypageDAO.userInfoUpdate(userVO);
+	 * 
+	 * }
+	 */
 	//이메일 중복체크
 	@Override
 	public int emailChk(UserVO userVO) throws DataAccessException {
@@ -176,6 +180,26 @@ public class MypageServiceImpl implements MypageService{
 		return result;
 	}
 
+	//쿠폰 카운트
+	@Override
+	public int getCouponCount(String user_id) {
+		int result = mypageDAO.selectCouponCount(user_id);
+		return result;
+	}
+
+
+	//비번 수정
+	@Override
+	public void userUpdate(UserVO userVO) throws DataAccessException {
+		mypageDAO.userUpdate(userVO);
+		
+	}
+
+
+	
+
+	
+	
 
 
 	

@@ -80,7 +80,20 @@ public class MypageControllerImpl implements MypageController{
 	@RequestMapping(value = "/orderList.do", method = RequestMethod.GET)
 	public ModelAndView listOrders(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
-		List<MyOrderVO> orderList = mypageService.listOrders();
+		//아이디 세션불러오기
+		HttpSession session = request.getSession();
+		UserVO userVO = (UserVO) session.getAttribute("userVO");
+		String user_id = "";
+		if(userVO != null) {
+			if(userVO.getUser_id() == null || userVO.getUser_id() == "") {
+				user_id = "";
+			}else {
+				System.out.println("write user_id:"+userVO.getUser_id());
+				user_id = userVO.getUser_id();
+			}
+		}
+		
+		List<MyOrderVO> orderList = mypageService.listOrders(user_id);
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("orderList", orderList);
 		return mav;
@@ -101,7 +114,7 @@ public class MypageControllerImpl implements MypageController{
 	
 	
 	  //주문내역 연도별 조회	
-	@Override
+	  @Override
 	  @RequestMapping(value = "/searchOrderYear.do", method = RequestMethod.GET)
 	  public String searchOrderYear(int ord_date, Model model) throws Exception {
 	  System.out.println("================");
@@ -128,7 +141,7 @@ public class MypageControllerImpl implements MypageController{
 	}
 	
 	
-	
+	//선물
 	@RequestMapping(value = "/giftList.do", method = {RequestMethod.GET, RequestMethod.POST})
 	public ModelAndView giftList(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
@@ -180,7 +193,7 @@ public class MypageControllerImpl implements MypageController{
 		return mav; 
 	}
 		
-	  
+	//리뷰 조회 
 	@Override
 	@RequestMapping(value = "/review.do", method = RequestMethod.GET)
 	public ModelAndView listReviews(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -195,6 +208,7 @@ public class MypageControllerImpl implements MypageController{
 		return mav; 
 		}
 
+	//문의 조회
 	@Override
 	@RequestMapping(value = "/QnA.do", method = RequestMethod.GET)
 	public ModelAndView listQnA(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -247,7 +261,20 @@ public class MypageControllerImpl implements MypageController{
 		logger.debug("debug : "+ viewName);
 	
 		
-		List<PointVO> pointList = mypageService.listPoints();
+		//아이디 세션불러오기
+		HttpSession session = request.getSession();
+		UserVO userVO = (UserVO) session.getAttribute("userVO");
+		String user_id = "";
+		if(userVO != null) {
+			if(userVO.getUser_id() == null || userVO.getUser_id() == "") {
+				user_id = "";
+			}else {
+				System.out.println("write user_id:"+userVO.getUser_id());
+				user_id = userVO.getUser_id();
+			}
+		}
+			
+		List<PointVO> pointList = mypageService.listPoints(user_id);
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("pointList", pointList);
 	
@@ -259,22 +286,17 @@ public class MypageControllerImpl implements MypageController{
 	public ModelAndView mypageUserInfoPwdCheck(HttpServletRequest request,HttpServletResponse response) throws Exception {
 		
 		ModelAndView mav = new ModelAndView();
-		
 		return mav;
 	}
-	
-	
 	
 	
 	@RequestMapping(value = "/noticeOneToOneQuestionDetail.do", method = RequestMethod.GET)
 	public ModelAndView noticeOneToOneQuestionDetail(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
 		ModelAndView mav = new ModelAndView();
-		
 		return mav;
 	}
 	
-
 
 
 	//쿠폰 조회하기
@@ -284,35 +306,40 @@ public class MypageControllerImpl implements MypageController{
 		
 		String viewName = (String) request.getAttribute("viewName");
 		
+		//아이디 세션불러오기
+		HttpSession session = request.getSession();
+		UserVO userVO = (UserVO) session.getAttribute("userVO");
+		String user_id = "";
+		if(userVO != null) {
+			if(userVO.getUser_id() == null || userVO.getUser_id() == "") {
+				user_id = "";
+			}else {
+				System.out.println("write user_id:"+userVO.getUser_id());
+				user_id = userVO.getUser_id();
+			}
+		}
+		
+		int result = mypageService.getCouponCount(user_id);
+		List<CouponVO> couponList = mypageService.listCoupons(user_id);
+		
 		logger.info("info : "+ viewName);
 		logger.debug("debug : "+ viewName);
 	
 		
-		List<CouponVO> couponList = mypageService.listCoupons();
+		
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("couponList", couponList);
-	
+		mav.addObject("result",result);
+		
 		return mav;
 	}
 		
-	//쿠폰 등록하기
-	@Override
-	@RequestMapping(value = "/addCoupon.do", method = {RequestMethod.POST, RequestMethod.GET})
-	public ModelAndView addCoupons(CouponVO couponVO, HttpServletRequest request, HttpServletResponse response) 
-			throws Exception {
-		
-		request.setCharacterEncoding("utf-8");
-		int result = mypageService.addCoupon(couponVO);
-		ModelAndView mav = new ModelAndView("redirect:/coupon.do");
-		return mav;
-	}
-	
+	//주소 수정
 	@Override
 	@RequestMapping(value = "/addrModify.do", method = RequestMethod.GET)
 	public ModelAndView addrModify(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
 		ModelAndView mav = new ModelAndView();
-
         return mav;
 	}
 
@@ -323,45 +350,41 @@ public class MypageControllerImpl implements MypageController{
 		
 	}
 
-	
 	/*
-	 * @ResponseBody
+	 * //회원정보수정뷰
 	 * 
-	 * @RequestMapping(value="/emailChk.do", method = RequestMethod.POST) public int
-	 * emailChk(UserVO userVO, HttpServletRequest request, HttpServletResponse
-	 * response) throws Exception { int result = mypageService.emailChk(userVO);
-	 * return result; }
+	 * @Override
+	 * 
+	 * @RequestMapping(value="/mypageUserInfoProcess.do", method=RequestMethod.POST)
+	 * public String mypageUserInfoProcess(UserVO userVO, HttpServletRequest
+	 * request, HttpServletResponse response) throws Exception {
+	 * 
+	 * System.out.println("userVO" + userVO.getUser_id());
+	 * System.out.println("userVO" + userVO.getUser_pw()); return
+	 * "redirect:/mypageUserInfo.do"; }
+	 * 
+	 * 
+	 * @RequestMapping(value="/mypageUserInfo.do", method=RequestMethod.GET) public
+	 * ModelAndView mypageUserInfo(UserVO userVO, HttpServletRequest request,
+	 * HttpServletResponse response) throws Exception {
+	 * 
+	 * ModelAndView mav = new ModelAndView(); return mav; }
 	 */
-	
-	//회원정보수정뷰
-	@Override
-	@RequestMapping(value="/mypageUserInfoProcess.do", method=RequestMethod.POST)
-	public String mypageUserInfoProcess(UserVO userVO, HttpServletRequest request, HttpServletResponse response) throws Exception {
-		
-		System.out.println("userVO" + userVO.getUser_id());
-		System.out.println("userVO" + userVO.getUser_pw());
-		return "redirect:/mypageUserInfo.do";
-	}
-	
-	
-	@RequestMapping(value="/mypageUserInfo.do", method=RequestMethod.GET)
-	public ModelAndView mypageUserInfo(UserVO userVO, HttpServletRequest request, HttpServletResponse response) throws Exception {
-		
-		ModelAndView mav = new ModelAndView();
-		
-		return mav;
-	}
 			
-	//회원정보수정로직
-	@Override
-	@RequestMapping(value="/mypageUserinfoUpdate.do", method=RequestMethod.POST)
-	public String userInfoUpdate(HttpServletRequest request, HttpSession session, UserVO userVO, Model model, RedirectAttributes rttr) throws Exception{
-		mypageService.userInfoUpdate(userVO); 
-		session.invalidate();
-		rttr.addFlashAttribute("msg", "정보 수정이 완료되었습니다.");
-		return"redirect:/mypageUserInfoPwdCheck.do";
-	}
+	/*
+	 * //회원정보수정로직
+	 * 
+	 * @Override
+	 * 
+	 * @RequestMapping(value="/mypageUserinfoUpdate.do", method=RequestMethod.POST)
+	 * public String userInfoUpdate(HttpServletRequest request, HttpSession session,
+	 * UserVO userVO, Model model, RedirectAttributes rttr) throws Exception{
+	 * mypageService.userInfoUpdate(userVO); session.invalidate();
+	 * rttr.addFlashAttribute("msg", "정보 수정이 완료되었습니다.");
+	 * return"redirect:/mypageUserInfoPwdCheck.do"; }
+	 */
 
+	
 	//이메일 유효성 체크
 	@Override
 	@ResponseBody
@@ -386,6 +409,48 @@ public class MypageControllerImpl implements MypageController{
 		
 		return null;
 	}
+
+
+	@Override
+	public ModelAndView mypageUserInfo(UserVO userVO, HttpServletRequest request, HttpServletResponse response)
+			throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	@Override
+	public String mypageUserInfoProcess(UserVO userVO, HttpServletRequest request, HttpServletResponse response)
+			throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	@RequestMapping(value = "/updateUser.do", method = RequestMethod.POST)
+	public String userUpdate(HttpSession session, UserVO userVO, RedirectAttributes arr) throws Exception {
+		logger.info("modifyPost");
+		mypageService.userUpdate(userVO);
+		session.invalidate();
+		arr.addFlashAttribute("result", "updateOK");
+		return "redirect:/main.do";
+	}
+
+
+	/*
+	 * @Override public ModelAndView mypageUserInfo(UserVO userVO,
+	 * HttpServletRequest request, HttpServletResponse response) throws Exception {
+	 * // TODO Auto-generated method stub return null; }
+	 * 
+	 * 
+	 * @Override public String mypageUserInfoProcess(UserVO userVO,
+	 * HttpServletRequest request, HttpServletResponse response) throws Exception {
+	 * // TODO Auto-generated method stub return null; }
+	 */
+
+	
+
+
 
 	
 

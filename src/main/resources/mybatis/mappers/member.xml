@@ -20,6 +20,7 @@
 	
 	<!-- 쿠폰 조회 -->
 	<resultMap type="couponVO" id="couponResult">
+		<result property="user_id" column="user_id"/>
 		<result property="cp_name" column="cp_name"/>
 		<result property="cp_content" column="cp_content"/>
 		<result property="cp_function" column="cp_function"/>
@@ -31,6 +32,7 @@
 	
 	<!-- 적립금 조회 -->
 	<resultMap type="pointVO" id="pointResult">
+		<result property="user_id" column="user_id"/>
 		<result property="accum_date" column="accum_date"/>
 		<result property="use_date" column="use_date"/>
 		<result property="point_content" column="point_content"/>
@@ -51,7 +53,6 @@
 		<collection property="userVO" resultMap="userResult"/>
 		<collection property="useraddrVO" resultMap="addressResult"/>
 		<collection property="cartAddVO" resultMap="cartInResult"/>
-		
 	</resultMap>
 
 
@@ -67,6 +68,7 @@
 
 	<!-- 주문내역 조회 - 주문 + 상품, 주문 상세 내역 조회  -->
 	<resultMap type="myorderVO" id="orderListResult">
+		<result property="user_id" column="user_id"/>
 		<result property="ord_code" column="ord_code"/>
 		<result property="prod_code" column="prod_code"/>
 		<result property="status" column="status"/>
@@ -138,7 +140,7 @@
 		<result property="user_id" column="user_id"/>
 	</resultMap>
 	
-		<!-- 주문 OrderVO -->
+	<!-- 주문 OrderVO -->
 	<resultMap type="orderVO" id="orderResult">
 		<result property="ord_code" column="ord_code"/>
 		<result property="user_id" column="user_id"/>
@@ -180,23 +182,12 @@
 	
 	
 	<!-- 쿠폰 조회하기 -->
-	<select id="selectAllCouponList" resultMap="couponResult">
+	<select id="selectAllCouponList" resultMap="couponResult"  parameterType="String">
 		<![CDATA[
 			SELECT tc.CP_NAME, tc.CP_CONTENT, tc.CP_FUNCTION, tc.CP_PRICE, tc.CP_END_DATE, tcu.CP_PAYMENT_DETAILS 
 			FROM TB_COUPON tc JOIN TB_COUPON_USE tcu 
-			ON tc.CP_CODE  = tcu.CP_CODE
-		]]>
-	</select>
-	
-	
-	<!-- 쿠폰 등록하기 미완.... -->
-	<select id="insertCoupon" parameterType="String">
-		<![CDATA[
-			INSERT INTO TB_COUPON (CP_CODE, CP_NAME, CP_USE_DATE, CP_END_DATE,
-									 USER_ID, PAY_CODE, ORD_CODE, CP_FUNCTION, CP_PRICE, CP_ID, CP_PAYMENT_DETAILS) 
-			values(#{CP_CODE}, #{CP_NAME}, #{CP_USE_DATE}, #{CP_END_DATE}, #{USER_ID},
-									 #{PAY_CODE}, #{ORD_CODE}, #{CP_FUNCTION}, #{CP_PRICE}, #{CP_ID}, #{CP_PAYMENT_DETAILS}) 
-								 
+			ON tc.CP_CODE  = tcu.CP_CODE 
+			WHERE tc.USER_ID = #{user_id}
 		]]>
 	</select>
 		
@@ -273,11 +264,12 @@
 	</select>
 
 	<!-- 포인트 조회하기 -->
-	<select id="selectAllPointList" resultMap="pointResult">
+	<select id="selectAllPointList" resultMap="pointResult" parameterType="String">
 		<![CDATA[
 			SELECT TPD.ACCUM_DATE, TPD.USE_DATE, TPD.POINT_CONTENT, tp.POINT 
 			FROM TB_POINT tp JOIN TB_POINT_DETAILS TPD 
 			ON tp.POINT_CODE = TPD.POINT_CODE
+			WHERE tpd.USER_ID = #{user_id} 
 		]]>
 	</select>
 		
@@ -301,12 +293,12 @@
 	</delete>
 
 	<!-- 주문내역 조회 -->
-	<select id="selectAllOrderList" resultMap="orderListResult">
+	<select id="selectAllOrderList" resultMap="orderListResult" parameterType="String">
 		<![CDATA[
-			SELECT tp.PROD_NAME, to2.ORD_CODE, to2.STATUS, to2.PRICE,  to2.ORD_DATE 
-			FROM  TB_ORDER to2, TB_PROD tp, TB_USERS tu 
+			SELECT tp.PROD_NAME, to2.ORD_CODE, to2.STATUS, to2.PRICE,  to2.ORD_DATE , to2.USER_ID 
+			FROM  TB_ORDER to2, TB_PROD tp
 			WHERE tp.ORD_CODE = to2.ORD_CODE
-			AND to2.USER_ID = tu.USER_ID
+			AND to2.USER_ID = #{user_id}
 		]]>
 	</select>
 
@@ -380,12 +372,6 @@
 		<![CDATA[
 			UPDATE TB_USERS SET
 			USER_PW = #{user_pw} 
-			,USER_NAME = #{user_name} 
-			,USER_EMAIL = #{user_email}
-			,USER_PHONE = #{user_phone} 
-			,USER_ADDR = #{user_addr} 
-			,USER_GENDER = #{user_gender} 
-			,USER_BIRTH = #{user_birth}
 			WHERE USER_ID = #{user_id}
 		]]>
 	</update>
@@ -398,11 +384,15 @@
 	</select>
 	
 	<!-- 총 쿠폰 수 -->
-	<!-- <select id="couponCount" resultType="int">
+	<select id="couponCount" resultType="int" parameterType="String">
 		<![CDATA[
-			select count(cp_code) from tb_coupon
+			SELECT COUNT(tcu.CP_PAYMENT_DETAILS ) 
+			FROM TB_COUPON tc JOIN TB_COUPON_USE tcu 
+			ON tc.CP_CODE  = tcu.CP_CODE 
+			WHERE tc.USER_ID = #{user_id}
+			AND tcu.CP_PAYMENT_DETAILS ='미사용'
 		]]>
-	</select> -->
+	</select>
 	
 	<!-- 총 포인트 -->
 	<!-- <select id="pointSum" resultType="int">

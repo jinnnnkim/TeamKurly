@@ -60,11 +60,7 @@
 		<put-attribute name="title" value="상품 후기"/>		
 		<put-attribute name="body" value="/WEB-INF/Views/User/Mypage/reviewWrite.jsp"/>
 	</definition> 
-	<!-- 
-	<definition name="mypage/pickListAdd" extends="mypageLayout">
-		<put-attribute name="title" value="마이페이지 - 장바구니추가"/>장바구니-> 장바구니추가로 변경했음 
-		<put-attribute name="body" value="/WEB-INF/Views/User/Mypage/pickListAdd2.jsp"/>	
-	</definition> -->
+	
 	<definition name="QnA" extends="mypagelayout">
 		<put-attribute name="title" value="상품 문의"/>		
 		<put-attribute name="body" value="/WEB-INF/Views/User/Mypage/QnA.jsp"/>
@@ -94,11 +90,6 @@
 		<put-attribute name="title" value="개인 정보 수정"/>		
 		<put-attribute name="body" value="/WEB-INF/Views/User/Mypage/mypageUserInfo.jsp"/>
 	</definition>
-	
-<!-- 	<definition name="noticeOneToOneQuestionDetail" extends="mypagelayout">
-		<put-attribute name="title" value="1:1 문의하기"/>		
-		<put-attribute name="body" value="/WEB-INF/Views/User/mypage/noticeOneToOneQuestionDetail.jsp"/>
-	</definition> -->
 	
 	<definition name="login" extends="mypagelayout">
 		<put-attribute name="title" value="로그인"/>		

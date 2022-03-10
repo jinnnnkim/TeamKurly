@@ -19,7 +19,7 @@
 						<div class="grade_wrap">
 							<div class="grade_logo">
 								일반 </div>
-								<strong class="name">홍길동님</strong>
+								<strong class="name">${userVO.user_name}님</strong>
 							<div class="grade_benefit">
 								<strong class="benefit">적립 0.5%</strong>
 							</div>
@@ -33,6 +33,7 @@
 						<!-- grade_wrap -->
 					</div>
 					<!-- grade_user -->
+					
 					<div class="list_mypage">
 						<div class="list">
 							<a href="#" onclick="" class="link_wrap">

@@ -1,3 +1,4 @@
+
 @charset "UTF-8";
 
 .wrap {
@@ -144,7 +145,28 @@
 .couponCheck {
 	width: 100px;
 }
+.coupon_view {
+	float: right;
+    width: 815px;
+    padding-top: 12px;
+    padding-bottom: 15px;
+    padding-left: 25px;
+    border-top: 2px solid #333;
+    border-bottom: 1px solid #333;
+}
 
+.title_now {
+	float: left;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.coupon_now {
+	font-size: 16px;
+    font-weight: 700;
+    color: #5f0080;
+    padding-left: 100px;
+}
 
 
 

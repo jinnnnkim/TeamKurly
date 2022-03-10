@@ -37,13 +37,14 @@
 						<div class="link_title">적립금
 							<i class="fas fa-chevron-right"></i>
 						</div>
-							<p class="info"> 원</p>
+							<p class="info"> 자세히 보기</p>
+				
 					</a> 
 					<a href="${contextPath}/coupon.do" onclick="" class="link_wrap">
 						<div class="link_title">쿠폰
 							<i class="fas fa-chevron-right"></i>
 						</div>
-							<p class="info">0 개</p>
+							<p class="info">자세히 보기</p>
 					</a> 
 					<a href="#" onclick="" class="link_wrap">
 						<div class="link_title">투유 박스
