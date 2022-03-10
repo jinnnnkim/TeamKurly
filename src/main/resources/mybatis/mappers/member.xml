@@ -367,14 +367,23 @@
 		]]>
 	</select>
 	
-	
-	<update id="updateUser" parameterType="userVO">
+	<!-- 회원수정 -->
+	<update id="updateUser" parameterType="String">
 		<![CDATA[
 			UPDATE TB_USERS SET
 			USER_PW = #{user_pw} 
 			WHERE USER_ID = #{user_id}
 		]]>
 	</update>
+	
+	<!-- 회원 탈퇴 -->
+	<select id="withdrawUser" parameterType="String">
+		<![CDATA[
+			DELETE 
+			FROM TB_USERS tu 
+			WHERE tu.USER_ID = #{user_id}
+		]]>
+	</select>
 	
 	<!-- 이미지 정보 얻기 -->
 	<select id="getImageList" resultMap="goodsImgResult">

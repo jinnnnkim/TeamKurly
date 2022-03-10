@@ -133,8 +133,6 @@
 		}else{
 			return false;
 		}
-		
-		
 	});
 	
 	function cartInsert(){

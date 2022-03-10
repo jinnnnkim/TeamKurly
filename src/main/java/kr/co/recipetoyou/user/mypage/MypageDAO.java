@@ -63,12 +63,19 @@ public interface MypageDAO {
 	public int deleteAddress(@RequestParam("addr_code") String addr_code) throws DataAccessException;
 	
 	//개인정보 수정
-	public void userUpdate(UserVO userVO) throws DataAccessException;
+	//public void userUpdate(UserVO userVO) throws DataAccessException;
+	
+	//개인정보 수정
+	//-public void userInfoUpdate(UserVO userVO) throws DataAccessException;
+	
+	//탈퇴
+	public int WithdrawUser(@RequestParam("user_id") String user_id) throws DataAccessException;
 	
 	//이메일 중복체크
 	public int emailChk(UserVO userVO) throws DataAccessException;
 	
-
+    //예진
+	public void pwUpdate(UserVO userVO) throws DataAccessException;
 	
 	
 	
