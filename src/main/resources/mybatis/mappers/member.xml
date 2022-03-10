@@ -78,24 +78,29 @@
 		<result property="prod_price" column="prod_price"/>	<!-- 상품 1개 가격 -->
 	</resultMap>
 	
-	<!-- 상품문의 조회 -->
-	<resultMap type="QnAVO" id="qnaResult">
-		<result property="prod_name" column="prod_name"/>
-		<result property="prod_inq_code" column="prod_inq_code"/>
-		<result property="inq_title" column="inq_title"/>
-		<result property="inq_content" column="inq_content"/>
-		<result property="inq_reg_date" column="inq_reg_date"/>
-		<result property="inq_status" column="inq_status"/>
-	</resultMap>
-	
 	<!-- 상품후기 조회 -->
 	<resultMap type="reviewVO" id="reviewResult">
+		<result property="prod_review_code" column="prod_review_code"/>
+		<result property="prod_code" column="prod_code"/>
 		<result property="title" column="title"/>
 		<result property="reg_date" column="reg_date"/>
 		<result property="content" column="content"/>
-		<result property="attach_img" column="attach_img"/>
-		<result property="prod_name" column="prod_name"/>
+		<result property="user_id" column="user_id"/>
+		<result property="review_img" column="review_img"/>
 	</resultMap>
+
+	<!-- 상품문의 조회 -->
+	<resultMap type="inquiryVO" id="inqResult">
+		<result property="prod_inq_code" column="prod_inq_code"/>
+		<result property="prod_code" column="prod_code"/>
+		<result property="user_id" column="user_id"/>
+		<result property="inq_title" column="inq_title"/>
+		<result property="inq_content" column="inq_content"/>
+		<result property="inq_reg_date" column="inq_reg_date"/>
+		<result property="inq_level" column="int_level"/>
+	</resultMap>
+	
+	
 	
 	<resultMap type="userVO" id="userResult">
 		<result property="user_id" column="user_id" />
@@ -344,9 +349,9 @@
 	
 	
 	<!-- 상품문의 조회 -->
-	<select id="selectAllQnAList" resultMap="qnaResult">
+	<select id="selectAllQnAList" resultMap="inqResult">
 		<![CDATA[
-			SELECT TPI.PROD_INQ_CODE, TPI.INQ_TITLE, TPI.INQ_CONTENT, TPI.INQ_REG_DATE, TPI.INQ_STATUS, TP.PROD_NAME
+			SELECT TPI.PROD_INQ_CODE, TPI.INQ_TITLE, TPI.INQ_CONTENT, TPI.INQ_REG_DATE, TPI.INQ_LEVEL, TP.PROD_NAME
 			FROM TB_PROD_INQ tpi JOIN TB_PROD tp 
 			ON TP.PROD_CODE = TPI.PROD_CODE
 		]]>
@@ -364,7 +369,7 @@
 	<!-- 상품후기 조회 -->
 	<select id="selectAllReviewList" resultMap="reviewResult">
 		<![CDATA[
-			SELECT TPR.TITLE, TPR.REG_DATE, TPR.CONTENT, TPR.ATTACH_IMG, TP.PROD_NAME
+			SELECT TPR.TITLE, TPR.REG_DATE, TPR.CONTENT, TPR.REVIEW_IMG, TP.PROD_NAME
 			FROM TB_PROD_REVIEW tpr JOIN TB_PROD tp 
 			ON TP.PROD_CODE = TPR.PROD_CODE
 		]]>

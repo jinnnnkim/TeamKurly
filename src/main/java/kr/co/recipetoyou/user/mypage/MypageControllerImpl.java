@@ -29,8 +29,11 @@ import com.fasterxml.jackson.annotation.JacksonInject.Value;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import kr.co.recipetoyou.admin.adgoods.AdgoodsImgVO;
 import kr.co.recipetoyou.main.inqreview.ReviewVO;
 import kr.co.recipetoyou.user.UserVO;
+import kr.co.recipetoyou.user.category.CategoryService;
+import kr.co.recipetoyou.user.category.CategoryVO;
 import kr.co.recipetoyou.user.mypage.vo.CouponVO;
 import kr.co.recipetoyou.user.mypage.vo.MyOrderVO;
 import kr.co.recipetoyou.user.mypage.vo.PointVO;
@@ -61,6 +64,8 @@ public class MypageControllerImpl implements MypageController{
 	@Autowired
 	private QnAVO qnaVO;
 
+	@Autowired
+	private CategoryService service;
 
 	@RequestMapping(value = "/mypage/main.do", method = RequestMethod.GET)
 	public ModelAndView main(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -198,13 +203,12 @@ public class MypageControllerImpl implements MypageController{
 		String viewName = (String) request.getAttribute("viewName");
 		
 		logger.info("info : "+ viewName);
-		logger.debug("debug : "+ viewName);
-	
+		logger.debug("debug : "+ viewName);	
 		
 		List<QnAVO> qnaList = mypageService.listQnA();
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("qnaList", qnaList);
-	
+
 		return mav;
 	}
 	
