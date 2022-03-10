@@ -32,23 +32,11 @@ public class AdFAQServiceImpl implements AdFAQService {
 		return dao.FAQListCount(vo);
 	}
 
-	//FAQ 상세 정보 조회
-	@Override
-	public AdFAQVO getFAQInfo(String id) throws DataAccessException {		
-		return dao.readFAQ(id);
-	}
-		
+	
 	//FAQ 정보 삭제
 	@Override
 	public int removeFAQ(String id) throws DataAccessException {	
 		return dao.deleteFAQ(id);	
-	}
-		
-	//FAQ 정보 수정
-	@Override
-	public int updateFAQInfo(AdFAQVO vo) throws DataAccessException {
-		return dao.updateFAQ(vo);
-		 
 	}
 	
 	//카테고리

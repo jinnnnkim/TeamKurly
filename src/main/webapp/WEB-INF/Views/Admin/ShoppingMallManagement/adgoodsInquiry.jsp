@@ -48,7 +48,7 @@
 											<td style="text-align: left;"><input type="date" /> ~ <input type="date" /></td>
 											<th>답변여부</th>
 											<td style="text-align: left;">
-												<!-- checked 기능 넣기! -->
+												
 												<label class="lbl">
 													<input type="radio" name="reply_status" value="all" checked/>전체
 												</label>
@@ -72,6 +72,7 @@
 												문의자 아이디</option>
 											</select>
 												<input type="text" name="keyword" style="width: 500px" value="${pm.vo.keyword}"/>
+											</div>
 											</td>
 										</tr>
 									</tbody>
@@ -91,9 +92,6 @@
 								<button id="selectRemove" class="btn btn-red" type="button" onclick="">선택삭제</button>
 							</div>
 							<div class="summary">
-								검색된 후기&nbsp;
-								<span class="f-bold f-red f-num"></span>
-								${searchcnt }개 &nbsp;
 								<span class="split">|</span>
 								총 후기&nbsp;
 								<span class="f-bold f-num"></span>
@@ -127,12 +125,16 @@
 								<td>${inquiry.prod_inq_code}</td>
 								<td><input class="chChoice" type="checkbox" value="286"/></td>
 								<td>
-									<span class="lable">답변대기</span>
+									<c:choose>
+										<c:when test="${inquiry.inq_level eq 1 }">
+										<span class="lable">답변 완료</span>
+										</c:when>
+									<c:when test="${inquiry.inq_level ne 1 }">
+										<span class="lable">답변 대기</span>
+									</c:when>
+									</c:choose>				
 								</td>
 								<td style="text-align: left">
-									<div> <%-- href : 상품등록 페이지로 이동 --%>
-										<a href="productRegister.jsp" class="helper-col">체중계</a>
-									</div>
 									<a href="${contextPath }/adgoods/adInquiryDetail.do?prod_inq_code=${inquiry.prod_inq_code}">${inquiry.inq_title}</a>
 								</td>
 								<td>${inquiry.user_id}</td>
@@ -141,34 +143,34 @@
 							</c:forEach>
 							</tbody>
 						</table>
-						</div>
 					</td>
 				</tr>
 			</tbody>
 		</table>	
-	</div>
-	
 	<div class="box-footer">
 			<div class="page_wrap">
 				<ul class="pagination">
 				 			<!-- 이전prev -->
 				 	<c:if test="${pm.prev }">
-				 		<li class="pageBtn prev"><a href="listProduct.do?page=${pm.startPage-1}">이전</a></li>
+				 		<li class="pageBtn prev"><a href="listInquiry.do?page=${pm.startPage-1}">이전</a></li>
 				 	</c:if>
 				 			<!-- 페이지블럭 -->
 					<c:forEach var="idx" begin="${pm.startPage}" end="${pm.endPage}">
 								<!-- 삼항연산자를 사용해서 class로 스타일적용  -->
 						<li ${pm.vo.page == idx? 'class=active':''}>
-						 	<a href="listProduct.do?page=${idx}">${idx}</a>
+						 	<a href="listInquiry.do?page=${idx}">${idx}</a>
 						</li>				
 					</c:forEach>
 				 			<!-- 다음next -->
 				 	<c:if test="${pm.next && pm.endPage > 0}">
-				 		<li class="pageBtn next"><a href="listProduct.do?page=${pm.endPage+1}">다음</a></li>
+				 		<li class="pageBtn next"><a href="listInquiry.do?page=${pm.endPage+1}">다음</a></li>
 				 	</c:if>
 				 </ul>
 			</div>
 		</div> 
+	</div>
+	
+
 		
 		<form id="moveForm" action="${contextPath}/adgoods/inquiryList.do" method="get">
 			<input type="hidden" name="page" value="${pm.vo.page}">

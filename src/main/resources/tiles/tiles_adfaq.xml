@@ -22,12 +22,6 @@
 		<put-attribute name="title" value="FAQ관리"/>
 		<put-attribute name="body" value="/WEB-INF/Views/Admin/FAQManagement/faqManagement.jsp"></put-attribute>
 	</definition>
-	
-	<!-- FAQ수정 -->	
-	<definition name="/adfaq/modFAQInfo" extends="adminBaseLayout">
-		<put-attribute name="title" value="FAQ정보수정"/>
-		<put-attribute name="body" value="/WEB-INF/Views/Admin/FAQManagement/faqModRegistration.jsp"></put-attribute>
-	</definition>
 		
 	<!-- ====================================== -->	
 	<!-- FAQ게시물등록 -->	

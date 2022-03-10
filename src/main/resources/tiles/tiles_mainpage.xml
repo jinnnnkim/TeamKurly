@@ -40,7 +40,7 @@
 		<put-attribute name="body" value="/WEB-INF/Views/User/benefitPage.jsp"/>	
 	</definition>
 	
-	<definition name="user/bestGoodsPage" extends="mainLayout">
+	<definition name="/user/bestGoodsPage" extends="mainLayout">
 		<put-attribute name="title" value="베스트"/>
 		<put-attribute name="body" value="/WEB-INF/Views/User/bestGoodsPage.jsp"/>	
 	</definition>
@@ -65,7 +65,7 @@
 		<put-attribute name="body" value="/WEB-INF/Views/User/saleEventPage.jsp"/>	
 	</definition>
 	
-	<definition name="user/saleGoodsPage" extends="mainLayout">
+	<definition name="/user/saleGoodsPage" extends="mainLayout">
 		<put-attribute name="title" value="특가혜택"/>
 		<put-attribute name="body" value="/WEB-INF/Views/User/saleGoodsPage.jsp"/>	
 	</definition>

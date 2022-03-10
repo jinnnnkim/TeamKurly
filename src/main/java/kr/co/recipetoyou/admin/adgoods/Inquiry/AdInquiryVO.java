@@ -2,17 +2,22 @@ package kr.co.recipetoyou.admin.adgoods.Inquiry;
 
 import java.sql.Date;
 
-public class AdInquiryVO {
+import org.springframework.stereotype.Component;
 
+import kr.co.recipetoyou.admin.adgoods.AdGoodsVO;
+
+@Component("adInquiryVO")
+public class AdInquiryVO {
+	
 	private int prod_inq_code;
 	private int prod_code;
 	private String user_id;
 	private String inq_title;
 	private String inq_content;
 	private Date inq_reg_date;
-	private int inq_status;
-	private int inq_secret;
-	
+	private int inq_level;	//답변 완료 여부
+	private String inq_an;	
+
 	public AdInquiryVO() {
 		// TODO Auto-generated constructor stub
 	}
@@ -20,7 +25,7 @@ public class AdInquiryVO {
 	
 	
 	public AdInquiryVO(int prod_inq_code, int prod_code, String user_id, String inq_title, String inq_content,
-			Date inq_reg_date, int inq_status, int inq_secret) {
+			Date inq_reg_date, int emp_no, String ans_content, Date ans_date) {
 		super();
 		this.prod_inq_code = prod_inq_code;
 		this.prod_code = prod_code;
@@ -28,8 +33,6 @@ public class AdInquiryVO {
 		this.inq_title = inq_title;
 		this.inq_content = inq_content;
 		this.inq_reg_date = inq_reg_date;
-		this.inq_status = inq_status;
-		this.inq_secret = inq_secret;
 	}
 
 
@@ -70,18 +73,27 @@ public class AdInquiryVO {
 	public void setInq_reg_date(Date inq_reg_date) {
 		this.inq_reg_date = inq_reg_date;
 	}
-	public int getInq_status() {
-		return inq_status;
+
+	public int getInq_level() {
+		return inq_level;
 	}
-	public void setInq_status(int inq_status) {
-		this.inq_status = inq_status;
+
+
+
+	public void setInq_level(int inq_level) {
+		this.inq_level = inq_level;
 	}
-	public int getInq_secret() {
-		return inq_secret;
+
+	public String getInq_an() {
+		return inq_an;
 	}
-	public void setInq_secret(int inq_secret) {
-		this.inq_secret = inq_secret;
+
+
+
+	public void setInq_an(String inq_an) {
+		this.inq_an = inq_an;
 	}
 	
-	
+
+
 }

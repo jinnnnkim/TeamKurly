@@ -14,7 +14,7 @@
 </head>
 <body>
 	<div class="body" id="content">
-		<!-- body -->
+		<!-- body   --> 
 		<div class="ads">
 			<a href="#"><img alt="ads" src="/recipetoyou/Resources/User/Img/Ads/ads1.jpg"></a>
 			<a href="#"><img alt="ads" src="/recipetoyou/Resources/User/Img/Ads/ads2.jpg"></a>

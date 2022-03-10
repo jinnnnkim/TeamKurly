@@ -2,6 +2,9 @@ package kr.co.recipetoyou.main.inqreview;
 
 import java.sql.Date;
 
+import org.springframework.stereotype.Component;
+
+@Component("inquiryVO")
 public class InquiryVO {
 	
 	private int prod_inq_code;
