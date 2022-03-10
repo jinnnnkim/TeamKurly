@@ -31,7 +31,7 @@ public class MypageDAOImpl implements MypageDAO{
 	@Autowired
 	private SqlSession sqlSession;
 	
-	//조회
+	//쿠폰 조회
 	@Override
 	public List<CouponVO> selectAllCouponList(String user_id) throws DataAccessException {
 			
@@ -39,18 +39,17 @@ public class MypageDAOImpl implements MypageDAO{
 		return couponList;
 	}
 	
-
-	//등록
+	//쿠폰 갯수
 	@Override
-	public int insertCoupon(CouponVO couponVO) throws DataAccessException {
-		int result = sqlSession.insert("mapper.member.insertCoupon", couponVO);
+	public int selectCouponCount(String user_id) {
+		int result = sqlSession.selectOne("mapper.member.couponCount", user_id);
 		return result;
 	}
 		
 	//포인트 조회
 	@Override
-	public List<PointVO> selectAllPointList() throws DataAccessException {
-		List<PointVO> pointList = sqlSession.selectList("mapper.member.selectAllPointList");
+	public List<PointVO> selectAllPointList(String user_id) throws DataAccessException {
+		List<PointVO> pointList = sqlSession.selectList("mapper.member.selectAllPointList", user_id);
 		return pointList;
 	}
 
@@ -67,19 +66,18 @@ public class MypageDAOImpl implements MypageDAO{
 
 	//주문내역 조회 
 	@Override
-	public List<MyOrderVO> selectAllOrderList() throws DataAccessException {
+	public List<MyOrderVO> selectAllOrderList(String user_id) throws DataAccessException {
 			
-		List<MyOrderVO> OrderList = sqlSession.selectList("mapper.member.selectAllOrderList");
+		List<MyOrderVO> OrderList = sqlSession.selectList("mapper.member.selectAllOrderList",user_id);
 		return OrderList;
 	}
-		 
+	
 	//주문내역 상세 정보 조회
 	@Override
 	public MyOrderVO orderDetailList(int ord_code) throws DataAccessException {
 		
 		System.out.println("orderDetail DAO 호출");
 		return sqlSession.selectOne("mapper.member.orderDetailList", ord_code);
-		/* return (MyOrderVO) sqlSession.selectList("mapper.member.orderDetailList"); */
 	}
 	
 	//주문내역 연도별 검색
@@ -137,7 +135,6 @@ public class MypageDAOImpl implements MypageDAO{
 	}
 
 
-
 	//상품문의 삭제
 	@Override
     public int deleteQnA(@RequestParam("prod_inq_code") int prod_inq_code) throws DataAccessException {
@@ -156,17 +153,17 @@ public class MypageDAOImpl implements MypageDAO{
 	}
 	
 	//개인정보수정
-	@Override
-	public void userInfoUpdate(UserVO userVO) throws DataAccessException {
-		Map<String,Object> map = new HashMap<String, Object>();
-		map.put("user_name", userVO.getUser_name());
-		map.put("user_email", userVO.getUser_email());
-		map.put("user_phone", userVO.getUser_phone());
-		
-		sqlSession.update("mapper.member.userInfoUpdate", map);
-	}
-	
+	/*
+	 * @Override public void userInfoUpdate(UserVO userVO) throws
+	 * DataAccessException { Map<String,Object> map = new HashMap<String, Object>();
+	 * map.put("user_name", userVO.getUser_name()); map.put("user_email",
+	 * userVO.getUser_email()); map.put("user_phone", userVO.getUser_phone());
+	 * 
+	 * sqlSession.update("mapper.member.userInfoUpdate", map); }
+	 */
 
+	
+	
 	//이메일 중복체크
 	@Override
 	public int emailChk(UserVO userVO) throws DataAccessException {
@@ -174,19 +171,25 @@ public class MypageDAOImpl implements MypageDAO{
 		return result;
 	}
 
+	//비번 수정
 	@Override
-	public int selectCouponCount(String user_id) {
-		int result = sqlSession.selectOne("mapper.member.couponCount", user_id);
-		return result;
+	public void userUpdate(UserVO userVO) throws DataAccessException {
+		sqlSession.update("mapper.member.updateUser",userVO);
+		
 	}
 
-	
+	/*
+	 * @Override public void userInfoUpdate(UserVO userVO) throws
+	 * DataAccessException { return sqlSession.update("mapper.member.updateUser",
+	 * userVO);
+	 * 
+	 * }
+	 */
 
 
 	
 
 	
-
 
 	
 

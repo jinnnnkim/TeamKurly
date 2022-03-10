@@ -24,18 +24,17 @@ public interface MypageDAO {
 	
 	//쿠폰 조회
 	public List<CouponVO> selectAllCouponList(String user_id) throws DataAccessException;
-	
-	//쿠폰 등록
-	public int insertCoupon(CouponVO couponVO) throws DataAccessException;
+	//쿠폰 갯수
+	public int selectCouponCount(String user_id);
 	
 	//포인트 조회
-	public List<PointVO> selectAllPointList() throws DataAccessException;
+	public List<PointVO> selectAllPointList(String user_id) throws DataAccessException;
 	
 	//배송지관리 조회
 	public List<UserAddrVO> selectAllAddressList() throws DataAccessException;
 		
 	//주문내역 조회
-	public List<MyOrderVO> selectAllOrderList() throws DataAccessException;
+	public List<MyOrderVO> selectAllOrderList(String user_id) throws DataAccessException;
 
 	//주문내역 상세 정보 조회
 	public MyOrderVO orderDetailList(int ord_code) throws DataAccessException;
@@ -60,14 +59,17 @@ public interface MypageDAO {
 	//이미지 데이터 얻기
 	public List<AdgoodsImgVO> getGoodsImage(int ord_code) throws JsonProcessingException;
 	
+	//주소 삭제
 	public int deleteAddress(@RequestParam("addr_code") String addr_code) throws DataAccessException;
 	
 	//개인정보 수정
-	public void userInfoUpdate(UserVO userVO) throws DataAccessException;
+	public void userUpdate(UserVO userVO) throws DataAccessException;
 	
 	//이메일 중복체크
 	public int emailChk(UserVO userVO) throws DataAccessException;
-	public int selectCouponCount(String user_id);
+	
+
+	
 	
 	
 }

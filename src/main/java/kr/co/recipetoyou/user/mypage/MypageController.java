@@ -41,37 +41,34 @@ public interface MypageController {
 	
 	//주문내역 연도별 조회
 	public void searchOrderYear(Date ord_date, Model model) throws Exception; 
+	String searchOrderYear(int ord_date, Model model) throws Exception;
 	
 	//상품문의 조회
 	public ModelAndView listQnA(HttpServletRequest request, HttpServletResponse response) throws Exception;
 	
-	
 	//상품문의 삭제 
 	public ModelAndView removeQnA(@RequestParam("prod_inq_code") int prod_inq_code, HttpServletRequest	request, HttpServletResponse response) throws Exception;
 	 
-	
 	//상품리뷰 조회
 	public ModelAndView listReviews(HttpServletRequest request, HttpServletResponse response) throws Exception;
 
 	//배송지 수정
 	public ModelAndView addrModify(HttpServletRequest request, HttpServletResponse response) throws Exception;
-	
-	/*
-	 * //회원정보 수정 public ModelAndView userInfoUpdate(UserVO userVO,
-	 * HttpServletRequest request, HttpServletResponse response) throws Exception;
-	 */
-
-	String searchOrderYear(int ord_date, Model model) throws Exception;
 
 	//상품문의 수정
 	public ModelAndView modifyQnA(@RequestParam("prod_inq_code") int prod_inq_code, HttpServletRequest request, HttpServletResponse response) throws Exception;
 	
 	//배송지 삭제
 	public ModelAndView removeAddress(@RequestParam("addr_code") String addr_code, HttpServletRequest request, HttpServletResponse response) throws Exception;
-
+	
+	//이메일 중복성 체크
 	public String emailChk(String filterJSON, HttpServletResponse response, Model model) throws Exception;
 
-	public String userInfoUpdate(HttpServletRequest request, HttpSession session, UserVO userVO, Model model,RedirectAttributes rttr) throws Exception;
+	/*
+	 * //회원 정보 수정 //public String userInfoUpdate(HttpServletRequest request,
+	 * HttpSession session, UserVO userVO, Model model,RedirectAttributes rttr)
+	 * throws Exception; public void userInfoUpdate(UserVO userVO) throws Exception;
+	 */
 
 	public ModelAndView mypageUserInfo(UserVO userVO, HttpServletRequest request, HttpServletResponse response) throws Exception;
 
@@ -79,9 +76,14 @@ public interface MypageController {
 			throws Exception;
 
 
+	/*
+	 * //회원정보 수정 public ModelAndView userInfoUpdate(UserVO userVO,
+	 * HttpServletRequest request, HttpServletResponse response) throws Exception;
+	 */
 
-	
-	
+ 
+	//비밀번호 수정
+	public String userUpdate(HttpSession session, UserVO userVO,  RedirectAttributes arr)throws Exception;
 	
 	
 	
