@@ -44,8 +44,6 @@ public class GoodsControllerImpl implements GoodsController{
 	
 	private static final Logger logger = LoggerFactory.getLogger("GoodsControllerImpl.class");
 	
-	private static final String UPLOAD_DIR = "C:\\git-recipetoyouuu\\RecipeToYou\\src\\main\\webapp\\Resources\\Admin\\Img\\AdgoodsImg\\";
-
 	@Autowired
 	GoodsService goodsService;
 	

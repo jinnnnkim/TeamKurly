@@ -63,16 +63,6 @@ public class AdGoodsControllerImpl implements AdGoodsController {
 	
 	private static final Logger logger = LoggerFactory.getLogger("ProductControllerImpl.class");
 	
-	
-	  private static final String UPLOAD_DIR = "C:\\git-recipetoyouuuu\\RecipeToYou\\src\\main\\webapp\\Resources\\Admin\\Img\\AdgoodsImg\\";
-	 
-	
-
-	//private static final String UPLOAD_DIR = "C:/Users/jin/Documents/TeamKurly_3v/src/main/webapp/Resources/Admin/Img/AdgoodsImg/";
-
-	//private static final String UPLOAD_DIR = "C:\\git_workTeam\\src\\main\\webapp\\Resources\\Admin\\Img\\AdgoodsImg\\";
-	//private static final String UPLOAD_DIR = "C:\\wordspace_git\\src\\main\\webapp\\Resources\\Admin\\Img\\AdgoodsImg\\";
-
 	@Autowired
 	AdGoodsService adGoodsService;
 	
@@ -195,7 +185,7 @@ public class AdGoodsControllerImpl implements AdGoodsController {
 	@Override																				      //서버에서 뷰로 변환하는 데이터 인코딩
 	@RequestMapping(value = "/adgoods/uploadAction.do", produces = "application/json")
 	@ResponseBody
-	public ResponseEntity<List<AdgoodsImgVO>> uploadAction(@RequestParam MultipartFile[] uploadFile) throws Exception {
+	public ResponseEntity<List<AdgoodsImgVO>> uploadAction(@RequestParam MultipartFile[] uploadFile, HttpServletRequest request) throws Exception {
 		
 		
 		//이미지 파일 체크
@@ -231,8 +221,28 @@ public class AdGoodsControllerImpl implements AdGoodsController {
 		//2022-01-29 에 포함된 -를 / or  \로 변경
 		String datePath = str.replace("-", File.separator);
 		
+		String _path = request.getSession().getServletContext().getRealPath("/");
+		String separator = File.separator;
+		int index = 0;
+		String realWorkspace = "";
+		String[] arr= {};
+		
+		if(separator.equals("/")) {
+			arr = _path.split(separator); 
+		}else {
+			arr = _path.split("\\\\"); 
+		}
+		while(index < arr.length-1) {
+		  if(arr[index].equals("wtpwebapps")) {
+			  realWorkspace=arr[index+1];
+		  }
+		  index++;
+		}
+		_path = _path.substring(0, _path.indexOf("\\", 1));
+		_path += separator+realWorkspace+"/src/main/webapp/Resources/Admin/Img/AdgoodsImg/";
+		
 		//폴더 생성
-		File uploadPath = new File(UPLOAD_DIR, datePath);
+		File uploadPath = new File(_path, datePath);
 		
 		if(uploadPath.exists() == false) {
 			uploadPath.mkdirs();
@@ -294,16 +304,35 @@ public class AdGoodsControllerImpl implements AdGoodsController {
 	@Override
 	@RequestMapping(value = "/adgoods/deleteFile.do")
 	@ResponseBody
-	public ResponseEntity<String> deleteAction(String fileName, int prod_code) throws Exception {
+	public ResponseEntity<String> deleteAction(String fileName, int prod_code, HttpServletRequest request) throws Exception {
 		
 		logger.info("deleteFile......." + fileName);
 		
 		File file = null;
 		
 		try{
+			String _path = request.getSession().getServletContext().getRealPath("/");
+			String separator = File.separator;
+			int index = 0;
+			String realWorkspace = "";
+			String[] arr= {};
+			
+			if(separator.equals("/")) {
+				arr = _path.split(separator); 
+			}else {
+				arr = _path.split("\\\\"); 
+			}
+			while(index < arr.length-1) {
+			  if(arr[index].equals("wtpwebapps")) {
+				  realWorkspace=arr[index+1];
+			  }
+			  index++;
+			}
+			_path = _path.substring(0, _path.indexOf("\\", 1));
+			_path += separator+realWorkspace+"/src/main/webapp/Resources/Admin/Img/AdgoodsImg/";
 			
 			//썸네일 파일 삭제
-			file = new File(UPLOAD_DIR+URLDecoder.decode(fileName, "UTF-8"));
+			file = new File(_path+URLDecoder.decode(fileName, "UTF-8"));
 			
 			file.delete();
 			
@@ -334,9 +363,29 @@ public class AdGoodsControllerImpl implements AdGoodsController {
 	@Override
 	@RequestMapping(value = "/adgoods/getImageInfo.do")
 	@ResponseBody
-	public ResponseEntity<byte[]> getadGoodsImage(String fileName) throws Exception {
+	public ResponseEntity<byte[]> getadGoodsImage(String fileName, HttpServletRequest request) throws Exception {
 		
-		File file = new File(UPLOAD_DIR+fileName);
+		String _path = request.getSession().getServletContext().getRealPath("/");
+		String separator = File.separator;
+		int index = 0;
+		String realWorkspace = "";
+		String[] arr= {};
+		
+		if(separator.equals("/")) {
+			arr = _path.split(separator); 
+		}else {
+			arr = _path.split("\\\\"); 
+		}
+		while(index < arr.length-1) {
+		  if(arr[index].equals("wtpwebapps")) {
+			  realWorkspace=arr[index+1];
+		  }
+		  index++;
+		}
+		_path = _path.substring(0, _path.indexOf("\\", 1));
+		_path += separator+realWorkspace+"/src/main/webapp/Resources/Admin/Img/AdgoodsImg/";
+		
+		File file = new File(_path+fileName);
 		
 		ResponseEntity<byte[]> result = null;
 		
@@ -388,12 +437,31 @@ public class AdGoodsControllerImpl implements AdGoodsController {
 			List<Path> pathList = new ArrayList();
 			
 			fileList.forEach(agvo ->{
+				String _path = request.getSession().getServletContext().getRealPath("/");
+				String separator = File.separator;
+				int index = 0;
+				String realWorkspace = "";
+				String[] arr= {};
+				
+				if(separator.equals("/")) {
+					arr = _path.split(separator); 
+				}else {
+					arr = _path.split("\\\\"); 
+				}
+				while(index < arr.length-1) {
+				  if(arr[index].equals("wtpwebapps")) {
+					  realWorkspace=arr[index+1];
+				  }
+				  index++;
+				}
+				_path = _path.substring(0, _path.indexOf("\\", 1));
+				_path += separator+realWorkspace+"/src/main/webapp/Resources/Admin/Img/AdgoodsImg/";
 				//원본 이미지
-				Path path = Paths.get(UPLOAD_DIR, agvo.getUploadPath(), agvo.getUuid()+"_"+agvo.getFileName());
+				Path path = Paths.get(_path, agvo.getUploadPath(), agvo.getUuid()+"_"+agvo.getFileName());
 				pathList.add(path);
 				
 				//썸네일 이미지
-				path = Paths.get(UPLOAD_DIR, agvo.getUploadPath(), "s_"+agvo.getUuid()+"_"+agvo.getFileName());
+				path = Paths.get(_path, agvo.getUploadPath(), "s_"+agvo.getUuid()+"_"+agvo.getFileName());
 				pathList.add(path);
 			});
 			
@@ -421,8 +489,29 @@ public class AdGoodsControllerImpl implements AdGoodsController {
 		try{ 
 			String fileName = upload.getOriginalFilename(); 
 			byte[] bytes = upload.getBytes(); 
-			String ckUploadPath = UPLOAD_DIR+ uid + "_" + fileName;
-			File folder = new File(UPLOAD_DIR); 
+			
+			String _path = request.getSession().getServletContext().getRealPath("/");
+			String separator = File.separator;
+			int index = 0;
+			String realWorkspace = "";
+			String[] arr= {};
+			
+			if(separator.equals("/")) {
+				arr = _path.split(separator); 
+			}else {
+				arr = _path.split("\\\\"); 
+			}
+			while(index < arr.length-1) {
+			  if(arr[index].equals("wtpwebapps")) {
+				  realWorkspace=arr[index+1];
+			  }
+			  index++;
+			}
+			_path = _path.substring(0, _path.indexOf("\\", 1));
+			_path += separator+realWorkspace+"/src/main/webapp/Resources/Admin/Img/AdgoodsImg/";
+			
+			String ckUploadPath = _path+ uid + "_" + fileName;
+			File folder = new File(_path); 
 			if(!folder.exists()){ 
 				try{ folder.mkdirs(); 
 				}catch(Exception e){ 
@@ -457,7 +546,27 @@ public class AdGoodsControllerImpl implements AdGoodsController {
 	public void ckSubmit(@RequestParam(value="uid") String uid , @RequestParam(value="fileName") String fileName 
 			, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{ 
 		
-		String sDirPath = UPLOAD_DIR + uid + "_" + fileName; 
+		String _path = request.getSession().getServletContext().getRealPath("/");
+		String separator = File.separator;
+		int index = 0;
+		String realWorkspace = "";
+		String[] arr= {};
+		
+		if(separator.equals("/")) {
+			arr = _path.split(separator); 
+		}else {
+			arr = _path.split("\\\\"); 
+		}
+		while(index < arr.length-1) {
+		  if(arr[index].equals("wtpwebapps")) {
+			  realWorkspace=arr[index+1];
+		  }
+		  index++;
+		}
+		_path = _path.substring(0, _path.indexOf("\\", 1));
+		_path += separator+realWorkspace+"/src/main/webapp/Resources/Admin/Img/AdgoodsImg/";
+		
+		String sDirPath = _path + uid + "_" + fileName; 
 		File imgFile = new File(sDirPath); 
 		if(imgFile.isFile()){ 
 			byte[] buf = new byte[1024]; 

@@ -44,13 +44,14 @@ public interface AdGoodsController {
 	public ModelAndView uploadGoodsRegister(AdGoodsVO agvo, RedirectAttributes rttr) throws Exception;
 	
 	//이미지 업로드
-	public ResponseEntity<List<AdgoodsImgVO>> uploadAction(@RequestParam MultipartFile[] uploadFile) throws Exception; 
+	public ResponseEntity<List<AdgoodsImgVO>> uploadAction(MultipartFile[] uploadFile, HttpServletRequest reuqest)
+			throws Exception; 
 	
 	//이미지 삭제
-	public ResponseEntity<String> deleteAction(String fileName, int prod_code) throws Exception;
+	public ResponseEntity<String> deleteAction(String fileName, int prod_code, HttpServletRequest request) throws Exception;
 	
 	//이미지 출력
-	public ResponseEntity<byte[]> getadGoodsImage(String fileName) throws Exception;
+	public ResponseEntity<byte[]> getadGoodsImage(String fileName, HttpServletRequest request) throws Exception;
 	
 	//이미지 정보 반환
 	public ResponseEntity<List<AdgoodsImgVO>> getImageList(int prod_code) throws Exception;
@@ -68,5 +69,11 @@ public interface AdGoodsController {
 	//ck이미지 전송
 	public void ckSubmit(@RequestParam(value="uid") String uid , @RequestParam(value="fileName") String fileName 
 			, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException;
+
+	
+
+	
+
+	
 	
 }
