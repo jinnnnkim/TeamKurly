@@ -10,7 +10,6 @@
 		<result property="reg_date" column="reg_date"/>
 		<result property="content" column="content"/>
 		<result property="user_id" column="user_id"/>
-		<result property="review_img" column="review_img"/>
 	</resultMap>
 	
 	<resultMap type="adInquiryVO" id="adinqResult">
@@ -72,6 +71,14 @@
 			from tb_prod_inq
 			where
 		]]>	
+			<choose>
+				<when test="keyword != null and searchOption == 'inq_title'.toString()">
+					inq_title like '%'||#{keyword}||'%' and
+				</when>
+				<when test="keyword != null and searchOption == 'id'.toString()">
+					user_id like '%'||#{keyword}||'%' and
+				</when>
+			</choose>
 		<![CDATA[
 			rownum <= #{page} * #{pageSize}
 			)
@@ -129,6 +136,14 @@
 			from tb_prod_review
 			where
 		]]>	
+			<choose>
+				<when test="keyword != null and searchOption == 'title'.toString()">
+					title like '%'||#{keyword}||'%' and
+				</when>
+				<when test="keyword != null and searchOption == 'id'.toString()">
+					user_id like '%'||#{keyword}||'%' and
+				</when>
+			</choose>
 		<![CDATA[
 			rownum <= #{page} * #{pageSize}
 			)
