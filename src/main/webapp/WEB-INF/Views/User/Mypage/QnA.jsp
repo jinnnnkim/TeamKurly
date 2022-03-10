@@ -51,12 +51,17 @@
 				<c:forEach var="qnaList" items="${qnaList}">
 				<table class="QnA_content">
 					<tr>
-						<td class="content_img"><img id="thumbnail"
-								src="/recipetoyou/Resources/User/Img/Mypage2/thumbnail.jpg"></td>
 						<td class="content_prodName">${qnaList.prod_name}</td>
 						<td class="content_title" onclick="Open()">${qnaList.inq_title}</td>
 						<td class="content_date">${qnaList.inq_reg_date}</td>
-						<td class="content_reply">${qnaList.inq_status}</td>
+							<c:choose>
+								<c:when test="${qnaList.inq_level eq 1 }">
+								<td class="content_reply">답변 완료</td>
+								</c:when>
+							<c:when test="${qnaList.inq_level ne 1 }">
+								<td class="content_reply">답변 대기</td>
+							</c:when>
+							</c:choose>
 					</tr>
 				</table>
 				<div id="content">
@@ -82,7 +87,7 @@
 		</div>
 		<!-- content -->
 	</form>
-	
+
 	
 </body>
 </html>
