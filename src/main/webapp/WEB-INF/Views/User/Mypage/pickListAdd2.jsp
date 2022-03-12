@@ -68,7 +68,7 @@
 											</c:forEach>
 										</select>&nbsp;개	
 									</div>
-									
+								
 									<div class="button_two">	<!-- 쿼리스트링으로 넘어가는 값은 파라미터=값(파라미터 이름으로 적용) -->
 										<a href="${contextPath}/removePick.do?prod_name=${pickList.prod_name}">
 											<button class="btn_delete">삭제</button>
@@ -85,8 +85,6 @@
 							</div>
 						</div>
 						<!-- subject -->
-						
-			
 						
 						<!-- button_two -->
 					</div>
@@ -135,33 +133,7 @@
 		}
 	});
 	
-	function cartInsert(){
-		var check = confirm("상품이 장바구니에 담겼습니다. 확인하시겠습니까?");
-		if(check) {
-		var form1 = document.querySelector(".form1");
-	/* 	$.ajax({
-			type: "post",
-			async: true,
-			url: "http://localhost:8080/recipetoyou/community/communityRecipeMain.do",
-			dataType: "text",
-			data: {type: _type},
-			success: function(result) {
-				
-			},
-			error : function(data, textStatus) {			
-				alert("에러가 발생했습니다.")	
-			},
-			complete : function(data, textStatus) {			
-			}					
-		 }); 
-		
 	
-		}else{
-			return false;
-		} */
-		}
-		
-	}
 	 
 	
 	

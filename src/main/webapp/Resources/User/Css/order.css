@@ -4,18 +4,15 @@ table td{
 	color:#333;
 }
 .wrap {
-    
 	max-width: 100%;
 }
 
 .content {
 	width: 1080px;
 	margin: 0 auto;
-	
 }
 
  .title {
-
     font-weight: 700;
     font-size: 15px;
     line-height: 35px;
@@ -30,7 +27,6 @@ table td{
 }
 .ordContainer{
 	margin-top:60px;
-
 }
 
 .ordContainer table{
@@ -149,7 +145,6 @@ select{
 .port td label{
 	display:inline-block;
 	width:250px;
-	
 }
 .ordTxt{
 	display:inline-block;

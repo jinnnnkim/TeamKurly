@@ -2,7 +2,6 @@
 
 .wrap{
 	width:100%;
-
 }
 
 .main{
@@ -64,12 +63,10 @@
 .offerwriteTable .offerImg td .offerImgDiv{
 	font-size:14px;
 }
-
 .offerwriteTable tr.offerImg td{
 	border:1px solid #f4f4f4;
 	
 }
-
 .offerWriteTable .offerImg td span{
 	display:inline-block;
 	width:35px;

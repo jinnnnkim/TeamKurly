@@ -24,8 +24,6 @@ public class ReviewVO {
 	
 
 	
-	
-	
 	public GoodsVO getGoodsVO() {
 		return goodsVO;
 	}

@@ -111,25 +111,6 @@ public class MypageDAOImpl implements MypageDAO{
 		return reviewList;
 	}
 
-	/*
-	 * //회원정보 수정
-	 * 
-	 * @Override public void updateUser(UserVO userVO) throws DataAccessException {
-	 * sqlSession.update("mapper.member.updateUser", userVO);
-	 * 
-	 * }
-	 */
-
-	/*
-	 * //이미지 정보 얻기
-	 * 
-	 * @Override public List<AdgoodsImgVO> getGoodsImage(int prod_code) throws
-	 * JsonProcessingException {
-	 * 
-	 * return sqlSession.selectList("mapper.member.getImageList", prod_code);
-	 * 
-	 * }
-	 */
 	@Override
 	public List<AdgoodsImgVO> getGoodsImage(int ord_code) throws JsonProcessingException {
 		return sqlSession.selectList("mapper.member.getImageList", ord_code);
@@ -155,16 +136,6 @@ public class MypageDAOImpl implements MypageDAO{
 	}
 	
 	
-	//개인정보수정
-	/*
-	 * @Override public void userInfoUpdate(UserVO userVO) throws
-	 * DataAccessException { Map<String,Object> map = new HashMap<String, Object>();
-	 * map.put("user_name", userVO.getUser_name()); map.put("user_email",
-	 * userVO.getUser_email()); map.put("user_phone", userVO.getUser_phone());
-	 * 
-	 * sqlSession.update("mapper.member.userInfoUpdate", map); }
-	 */
-
 	
 	
 	//이메일 중복체크
@@ -175,31 +146,14 @@ public class MypageDAOImpl implements MypageDAO{
 	}
 
 	
-
-	//비번 수정
-	/*
-	 * @Override public void userUpdate(UserVO userVO) throws DataAccessException {
-	 * sqlSession.update("mapper.member.updateUser",userVO);
-	 * 
-	 * }
-	 */
-
-	/*
-	 * @Override public void userInfoUpdate(UserVO userVO) throws
-	 * DataAccessException { return sqlSession.update("mapper.member.updateUser",
-	 * userVO);
-	 * 
-	 * }
-	 */
-
-	//예진
+	//예진-회원정보수정
 	@Override
 	public void pwUpdate(UserVO userVO) throws DataAccessException {
 		sqlSession.update("mapper.member.updateUser",userVO);
 		
 	}
 
-	//탈퇴
+	//회원탈퇴
 	@Override
 	public int WithdrawUser(@RequestParam("user_id")String user_id) throws DataAccessException {
 		int result = sqlSession.delete("mapper.member.withdrawUser", user_id);

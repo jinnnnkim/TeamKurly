@@ -83,22 +83,6 @@ request.setCharacterEncoding("UTF-8");
 				<a href="#">
 					<img alt="배송지역 검색" src="/recipetoyou/Resources/User/Img/Notice/deliver_5.jpg"  class="deliver_img_search">
 				</a>
-			
-			
-			<!--  주소검색 -  다음 오픈소스 활용 예정 	
-				<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-					<script>
-	    			new daum.Postcode({
-	       				 oncomplete: function('.deliver_img_search') {
-	            // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분입니다.
-	            // 예제를 참고하여 다양한 활용법을 확인해 보세요.
-	        			}
-	   			 }).open();
-				</script>
-				
-				 -->
-				
-				
 				
 				<img alt="주 6일 샛별 배송" src="/recipetoyou/Resources/User/Img/Notice/deliver_6.jpg" class="deliver_img_in">
 				<img alt="배송 이미지 하단" src="/recipetoyou/Resources/User/Img/Notice/deliver_7.jpg" class="deliver_img_bottom">

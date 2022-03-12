@@ -107,12 +107,6 @@
 	</div>
 	<script type="text/javascript">
 	$(document).ready(function(){
-		
-		//검색 타입 selected
-		/* const selectedType = '<c:out value="${pm.vo.type}"/>';
-		if(selectedType != ""){
-			$("select[name='type']").val(selectedType).attr("selected", "selected");
-		} */
 											
 		//이미지 삽입
 		$(".image_wrap").each(function(i, obj){
@@ -126,8 +120,6 @@
 				
 				const fileCallPath = encodeURIComponent(uploadPath + "/s_" + uuid + "_" + fileName);
 				console.log("fileCallPath:" + fileCallPath);
-				
-				//$(this).find("img").attr('src', '${contextPath}/user/newGoodsPage.do?fileName=' + fileCallPath);
 				
 				}else {
 					$(this).find("img").attr('src', '/recipetoyou/Resources/Admin/Img/SubgoodsImg/ready.jpg');

@@ -16,7 +16,6 @@ body{
     margin: 0 auto;
 }
 
-
 .topBar {			
 	width: 100%;
 	position: relative;
@@ -72,7 +71,6 @@ body{
 	 height: 22px;
 }
 
-
 .logo img {		
 	position: absolute;
     left: 460px;
@@ -86,7 +84,6 @@ body{
 	width: 100%;
 	float: none;
 	padding: 10px 0 10px 0;
-	
 }
 
 #catagoryMenu li {
@@ -112,7 +109,6 @@ body{
 	outline: none;
 	top: -55px;
 	right: 175px;
-	
 }
 
 .search i {

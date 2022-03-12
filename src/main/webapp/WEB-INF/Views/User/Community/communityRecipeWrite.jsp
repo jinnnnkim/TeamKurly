@@ -40,12 +40,9 @@
 						<div class="cate">
 							<span>Category </span> 
 							<select class="cate1">
-							
 							</select> 
 							<select  class="cate2" name="recipe_cate_code">
-								
 							</select> 
-						
 						</div>
 						<div class="recipeIngred">
 							<span>Ingredient</span>
@@ -53,12 +50,9 @@
 							placeholder="나만의 레시피에 들어가는 요리 재료를 적어주세요. ex)미역국에 필요한 재료"></textarea>
 						</div>
 					
-							
-	
 					</div>
 						<div class="contents">
 							<h3>대표이미지 등록</h3>
-						
 							<input type="file" name="recipe_img"/>
 					</div>
 					
@@ -73,7 +67,6 @@
 			                    filebrowserUploadUrl: "${contextPath}/mine/imageUpload.do"
 			                 });
 							CKEDITOR.instances.recipe_content.getData();
-							
 					</script>
 				<input type="hidden" name="prod_code"/>
 					

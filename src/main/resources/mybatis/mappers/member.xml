@@ -172,7 +172,7 @@
 	
 	
 	<!-- 찜하기 상품 삭제하기 -->
-	<select id="deletePick" parameterType="String">
+	<select id="deletePick"  resultMap="cartPickResult" parameterType="String">
 		<![CDATA[
 			DELETE FROM TB_PROD
 			WHERE 

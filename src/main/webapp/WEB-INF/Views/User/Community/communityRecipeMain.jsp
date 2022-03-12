@@ -162,22 +162,6 @@
 			frmSearch.action = "${contextPath}/community/communityRecipeMain.do";
 			frmSearch.submit();
 
-			/* $.ajax({
-				type: "post",
-				async: true,
-				url: "http://localhost:8080/recipetoyou/community/communityRecipeMain.do",
-				dataType: "text",
-				data: {type: _type},
-				success: function(result) {
-					
-				},
-				error : function(data, textStatus) {			
-					alert("에러가 발생했습니다.")	
-				},
-				complete : function(data, textStatus) {			
-				}					
-			 }); */
-			
 		});
 	});
 	</script>

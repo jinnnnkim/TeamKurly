@@ -74,7 +74,7 @@ public class UserControllerImpl implements UserController{
 	
 	@RequestMapping(value = "/user/*Form.do", method = RequestMethod.GET)
 	 public ModelAndView form(@RequestParam(value = "result", required = false) String result, HttpServletRequest request, HttpServletResponse response) throws Exception{
-	 	//String viewName = getViewName(request);
+	 	
 		String viewName = (String)request.getAttribute("viewName");		
 	 	ModelAndView mav = new ModelAndView(viewName);
 	 	mav.addObject("result", result);
@@ -123,25 +123,10 @@ public class UserControllerImpl implements UserController{
 	public ModelAndView updateAction(@ModelAttribute UserVO vo, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		System.out.println("controller 사용자 생년월일:"+vo.getUser_birth());
 		
-		/*
-		 * logger.info(userVO.toString()); UserVO oldUserInfo =
-		 * userService.getUserInfo(userVO.getUser_id());
-		 * logger.info(oldUserInfo.toString());
-		 */
 		request.setCharacterEncoding("utf-8");
 		userService.updateUserInfo(vo);
 		
-		/*
-		 * vo.setUser_id(oldUserInfo.getUser_id());
-		 * vo.setUser_name(oldUserInfo.getUser_name());
-		 * vo.setUser_pw(oldUserInfo.getUser_pw());
-		 * vo.setUser_grade(oldUserInfo.getUser_grade());
-		 * vo.setUser_email(oldUserInfo.getUser_email());
-		 * vo.setUser_phone(oldUserInfo.getUser_phone());
-		 * vo.setUser_addr(oldUserInfo.getUser_addr());
-		 * vo.setEmail_agree(oldUserInfo.getEmail_agree());
-		 * vo.setSms_agree(oldUserInfo.getSms_agree());
-		 */
+		
 		System.out.println("update 통과 확인");
 		
 		ModelAndView mav = new ModelAndView("redirect:/user/listadUsers.do");

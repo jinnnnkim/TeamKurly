@@ -19,17 +19,6 @@ public class UserDAOImpl implements UserDAO {
 	
 	private static final String NAMESPACE = "mapper.user"; 	//mapper 구분하는 값 namespace
 	
-	/*
-	 * @Override public List<UserVO> selectAllUserList() throws DataAccessException
-	 * {
-	 * 
-	 * List<UserVO> userList =
-	 * sqlSession.selectList(NAMESPACE+".selectAllUserList");
-	 * 
-	 * return userList; }
-	 */
-
-	
 	//페이징
 	@Override
 	public List<UserVO> listPage(int page) throws Exception {

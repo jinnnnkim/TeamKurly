@@ -30,7 +30,6 @@ public class CartPickDAOImpl implements CartPickDAO {
 	public List<PickVO> selectAllCartPickList(String user_id) throws DataAccessException {
 		
 		List<PickVO> pickList = sqlSession.selectList("mapper.member.selectAllCartPickList",user_id);
-		System.out.println("select:"+pickList.toString());
 		return pickList;
 	}
 	
@@ -51,12 +50,6 @@ public class CartPickDAOImpl implements CartPickDAO {
 	}
 	
 	//마이페이지 2. 장바구니 조회
-	/*
-	 * @Override public List<ProdVO> selectAllCartList() throws DataAccessException
-	 * { List<ProdVO> cartList =
-	 * sqlSession.selectList("mapper.member.selectAllCartList"); return cartList; }
-	 */
-	
 	@Override
 	public List<ProdVO> selectAllCartList(String user_id) throws DataAccessException {
 		System.out.println("listCarts DAO 호출");
@@ -102,70 +95,18 @@ public class CartPickDAOImpl implements CartPickDAO {
 			
 	}
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	//찜 담기
-	@Override
-	public int insertFavAdd(FavVO favVO) throws DataAccessException {
-		int result = sqlSession.insert("mapper.user.insertFavAdd", favVO);
-		return result;
-	}
-
-	@Override
-	public int insertCartPick(CartPickVO__ cartPickVO) throws DataAccessException {
-		int result = sqlSession.insert("mapper.cartPick.insertCartPick", cartPickVO);
-		return result;
-	}
-
-	@Override
-	public int deleteCartPick(String id) throws DataAccessException {
-		int result = sqlSession.delete("mapper.cartPick.deleteCartPick", id);
-		return result;
-	}
-
-	@Override
-	public List<CartPickVO__> selectAllCartPickList__() throws DataAccessException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-
-	@Override
-	public int insertCartAdd(CartAddVO cartAddVO) throws DataAccessException {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
+	//cartPick.xml
 	@Override
 	public int selectCheckCartProd(int prod_code) {
 		return sqlSession.selectOne("mapper.cartPick.selectCheckCartProd", prod_code);
 	}
-
+	//cartPick.xml
 	@Override
 	public UserAddrVO selectAddr(String user_id) {
-		// TODO Auto-generated method stub
 		return sqlSession.selectOne("mapper.cartPick.selectAddr",user_id);
 	}
-
-	
-
+	  
+	 
 	
 
 }

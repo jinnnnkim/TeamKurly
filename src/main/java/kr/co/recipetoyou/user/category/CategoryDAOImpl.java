@@ -36,13 +36,7 @@ public class CategoryDAOImpl implements CategoryDAO {
 	public List<AdgoodsImgVO> getBargainImage(int prod_code) throws JsonProcessingException {
 		return sqlSession.selectList(NAMESPACE+".getBargainList", prod_code);
 	}
-		
-	//상품 정보
-	/*
-	 * @Override public CategoryVO getGoodsInfo(int prod_code) throws
-	 * JsonProcessingException { return
-	 * sqlSession.selectOne(NAMESPACE+".getGoodsInfo", prod_code); }
-	 */
+	
 	
 	  @Override public CategoryVO getGoodsInfo(int prod_code) throws
 	  JsonProcessingException { return

@@ -54,7 +54,6 @@ public interface MypageDAO {
 	//상품후기 조회
 	public List<ReviewVO> selectAllReviewList() throws DataAccessException;
 	
-	/* public void updateUser(UserVO userVO) throws DataAccessException; */
 	
 	//이미지 데이터 얻기
 	public List<AdgoodsImgVO> getGoodsImage(int ord_code) throws JsonProcessingException;
@@ -62,11 +61,6 @@ public interface MypageDAO {
 	//주소 삭제
 	public int deleteAddress(@RequestParam("addr_code") String addr_code) throws DataAccessException;
 	
-	//개인정보 수정
-	//public void userUpdate(UserVO userVO) throws DataAccessException;
-	
-	//개인정보 수정
-	//-public void userInfoUpdate(UserVO userVO) throws DataAccessException;
 	
 	//탈퇴
 	public int WithdrawUser(@RequestParam("user_id") String user_id) throws DataAccessException;
@@ -74,7 +68,7 @@ public interface MypageDAO {
 	//이메일 중복체크
 	public int emailChk(UserVO userVO) throws DataAccessException;
 	
-    //예진
+    //예진- 회원정보수정
 	public void pwUpdate(UserVO userVO) throws DataAccessException;
 	
 	

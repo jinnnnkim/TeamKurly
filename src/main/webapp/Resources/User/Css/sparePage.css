@@ -192,21 +192,14 @@ span.mean {
 	background:#fafafa;
 	transition:0.3s;
 }
-
-
-
 /* saleGoodPage */
-
 .saleBanner img {
 	margin: 15px 15px -10px;
 	width: 1050px;
 	height: 400px;
 } 
 
-
-
 /* goodsView */
-
 #main {
 	position:relative;
     width: 1050px;
@@ -217,10 +210,7 @@ span.mean {
 	width: 1050px;
 	height: 100%;
 	display: flex;
-
 }
-
-
 .inner_view img {
 	width: 430px;
 	height: 552px;
@@ -267,7 +257,6 @@ span .dc_price {
 }
 
 span .won {
-
 	font-size: 18px;
 }
 
@@ -285,7 +274,6 @@ span .won {
 	margin-top: 19px;
 	padding-bottom: 19px;
 	border-top: 1px solid #f4f4f4;
-	
 }
 
 .goods_info .tit {
@@ -341,7 +329,6 @@ span .won {
 	font-size: 14px;
 	color: #666;
 	line-height: 20px;
-	
 } 
 
 .inp {
@@ -352,7 +339,6 @@ span .won {
 	font-size: 12px;
 	color: #000000;
 	text-align: center;
-	
 }
  
 
@@ -362,7 +348,6 @@ span .won {
 	border: 1px solid #dddfe1;
 	border-radius: 3px;
 	padding: 3px;
-	
 }
 
 .inner_option .btn {
@@ -372,7 +357,6 @@ span .won {
 }
 
 .total {
-	
 	padding: 30px 0 0;
 	border-top: 1px solid #f4f4f4;
 	overflow: hidden;
@@ -400,7 +384,6 @@ span .won {
 	vertical-align: 1px;
 }
 
-
 .pick_cart {
 	display: flex;
 	float: right;
@@ -412,14 +395,11 @@ span .won {
 	border: 1px solid #ddd;
 	border-radius: 3px;
 	cursor: pointer;
-	
 }
 
 .pick_btn i {
 	font-size: 30px;
 }
-
-
 .pick_cart .wrap_btn {
 	margin-left: 10px;
 	width: 435px;
@@ -843,10 +823,6 @@ span.sub_inn_in {
 	margin-left:25px;
 }
 
-.content .title{
-	
-}
-
 .content .title span{
 	font-size:13px;
 	font-weight:400;
@@ -868,9 +844,6 @@ span.sub_inn_in {
 	margin-bottom:0;
 }
 
-.Contsearch .searchInput {
-	
-}
 .Contsearch i {
 	width:27px;
 	height:25px;
@@ -881,10 +854,6 @@ span.sub_inn_in {
 	margin:0;
 	position:absolute;
 	right:2px;
-}
-
-.reviewTable{
-	
 }
 
 .reviewTable table{
@@ -935,10 +904,6 @@ span.sub_inn_in {
 	padding-left:15px;
 }
 
-.QandATable{
-	
-}
-
 .QandATable table{
 	border-top:3px solid purple;
 
@@ -950,7 +915,6 @@ span.sub_inn_in {
 .QandATable th,td{
 	padding:20px 0 20px 0;
 }
-
 
 .QandATable .title{
 	width:625px;
@@ -1017,8 +981,6 @@ span.sub_inn_in {
   animation: dropHeader 0.3s;
 }
 
-
-
 @keyframes dropHeader {
   0% {
     top: -5rem;
@@ -1027,14 +989,6 @@ span.sub_inn_in {
     top:-2px;
   }
 }
-
-/* .reviewTable button,
-.QandATable button{
-	width:75px;
-	height:30px;
-	border:1px solid #5f0080;
-	background:white;
-} */
 
 .writeBtn{
 	text-align:right;
@@ -1080,10 +1034,6 @@ span.sub_inn_in {
   opacity: 1;
   z-index: 1000;
   transition: all 0.5s;
-}
-
-#close{
-	
 }
 
 .window {

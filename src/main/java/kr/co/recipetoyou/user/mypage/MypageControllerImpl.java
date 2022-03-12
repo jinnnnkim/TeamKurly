@@ -88,7 +88,7 @@ public class MypageControllerImpl implements MypageController{
 			if(userVO.getUser_id() == null || userVO.getUser_id() == "") {
 				user_id = "";
 			}else {
-				System.out.println("write user_id:"+userVO.getUser_id());
+				
 				user_id = userVO.getUser_id();
 			}
 		}
@@ -161,7 +161,6 @@ public class MypageControllerImpl implements MypageController{
 
 		logger.info("info : "+ viewName); logger.debug("debug : "+ viewName);
 
-		System.out.println("addrlist Controller 호출"); 
 		List<UserAddrVO> addressList = mypageService.listAddress();
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("addressList", addressList);
@@ -270,7 +269,7 @@ public class MypageControllerImpl implements MypageController{
 			if(userVO.getUser_id() == null || userVO.getUser_id() == "") {
 				user_id = "";
 			}else {
-				System.out.println("write user_id:"+userVO.getUser_id());
+				
 				user_id = userVO.getUser_id();
 			}
 		}
@@ -315,7 +314,7 @@ public class MypageControllerImpl implements MypageController{
 			if(userVO.getUser_id() == null || userVO.getUser_id() == "") {
 				user_id = "";
 			}else {
-				System.out.println("write user_id:"+userVO.getUser_id());
+				
 				user_id = userVO.getUser_id();
 			}
 		}
@@ -344,7 +343,7 @@ public class MypageControllerImpl implements MypageController{
         return mav;
 	}
 
-	//주문내역 조회
+	//연도별 주문내역 조회
 	@Override
 	public void searchOrderYear(Date ord_date, Model model) throws Exception {
 		// TODO Auto-generated method stub
@@ -356,9 +355,7 @@ public class MypageControllerImpl implements MypageController{
 	  @Override
 	  @RequestMapping(value="/mypageUserInfoProcess.do", method=RequestMethod.POST)
 	  public String mypageUserInfoProcess(UserVO userVO, HttpServletRequest request, HttpServletResponse response) throws Exception {
-		  System.out.println("userVO" + userVO.getUser_id());
-		  System.out.println("userVO" + userVO.getUser_pw());
-		  return "redirect:/mypageUserInfo.do";
+		  	return "redirect:/mypageUserInfo.do";
 		  }
 	  
 	  //세션
@@ -374,7 +371,7 @@ public class MypageControllerImpl implements MypageController{
 				if(userVO.getUser_id() == null || userVO.getUser_id() == "") {
 					user_id = "";
 				}else {
-					System.out.println("info user_id:"+userVO.getUser_id());
+					
 					user_id = userVO.getUser_id();
 					userVO.setUser_id(user_id);
 				}
@@ -385,20 +382,6 @@ public class MypageControllerImpl implements MypageController{
 		  return mav;
 	  }
 	 
-			
-	
-	  //회원정보수정로직  
-		/*
-		 * @Override
-		 * 
-		 * @RequestMapping(value="/mypageUserinfoUpdate.do", method=RequestMethod.POST)
-		 * public String userInfoUpdate(HttpServletRequest request, HttpSession session,
-		 * UserVO userVO, Model model, RedirectAttributes rttr) throws Exception{
-		 * mypageService.userInfoUpdate(userVO); session.invalidate();
-		 * rttr.addFlashAttribute("msg", "정보 수정이 완료되었습니다.");
-		 * return"redirect:/mypageUserInfoPwdCheck.do"; }
-		 */
-
 	
 	//이메일 유효성 체크
 	@Override
@@ -428,19 +411,17 @@ public class MypageControllerImpl implements MypageController{
 
 	
 
-	//예진
+	//예진 - 회원정보 수정
 	@Override
 	@RequestMapping(value="/UserUpdate.do", method=RequestMethod.POST)
 	public String modify(@ModelAttribute("userVO") UserVO userVO, HttpSession session, RedirectAttributes ra) throws Exception {
 		
-		System.out.println(userVO.getUser_id() + "" +  userVO.getUser_pw());
-		
-		
+	
 		logger.info("수정");
 		mypageService.pwUpdate(userVO);
 		session.invalidate();
 		ra.addFlashAttribute("result", "정보 수정이 완료되었습니다.");
-		return "redirect:/mypageUserInfoPwdCheck.do"; 
+		return "redirect:/main.do"; 
 	}
 
 

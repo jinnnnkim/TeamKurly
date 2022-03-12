@@ -66,10 +66,6 @@
  				<!-- goods_info 태그 - 상품 리스크 상위 태그 -->
  					<c:forEach var="goods" items="${goodsInfo}" >
 						<div class="goods_info">
-							<%-- <a href="${contextPath}/goodsView.do?prod_code=${goods.prod_code}">
-								<img alt="goods1"
-								src="/recipetoyou/Resources/User/Img/goods1.jpg">
-							</a>	 --%>
 							
 							<div class="image_wrap" data-prod_code="${goods.imageList[0].prod_code}" data-path="${goods.imageList[0].uploadPath}"
 												data-uuid="${goods.imageList[0].uuid}" data-filename="${goods.imageList[0].fileName}">

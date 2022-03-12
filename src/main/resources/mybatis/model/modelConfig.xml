@@ -72,7 +72,6 @@
 		
 		<typeAlias type="kr.co.recipetoyou.board.recipe.RecipeVO" alias="recipeVO"/>
 		<typeAlias type="kr.co.recipetoyou.board.recipe.RecipeCateVO" alias="recipeCateVO"/>
-		<typeAlias type="kr.co.recipetoyou.main.cartPick.CartPickVO__" alias="cartPickVO"/>
 		
 		
 		<typeAlias type="kr.co.recipetoyou.admin.adpoint.AdPointVO" alias="adPointVO"/>
