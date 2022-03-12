@@ -303,13 +303,7 @@
 		}) 
 	
 		$(document).ready(function(){
-			
-		//검색 타입 selected
-		/* const selectedType = '<c:out value="${pm.vo.type}"/>';
-		if(selectedType != ""){
-			$("select[name='type']").val(selectedType).attr("selected", "selected");
-		} */
-											
+												
 		//이미지 삽입
 		$(".image_wrap").each(function(i, obj){
 			
@@ -361,16 +355,6 @@
 		$("#searchBtn").on("click", function(e){
 			e.preventDefault();
 			
-			/* if(var){
-				var var1 = $("input[name='keyword']").val();
-				var var2 = $("#category2 option:selected").val();
-			} */
-			
-			
-			/* $.ajax{
-				
-			} */
-			
 			let val = $("input[name='keyword']").val();
 			
 			if(!($("#category1 option:selected")).val() != "none"){
@@ -381,9 +365,6 @@
 				}
 			}
 			
-			//alert(val2);
-			//moveForm.find("input[name='keyword']").val();
-			//moveForm.find("#category2 option:selected").val();
 			if(val != ""){
 				$("#keyword").val(val);
 			}else{
@@ -402,16 +383,6 @@
 		    
 		   
 		});
-		
-		/*$(document).on('click', '#searchBtn', function(e){
-			e.preventDefault();
-			var url = "${contextPath}/adgoods/search.do";
-			url += "?cda_mapping=" + $('#cda_type').val();
-			url += "$inspect_group=" + $('#groupList').val();
-			
-			location.href = url;
-			console.log(url);
-		})*/
 		
 		</script>
 </body>
