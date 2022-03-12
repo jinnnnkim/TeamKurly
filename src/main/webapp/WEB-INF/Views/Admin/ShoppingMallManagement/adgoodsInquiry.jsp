@@ -93,9 +93,13 @@
 							</div>
 							<div class="summary">
 								<span class="split">|</span>
-								총 후기&nbsp;
+								총 문의 &nbsp;
 								<span class="f-bold f-num"></span>
 								${cnt }개
+								<span class="split">|</span>
+								검색된 문의 &nbsp;
+								<span class="f-bold f-num"></span>
+								${searchcnt }개
 							</div>
 						</div>
 						
@@ -126,10 +130,10 @@
 								<td><input class="chChoice" type="checkbox" value="286"/></td>
 								<td>
 									<c:choose>
-										<c:when test="${inquiry.inq_level eq 1 }">
+										<c:when test="${inquiry.inq_level eq 1}">
 										<span class="lable">답변 완료</span>
 										</c:when>
-									<c:when test="${inquiry.inq_level ne 1 }">
+									<c:when test="${inquiry.inq_level ne 1}">
 										<span class="lable">답변 대기</span>
 									</c:when>
 									</c:choose>				
