@@ -33,14 +33,14 @@
 			</div>
 			<!-- head -->
 			<!-- <form id="infoView" action="/mypageUserinfoUpdate.do" method="POST" class="form-signup form-user panel-body"  autocomplete="off"> -->
-			<form id="infoView" action="UserUpdate.do" method="POST" class="form-signup form-user panel-body"  autocomplete="off">
+			<form name="infoView" action="UserUpdate.do" method="POST" class="form-signup form-user panel-body"  autocomplete="off">
 			<input type="hidden" id="user_name_yn" name="user_name_yn" value="N"/>
 			<table class="myInfoMain">
 				
 				<tr>
 					<th>아이디</th>
 					
-					<td><input type="text" value="${userVO.user_id}" id="id" name="id" readonly="readonly"></td>
+					<td><input type="text" value="${userVO.user_id}" id="id" name="user_id" readonly="readonly"></td>
 				</tr>
 				<!-- <tr>
 					<th>현재 비밀번호</th>
@@ -48,7 +48,7 @@
 				</tr> -->
 				<tr>
 					<th>새 비밀번호</th>
-					<td><input type="password" value="" id="new_pwd" name="new_pwd"></td>
+					<td><input type="password" value="" id="new_pwd" name="user_pw"></td>
 				</tr>
 				<!--<tr>
 					<th>새 비밀번호 확인</th>
@@ -106,26 +106,30 @@
 				</tr> -->
 			</table>
 			<div class="form_footer">
-				<a href="${contextPath}/withdrawUser.do?user_id=${userVO.user_id}" class="fnWithdraw">
-					탈퇴하기
-				</a>
-				<button type="submit" id="infoSubmit" name="infoSubmit" onclick="fnUpdate()">회원정보수정</button>
+				
+				<button type="submit" id="infoSubmit" name="infoSubmit" >회원정보수정</button>
 			</div>
 			</form>
 			<!-- form_footer -->
 		</div>
+		<a href="${contextPath}/withdrawUser.do?user_id=${userVO.user_id}" class="fnWithdraw">
+					탈퇴하기
+		</a>
+		
 		<!-- content -->
 	</div>
 	<!-- main -->
 	<script type="text/javascript">
-		$(".fnUpdate").click(function () {
-		var check = confirm("수정이 완료되었습니다.");
-		if(check) {
-			var form1 = document.alert("수정이 완료되었습니다.")
-			form1.submit();
+		$("#infoSubmit").click(function () {
+		var infoView = document.infoView;	
+		var new_pwd = infoView.user_pw.value;
+			
+		if(new_pwd != null ||new_pwd != "") {
+			alert("수정이 완료되었습니다.");
+			infoView.submit();
 		}else{
 			return false;
-		}
+		}  
 	});
 		
 	$(".fnWithdraw").click(function(){

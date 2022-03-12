@@ -75,9 +75,9 @@ public interface MypageController {
 			throws Exception;
 
       //예진-회원정보수정
-	  public String modify(HttpSession session, UserVO userVO, RedirectAttributes ra) throws Exception;
+	  public String modify(@ModelAttribute("userVO") UserVO userVO, HttpSession session, RedirectAttributes ra) throws Exception;
 	  //탈퇴
-	  public ModelAndView removeUser(@RequestParam("user_id")String user_id, HttpServletRequest request, HttpServletResponse response) throws Exception;
+	  public ModelAndView removeUser(@RequestParam("user_id") String user_id, HttpServletRequest request, HttpServletResponse response) throws Exception;
 	
 	
 }

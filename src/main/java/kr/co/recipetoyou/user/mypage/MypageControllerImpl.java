@@ -354,7 +354,6 @@ public class MypageControllerImpl implements MypageController{
 	
 	  //회원정보수정뷰  
 	  @Override
-	  
 	  @RequestMapping(value="/mypageUserInfoProcess.do", method=RequestMethod.POST)
 	  public String mypageUserInfoProcess(UserVO userVO, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		  System.out.println("userVO" + userVO.getUser_id());
@@ -362,11 +361,27 @@ public class MypageControllerImpl implements MypageController{
 		  return "redirect:/mypageUserInfo.do";
 		  }
 	  
-	  
+	  //세션
 	  @RequestMapping(value="/mypageUserInfo.do", method=RequestMethod.GET) 
 	  public ModelAndView mypageUserInfo(UserVO userVO, HttpServletRequest request, HttpServletResponse response) throws Exception {
 	  
-		  ModelAndView mav = new ModelAndView(); 
+		 
+		//아이디 세션불러오기
+			HttpSession session = request.getSession();
+			userVO = (UserVO) session.getAttribute("userVO");
+			String user_id = "";
+			if(userVO != null) {
+				if(userVO.getUser_id() == null || userVO.getUser_id() == "") {
+					user_id = "";
+				}else {
+					System.out.println("info user_id:"+userVO.getUser_id());
+					user_id = userVO.getUser_id();
+					userVO.setUser_id(user_id);
+				}
+			}
+		  
+		  ModelAndView mav = new ModelAndView();
+		  mav.addObject("userVO",userVO);
 		  return mav;
 	  }
 	 
@@ -416,7 +431,11 @@ public class MypageControllerImpl implements MypageController{
 	//예진
 	@Override
 	@RequestMapping(value="/UserUpdate.do", method=RequestMethod.POST)
-	public String modify(HttpSession session, UserVO userVO, RedirectAttributes ra) throws Exception {
+	public String modify(@ModelAttribute("userVO") UserVO userVO, HttpSession session, RedirectAttributes ra) throws Exception {
+		
+		System.out.println(userVO.getUser_id() + "" +  userVO.getUser_pw());
+		
+		
 		logger.info("수정");
 		mypageService.pwUpdate(userVO);
 		session.invalidate();
@@ -432,6 +451,9 @@ public class MypageControllerImpl implements MypageController{
 				throws Exception {
 			request.setCharacterEncoding("utf-8");
 			mypageService.withdrawUser(user_id);
+			HttpSession session = request.getSession();
+			session.invalidate();
+			
 			ModelAndView mav = new ModelAndView("redirect:/main.do");
 			return mav;
 		}
