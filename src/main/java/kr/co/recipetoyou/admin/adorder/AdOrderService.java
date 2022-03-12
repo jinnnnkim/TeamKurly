@@ -16,7 +16,4 @@ public interface AdOrderService {
 
 	int removeOrd(int id) throws DataAccessException;
 
-//	void updateOrdInfo(AdOrderVO vo) throws DataAccessException;
-
-
 }

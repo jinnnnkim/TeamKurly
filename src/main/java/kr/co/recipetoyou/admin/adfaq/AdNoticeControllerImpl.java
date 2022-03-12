@@ -65,7 +65,6 @@ public class AdNoticeControllerImpl implements AdNoticeController {
 	 	return mav;
 	 }
 	
-	//레시피 게시글 상세 정보 조회
 	@Override
 	@RequestMapping(value = "/adnotice/adNoticeInfo.do", method = RequestMethod.GET)
 	public ModelAndView getNoticeInfo(@RequestParam(value="id") String id, HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -77,7 +76,6 @@ public class AdNoticeControllerImpl implements AdNoticeController {
 		return mav;
 	}
 
-	//레시피 게시글 삭제  
 	@Override
 	@RequestMapping(value = "/adnotice/removeNotice.do", method = RequestMethod.GET)
 	public ModelAndView removeNotice(@RequestParam("id") String id, HttpServletRequest request, HttpServletResponse response) throws Exception {
