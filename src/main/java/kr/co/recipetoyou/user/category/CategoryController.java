@@ -15,11 +15,13 @@ public interface CategoryController {
 
 	ModelAndView main(HttpServletRequest request, HttpServletResponse response) throws Exception;
 
-	ResponseEntity<byte[]> getGoodsListImage(String fileName) throws Exception;
+	ResponseEntity<byte[]> getGoodsListImage(String fileName, HttpServletRequest request) throws Exception;
 
 	ResponseEntity<List<AdgoodsImgVO>> getGoodsImageList(int prod_code) throws Exception;
 
 	ModelAndView goodsView(PagingVO vo, int prod_code, HttpServletRequest request, HttpServletResponse response) throws Exception;
+
+	
 
 
 }

@@ -34,19 +34,6 @@ import kr.co.recipetoyou.util.PagingVO;
 public class CategoryControllerImpl implements CategoryController{
 	
 	private static final Logger logger = LoggerFactory.getLogger("CategoryControllerImpl.class");
-	
-
-	
-	  private static final String UPLOAD_DIR =
-	  "C:\\git-recipetoyouuuu\\RecipeToYou\\src\\main\\webapp\\Resources\\Admin\\Img\\AdgoodsImg\\";
-	 
-
-
-	//private static final String UPLOAD_DIR = "C:/Users/jin/Documents/TeamKurly_3v/src/main/webapp/Resources/Admin/Img/AdgoodsImg/";
-
-	//private static final String UPLOAD_DIR = "C:/git_workTeam/src/main/webapp/Resources/Admin/Img/AdgoodsImg/";
-
-	//private static final String UPLOAD_DIR = "C:\\wordspace_git\\src\\main\\webapp\\Resources\\Admin\\Img\\AdgoodsImg\\";
 
 	@Autowired
 	private CategoryService service;
@@ -77,9 +64,29 @@ public class CategoryControllerImpl implements CategoryController{
 	//이미지 출력
 	@Override
 	@RequestMapping(value = "/user/getImageInfo.do")
-	public ResponseEntity<byte[]> getGoodsListImage(String fileName) throws Exception {
+	public ResponseEntity<byte[]> getGoodsListImage(String fileName, HttpServletRequest request) throws Exception {
+		
+		String _path = request.getSession().getServletContext().getRealPath("/");
+		String separator = File.separator;
+		int index = 0;
+		String realWorkspace = "";
+		String[] arr= {};
+		
+		if(separator.equals("/")) {
+			arr = _path.split(separator); 
+		}else {
+			arr = _path.split("\\\\"); 
+		}
+		while(index < arr.length-1) {
+		  if(arr[index].equals("wtpwebapps")) {
+			  realWorkspace=arr[index+1];
+		  }
+		  index++;
+		}
+		_path = _path.substring(0, _path.indexOf("\\", 1));
+		_path += separator+realWorkspace+"/src/main/webapp/Resources/Admin/Img/AdgoodsImg/";
 			
-		File file = new File(UPLOAD_DIR+fileName);
+		File file = new File(_path+fileName);
 		ResponseEntity<byte[]> result = null;
 			
 		try {	

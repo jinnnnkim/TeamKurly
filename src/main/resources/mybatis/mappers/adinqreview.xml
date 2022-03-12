@@ -42,28 +42,22 @@
 	<!-- 총 문의 수 -->
 	<select id="getInquiryAllCount" resultType="int" parameterType="kr.co.recipetoyou.util.PagingVO">
 		select count(*) from tb_prod_inq
-			<if test="keyword != null">
-				<if test="searchOption == 'inq_title'.toString()"> where inq_title like '%'||#{keyword}||'%'</if>
-				<if test="searchOption == 'id'.toString()"> where user_id like '%'||#{keyword}||'%'</if>
-			</if>
+			<choose>
+				<when test="keyword != null and searchOption == 'inq_title'.toString()"> where inq_title like '%'||#{keyword}||'%'</when>
+				<when test="keyword != null and searchOption == 'id'.toString()"> where user_id like '%'||#{keyword}||'%'</when>
+			</choose>
 	</select>
 	
 	<!-- 검색어에 맞는 문의 수 구하기 -->
 	<select id="getInquiryCount" resultType="int">
 		select count(prod_inq_code) from tb_prod_inq
-			<if test="keyword != null">
-				<if test="searchOption == 'inq_title'.toString()"> where inq_title like '%'||#{keyword}||'%'</if>
-				<if test="searchOption == 'id'.toString()"> where user_id like '%'||#{keyword}||'%'</if>
-			</if>
+			<choose>
+				<when test="keyword != null and searchOption == 'inq_title'.toString()"> where inq_title like '%'||#{keyword}||'%'</when>
+				<when test="keyword != null and searchOption == 'id'.toString()"> where user_id like '%'||#{keyword}||'%'</when>
+			</choose>
 	</select>
 	
 	<!-- 문의 목록 -->
-<!-- 	<select id="getInquiryList" resultType="inquiryVO" parameterType="int">
-		SELECT * FROM TB_USERS tu ,
-		(SELECT B.prod_inq_code, B.prod_code, B.user_id, B.inq_title, B.inq_content, B.inq_reg_date, ta.emp_no, ta.ans_content, ta.ans_date
-		FROM tb_inq_answer ta RIGHT OUTER JOIN (SELECT * FROM TB_PROD_INQ WHERE prod_code=#{prod_code})B ON ta.prod_inq_code = B.prod_inq_code) I WHERE  tu.USER_ID =I.user_id
-	</select> -->
-	
 	<select id="getadInquiryList" resultMap="adinqResult">
 		<![CDATA[
 		select * from(
@@ -115,20 +109,7 @@
 		]]>
 	</select>
 	
-	<!-- 총 후기 수 -->
-	<select id="getadReviewCount" parameterType="kr.co.recipetoyou.util.PagingVO" resultType="int">
-		select count(*) from tb_prod_review
-	</select>
-	
 	<!-- 후기 목록 -->
-	<!-- <select id="getReviewList" resultType="reviewVO" parameterType="int">
-		SELECT tpr.REVIEW_IDX , tpr.order_code, tpr.TITLE , tpr.CONTENT , tpr.REG_DATE , o.user_id
-		FROM TB_PROD_REVIEW tpr ,
-		(SELECT * FROM TB_USERS tu2, 
-		(SELECT to1.order_code, to2.user_id FROM TB_ORDER to2, (SELECT order_code, prod_code FROM TB_ORDER WHERE prod_code=#{prod_code})to1 WHERE to2.ORD_CODE = to1.order_code)
-		tu1 WHERE tu2.USER_ID=tu1.user_id)O WHERE tpr.order_code=O.order_code
-	</select> -->
-	
 	<select id="getadReviewList" resultMap="adreviewResult">
 		<![CDATA[
 		select * from(
@@ -158,22 +139,22 @@
 		where prod_review_code = #{prod_review_code}
 	</select>
 	
-	<!-- 총 문의 수 -->
+	<!-- 총 후기 수 -->
 	<select id="getReviewAllCount" resultType="int" parameterType="kr.co.recipetoyou.util.PagingVO">
-		select count(*) from tb_prod_inq
-			<if test="keyword != null">
-				<if test="searchOption == 'title'.toString()"> where inq_title like '%'||#{keyword}||'%'</if>
-				<if test="searchOption == 'id'.toString()"> where user_id like '%'||#{keyword}||'%'</if>
-			</if>
+		select count(*) from tb_prod_review
+			<choose>
+				<when test="keyword != null and searchOption == 'title'.toString()"> where title like '%'||#{keyword}||'%'</when>
+				<when test="keyword != null and searchOption == 'id'.toString()"> where user_id like '%'||#{keyword}||'%'</when>
+			</choose>
 	</select>
 	
-	<!-- 검색어에 맞는 문의 수 구하기 -->
+	<!-- 검색어에 맞는 후기 수 구하기 -->
 	<select id="getReviewCount" resultType="int">
 		select count(prod_review_code) from tb_prod_review
-			<if test="keyword != null">
-				<if test="searchOption == 'title'.toString()"> where title like '%'||#{keyword}||'%'</if>
-				<if test="searchOption == 'id'.toString()"> where user_id like '%'||#{keyword}||'%'</if>
-			</if>
+			<choose>
+				<when test="keyword != null and searchOption == 'title'.toString()"> where title like '%'||#{keyword}||'%'</when>
+				<when test="keyword != null and searchOption == 'id'.toString()"> where user_id like '%'||#{keyword}||'%'</when>
+			</choose>
 	</select>
 	
 	<!-- 후기 작성 전 구매했는지 아이디로 체크 -->

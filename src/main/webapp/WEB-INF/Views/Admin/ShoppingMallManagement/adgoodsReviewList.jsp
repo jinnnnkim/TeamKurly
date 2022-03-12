@@ -73,7 +73,11 @@
 								총 후기 &nbsp;
 								<span class="f-bold f-num"></span>
 								${cnt }개
-								</div>
+								<span class="split">|</span>
+								검색된 후기 &nbsp;
+								<span class="f-bold f-num"></span>
+								${searchcnt }개
+							</div>
 							</div>
 							
 							<table id="goodsReviewList" class="table table1 list_top table_line table-center table_list">
@@ -129,7 +133,9 @@
 				<ul class="pagination">
 				 			<!-- 이전prev -->
 				 	<c:if test="${pm.prev }">
-				 		<li class="pageBtn prev"><a href="adReviewList.do?page=${pm.startPage-1}">이전</a></li>
+				 		<li class="pageBtn prev">
+				 			<a href="adReviewList.do?page=${pm.startPage-1}">이전</a>
+				 		</li>
 				 	</c:if>
 				 			<!-- 페이지블럭 -->
 					<c:forEach var="idx" begin="${pm.startPage}" end="${pm.endPage}">
