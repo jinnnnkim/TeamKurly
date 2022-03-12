@@ -75,9 +75,9 @@
 												data-uuid="${goods.imageList[0].uuid}" data-filename="${goods.imageList[0].fileName}">
 
 									<a href="${contextPath}/user/goodsView.do?prod_code=${goods.prod_code}">
-								<a href="${contextPath}/user/goodsView.do?prod_code=${goods.prod_code}">
-
-									<img>
+								
+							<img src="/recipetoyou/Resources/Admin/Img/AdgoodsImg/${goods.imageList[0].uploadPath}/s_${goods.imageList[0].uuid}_${goods.imageList[0].fileName}">
+	
 									</a>
 							</div>
 							<p>
@@ -168,7 +168,7 @@
 							<div class="image_wrap" data-prod_code="${bargain.imageList[0].prod_code}" data-path="${bargain.imageList[0].uploadPath}"
 												data-uuid="${bargain.imageList[0].uuid}" data-filename="${bargain.imageList[0].fileName}">
 								<a href="${contextPath}/user/goodsView.do?prod_code=${bargain.prod_code}">
-									<img>
+									<img src="/recipetoyou/Resources/Admin/Img/AdgoodsImg/${bargain.imageList[0].uploadPath}/s_${bargain.imageList[0].uuid}_${bargain.imageList[0].fileName}">
 								</a>
 							</div>	
 						
@@ -320,7 +320,7 @@
 					
 					const fileCallPath = encodeURIComponent(uploadPath + "/s_" + uuid + "_" + fileName);
 					
-					$(this).find("img").attr('src', '${contextPath}/user/getImageInfo.do?fileName='+fileCallPath);
+					//$(this).find("img").attr('src', '${contextPath}/user/getImageInfo.do?fileName='+fileCallPath);
 					
 				} else {
 					$(this).find("img").attr('src', '/recipetoyou/Resources/Admin/Img/SubgoodsImg/ready.jpg');

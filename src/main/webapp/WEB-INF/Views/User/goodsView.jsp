@@ -247,7 +247,9 @@ response.setContentType("application/json");
 								<div class="add_product_item_inn_wrap">
 									<div class="image_wrap" data-prod_code="${goods.imageList[0].prod_code}" data-path="${goods.imageList[0].uploadPath}"
 												data-uuid="${goods.imageList[0].uuid}" data-filename="${goods.imageList[0].fileName}">
-										<a href="${contextPath}/user/goodsView.do?prod_code=${goods.prod_code}"><img></a>								
+										<a href="${contextPath}/user/goodsView.do?prod_code=${goods.prod_code}">
+										<img src="/recipetoyou/Resources/Admin/Img/AdgoodsImg/${goods.imageList[0].uploadPath}/s_${goods.imageList[0].uuid}_${goods.imageList[0].fileName}">
+										</a>								
 									</div>
 									<div class="add_product_item_inn">
 										<p class="add_product_item_inn_cost">${goods.prod_name}</p>	
@@ -1005,7 +1007,7 @@ response.setContentType("application/json");
 					
 					const fileCallPath = encodeURIComponent(uploadPath + "/s_" + uuid + "_" + fileName);
 					
-					$(this).find("img").attr('src', '${contextPath}/user/getImageInfo.do?fileName='+fileCallPath);
+					//$(this).find("img").attr('src', '${contextPath}/user/getImageInfo.do?fileName='+fileCallPath);
 					
 				} else {
 					$(this).find("img").attr('src', '/recipetoyou/Resources/Admin/Img/SubgoodsImg/ready.jpg');

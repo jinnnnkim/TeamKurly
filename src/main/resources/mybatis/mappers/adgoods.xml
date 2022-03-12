@@ -191,21 +191,19 @@
 			select count(prod_code) from TB_PROD where 
 			
 				<choose>
+					<!-- 상품명&카테고리로 검색 -->
 					<when test ="keyword != null and cateCode lt '5000'">
 						prod_name like '%'||#{keyword}||'%' and cateCode like '%'||#{cateCode}||'%'
 					</when>
+					<!-- 상품명으로 검색 -->
 					<when test="keyword != null">
 						prod_name like '%'||#{keyword}||'%'
 					</when>
+					<!-- 카테고리로 검색 -->
 					<when test="cateCode != null and cateCode != '100000'">
 						cateCode like '%'||#{cateCode}||'%' 
 					</when>
 				</choose>
-
-				<!-- 상품명, 카테고리로 검색 -->
-			<!-- <if test="keyword != null">prod_name like '%'||#{keyword}||'%'</if>
-			
-			<if test="cateCode != null and cateCode != '100000'">cateCode like '%'||#{cateCode}||'%'</if> -->	
 	</select>
 	
 	

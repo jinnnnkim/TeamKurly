@@ -137,7 +137,7 @@
 			
 								<div class="image_wrap" data-prod_code="${prod.imageList[0].prod_code}" data-path="${prod.imageList[0].uploadPath}"
 													data-uuid="${prod.imageList[0].uuid}" data-filename="${prod.imageList[0].fileName}">
-										<img>
+										<img src="/recipetoyou/Resources/Admin/Img/AdgoodsImg/${prod.imageList[0].uploadPath}/s_${prod.imageList[0].uuid}_${prod.imageList[0].fileName}">
 								</div>
 							</div>		
 							<div style="margin-left: 110px">
@@ -322,7 +322,7 @@
 				
 				const fileCallPath = encodeURIComponent(uploadPath + "/s_" + uuid + "_" + fileName);
 				
-				$(this).find("img").attr('src', '${contextPath}/adgoods/getImageInfo.do?fileName=' + fileCallPath);
+				//$(this).find("img").attr('src', '${contextPath}/adgoods/getImageInfo.do?fileName=' + fileCallPath);
 				
 			}else {
 					$(this).find("img").attr('src', '/recipetoyou/Resources/Admin/Img/SubgoodsImg/ready.jpg');
