@@ -107,7 +107,6 @@ public class CartPickControllerImpl implements CartPickController {
 				user_id = userVO.getUser_id();
 			}
 		}
-		
 		cartAddVO.setUser_id(user_id);	
 		//장바구니에 상품있는지 점검
 		int count = cartPickService.commCart(user_id, cartAddVO.getProd_code());
