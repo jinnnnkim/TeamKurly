@@ -19,7 +19,7 @@
 		
 		<typeAlias type="kr.co.recipetoyou.admin.adgoods.AdGoodsVO" alias="adGoodsVO"/>
 		<typeAlias type="kr.co.recipetoyou.admin.adgoods.category.AdGoodsCateVO" alias="adGoodsCateVO"/>
-		 <typeAlias type="kr.co.recipetoyou.admin.adgoods.stock.AdGoodsStockVO" alias="adGoodsStockVO"/> 
+
 		<typeAlias type="kr.co.recipetoyou.admin.adgoods.AdgoodsImgVO" alias="adGoodsImgVO"/>
 		<typeAlias type="kr.co.recipetoyou.admin.adgoods.Inquiry.AdInquiryVO" alias="adInquiryVO"/>
 		<typeAlias type="kr.co.recipetoyou.admin.adgoods.Inquiry.AdReviewVO" alias="adReviewVO"/>
@@ -45,21 +45,16 @@
 		<typeAlias type="kr.co.recipetoyou.user.mypage.vo.PointVO" alias="pointVO"/>
 		<typeAlias type="kr.co.recipetoyou.user.mypage.vo.QnAVO" alias="qnaVO"/>
 		
-
 		<typeAlias type="kr.co.recipetoyou.user.mypage.vo.PointUseVO" alias="pointuseVO"/>
 		<typeAlias type="kr.co.recipetoyou.main.cartPick.vo.CartAddVO" alias="cartAddVO"/>
 		<typeAlias type="kr.co.recipetoyou.main.cartPick.vo.FavVO" alias="favVO"/>
 		<typeAlias type="kr.co.recipetoyou.user.mypage.vo.MyOrderVO" alias="myorderVO"/>
-		
-		
-
-		
+	
 		<typeAlias type="kr.co.recipetoyou.main.cartPick.vo.CartAddVO" alias="cartAddVO"/>
 		<typeAlias type="kr.co.recipetoyou.main.cartPick.vo.FavVO" alias="favVO"/>
 		<typeAlias type="kr.co.recipetoyou.main.cartPick.vo.PickVO" alias="pickVO"/>
 		<typeAlias type="kr.co.recipetoyou.main.cartPick.vo.ProdVO" alias="prodVO"/>
 		<typeAlias type="kr.co.recipetoyou.user.mypage.vo.UserAddrVO" alias="useraddrVO"/>
-		
 		
 		<typeAlias type="kr.co.recipetoyou.main.goods.GoodsVO" alias="goodsVO"/>
 		<typeAlias type="kr.co.recipetoyou.main.goods.PaymentVO" alias="paymentVO"/>
@@ -67,12 +62,9 @@
 		<typeAlias type="kr.co.recipetoyou.util.PagingVO" alias="pagingVO"/>
 		<typeAlias type="kr.co.recipetoyou.main.inqreview.ReviewVO" alias="reviewVO"/>
 		<typeAlias type="kr.co.recipetoyou.main.inqreview.InquiryVO" alias="inquiryVO"/>
-		<typeAlias type="kr.co.recipetoyou.main.inqreview.InqAnswerVO" alias="inqAnswerVO"/>
-		
 		
 		<typeAlias type="kr.co.recipetoyou.board.recipe.RecipeVO" alias="recipeVO"/>
 		<typeAlias type="kr.co.recipetoyou.board.recipe.RecipeCateVO" alias="recipeCateVO"/>
-		
 		
 		<typeAlias type="kr.co.recipetoyou.admin.adpoint.AdPointVO" alias="adPointVO"/>
 		<typeAlias type="kr.co.recipetoyou.board.recipe.RecipeReviewVO" alias="recipeReviewVO"/>
