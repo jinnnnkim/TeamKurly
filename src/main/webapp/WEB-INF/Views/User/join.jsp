@@ -573,7 +573,7 @@
 		            document.getElementById("sample4_jibunAddress").value = data.jibunAddress;
 		            
 		            if(roadAddr !== ''){
-		               // document.getElementById("sample4_extraAddress").value = extraRoadAddr;
+		           
 		            } else {
 		                document.getElementById("sample4_extraAddress").value = '';
 		            }

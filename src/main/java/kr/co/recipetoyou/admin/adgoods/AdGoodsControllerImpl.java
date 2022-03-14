@@ -147,9 +147,6 @@ public class AdGoodsControllerImpl implements AdGoodsController {
 		
 		model.addAttribute("cateList", cateList);
 		
-		logger.info("변경 전========"+list);
-		logger.info("변경 후========"+cateList);
-		
 		String viewName = (String)request.getAttribute("viewName");
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName(viewName);
@@ -161,9 +158,6 @@ public class AdGoodsControllerImpl implements AdGoodsController {
 	@Override
 	@RequestMapping(value = "/adgoods/register.do", method = RequestMethod.POST)
 	public ModelAndView uploadGoodsRegister(AdGoodsVO agvo, RedirectAttributes rttr) throws Exception {
-		
-		
-		logger.info("goodsRegisterPost......"+agvo);
 		
 		adGoodsService.register(agvo);
 		

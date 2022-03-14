@@ -5,10 +5,6 @@
 	
 }
 
-.wrap {
-	
-}
-
 .main{
 	width:1050px;
 	margin:0 auto;
@@ -74,10 +70,6 @@
 	margin-left:25px;
 }
 
-.content .title{
-	
-}
-
 .content .title span{
 	font-size:13px;
 	font-weight:400;
@@ -99,9 +91,7 @@
 	margin-bottom:0;
 }
 
-.Contsearch .searchInput {
-	
-}
+
 .Contsearch i {
 	width:27px;
 	height:25px;

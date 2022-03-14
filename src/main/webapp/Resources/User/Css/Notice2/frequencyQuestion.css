@@ -2,7 +2,6 @@
 
 .wrap{
 	width:100%;
-
 }
 
 .main{
@@ -39,10 +38,6 @@
 	display:inline-block;
 	z-index:5;
 	position:relative;
-}
-
-.optional a{
-
 }
 
 .optional .listOff{

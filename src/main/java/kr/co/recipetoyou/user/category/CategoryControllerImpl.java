@@ -112,7 +112,6 @@ public class CategoryControllerImpl implements CategoryController{
 	public ModelAndView benefitPage(HttpServletRequest request, HttpServletResponse response) throws Exception{
 		
 		ModelAndView mav = new ModelAndView();
-		
 		return mav;
 	}
 	
@@ -182,7 +181,6 @@ public class CategoryControllerImpl implements CategoryController{
 	public ModelAndView kf365TestPage(HttpServletRequest request, HttpServletResponse response) throws Exception{
 		
 		ModelAndView mav = new ModelAndView();
-		
 		return mav;
 	}
 	
@@ -190,7 +188,6 @@ public class CategoryControllerImpl implements CategoryController{
 	public ModelAndView saleEventPage(HttpServletRequest request, HttpServletResponse response) throws Exception{
 		
 		ModelAndView mav = new ModelAndView();
-		
 		return mav;
 	}
 	
@@ -200,18 +197,13 @@ public class CategoryControllerImpl implements CategoryController{
 		String viewName = (String)request.getAttribute("viewName");
 		ModelAndView mav = new ModelAndView(viewName);
 		
-		//PageMaker pm = new PageMaker();
-		//pm.setVo(vo);
-		//pm.setTotalCount(service.cateCount(vo));
+		
 		List listGoods = service.listGoods(vo,type);
-		
 		int cnt = service.cateCount(vo,type); 
-		
 		if(!listGoods.isEmpty()) {
 			mav.addObject("goodsList", listGoods);
 			int i=0;
 			
-			//mav.addObject("listGoods", listGoods);
 			mav.addObject("cnt", cnt);
 		}else {
 			mav.addObject("listCheck", "empty");
@@ -228,18 +220,12 @@ public class CategoryControllerImpl implements CategoryController{
 		String viewName = (String)request.getAttribute("viewName");
 		ModelAndView mav = new ModelAndView(viewName);
 		
-		//PageMaker pm = new PageMaker();
-		//pm.setVo(vo);
-		//pm.setTotalCount(service.cateCount(vo));
+	
 		List listGoods = service.listGoods(vo,type);
-		
 		int cnt = service.cateCount(vo,type); 
-		
 		if(!listGoods.isEmpty()) {
 			mav.addObject("goodsList", listGoods);
 			int i=0;
-			
-			//mav.addObject("listGoods", listGoods);
 			mav.addObject("cnt", cnt);
 		}else {
 			mav.addObject("listCheck", "empty");
@@ -258,18 +244,13 @@ public class CategoryControllerImpl implements CategoryController{
 		String viewName = (String)request.getAttribute("viewName");
 		ModelAndView mav = new ModelAndView(viewName);
 		
-		//PageMaker pm = new PageMaker();
-		//pm.setVo(vo);
-		//pm.setTotalCount(service.cateCount(vo));
+		
 		List listGoods = service.listGoods(vo,type);
-		
 		int cnt = service.cateCount(vo,type); 
-		
 		if(!listGoods.isEmpty()) {
 			mav.addObject("goodsList", listGoods);
 			int i=0;
 			
-			//mav.addObject("listGoods", listGoods);
 			mav.addObject("cnt", cnt);
 		}else {
 			mav.addObject("listCheck", "empty");

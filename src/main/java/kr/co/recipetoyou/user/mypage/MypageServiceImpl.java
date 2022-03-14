@@ -136,13 +136,6 @@ public class MypageServiceImpl implements MypageService{
 		return reviewList;
 	}
 
-	/*
-	 * @Override public void updateUser(UserVO userVO) throws DataAccessException {
-	 * mypageDAO.updateUser(userVO);
-	 * 
-	 * }
-	 */
-
 
 	//상품문의 삭제
 	@Override
@@ -157,22 +150,6 @@ public class MypageServiceImpl implements MypageService{
 		
 	}
 
-	//개인정보수정
-	/*
-	 * @Override public void userInfoUpdate(UserVO userVO) throws
-	 * DataAccessException{ mypageDAO.userInfoUpdate(userVO);
-	 * 
-	 * }
-	 */
-	
-	/*
-	 * @Override public int userInfoUpdate(UserVO userVO) throws DataAccessException
-	 * {
-	 * 
-	 * return mypageDAO.userInfoUpdate(userVO);
-	 * 
-	 * }
-	 */
 	//이메일 중복체크
 	@Override
 	public int emailChk(UserVO userVO) throws DataAccessException {
@@ -187,36 +164,18 @@ public class MypageServiceImpl implements MypageService{
 		return result;
 	}
 
-	//예진
+	//예진-회원정보수정
 	@Override
 	public void pwUpdate(UserVO userVO) throws DataAccessException {
 		mypageDAO.pwUpdate(userVO);
 		
 	}
 
-	//탈퇴
+	//회원탈퇴
 	@Override
 	public int withdrawUser(@RequestParam("user_id") String user_id) throws DataAccessException {
 		return mypageDAO.WithdrawUser(user_id);
 	}
-
-
-
-	/*
-	 * //비번 수정
-	 * 
-	 * @Override public void userUpdate(UserVO userVO) throws DataAccessException {
-	 * mypageDAO.userUpdate(userVO);
-	 * 
-	 * }
-	 * 
-	 */
-	
-
-	
-	
-
-
 	
 
 }

@@ -51,7 +51,6 @@ public class GoodsControllerImpl implements GoodsController{
 	InqReviewService inqReviewService;
 	
 	@Override
-	//@RequestMapping(value="/user/newGoodsPage.do", method = {RequestMethod.GET, RequestMethod.POST})
 	@ResponseBody
 	public ModelAndView listPageGet(PagingVO vo, HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
@@ -65,8 +64,6 @@ public class GoodsControllerImpl implements GoodsController{
 		}else {
 			mav.addObject("listCheck", "empty");
 		}
-		
-		//mav.addObject("pm", new PageMaker());
 		
 		return mav;
 	}

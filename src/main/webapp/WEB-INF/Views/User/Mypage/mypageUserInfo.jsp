@@ -32,100 +32,45 @@
 				<h2 class="title">개인 정보 수정</h2>
 			</div>
 			<!-- head -->
-			<!-- <form id="infoView" action="/mypageUserinfoUpdate.do" method="POST" class="form-signup form-user panel-body"  autocomplete="off"> -->
-			<form id="infoView" action="UserUpdate.do" method="POST" class="form-signup form-user panel-body"  autocomplete="off">
+			<form name="infoView" action="UserUpdate.do" method="POST" class="form-signup form-user panel-body"  autocomplete="off">
 			<input type="hidden" id="user_name_yn" name="user_name_yn" value="N"/>
 			<table class="myInfoMain">
 				
 				<tr>
 					<th>아이디</th>
 					
-					<td><input type="text" value="${userVO.user_id}" id="id" name="id" readonly="readonly"></td>
+					<td><input type="text" value="${userVO.user_id}" id="id" name="user_id" readonly="readonly"></td>
 				</tr>
-				<!-- <tr>
-					<th>현재 비밀번호</th>
-					<td><input type="password" value="" id="now_pwd" name="now_pwd"></td>
-				</tr> -->
 				<tr>
 					<th>새 비밀번호</th>
-					<td><input type="password" value="" id="new_pwd" name="new_pwd"></td>
+					<td><input type="password" value="" id="new_pwd" name="user_pw"></td>
 				</tr>
-				<!--<tr>
-					<th>새 비밀번호 확인</th>
-					<td><input type="password" value="" id="new_pwdChk" name="new_pwdChk"></td>
-				</tr>
-				 <tr>
-					<th>이름</th>
-					<td><input type="text" value="" id="name" name="name"></td>
-				</tr>
-				<tr class="email">
-					<th>이메일</th>
-					<td><input type="text" value="" id="email" name="email"> <a href="" id="emailChk" name="emailChk" onclick="duplicate()">중복확인</a>
-					</td>
-				</tr>
-				<tr class="phone">
-					<th>휴대폰</th>
-					<td><input type="text" value="" id="phone" name="phone"> <a href="" id="phoneChk" name="phoneChk" onclick="">다른번호 인증</a></td>
-				</tr>
-				<tr>
-					<th>성별</th>
-					<td>
-						<label><input type="radio" id="gender" name="gender">남자	</label>
-						<label><input type="radio" id="gender" name="gender">여자</label>
-						<label><input type="radio" id="gender" name="gender">선택안함</label>
-					</td>
-				</tr>
-				<tr>
-					<th>생년월일</th>
-					<td>
-						<div class="birth">
-							<input type="text" name="birthyy" placeholder="YYYY">/ 
-							<input type="text" name="birthmm" placeholder="MM">/ 
-							<input type="text" name="birthdd" placeholder="DD">
-						</div>
-					</td>
-				</tr>
-				<tr class="privacyContract">
-					<th>선택약관 동의</th>
-						<td><input type="checkbox" name="privacy" checked> <span>개인정보 수집·이용 동의</span> 
-							<span class="select">(선택)</span> 
-							<a href="" class="view_contract">약관보기<i class="fas fa-chevron-right"></i></a>
-						</td>
-				</tr>
-				<tr class="userContract">
-					<th>이용약관동의</th>
-						<td><input type="checkbox" name="user"> <span>무료배송, 할인쿠폰 등 혜택/정보 수신 동의</span>
-							<span class="select">(선택)</span>
-						</td>
-				</tr>
-				<tr class="smsEmail">
-					<th></th>
-						<td><input type="checkbox" name="sms"> <span>SMS</span>
-							<input type="checkbox" name="email"> <span>이메일</span>
-						</td>
-				</tr> -->
 			</table>
+			
+			</form>
 			<div class="form_footer">
 				<a href="${contextPath}/withdrawUser.do?user_id=${userVO.user_id}" class="fnWithdraw">
-					탈퇴하기
+							탈퇴하기
 				</a>
-				<button type="submit" id="infoSubmit" name="infoSubmit" onclick="fnUpdate()">회원정보수정</button>
+				<button type="submit" id="infoSubmit" name="infoSubmit" >회원정보수정</button>
 			</div>
-			</form>
 			<!-- form_footer -->
 		</div>
 		<!-- content -->
 	</div>
 	<!-- main -->
+	
 	<script type="text/javascript">
-		$(".fnUpdate").click(function () {
-		var check = confirm("수정이 완료되었습니다.");
-		if(check) {
-			var form1 = document.alert("수정이 완료되었습니다.")
-			form1.submit();
+		$("#infoSubmit").click(function () {
+		var infoView = document.infoView;	
+		var new_pwd = infoView.user_pw.value;
+			
+		if(new_pwd != null ||new_pwd != "") {
+			alert("수정이 완료되었습니다.");
+			infoView.submit();
 		}else{
 			return false;
-		}
+		}  
 	});
 		
 	$(".fnWithdraw").click(function(){

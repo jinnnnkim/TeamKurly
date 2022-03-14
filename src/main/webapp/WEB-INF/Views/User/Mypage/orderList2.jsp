@@ -61,7 +61,13 @@
 						<div class="image_wrap" data-prod_code="${orderList.imageList[0].prod_code}" data-path="${orderList.imageList[0].uploadPath}"
 												data-uuid="${orderList.imageList[0].uuid}" data-filename="${orderList.imageList[0].fileName}">
 												
-						<img>
+
+						<img src="/recipetoyou/Resources/Admin/Img/AdgoodsImg/${orderList.imageList[0].uploadPath}/s_${orderList.imageList[0].uuid}_${orderList.imageList[0].fileName}">
+
+						<a href="${contextPath}/user/goodsView.do?prod_code=${orderList.prod_code}">
+							<img src="/recipetoyou/Resources/Admin/Img/AdgoodsImg/${orderList.imageList[0].uploadPath}/s_${orderList.imageList[0].uuid}_${orderList.imageList[0].fileName}">
+						</a>
+
 						</div>
 						
 						<!-- order_info_img -->
@@ -90,8 +96,6 @@
 						</a>
 					</div>
 					<!-- order_status -->
-					
-					
 				</div>
 				<!-- orderlist_wrap -->
 			</div>

@@ -16,10 +16,6 @@ public interface AdOrderController {
 
 	ModelAndView getOrdInfo(int id, HttpServletRequest request, HttpServletResponse response) throws Exception;
 
-//	ModelAndView updateOrdInfo(int id, HttpServletRequest request, HttpServletResponse response) throws Exception;
-//
-//	ModelAndView updateAction(AdOrderVO vo, HttpServletRequest request, HttpServletResponse response) throws Exception;
-
 	ModelAndView removeOrd(int id, HttpServletRequest request, HttpServletResponse response) throws Exception;
 
 

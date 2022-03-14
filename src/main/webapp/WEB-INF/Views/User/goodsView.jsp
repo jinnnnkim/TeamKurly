@@ -49,7 +49,7 @@ response.setContentType("application/json");
 			});
 		}
 			 
-		//onclick="fn_removeModImage(${item.imageFileNO}, ${item.articleNO}, '${item.imageFileName}', ${status.count})"
+		
 		function fn_cart(_cart_code, _prod_code, _prod_quantity, _user_id) {
 		
 			$.ajax({
@@ -59,7 +59,7 @@ response.setContentType("application/json");
 				url: "http://localhost:8080/recipetoyou/cart.do",		
 				data: {cart_code: _cart_code, prod_code: _prod_code, prod_quantity: _prod_quantity, user_id: _user_id},	
 				success: function(data, textStatus) {		
-					//$('#message').append(data);	
+					
 				},
 				error: function(data, textStatus) {			
 					alert("에러가 발생했습니다.");
@@ -70,36 +70,6 @@ response.setContentType("application/json");
 			});
 		} 
 		
-		
-		/* 
-		function fn_removeModImage(_imageFileNO, _articleNO, _imageFileName, rowNum) {
-			//alert(rowNum);
-			$.ajax({
-				type: "post",
-				async: false,
-				url: "http://localhost:8080/ezenac10/board/removeModImage.do",
-				dataType: "text",
-				data: {imageFileNO: _imageFileNO, articleNO: _articleNO, imageFileName: _imageFileName},
-				success: function(result, textStatus) {
-					if (result == 'success') {
-						alert("이미지를 삭제했습니다.");
-						location.href="http://localhost:8080/ezenac10/board/viewArticle.do?removeCompleted=true&articleNO=" + _articleNO;
-						
-						$('#tr_' + rowNum).remove();		//해당된 <tr></tr>부분 삭제됨
-						$('#tr_sub' + rowNum).remove();		//밑의 버튼들 삭제됨
-					}
-					else {
-						alert("다시 시도해 주세요.");
-					}
-				},
-				error : function(data, textStatus) {
-					alert("에러가 발생했습니다.");
-				},
-				complete : function(data, textStatus) {
-					//
-				}
-			});
-		} */
 	</script>
 
 <link href="/recipetoyou/Resources/User/Img/KurlyIcon.png" rel="icon"
@@ -247,7 +217,9 @@ response.setContentType("application/json");
 								<div class="add_product_item_inn_wrap">
 									<div class="image_wrap" data-prod_code="${goods.imageList[0].prod_code}" data-path="${goods.imageList[0].uploadPath}"
 												data-uuid="${goods.imageList[0].uuid}" data-filename="${goods.imageList[0].fileName}">
-										<a href="${contextPath}/user/goodsView.do?prod_code=${goods.prod_code}"><img></a>								
+										<a href="${contextPath}/user/goodsView.do?prod_code=${goods.prod_code}">
+										<img src="/recipetoyou/Resources/Admin/Img/AdgoodsImg/${goods.imageList[0].uploadPath}/s_${goods.imageList[0].uuid}_${goods.imageList[0].fileName}">
+										</a>								
 									</div>
 									<div class="add_product_item_inn">
 										<p class="add_product_item_inn_cost">${goods.prod_name}</p>	
@@ -359,18 +331,8 @@ response.setContentType("application/json");
 									<strong class="sub_tit_tip">보관법</strong> -18℃ 이하에서 냉동 보관하세요.
 								</p>
 							</div>
-
-							
 						</div>
-						
 					</div>
-
-
-					<!-- <div id="goods_pic">
-						<img alt=""
-							src="/recipetoyou/Resources/User/Img/SaleGoods/pick_2.jpg">
-					</div> -->
-					<!-- goods_pic -->
 
 					<table width="100%" border="0" cellpading="0" cellspacing="1"
 						class="extra-info">
@@ -432,12 +394,9 @@ response.setContentType("application/json");
 											나와 내 가족이 먹고 쓸 상품을 고르는<br> 마음으로 매주 상품을 직접 먹어보고,<br>
 											경험해보고 성분, 맛, 안정성 등 다각도의<br> 기준을 통과한 상품만을 판매합니다.
 										</span>
-									</div>
-								
+									</div>	
 								</div>
-								
-
-
+							
 								<div class="col">
 									<div class="why_icon">
 										<i class="fas fa-shipping-fast"></i>
@@ -466,8 +425,6 @@ response.setContentType("application/json");
 											커뮤니티, 직원)이<br>더 나아질 수 있도록 노력합니다.
 										</span>
 									</div>
-
-									
 								</div>
 							
 							</div>
@@ -584,17 +541,7 @@ response.setContentType("application/json");
 							<td>${rvl.user_id }</td>
 							<td>${rvl.reg_date }</td>
 						</tr>
-						<!-- <tr class="reviewDetailList1">
-							<td colspan="5">
-								<div>
-									<span> 금주의 best 후기입니다. </span>
-									<div class="echoBtn">
-										<button class="editBtn" type="button">수정</button>
-										<button class="deleteBtn" type="button" onclick="QAdelte()">삭제</button>
-									</div>
-								</div>
-							</td>
-						</tr> -->
+					
 					</c:forEach>
 					</table>
 					<c:if test="${listCheck == 'empty'}">
@@ -676,44 +623,6 @@ response.setContentType("application/json");
 							</c:when>
 							</c:choose>
 						</tr>
-						
-						<tr class="QandADetailList1">
-						
-							<!-- <td colspan="5">
-								<div>
-									<span> 환경을 생각해주세요. </span>
-									<div class="echoBtn">
-										<button class="editBtn" type="button">수정</button>
-										<button class="deleteBtn" type="button" onclick="QAdelte()">삭제</button>
-									</div>
-								</div>
-							</td> -->
-							
-						</tr>
-						<%-- <div id="collapseq${fl.faq_no}" class="collapse" data-parent="#accordion">
-							<div class="card-body">
-								<div class="q-table-page">
-									<!-- 메뉴 눌렀을 때 페이지 -->
-									<div class="q-table-page-proname">[${goodsVO.item_category}] ${iteminfo.item_name}</div>
-									<ul class="q-table-page-ul">
-										<li class="q-table-page-item">${fl.content}</li>
-									</ul>
-									<div class="q-table-page-anwser">
-										<!-- 메뉴 눌렀을 때 페이지 -->
-									<c:if test="${fl.emp_no eq 1}"> <!-- 답변이 완료된 상태라면 답변도 함께 짝지어 출력 -->
-										<ul class="q-table-page-titleNstate">
-											<li class="q-table-page-item-title">답변 : re:${fl.title}</li>
-											<li class="q-table-page-item-state">답변 완료</li>
-										</ul>
-										<ul class="q-table-page-ul">
-											<li class="q-table-page-item">${fl.ans_content}</li>
-										</ul>
-										
-						</c:if>
-									</div>
-								</div>
-							</div>
-						</div> --%>
 						</c:forEach>			
 					</table>
 					<c:if test="${listCheck == 'empty'}">
@@ -781,9 +690,7 @@ response.setContentType("application/json");
 											</tr>
 										</table>
 										
-										
 										<div class="popWriteBtn">
-										
 											<button class="cancel" type="reset">취소</button>
 											<button class="writeBtn" id="write">등록</button>
 										
@@ -830,7 +737,6 @@ response.setContentType("application/json");
 	<!-- wrap -->
 	<script>
 	let detailHeader = document.querySelector(".goods-view-inn");
-	//let detailHeaderHeight = detailHeader.offsetHeight;
 	
 	window.onscroll = function () {
 	  let windowTop = window.scrollY;
@@ -887,45 +793,18 @@ response.setContentType("application/json");
 	    
 	});
 	
-	//후기 작성 페이지로 이동
-		
-/* 		if(user_id != null){
-			
-			//var comSubmit = new ComSubmit();
-			var prod_code = $("#prod_code").val();
-			$("#reviewFrm").on("click",function(){
-				location.href="${contextPath}/goods/moveReview.do";
-			});
-			
-			$("#write").on("click",function(){
-				location.href="${contextPath}/goods/insertInquiry.do";
-			});
-			
-		}else{
-			alert("로그인 후 이용해주세요.");
-			location.href="${contextPath}/login/login.do";
-		} */
-	
-		
-			
 			$("#reviewBtn").on("click",function(){
 			  var reviewFrm = document.querySelector('#reviewFrm');
-		  	  //newForm.name='reviewFrm';
+		  	 
 		  	  reviewFrm.method='get';
 		  	  reviewFrm.action='${contextPath}/goods/moveReview.do';
 		  	  $("#reviewFrm").submit();
 			});
-		  	  
-		 //}else{
-			//alert("로그인 후 이용해 주세요.");
-			//location.href="${contextPath}/login/login.do";
-		//} 
-		 	 
 		
 		
 		$("#write").on("click",function(){
 			  var qnaFrm = document.querySelector('#qnaFrm');
-		  	  //newForm.name='reviewFrm';
+		  	
 		  	  qnaFrm.method='post';
 		  	  qnaFrm.action='${contextPath}/goods/insertInquiry.do';
 		  	  
@@ -943,8 +822,7 @@ response.setContentType("application/json");
 	    		  return false;
 	    	  }
 	  	  
-	  	  	$("#qnaFrm").submit(); 
-			
+	  	  	$("#qnaFrm").submit(); 	
 	}); 
 	
 	//문의하기 팝업
@@ -968,7 +846,6 @@ response.setContentType("application/json");
 		    var n = (this + '');
 
 		    while (reg.test(n)) n = n.replace(reg, '$1' + ',' + '$2');
-
 		    return n;
 		};
 
@@ -1004,8 +881,6 @@ response.setContentType("application/json");
 					const fileName = bobj.data("filename");
 					
 					const fileCallPath = encodeURIComponent(uploadPath + "/s_" + uuid + "_" + fileName);
-					
-					$(this).find("img").attr('src', '${contextPath}/user/getImageInfo.do?fileName='+fileCallPath);
 					
 				} else {
 					$(this).find("img").attr('src', '/recipetoyou/Resources/Admin/Img/SubgoodsImg/ready.jpg');

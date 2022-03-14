@@ -53,10 +53,4 @@ public class AdOrderDAOImpl implements AdOrderDAO {
 		return sqlSession.selectOne("mapper.adorder.readOrd", id);
 	}
 		
-	//주문 정보 수정
-//	@Override
-//	public void updateOrdIng(AdOrderVO vo) throws DataAccessException {
-//		sqlSession.update("mapper.adorder.updateOrdIng", vo);
-//	} 
-
 }

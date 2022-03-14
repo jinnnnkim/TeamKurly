@@ -51,10 +51,6 @@
 						<td colspan="2">작성가능 후기 내역이 없습니다.</td>
 					</tr>
 					<tr class="review_after_no">
-					<%--후기가 없을시 
-						<td colspan="2">작성한 후기가 없습니다.</td>
-						--%>
-					<%--후기 존재 시 --%>
 						<td colspan="2">
 						<c:forEach var="reviewList" items="${reviewList}">
 							<div class="review_prodName">

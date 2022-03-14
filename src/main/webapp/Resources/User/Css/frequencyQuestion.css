@@ -2,7 +2,6 @@
 
 .wrap{
 	width:100%;
-
 }
 
 .main{
@@ -91,9 +90,6 @@
 	display:inline-block;
 }
 
-.optional a{
-
-}
 
 .optional .listOff{
 	position:absolute;

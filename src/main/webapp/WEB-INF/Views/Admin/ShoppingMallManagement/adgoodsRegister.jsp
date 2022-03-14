@@ -49,8 +49,6 @@
 	</div>
 
 			
-			<!-- ======================================================================================================= -->
-			
 				<div class="main-content">
 					<div class="sub-title">| 상품 기본정보</div>											<!-- 파일 업로드 기능 -->
 					<form action="${contextPath}/adgoods/register.do" method="post" id="registerForm" enctype="multipart/form-data">
@@ -405,7 +403,6 @@
 		
 		let str = "";
 		
-		//let fileCallPath = encodeURIComponent(obj.uploadPath.replace(/\\/g, '/') + "/s_" + obj.uuid + "_" + obj.fileName);
 		let fileCallPath = encodeURIComponent(obj.uploadPath + "/s_" + obj.uuid + "_" + obj.fileName);
 		
 		str += "<div id='result_card'>";

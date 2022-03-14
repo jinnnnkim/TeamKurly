@@ -9,6 +9,7 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.fasterxml.jackson.core.JsonGenerationException;
 import com.fasterxml.jackson.databind.JsonMappingException;
@@ -32,18 +33,17 @@ public class CartPickServiceImpl implements CartPickService{
 	private AdGoodsDAO adGoodsDAO;
 	
 	
-	
+	//찜하기 목록 조회
 	@Override
 	public List<PickVO> listPicks (String user_id) throws DataAccessException {
 	
 		List<PickVO> pickList = cartPickDAO.selectAllCartPickList(user_id);
-		
 		return pickList;
 		
 	}
 	//찜목록 삭제
 	@Override
-	public int removePick(String prod_name) throws DataAccessException {
+	public int removePick(@RequestParam("prod_name")String prod_name) throws DataAccessException {
 		System.out.println("Pick delete service 호출");
 		return cartPickDAO.deletePick(prod_name);
 		
@@ -52,7 +52,6 @@ public class CartPickServiceImpl implements CartPickService{
 	//마이페이지 - 찜하기 담기 클릭시 마이페이지 장바구니 이동
 	@Override
 	public void insertCart(CartAddVO cartAddVO) throws DataAccessException {
-		System.out.println("insertCart Service 호출");
 		cartPickDAO.insertCart(cartAddVO);	
 	}
 
@@ -115,62 +114,17 @@ public class CartPickServiceImpl implements CartPickService{
 	//마이페이지 장바구니 목록 삭제
 		@Override
 		public int removeCart(String prod_name) throws DataAccessException {
-			System.out.println("service 호출");
 			return cartPickDAO.deleteCart(prod_name);
 		}
 	
-		
-		
-		
-				
-		
-		
-		
-		
-		
-		
-		
-		
-		
-	@Override
-	public int removeCartPick(String id) throws DataAccessException {
-		return cartPickDAO.deleteCartPick(id);
-	}
 	
 		
+		//cartPick.xml
+		@Override
+		public UserAddrVO getAddr(String user_id) {
+			return cartPickDAO.selectAddr(user_id);
+		}
+	
 		
-		
-
-	//찜(좋아요) 담기
-	@Override
-	public int addFavPick(FavVO favVO) throws DataAccessException {
-		return cartPickDAO.insertFavAdd(favVO);
-	}
-
-
-	@Override
-	public List<CartPickVO__> listCartPicks() throws DataAccessException {
-		List<CartPickVO__> membersList = cartPickDAO.selectAllCartPickList__();
-		return membersList;
-	}
-
-	@Override
-	public int addCartPick(CartPickVO__ cartPickVO) throws DataAccessException {
-		return cartPickDAO.insertCartPick(cartPickVO);
-	}
-	@Override
-	public int addCartPick(CartAddVO cartAddVO) throws DataAccessException {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-	@Override
-	public UserAddrVO getAddr(String user_id) {
-		return cartPickDAO.selectAddr(user_id);
-	}
-
-	
-
-	
-	
 	
 }

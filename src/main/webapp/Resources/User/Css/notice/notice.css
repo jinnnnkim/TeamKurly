@@ -59,9 +59,7 @@
 	width:825px;
 	margin-left:25px;
 }
-.content .title{
-	
-}
+
 .content .title span{
 	font-size:13px;
 	font-weight:400;
@@ -81,9 +79,7 @@
 .Contsearch input{
 	margin-bottom:0;
 }
-.Contsearch .searchInput {
-	
-}
+
 .Contsearch i {
 	width:27px;
 	height:25px;
@@ -283,12 +279,3 @@ button {
 .board_icons {
 	margin-right: 30px;
 }
-
-
-
-
-
-
-
-
-

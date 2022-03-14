@@ -24,7 +24,6 @@ public class InqReviewServiceImpl implements InqReviewService{
 	public List<InquiryVO> getInquiryList(PagingVO vo) throws Exception {
 		
 		List<InquiryVO> inquiryList = inqReviewDAO.getInquiryList(vo);
-		
 		return inquiryList;
 	}
 

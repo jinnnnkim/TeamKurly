@@ -2,7 +2,6 @@
 
 .wrap{
 	width:100%;
-
 }
 
 .main{
@@ -41,10 +40,6 @@
 	position:relative;
 }
 
-.optional a{
-
-}
-
 .optional .listOff{
 	position:absolute;
 	right:-370px;
@@ -61,7 +56,6 @@
 }
 
 .optional .choiceLayer{
-
 	display:none;
 	position:absolute;
 	right:-370px;

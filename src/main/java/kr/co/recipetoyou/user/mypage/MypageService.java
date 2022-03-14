@@ -55,26 +55,16 @@ public interface MypageService {
 	//상품후기
 	public List<ReviewVO> listReviews() throws DataAccessException;
 
-	/*
-	 * //회원정보수정 public void updateUser(UserVO userVO) throws DataAccessException;
-	 */
-	
 	//배송지삭제
 	public int deleteAddress(@RequestParam("addr_code") String addr_code) throws DataAccessException;
 
-	//개인정보수정
-	//public void userUpdate(UserVO userVO) throws DataAccessException;
-	
-	//개인정보수정
-	//-public void userInfoUpdate(UserVO userVO) throws DataAccessException;
-	
 	//이메일 중복체크
 	public int emailChk(UserVO userVO) throws DataAccessException;
 	
-	//예진
+	//예진 -회원정보수정
 	public void pwUpdate(UserVO userVO) throws DataAccessException;
 	
 	//탈퇴
-		public int withdrawUser(@RequestParam("user_id")String user_id) throws DataAccessException;
+	public int withdrawUser(@RequestParam("user_id")String user_id) throws DataAccessException;
 			
 }

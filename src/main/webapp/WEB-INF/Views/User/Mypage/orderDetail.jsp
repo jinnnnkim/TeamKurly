@@ -47,17 +47,15 @@
 			<!-- head -->
 			<div class="pickpick">
 	
-					<div class="pick_add_list">
-							<!-- 이미지 정보가 담기도록 함. css 깨짐-->
-					<%-- 	<div class="image_wrap" data-prod_code="${cartList.imageList[0].prod_code}" data-path="${cartList.imageList[0].uploadPath}"
-												data-uuid="${cartList.imageList[0].uuid}" data-filename="${cartList.imageList[0].fileName}">  --%>
-						<div id="uploadArea">
-						</div>
+					<div class="pick_add_list">		
 						
 						<div class="subject">
-							<a href="">
+						
+							<img src="/recipetoyou/Resources/Admin/Img/AdgoodsImg/${myorderVO.imageList[0].uploadPath}/s_${myorderVO.imageList[0].uuid}_${myorderVO.imageList[0].fileName}" class="orderDetail">			
+						
+							<div class="orderName">
 								${myorderVO.prod_name}
-							 </a>
+							 </div>
 							
 							<div class="goods_content">
 								<span class="goods_sub">
@@ -77,13 +75,7 @@
 							<!-- price -->
 						</div>
 						<!-- subject -->
-					<!-- 	
-						<div class="button_two">	쿼리스트링으로 넘어가는 값은 파라미터=값(파라미터 이름으로 적용)
-							<button class="btn_add">
-								<i class="fas fa-shopping-cart"></i>담기
-							</button>
-						</div>
-						button_two -->
+				
 					</div>
 					<!-- pick_add_list -->
 		
@@ -99,9 +91,6 @@
 					</div>
 					<p class="cancle_notice">주문취소는 ‘배송준비중’ 이전 상태일 경우에만 가능합니다.</p>
 				</div>
-				
-				
-				
 			</div>
 			<!-- pickadd_main -->
 		</div>
@@ -109,7 +98,6 @@
 	
 		
 <script type="text/javascript">
-
 $(document).ready(function(){
 	
 
@@ -147,7 +135,6 @@ $(document).ready(function(){
 		
 		uploadArea.html(str);
 	});	
-	
 });
 	
 	$(".all_cart").click(function () {
@@ -157,9 +144,7 @@ $(document).ready(function(){
 		if(check) {
 			location.assign("cart.do");
 		}
-	});	
-	
-	
+	});		
 </script>
 	
 </body>

@@ -64,10 +64,6 @@ public interface MypageController {
 	//이메일 중복성 체크
 	public String emailChk(String filterJSON, HttpServletResponse response, Model model) throws Exception;
 
-	
-	  //회원 정보 수정 
-	//-  public String userInfoUpdate(HttpServletRequest request, HttpSession session, UserVO userVO, Model model,RedirectAttributes rttr) throws Exception; 
-	 
 
 	  public ModelAndView mypageUserInfo(UserVO userVO, HttpServletRequest request, HttpServletResponse response) throws Exception;
 
@@ -75,9 +71,9 @@ public interface MypageController {
 			throws Exception;
 
       //예진-회원정보수정
-	  public String modify(HttpSession session, UserVO userVO, RedirectAttributes ra) throws Exception;
-	  //탈퇴
-	  public ModelAndView removeUser(@RequestParam("user_id")String user_id, HttpServletRequest request, HttpServletResponse response) throws Exception;
+	  public String modify(@ModelAttribute("userVO") UserVO userVO, HttpSession session, RedirectAttributes ra) throws Exception;
+	  //회원탈퇴
+	  public ModelAndView removeUser(@RequestParam("user_id") String user_id, HttpServletRequest request, HttpServletResponse response) throws Exception;
 	
 	
 }

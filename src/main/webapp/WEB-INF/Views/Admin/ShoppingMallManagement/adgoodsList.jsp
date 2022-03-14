@@ -137,7 +137,7 @@
 			
 								<div class="image_wrap" data-prod_code="${prod.imageList[0].prod_code}" data-path="${prod.imageList[0].uploadPath}"
 													data-uuid="${prod.imageList[0].uuid}" data-filename="${prod.imageList[0].fileName}">
-										<img>
+										<img src="/recipetoyou/Resources/Admin/Img/AdgoodsImg/${prod.imageList[0].uploadPath}/s_${prod.imageList[0].uuid}_${prod.imageList[0].fileName}">
 								</div>
 							</div>		
 							<div style="margin-left: 110px">
@@ -303,13 +303,7 @@
 		}) 
 	
 		$(document).ready(function(){
-			
-		//검색 타입 selected
-		/* const selectedType = '<c:out value="${pm.vo.type}"/>';
-		if(selectedType != ""){
-			$("select[name='type']").val(selectedType).attr("selected", "selected");
-		} */
-											
+												
 		//이미지 삽입
 		$(".image_wrap").each(function(i, obj){
 			
@@ -322,7 +316,7 @@
 				
 				const fileCallPath = encodeURIComponent(uploadPath + "/s_" + uuid + "_" + fileName);
 				
-				$(this).find("img").attr('src', '${contextPath}/adgoods/getImageInfo.do?fileName=' + fileCallPath);
+				//$(this).find("img").attr('src', '${contextPath}/adgoods/getImageInfo.do?fileName=' + fileCallPath);
 				
 			}else {
 					$(this).find("img").attr('src', '/recipetoyou/Resources/Admin/Img/SubgoodsImg/ready.jpg');
@@ -361,16 +355,6 @@
 		$("#searchBtn").on("click", function(e){
 			e.preventDefault();
 			
-			/* if(var){
-				var var1 = $("input[name='keyword']").val();
-				var var2 = $("#category2 option:selected").val();
-			} */
-			
-			
-			/* $.ajax{
-				
-			} */
-			
 			let val = $("input[name='keyword']").val();
 			
 			if(!($("#category1 option:selected")).val() != "none"){
@@ -381,9 +365,6 @@
 				}
 			}
 			
-			//alert(val2);
-			//moveForm.find("input[name='keyword']").val();
-			//moveForm.find("#category2 option:selected").val();
 			if(val != ""){
 				$("#keyword").val(val);
 			}else{
@@ -402,16 +383,6 @@
 		    
 		   
 		});
-		
-		/*$(document).on('click', '#searchBtn', function(e){
-			e.preventDefault();
-			var url = "${contextPath}/adgoods/search.do";
-			url += "?cda_mapping=" + $('#cda_type').val();
-			url += "$inspect_group=" + $('#groupList').val();
-			
-			location.href = url;
-			console.log(url);
-		})*/
 		
 		</script>
 </body>

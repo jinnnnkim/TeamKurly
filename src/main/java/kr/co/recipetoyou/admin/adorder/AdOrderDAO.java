@@ -17,8 +17,6 @@ public interface AdOrderDAO {
 
 	AdOrderVO readOrd(int id) throws DataAccessException;
 
-//	void updateOrdIng(AdOrderVO vo) throws DataAccessException;
-
 	
 
 }

@@ -39,22 +39,11 @@
 		
 			<div class="review_main">
 					<h2 class="title">후기작성</h2>
-					<!-- <div class="reviewContent">
-						<div class="prod">
-							<div class="img">  
-								<img src="/recipetoyou/Resources/User/Img/goods6.jpg"/>
-							</div>
-							<div class="prodInfo">
-								<span class="prodTitle">소고기 200g</span><br/>
-								<span class="prodSub">맛있는 소고기 200g</span>
-							</div>
-						</div> -->
 						<div class="reviewWriteWrap">
 
 							<td colspan="4">
 								소중한 후기를 남겨주세요.
 							</td>
-
 							<td colspan="4">
 								궁금하신 게 있다면 언제든지 물어봐주세요^^
 							</td>

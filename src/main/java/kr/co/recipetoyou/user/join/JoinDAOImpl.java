@@ -31,7 +31,6 @@ public class JoinDAOImpl implements JoinDAO {
 	@Override
 	public int mailChk(String user_email) throws DataAccessException {
 		int result = sqlSession.selectOne("mapper.user.mailChk", user_email);
-		System.out.println("dao result:"+result+"/ usermail:"+user_email);
 		return result;
 	}
 

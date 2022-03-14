@@ -10,8 +10,6 @@ import kr.co.recipetoyou.util.PagingVO;
 
 public interface UserDAO {
 
-	//전체 회원 조회
-	//public List<UserVO> selectAllUserList() throws DataAccessException;
 	
 	//페이징
 	public List<UserVO> listPage(int page) throws Exception;
