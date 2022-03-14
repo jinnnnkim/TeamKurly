@@ -57,7 +57,7 @@ public class RecipeContollerImpl implements RecipeController {
 	public ModelAndView communityRecipeMain(PagingVO vo, HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
 
-
+ 
 
 		PageMaker pm = new PageMaker();
 		pm.setVo(vo);
